@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>News · Plebum Dominium</title>
+<meta name="description" content="News that makes the case for holding your own Bitcoin keys: exchange freezes, closed off-ramps, and custody failures, collected as they happen.">
+<link rel="canonical" href="https://plebumbtc.io/news.html">
+<link rel="icon" href="/plebum-dominium-test/assets/img/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://plebumbtc.io/news.html">
+<meta property="og:site_name" content="Plebum Dominium">
+<meta property="og:title" content="News · Plebum Dominium">
+<meta property="og:description" content="News that makes the case for holding your own Bitcoin keys: exchange freezes, closed off-ramps, and custody failures, collected as they happen.">
+<meta property="og:image" content="https://plebumbtc.io/assets/img/og-banner.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="News · Plebum Dominium">
+<meta name="twitter:description" content="News that makes the case for holding your own Bitcoin keys: exchange freezes, closed off-ramps, and custody failures, collected as they happen.">
+<meta name="twitter:image" content="https://plebumbtc.io/assets/img/og-banner.png">
+
+<link rel="stylesheet" href="/plebum-dominium-test/assets/css/main.css">
+<link rel="stylesheet" href="/plebum-dominium-test/assets/css/print.css" media="print">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap">
+<script>
+/* set theme before first paint: saved choice wins, else the visitor's OS setting */
+(function(){try{var t=localStorage.getItem('pd-theme');if(!t){t=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','light');}})();
+/* set motion before first paint: saved choice wins, else reduced motion wins */
+(function(){try{var m=localStorage.getItem('pd-motion');if(!m){m=window.matchMedia('(prefers-reduced-motion: reduce)').matches?'off':'on';}document.documentElement.setAttribute('data-motion',m);}catch(e){document.documentElement.setAttribute('data-motion','on');}})();
+</script>
+</head>
+<body class="news" id="top">
+<div class="splash" id="pd-splash" hidden aria-hidden="true">
+  <p class="splash-title">Plebum Dominium: Independent At-Home Bitcoin Self-custody</p>
+  <img class="splash-logo" src="/plebum-dominium-test/assets/img/logo-pleb-key.svg" alt="" width="360" height="360">
+</div>
+<div class="progress" aria-hidden="true"><span></span></div>
+
+
+
+<header class="site-header">
+  <button class="menu-btn" aria-label="Open guide navigation" aria-expanded="false">☰</button>
+  <a class="brand" href="/plebum-dominium-test/"><span class="brand-mark" aria-hidden="true">₿</span> Plebum Dominium</a>
+  <span class="header-sheet">Plebum Dominium</span>
+  <button class="ask-btn" id="ask-btn" type="button" aria-label="Search the guide">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+    <span class="ask-btn-label">Search</span>
+    <kbd aria-hidden="true">/</kbd>
+  </button>
+  <button class="motion-btn" id="motion-btn" type="button" aria-pressed="true" aria-label="Toggle animation on and off">Motion on</button>
+  <button class="theme-btn" id="theme-btn" aria-label="Toggle light and dark mode">
+    <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+    <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+  </button>
+  <span class="online-pill" id="online-pill" role="status" hidden><span class="online-dot" id="online-dot"></span><span class="online-word" id="online-word">Online</span></span>
+</header>
+
+<div class="layout">
+  <nav class="sidebar" aria-label="Guide sheets">
+    <p class="sidebar-label">The bench sheets</p>
+    <ul>
+<li><a href="/plebum-dominium-test/handouts/terms.html" class="" data-sheet="terms"><span class="sheet-num">T</span><span class="sheet-title">Terms</span><span class="sheet-check" aria-hidden="true">✓</span></a></li>
+<li><a href="/plebum-dominium-test/handouts/threat-model.html" class="" data-sheet="threat-model"><span class="sheet-num">02</span><span class="sheet-title">Before you begin</span><span class="sheet-check" aria-hidden="true">✓</span></a></li>
+<li><a href="/plebum-dominium-test/handouts/checklist.html" class="" data-sheet="checklist"><span class="sheet-num">03</span><span class="sheet-title">Checklist</span><span class="sheet-check" aria-hidden="true">✓</span></a></li>
+<li><a href="/plebum-dominium-test/handouts/verify.html" class="" data-sheet="verify"><span class="sheet-num">05</span><span class="sheet-title">Check the files</span><span class="sheet-check" aria-hidden="true">✓</span></a></li>
+<li><a href="/plebum-dominium-test/handouts/airgap.html" class="" data-sheet="airgap"><span class="sheet-num">04</span><span class="sheet-title">Two boots</span><span class="sheet-check" aria-hidden="true">✓</span></a></li>
+<li><a href="/plebum-dominium-test/handouts/dice.html" class="" data-sheet="dice"><span class="sheet-num">06</span><span class="sheet-title">Make the three keys</span><span class="sheet-check" aria-hidden="true">✓</span></a></li>
+<li><a href="/plebum-dominium-test/handouts/sparrow.html" class="" data-sheet="sparrow"><span class="sheet-num">07</span><span class="sheet-title">Build the 2-of-3</span><span class="sheet-check" aria-hidden="true">✓</span></a></li>
+<li><a href="/plebum-dominium-test/handouts/testnet.html" class="" data-sheet="testnet"><span class="sheet-num">10</span><span class="sheet-title">Rehearse on testnet</span><span class="sheet-check" aria-hidden="true">✓</span></a></li>
+<li><a href="/plebum-dominium-test/handouts/signing.html" class="" data-sheet="signing"><span class="sheet-num">08</span><span class="sheet-title">Practice spend</span><span class="sheet-check" aria-hidden="true">✓</span></a></li>
+<li><a href="/plebum-dominium-test/handouts/titanium.html" class="" data-sheet="titanium"><span class="sheet-num">09</span><span class="sheet-title">Metal and the map</span><span class="sheet-check" aria-hidden="true">✓</span></a></li>
+<li><a href="/plebum-dominium-test/handouts/encryption.html" class="" data-sheet="encryption"><span class="sheet-num">11</span><span class="sheet-title">Hide the wallet map</span><span class="sheet-check" aria-hidden="true">✓</span></a></li>
+<li><a href="/plebum-dominium-test/handouts/inheritance.html" class="" data-sheet="inheritance"><span class="sheet-num">12</span><span class="sheet-title">If I am gone</span><span class="sheet-check" aria-hidden="true">✓</span></a></li>
+<li><a href="/plebum-dominium-test/handouts/faq.html" class="" data-sheet="faq"><span class="sheet-num">13</span><span class="sheet-title">If you get stuck</span><span class="sheet-check" aria-hidden="true">✓</span></a></li>
+<li><a href="/plebum-dominium-test/handouts/briefing.html" class="" data-sheet="briefing"><span class="sheet-num">14</span><span class="sheet-title">Tough questions</span><span class="sheet-check" aria-hidden="true">✓</span></a></li>
+<li><a href="/plebum-dominium-test/handouts/fire-card.html" class="" data-sheet="fire-card"><span class="sheet-num">15</span><span class="sheet-title">Recovery card</span><span class="sheet-check" aria-hidden="true">✓</span></a></li>
+<li><a href="/plebum-dominium-test/handouts/single-sig.html" class="" data-sheet="single-sig"><span class="sheet-num">16</span><span class="sheet-title">One key, done right</span><span class="sheet-check" aria-hidden="true">✓</span></a></li>
+<li><a href="/plebum-dominium-test/handouts/two-devices.html" class="" data-sheet="two-devices"><span class="sheet-num">17</span><span class="sheet-title">Two devices and one dice key</span><span class="sheet-check" aria-hidden="true">✓</span></a></li>
+    </ul>
+    <p class="sidebar-note">Check off sheets as you finish them. Progress is saved on this device.</p>
+  </nav>
+  <div class="scrim" aria-hidden="true"></div>
+
+  <main id="content">
+    <article>
+      <p class="kicker">Plebum Dominium</p>
+      <h1>News</h1>
+
+
+<div class="news-rule"></div>
+<article class="news-entry news-splash" id="two-hardware-failures">
+  <div class="news-meta"><span class="news-pill">Latest</span></div>
+  <span class="news-date">October 2026</span>
+  <h2>Two hardware failures in one year</h2>
+  <p>In July 2026, attackers drained about 1,816 bitcoin from more than 5,200 Coldcard wallets. The cause was a firmware flaw from March 2021 that left some seeds with as little as 40 bits of real randomness instead of 128. Updating the firmware did not fix seeds already made. Owners had to move their funds to new seeds.</p>
+  <p>In October 2026, Ledger confirmed an unauthorized hardware implant in at least one device sold by the Southeast Asian reseller CryptoBilis. Researchers estimate $86 million to $93 million was taken from hundreds of wallets. Ledger said its own systems and direct sales were not affected, and every confirmed case so far traces to that reseller.</p>
+  <div class="news-why">
+    <span class="news-why-label">Why it matters here</span>
+    <p>Both failures break the same promise: that the device can be trusted on its own. The guide answers that three ways. Buy from the maker&rsquo;s own shop, never a reseller and never a used device. Never let a device roll its own entropy: make the seed with dice on an offline boot, then import it. And for a single key, require a passphrase: researchers noted that seeds made with dice rolls or protected by a strong passphrase were not the ones drained. A device you trust less is a device you verify more.</p>
+  </div>
+  <p class="news-src">Sources: <a href="https://decrypt.co/resources/what-is-a-hardware-wallet-crypto-cold-storage-explained" rel="noopener">Decrypt</a> · <a href="https://www.coindesk.com/tech/2026/10/12/ledger-says-unauthorized-implant-found-in-at-least-one-device-sold-by-cryptobilis" rel="noopener">CoinDesk</a></p>
+</article>
+<div class="news-rule"></div>
+<article class="news-entry" id="russia-off-ramp">
+  <span class="news-date">October 2026</span>
+  <h2>Russia closes the exchange off-ramp</h2>
+  <p>Russia&rsquo;s new digital-asset law (No. 282-FZ, in force since September 1) routes all crypto buying through licensed brokers and state-approved banks. The central bank&rsquo;s October guidance is explicit: moving crypto from a regulated account to your own wallet is not permitted, and peer-to-peer trades between individuals end entirely on July 1, 2027. Small buyers are capped at roughly $3,800 a year: bitcoin, ether, or tether only.</p>
+  <p>Nobody banned holding your own keys. They closed the door between the regulated system and self-custody. That door is the exact step this guide starts with, when you withdraw a test amount from an exchange to an address only you control.</p>
+  <div class="news-why">
+    <span class="news-why-label">Why it matters here</span>
+    <p>Rules can close an off-ramp at any time, in any country. A wallet built before you need it never has to ask permission. Build it while the door is open.</p>
+  </div>
+  <p class="news-src">Sources: <a href="https://cointelegraph.com/news/russia-ban-p2p-crypto-trades-july-2027" rel="noopener">Cointelegraph</a> · <a href="https://www.tftc.io/russia-p2p-bitcoin-ban-state-approved-rails-july-2027" rel="noopener">TFTC</a></p>
+</article>
+<div class="news-rule"></div>
+<article class="news-entry" id="ftx">
+  <span class="news-date">November 2022</span>
+  <h2>FTX collapses, $8 billion in customer funds missing</h2>
+  <p>FTX was one of the largest crypto exchanges in the world, valued at $32 billion in early 2022. On November 2, 2022, CoinDesk published the balance sheet of Alameda Research, the trading firm run by the same people, and it showed billions in FTT, a token FTX had printed itself. Customers rushed to withdraw. About $6 billion left in 72 hours, and the money was not there.</p>
+  <p>FTX halted withdrawals on November 8 and filed for bankruptcy on November 11, revealing a shortfall of roughly $8 billion in customer funds. Founder Sam Bankman-Fried was convicted on seven fraud and conspiracy counts in November 2023 and sentenced to 25 years in March 2024. The bankruptcy estate later repaid most customers in dollars, but priced at November 2022 values, so a customer who had held one bitcoin got back the dollar value of a bitcoin on the day the company failed, not the bitcoin.</p>
+  <div class="news-why">
+    <span class="news-why-label">Why it matters here</span>
+    <p>An exchange balance is a claim on a company, not money in your pocket. The moment withdrawals stop, that distinction becomes the whole story. This guide keeps no balance anywhere: you buy, you withdraw a test amount to an address only you control, and you verify it before the rest follows. Even a bankruptcy that pays everyone back in dollars can still take your bitcoin.</p>
+  </div>
+  <p class="news-src">Sources: <a href="https://www.nasdaq.com/articles/sam-bankman-frieds-empire-was-crushed-by-this-infamous-balance-sheet.-heres-more-of-the" rel="noopener">Nasdaq</a> · <a href="https://en.wikipedia.org/wiki/Bankruptcy_of_FTX" rel="noopener">Wikipedia</a></p>
+</article>
+<div class="news-rule"></div>
+<article class="news-entry" id="ledger-breach">
+  <span class="news-date">July 2020</span>
+  <h2>Ledger breach exposes 272,000 customer addresses</h2>
+  <p>Ledger makes hardware wallets, and in July 2020 it disclosed that an attacker had reached its e-commerce and marketing database through a third party API key. At first Ledger said about 9,500 customers had detailed records exposed, alongside more than one million email addresses. In December 2020 the full database appeared on a public forum, and the real count was about 272,000 detailed records: names, postal addresses, and phone numbers of people who had ordered a device.</p>
+  <p>No keys and no funds were touched. The damage was different: years of phishing emails and texts aimed at recovery phrases, SIM swaps, and extortion threats, all aimed at people whose home addresses were now in criminal hands. Ledger later confirmed that rogue members of its e-commerce provider&rsquo;s support team had also exported customer records in April and June 2020.</p>
+  <div class="news-why">
+    <span class="news-why-label">Why it matters here</span>
+    <p>Order data is physical security data. A home address tied to a hardware wallet order tells a criminal what you own and where you keep it, and that data stays dangerous for years after the breach. Order from the maker&rsquo;s shop, ship to an address that is not your home, and treat any message about your order as suspect.</p>
+  </div>
+  <p class="news-src">Sources: <a href="https://www.ledger.com/blog/update-efforts-to-protect-your-data-and-prosecute-the-scammers" rel="noopener">Ledger</a> · <a href="https://www.coindesk.com/business/2020/12/21/why-ledger-kept-all-that-customer-data-in-the-first-place" rel="noopener">CoinDesk</a></p>
+</article>
+<div class="news-rule"></div>
+<article class="news-entry" id="quadrigacx">
+  <span class="news-date">January 2019</span>
+  <h2>QuadrigaCX dies with its founder, $190 million locked away</h2>
+  <p>QuadrigaCX was Canada&rsquo;s largest crypto exchange when its founder, Gerald Cotten, died in India in December 2018 at age 30. He alone held the passwords to the company&rsquo;s cold wallets. His widow had his encrypted laptop and no password, and no one else at the company could open the wallets. About 115,000 customers were owed roughly $190 million.</p>
+  <p>The exchange filed for bankruptcy in April 2019. In June 2020, Ontario&rsquo;s securities regulator concluded the operation had been a fraud and a Ponzi scheme, with Cotten trading against customers under aliases. Whether the keys were truly lost or never existed, the result for customers was the same: the money was gone.</p>
+  <div class="news-why">
+    <span class="news-why-label">Why it matters here</span>
+    <p>One person holding every key is the failure this guide is built to remove. A 2-of-3 spread across three keys and three places survives any single death, loss, or theft, and the inheritance sheet exists so the people you trust can still open the fund when you cannot.</p>
+  </div>
+  <p class="news-src">Sources: <a href="https://www.coindesk.com/learn/the-story-behind-quadrigacx-and-gerald-cotten-netflixs-crypto-king" rel="noopener">CoinDesk</a> · <a href="https://en.wikipedia.org/wiki/Quadriga_Fintech_Solutions" rel="noopener">Wikipedia</a></p>
+</article>
+<div class="news-rule"></div>
+<article class="news-entry" id="mt-gox">
+  <span class="news-date">February 2014</span>
+  <h2>Mt. Gox loses 850,000 bitcoin</h2>
+  <p>Mt. Gox was the world&rsquo;s largest bitcoin exchange, handling more than 70 percent of all bitcoin transactions in early 2014. On February 24, 2014, it suspended trading and went offline. Four days later it filed for bankruptcy in Tokyo, admitting about 850,000 bitcoin had gone missing, worth roughly $450 million at the time. About 200,000 were later recovered from an old wallet. The rest were never found.</p>
+  <p>Investigations later showed the exchange had been losing coins to attackers since 2011, slowly, through flaws in how it tracked withdrawals. Creditors waited a decade: repayments through Kraken and Bitstamp began in July 2024, and the deadline for the remaining distributions runs to October 31, 2026.</p>
+  <div class="news-why">
+    <span class="news-why-label">Why it matters here</span>
+    <p>This is the original lesson of the site. Coins left on an exchange are the exchange&rsquo;s coins until you withdraw them, and no reputation or size changes that. The practice spend exists so you prove the withdrawal step with a small amount before your savings ever move.</p>
+  </div>
+  <p class="news-src">Sources: <a href="https://www.theblock.co/learn/business/what-is-mt-gox-306141" rel="noopener">The Block</a> · <a href="https://en.wikipedia.org/wiki/Mt._Gox" rel="noopener">Wikipedia</a></p>
+</article>
+<p class="news-older">New entries land as events warrant.</p>
+
+      <nav class="prevnext-row" aria-label="Previous and next sheets">
+
+
+
+      </nav>
+    </article>
+  </main>
+
+  <aside class="toc-col">
+
+  </aside>
+</div>
+
+<div class="mobilebar" aria-label="Sheet navigation">
+  <span class="mobilebar-pos">Plebum Dominium</span>
+</div>
+
+<footer class="site-footer">
+  <p><strong>Plebum Dominium</strong>: independent at-home Bitcoin self-custody.</p>
+  <p>Educational material, not financial advice. Bitcoin self-custody is irreversible. A mistake can permanently lose funds. Verify every download from its original source.</p>
+  <p><a href="/plebum-dominium-test/kit/VERIFY.md">File fingerprints</a> · <a href="/plebum-dominium-test/downloads.html">Downloads</a> · <a href="/plebum-dominium-test/kit/02_Print_Packet.pdf">Print packet (PDF)</a> · <a href="/plebum-dominium-test/news.html">News</a> · <a href="/plebum-dominium-test/beyond.html">Beyond the kit</a></p>
+  <p class="footer-updated">Last updated October 26, 2026</p>
+  <p class="footer-contact">Contact: <a href="mailto:Muststackmoresats@gmail.com">Muststackmoresats@gmail.com</a> · X: <a href="https://x.com/MustHaveMustash" rel="noopener">@MustHaveMustash</a></p>
+  <p class="donate-row"><a class="btn-lightning" href="lightning:musthavemoresats@speed.app"><span aria-hidden="true">⚡</span> Donate with Lightning</a> <button type="button" class="btn-onchain" data-copy="bc1qcmvj7c79gyjrcg3zu5pxnp4mav54846epktyma4n6v8jsud2fhqsczmngw"><span aria-hidden="true">₿</span> Donate Bitcoin</button></p>
+  <p class="donate-addr"><code>bc1qcmvj7c79gyjrcg3zu5pxnp4mav54846epktyma4n6v8jsud2fhqsczmngw</code></p>
+</footer>
+
+<script src="/plebum-dominium-test/assets/js/main.js" defer></script>
+<script data-goatcounter="https://plebumbtc.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<div id="newbie-banner" class="newbie-banner" role="dialog" aria-label="New to Bitcoin?" hidden>
+  <p><strong>New to Bitcoin?</strong><br><a href="/plebum-dominium-test/#new-to-bitcoin" class="newbie-go">Start here &rarr;</a></p>
+  <button type="button" class="newbie-close" aria-label="Dismiss">&times;</button>
+</div>
+<div class="ask-backdrop" id="ask-backdrop" hidden>
+  <div class="ask-modal" role="dialog" aria-modal="true" aria-label="Ask the guide">
+    <p class="ask-title">Ask the guide</p>
+    <input class="ask-input" id="ask-input" type="search" placeholder="Search the guide: try 'verify a download'" inputmode="search" enterkeyhint="search" autocapitalize="off" autocorrect="off" spellcheck="false" autocomplete="off" aria-label="Search the guide">
+    <div class="ask-results" id="ask-results"></div>
+    <p class="ask-foot">Search runs entirely in your browser. Nothing you type leaves this page unless you tap email. <span class="ask-keys">Up and down move, Enter opens, Esc closes.</span></p>
+  </div>
+</div>
+</body>
+</html>
