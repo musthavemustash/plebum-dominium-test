@@ -1608,9 +1608,6 @@ html[data-motion="off"] .metal-anim .plate { transform: none; opacity: 1; }
   .mobile-path-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--muted); margin: 0 0 0.5rem 0.25rem; font-family: "IBM Plex Sans", sans-serif; }
   .mobile-path-seg { display: flex; gap: 6px; margin: 0 0 0.4rem; }
   .mobile-path-seg button { padding: 0.65rem 0.25rem; font-size: 0.9rem; }
-  .path-banner { padding: 0.45rem 0.75rem; margin: 0.5rem 0 0.75rem; border-top-width: 4px; }
-  .path-banner-label { margin-bottom: 0.1rem; font-size: 0.9rem; }
-  .path-banner-note { font-size: 0.9rem; }
 }
 .sidebar-path-note { font-size: 0.8rem; color: var(--muted); margin: 0.4rem 0.25rem 0; }
 .sidebar-risks-wrap { margin: 1rem 0 0; }
@@ -1625,6 +1622,11 @@ html[data-path="full"] .path-banner { border-top-color: #009E73; }
 .path-banner-label { margin: 0 0 0.25rem; font-family: "IBM Plex Sans", sans-serif; font-size: 0.95rem; }
 .path-banner-note { margin: 0; font-size: 0.95rem; }
 .path-banner-warn { background: var(--warn-bg); }
+@media (max-width: 760px) {
+  .path-banner { padding: 0.45rem 0.75rem; margin: 0.5rem 0 0.75rem; border-top-width: 4px; }
+  .path-banner-label { margin-bottom: 0.1rem; font-size: 0.9rem; }
+  .path-banner-note { font-size: 0.9rem; }
+}
 .path-hidden { display: none !important; }
 .path-gate { border: 1px solid var(--line); border-top: 6px solid var(--accent); background: var(--card); padding: 1rem 1.2rem; margin: 1rem 0; border-radius: 8px; }
 html[data-path="easy"] .path-gate { border-top-color: #E69F00; }
