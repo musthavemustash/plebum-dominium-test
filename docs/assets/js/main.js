@@ -554,7 +554,7 @@ document.querySelectorAll(".btn-onchain").forEach(function (btn) {
   function applyPath(path) {
     var info = PATHS[path];
     document.documentElement.setAttribute("data-path", path);
-    document.querySelectorAll("#sidebar-path button[data-path], .path-risks-switch button[data-path]").forEach(function (b) {
+    document.querySelectorAll("#sidebar-path button[data-path], .path-risks-switch button[data-path], .mobile-path-seg button[data-path]").forEach(function (b) {
       var on = b.getAttribute("data-path") === path;
       b.setAttribute("aria-pressed", on ? "true" : "false");
       b.classList.toggle("sel-easy", on && path === "easy");
@@ -600,7 +600,7 @@ document.querySelectorAll(".btn-onchain").forEach(function (btn) {
     try { localStorage.setItem("pd-path", path); } catch (e) {}
     applyPath(path);
   }
-  document.querySelectorAll("#sidebar-path button[data-path], .path-risks-switch button[data-path]").forEach(function (b) {
+  document.querySelectorAll("#sidebar-path button[data-path], .path-risks-switch button[data-path], .mobile-path-seg button[data-path]").forEach(function (b) {
     b.addEventListener("click", function () { setPath(b.getAttribute("data-path")); });
   });
   applyPath(getPath());

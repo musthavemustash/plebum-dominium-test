@@ -1598,10 +1598,20 @@ html[data-motion="off"] .metal-anim .plate { transform: none; opacity: 1; }
 .sidebar-path { position: sticky; top: 0; background: var(--paper); padding: 0.5rem 0 0.75rem; margin-bottom: 0.75rem; border-bottom: 1px solid var(--line); z-index: 2; }
 .sidebar-path-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--muted); margin: 0 0 0.5rem 0.25rem; font-family: "IBM Plex Sans", sans-serif; }
 .sidebar-path-seg, .path-risks-switch { display: flex; gap: 6px; margin: 0 0 0.4rem; }
-.sidebar-path-seg button, .path-risks-switch button { flex: 1; padding: 0.55rem 0.25rem; font-family: "IBM Plex Sans", sans-serif; font-size: 0.85rem; font-weight: 700; cursor: pointer; background: var(--card); color: var(--ink); border: 1px solid var(--line); border-radius: 6px; }
-.sidebar-path-seg button.sel-easy, .path-risks-switch button.sel-easy { background: #E69F00; color: #0e0d0b; border-color: #E69F00; }
-.sidebar-path-seg button.sel-one, .path-risks-switch button.sel-one { background: #0072B2; color: #ffffff; border-color: #0072B2; }
-.sidebar-path-seg button.sel-full, .path-risks-switch button.sel-full { background: #009E73; color: #0e0d0b; border-color: #009E73; }
+.sidebar-path-seg button, .path-risks-switch button, .mobile-path-seg button { flex: 1; padding: 0.55rem 0.25rem; font-family: "IBM Plex Sans", sans-serif; font-size: 0.85rem; font-weight: 700; cursor: pointer; background: var(--card); color: var(--ink); border: 1px solid var(--line); border-radius: 6px; }
+.sidebar-path-seg button.sel-easy, .path-risks-switch button.sel-easy, .mobile-path-seg button.sel-easy { background: #E69F00; color: #0e0d0b; border-color: #E69F00; }
+.sidebar-path-seg button.sel-one, .path-risks-switch button.sel-one, .mobile-path-seg button.sel-one { background: #0072B2; color: #ffffff; border-color: #0072B2; }
+.sidebar-path-seg button.sel-full, .path-risks-switch button.sel-full, .mobile-path-seg button.sel-full { background: #009E73; color: #0e0d0b; border-color: #009E73; }
+.mobile-path { display: none; }
+@media (max-width: 760px) {
+  .mobile-path { display: block; margin: 0.75rem 0 0; }
+  .mobile-path-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--muted); margin: 0 0 0.5rem 0.25rem; font-family: "IBM Plex Sans", sans-serif; }
+  .mobile-path-seg { display: flex; gap: 6px; margin: 0 0 0.4rem; }
+  .mobile-path-seg button { padding: 0.65rem 0.25rem; font-size: 0.9rem; }
+  .path-banner { padding: 0.45rem 0.75rem; margin: 0.5rem 0 0.75rem; border-top-width: 4px; }
+  .path-banner-label { margin-bottom: 0.1rem; font-size: 0.9rem; }
+  .path-banner-note { font-size: 0.9rem; }
+}
 .sidebar-path-note { font-size: 0.8rem; color: var(--muted); margin: 0.4rem 0.25rem 0; }
 .sidebar-risks-wrap { margin: 1rem 0 0; }
 .sidebar-risks { display: block; border: 1px solid var(--line); border-left: 6px solid var(--accent); border-radius: 8px; padding: 0.6rem 0.75rem; color: var(--ink); text-decoration: none; font-size: 0.9rem; font-weight: 600; }
