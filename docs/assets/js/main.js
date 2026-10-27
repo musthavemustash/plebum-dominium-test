@@ -593,6 +593,32 @@ document.querySelectorAll(".btn-onchain").forEach(function (btn) {
       }
       banner.hidden = false;
     }
+    var gate = document.getElementById("path-gate");
+    var gateNote = document.getElementById("path-gate-note");
+    var gated = false;
+    if (path !== "full") {
+      var gslug = currentSlug();
+      if (gslug && info.sheets && info.sheets.indexOf(gslug) < 0) gated = true;
+    }
+    document.body.classList.toggle("path-gated", gated);
+    if (gate) {
+      gate.hidden = !gated;
+      if (gated && gateNote) gateNote.textContent = "This sheet is part of the Full program, not your " + info.label + " path, so its content is not shown here. Switch to Full program to read it, or stay on your path.";
+    }
+    document.querySelectorAll(".stage .card").forEach(function (card) {
+      var href = card.getAttribute("href") || "";
+      var m = href.match(/handouts\/([a-z0-9-]+)\.html/);
+      if (!m) return;
+      var on = path === "full" || (info.sheets && info.sheets.indexOf(m[1]) >= 0);
+      card.classList.toggle("path-hidden", !on);
+    });
+    document.querySelectorAll(".stage").forEach(function (sec) {
+      var cards = sec.querySelectorAll(".card");
+      if (!cards.length) return;
+      var any = false;
+      cards.forEach(function (c) { if (!c.classList.contains("path-hidden")) any = true; });
+      sec.classList.toggle("path-hidden", !any);
+    });
     var inSite = document.querySelector(".path-seg button[data-path=\"" + path + "\"]");
     if (inSite && inSite.getAttribute("aria-pressed") !== "true") inSite.click();
   }
@@ -603,5 +629,7 @@ document.querySelectorAll(".btn-onchain").forEach(function (btn) {
   document.querySelectorAll("#sidebar-path button[data-path], .path-risks-switch button[data-path], .mobile-path-seg button[data-path]").forEach(function (b) {
     b.addEventListener("click", function () { setPath(b.getAttribute("data-path")); });
   });
+  var gateBtn = document.getElementById("path-gate-full");
+  if (gateBtn) gateBtn.addEventListener("click", function () { setPath("full"); });
   applyPath(getPath());
 })();

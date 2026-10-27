@@ -1626,6 +1626,12 @@ html[data-path="full"] .path-banner { border-top-color: #009E73; }
 .path-banner-note { margin: 0; font-size: 0.95rem; }
 .path-banner-warn { background: var(--warn-bg); }
 .path-hidden { display: none !important; }
+.path-gate { border: 1px solid var(--line); border-top: 6px solid var(--accent); background: var(--card); padding: 1rem 1.2rem; margin: 1rem 0; border-radius: 8px; }
+html[data-path="easy"] .path-gate { border-top-color: #E69F00; }
+html[data-path="one"] .path-gate { border-top-color: #0072B2; }
+html[data-path="full"] .path-gate { border-top-color: #009E73; }
+.path-gate button { padding: 0.65rem 1rem; font-family: "IBM Plex Sans", sans-serif; font-size: 0.9rem; font-weight: 700; cursor: pointer; background: #009E73; color: #0e0d0b; border: 1px solid #009E73; border-radius: 6px; }
+body.path-gated article > *:not(.kicker):not(h1):not(.mobile-path):not(.path-banner):not(.path-gate) { display: none !important; }
 .risks-section { border: 1px solid var(--line); border-top: 6px solid var(--accent); background: var(--card); padding: 1rem 1.2rem; margin: 1.5rem 0; border-radius: 8px; }
 .risks-easy { border-top-color: #E69F00; }
 .risks-one { border-top-color: #0072B2; }
