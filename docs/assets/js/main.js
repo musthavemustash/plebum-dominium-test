@@ -514,7 +514,7 @@ document.querySelectorAll(".btn-onchain").forEach(function (btn) {
     one: { label: "One key", sheets: ["terms", "threat-model", "checklist", "verify", "airgap", "dice", "single-sig", "titanium", "fire-card", "faq"], summary: "One key plus a passphrase. Medium work, trust in one key, one device, and one passphrase." },
     full: { label: "Full program", sheets: null, summary: "Three keys, three places. Highest work, no single key, device, or place." }
   };
-  var VARIANTS = { faq: { easy: "faq-easy", one: "faq-one" } };
+  var VARIANTS = { faq: { easy: "faq-easy", one: "faq-one" }, titanium: { easy: "titanium-easy", one: "titanium-one" }, checklist: { easy: "checklist-easy", one: "checklist-one" }, "fire-card": { one: "fire-card-one" }, "threat-model": { easy: "threat-model-easy", one: "threat-model-one" }, dice: { easy: "dice-easy", one: "dice-one" } };
   var NOTES = {
     dice: {
       easy: "On this path, make one key, not three. Stop after the first key, stamp it in titanium, then enter the words on the device itself.",
@@ -525,6 +525,18 @@ document.querySelectorAll(".btn-onchain").forEach(function (btn) {
       easy: "On this path, stamp the words in titanium first, before the device entry. The plate is the backup if the device fails.",
       one: "Stamp the words in titanium, and keep the passphrase paper apart from the plate.",
       full: "Stamp three plates, and keep them in three places."
+    },
+    verify: {
+      easy: "On this path, the Later section does not apply. Sparrow, Electrum, the wallet map, and signing a file are Full program work. The checking steps above, download, fingerprint, signature, and kit check, are the work.",
+      one: "On this path, Sparrow is watch-only only, Electrum is not used, and the wallet map and signing in the Later section do not apply. The checking steps above are the work."
+    },
+    airgap: {
+      easy: "On this path, three phrases in this sheet do not apply: a watch-only wallet that broadcasts, payment files and the map on the data USB, and signing a file or exporting the map. Your work here is Tails with networking off, one seed per session, and a full shutdown. Next, make one key.",
+      one: "On this path, the map, signing a file, and exporting the map do not apply. A watch-only wallet comes later, in the single-sig sheet, and the device signs. Next, make one key."
+    },
+    terms: {
+      easy: "On this path, four entries describe the Full program, not your wallet: 2-of-3, m/48'/0'/0'/2', descriptor, and PSBT. Your wallet is one device and one plate.",
+      one: "On this path, three entries describe the Full program, not your wallet: 2-of-3, m/48'/0'/0'/2', and descriptor as a map. PSBT does not apply either, the device signs. The xpub entry fits as a watch key."
     },
     single: {},
     "single-sig": {
