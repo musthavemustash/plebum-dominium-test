@@ -514,6 +514,7 @@ document.querySelectorAll(".btn-onchain").forEach(function (btn) {
     one: { label: "One key", sheets: ["terms", "threat-model", "checklist", "verify", "airgap", "dice", "single-sig", "titanium", "fire-card", "faq"], summary: "One key plus a passphrase. Medium work, trust in one key, one device, and one passphrase." },
     full: { label: "Full program", sheets: null, summary: "Three keys, three places. Highest work, no single key, device, or place." }
   };
+  var VARIANTS = { faq: { easy: "faq-easy", one: "faq-one" } };
   var NOTES = {
     dice: {
       easy: "On this path, make one key, not three. Stop after the first key, stamp it in titanium, then enter the words on the device itself.",
@@ -619,6 +620,26 @@ document.querySelectorAll(".btn-onchain").forEach(function (btn) {
       cards.forEach(function (c) { if (!c.classList.contains("path-hidden")) any = true; });
       sec.classList.toggle("path-hidden", !any);
     });
+    document.querySelectorAll(".sidebar a[data-sheet]").forEach(function (a) {
+      var s = a.getAttribute("data-sheet");
+      var v = VARIANTS[s] && VARIANTS[s][path];
+      if (!a.getAttribute("data-base-href")) a.setAttribute("data-base-href", a.getAttribute("href"));
+      if (v) a.setAttribute("href", a.getAttribute("data-base-href").replace(/[^\/]+\.html$/, v + ".html"));
+      else a.setAttribute("href", a.getAttribute("data-base-href"));
+    });
+    var curSlug = currentSlug();
+    var curFile = (window.location.pathname.split("/").pop() || "").replace(/\.html$/, "");
+    if (curSlug && VARIANTS[curSlug]) {
+      var want = VARIANTS[curSlug][path];
+      if (want && curFile !== want) {
+        window.location.href = window.location.pathname.replace(/[^\/]+\.html$/, want + ".html");
+        return;
+      }
+      if (!want && curFile !== curSlug && (curFile === VARIANTS[curSlug].easy || curFile === VARIANTS[curSlug].one)) {
+        window.location.href = window.location.pathname.replace(/[^\/]+\.html$/, curSlug + ".html");
+        return;
+      }
+    }
     var inSite = document.querySelector(".path-seg button[data-path=\"" + path + "\"]");
     if (inSite && inSite.getAttribute("aria-pressed") !== "true") inSite.click();
   }
