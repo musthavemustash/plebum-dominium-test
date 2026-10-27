@@ -2,7 +2,7 @@
 <h2>Pick your path</h2>
 <p>The doors above state where you stand today. After the doors, pick the trade that fits. The switch below routes you to the right starting sheet.</p>
 <div class="path-seg" role="group" aria-label="Choose a setup">
-<button type="button" data-path="quick" aria-pressed="false">Quick</button>
+<button type="button" data-path="easy" aria-pressed="false">Easy</button>
 <button type="button" data-path="middle" aria-pressed="false">One key</button>
 <button type="button" data-path="full" aria-pressed="true">Full program</button>
 </div>
@@ -12,7 +12,7 @@
 <script>
 (function () {
   var PATHS = {
-    quick: { cls: "path-card-quick", sel: "sel-quick", title: "Words into one trusted device", trade: "Trust: one device and its maker. Work: lowest.", steps: ["Roll dice for 24 words.", "Stamp the words in titanium first.", "Enter the words on the hardware wallet itself."], risk: "Risk: one device, one maker. If either fails you, the wallet fails.", next: "Next: the dice sheet, then the single-sig sheet.", go: "{BASE}handouts/dice.html", goText: "Go to the dice sheet" },
+    easy: { cls: "path-card-easy", sel: "sel-easy", title: "Words into one trusted device", trade: "Trust: one device and its maker. Work: lowest.", steps: ["Roll dice for 24 words.", "Stamp the words in titanium first.", "Enter the words on the hardware wallet itself."], risk: "Risk: one device, one maker. If either fails you, the wallet fails.", next: "Next: the dice sheet, then the single-sig sheet.", go: "{BASE}handouts/dice.html", goText: "Go to the dice sheet" },
     middle: { cls: "path-card-middle", sel: "sel-middle", title: "One key plus a passphrase", trade: "Trust: one key, one device, one passphrase. Work: medium.", steps: ["Roll dice for 24 words.", "Add a passphrase, kept on paper apart from the plate.", "Stamp the words in titanium. Use a watch-only wallet."], risk: "Risk: one key and one passphrase. Lose the passphrase and the wallet is gone.", next: "Next: the single-sig sheet.", go: "{BASE}handouts/single-sig.html", goText: "Go to the single-sig sheet" },
     full: { cls: "path-card-full", sel: "sel-full", title: "Three keys, three places", trade: "Trust: no single key, device, or place. Work: highest.", steps: ["Roll three dice keys. Stamp three titanium plates. Keep them in three places.", "Build the 2-of-3. Practice spend first. Hide the encrypted map."], risk: "Risk: the most steps to get right. Lose two keys and the map and the funds are locked.", next: "Next: the checklist.", go: "{BASE}handouts/checklist.html", goText: "Go to the checklist" }
   };
