@@ -505,3 +505,103 @@ document.querySelectorAll(".btn-onchain").forEach(function (btn) {
     });
   } catch (e) {}
 })();
+
+/* ---------- sidebar path toggle (TEST SITE ONLY): Easy / One key / Full program, saved on this device ---------- */
+(function () {
+  "use strict";
+  var PATHS = {
+    easy: { label: "Easy", sheets: ["terms", "threat-model", "checklist", "verify", "airgap", "dice", "titanium", "faq"], summary: "Words into one trusted device. Lowest work, most trust in one device and its maker." },
+    one: { label: "One key", sheets: ["terms", "threat-model", "checklist", "verify", "airgap", "dice", "single-sig", "titanium", "fire-card", "faq"], summary: "One key plus a passphrase. Medium work, trust in one key, one device, and one passphrase." },
+    full: { label: "Full program", sheets: null, summary: "Three keys, three places. Highest work, no single key, device, or place." }
+  };
+  var NOTES = {
+    dice: {
+      easy: "On this path, make one key, not three. Stop after the first key, stamp it in titanium, then enter the words on the device itself.",
+      one: "On this path, make one key, then add a passphrase, kept on paper apart from the plate.",
+      full: "Make three keys, with a full shutdown between each key."
+    },
+    titanium: {
+      easy: "On this path, stamp the words in titanium first, before the device entry. The plate is the backup if the device fails.",
+      one: "Stamp the words in titanium, and keep the passphrase paper apart from the plate.",
+      full: "Stamp three plates, and keep them in three places."
+    },
+    single: {},
+    "single-sig": {
+      one: "This is your main sheet on this path. One key, one passphrase, one watch-only wallet.",
+      full: "On the full program, this sheet is the spending wallet on Plate A. Savings stay in the 2-of-3."
+    },
+    sparrow: {
+      full: "Build the 2-of-3 from the three dice keys, then practice spend before any savings move."
+    },
+    encryption: {
+      full: "Hide the wallet map, encrypted, apart from any single plate. Two seeds alone cannot rebuild the third key without it."
+    },
+    inheritance: {
+      full: "Write the inheritance sheet for a non-Bitcoiner, and keep it where your family can find it."
+    }
+  };
+  function getPath() {
+    try {
+      var p = localStorage.getItem("pd-path");
+      if (p === "easy" || p === "one" || p === "full") return p;
+    } catch (e) {}
+    return "full";
+  }
+  function currentSlug() {
+    var a = document.querySelector(".sidebar a.active");
+    return a ? a.getAttribute("data-sheet") : null;
+  }
+  function applyPath(path) {
+    var info = PATHS[path];
+    document.documentElement.setAttribute("data-path", path);
+    document.querySelectorAll("#sidebar-path button[data-path], .path-risks-switch button[data-path]").forEach(function (b) {
+      var on = b.getAttribute("data-path") === path;
+      b.setAttribute("aria-pressed", on ? "true" : "false");
+      b.classList.toggle("sel-easy", on && path === "easy");
+      b.classList.toggle("sel-one", on && path === "one");
+      b.classList.toggle("sel-full", on && path === "full");
+      if (!on) { b.classList.remove("sel-easy", "sel-one", "sel-full"); }
+    });
+    var shown = 0, total = 0;
+    document.querySelectorAll(".sidebar ul li[data-paths]").forEach(function (li) {
+      total++;
+      var ok = li.getAttribute("data-paths").split(" ").indexOf(path) >= 0;
+      li.classList.toggle("path-hidden", !ok);
+      if (ok) shown++;
+    });
+    var count = document.getElementById("path-count");
+    if (count) count.textContent = path === "full" ? "All " + total + " sheets" : "Showing " + shown + " of " + total + " sheets for " + info.label;
+    var risksLabel = document.getElementById("path-risks-label");
+    if (risksLabel) risksLabel.textContent = info.label;
+    ["easy", "one", "full"].forEach(function (k) {
+      var sec = document.getElementById("risks-" + k);
+      if (sec) sec.classList.toggle("path-hidden", k !== path);
+    });
+    var banner = document.getElementById("path-banner");
+    if (banner) {
+      var label = document.getElementById("path-banner-label");
+      var note = document.getElementById("path-banner-note");
+      if (label) label.textContent = info.label;
+      var slug = currentSlug();
+      if (slug && info.sheets && info.sheets.indexOf(slug) < 0) {
+        banner.classList.add("path-banner-warn");
+        if (note) note.innerHTML = "This sheet is not on your " + info.label + " path. " + info.summary + " Switch to Full program in the sidebar to see all sheets, or pick a sheet on your path.";
+      } else {
+        banner.classList.remove("path-banner-warn");
+        var n = slug && NOTES[slug] && NOTES[slug][path] ? NOTES[slug][path] : info.summary;
+        if (note) note.textContent = n;
+      }
+      banner.hidden = false;
+    }
+    var inSite = document.querySelector(".path-seg button[data-path=\"" + path + "\"]");
+    if (inSite && inSite.getAttribute("aria-pressed") !== "true") inSite.click();
+  }
+  function setPath(path) {
+    try { localStorage.setItem("pd-path", path); } catch (e) {}
+    applyPath(path);
+  }
+  document.querySelectorAll("#sidebar-path button[data-path], .path-risks-switch button[data-path]").forEach(function (b) {
+    b.addEventListener("click", function () { setPath(b.getAttribute("data-path")); });
+  });
+  applyPath(getPath());
+})();
