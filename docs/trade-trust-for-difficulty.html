@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trade trust for difficulty | Plebum Dominium</title>
+<style>
+  body {
+    background: #0e0d0b;
+    color: #efe9dc;
+    font-family: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+    line-height: 1.65;
+    margin: 0;
+    padding: 0;
+  }
+  .wrap {
+    max-width: 72ch;
+    margin: 0 auto;
+    padding: 28px 20px 48px;
+  }
+  .kicker {
+    color: #c4a484;
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin: 0 0 8px;
+  }
+  h1 {
+    font-family: Newsreader, Georgia, serif;
+    font-size: 42px;
+    line-height: 1.15;
+    margin: 0 0 16px;
+    font-weight: 600;
+  }
+  h2 {
+    font-family: Newsreader, Georgia, serif;
+    font-size: 27px;
+    line-height: 1.25;
+    margin: 40px 0 10px;
+    font-weight: 600;
+  }
+  p { margin: 0 0 14px; }
+  ul { margin: 0 0 14px; padding-left: 24px; }
+  li { margin: 0 0 6px; }
+  .spectrum {
+    display: flex;
+    margin: 20px 0 6px;
+    border: 1px solid #2a2722;
+  }
+  .spectrum div {
+    flex: 1;
+    padding: 12px 10px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 15px;
+  }
+  .seg-quick { background: #E69F00; color: #0e0d0b; }
+  .seg-middle { background: #0072B2; color: #ffffff; }
+  .seg-full { background: #009E73; color: #0e0d0b; }
+  .spectrum-labels {
+    display: flex;
+    justify-content: space-between;
+    color: #9b9384;
+    font-size: 14px;
+    margin: 0 0 20px;
+  }
+  .card {
+    border: 1px solid #2a2722;
+    background: #161411;
+    padding: 16px 18px;
+    margin: 0 0 18px;
+  }
+  .card-quick { border-top: 6px solid #E69F00; }
+  .card-middle { border-top: 6px solid #0072B2; }
+  .card-full { border-top: 6px solid #009E73; }
+  .badge {
+    display: inline-block;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 3px 10px;
+    margin: 0 0 10px;
+  }
+  .badge-quick { background: #E69F00; color: #0e0d0b; }
+  .badge-middle { background: #0072B2; color: #ffffff; }
+  .badge-full { background: #009E73; color: #0e0d0b; }
+  .card h3 {
+    font-family: Newsreader, Georgia, serif;
+    font-size: 24px;
+    margin: 0 0 8px;
+    font-weight: 600;
+  }
+  .trade { color: #9b9384; font-size: 15px; }
+  .risk { margin-top: 12px; }
+  .muted { color: #9b9384; }
+  footer {
+    border-top: 1px solid #2a2722;
+    margin-top: 44px;
+    padding-top: 14px;
+    color: #9b9384;
+    font-size: 14px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<p class="kicker">Plebum Dominium · Draft preview · Streamlined guide</p>
+<h1>Trade trust for difficulty</h1>
+
+<p>Every setup trades trust for difficulty. Less work means more trust in fewer hands. More work means less trust in any one hand. Pick the trade you can live with.</p>
+
+<div class="spectrum" role="img" aria-label="Spectrum from quick setup on the left to the full program on the right.">
+  <div class="seg-quick">Quick</div>
+  <div class="seg-middle">One key</div>
+  <div class="seg-full">Full program</div>
+</div>
+<div class="spectrum-labels">
+  <span>&larr; Less work, more trust</span>
+  <span>More work, less trust &rarr;</span>
+</div>
+
+<p class="muted">Color is only a guide. Each card states its tradeoff in words. Nothing here relies on color alone.</p>
+
+<div class="card card-quick">
+  <span class="badge badge-quick">Orange · Quick</span>
+  <h3>Words into one trusted device</h3>
+  <p class="trade">Trust: one device and its maker. Work: lowest.</p>
+  <ul>
+    <li>Roll dice for 24 words.</li>
+    <li>Stamp the words in titanium first.</li>
+    <li>Enter the words on the hardware wallet itself, never into a computer, phone, or website.</li>
+  </ul>
+  <p class="risk"><strong>Risk:</strong> one device, one maker. If either fails you, the wallet fails.</p>
+</div>
+
+<div class="card card-middle">
+  <span class="badge badge-middle">Blue · One key</span>
+  <h3>One key plus a passphrase</h3>
+  <p class="trade">Trust: one key, one device, one passphrase. Work: medium.</p>
+  <ul>
+    <li>Roll dice for 24 words.</li>
+    <li>Add a passphrase, kept on paper apart from the plate.</li>
+    <li>Stamp the words in titanium. Use a watch-only wallet. The device signs.</li>
+  </ul>
+  <p class="risk"><strong>Risk:</strong> one key and one passphrase. Lose the passphrase and the wallet is gone.</p>
+</div>
+
+<div class="card card-full">
+  <span class="badge badge-full">Teal · Full program</span>
+  <h3>Three keys, three places</h3>
+  <p class="trade">Trust: no single key, device, or place. Work: highest.</p>
+  <ul>
+    <li>Roll three dice keys. Stamp three titanium plates. Keep them in three places.</li>
+    <li>Build the 2-of-3. Practice spend first. Hide the encrypted map.</li>
+  </ul>
+  <p class="risk"><strong>Risk:</strong> the most steps to get right. Lose two keys and the map and the funds are locked.</p>
+</div>
+
+<p>The full sheets carry the detailed steps for each path. This page only states the trade, so a reader can choose before starting.</p>
+
+<footer>
+<p>Plebum Dominium. Draft preview. Not published.</p>
+</footer>
+
+</div>
+</body>
+</html>
