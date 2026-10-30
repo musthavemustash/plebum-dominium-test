@@ -1,3 +1,22 @@
+# How to verify the tools bundle
+
+Download the tools bundle from the downloads page. Check the hash, then
+extract it. One matching hash covers every file inside.
+
+```
+File:     tools-bundle.zip
+Size:     211231 bytes
+SHA-256:  f8b9d3d92d94ac5797628a84ec5fa94bf4841f67c3029e8c401d5ca059142895
+```
+
+Linux / macOS / Tails:
+
+```bash
+sha256sum tools-bundle.zip
+```
+
+Or drop the zip on the verify-a-file page and pick "Tools bundle".
+
 # How to verify `bip39_dice_converter.py`
 
 Do not trust this file because it was emailed or downloaded. Check the hash, then read the logic, then test with dummy bits. Only then use it offline with real dice entropy.
@@ -56,8 +75,8 @@ The main tool for the wallet map sheet. Encrypts and decrypts the map in the pag
 
 ```
 File:     verify-file.html
-Size:     8528 bytes
-SHA-256:  5eb1ef3472984f8e2aa3e37143da7613eb8be70071859dc1bafcdd239c28b882
+Size:     8749 bytes
+SHA-256:  c875b25e241c259fca9c8c9f1e256e6489f3f03a11271b18c3033ae5d5f21106
 ```
 
 The main check for the downloads. Pick the published file, drop the downloaded copy, get MATCH or NO MATCH. The expected fingerprints are embedded in the page. Check this page's own fingerprint here before relying on it.
@@ -232,8 +251,8 @@ the sheet as published.
 | --- | --- | --- |
 | T · Terms | handouts/terms.html | `49da64e16d95706815ceea06962d66acb3c23a62b8d8ce0a4bce3b936a78954d` |
 | 02 · Before you begin | handouts/threat-model.html | `f04abbd8041a7638a8732642645cd5f4aa6fe15f54060b56320ecb45d0c2ba8c` |
-| 03 · Checklist | handouts/checklist.html | `bd9387e6d05839a5f7bc30c7e17ccbd16d299242a4531cd0da50986add265dea` |
-| 05 · Check the files | handouts/verify.html | `95f4af21560a8cc96f8edb0df6dd945119d756bdd091ddb59ca960b89914ab26` |
+| 03 · Checklist | handouts/checklist.html | `86c02923f465349cfeb30192a7914440edc264a9bb240a8e0bd52b432a2dfb63` |
+| 05 · Check the files | handouts/verify.html | `b6b0ffc64ea6e9f06346745730799babd61153eaf589f63767c4de19076b605a` |
 | 04 · Two boots | handouts/airgap.html | `6473c3c6aee8ba441c4c04a60fd896c298fbeddb7913c8350d488625a0b8a8cc` |
 | 06 · Make the three keys | handouts/dice.html | `b5611a5c71362c10a06f500976d6056c5c51c8a64371a0d21750826d72d3d085` |
 | 07 · Build the 2-of-3 | handouts/sparrow.html | `643141ca745de337ec65aeefe8defd90464ae5b4000654b9030461c19847c031` |
