@@ -1,3 +1,22 @@
+# How to verify the tools bundle
+
+Download the tools bundle from the downloads page. Check the hash, then
+extract it. One matching hash covers every file inside.
+
+```
+File:     tools-bundle.zip
+Size:     211231 bytes
+SHA-256:  f8b9d3d92d94ac5797628a84ec5fa94bf4841f67c3029e8c401d5ca059142895
+```
+
+Linux / macOS / Tails:
+
+```bash
+sha256sum tools-bundle.zip
+```
+
+Or drop the zip on the verify-a-file page and pick "Tools bundle".
+
 # How to verify `bip39_dice_converter.py`
 
 Do not trust this file because it was emailed or downloaded. Check the hash, then read the logic, then test with dummy bits. Only then use it offline with real dice entropy.
@@ -32,6 +51,36 @@ The hash must match exactly:
 
 If it does not match, stop. Do not run that copy. The tool calls GPG with AES-256. It does not contain a cipher of its own.
 
+## HTML dice converter
+
+```
+File:     dice-converter.html
+Size:     41353 bytes
+SHA-256:  273c0f503b6c2cbfb85dd045cbe055536c21980e0c0e00ef09668b0f702dd326
+```
+
+The main tool for the dice sheet. Records the rolls in the page, counts the pairs, and prints the 24 words. Runs offline in Tor Browser on Tails. The page refuses to run while the computer is online. Check the fingerprint after downloading from the downloads page, before the computer goes offline.
+
+## HTML descriptor tool
+
+```
+File:     descriptor-tool.html
+Size:     413818 bytes
+SHA-256:  2bbce29662df0776321e81a9b6269fcdc201958ef55ce4afa8fbaa4864a56461
+```
+
+The main tool for the wallet map sheet. Encrypts and decrypts the map in the page, nothing leaves it. Runs offline in Tor Browser on Tails. The page refuses to run while the computer is online. Check the fingerprint after downloading from the downloads page, before the computer goes offline.
+
+## Verify-a-file page
+
+```
+File:     verify-file.html
+Size:     8749 bytes
+SHA-256:  c875b25e241c259fca9c8c9f1e256e6489f3f03a11271b18c3033ae5d5f21106
+```
+
+The main check for the downloads. Pick the published file, drop the downloaded copy, get MATCH or NO MATCH. The expected fingerprints are embedded in the page. Check this page's own fingerprint here before relying on it.
+
 ## Hash checker page
 
 ```
@@ -41,6 +90,16 @@ SHA-256:  0e32bb36a531b02072c9d982697210554455e5c4955486629ea332106f68a816
 ```
 
 A single page from this kit that works out a file's SHA-256 in the browser, for the check in section 1 without the command line. Its own fingerprint is the block above, so it can be checked the same way as the tools.
+
+## EFF Long Wordlist
+
+```
+File:     eff_large_wordlist.txt
+Size:     108800 bytes
+SHA-256:  addd35536511597a02fa0a9ff1e5284677b8883b83e986e43f15a3db996b903e
+```
+
+The EFF Long Wordlist, 7,776 words, one per five digit dice number from 11111 to 66666. Source: eff.org. Roll five dice, read the faces left to right, look the number up, write down the word, repeat to at least six words.
 
 ## 1. Confirm you have the same bytes
 
@@ -159,11 +218,11 @@ as served:
 | File | Version | File SHA-256 | Content SHA-256 |
 | --- | --- | --- | --- |
 | 00_Project_Overview.pdf | 2026.10.21 | `302559ce5fa92523d7c9741a9f6750bcebb63696d948480371748da7d3d5304a` | `bf8fac59b05e1186ac2d819fb4a9cf16d4f325a7b41e1e04a59950fec7a565c4` |
-| 02_Print_Packet.pdf | 2026.10.21 | `abeedbb78815501cbeb0efb1b9c9bc9a77e53a08d61f4218157593eeff0646e9` | `5789e6cca41b35e53d2d95fb9c754f83dc7793798671c5f18ddf0d052568dbda` |
+| 02_Print_Packet.pdf | 2026.10.27 | `bab6a24ae54d06f804727a742ddd7f31afa68bd46e47dc3152d57d1264de39a8` | `84cb4efcc9d6cc1f8524c1b1e930d64e96fbce12e359b8791a8190da22a315b5` |
 | 03_Checklist.pdf | 2026.10.21 | `dbc4a4c9f13e9f85e3a010d8d7e864b044c7d4e02710f92bb85dc2c76c849674` | `8a3bf59d0431bad69fd2d5b7412db9eaa6d8ca6f185d46068ae0e9d1dc096eb0` |
 | 04_Airgap.pdf | 2026.10.21 | `fe0e1abb9d94b3250bf0ac34a1d2ecd38ada62b086b3dd49c3352184ad00d710` | `f3a0611b1d209b37709fde8f90fbe0bb78f1f4a3c5023064c1efa40326de5e74` |
 | 05_Verify.pdf | 2026.10.21 | `2a92f82ec475090cd895e55a4428993f0f367ceb9cf1dc90eac2f4415045632b` | `6f95f6ac9efeefc1ae40c7066e561fda11de1e26928ae160fa7563c6298eef36` |
-| 06_Dice.pdf | 2026.10.21 | `e462c05b3d9ebf95fa87cb9646a7e7d733458a9326395b1ddfcf502a8bbf52ed` | `80a86e52b74be5fd38e2510e3b3619f60e83345a6fa58c31a837d4e31f6ffc23` |
+| 06_Dice.pdf | 2026.10.27 | `fb742dc0c79c007981096eb7b101ae76e47c532c14b85faaf6cf86687ba1e05e` | `f5886c372356b029aac98aadaa44cc388a89c2bb9f7873fd7e6b47e472e83222` |
 | 07_Sparrow.pdf | 2026.10.21 | `458849618cd31e65b287a023e0ce2f51993197542adab0c5ac49ee20112ece04` | `3195ede4fd9dd1018b0bf6c7c33cc837fb8afabe3e2129d3a0e1e3f2d9f36b99` |
 | 08_Signing.pdf | 2026.10.21 | `3d913660f02997fab1c4e1b15119f3c3af8dcbdbdaa6d2ce64dcfbcea9d94aab` | `ccff78d819eec20407abcb1b1b79132a371af848745fb94dfbd95a76d7eda22e` |
 | 09_Titanium.pdf | 2026.10.21 | `fa0e9f1f9e4385d21979ab6257ab39f1d95412ef23eb9d652434e60e7bd7412c` | `3756e087a22f915f33b4a46953ae0227316c35df7311dcdf59741e1d6563f2ba` |
@@ -172,7 +231,7 @@ as served:
 | 13_FAQ.pdf | 2026.10.21 | `d7ea94053b706f6ed68adbb4dc7ce529f5b49d7497a9d290eaa4abf9280d8493` | `fc5ba25be0c80a0624408103437ed86348c6cbc487f4084e1323ac13119da59d` |
 | 14_Speaker.pdf | 2026.10.21 | `1fe1670e66b87a43f109230a894cbfc8c7424ff2431d9f2f8ca29da5076a21fd` | `1b2cabb828b26d58cbb7e89a3ffd4a2784cddce6c5bcae842dc8be8adb72a62d` |
 | 15_Fire_Card.pdf | 2026.10.22 | `c7a148b74ee1d399c9f53d44ca8c26e450ad04383817230ee4b64dac55bc3673` | `6733a4881aa932acb01cd5a5b49fc86997b56f83a15c8f36be1d32d31445ab29` |
-| Handouts_No_Cover.pdf | 2026.10.25 | `2bcf7994747963c9fe137bce983c8e3ef2f0146ba4d2b4d904f6e2e7dbe9608a` | `e6d569158ce499b7b93d7ecaaac9efab3bab9dce2af2ec37f640bd0ae3eb8bbb` |
+| Handouts_No_Cover.pdf | 2026.10.27 | `47cc4ffa23a3c89010304cd24690f6b1efe71f3b2a00db4e60bdcbdb828bbb57` | `658321f1e3b3598dd8ed7d2075733f364b7266d01cbf38426ed8435011106d61` |
 | Presentation_Handouts.pdf | 2026.10.21 | `88107caaf87744f8915be38e9421075a51fc9e1533ed1537905721b6a4381659` | `65183c56fd85b2e15e20cdb655c037dfbefdca1727cdead8277f4992184f7bcd` |
 | Terms.pdf | 2026.10.21 | `a49eb0ac1c8cd59a71fe79e172afa18160a6b28f4019c99667a50a8136a7a2f8` | `054f08a39adce730c61c38c6a253f24a7660e9d71c4dff03d942837ff6058cba` |
 
@@ -191,21 +250,21 @@ the sheet as published.
 | Sheet | Page | SHA-256 |
 | --- | --- | --- |
 | T · Terms | handouts/terms.html | `49da64e16d95706815ceea06962d66acb3c23a62b8d8ce0a4bce3b936a78954d` |
-| 02 · Before you begin | handouts/threat-model.html | `bacd9c9213cda4efed982bcb124e8049a25861fa7bb58f836d2739e04466fa50` |
-| 03 · Checklist | handouts/checklist.html | `4a7d3a43aecc9dca20b5137f8fa5e7cc758bafb6fd9c3f7e99de70625ed3f349` |
-| 05 · Check the files | handouts/verify.html | `ee4368fcd91e2d1fa7655e94da00e5dc26cd9fb1c3cdeeed6a6149123be854f3` |
-| 04 · Two boots | handouts/airgap.html | `9b112f0e317547d79018044e5898ebbe28c5e79001264853f06de6c340209eaa` |
-| 06 · Make the three keys | handouts/dice.html | `5f4c5d9c00d5594d382e053d1eaa18935d5ce04ddb1ef155de55f5c99c321933` |
-| 07 · Build the 2-of-3 | handouts/sparrow.html | `94b419d15ffb206fbc0c6a62b5e54fbcc1f77e6f426cb5b507959e21251536e7` |
-| 10 · Rehearse on testnet | handouts/testnet.html | `001aac211888cfcf2e20b5927a82ddacfc4dfccd2029baf797a364487d1092cc` |
-| 08 · Practice spend | handouts/signing.html | `88ac333cb85a8883de95b925df9265d358441053367bb4d18f95d8a7ca4bca76` |
-| 09 · Metal and the map | handouts/titanium.html | `e9e19cc75067cdc4d2886fb989fda16d03dd3e6c81193ff4bb8ad5fa32676459` |
-| 11 · Hide the wallet map | handouts/encryption.html | `e7150fefcdf567028f50a038a30e4467464d130bce6f5c129e48602ddde00f83` |
+| 02 · Before you begin | handouts/threat-model.html | `f04abbd8041a7638a8732642645cd5f4aa6fe15f54060b56320ecb45d0c2ba8c` |
+| 03 · Checklist | handouts/checklist.html | `86c02923f465349cfeb30192a7914440edc264a9bb240a8e0bd52b432a2dfb63` |
+| 05 · Check the files | handouts/verify.html | `b6b0ffc64ea6e9f06346745730799babd61153eaf589f63767c4de19076b605a` |
+| 04 · Two boots | handouts/airgap.html | `6473c3c6aee8ba441c4c04a60fd896c298fbeddb7913c8350d488625a0b8a8cc` |
+| 06 · Make the three keys | handouts/dice.html | `b5611a5c71362c10a06f500976d6056c5c51c8a64371a0d21750826d72d3d085` |
+| 07 · Build the 2-of-3 | handouts/sparrow.html | `643141ca745de337ec65aeefe8defd90464ae5b4000654b9030461c19847c031` |
+| 10 · Rehearse on testnet | handouts/testnet.html | `ce0817906db9de576876e59c728b0b1142052182113007437456b1a3c43c9df9` |
+| 08 · Practice spend | handouts/signing.html | `b29cc45d2f06289c193744805160def69ea1df4c3660249367a4351d92ae850e` |
+| 09 · Metal and the map | handouts/titanium.html | `50210b05e72778eac1f2892b21d9b17228b41378ef714cc4589dce6d160f2e3c` |
+| 11 · Hide the wallet map | handouts/encryption.html | `bf1d04ef76cef8de89fef66fabf0abef9fbdf8989c912cdf393dbbc5f8529f5d` |
 | 12 · If I am gone | handouts/inheritance.html | `45db9a52518535aa1dbe5153bce3ff883db0e325e16228cc4859051155bf22e3` |
-| 13 · If you get stuck | handouts/faq.html | `0739027e80e92554839ea936c7c32b6194074d2776e63abe32f65afd304f2565` |
+| 13 · If you get stuck | handouts/faq.html | `505722e16d0dae57ce215bb21d43d056716d3008079288fe166826461ddbe9a7` |
 | 14 · Tough questions | handouts/briefing.html | `b543f80e025167342dce45f5f44b46f652d8bb71b37d01634484a1cb0079085a` |
 | 15 · Recovery card | handouts/fire-card.html | `d4230f3ed58045c168be869cb0b8b6113c20f0caf55f3fb7269506e8c0db3b25` |
-| 16 · One key, done right | handouts/single-sig.html | `0c51310be2b54f079fb880611d97681e3306b0b4ad6ebdf172c41fee8d5ab3f9` |
-| 17 · Two devices and one dice key | handouts/two-devices.html | `86207cc621107f27d5e18b2b46d682d290a2093a9874c83f68afbbcc8b48fa53` |
+| 16 · One key, done right | handouts/single-sig.html | `18d4c668c92f77e6aaf067912228e76e0d8c80453323b2f0fcf4e6424be99a60` |
+| 17 · Two devices and one dice key | handouts/two-devices.html | `c1ef998fb2dff8c3f19e27f762e46cf6ada6676aef0ecadae0d3d9370674ceb4` |
 
 <!-- END GENERATED: PAGE FINGERPRINTS -->
