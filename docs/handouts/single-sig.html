@@ -24,13 +24,13 @@
 <link rel="stylesheet" href="/plebum-dominium-test/assets/css/print.css" media="print">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;0,6..72,800;1,6..72,400;1,6..72,500&display=swap">
 <script>
 /* set theme before first paint: saved choice wins, else the visitor's OS setting */
 (function(){try{var t=localStorage.getItem('pd-theme');if(!t){t=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','light');}})();
 /* set motion before first paint: saved choice wins, else reduced motion wins */
 (function(){try{var m=localStorage.getItem('pd-motion');if(!m){m=window.matchMedia('(prefers-reduced-motion: reduce)').matches?'off':'on';}document.documentElement.setAttribute('data-motion',m);}catch(e){document.documentElement.setAttribute('data-motion','on');}})();
-/* TEST SITE ONLY: set path before first paint, so the color reminder is right from the start */
+/* set path before first paint, so the color reminder is right from the start */
 (function(){try{var p=localStorage.getItem('pd-path');if(p!=='easy'&&p!=='one'&&p!=='full'){p='full';}document.documentElement.setAttribute('data-path',p);}catch(e){document.documentElement.setAttribute('data-path','full');}})();
 </script>
 </head>
@@ -63,11 +63,11 @@
 <div class="layout">
   <nav class="sidebar" aria-label="Guide sheets">
     <div class="sidebar-path" id="sidebar-path">
-      <p class="sidebar-path-label">Your path</p>
+      <p class="sidebar-path-label">Choose a path</p>
       <div class="sidebar-path-seg" role="group" aria-label="Choose a setup">
-        <button type="button" data-path="easy" aria-pressed="false">Easy</button>
-        <button type="button" data-path="one" aria-pressed="false">One key</button>
-        <button type="button" data-path="full" aria-pressed="true">Full program</button>
+        <button type="button" data-path="easy" aria-pressed="false">One device</button>
+        <button type="button" data-path="one" aria-pressed="false">one key<br>+<br>Passphrase</button>
+        <button type="button" data-path="full" aria-pressed="true">Three keys</button>
       </div>
       <p class="sidebar-path-note" id="path-count">All 17 sheets</p>
     </div>
@@ -84,14 +84,14 @@
 <li data-paths="full"><a href="/plebum-dominium-test/handouts/signing.html" class="" data-sheet="signing"><span class="sheet-num">08</span><span class="sheet-title">Practice spend</span><span class="sheet-check" aria-hidden="true">✓</span></a></li>
 <li data-paths="easy one full"><a href="/plebum-dominium-test/handouts/titanium.html" class="" data-sheet="titanium"><span class="sheet-num">09</span><span class="sheet-title">Metal and the map</span><span class="sheet-check" aria-hidden="true">✓</span></a></li>
 <li data-paths="full"><a href="/plebum-dominium-test/handouts/encryption.html" class="" data-sheet="encryption"><span class="sheet-num">11</span><span class="sheet-title">Hide the wallet map</span><span class="sheet-check" aria-hidden="true">✓</span></a></li>
-<li data-paths="full"><a href="/plebum-dominium-test/handouts/inheritance.html" class="" data-sheet="inheritance"><span class="sheet-num">12</span><span class="sheet-title">If I am gone</span><span class="sheet-check" aria-hidden="true">✓</span></a></li>
+<li data-paths="easy one full"><a href="/plebum-dominium-test/handouts/inheritance.html" class="" data-sheet="inheritance"><span class="sheet-num">12</span><span class="sheet-title">If I am gone</span><span class="sheet-check" aria-hidden="true">✓</span></a></li>
 <li data-paths="easy one full"><a href="/plebum-dominium-test/handouts/faq.html" class="" data-sheet="faq"><span class="sheet-num">13</span><span class="sheet-title">If you get stuck</span><span class="sheet-check" aria-hidden="true">✓</span></a></li>
 <li data-paths="full"><a href="/plebum-dominium-test/handouts/briefing.html" class="" data-sheet="briefing"><span class="sheet-num">14</span><span class="sheet-title">Tough questions</span><span class="sheet-check" aria-hidden="true">✓</span></a></li>
 <li data-paths="one full"><a href="/plebum-dominium-test/handouts/fire-card.html" class="" data-sheet="fire-card"><span class="sheet-num">15</span><span class="sheet-title">Recovery card</span><span class="sheet-check" aria-hidden="true">✓</span></a></li>
 <li data-paths="one full"><a href="/plebum-dominium-test/handouts/single-sig.html" class="active" data-sheet="single-sig"><span class="sheet-num">16</span><span class="sheet-title">One key, done right</span><span class="sheet-check" aria-hidden="true">✓</span></a></li>
 <li data-paths="full"><a href="/plebum-dominium-test/handouts/two-devices.html" class="" data-sheet="two-devices"><span class="sheet-num">17</span><span class="sheet-title">Two devices and one dice key</span><span class="sheet-check" aria-hidden="true">✓</span></a></li>
     </ul>
-    <p class="sidebar-risks-wrap"><a class="sidebar-risks" id="sidebar-risks" href="/plebum-dominium-test/path-risks.html">Risks of your path: <span id="path-risks-label">Full program</span> &rarr;</a></p>
+    <p class="sidebar-risks-wrap"><a class="sidebar-risks" id="sidebar-risks" href="/plebum-dominium-test/path-risks.html">Risks of your path: <span id="path-risks-label">Three keys</span> &rarr;</a></p>
     <p class="sidebar-note">Check off sheets as you finish them. Progress is saved on this device.</p>
   </nav>
   <div class="scrim" aria-hidden="true"></div>
@@ -101,26 +101,27 @@
       <p class="kicker">16 · Plebum Dominium</p>
       <h1>One key, done right</h1>
       <div class="mobile-path" id="mobile-path">
-        <p class="mobile-path-label">Your path</p>
+        <p class="mobile-path-label">Choose a path</p>
         <div class="mobile-path-seg" role="group" aria-label="Choose a setup">
-          <button type="button" data-path="easy" aria-pressed="false">Easy</button>
-          <button type="button" data-path="one" aria-pressed="false">One key</button>
-          <button type="button" data-path="full" aria-pressed="true">Full program</button>
+          <button type="button" data-path="easy" aria-pressed="false">One device</button>
+          <button type="button" data-path="one" aria-pressed="false">one key<br>+<br>Passphrase</button>
+          <button type="button" data-path="full" aria-pressed="true">Three keys</button>
         </div>
       </div>
       <div class="path-banner" id="path-banner" hidden>
-        <p class="path-banner-label">Your path: <strong id="path-banner-label">Full program</strong></p>
+        <p class="path-banner-label">Choose a path: <strong id="path-banner-label">Three keys</strong></p>
         <p class="path-banner-note" id="path-banner-note"></p>
       </div>
       <div class="path-gate" id="path-gate" hidden>
         <h2>Not on your path</h2>
         <p id="path-gate-note"></p>
-        <p><button type="button" id="path-gate-full">Switch to Full program to read this sheet</button></p>
+        <p><button type="button" id="path-gate-full">Switch to Three keys to read this sheet</button></p>
         <p><a href="/plebum-dominium-test/path-risks.html">Risks of your path &rarr;</a></p>
       </div>
 <nav class="step-banner" aria-label="Sheet 16 of 17"><a class="step-nav" href="/plebum-dominium-test/handouts/fire-card.html" rel="prev">&larr; 15 &middot; Recovery card</a><span class="step-pos"><strong>Step 16 of 17</strong> · One key, done right</span><a class="step-nav" href="/plebum-dominium-test/handouts/two-devices.html" rel="next">17 &middot; Two devices and one dice key &rarr;</a></nav>
 <section class="sheet-meta" aria-label="Sheet overview"><div class="meta-item"><span class="meta-label">Time</span><span class="meta-val">1-2 hours</span></div><div class="meta-item"><span class="meta-label">Difficulty</span><span class="meta-val diff-careful">Careful</span></div><div class="meta-item"><span class="meta-label">Steps</span><span class="meta-val">8 sections</span></div><div class="meta-item meta-needs"><span class="meta-label">You will need</span><span class="meta-val">Your hardware wallet &middot; <a href="/plebum-dominium-test/handouts/checklist.html">Titanium plates</a> &middot; <a href="/plebum-dominium-test/handouts/checklist.html">Pen and paper</a></span></div></section>
 <p>The destination of this guide is the 2-of-3 build: three keys, three places, no single point of failure. In the full build, this sheet is also the spending wallet that lives on Plate A: Seed 1 plus a passphrase, for spending money while savings sit in the vault.</p>
+<p>Files used: Sparrow 2.5.5 for the watch-only wallet.</p>
 <figure class="step-fig"><svg width="360" height="296" viewBox="0 0 360 296" font-family="IBM Plex Sans, sans-serif">
         <rect x="8" y="8" width="344" height="132" rx="10" fill="#161411" stroke="#2a2722"/>
         <text x="24" y="38" fill="#c4a484" font-size="11" letter-spacing="2">SEED TOUCHED THE INTERNET</text>
@@ -213,19 +214,42 @@
 <li>Go straight to Step 4.</li>
 </ul>
 <h2 id="step-4-add-a-passphrase">Step 4 · Add a passphrase.</h2>
-<figure class="step-fig"><svg width="360" height="296" viewBox="0 0 360 296" font-family="IBM Plex Sans, sans-serif">
-        <rect x="8" y="8" width="344" height="132" rx="10" fill="#161411" stroke="#2a2722"/>
-        <text x="24" y="38" fill="#c4a484" font-size="11" letter-spacing="2">WORDS ALONE</text>
-        <text x="24" y="68" fill="#efe9dc" font-size="17">Opens a different wallet,</text>
-        <text x="24" y="90" fill="#efe9dc" font-size="17">nearly empty</text>
-        <text x="24" y="122" fill="#c4a484" font-size="15" font-weight="700">→ THE DECOY</text>
-        <rect x="8" y="156" width="344" height="132" rx="10" fill="#161411" stroke="#2a2722"/>
-        <text x="24" y="186" fill="#c4a484" font-size="11" letter-spacing="2">WORDS + PASSPHRASE</text>
-        <text x="24" y="216" fill="#efe9dc" font-size="17">Opens your wallet</text>
-        <text x="24" y="270" fill="#c4a484" font-size="15" font-weight="700">→ YOUR SAVINGS</text>
-      </svg></figure>
+<div class="eff-anim">
+<div class="stage">
+
+<div class="round r1">ROLL 1 OF 6</div>
+<div class="round r2">ROLL 2 OF 6</div>
+<div class="round r3">ROLL 3 OF 6</div>
+<div class="round r4">ROLL 4 OF 6</div>
+<div class="round r5">ROLL 5 OF 6</div>
+<div class="round r6">ROLL 6 OF 6</div>
+<div class="tray tray1"><div class="die d1"><i class=p-tl></i><i class=p-tr></i><i class=p-bl></i><i class=p-br></i></div><div class="die d2"><i class=p-tl></i><i class=p-c></i><i class=p-br></i></div><div class="die d3"><i class=p-tl></i><i class=p-tr></i><i class=p-bl></i><i class=p-br></i></div><div class="die d4"><i class=p-tl></i><i class=p-ml></i><i class=p-bl></i><i class=p-tr></i><i class=p-mr></i><i class=p-br></i></div><div class="die d5"><i class=p-tl></i><i class=p-c></i><i class=p-br></i></div></div>
+<div class="tray tray2"><div class="die d1"><i class=p-tl></i><i class=p-tr></i><i class=p-bl></i><i class=p-br></i></div><div class="die d2"><i class=p-tl></i><i class=p-br></i></div><div class="die d3"><i class=p-c></i></div><div class="die d4"><i class=p-tl></i><i class=p-br></i></div><div class="die d5"><i class=p-tl></i><i class=p-tr></i><i class=p-c></i><i class=p-bl></i><i class=p-br></i></div></div>
+<div class="tray tray3"><div class="die d1"><i class=p-tl></i><i class=p-tr></i><i class=p-bl></i><i class=p-br></i></div><div class="die d2"><i class=p-tl></i><i class=p-tr></i><i class=p-c></i><i class=p-bl></i><i class=p-br></i></div><div class="die d3"><i class=p-tl></i><i class=p-br></i></div><div class="die d4"><i class=p-c></i></div><div class="die d5"><i class=p-tl></i><i class=p-br></i></div></div>
+<div class="tray tray4"><div class="die d1"><i class=p-tl></i><i class=p-tr></i><i class=p-c></i><i class=p-bl></i><i class=p-br></i></div><div class="die d2"><i class=p-tl></i><i class=p-tr></i><i class=p-c></i><i class=p-bl></i><i class=p-br></i></div><div class="die d3"><i class=p-c></i></div><div class="die d4"><i class=p-tl></i><i class=p-ml></i><i class=p-bl></i><i class=p-tr></i><i class=p-mr></i><i class=p-br></i></div><div class="die d5"><i class=p-c></i></div></div>
+<div class="tray tray5"><div class="die d1"><i class=p-c></i></div><div class="die d2"><i class=p-tl></i><i class=p-c></i><i class=p-br></i></div><div class="die d3"><i class=p-tl></i><i class=p-br></i></div><div class="die d4"><i class=p-tl></i><i class=p-br></i></div><div class="die d5"><i class=p-tl></i><i class=p-br></i></div></div>
+<div class="tray tray6"><div class="die d1"><i class=p-tl></i><i class=p-c></i><i class=p-br></i></div><div class="die d2"><i class=p-tl></i><i class=p-c></i><i class=p-br></i></div><div class="die d3"><i class=p-tl></i><i class=p-c></i><i class=p-br></i></div><div class="die d4"><i class=p-tl></i><i class=p-br></i></div><div class="die d5"><i class=p-tl></i><i class=p-c></i><i class=p-br></i></div></div>
+<div class="num num1">4 3 4 6 3</div>
+<div class="num num2">4 2 1 2 5</div>
+<div class="num num3">4 5 2 1 2</div>
+<div class="num num4">5 5 1 6 1</div>
+<div class="num num5">1 3 2 2 2</div>
+<div class="num num6">3 3 3 2 3</div>
+
+<div class="panel"><div class="phead">EFF WORDLIST</div><div class="wline w1">43463 panoramic</div>
+<div class="wline w2">42125 nectar</div>
+<div class="wline w3">45212 precut</div>
+<div class="wline w4">55161 smith</div>
+<div class="wline w5">13222 banana</div>
+<div class="wline w6">33323 handclap</div>
+
+<div class="pbar"><i></i></div><div class="pcount"><b>6</b> WORDS, ABOUT 77 BITS</div><div class="wstamp">6 WORDS</div></div>
+</div>
+<p class="note">Fixed example. Roll real dice yourself. Faces 1 to 6 are all kept. No rerolls.</p>
+</div>
+
 <ul>
-<li>A passphrase is one more secret, a word or short phrase you choose, entered on the device after the seed.</li>
+<li>A passphrase is one more secret, not a word or short phrase you choose, entered on the device after the seed. Roll five dice, look the number up in the EFF Long Wordlist, write down the word, and repeat to at least six words.</li>
 <li>On this sheet it is required. One seed in one place is why: a plate found or stolen without the passphrase opens an empty wallet.</li>
 <li>Forgotten passphrase: the coins are gone, and nobody can reset it.</li>
 <li>Handed to a scammer along with the words: it stops nothing. Words and passphrase are never kept together and never given to anyone.</li>
@@ -304,7 +328,7 @@
   <p><strong>Plebum Dominium</strong>: independent at-home Bitcoin self-custody.</p>
   <p>Educational material, not financial advice. Bitcoin self-custody is irreversible. A mistake can permanently lose funds. Verify every download from its original source.</p>
   <p><a href="/plebum-dominium-test/kit/VERIFY.md">File fingerprints</a> · <a href="/plebum-dominium-test/downloads.html">Downloads</a> · <a href="/plebum-dominium-test/kit/02_Print_Packet.pdf">Print packet (PDF)</a> · <a href="/plebum-dominium-test/news.html">News</a> · <a href="/plebum-dominium-test/beyond.html">Beyond the kit</a></p>
-  <p class="footer-updated">Last updated October 27, 2026</p>
+  <p class="footer-updated">Last updated October 29, 2026</p>
   <p class="footer-contact">Contact: <a href="mailto:Muststackmoresats@gmail.com">Muststackmoresats@gmail.com</a> · X: <a href="https://x.com/MustHaveMustash" rel="noopener">@MustHaveMustash</a></p>
   <p class="donate-row"><a class="btn-lightning" href="lightning:musthavemoresats@speed.app"><span aria-hidden="true">⚡</span> Donate with Lightning</a> <button type="button" class="btn-onchain" data-copy="bc1qcmvj7c79gyjrcg3zu5pxnp4mav54846epktyma4n6v8jsud2fhqsczmngw"><span aria-hidden="true">₿</span> Donate Bitcoin</button></p>
   <p class="donate-addr"><code>bc1qcmvj7c79gyjrcg3zu5pxnp4mav54846epktyma4n6v8jsud2fhqsczmngw</code></p>
