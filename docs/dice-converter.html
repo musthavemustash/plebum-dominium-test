@@ -10,6 +10,18 @@
   --copper:#c4a484; --copper-dim:#7a5a34; --line:#2b251c; --good:#7fb069; --bad:#c46a5a;
 }
 *{box-sizing:border-box}
+.topbar{max-width:760px;margin:0 auto;padding:18px 20px 0;display:flex;justify-content:flex-end}
+.online-pill{display:inline-flex;align-items:center;gap:8px;font-size:14px;color:var(--muted);white-space:nowrap}
+.online-pill[hidden]{display:none}
+.online-dot{width:12px;height:12px;border-radius:50%;background:#e07856;flex-shrink:0}
+.online-dot.safe{background:#3aa655}
+#netblock{position:fixed;inset:0;background:rgba(14,13,11,.97);z-index:50;
+  display:flex;align-items:center;justify-content:center;padding:24px}
+#netblock[hidden]{display:none}
+.stopcard{max-width:560px;background:var(--panel);border:1px solid #5a2a22;border-radius:14px;padding:28px}
+.stopcard h2{font-family:Newsreader,Georgia,serif;color:#e0a396;margin:0 0 10px;font-size:28px;font-weight:600}
+.stopcard p{color:var(--muted);margin:10px 0}
+.stopcard .prow{margin-bottom:6px}
 body{margin:0;background:var(--bg);color:var(--ink);
   font-family:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.55}
 .top{max-width:760px;margin:0 auto;padding:40px 20px 8px}
@@ -90,6 +102,7 @@ footer p{margin:6px 0}
 </style>
 </head>
 <body>
+<div class="topbar"><span class="online-pill" id="online-pill" role="status" hidden><span class="online-dot" id="online-dot"></span><span id="online-word">Online</span></span></div>
 <header class="top">
   <p class="kicker">Plebum Dominium</p>
   <h1>Dice converter</h1>
@@ -145,6 +158,14 @@ footer p{margin:6px 0}
     <ul class="results" id="results"></ul>
   </section>
 </main>
+<div id="netblock" hidden>
+  <div class="stopcard" role="alert">
+    <p class="prow"><span class="online-pill"><span class="online-dot"></span><span>Online</span></span></p>
+    <h2>Stop. This computer is online.</h2>
+    <p>Seed words are never typed on a computer that can reach the network. A connected machine can leak every keystroke to malware, a bad extension, or the network itself. One leak burns the words, and burned words mean new dice, new words, new plates.</p>
+    <p>Close this page. Boot Tails with networking set to Disabled, or disconnect this machine from the network, then open the file again. If this page still says Online on a machine you believe is offline, trust the page. Something is still connected.</p>
+  </div>
+</div>
 <footer>
   <p>Before trusting a copy of this file, check its fingerprint against VERIFY.md.</p>
   <p>Use it offline. Tails with networking disabled is the way this guide does it.</p>
@@ -307,7 +328,9 @@ if(typeof module!=='undefined') module.exports={sha256:sha256,bytesToBits:bytesT
       ol.appendChild(li);
     });
   }
+  var netBlocked=false;
   function addDie(face){
+    if(netBlocked) return;
     if(bits().length>=256 && !pastedBits) return;
     if(pastedBits){ clearAll(); }
     rolls.push({face:face, bits:faceToBits(face)});
@@ -322,6 +345,7 @@ if(typeof module!=='undefined') module.exports={sha256:sha256,bytesToBits:bytesT
     btn.addEventListener('click', function(){ addDie(parseInt(btn.getAttribute('data-face'),10)); });
   });
   document.addEventListener('keydown', function(e){
+    if(netBlocked) return;
     if(/INPUT|TEXTAREA/.test(document.activeElement.tagName)) return;
     if(e.key>='1'&&e.key<='6') addDie(parseInt(e.key,10));
     else if(e.key==='Backspace'){ rolls.pop(); render(); e.preventDefault(); }
@@ -352,6 +376,7 @@ if(typeof module!=='undefined') module.exports={sha256:sha256,bytesToBits:bytesT
     },350);
   });
   $('validate').addEventListener('click', function(){
+    if(netBlocked) return;
     var raw=$('valwords').value.trim().split(/\s+/).filter(function(w){return w.length;});
     var ul=$('results'); ul.innerHTML='';
     function li(cls,text,delay){
@@ -372,6 +397,27 @@ if(typeof module!=='undefined') module.exports={sha256:sha256,bytesToBits:bytesT
       li('good','No words recorded above to compare against. This list stands on its own check.', .18);
     }
   });
+  function isOffline(){ return location.protocol==='file:' || !navigator.onLine; }
+  function renderNet(){
+    var off=isOffline();
+    netBlocked=!off;
+    var pill=$('online-pill'), dot=$('online-dot'), word=$('online-word'), block=$('netblock');
+    if(pill){
+      pill.hidden=false;
+      dot.classList.toggle('safe', off);
+      word.textContent=off?'Offline':'Online';
+    }
+    var wasHidden=block.hidden;
+    block.hidden=off;
+    if(!off && wasHidden){
+      clearAll();
+      $('valwords').value='';
+      $('results').innerHTML='';
+    }
+  }
+  window.addEventListener('online', renderNet);
+  window.addEventListener('offline', renderNet);
+  renderNet();
   render();
 })();
 </script>
