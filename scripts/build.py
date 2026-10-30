@@ -45,12 +45,13 @@ LAST_UPDATED = _bdate.today().strftime("%B %-d, %Y")
 # this list grows.
 NEWS_TICKER = [
     ("New to Bitcoin? Start here →", "", "#new-to-bitcoin", "ticker-action"),
+    ("Binance: suspected exploit drains billions from hot wallets", "Oct 2026", "news.html#binance-outflows", ""),
+    ("Coinbase vendor breach exposes customer contact data", "Oct 2026", "news.html#coinbase-amplitude", ""),
+    ("Keystone breach exposes customer shipping addresses", "Oct 2026", "news.html#keystone-breach", ""),
+    ("State Bank of India: 3,897 customer records on the dark web", "Oct 2026", "news.html#sbi-breach", ""),
+    ("South Korea: hacking incidents at seven banks linked to one attacker", "Oct 2026", "news.html#south-korea-banks", ""),
     ("Two hardware failures in one year", "Oct 2026", "news.html#two-hardware-failures", ""),
     ("Russia closes the exchange off-ramp", "Oct 2026", "news.html#russia-off-ramp", ""),
-    ("FTX collapses, $8 billion in customer funds missing", "Nov 2022", "news.html#ftx", ""),
-    ("Ledger breach exposes 272,000 customer addresses", "Jul 2020", "news.html#ledger-breach", ""),
-    ("QuadrigaCX dies with its founder, $190 million locked away", "Jan 2019", "news.html#quadrigacx", ""),
-    ("Mt. Gox loses 850,000 bitcoin", "Feb 2014", "news.html#mt-gox", ""),
 ]
 # On-chain Bitcoin address for the footer donate button.
 ONCHAIN_ADDRESS = "bc1qcmvj7c79gyjrcg3zu5pxnp4mav54846epktyma4n6v8jsud2fhqsczmngw"
@@ -81,7 +82,7 @@ SHEETS = [
 ]
 SLUG_TO_IDX = {slug: i for i, (slug, _, _) in enumerate(SHEETS)}
 
-# TEST SITE ONLY: which paths include each sheet. easy = words into one trusted
+# which paths include each sheet. easy = words into one trusted
 # device, one = one key plus a passphrase, full = the 2-of-3 program as written.
 SHEET_PATHS = {
     "terms": ["easy", "one", "full"],
@@ -95,7 +96,7 @@ SHEET_PATHS = {
     "signing": ["full"],
     "titanium": ["easy", "one", "full"],
     "encryption": ["full"],
-    "inheritance": ["full"],
+    "inheritance": ["easy", "one", "full"],
     "faq": ["easy", "one", "full"],
     "briefing": ["full"],
     "fire-card": ["one", "full"],
@@ -117,7 +118,7 @@ SHEET_META = {
     "testnet":      ("30 min", "Moderate", ["Sparrow", "Free testnet coins"], "2 sections"),
     "signing":      ("45 min", "Careful", ["Two seeds", "Tails USB", "A small test amount"], "5 sections"),
     "titanium":     ("1-2 hours", "Moderate", ["Titanium plates", "Metal stamp set", "The paper keys"], "4 sections"),
-    "encryption":   ("30 min", "Careful", ["descriptor_obfuscator.py (verified)", "A dice passphrase"], "7 sections"),
+    "encryption":   ("30 min", "Careful", ["descriptor-tool.html (verified)", "A dice passphrase"], "7 sections"),
     "inheritance":  ("1 hour", "Moderate", ["Your finished kit", "Your trusted person"], "6 sections"),
     "faq":          ("10 min", "Easy", ["Nothing, find your question"], "7 questions"),
     "briefing":     ("15 min", "Easy", ["Nothing, read and discuss"], "6 questions"),
@@ -315,6 +316,17 @@ def render_markdown(src):
             out.append("<hr>")
             i += 1
             continue
+        m = re.match(r"^::anim\s+([a-z0-9-]+)/([a-z0-9-]+)$", stripped)
+        if m:
+            close_list(); close_callout()
+            try:
+                with open(f"templates/{m.group(1)}-figs/{m.group(2)}.html") as f:
+                    anim = f.read()
+                out.append(anim)
+            except FileNotFoundError:
+                out.append(f'<!-- missing animation {m.group(1)}/{m.group(2)} -->')
+            i += 1
+            continue
         m = re.match(r"^::fig\s+([a-z0-9-]+)/([a-z0-9-]+)$", stripped)
         if m:
             close_list(); close_callout()
@@ -411,22 +423,22 @@ def post_process(html):
         r'<h2 id="what-is-required">What is required</h2>\s*((?:<ul>.*?</ul>|<p>.*?</p>\s*)+)',
         need_repl, html, flags=re.S,
     )
-    # Tails terminal demo in encryption Step 2: iframe on screen, Step 2 figure print only.
+    # Descriptor tool demo in encryption Step 2: iframe on screen, Step 2 figure print only.
     def demo_repl(m):
         return (
             m.group(1)
             + '\n<div class="demo-embed"><iframe src="'
             + BASE
-            + 'tails-demo.html" title="Tails terminal demo" loading="lazy"></iframe>'
+            + 'descriptor-demo.html" title="Descriptor tool demo" loading="lazy"></iframe>'
             + '<p class="demo-fullscreen"><a href="'
             + BASE
-            + 'tails-demo.html">Open the demo full screen</a></p></div>'
+            + 'descriptor-demo.html">Open the demo full screen</a></p></div>'
             + '\n<figure class="step-fig print-only">'
             + m.group(2)
             + '</figure>'
         )
     html = re.sub(
-        r'(<h2 id="step-2-run-the-tool-choose-e-enter-the-passphrase">.*?</h2>)\s*<figure class="step-fig">(.*?)</figure>',
+        r'(<h2 id="step-2-open-the-tool-encrypt-the-map">.*?</h2>)\s*<figure class="step-fig">(.*?)</figure>',
         demo_repl, html, flags=re.S,
     )
     # Step 1 networking demo in encryption Step 1: iframe on screen, Step 1 figure stays on screen too.
@@ -447,7 +459,7 @@ def post_process(html):
         r'(<h2 id="step-1-boot-tails-copy-the-tool-and-the-map">.*?</h2>)\s*<figure class="step-fig">(.*?)</figure>',
         step1_demo_repl, html, flags=re.S,
     )
-    # TEST SITE ONLY: path toggle at the end of Before you begin and the dice sheet.
+    # path toggle at the end of Before you begin and the dice sheet.
     if 'id="where-are-your-coins-right-now"' in html:
         with open("templates/path-toggle-before.html") as f:
             html += "\n" + f.read().replace("{BASE}", BASE)
@@ -937,7 +949,7 @@ def build_path_risks():
         .replace("{{lightning_address}}", LIGHTNING_ADDRESS)
         .replace("{{onchain_address}}", ONCHAIN_ADDRESS)
         .replace("{{canonical}}", "https://plebumbtc.io/path-risks.html")
-        .replace("{{description}}", "The risks of the path you picked: Easy, One key, or Full program.")
+        .replace("{{description}}", "The risks of the path you picked: One device, One key and a passphrase, or Three keys.")
         .replace("{{schema}}", "")
         .replace("{{last_updated}}", LAST_UPDATED)
         .replace("{{analytics}}", analytics_html())
@@ -988,16 +1000,37 @@ def build_home():
         "<p>This guide shows you how to generate entropy with dice, import it into verified software, "
         "and stamp a 2-of-3 multisig wallet into titanium. Hardware wallets are completely optional.</p>"
         '<p><a class="btn" href="{BASE}handouts/terms.html">Start with the terms</a> '
-        '<a class="btn btn-ghost" href="{BASE}kit/02_Print_Packet.pdf">Download the print packet</a></p>'
-        '<div class="keyring" id="keyring" aria-label="Tap any two of the three keys to open the lock">'
+        '<a class="btn btn-ghost" href="{BASE}kit/02_Print_Packet.pdf">Download the print packet</a> '
+        '<a class="btn btn-ghost" href="{BASE}downloads.html">All downloads</a></p>'
+        '<div class="keyring path-hidden" id="keyring-easy" aria-label="Tap the key to open the lock">'
+        '<p class="keyring-try">Try it: tap the key.</p>'
+        '<div class="keys">'
+        '<button type="button" class="key key-easy" aria-pressed="false">Key</button>'
+        "</div>"
+        '<div class="lockwrap" id="keyring-easy-lock"><div class="shackle"></div><div class="lockbody">1 key</div></div>'
+        '<p class="keyring-caption" id="keyring-easy-caption"><strong>One key</strong> opens it. That key is the whole wallet.</p>'
+        '<p class="keyring-caption" id="keyring-easy-desc">Tap the key to see it open.</p>'
+        '<button type="button" class="keyring-reset" id="keyring-easy-reset" hidden>Reset</button>'
+        "</div>"
+        '<div class="keyring path-hidden" id="keyring-one" aria-label="Tap the key and the paper to open the lock">'
+        '<p class="keyring-try">Try it: tap the key, then tap the paper.</p>'
+        '<div class="keys">'
+        '<button type="button" class="key key-one" aria-pressed="false">Key</button><button type="button" class="paper paper-one" aria-pressed="false">Paper</button>'
+        "</div>"
+        '<div class="lockwrap" id="keyring-one-lock"><div class="shackle"></div><div class="lockbody">Key + paper</div></div>'
+        '<p class="keyring-caption" id="keyring-one-caption"><strong>Key plus paper</strong> open it. Neither alone can.</p>'
+        '<p class="keyring-caption" id="keyring-one-desc">Select the key and the paper to see what opens.</p>'
+        '<button type="button" class="keyring-reset" id="keyring-one-reset" hidden>Reset</button>'
+        "</div>"
+        '<div class="keyring" id="keyring-full" aria-label="Tap any two of the three keys to open the lock">'
         '<p class="keyring-try">Try it: tap a key, then tap a second key.</p>'
         '<div class="keys">'
         '<button type="button" class="key key-a" aria-pressed="false">A</button><button type="button" class="key key-b" aria-pressed="false">B</button><button type="button" class="key key-c" aria-pressed="false">C</button>'
         "</div>"
-        '<div class="lockwrap" id="keyring-lock"><div class="shackle"></div><div class="lockbody">2-of-3</div></div>'
-        '<p class="keyring-caption" id="keyring-caption"><strong>Any two keys</strong> open it. One alone cannot.</p>'
-        '<p class="keyring-caption" id="keyring-descriptor">Select keys to see if the descriptor is needed.</p>'
-        '<button type="button" class="keyring-reset" id="keyring-reset" hidden>Reset</button>'
+        '<div class="lockwrap" id="keyring-full-lock"><div class="shackle"></div><div class="lockbody">2-of-3</div></div>'
+        '<p class="keyring-caption" id="keyring-full-caption"><strong>Any two keys</strong> open it. One alone cannot.</p>'
+        '<p class="keyring-caption" id="keyring-full-desc">Select keys to see if the descriptor is needed.</p>'
+        '<button type="button" class="keyring-reset" id="keyring-full-reset" hidden>Reset</button>'
         "</div></div>"
         .replace("{BASE}", BASE)
         + home_section("home-why")
@@ -1108,7 +1141,7 @@ def main():
     with open("docs/news.html", "w") as f:
         f.write(build_news())
     print("  news.html")
-    # risks of your path (TEST SITE ONLY)
+    # risks of your path 
     with open("docs/path-risks.html", "w") as f:
         f.write(build_path_risks())
     print("  path-risks.html")
@@ -1117,6 +1150,8 @@ def main():
     print("  diceware.html")
     shutil.copy("tools/tails-python-demo.html", "docs/tails-demo.html")
     print("  tails-demo.html")
+    shutil.copy("tools/descriptor-html-demo.html", "docs/descriptor-demo.html")
+    print("  descriptor-demo.html")
     shutil.copy("tools/step1-networking-demo.html", "docs/step1-demo.html")
     print("  step1-demo.html")
     shutil.copy("tools/quorum-demo.html", "docs/quorum-demo.html")
