@@ -18,11 +18,13 @@ Tails: a later 7.x release from tails.net is allowed only if its signature and c
 
 Sparrow must be 2.5.5 exactly. A newer download will not match. That is a stop, not an upgrade. The dice converter page and the descriptor tool page are the two files this site provides; their fingerprints are in VERIFY.md. Both are on the [downloads page](/downloads.html).
 
-## Step 2 · Compare the fingerprint. Every character.
+## Step 2 · Download the bundle. Verify the bundle.
 
 ::fig verify/compare-hash
 
-Windows: PowerShell → Get-FileHash. Mac: Terminal → shasum -a 256. Paste the result next to the fingerprint published on the project's own site.
+Download the tools bundle from the downloads page. Open the verify page, pick "Tools bundle", and drop the zip on it. MATCH means every file inside is the published copy. NO MATCH means delete the zip and download it again. Extract it only after it matches.
+
+If the page will not run in your browser, the fallback is the command line. Windows: PowerShell → Get-FileHash. Mac: Terminal → shasum -a 256. Compare the result with the fingerprint in VERIFY.md, every character.
 
 ## Step 3 · Check the signature. Want: "Good signature".
 
