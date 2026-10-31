@@ -337,7 +337,6 @@ if(typeof module!=='undefined') module.exports={sha256:sha256,bytesToBits:bytesT
       ol.appendChild(li);
     });
   }
-  var netBlocked=false;
   function addDie(face){
     if(netBlocked) return;
     if(bits().length>=256 && !pastedBits) return;
@@ -406,19 +405,34 @@ if(typeof module!=='undefined') module.exports={sha256:sha256,bytesToBits:bytesT
       li('good','No words recorded above to compare against. This list stands on its own check.', .18);
     }
   });
-  function isOffline(){ return !navigator.onLine; }
-  function renderNet(){
-    var off=isOffline();
-    netBlocked=!off;
+  var netBlocked=true; // fail closed until the probe confirms offline
+  function probeOnline(){
+    return new Promise(function(resolve){
+      var urls=[
+        'https://www.google.com/favicon.ico',
+        'https://www.gstatic.com/favicon.ico'
+      ];
+      var pending=urls.length, settled=false;
+      function finish(online){ if(settled) return; settled=true; resolve(online); }
+      var timer=setTimeout(function(){ finish(false); },5000);
+      urls.forEach(function(base){
+        var img=new Image();
+        img.onload=function(){ clearTimeout(timer); finish(true); };
+        img.onerror=function(){ pending--; if(pending<=0){ clearTimeout(timer); finish(false); } };
+        img.src=base+'?_='+Date.now();
+      });
+    });
+  }
+  async function renderNet(){
     var pill=$('online-pill'), dot=$('online-dot'), word=$('online-word'), block=$('netblock');
-    if(pill){
-      pill.hidden=false;
-      dot.classList.toggle('safe', off);
-      word.textContent=off?'Offline':'Online';
-    }
-    var wasHidden=block.hidden;
-    block.hidden=off;
-    if(!off && wasHidden){
+    if(pill){ pill.hidden=false; dot.classList.remove('safe'); word.textContent='Checking\u2026'; }
+    if(block){ block.hidden=false; }
+    var online=await probeOnline();
+    var wasBlocked=netBlocked;
+    netBlocked=online;
+    if(pill){ dot.classList.toggle('safe', !online); word.textContent=online?'Online':'Offline'; }
+    if(block){ block.hidden=!online; }
+    if(online && !wasBlocked){
       clearAll();
       $('valwords').value='';
       $('results').innerHTML='';

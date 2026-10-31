@@ -334,19 +334,39 @@ const Uh=BigInt(0),Ph=BigInt(1),xh=BigInt(2);function Qh(e){const t=(rc(r=e,{adj
 (function(){
   "use strict";
   function $(id){return document.getElementById(id);}
-  var netBlocked=false;
-  function isOffline(){return !navigator.onLine;}
+  var netBlocked=true; // fail closed until the probe confirms offline
+  function probeOnline(){
+    return new Promise(function(resolve){
+      var urls=[
+        'https://www.google.com/favicon.ico',
+        'https://www.gstatic.com/favicon.ico'
+      ];
+      var pending=urls.length, settled=false;
+      function finish(online){ if(settled) return; settled=true; resolve(online); }
+      var timer=setTimeout(function(){ finish(false); },5000);
+      urls.forEach(function(base){
+        var img=new Image();
+        img.onload=function(){ clearTimeout(timer); finish(true); };
+        img.onerror=function(){ pending--; if(pending<=0){ clearTimeout(timer); finish(false); } };
+        img.src=base+'?_='+Date.now();
+      });
+    });
+  }
   function wipe(){
     document.querySelectorAll('textarea').forEach(function(t){t.value='';});
     document.querySelectorAll('.pw').forEach(function(p){p.textContent='';});
     var s=document.querySelectorAll('.status');s.forEach(function(x){x.textContent='';});
   }
-  function renderNet(){
-    var off=isOffline();netBlocked=!off;
+  async function renderNet(){
     var pill=$('online-pill'),dot=$('online-dot'),word=$('online-word'),block=$('netblock');
-    if(pill){pill.hidden=false;dot.classList.toggle('safe',off);word.textContent=off?'Offline':'Online';}
-    var wasHidden=block.hidden;block.hidden=off;
-    if(!off&&wasHidden){wipe();}
+    if(pill){pill.hidden=false;dot.classList.remove('safe');word.textContent='Checking\u2026';}
+    if(block){block.hidden=false;}
+    var online=await probeOnline();
+    var wasBlocked=netBlocked;
+    netBlocked=online;
+    if(pill){dot.classList.toggle('safe',!online);word.textContent=online?'Online':'Offline';}
+    if(block){block.hidden=!online;}
+    if(online&&!wasBlocked){wipe();}
   }
   window.addEventListener('online',renderNet);
   window.addEventListener('offline',renderNet);
