@@ -44,7 +44,7 @@ Put the downloads next to verify_kit.sh and run it. It checks the pinned fingerp
 
 ::fig verify/two-tools-agree
 
-Same dice rolls → same 24 words in both tools: the dice converter page, then the Python converter. Same seed → same first addresses in Sparrow and Electrum. The wallet map shows those same addresses. Before signing, both tools show the same destination, amount, change, and fee. If they differ, stop.
+Same dice rolls → same 24 words in both tools: the dice converter page, then the Ian Coleman page or the Python converter. Same seed → same first addresses in Sparrow and Electrum. The wallet map shows those same addresses. Before signing, both tools show the same destination, amount, change, and fee. If they differ, stop.
 
 ## Stop if
 
