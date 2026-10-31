@@ -120,6 +120,7 @@
       </div>
 <nav class="step-banner" aria-label="Sheet 4 of 17"><a class="step-nav" href="/plebum-dominium-test/handouts/checklist.html" rel="prev">&larr; 03 &middot; Checklist</a><span class="step-pos"><strong>Step 4 of 17</strong> · Check the files</span><a class="step-nav" href="/plebum-dominium-test/handouts/airgap.html" rel="next">04 &middot; Two boots &rarr;</a></nav>
 <section class="sheet-meta" aria-label="Sheet overview"><div class="meta-item"><span class="meta-label">Time</span><span class="meta-val">30 min</span></div><div class="meta-item"><span class="meta-label">Difficulty</span><span class="meta-val diff-careful">Careful</span></div><div class="meta-item"><span class="meta-label">Steps</span><span class="meta-val">7 sections</span></div><div class="meta-item meta-needs"><span class="meta-label">You will need</span><span class="meta-val">The downloaded files &middot; Two verification tools</span></div></section>
+<h1 id="check-the-files">Check the files</h1>
 <p>Every file gets checked before the computer goes offline, and a file that fails is deleted, no exceptions. A compromised file compromises the funds.</p>
 <aside class="callout callout-warning" role="note"><p class="callout-label">Warning</p><p><strong>Is this the real site?</strong> These instructions only protect you on <strong>plebumbtc.io</strong>. Before you trust them: check the address bar. The domain must read exactly <code>plebumbtc.io</code>, no extra words, no lookalikes. Click the lock icon and confirm the certificate belongs to plebumbtc.io. Anyone can copy these pages; only the real domain gets the real updates. If anything looks wrong, stop. Verify through a second channel before continuing.</p></aside>
 <section class="you-need"><p class="you-need-label">What is required</p><ul>
@@ -148,13 +149,13 @@
         <text x="230" y="125" fill="var(--muted)" font-size="12" text-anchor="middle" font-family="IBM Plex Sans, sans-serif">compare with the fingerprint on the project's own site</text>
         <text x="230" y="152" fill="var(--tip)" font-size="13" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-weight="700">EVERY CHARACTER MATCHES ✓ &nbsp;·&nbsp; ONE DIFFERS = DELETE</text>
       </svg></figure>
-<p><strong>No command line:</strong> Download the tools bundle from the downloads page. Open the <a href="/plebum-dominium-test/verify-file.html">verify page</a>, pick &quot;Tools bundle&quot;, and drop the zip on it. MATCH means every file inside is the published copy. NO MATCH means delete the zip and download it again. Extract it only after it matches.</p>
+<p><strong>No command line:</strong> Download the tools bundle from the downloads page. Open the <a href=\"/plebum-dominium-test/verify-file.html">verify page</a>, pick &quot;Tools bundle&quot;, and drop the zip on it. MATCH means every file inside is the published copy. NO MATCH means delete the zip and download it again. Extract it only after it matches.</p>
 <p><strong>Command line:</strong> Windows: PowerShell → Get-FileHash. Mac: Terminal → shasum -a 256. Compare the result with the fingerprint in VERIFY.md, every character.</p>
 <h2 id="step-3-check-the-signature-want-good-signature">Step 3 · Check the signature. Want: &quot;Good signature&quot;.</h2>
 <figure class="step-fig"><svg width="460" height="150" viewBox="0 0 460 150" font-family="IBM Plex Mono, monospace">
-        <rect x="20" y="15" width="420" height="120" rx="10" fill="#080706" stroke="#2b251b"/>
+        <rect x="20" y="15" width="420" height="120" rx="10" fill="var(--card)" stroke="var(--line)"/>
         <text x="40" y="50" fill="#9a8f78" font-size="12">$ gpg --verify sparrow-2.5.5-manifest.txt.asc</text>
-        <text x="40" y="80" fill="#4ade80" font-size="13" font-weight="700">gpg: Good signature</text>
+        <text x="40" y="80" fill="var(--tip)" font-size="13" font-weight="700">gpg: Good signature</text>
         <text x="40" y="106" fill="#6f6a5f" font-size="11">gpg: WARNING: This key is not certified with a trusted signature!</text>
         <text x="40" y="126" fill="#6f6a5f" font-size="11" font-family="IBM Plex Sans, sans-serif">↑ that warning is normal. The fingerprint match is what matters</text>
       </svg></figure>
@@ -162,11 +163,11 @@
 <p>Sparrow signing key fingerprint: D4D0D3202FC06849A257B38DE94618334C674B40. Electrum (ThomasV): 6694D8DE7BE8EE5631BED9502BD5824B7F9470E6.</p>
 <h2 id="step-4-run-the-kit-check">Step 4 · Run the kit check.</h2>
 <figure class="step-fig"><svg width="460" height="150" viewBox="0 0 460 150" font-family="IBM Plex Mono, monospace">
-        <rect x="20" y="15" width="420" height="120" rx="10" fill="#080706" stroke="#2b251b"/>
-        <text x="40" y="50" fill="#c9a35c" font-size="13">$ ./verify_kit.sh</text>
-        <text x="40" y="78" fill="#4ade80" font-size="12">tails-amd64-7.15.1.img … PASS</text>
-        <text x="40" y="100" fill="#4ade80" font-size="12">sparrowwallet-2.5.5 … PASS</text>
-        <text x="40" y="122" fill="#4ade80" font-size="12">dice-converter … PASS</text>
+        <rect x="20" y="15" width="420" height="120" rx="10" fill="var(--card)" stroke="var(--line)"/>
+        <text x="40" y="50" fill="var(--accent)" font-size="13">$ ./verify_kit.sh</text>
+        <text x="40" y="78" fill="var(--tip)" font-size="12">tails-amd64-7.15.1.img … PASS</text>
+        <text x="40" y="100" fill="var(--tip)" font-size="12">sparrowwallet-2.5.5 … PASS</text>
+        <text x="40" y="122" fill="var(--tip)" font-size="12">dice-converter … PASS</text>
       </svg></figure>
 <p>Put the downloads next to verify_kit.sh and run it. It checks the pinned fingerprints. One failure: the work stops.</p>
 <h2 id="later-two-tools-must-agree-every-time">Later · Two tools must agree. Every time.</h2>
@@ -182,7 +183,7 @@
         <text x="230" y="62" fill="var(--tip)" font-size="22" text-anchor="middle">=</text>
         <text x="230" y="152" fill="var(--muted)" font-size="11" text-anchor="middle" letter-spacing="1">SAME BITS → SAME WORDS · SAME SEED → SAME ADDRESSES · SAME PAYMENT DETAILS</text>
       </svg></figure>
-<p>Same dice rolls → same 24 words in both tools: the <a href="/plebum-dominium-test/dice-converter.html">dice converter page</a>, then the Ian Coleman page or the Python converter. Same seed → same first addresses in Sparrow and Electrum. The wallet map shows those same addresses. Before signing, both tools show the same destination, amount, change, and fee. If they differ, stop.</p>
+<p>Same dice rolls → same 24 words in both tools: the <a href=\"/plebum-dominium-test/dice-converter.html">dice converter page</a>, then the Ian Coleman page or the Python converter. Same seed → same first addresses in Sparrow and Electrum. The wallet map shows those same addresses. Before signing, both tools show the same destination, amount, change, and fee. If they differ, stop.</p>
 <aside class="callout callout-stop" role="alert"><p class="callout-label">Stop if</p><ul>
 <li>A fingerprint differs by one character: delete the file.</li>
 <li>The signature isn&#x27;t Good: delete the file.</li>
@@ -210,7 +211,7 @@
   <p><strong>Plebum Dominium</strong>: independent at-home Bitcoin self-custody.</p>
   <p>Educational material, not financial advice. Bitcoin self-custody is irreversible. A mistake can permanently lose funds. Verify every download from its original source.</p>
   <p><a href="/plebum-dominium-test/kit/VERIFY.md">File fingerprints</a> · <a href="/plebum-dominium-test/downloads.html">Downloads</a> · <a href="/plebum-dominium-test/kit/02_Print_Packet.pdf">Print packet (PDF)</a> · <a href="/plebum-dominium-test/news.html">News</a> · <a href="/plebum-dominium-test/beyond.html">Beyond the kit</a></p>
-  <p class="footer-updated">Last updated October 29, 2026</p>
+  <p class="footer-updated">Last updated October 31, 2026</p>
   <p class="footer-contact">Contact: <a href="mailto:Muststackmoresats@gmail.com">Muststackmoresats@gmail.com</a> · X: <a href="https://x.com/MustHaveMustash" rel="noopener">@MustHaveMustash</a></p>
   <p class="donate-row"><a class="btn-lightning" href="lightning:musthavemoresats@speed.app"><span aria-hidden="true">⚡</span> Donate with Lightning</a> <button type="button" class="btn-onchain" data-copy="bc1qcmvj7c79gyjrcg3zu5pxnp4mav54846epktyma4n6v8jsud2fhqsczmngw"><span aria-hidden="true">₿</span> Donate Bitcoin</button></p>
   <p class="donate-addr"><code>bc1qcmvj7c79gyjrcg3zu5pxnp4mav54846epktyma4n6v8jsud2fhqsczmngw</code></p>
