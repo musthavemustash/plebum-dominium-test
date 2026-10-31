@@ -510,8 +510,8 @@ document.querySelectorAll(".btn-onchain").forEach(function (btn) {
 (function () {
   "use strict";
   var PATHS = {
-    easy: { label: "Easy", sheets: ["terms", "threat-model", "checklist", "verify", "airgap", "dice", "titanium", "faq"], summary: "Words into one trusted device. Lowest work, most trust in one device and its maker." },
-    one: { label: "One key", sheets: ["terms", "threat-model", "checklist", "verify", "airgap", "dice", "single-sig", "titanium", "fire-card", "faq"], summary: "One key plus a passphrase. Medium work, trust in one key, one device, and one passphrase." },
+    easy: { label: "Easy", sheets: ["terms", "threat-model", "checklist", "verify", "airgap", "dice", "titanium", "inheritance", "faq"], summary: "Words into one trusted device. Lowest work, most trust in one device and its maker." },
+    one: { label: "One key", sheets: ["terms", "threat-model", "checklist", "verify", "airgap", "dice", "single-sig", "titanium", "inheritance", "fire-card", "faq"], summary: "One key plus a passphrase. Medium work, trust in one key, one device, and one passphrase." },
     full: { label: "Full program", sheets: null, summary: "Three keys, three places. Highest work, no single key, device, or place." }
   };
   var VARIANTS = { faq: { easy: "faq-easy", one: "faq-one" }, titanium: { easy: "titanium-easy", one: "titanium-one" }, checklist: { easy: "checklist-easy", one: "checklist-one" }, "fire-card": { one: "fire-card-one" }, "threat-model": { easy: "threat-model-easy", one: "threat-model-one" }, dice: { easy: "dice-easy", one: "dice-one" } };
@@ -607,6 +607,81 @@ document.querySelectorAll(".btn-onchain").forEach(function (btn) {
       }
       banner.hidden = false;
     }
+    // Update step numbers for path (e.g., "Step 4 of 17" -> "Step 4 of 9" on Easy)
+    (function() {
+      var slug = currentSlug();
+      if (slug && info.sheets) {
+        var idx = info.sheets.indexOf(slug);
+        // Handle -easy/-one suffix variants (e.g., dice-easy -> dice)
+        if (idx < 0) {
+          var base = slug.replace(/-(easy|one)$/, '');
+          idx = info.sheets.indexOf(base);
+        }
+        if (idx >= 0) {
+          var total = info.sheets.length;
+          var stepNum = idx + 1;
+          document.querySelectorAll('.step-pos strong, .step-pos-bottom strong').forEach(function(el) {
+            var t = el.textContent;
+            var m = t.match(/Step\s+(\d+)\s+of\s+\d+/i);
+            if (m) {
+              el.textContent = t.replace(/Step\s+\d+\s+of\s+\d+/i, 'Step ' + stepNum + ' of ' + total);
+            }
+          });
+          // Update aria-label too
+          document.querySelectorAll('.step-banner').forEach(function(b) {
+            var al = b.getAttribute('aria-label');
+            if (al) {
+              b.setAttribute('aria-label', al.replace(/Sheet\s+\d+\s+of\s+\d+/i, 'Sheet ' + stepNum + ' of ' + total));
+            }
+          });
+        }
+      }
+    })();
+    // Update prev/next links for path
+    (function() {
+      var slug = currentSlug();
+      if (slug && info.sheets) {
+        var base = slug.replace(/-(easy|one)$/, '');
+        var idx = info.sheets.indexOf(base);
+        if (idx < 0) idx = info.sheets.indexOf(slug);
+        if (idx >= 0) {
+          var prevSlug = idx > 0 ? info.sheets[idx - 1] : null;
+          var nextSlug = idx < info.sheets.length - 1 ? info.sheets[idx + 1] : null;
+          // Find the sheet numbers and titles from sidebar
+          function sheetInfo(s) {
+            var a = document.querySelector('.sidebar a[data-sheet="' + s + '"]');
+            if (!a) return null;
+            var num = a.querySelector('.sheet-num');
+            var title = a.querySelector('.sheet-title');
+            return {
+              num: num ? num.textContent.trim() : '',
+              title: title ? title.textContent.trim() : s,
+              href: a.getAttribute('href')
+            };
+          }
+          var prevLink = document.querySelector('.step-banner a[rel="prev"]');
+          var nextLink = document.querySelector('.step-banner a[rel="next"]');
+          if (prevSlug && prevLink) {
+            var pi = sheetInfo(prevSlug);
+            if (pi) {
+              prevLink.setAttribute('href', pi.href);
+              prevLink.innerHTML = '&larr; ' + pi.num + ' &middot; ' + pi.title;
+            }
+          } else if (prevLink) {
+            prevLink.style.display = 'none';
+          }
+          if (nextSlug && nextLink) {
+            var ni = sheetInfo(nextSlug);
+            if (ni) {
+              nextLink.setAttribute('href', ni.href);
+              nextLink.innerHTML = ni.num + ' &middot; ' + ni.title + ' &rarr;';
+            }
+          } else if (nextLink) {
+            nextLink.style.display = 'none';
+          }
+        }
+      }
+    })();
     var gate = document.getElementById("path-gate");
     var gateNote = document.getElementById("path-gate-note");
     var gated = false;
