@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Encryption geography figure, light mode redesign preview</title>
+<style>
+  :root {
+    --paper: #f6f3ec;
+    --ink: #161410;
+    --muted: #5c564c;
+    --line: #e3d9cc;
+    --accent: #8a5a2a;
+    --card: #ffffff;
+  }
+  body {
+    margin: 0; background: var(--paper); color: var(--ink);
+    font-family: "IBM Plex Sans", -apple-system, "Segoe UI", Inter, sans-serif;
+    padding: 2rem 1rem;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; }
+  h1 { font-family: Georgia, "Newsreader", serif; font-size: 1.7rem; margin: 0 0 1rem; }
+  .caption {
+    border: 1px solid var(--line); background: var(--card); border-radius: 12px;
+    padding: 1rem 1.2rem; margin: 1.25rem 0; font-size: 0.95rem; line-height: 1.6;
+  }
+  .caption strong { display: block; margin-bottom: 0.3rem; }
+
+  /* ---- geography figure, light mode ---- */
+  .geo-fig {
+    background: var(--card); color: var(--ink);
+    border: 1px solid var(--line); border-radius: 12px;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+    padding: 1.5rem;
+  }
+  .geo-kicker {
+    margin: 0 0 0.4rem; color: var(--accent);
+    font-size: 0.8rem; letter-spacing: 0.35em; text-transform: uppercase;
+    font-weight: 700;
+  }
+  .geo-head {
+    margin: 0 0 1.25rem; font-family: Georgia, "Newsreader", serif;
+    font-size: clamp(1.45rem, 5vw, 2.1rem); line-height: 1.2;
+  }
+  .geo-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  .geo-card {
+    background: var(--card); border: 1px solid var(--accent); border-radius: 12px;
+    padding: 1.1rem 1.2rem;
+  }
+  .geo-house {
+    margin: 0 0 0.6rem; color: var(--accent);
+    font-size: 0.8rem; letter-spacing: 0.3em; text-transform: uppercase;
+    font-weight: 700;
+  }
+  .geo-plate {
+    margin: 0 0 0.7rem; font-family: Georgia, "Newsreader", serif;
+    font-size: 1.6rem; line-height: 1.1;
+  }
+  .geo-detail { margin: 0 0 0.5rem; color: var(--muted); font-size: 0.95rem; }
+  .geo-map { margin: 0.9rem 0 0; color: var(--accent); font-size: 0.95rem; font-weight: 600; }
+  .geo-note { margin: 0.3rem 0 0; color: var(--muted); font-size: 0.9rem; }
+  @media (max-width: 640px) {
+    .geo-cards { grid-template-columns: 1fr; }
+    .geo-fig { padding: 1.1rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Encryption geography figure: light mode redesign</h1>
+
+  <div class="geo-fig" role="img" aria-label="Geography: 3 seeds, secured separately in 3 different locations. No single point of failure.">
+    <p class="geo-kicker">Geography</p>
+    <p class="geo-head">3 seeds, secured separately in 3 different locations</p>
+    <div class="geo-cards">
+      <div class="geo-card">
+        <p class="geo-house">House 1</p>
+        <p class="geo-plate">Plate A</p>
+        <p class="geo-detail">Seed 1 only</p>
+        <p class="geo-detail">Home safe / fire box</p>
+        <p class="geo-map">Wallet map lives here too</p>
+        <p class="geo-note">(the map is not a third seed)</p>
+      </div>
+      <div class="geo-card">
+        <p class="geo-house">House 2</p>
+        <p class="geo-plate">Plate B</p>
+        <p class="geo-detail">Seed 2 only</p>
+        <p class="geo-detail">Different building, different risk</p>
+        <p class="geo-map">A copy of the map may sit here</p>
+      </div>
+      <div class="geo-card">
+        <p class="geo-house">House 3</p>
+        <p class="geo-plate">Plate C</p>
+        <p class="geo-detail">Seed 3 only</p>
+        <p class="geo-detail">Another town or trusted party</p>
+        <p class="geo-map">Do not park Seed 1 or 2 here</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="caption">
+    <strong>What this is</strong>
+    The "3 seeds, secured separately in 3 different locations" figure from the encryption sheet (original: https://plebumbtc.io/handouts/encryption.html), redrawn for light mode.
+    <br><strong>What changed</strong>
+    The original figure is a near-black card with light text (background #0e0d0b, color #efe9dc). The redesign keeps the same copy, the three cards in a row, and the mobile stack, but uses white cards with dark ink text and a copper border. The kicker, house labels, and map lines use the dark copper accent.
+  </div>
+</div>
+</body>
+</html>

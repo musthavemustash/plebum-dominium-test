@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dice animation · Light mode preview</title>
+<style>
+  :root {
+    --paper: #f6f3ec;
+    --ink: #161410;
+    --muted: #5c564c;
+    --line: #e3d9cc;
+    --accent: #8a5a2a;
+    --card: #ffffff;
+  }
+  body { background: var(--paper); color: var(--ink); font-family: Georgia, serif; margin: 0; padding: 2rem 1rem; }
+  main { max-width: 700px; margin: 0 auto; }
+  .label { font-family: sans-serif; font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1rem; }
+  h1 { font-size: 1.5rem; margin: 0 0 0.5rem; }
+  .note { color: var(--muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: 2rem; }
+  .stage { position: relative; height: 380px; border: 1px solid var(--line); border-radius: 12px; background: var(--card); overflow: hidden; font-family: sans-serif; }
+  .round { position: absolute; left: 4%; top: 14px; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.22em; color: var(--accent); }
+  .tray { position: absolute; left: 4%; top: 40%; display: flex; gap: 12px; }
+  .die { width: 56px; height: 56px; background: var(--paper); border: 2px solid var(--line); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 18px; color: var(--ink); position: relative; }
+  .die .bp { position: absolute; bottom: -18px; left: 0; right: 0; text-align: center; font-size: 11px; color: var(--muted); font-family: monospace; }
+  .caption { margin-top: 1rem; font-size: 0.9rem; color: var(--muted); font-family: sans-serif; }
+</style>
+</head>
+<body>
+<main>
+  <div class="label">Light mode preview</div>
+  <h1>Dice animation</h1>
+  <p class="note">The animation stage uses the light card background. Dice are light with dark pips. The dark #0e0c09 stage becomes white.</p>
+
+  <div class="stage">
+    <div class="round">SHAKE 1</div>
+    <div class="tray">
+      <div class="die">⚃<span class="bp">11</span></div>
+      <div class="die">⚄<span class="bp">01</span></div>
+      <div class="die">⚀<span class="bp">00</span></div>
+      <div class="die">⚂<span class="bp">10</span></div>
+      <div class="die">⚁<span class="bp">01</span></div>
+    </div>
+  </div>
+  <p class="caption">Original: dice animation on the dice page. Stage background #0e0c09 becomes var(--card) white.</p>
+</main>
+</body>
+</html>

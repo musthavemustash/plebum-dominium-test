@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EFF passphrase dice animation, light mode redesign preview</title>
+<style>
+  :root {
+    --paper: #f6f3ec;
+    --ink: #161410;
+    --muted: #5c564c;
+    --line: #e3d9cc;
+    --accent: #8a5a2a;
+    --card: #ffffff;
+  }
+  body {
+    margin: 0; background: var(--paper); color: var(--ink);
+    font-family: "IBM Plex Sans", -apple-system, "Segoe UI", Inter, sans-serif;
+    padding: 2rem 1rem;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; }
+  h1 { font-family: Georgia, "Newsreader", serif; font-size: 1.7rem; margin: 0 0 1rem; }
+  .caption {
+    border: 1px solid var(--line); background: var(--card); border-radius: 12px;
+    padding: 1rem 1.2rem; margin: 1.25rem 0; font-size: 0.95rem; line-height: 1.6;
+  }
+  .caption strong { display: block; margin-bottom: 0.3rem; }
+  .note { font-size: 0.92rem; color: var(--muted); margin: 0.8rem 0 0; }
+
+  /* ---- static frame of the EFF dice animation, light mode ---- */
+  .eff-anim .stage {
+    position: relative; min-height: 420px;
+    border: 1px solid var(--line); border-radius: 12px;
+    background: var(--card); overflow: hidden;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+    padding: 1.5rem;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+  }
+  .left { display: flex; flex-direction: column; gap: 0.8rem; }
+  .round {
+    font-size: 0.72rem; font-weight: 800; letter-spacing: 0.22em;
+    color: var(--accent);
+  }
+  .tray { display: flex; gap: 10px; flex-wrap: wrap; }
+  .die {
+    width: 44px; height: 44px; border-radius: 8px; position: relative;
+    background: linear-gradient(135deg, #f2ede1, #d8d1bf);
+    border: 1px solid #b7ae9d;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.18), inset 0 1px 2px rgba(255,255,255,0.8);
+  }
+  .die i {
+    position: absolute; width: 8px; height: 8px; border-radius: 50%;
+    background: #2b251b;
+  }
+  .p-tl { left: 8px; top: 8px; }
+  .p-tr { right: 8px; top: 8px; }
+  .p-ml { left: 8px; top: 18px; }
+  .p-mr { right: 8px; top: 18px; }
+  .p-bl { left: 8px; bottom: 8px; }
+  .p-br { right: 8px; bottom: 8px; }
+  .p-c  { left: 18px; top: 18px; }
+  .num {
+    font-family: "IBM Plex Mono", monospace; font-size: 1.05rem;
+    letter-spacing: 0.3em; color: var(--ink);
+  }
+  .lookup {
+    font-size: 0.9rem; color: var(--muted); line-height: 1.55; margin: 0;
+  }
+  .lookup b { color: var(--ink); font-family: "IBM Plex Mono", monospace; font-weight: 600; }
+
+  .panel {
+    background: var(--paper); border: 1px solid var(--line);
+    border-radius: 10px; padding: 1.1rem 1.2rem;
+    align-self: start;
+  }
+  .phead {
+    font-size: 0.66rem; font-weight: 800; letter-spacing: 0.24em;
+    color: var(--muted); margin-bottom: 0.7rem;
+  }
+  .wline {
+    font-family: "IBM Plex Mono", monospace; font-size: 0.85rem;
+    line-height: 1.9; color: var(--ink); margin: 0;
+  }
+  .pbar {
+    margin-top: 0.9rem; height: 8px; background: var(--card);
+    border-radius: 5px; border: 1px solid var(--line); overflow: hidden;
+  }
+  .pbar i { display: block; height: 100%; width: 100%; background: var(--accent); border-radius: 5px; }
+  .prow { display: flex; justify-content: space-between; align-items: center; margin-top: 0.6rem; }
+  .pcount { font-size: 0.7rem; letter-spacing: 0.18em; color: var(--muted); }
+  .pcount b { color: var(--accent); }
+  .wstamp {
+    font-size: 0.72rem; font-weight: 800; letter-spacing: 0.12em;
+    color: var(--accent); border: 2px solid var(--accent); border-radius: 6px;
+    padding: 4px 10px; transform: rotate(-6deg); background: rgba(255,255,255,0.9);
+  }
+  @media (max-width: 640px) {
+    .eff-anim .stage { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>EFF passphrase dice animation: light mode redesign</h1>
+
+  <div class="eff-anim">
+    <div class="stage" role="img" aria-label="Static frame of the six dice rolls mapping to EFF words: the final roll shows five dice, and the wordlist panel lists all six words.">
+      <div class="left">
+        <div class="round">ROLL 6 OF 6</div>
+        <div class="tray">
+          <div class="die"><i class="p-tl"></i><i class="p-c"></i><i class="p-br"></i></div>
+          <div class="die"><i class="p-tl"></i><i class="p-c"></i><i class="p-br"></i></div>
+          <div class="die"><i class="p-tl"></i><i class="p-c"></i><i class="p-br"></i></div>
+          <div class="die"><i class="p-tl"></i><i class="p-br"></i></div>
+          <div class="die"><i class="p-tl"></i><i class="p-c"></i><i class="p-br"></i></div>
+        </div>
+        <div class="num">3 3 3 2 3</div>
+        <p class="lookup">Each roll of five dice makes one five-digit number. The number <b>33323</b> looks up the sixth word in the EFF Large Wordlist.</p>
+      </div>
+      <div class="panel">
+        <div class="phead">EFF WORDLIST</div>
+        <p class="wline">43463 panoramic</p>
+        <p class="wline">42125 nectar</p>
+        <p class="wline">45212 precut</p>
+        <p class="wline">55161 smith</p>
+        <p class="wline">13222 banana</p>
+        <p class="wline">33323 handclap</p>
+        <div class="pbar"><i></i></div>
+        <div class="prow">
+          <div class="pcount"><b>6</b> WORDS, ABOUT 77 BITS</div>
+          <div class="wstamp">6 WORDS</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="note">Fixed example. Roll real dice yourself. Faces 1 to 6 are all kept. No rerolls.</p>
+
+  <div class="caption">
+    <strong>What this is</strong>
+    A static frame of the inlined animation on the single-sig sheet that shows six dice rolls mapping to EFF words (original: https://plebumbtc.io/handouts/single-sig.html), redrawn for light mode.
+    <br><strong>What changed</strong>
+    The stage is a white card instead of a hardcoded near-black box. The dice stay ivory with dark pips, now with a light border so they read on the white card. The wordlist panel is a pale paper card with dark ink text and the copper accent for the count and stamp. The same fixed example numbers and words are kept.
+  </div>
+</div>
+</body>
+</html>
