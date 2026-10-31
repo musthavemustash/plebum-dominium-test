@@ -38,6 +38,9 @@
   .stopcard{max-width:560px;background:#161310;border:1px solid #5a2a22;border-radius:14px;padding:28px;font-family:Arial,Helvetica,sans-serif;}
   .stopcard h2{color:#e0a396;margin:0 0 10px;font-size:26px;}
   .stopcard p{color:#a89c88;margin:10px 0;line-height:1.55;}
+  .dl-guide{margin-top:18px;padding-top:16px;border-top:1px solid #3a2f28;}
+  .dl-guide p{margin:8px 0;}
+  a.dl-btn{display:inline-block;background:#c4a484;color:#14100b;border-radius:10px;padding:10px 20px;font-size:15px;font-weight:700;text-decoration:none;}
 </style>
 </head>
 <body>
@@ -133,6 +136,11 @@
     <h2>Stop. This computer is online.</h2>
     <p>A passphrase typed on a computer that can reach the network can be leaked by malware, a bad extension, or the network itself. One leak burns the passphrase, and a burned passphrase means the locked maps must be treated as readable.</p>
     <p>Close this page. Boot Tails with networking set to Disabled, or disconnect this machine from the network, then open the file again. If this page still says Online on a machine you believe is offline, trust the page. Something is still connected.</p>
+    <div class="dl-guide">
+      <p><strong>Get this file onto your offline machine.</strong></p>
+      <p><a class="dl-btn" data-dl href="descriptor-tool.html" download="descriptor-tool.html">Download descriptor-tool.html</a></p>
+      <p>Then check its fingerprint on the verify page, copy it to your data USB, and open it on Tails with networking disabled.</p>
+    </div>
   </div>
 </div>
 
@@ -343,10 +351,10 @@ const Uh=BigInt(0),Ph=BigInt(1),xh=BigInt(2);function Qh(e){const t=(rc(r=e,{adj
   window.addEventListener('online',renderNet);
   window.addEventListener('offline',renderNet);
   document.addEventListener('click',function(e){
-    if(netBlocked){e.stopPropagation();e.preventDefault();}
+    if(netBlocked&&!(e.target.closest&&e.target.closest('[data-dl]'))){e.stopPropagation();e.preventDefault();}
   },true);
   document.addEventListener('keydown',function(e){
-    if(netBlocked){e.stopPropagation();e.preventDefault();}
+    if(netBlocked&&!(e.target.closest&&e.target.closest('[data-dl]'))){e.stopPropagation();e.preventDefault();}
   },true);
   renderNet();
 })();

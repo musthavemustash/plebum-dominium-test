@@ -22,6 +22,10 @@
 .stopcard h2{font-family:Newsreader,Georgia,serif;color:#e0a396;margin:0 0 10px;font-size:28px;font-weight:600}
 .stopcard p{color:var(--muted);margin:10px 0}
 .stopcard .prow{margin-bottom:6px}
+.dl-guide{margin-top:18px;padding-top:16px;border-top:1px solid #3a2f28}
+.dl-guide p{margin:8px 0}
+a.dl-btn{display:inline-block;background:var(--copper);color:#14100b;border-radius:10px;
+  padding:10px 20px;font-size:15px;font-weight:700;text-decoration:none}
 body{margin:0;background:var(--bg);color:var(--ink);
   font-family:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.55}
 .top{max-width:760px;margin:0 auto;padding:40px 20px 8px}
@@ -164,6 +168,11 @@ footer p{margin:6px 0}
     <h2>Stop. This computer is online.</h2>
     <p>Seed words are never typed on a computer that can reach the network. A connected machine can leak every keystroke to malware, a bad extension, or the network itself. One leak burns the words, and burned words mean new dice, new words, new plates.</p>
     <p>Close this page. Boot Tails with networking set to Disabled, or disconnect this machine from the network, then open the file again. If this page still says Online on a machine you believe is offline, trust the page. Something is still connected.</p>
+    <div class="dl-guide">
+      <p><strong>Get this file onto your offline machine.</strong></p>
+      <p><a class="dl-btn" href="dice-converter.html" download="dice-converter.html">Download dice-converter.html</a></p>
+      <p>Then check its fingerprint on the verify page, copy it to your data USB, and open it on Tails with networking disabled.</p>
+    </div>
   </div>
 </div>
 <footer>
