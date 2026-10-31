@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Light mode preview: check-signature terminal figure</title>
+<style>
+  :root {
+    --paper: #f6f3ec;
+    --card: #ffffff;
+    --ink: #161410;
+    --muted: #5c564c;
+    --line: #e3d9cc;
+    --accent: #8a5a2a;
+    --good: #2d7a2d;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", system-ui, sans-serif;
+    padding: 40px 20px;
+    line-height: 1.55;
+  }
+  .page { max-width: 720px; margin: 0 auto; }
+  h1 { font-family: "Newsreader", Georgia, serif; font-size: 1.6rem; margin: 0 0 8px; }
+  .lede { color: var(--muted); margin: 0 0 24px; }
+  figure { margin: 0; }
+  figcaption { font-size: 0.8rem; color: var(--muted); margin-top: 10px; }
+
+  .terminal {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 24px 28px;
+    font-family: "IBM Plex Mono", monospace;
+  }
+  .terminal .cmd { color: var(--accent); font-size: 12px; margin: 0 0 22px; }
+  .terminal .good { color: var(--good); font-size: 13px; font-weight: 700; margin: 0 0 16px; }
+  .terminal .warn { color: var(--muted); font-size: 11px; margin: 0 0 8px; }
+  .terminal .tip {
+    color: var(--muted);
+    font-size: 11px;
+    margin: 0;
+    font-family: "IBM Plex Sans", sans-serif;
+  }
+
+  .note {
+    margin-top: 28px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 18px 20px;
+  }
+  .note h2 { font-size: 1rem; margin: 0 0 8px; }
+  .note p { margin: 0 0 10px; font-size: 0.92rem; }
+  .note p:last-child { margin-bottom: 0; }
+  code {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.85em;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 1px 6px;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1>check-signature figure: dark terminal to light terminal</h1>
+  <p class="lede">The verify page shows a terminal screenshot of the GPG signature check. The source SVG is hardcoded dark: a <code>#080706</code> background, copper <code>#c9a35c</code> command text, and bright green <code>#4ade80</code> output. This mock keeps the same content in a light terminal.</p>
+
+  <figure>
+    <div class="terminal" role="img" aria-label="Terminal showing gpg verify output with a good signature">
+      <p class="cmd">$ gpg --verify sparrow-2.5.5-manifest.txt.asc</p>
+      <p class="good">gpg: Good signature</p>
+      <p class="warn">gpg: WARNING: This key is not certified with a trusted signature!</p>
+      <p class="tip">↑ that warning is normal. The fingerprint match is what matters</p>
+    </div>
+    <figcaption>After: white terminal card, dark copper command text, dark green "Good signature", muted gray secondary lines.</figcaption>
+  </figure>
+
+  <div class="note">
+    <h2>The change</h2>
+    <p>Source: <code>templates/verify-figs/check-signature.svg</code>. Live on <a href="https://plebumbtc.io/handouts/verify.html">https://plebumbtc.io/handouts/verify.html</a>.</p>
+    <p>Token swaps: background <code>#080706</code> to <code>#ffffff</code> (plus a <code>1px solid var(--line)</code> border); command text <code>#c9a35c</code> to <code>#8a5a2a</code> (dark copper); "Good signature" <code>#4ade80</code> to <code>#2d7a2d</code> (dark green, readable on white); secondary lines <code>#9a8f78</code> / <code>#6f6a5f</code> to <code>#5c564c</code> (muted).</p>
+  </div>
+</div>
+</body>
+</html>

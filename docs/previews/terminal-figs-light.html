@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Terminal figures · Light mode preview</title>
+<style>
+  :root {
+    --paper: #f6f3ec;
+    --ink: #161410;
+    --muted: #5c564c;
+    --line: #e3d9cc;
+    --accent: #8a5a2a;
+    --card: #ffffff;
+  }
+  body { background: var(--paper); color: var(--ink); font-family: Georgia, serif; margin: 0; padding: 2rem 1rem; }
+  main { max-width: 700px; margin: 0 auto; }
+  .label { font-family: sans-serif; font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1rem; }
+  h1 { font-size: 1.5rem; margin: 0 0 0.5rem; }
+  .note { color: var(--muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: 2rem; }
+  .fig { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px; margin-bottom: 1.5rem; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+  .fig h3 { font-family: sans-serif; font-size: 13px; color: var(--muted); margin: 0 0 12px; font-weight: 600; }
+  .caption { margin-top: 1rem; font-size: 0.9rem; color: var(--muted); font-family: sans-serif; }
+</style>
+</head>
+<body>
+<main>
+  <div class="label">Light mode preview</div>
+  <h1>Terminal figures</h1>
+  <p class="note">Terminal depictions use a light terminal theme in light mode: white background, dark text, copper prompts. The information is identical, the weight is gone.</p>
+
+  <div class="fig">
+    <h3>Sparrow install terminal (sparrow page)</h3>
+    <svg width="100%" height="190" viewBox="0 0 460 190" font-family="IBM Plex Mono, monospace" style="max-width:460px">
+      <rect x="20" y="10" width="420" height="170" rx="10" fill="#ffffff" stroke="#e3d9cc"/>
+      <circle cx="42" cy="30" r="5" fill="#c0392b"/><circle cx="60" cy="30" r="5" fill="#8a5a2a"/><circle cx="78" cy="30" r="5" fill="#3aa655"/>
+      <text x="40" y="62" fill="#8a5a2a" font-size="13">$ cd ~/Desktop</text>
+      <text x="40" y="88" fill="#8a5a2a" font-size="13">$ tar -xvf sparrowwallet-2.5.5-x86_64.tar.gz</text>
+      <text x="40" y="114" fill="#8a5a2a" font-size="13">$ cd Sparrow</text>
+      <text x="40" y="140" fill="#8a5a2a" font-size="13">$ ./bin/Sparrow</text>
+      <text x="40" y="166" fill="#3aa655" font-size="13">▊</text>
+    </svg>
+    <p class="caption">Original: templates/sparrow-figs/terminal.svg. Dark #080706 becomes white; copper text becomes dark copper #8a5a2a.</p>
+  </div>
+
+  <div class="fig">
+    <h3>Kit check terminal (verify page)</h3>
+    <svg width="100%" height="150" viewBox="0 0 460 150" font-family="IBM Plex Mono, monospace" style="max-width:460px">
+      <rect x="20" y="15" width="420" height="120" rx="10" fill="#ffffff" stroke="#e3d9cc"/>
+      <text x="40" y="50" fill="#8a5a2a" font-size="13">$ ./verify_kit.sh</text>
+      <text x="40" y="78" fill="#3aa655" font-size="12">tails-amd64-7.16.img … PASS</text>
+      <text x="40" y="104" fill="#5c564c" font-size="12">All files verified.</text>
+    </svg>
+    <p class="caption">Original: templates/verify-figs/kit-check.svg. Same light terminal treatment.</p>
+  </div>
+</main>
+</body>
+</html>
