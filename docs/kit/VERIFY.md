@@ -250,10 +250,10 @@ the sheet as published.
 | Sheet | Page | SHA-256 |
 | --- | --- | --- |
 | T · Terms | handouts/terms.html | `dbdde47e00ed845c27674b7f120f4586faea48e10855050b64ce3fec9258e04b` |
-| 02 · Before you begin | handouts/threat-model.html | `7786b7ce32fc6fa1252e8a5c49543e5447b9ed08337b6b011f3eeb0f957babb8` |
+| 02 · Before you begin | handouts/threat-model.html | `6a5738690a8ade611335162d27e2b4c1afcf84e115402ce83361401baf2ffad8` |
 | 03 · Checklist | handouts/checklist.html | `d46cb4c2d44be5e48316e7048d7bae700e7e665eb56bc68112a7437fbf56948a` |
 | 05 · Check the files | handouts/verify.html | `5ce72bcd26cb8b5b3c85c80b4680ae2e76294cf7ab09a54a7d0fe36ca0db93b4` |
-| 04 · Two boots | handouts/airgap.html | `a752f436f410f82b4d9e2043e1fb6a24c4415b45f179d99e4ec9192f07a34b58` |
+| 04 · Two boots | handouts/airgap.html | `9e748aac53756718e338888de7e88d31c5ed85124f450680560ced492084590c` |
 | 06 · Make the three keys | handouts/dice.html | `117a77b46e6393543ba8d9feb155f5b2a32224156dd56000dd5e63a631e57255` |
 | 07 · Build the 2-of-3 | handouts/sparrow.html | `619fb80956e2023e05a5025871e12d8f36a1400d248717bacd2215bd492cb7b1` |
 | 10 · Rehearse on testnet | handouts/testnet.html | `ce0817906db9de576876e59c728b0b1142052182113007437456b1a3c43c9df9` |
