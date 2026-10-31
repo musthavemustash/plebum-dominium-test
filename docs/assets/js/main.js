@@ -422,54 +422,53 @@ document.querySelectorAll(".btn-onchain").forEach(function (btn) {
   render();
 })();
 
-/* --- hero keyring as quorum demo: the animation runs until a tap takes over --- */
+/* --- hero keyrings: one quorum graphic per path, switched with the saved path --- */
 (function () {
   "use strict";
-  var ring = document.getElementById("keyring");
-  if (!ring) return;
-  var lock = document.getElementById("keyring-lock");
-  var caption = document.getElementById("keyring-caption");
-  var desc = document.getElementById("keyring-descriptor");
-  var resetBtn = document.getElementById("keyring-reset");
-  var keys = ring.querySelectorAll(".key");
-  function update() {
-    var n = 0;
-    keys.forEach(function (k) { if (k.classList.contains("sel")) n++; });
-    if (lock) lock.classList.toggle("open", n >= 2);
-    if (n === 0) {
-      caption.innerHTML = "<strong>Vault locked.</strong> No keys selected.";
-      desc.textContent = "Descriptor: not shown yet. Tap keys to see if it is needed.";
-    } else if (n === 1) {
-      caption.innerHTML = "<strong>Vault locked.</strong> One key alone cannot spend.";
-      desc.textContent = "Descriptor: not enough yet. One key alone cannot spend, with or without the map.";
-    } else if (n === 2) {
-      caption.innerHTML = "<strong>Vault opens, but a descriptor is needed.</strong>";
-      desc.textContent = "Descriptor: needed. Two seeds alone cannot rebuild the third key, so you need the wallet map (the descriptor) to rebuild the wallet.";
-    } else {
-      caption.innerHTML = "<strong>Vault opens, no descriptor needed.</strong>";
-      desc.textContent = "Descriptor: not needed. Three seeds rebuild the map exactly.";
-    }
+  var RINGS = ["easy", "one", "full"];
+  var NEED = { easy: 1, one: 2, full: 2 };
+  function showRing(path) {
+    if (RINGS.indexOf(path) < 0) path = "full";
+    RINGS.forEach(function (k) {
+      var r = document.getElementById("keyring-" + k);
+      if (r) r.classList.toggle("path-hidden", k !== path);
+    });
   }
-  keys.forEach(function (k) {
-    k.addEventListener("click", function () {
-      ring.classList.add("tapped");
-      k.classList.toggle("sel");
-      k.setAttribute("aria-pressed", k.classList.contains("sel") ? "true" : "false");
-      update();
-      if (resetBtn) resetBtn.hidden = false;
-    });
-  });
-  if (resetBtn) {
-    resetBtn.addEventListener("click", function () {
-      keys.forEach(function (k) {
-        k.classList.remove("sel");
-        k.setAttribute("aria-pressed", "false");
+  function initRing(key) {
+    var ring = document.getElementById("keyring-" + key);
+    if (!ring) return;
+    var lock = document.getElementById("keyring-" + key + "-lock");
+    var pieces = ring.querySelectorAll(".key, .paper");
+    var resetBtn = document.getElementById("keyring-" + key + "-reset");
+    function update() {
+      var n = 0;
+      pieces.forEach(function (p) { if (p.classList.contains("sel")) n++; });
+      if (lock) lock.classList.toggle("open", n >= NEED[key]);
+      if (resetBtn) resetBtn.hidden = n === 0;
+    }
+    pieces.forEach(function (p) {
+      p.addEventListener("click", function () {
+        ring.classList.add("tapped");
+        p.classList.toggle("sel");
+        p.setAttribute("aria-pressed", p.classList.contains("sel") ? "true" : "false");
+        update();
       });
-      if (lock) lock.classList.remove("open");
-      caption.innerHTML = "<strong>Any two keys</strong> open it. One alone cannot.";
-      desc.textContent = "Select keys to see if the descriptor is needed.";
-      resetBtn.hidden = true;
     });
+    if (resetBtn) resetBtn.addEventListener("click", function () {
+      pieces.forEach(function (p) {
+        p.classList.remove("sel");
+        p.setAttribute("aria-pressed", "false");
+      });
+      update();
+    });
+    update();
+  }
+  RINGS.forEach(initRing);
+  window.pdShowRing = showRing;
+  try {
+    showRing(localStorage.getItem("pd-path"));
+  } catch (e) {
+    showRing("full");
   }
 })();
 
@@ -590,6 +589,7 @@ document.querySelectorAll(".btn-onchain").forEach(function (btn) {
       var sec = document.getElementById("risks-" + k);
       if (sec) sec.classList.toggle("path-hidden", k !== path);
     });
+    if (window.pdShowRing) { try { window.pdShowRing(path); } catch (e) {} }
     var banner = document.getElementById("path-banner");
     if (banner) {
       var label = document.getElementById("path-banner-label");
