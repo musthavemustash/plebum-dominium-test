@@ -16,7 +16,7 @@ This work starts after Tails has booted with networking set to Disabled, and bef
 
 ## Turn the rolls into 24 words
 
-The dice converter page does the recording, the counting, and the math. It runs offline in the Tails browser. If the page ever says the computer is online, it stops, and the work stops with it.
+The [dice converter page](/dice-converter.html) does the recording, the counting, and the math. It runs offline in the Tails browser. If the page ever says the computer is online, it stops, and the work stops with it.
 
 1. 01 · Boot Tails. Networking Disabled. Copy the checked dice converter page from the data USB to the Desktop.
 2. 02 · Open the page in Tor Browser. Enter each face as you roll it. The page keeps faces 1 to 4, skips 5 and 6, and counts the pairs. It stops you at 128.

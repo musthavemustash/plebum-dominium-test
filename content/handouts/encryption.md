@@ -9,7 +9,7 @@ Files used: Tails 7.15.1 or later 7.x (verified).
 ## What is required
 
 - The wallet map on the data USB, called map.txt only while you work.
-- The descriptor tool page from the kit. Checked before it's copied.
+- The [descriptor tool page](/descriptor-tool.html) from the kit. Checked before it's copied.
 - Tails, networking Disabled. Not the everyday computer.
 - EFF word list generated passphrase.
 
