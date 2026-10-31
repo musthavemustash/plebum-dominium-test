@@ -112,7 +112,7 @@
       </div>
 <nav class="step-banner" aria-label="Sheet 16 of 17"><a class="step-nav" href="/plebum-dominium-test/handouts/fire-card.html" rel="prev">&larr; 15 &middot; Recovery card</a><span class="step-pos"><strong>Step 16 of 17</strong> · One key, done right</span><a class="step-nav" href="/plebum-dominium-test/handouts/two-devices.html" rel="next">17 &middot; Two devices and one dice key &rarr;</a></nav>
 <section class="sheet-meta" aria-label="Sheet overview"><div class="meta-item"><span class="meta-label">Time</span><span class="meta-val">1-2 hours</span></div><div class="meta-item"><span class="meta-label">Difficulty</span><span class="meta-val diff-careful">Careful</span></div><div class="meta-item"><span class="meta-label">Steps</span><span class="meta-val">8 sections</span></div><div class="meta-item meta-needs"><span class="meta-label">You will need</span><span class="meta-val">Your hardware wallet &middot; <a href="/plebum-dominium-test/handouts/checklist.html">Titanium plates</a> &middot; <a href="/plebum-dominium-test/handouts/checklist.html">Pen and paper</a></span></div></section>
-<p>The destination of this guide is the 2-of-3 build: three keys, three places, no single point of failure. In the full build, this sheet is also the spending wallet that lives on Plate A: Seed 1 plus a passphrase, for spending money while savings sit in the vault.</p>
+<p>The seed lives in one device and on one stamped plate. A passphrase guards it, kept on paper in a different place from the plate. This sheet is the whole wallet.</p>
 <p>Files used: Sparrow 2.5.5 for the watch-only wallet.</p>
 <figure class="step-fig"><svg width="360" height="296" viewBox="0 0 360 296" font-family="IBM Plex Sans, sans-serif">
         <rect x="8" y="8" width="344" height="132" rx="10" fill="var(--card)" stroke="var(--line)"/>
@@ -167,8 +167,8 @@
 <ul>
 <li>Word 24 is a checksum. It is never invented. If the two tools disagree, stop.</li>
 <li>Write the 24 words on paper, then type them into the device on the device itself,* in its own restore menu, on its own screen. Then shut everything down.</li>
-<li>No program on a computer does the restore, not Sparrow, not Electrum, and not a text field in a companion app. If a device needs its companion app to start the restore (BitBox App for a BitBox02, Blockstream Green for a Jade), the app only opens the connection. The words still go in on the device, never typed into the computer.</li>
-<li>In the 2-of-3 build the airgapped boot signs, in Sparrow or Electrum. On this sheet the device signs. You boot your trusted online computer for Sparrow, and Sparrow meets the device afterward, in Step 6, as the watch-only wallet that builds transactions for the device to sign.</li>
+<li>No program on a computer does the restore, not Sparrow, and not a text field in a companion app. If a device needs its companion app to start the restore (BitBox App for a BitBox02, Blockstream Green for a Jade), the app only opens the connection. The words still go in on the device, never typed into the computer.</li>
+<li>The device signs. Boot your trusted online computer for Sparrow. Sparrow meets the device afterward, in Step 6, as the watch-only wallet that builds transactions for the device to sign.</li>
 <li>The fresh seed has now lived in exactly two places: the offline boot, which forgot it, and the device.</li>
 <li>Steps 4 and 5 come before any coins move.</li>
 <li>The old device stays on as the signer, and the old seed retires.</li>
@@ -249,7 +249,6 @@
 <li>Keep a small spending balance in the wallet without the passphrase. A plate found under pressure has something to show, and it is not your savings.</li>
 <li>Prove it works: note the first receiving address of the passphrase wallet. The restore check in Step 5 must bring back that same address. If it does not, no real money moves.</li>
 </ul>
-<aside class="callout callout-note" role="note"><p class="callout-label">Note</p><p>The 2-of-3 build in this guide uses no passphrase, on purpose. Do not add one there. Three keys in three places already do the work. This sheet is one key, so the passphrase carries weight here that it never has to carry in the vault.</p></aside>
 <h2 id="step-5-stamp-it-in-metal">Step 5 · Stamp it in metal.</h2>
 <ul>
 <li>One seed, one plate, stamped the way  teaches.</li>
@@ -288,8 +287,7 @@
 <li>A fire where the plate sleeps ends this wallet. The passphrase paper surviving somewhere else does not rebuild it.</li>
 <li>Theft of the plate plus the passphrase paper ends it.</li>
 <li>A word copied wrong and never restore-checked ends it.</li>
-<li>This sheet beats an exchange account and it beats a seed in a phone. The distance between that and the vault is real.</li>
-<li>Graduate when the stack grows, or when the amount would hurt to lose. The 2-of-3 build starts at the . The dice, the metal, the watch-only habit, and the one rule about the words all carry over.</li>
+<li>This sheet beats an exchange account and it beats a seed in a phone.</li>
 <li>For the people after you: an heir needs the plate, the passphrase paper, and one plain note that says what they are and which device can restore them.  shows how that note should read: plain words, no Bitcoin knowledge assumed, a small test send first.</li>
 </ul>
 <aside class="callout callout-stop" role="alert"><p class="callout-label">Stop if</p><ul>
@@ -298,7 +296,7 @@
 <li>A restored wallet shows a different address than the one you noted: stop. No coins move.</li>
 <li>Anyone asks for your words or your passphrase, for any reason, in any message: stop. The answer is no, forever.</li>
 </ul></aside>
-<p>Next. When you are ready for the vault:</p>
+<p>Next.</p>
       <nav class="prevnext-row" aria-label="Previous and next sheets">
 <a class="prevnext prev" href="/plebum-dominium-test/handouts/fire-card.html"><span>← 15 · Recovery card</span></a>
 <span class="step-pos-bottom"><strong>Step 16 of 17</strong> · One key, done right</span>

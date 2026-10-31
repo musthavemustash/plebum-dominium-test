@@ -3,20 +3,20 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>02 · Before you begin · Plebum Dominium</title>
+<title>02 · Before you begin · Plebum Dominium Test Site</title>
 <meta name="description" content="Before you begin: the threats a DIY Bitcoin wallet must survive: theft, fire and flood, your own mistakes, scams, and death. And one question: where are your coins right now?">
 <link rel="canonical" href="https://plebumbtc.io/handouts/threat-model.html">
 <link rel="icon" href="/plebum-dominium-test/assets/img/favicon.svg" type="image/svg+xml">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://plebumbtc.io/handouts/threat-model.html">
 <meta property="og:site_name" content="Plebum Dominium">
-<meta property="og:title" content="02 · Before you begin · Plebum Dominium">
+<meta property="og:title" content="02 · Before you begin · Plebum Dominium Test Site">
 <meta property="og:description" content="Before you begin: the threats a DIY Bitcoin wallet must survive: theft, fire and flood, your own mistakes, scams, and death. And one question: where are your coins right now?">
 <meta property="og:image" content="https://plebumbtc.io/assets/img/og-banner.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="02 · Before you begin · Plebum Dominium">
+<meta name="twitter:title" content="02 · Before you begin · Plebum Dominium Test Site">
 <meta name="twitter:description" content="Before you begin: the threats a DIY Bitcoin wallet must survive: theft, fire and flood, your own mistakes, scams, and death. And one question: where are your coins right now?">
 <meta name="twitter:image" content="https://plebumbtc.io/assets/img/og-banner.png">
 
@@ -100,29 +100,21 @@
     <article>
       <p class="kicker">02 · Plebum Dominium</p>
       <h1>Before you begin</h1>
-      <div class="mobile-path" id="mobile-path">
-        <p class="mobile-path-label">Choose a path</p>
-        <div class="mobile-path-seg" role="group" aria-label="Choose a setup">
-          <button type="button" data-path="easy" aria-pressed="false">One device</button>
-          <button type="button" data-path="one" aria-pressed="false">one key<br>+<br>Passphrase</button>
-          <button type="button" data-path="full" aria-pressed="true">Three keys</button>
-        </div>
-      </div>
       <div class="path-banner" id="path-banner" hidden>
-        <p class="path-banner-label">Choose a path: <strong id="path-banner-label">Three keys</strong></p>
+        <p class="path-banner-label">Your path: <strong id="path-banner-label">Three keys</strong> (<a href="/plebum-dominium-test/index.html">change</a>)</p>
         <p class="path-banner-note" id="path-banner-note"></p>
       </div>
       <div class="path-gate" id="path-gate" hidden>
         <h2>Not on your path</h2>
         <p id="path-gate-note"></p>
-        <p><button type="button" id="path-gate-full">Switch to Three keys to read this sheet</button></p>
+        <p><a href="/plebum-dominium-test/index.html">Go to the homepage to change your path</a></p>
         <p><a href="/plebum-dominium-test/path-risks.html">Risks of your path &rarr;</a></p>
       </div>
 <nav class="step-banner" aria-label="Sheet 2 of 17"><a class="step-nav" href="/plebum-dominium-test/handouts/terms.html" rel="prev">&larr; T &middot; Terms</a><span class="step-pos"><strong>Step 2 of 8</strong> · Before you begin</span><a class="step-nav" href="/plebum-dominium-test/handouts/checklist.html" rel="next">03 &middot; Checklist &rarr;</a></nav>
 <section class="sheet-meta" aria-label="Sheet overview"><div class="meta-item"><span class="meta-label">Time</span><span class="meta-val">15 min</span></div><div class="meta-item"><span class="meta-label">Difficulty</span><span class="meta-val diff-easy">Easy</span></div><div class="meta-item"><span class="meta-label">Steps</span><span class="meta-val">1 worksheet</span></div><div class="meta-item meta-needs"><span class="meta-label">You will need</span><span class="meta-val"><a href="/plebum-dominium-test/handouts/checklist.html">Pen and paper</a></span></div></section>
 <p>Don&#x27;t trust, verify.</p>
 <ul>
-<li><strong>The seed phrase is the wallet.</strong> The device only signs.</li>
+<li><strong>The seed phrase is the wallet.</strong></li>
 <li>Anyone who holds the words holds the coins. No device can stop them.</li>
 <li>Check every threat you actually care about. The guide answers each one under its checkbox.</li>
 </ul>
@@ -153,49 +145,11 @@
 <h2 id="where-are-your-coins-right-now">Where are your coins right now?</h2>
 <ul>
 <li>☐ <strong>On an exchange.</strong> The exchange holds the keys, so the exchange holds the coins.</li>
-<li>☐ <strong>In a phone app or software wallet.</strong> Your words have lived on a connected device. Treat that seed as exposed. This makes a fresh seed the offline way and moves the coins onto it. Your old device can stay on as the signer.</li>
+<li>☐ <strong>In a phone app or software wallet.</strong> Your words have lived on a connected device. Treat that seed as exposed. This makes a fresh seed the offline way and moves the coins onto it.</li>
 <li>☐ <strong>On a hardware wallet, one seed.</strong> You are closer than you think. This is your upgrade path: check how the seed was born, stamp the words in metal, enter them on the device itself.</li>
 <li>☐ <strong>Nowhere yet.</strong> Start at the beginning. Work the steps.</li>
 </ul>
 <p>Next, the checklist.</p>
-<section class="path-toggle" id="path-toggle">
-<h2>Pick your path</h2>
-<p>The doors above state where you stand today. After the doors, pick the trade that fits. The switch below routes you to the right starting sheet.</p>
-<div class="path-seg" role="group" aria-label="Choose a setup">
-<button type="button" data-path="easy" aria-pressed="false">One device</button>
-<button type="button" data-path="one" aria-pressed="false">One key and a passphrase</button>
-<button type="button" data-path="full" aria-pressed="true">Three keys</button>
-</div>
-<div class="path-ends"><span>&larr; Less work, more trust</span><span>More work, less trust &rarr;</span></div>
-<div id="path-card-before" class="path-card path-card-full"></div>
-</section>
-<script>
-(function () {
-  var PATHS = {
-    easy: { cls: "path-card-easy", sel: "sel-easy", title: "Words into one trusted device", trade: "Trust: one device and its maker. Work: lowest.", steps: ["Roll dice for 24 words.", "Stamp the words in titanium first.", "Enter the words on the hardware wallet itself."], risk: "Risk: one device, one maker. If either fails you, the wallet fails.", next: "Next: the dice sheet, then the single-sig sheet.", go: "/plebum-dominium-test/handouts/dice.html", goText: "Go to the dice sheet" },
-    one: { cls: "path-card-one", sel: "sel-one", title: "One key and a passphrase", trade: "Trust: one key, one device, one passphrase. Work: medium.", steps: ["Roll dice for 24 words.", "Add a passphrase, kept on paper apart from the plate.", "Stamp the words in titanium. Use a watch-only wallet."], risk: "Risk: one key and one passphrase. Lose the passphrase and the wallet is gone.", next: "Next: the single-sig sheet.", go: "/plebum-dominium-test/handouts/single-sig.html", goText: "Go to the single-sig sheet" },
-    full: { cls: "path-card-full", sel: "sel-full", title: "Three keys, three places", trade: "Trust: no single key, device, or place. Work: highest.", steps: ["Roll three dice keys. Stamp three titanium plates. Keep them in three places.", "Build the 2-of-3. Practice spend first. Hide the encrypted map."], risk: "Risk: the most steps to get right. Lose two keys and the map and the funds are locked.", next: "Next: the checklist.", go: "/plebum-dominium-test/handouts/checklist.html", goText: "Go to the checklist" }
-  };
-  var card = document.getElementById("path-card-before");
-  var buttons = document.querySelectorAll("#path-toggle .path-seg button");
-  function show(path) {
-    var p = PATHS[path];
-    card.className = "path-card " + p.cls;
-    var html = "<h3>" + p.title + "</h3><p class=\"path-trade\">" + p.trade + "</p><ul>";
-    p.steps.forEach(function (s) { html += "<li>" + s + "</li>"; });
-    html += "</ul><p><strong>" + p.risk + "</strong></p><p><strong>" + p.next + "</strong></p><p><a class=\"path-go\" href=\"" + p.go + "\">" + p.goText + " &rarr;</a></p>";
-    card.innerHTML = html;
-    buttons.forEach(function (b) {
-      var on = b.getAttribute("data-path") === path;
-      b.setAttribute("aria-pressed", on ? "true" : "false");
-      b.className = on ? PATHS[b.getAttribute("data-path")].sel : "";
-    });
-  }
-  buttons.forEach(function (b) { b.addEventListener("click", function () { show(b.getAttribute("data-path")); }); });
-  show("full");
-})();
-</script>
-
       <nav class="prevnext-row" aria-label="Previous and next sheets">
 <a class="prevnext prev" href="/plebum-dominium-test/handouts/terms.html"><span>← T · Terms</span></a>
 <span class="step-pos-bottom"><strong>Step 2 of 8</strong> · Before you begin</span>
@@ -217,7 +171,7 @@
   <p><strong>Plebum Dominium</strong>: independent at-home Bitcoin self-custody.</p>
   <p>Educational material, not financial advice. Bitcoin self-custody is irreversible. A mistake can permanently lose funds. Verify every download from its original source.</p>
   <p><a href="/plebum-dominium-test/kit/VERIFY.md">File fingerprints</a> · <a href="/plebum-dominium-test/downloads.html">Downloads</a> · <a href="/plebum-dominium-test/kit/02_Print_Packet.pdf">Print packet (PDF)</a> · <a href="/plebum-dominium-test/news.html">News</a> · <a href="/plebum-dominium-test/beyond.html">Beyond the kit</a></p>
-  <p class="footer-updated">Last updated October 29, 2026</p>
+  <p class="footer-updated">Last updated October 31, 2026 · Version 1.0.0</p>
   <p class="footer-contact">Contact: <a href="mailto:Muststackmoresats@gmail.com">Muststackmoresats@gmail.com</a> · X: <a href="https://x.com/MustHaveMustash" rel="noopener">@MustHaveMustash</a></p>
   <p class="donate-row"><a class="btn-lightning" href="lightning:musthavemoresats@speed.app"><span aria-hidden="true">⚡</span> Donate with Lightning</a> <button type="button" class="btn-onchain" data-copy="bc1qcmvj7c79gyjrcg3zu5pxnp4mav54846epktyma4n6v8jsud2fhqsczmngw"><span aria-hidden="true">₿</span> Donate Bitcoin</button></p>
   <p class="donate-addr"><code>bc1qcmvj7c79gyjrcg3zu5pxnp4mav54846epktyma4n6v8jsud2fhqsczmngw</code></p>
