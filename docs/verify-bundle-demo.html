@@ -5,69 +5,78 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Verify the bundle</title>
 <style>
-  :root{color-scheme:dark}
-  body{margin:0;background:#0e0d0b;color:#efe9dc;
+  :root, :root[data-theme="dark"]{
+    color-scheme:dark;
+    --mbg:#0e0d0b; --mink:#efe9dc; --mmuted:#9b9384; --mline:#2a2722;
+    --mcard:#161411; --mdeep:#14110d; --mchrome:#1a1712;
+    --maccent:#c4a484; --maccent-bright:#e4c6a4; --mbtn-ink:#14100b;
+    --maccent-soft:#1a140d; --mtip:#4ade80; --mstop:#e07856; --mrdot:#5c564c;
+  }
+  :root[data-theme="light"]{
+    color-scheme:light;
+    --mbg:#f6f3ec; --mink:#161410; --mmuted:#5c564c; --mline:#e3d9cc;
+    --mcard:#ffffff; --mdeep:#efe9db; --mchrome:#efe9db;
+    --maccent:#8a5a2a; --maccent-bright:#6e4528; --mbtn-ink:#ffffff;
+    --maccent-soft:#f3e8d6; --mtip:#166534; --mstop:#b91c1c; --mrdot:#a89c88;
+  }
+  body{margin:0;background:var(--mbg);color:var(--mink);
     font-family:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
     display:flex;justify-content:center;padding:20px 14px}
   .wrap{max-width:520px;width:100%}
-  .kicker{color:#c4a484;letter-spacing:.18em;text-transform:uppercase;font-size:12px;margin:0 0 8px}
-  h1{font-family:Newsreader,Georgia,serif;font-weight:600;font-size:30px;margin:0 0 6px}
-  .sub{color:#9b9384;margin:0 0 18px;font-size:15px}
-  .stage{background:#161411;border:1px solid #2a2722;border-radius:14px;padding:18px}
+  .stage{background:var(--mcard);border:1px solid var(--mline);border-radius:14px;padding:18px}
   /* fake browser */
-  .browser{position:relative;background:#0e0d0b;border:1px solid #2a2722;border-radius:10px;overflow:hidden}
-  .chrome{display:flex;align-items:center;gap:8px;background:#1a1712;padding:8px 12px;border-bottom:1px solid #2a2722}
+  .browser{position:relative;background:var(--mbg);border:1px solid var(--mline);border-radius:10px;overflow:hidden}
+  .chrome{display:flex;align-items:center;gap:8px;background:var(--mchrome);padding:8px 12px;border-bottom:1px solid var(--mline)}
   .chrome .dots{display:flex;gap:5px}
-  .chrome .dots span{width:9px;height:9px;border-radius:50%;background:#3a342c}
-  .chrome .url{flex:1;background:#0e0d0b;border:1px solid #2a2722;border-radius:6px;
-    color:#9b9384;font-size:11px;padding:4px 10px;font-family:"IBM Plex Mono",monospace;
+  .chrome .dots span{width:9px;height:9px;border-radius:50%;background:var(--mline)}
+  .chrome .url{flex:1;background:var(--mbg);border:1px solid var(--mline);border-radius:6px;
+    color:var(--mmuted);font-size:11px;padding:4px 10px;font-family:"IBM Plex Mono",monospace;
     white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .page{position:relative;min-height:340px;padding:16px}
   .scene{position:absolute;inset:16px;transition:opacity .8s ease}
   .scene.gone{opacity:0;pointer-events:none}
   .page h3{font-family:Newsreader,Georgia,serif;font-size:21px;margin:0 0 6px;font-weight:600}
-  .page .intro{color:#9b9384;font-size:13px;margin:0 0 12px}
-  .page h4{font-size:13px;color:#c4a484;margin:12px 0 6px;letter-spacing:.06em}
+  .page .intro{color:var(--mmuted);font-size:13px;margin:0 0 12px}
+  .page h4{font-size:13px;color:var(--maccent);margin:12px 0 6px;letter-spacing:.06em}
   /* downloads card */
-  .dlrow{display:flex;align-items:center;justify-content:space-between;background:#14110d;
-    border:1px solid #2a2722;border-radius:8px;padding:12px 14px;margin-top:26px}
+  .dlrow{display:flex;align-items:center;justify-content:space-between;background:var(--mdeep);
+    border:1px solid var(--mline);border-radius:8px;padding:12px 14px;margin-top:26px}
   .dlrow .name{font-family:"IBM Plex Mono",monospace;font-size:13px}
-  .dlrow .meta{color:#9b9384;font-size:11px;margin-top:3px}
-  .dlbtn{background:#c4a484;color:#14100b;border:none;border-radius:8px;padding:8px 16px;
+  .dlrow .meta{color:var(--mmuted);font-size:11px;margin-top:3px}
+  .dlbtn{background:var(--maccent);color:var(--mbtn-ink);border:none;border-radius:8px;padding:8px 16px;
     font-size:13px;font-weight:700;cursor:pointer}
   /* radio list */
-  .radio{display:flex;align-items:center;gap:10px;background:#14110d;border:1px solid #2a2722;
+  .radio{display:flex;align-items:center;gap:10px;background:var(--mdeep);border:1px solid var(--mline);
     border-radius:8px;padding:9px 12px;margin:6px 0;font-family:"IBM Plex Mono",monospace;font-size:12.5px}
-  .radio .rdot{width:14px;height:14px;border-radius:50%;border:2px solid #5c564c;flex-shrink:0;transition:all .3s}
-  .radio.sel{border-color:#c4a484}
-  .radio.sel .rdot{border-color:#4ade80;background:#4ade80;box-shadow:inset 0 0 0 2.5px #14110d}
+  .radio .rdot{width:14px;height:14px;border-radius:50%;border:2px solid var(--mrdot);flex-shrink:0;transition:all .3s}
+  .radio.sel{border-color:var(--maccent)}
+  .radio.sel .rdot{border-color:var(--mtip);background:var(--mtip);box-shadow:inset 0 0 0 2.5px var(--mdeep)}
   .radio.dim{opacity:.55}
   /* drop zone */
-  .drop{border:2px dashed #5c564c;border-radius:10px;padding:22px 12px;text-align:center;
-    color:#9b9384;font-size:13px;transition:all .4s}
-  .drop.hot{border-color:#c4a484;background:#1a140d}
-  .drop.landed{border-color:#4ade80;border-style:solid}
+  .drop{border:2px dashed var(--mrdot);border-radius:10px;padding:22px 12px;text-align:center;
+    color:var(--mmuted);font-size:13px;transition:all .4s}
+  .drop.hot{border-color:var(--maccent);background:var(--maccent-soft)}
+  .drop.landed{border-color:var(--mtip);border-style:solid}
   /* zip chip */
-  .zipchip{position:absolute;background:#14110d;border:1px solid #c4a484;border-radius:8px;
-    padding:8px 12px;font-family:"IBM Plex Mono",monospace;font-size:12px;color:#e4c6a4;
+  .zipchip{position:absolute;background:var(--mdeep);border:1px solid var(--maccent);border-radius:8px;
+    padding:8px 12px;font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--maccent-bright);
     transition:left 1.6s ease,top 1.6s ease,opacity .5s;z-index:5;white-space:nowrap}
   /* verdict */
   .verdict{margin-top:12px;text-align:center;font-weight:700;font-size:16px;letter-spacing:.06em;
     min-height:24px;transition:opacity .5s}
-  .verdict.good{color:#4ade80}
-  .verdict.bad{color:#e07856}
-  .verdict.working{color:#9b9384;font-weight:400;font-size:13px}
+  .verdict.good{color:var(--mtip)}
+  .verdict.bad{color:var(--mstop)}
+  .verdict.working{color:var(--mmuted);font-weight:400;font-size:13px}
   /* pointer */
   .pointer{position:absolute;z-index:10;transition:left 1.2s ease,top 1.2s ease;left:0;top:0}
   .pointer svg{filter:drop-shadow(0 1px 2px rgba(0,0,0,.6))}
   .pointer.click svg{animation:pulse .45s ease}
   @keyframes pulse{0%{transform:scale(1)}40%{transform:scale(.78)}100%{transform:scale(1)}}
   /* legend */
-  .legend{margin-top:14px;background:#101010;border:1px solid #2a2722;border-radius:10px;
+  .legend{margin-top:14px;background:var(--mdeep);border:1px solid var(--mline);border-radius:10px;
     padding:12px 16px;min-height:70px}
-  .legend .step{color:#c4a484;font-size:12px;letter-spacing:.14em;text-transform:uppercase;margin:0 0 4px}
-  .legend .desc{margin:0;font-size:15px;color:#efe9dc}
-  .note{color:#9b9384;font-size:13px;margin:14px 0 0}
+  .legend .step{color:var(--maccent);font-size:12px;letter-spacing:.14em;text-transform:uppercase;margin:0 0 4px}
+  .legend .desc{margin:0;font-size:15px;color:var(--mink)}
   .fade{transition:opacity .6s ease}
   .hidden{opacity:0}
   .shown{opacity:1}
@@ -115,6 +124,32 @@
     </div>
   </div>
 </div>
+<script>
+(function(){
+  "use strict";
+  // follow the site theme: parent page toggle first, OS preference as fallback
+  function syncTheme(){
+    var t = null;
+    try{
+      if(window.parent && window.parent !== window){
+        t = window.parent.document.documentElement.getAttribute('data-theme');
+      }
+    }catch(e){}
+    if(t !== 'dark' && t !== 'light'){
+      t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    document.documentElement.setAttribute('data-theme', t);
+  }
+  try{
+    if(window.parent && window.parent !== window){
+      new MutationObserver(syncTheme).observe(
+        window.parent.document.documentElement, {attributes:true, attributeFilter:['data-theme']});
+    }
+  }catch(e){}
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', syncTheme);
+  syncTheme();
+})();
+</script>
 <script>
 (function(){
   "use strict";
