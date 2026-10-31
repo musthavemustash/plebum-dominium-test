@@ -3,20 +3,20 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>06 · Make one key · Plebum Dominium</title>
+<title>06 · Make the three keys · Plebum Dominium Test Site</title>
 <meta name="description" content="Make three Bitcoin seed keys from five casino dice: roll 256 bits of entropy, turn them into 24 words, and cross-check them with two independent tools.">
 <link rel="canonical" href="https://plebumbtc.io/handouts/dice.html">
 <link rel="icon" href="/plebum-dominium-test/assets/img/favicon.svg" type="image/svg+xml">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://plebumbtc.io/handouts/dice.html">
 <meta property="og:site_name" content="Plebum Dominium">
-<meta property="og:title" content="06 · Make one key · Plebum Dominium">
+<meta property="og:title" content="06 · Make the three keys · Plebum Dominium Test Site">
 <meta property="og:description" content="Make three Bitcoin seed keys from five casino dice: roll 256 bits of entropy, turn them into 24 words, and cross-check them with two independent tools.">
 <meta property="og:image" content="https://plebumbtc.io/assets/img/og-banner.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="06 · Make one key · Plebum Dominium">
+<meta name="twitter:title" content="06 · Make the three keys · Plebum Dominium Test Site">
 <meta name="twitter:description" content="Make three Bitcoin seed keys from five casino dice: roll 256 bits of entropy, turn them into 24 words, and cross-check them with two independent tools.">
 <meta name="twitter:image" content="https://plebumbtc.io/assets/img/og-banner.png">
 
@@ -100,22 +100,14 @@
     <article>
       <p class="kicker">06 · Plebum Dominium</p>
       <h1>Make one key</h1>
-      <div class="mobile-path" id="mobile-path">
-        <p class="mobile-path-label">Choose a path</p>
-        <div class="mobile-path-seg" role="group" aria-label="Choose a setup">
-          <button type="button" data-path="easy" aria-pressed="false">One device</button>
-          <button type="button" data-path="one" aria-pressed="false">one key<br>+<br>Passphrase</button>
-          <button type="button" data-path="full" aria-pressed="true">Three keys</button>
-        </div>
-      </div>
       <div class="path-banner" id="path-banner" hidden>
-        <p class="path-banner-label">Choose a path: <strong id="path-banner-label">Three keys</strong></p>
+        <p class="path-banner-label">Your path: <strong id="path-banner-label">Three keys</strong> (<a href="/plebum-dominium-test/index.html">change</a>)</p>
         <p class="path-banner-note" id="path-banner-note"></p>
       </div>
       <div class="path-gate" id="path-gate" hidden>
         <h2>Not on your path</h2>
         <p id="path-gate-note"></p>
-        <p><button type="button" id="path-gate-full">Switch to Three keys to read this sheet</button></p>
+        <p><a href="/plebum-dominium-test/index.html">Go to the homepage to change your path</a></p>
         <p><a href="/plebum-dominium-test/path-risks.html">Risks of your path &rarr;</a></p>
       </div>
 <nav class="step-banner" aria-label="Sheet 6 of 17"><a class="step-nav" href="/plebum-dominium-test/handouts/airgap.html" rel="prev">&larr; 04 &middot; Two boots</a><span class="step-pos"><strong>Step 6 of 10</strong> · Make one key</span><a class="step-nav" href="/plebum-dominium-test/handouts/single-sig.html" rel="next">16 &middot; One key, done right &rarr;</a></nav>
@@ -191,7 +183,7 @@
 <li>Example: 4, 6, 1, 3, 2 becomes 11, skip the 6, then 00, 10, 01.</li>
 </ul>
 <h2 id="turn-the-rolls-into-24-words">Turn the rolls into 24 words</h2>
-<p>The <a href="/plebum-dominium-test/dice-converter.html">dice converter page</a> does the recording, the counting, and the math. It runs offline in the Tails browser. If the page ever says the computer is online, it stops, and the work stops with it.</p>
+<p>The <a href=\"/plebum-dominium-test/dice-converter.html">dice converter page</a> does the recording, the counting, and the math. It runs offline in the Tails browser. If the page ever says the computer is online, it stops, and the work stops with it.</p>
 <ol>
 <li>01 · Boot Tails. Networking Disabled. Copy the checked dice converter page from the data USB to the Desktop.</li>
 <li>02 · Open the page in Tor Browser. Enter each face as you roll it. The page keeps faces 1 to 4, skips 5 and 6, and counts the pairs. It stops you at 128.</li>
@@ -209,45 +201,6 @@
 </ul>
 <h2 id="practice-grid">Practice grid</h2>
 <p>The printed recording grid in the bench sheet PDF still works as the paper backup. One key needs about 39 shakes for 256 bits. Count the pairs as you go and stop at 128.</p>
-<section class="path-toggle" id="path-toggle">
-<h2>What happens next</h2>
-<p>Once the words are made, the path forks. Pick what happens next.</p>
-<div class="path-seg" role="group" aria-label="Choose what happens next">
-<button type="button" data-path="easy" aria-pressed="false">One device</button>
-<button type="button" data-path="one" aria-pressed="false">One key and a passphrase</button>
-<button type="button" data-path="full" aria-pressed="true">Three keys</button>
-</div>
-<div class="path-ends"><span>&larr; Less work, more trust</span><span>More work, less trust &rarr;</span></div>
-<div id="path-card-dice" class="path-card path-card-full"></div>
-<p>Why about 39 shakes: the <a href="/plebum-dominium-test/dice-rolls.html">How many dice rolls</a> page lists the old counts and the corrected math.</p>
-</section>
-<script>
-(function () {
-  var PATHS = {
-    easy: { cls: "path-card-easy", sel: "sel-easy", title: "Into one trusted device", trade: "Trust: one device and its maker. Work: lowest.", steps: ["Stamp the words in titanium first.", "Enter the words on the hardware wallet itself.", "Done. The device holds the wallet."], risk: "Risk: one device, one maker. If either fails you, the wallet fails.", go: "/plebum-dominium-test/handouts/single-sig.html", goText: "Go to the single-sig sheet" },
-    one: { cls: "path-card-one", sel: "sel-one", title: "One key and a passphrase", trade: "Trust: one key, one device, one passphrase. Work: medium.", steps: ["Add a passphrase, kept on paper apart from the plate.", "Stamp the words in titanium.", "Open a watch-only wallet. The device signs."], risk: "Risk: one key and one passphrase. Lose the passphrase and the wallet is gone.", go: "/plebum-dominium-test/handouts/single-sig.html", goText: "Go to the single-sig sheet" },
-    full: { cls: "path-card-full", sel: "sel-full", title: "Three keys, three places", trade: "Trust: no single key, device, or place. Work: highest.", steps: ["Shut down fully. Repeat for two more keys.", "Build the 2-of-3. Practice spend first.", "Stamp three plates. Hide the encrypted map."], risk: "Risk: the most steps to get right. Lose two keys and the map and the funds are locked.", go: "/plebum-dominium-test/handouts/sparrow.html", goText: "Go to Build the 2-of-3" }
-  };
-  var card = document.getElementById("path-card-dice");
-  var buttons = document.querySelectorAll("#path-toggle .path-seg button");
-  function show(path) {
-    var p = PATHS[path];
-    card.className = "path-card " + p.cls;
-    var html = "<h3>" + p.title + "</h3><p class=\"path-trade\">" + p.trade + "</p><ul>";
-    p.steps.forEach(function (s) { html += "<li>" + s + "</li>"; });
-    html += "</ul><p><strong>" + p.risk + "</strong></p><p><a class=\"path-go\" href=\"" + p.go + "\">" + p.goText + " &rarr;</a></p>";
-    card.innerHTML = html;
-    buttons.forEach(function (b) {
-      var on = b.getAttribute("data-path") === path;
-      b.setAttribute("aria-pressed", on ? "true" : "false");
-      b.className = on ? PATHS[b.getAttribute("data-path")].sel : "";
-    });
-  }
-  buttons.forEach(function (b) { b.addEventListener("click", function () { show(b.getAttribute("data-path")); }); });
-  show("full");
-})();
-</script>
-
       <nav class="prevnext-row" aria-label="Previous and next sheets">
 <a class="prevnext prev" href="/plebum-dominium-test/handouts/airgap.html"><span>← 04 &middot; Two boots</span></a>
 <span class="step-pos-bottom"><strong>Step 6 of 10</strong> · Make one key</span>
@@ -269,7 +222,7 @@
   <p><strong>Plebum Dominium</strong>: independent at-home Bitcoin self-custody.</p>
   <p>Educational material, not financial advice. Bitcoin self-custody is irreversible. A mistake can permanently lose funds. Verify every download from its original source.</p>
   <p><a href="/plebum-dominium-test/kit/VERIFY.md">File fingerprints</a> · <a href="/plebum-dominium-test/downloads.html">Downloads</a> · <a href="/plebum-dominium-test/kit/02_Print_Packet.pdf">Print packet (PDF)</a> · <a href="/plebum-dominium-test/news.html">News</a> · <a href="/plebum-dominium-test/beyond.html">Beyond the kit</a></p>
-  <p class="footer-updated">Last updated October 29, 2026</p>
+  <p class="footer-updated">Last updated October 31, 2026 · Version 1.0.0</p>
   <p class="footer-contact">Contact: <a href="mailto:Muststackmoresats@gmail.com">Muststackmoresats@gmail.com</a> · X: <a href="https://x.com/MustHaveMustash" rel="noopener">@MustHaveMustash</a></p>
   <p class="donate-row"><a class="btn-lightning" href="lightning:musthavemoresats@speed.app"><span aria-hidden="true">⚡</span> Donate with Lightning</a> <button type="button" class="btn-onchain" data-copy="bc1qcmvj7c79gyjrcg3zu5pxnp4mav54846epktyma4n6v8jsud2fhqsczmngw"><span aria-hidden="true">₿</span> Donate Bitcoin</button></p>
   <p class="donate-addr"><code>bc1qcmvj7c79gyjrcg3zu5pxnp4mav54846epktyma4n6v8jsud2fhqsczmngw</code></p>
