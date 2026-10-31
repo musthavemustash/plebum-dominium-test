@@ -20,7 +20,7 @@
 <meta name="twitter:description" content="Plebum Dominium: build a DIY Bitcoin 2-of-3 multisig wallet from dice, verified software, and titanium. No company, no custodian.">
 <meta name="twitter:image" content="https://plebumbtc.io/assets/img/og-banner.png">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "Plebum Dominium Test Site", "url": "https://plebumbtc.io/", "description": "Plebum Dominium: build a DIY Bitcoin 2-of-3 multisig wallet from dice, verified software, and titanium. No company, no custodian."}</script>
-<link rel="stylesheet" href="/plebum-dominium-test/assets/css/main.css?v=whytiers4">
+<link rel="stylesheet" href="/plebum-dominium-test/assets/css/main.css?v=whytiers5">
 <link rel="stylesheet" href="/plebum-dominium-test/assets/css/print.css" media="print">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -116,11 +116,6 @@
 <p>A single point of failure is any instance that can potentially compromise the wallet.</p>
 <p>This guide teaches Bitcoiners how to create their own Bitcoin self-custody wallet, with optional hardware afterwards.</p>
 <p>There are three setups. They differ in difficulty and in how much trust they ask you to place in any one device or maker. The full program is the most secure. It removes the most single points of failure.</p>
-<div class="tier-switch" role="group" aria-label="Choose a setup to compare">
-<button type="button" data-tier="0" class="on">One device</button>
-<button type="button" data-tier="1">One key and a passphrase</button>
-<button type="button" data-tier="2">Three keys</button>
-</div>
 <div class="tier-scroll">
 <table class="tier-chart" data-tier="0">
 <thead>
@@ -134,65 +129,65 @@
 <tbody>
 <tr>
 <th>Best for</th>
-<td class="t0">Smaller amounts, and learning the process.</td>
-<td class="t1">Larger amounts on one key, with the passphrase as a second secret.</td>
-<td class="t2 hl">Savings you cannot afford to lose.</td>
+<td class="t0" data-setup="One device">Smaller amounts, and learning the process.</td>
+<td class="t1" data-setup="One key and a passphrase">Larger amounts on one key, with the passphrase as a second secret.</td>
+<td class="t2 hl" data-setup="Three keys \u00b7 Most secure">Savings you cannot afford to lose.</td>
 </tr>
 <tr>
 <th>Trust placed in</th>
-<td class="t0">One device and its maker.</td>
-<td class="t1">One key, one device, one passphrase.</td>
-<td class="t2 hl">No single key, device, or place.</td>
+<td class="t0" data-setup="One device">One device and its maker.</td>
+<td class="t1" data-setup="One key and a passphrase">One key, one device, one passphrase.</td>
+<td class="t2 hl" data-setup="Three keys \u00b7 Most secure">No single key, device, or place.</td>
 </tr>
 <tr class="group"><th colspan="4">Theft</th></tr>
 <tr>
 <th>Exchange fails</th>
-<td class="t0"><span class="pill yes">✓</span><span class="cell-note">The coins are in a wallet you control.</span></td>
-<td class="t1"><span class="pill yes">✓</span><span class="cell-note">The coins are in a wallet you control.</span></td>
-<td class="t2 hl"><span class="pill yes">✓</span><span class="cell-note">The coins are in a wallet you control.</span></td>
+<td class="t0" data-setup="One device"><span class="pill yes">✓</span><span class="cell-note">The coins are in a wallet you control.</span></td>
+<td class="t1" data-setup="One key and a passphrase"><span class="pill yes">✓</span><span class="cell-note">The coins are in a wallet you control.</span></td>
+<td class="t2 hl" data-setup="Three keys \u00b7 Most secure"><span class="pill yes">✓</span><span class="cell-note">The coins are in a wallet you control.</span></td>
 </tr>
 <tr>
 <th>Plate stolen alone</th>
-<td class="t0"><span class="pill no">✗</span><span class="cell-note">The plate alone can restore the full wallet.</span></td>
-<td class="t1"><span class="pill yes">✓</span><span class="cell-note">The plate alone opens only an empty wallet.</span></td>
-<td class="t2 hl"><span class="pill yes">✓</span><span class="cell-note">One key alone opens nothing.</span></td>
+<td class="t0" data-setup="One device"><span class="pill no">✗</span><span class="cell-note">The plate alone can restore the full wallet.</span></td>
+<td class="t1" data-setup="One key and a passphrase"><span class="pill yes">✓</span><span class="cell-note">The plate alone opens only an empty wallet.</span></td>
+<td class="t2 hl" data-setup="Three keys \u00b7 Most secure"><span class="pill yes">✓</span><span class="cell-note">One key alone opens nothing.</span></td>
 </tr>
 <tr>
 <th>Device fails or is tampered with</th>
-<td class="t0"><span class="pill no">✗</span><span class="cell-note">One device and its maker are the whole trust.</span></td>
-<td class="t1"><span class="pill no">✗</span><span class="cell-note">One device and its maker are still the trust.</span></td>
-<td class="t2 hl"><span class="pill yes">✓</span><span class="cell-note">Devices never create the keys.</span></td>
+<td class="t0" data-setup="One device"><span class="pill no">✗</span><span class="cell-note">One device and its maker are the whole trust.</span></td>
+<td class="t1" data-setup="One key and a passphrase"><span class="pill no">✗</span><span class="cell-note">One device and its maker are still the trust.</span></td>
+<td class="t2 hl" data-setup="Three keys \u00b7 Most secure"><span class="pill yes">✓</span><span class="cell-note">Devices never create the keys.</span></td>
 </tr>
 <tr class="group"><th colspan="4">Loss</th></tr>
 <tr>
 <th>Weak device randomness</th>
-<td class="t0"><span class="pill yes">✓</span><span class="cell-note">The seed is made with dice you can watch.</span></td>
-<td class="t1"><span class="pill yes">✓</span><span class="cell-note">The seed is made with dice you can watch.</span></td>
-<td class="t2 hl"><span class="pill yes">✓</span><span class="cell-note">The keys are made with dice, offline.</span></td>
+<td class="t0" data-setup="One device"><span class="pill yes">✓</span><span class="cell-note">The seed is made with dice you can watch.</span></td>
+<td class="t1" data-setup="One key and a passphrase"><span class="pill yes">✓</span><span class="cell-note">The seed is made with dice you can watch.</span></td>
+<td class="t2 hl" data-setup="Three keys \u00b7 Most secure"><span class="pill yes">✓</span><span class="cell-note">The keys are made with dice, offline.</span></td>
 </tr>
 <tr>
 <th>Word copied wrong</th>
-<td class="t0"><span class="pill yes">✓</span><span class="cell-note">Two tools must agree before stamping.</span></td>
-<td class="t1"><span class="pill yes">✓</span><span class="cell-note">Two tools must agree before stamping.</span></td>
-<td class="t2 hl"><span class="pill yes">✓</span><span class="cell-note">Two tools must agree before stamping.</span></td>
+<td class="t0" data-setup="One device"><span class="pill yes">✓</span><span class="cell-note">Two tools must agree before stamping.</span></td>
+<td class="t1" data-setup="One key and a passphrase"><span class="pill yes">✓</span><span class="cell-note">Two tools must agree before stamping.</span></td>
+<td class="t2 hl" data-setup="Three keys \u00b7 Most secure"><span class="pill yes">✓</span><span class="cell-note">Two tools must agree before stamping.</span></td>
 </tr>
 <tr>
 <th>Device stops working</th>
-<td class="t0"><span class="pill yes">✓</span><span class="cell-note">The plate holds the same words.</span></td>
-<td class="t1"><span class="pill yes">✓</span><span class="cell-note">The plate holds the same words.</span></td>
-<td class="t2 hl"><span class="pill yes">✓</span><span class="cell-note">The keys live on the plates, not the device.</span></td>
+<td class="t0" data-setup="One device"><span class="pill yes">✓</span><span class="cell-note">The plate holds the same words.</span></td>
+<td class="t1" data-setup="One key and a passphrase"><span class="pill yes">✓</span><span class="cell-note">The plate holds the same words.</span></td>
+<td class="t2 hl" data-setup="Three keys \u00b7 Most secure"><span class="pill yes">✓</span><span class="cell-note">The keys live on the plates, not the device.</span></td>
 </tr>
 <tr>
 <th>One failure that ends the wallet</th>
-<td class="t0">Lose the 24 words and the coins are gone.</td>
-<td class="t1">Lose the passphrase and the coins are gone.</td>
-<td class="t2 hl">Lose two plates and the map and the coins are locked.</td>
+<td class="t0" data-setup="One device">Lose the 24 words and the coins are gone.</td>
+<td class="t1" data-setup="One key and a passphrase">Lose the passphrase and the coins are gone.</td>
+<td class="t2 hl" data-setup="Three keys \u00b7 Most secure">Lose two plates and the map and the coins are locked.</td>
 </tr>
 <tr>
 <th>Heirs cannot find the plan</th>
-<td class="t0"><span class="pill no">✗</span><span class="cell-note">The inheritance sheet only helps if they can find it.</span></td>
-<td class="t1"><span class="pill no">✗</span><span class="cell-note">The inheritance sheet only helps if they can find it.</span></td>
-<td class="t2 hl"><span class="pill no">✗</span><span class="cell-note">The inheritance sheet only helps if they can find it.</span></td>
+<td class="t0" data-setup="One device"><span class="pill no">✗</span><span class="cell-note">The inheritance sheet only helps if they can find it.</span></td>
+<td class="t1" data-setup="One key and a passphrase"><span class="pill no">✗</span><span class="cell-note">The inheritance sheet only helps if they can find it.</span></td>
+<td class="t2 hl" data-setup="Three keys \u00b7 Most secure"><span class="pill no">✗</span><span class="cell-note">The inheritance sheet only helps if they can find it.</span></td>
 </tr>
 </tbody>
 </table>
@@ -245,7 +240,7 @@
   <p class="donate-addr"><code>bc1qcmvj7c79gyjrcg3zu5pxnp4mav54846epktyma4n6v8jsud2fhqsczmngw</code></p>
 </footer>
 
-<script src="/plebum-dominium-test/assets/js/main.js?v=whytiers4" defer></script>
+<script src="/plebum-dominium-test/assets/js/main.js?v=whytiers5" defer></script>
 <script data-goatcounter="https://plebumbtc.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <div id="newbie-banner" class="newbie-banner" role="dialog" aria-label="New to Bitcoin?" hidden>
   <p><strong>New to Bitcoin?</strong><br><a href="/plebum-dominium-test/new-to-bitcoin.html" class="newbie-go">Start here &rarr;</a></p>

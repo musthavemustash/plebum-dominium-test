@@ -1655,10 +1655,6 @@ body.path-gated .toc-col { display: none !important; }
 @media (prefers-color-scheme: light){
   :root{ --tier-hl: rgba(138,90,42,.07); --tier-yes:#007a5a; --tier-no:#a93226; }
 }
-.tier-switch{display:none;gap:.5rem;margin:1rem 0 .2rem}
-.tier-switch button{flex:1;font:inherit;font-size:.82rem;font-weight:700;color:var(--muted);
-  background:var(--card);border:1px solid var(--line);border-radius:999px;padding:.5rem .3rem;cursor:pointer}
-.tier-switch button.on{color:var(--bg);background:var(--accent);border-color:var(--accent)}
 .tier-scroll{overflow-x:auto;margin:1.2rem -1rem;padding:0 1rem}
 table.tier-chart{width:100%;min-width:640px;border-collapse:separate;border-spacing:0;
   font-size:.92rem;background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden}
@@ -1682,13 +1678,17 @@ table.tier-chart{width:100%;min-width:640px;border-collapse:separate;border-spac
 .tier-cta{margin-top:1.4rem}
 .tier-note{color:var(--muted);font-size:.85rem}
 @media (max-width:640px){
-  .tier-switch{display:flex}
   .tier-scroll{overflow:visible;margin:0;padding:0}
-  table.tier-chart{min-width:0}
-  .tier-chart tbody th{width:38%}
-  .tier-chart[data-tier="0"] .t1,.tier-chart[data-tier="0"] .t2{display:none}
-  .tier-chart[data-tier="1"] .t0,.tier-chart[data-tier="1"] .t2{display:none}
-  .tier-chart[data-tier="2"] .t0,.tier-chart[data-tier="2"] .t1{display:none}
+  table.tier-chart{min-width:0;background:none;border:none}
+  .tier-chart thead{display:none}
+  .tier-chart,.tier-chart tbody,.tier-chart tr,.tier-chart th,.tier-chart td{display:block;width:auto}
+  .tier-chart tr{background:var(--card);border:1px solid var(--line);border-radius:12px;margin-bottom:.9rem;overflow:hidden}
+  .tier-chart tbody th{background:var(--paper);padding:.6rem .9rem;font-size:.92rem}
+  .tier-chart td{border-bottom:1px solid var(--line);padding:.55rem .9rem}
+  .tier-chart td:last-child{border-bottom:none}
+  .tier-chart td::before{content:attr(data-setup);display:block;font-weight:700;font-size:.76rem;color:var(--muted);margin-bottom:.15rem}
+  .tier-chart tr.group{background:none;border:none;margin:1.2rem 0 .2rem}
+  .tier-chart tr.group th{background:none;padding:0 .2rem}
 }
 
 /* --- Why section CTA: big centered button --- */
