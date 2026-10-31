@@ -1,10 +1,10 @@
 <svg width="460" height="190" viewBox="0 0 460 190" font-family="IBM Plex Sans, sans-serif">
-        <rect x="20" y="15" width="420" height="160" rx="10" fill="#0e0d0b" stroke="#2b251b"/>
-        <text x="40" y="42" fill="#c9a35c" font-size="14" font-weight="700">Descriptor tool</text>
-        <circle cx="400" cy="38" r="5" fill="#3aa655"/><text x="412" y="42" fill="#9a8f78" font-size="11">Offline</text>
-        <rect x="40" y="54" width="150" height="26" rx="6" fill="#c9a35c"/><text x="115" y="71" fill="#14100b" font-size="12" font-weight="700" text-anchor="middle">Encrypt a map</text>
-        <rect x="200" y="54" width="150" height="26" rx="6" fill="none" stroke="#4a4033"/><text x="275" y="71" fill="#9a8f78" font-size="12" text-anchor="middle">Decrypt a map</text>
-        <rect x="40" y="92" width="380" height="34" rx="6" fill="none" stroke="#4a4033" stroke-dasharray="5 4"/><text x="230" y="113" fill="#9a8f78" font-size="12" text-anchor="middle">Drop map.txt here, or paste the text</text>
-        <text x="40" y="148" fill="#9a8f78" font-size="12">Passphrase: <tspan fill="#6f6a5f">••••••••••</tspan>  (twice)</text>
-        <text x="40" y="168" fill="#4ade80" font-size="12">Download map.txt.asc ✓</text>
+        <rect x="20" y="15" width="420" height="160" rx="10" fill="#0e0d0b" stroke="var(--line)"/>
+        <text x="40" y="42" fill="var(--accent)" font-size="14" font-weight="700">Descriptor tool</text>
+        <circle cx="400" cy="38" r="5" fill="#3aa655"/><text x="412" y="42" fill="var(--muted)" font-size="11">Offline</text>
+        <rect x="40" y="54" width="150" height="26" rx="6" fill="var(--accent)"/><text x="115" y="71" fill="#14100b" font-size="12" font-weight="700" text-anchor="middle">Encrypt a map</text>
+        <rect x="200" y="54" width="150" height="26" rx="6" fill="none" stroke="var(--muted)"/><text x="275" y="71" fill="var(--muted)" font-size="12" text-anchor="middle">Decrypt a map</text>
+        <rect x="40" y="92" width="380" height="34" rx="6" fill="none" stroke="var(--muted)" stroke-dasharray="5 4"/><text x="230" y="113" fill="var(--muted)" font-size="12" text-anchor="middle">Drop map.txt here, or paste the text</text>
+        <text x="40" y="148" fill="var(--muted)" font-size="12">Passphrase: <tspan fill="var(--muted)">••••••••••</tspan>  (twice)</text>
+        <text x="40" y="168" fill="var(--tip)" font-size="12">Download map.txt.asc ✓</text>
       </svg>
