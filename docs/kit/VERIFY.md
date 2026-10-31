@@ -250,7 +250,7 @@ the sheet as published.
 | Sheet | Page | SHA-256 |
 | --- | --- | --- |
 | T · Terms | handouts/terms.html | `dbdde47e00ed845c27674b7f120f4586faea48e10855050b64ce3fec9258e04b` |
-| 02 · Before you begin | handouts/threat-model.html | `6a5738690a8ade611335162d27e2b4c1afcf84e115402ce83361401baf2ffad8` |
+| 02 · Before you begin | handouts/threat-model.html | `7786b7ce32fc6fa1252e8a5c49543e5447b9ed08337b6b011f3eeb0f957babb8` |
 | 03 · Checklist | handouts/checklist.html | `d46cb4c2d44be5e48316e7048d7bae700e7e665eb56bc68112a7437fbf56948a` |
 | 05 · Check the files | handouts/verify.html | `5ce72bcd26cb8b5b3c85c80b4680ae2e76294cf7ab09a54a7d0fe36ca0db93b4` |
 | 04 · Two boots | handouts/airgap.html | `9e748aac53756718e338888de7e88d31c5ed85124f450680560ced492084590c` |
