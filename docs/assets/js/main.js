@@ -666,3 +666,4 @@ document.querySelectorAll(".btn-onchain").forEach(function (btn) {
   if (gateBtn) gateBtn.addEventListener("click", function () { setPath("full"); });
   applyPath(getPath());
 })();
+
