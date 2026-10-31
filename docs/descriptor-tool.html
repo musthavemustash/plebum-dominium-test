@@ -327,7 +327,7 @@ const Uh=BigInt(0),Ph=BigInt(1),xh=BigInt(2);function Qh(e){const t=(rc(r=e,{adj
   "use strict";
   function $(id){return document.getElementById(id);}
   var netBlocked=false;
-  function isOffline(){return location.protocol==='file:'||!navigator.onLine;}
+  function isOffline(){return !navigator.onLine;}
   function wipe(){
     document.querySelectorAll('textarea').forEach(function(t){t.value='';});
     document.querySelectorAll('.pw').forEach(function(p){p.textContent='';});

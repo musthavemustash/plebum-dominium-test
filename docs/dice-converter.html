@@ -397,7 +397,7 @@ if(typeof module!=='undefined') module.exports={sha256:sha256,bytesToBits:bytesT
       li('good','No words recorded above to compare against. This list stands on its own check.', .18);
     }
   });
-  function isOffline(){ return location.protocol==='file:' || !navigator.onLine; }
+  function isOffline(){ return !navigator.onLine; }
   function renderNet(){
     var off=isOffline();
     netBlocked=!off;
