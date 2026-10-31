@@ -144,7 +144,7 @@
     html += "<li><strong>Libbitcoin bx \"Milk Sad\" (2023):</strong> The bx seed command produced only 32 bits of entropy. About 2,600 wallets were exposed and roughly $900,000 was stolen. Dice rolls counted to 256 bits would have made those keys unguessable.</li>";
     html += "<li><strong>Android SecureRandom (2013):</strong> Android's random number generator repeated values, letting attackers recover private keys from signatures. Over 55 BTC was stolen from mobile wallets. Dice-generated keys never touched the broken generator.</li>";
     html += "</ul></details>";
-    html += "<p><a class=\"path-go\" href=\"" + p.go + "\">" + p.goText + " &rarr;</a></p>";
+    html += "<p><a class=\"path-go\" href="" + p.go + "\">" + p.goText + " &rarr;</a></p>";
     card.innerHTML = html;
     buttons.forEach(function (b) {
       var on = b.getAttribute("data-path") === path;
