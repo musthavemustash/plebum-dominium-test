@@ -459,6 +459,24 @@ def post_process(html):
         r'(<h2 id="step-1-boot-tails-copy-the-tool-and-the-map">.*?</h2>)\s*<figure class="step-fig">(.*?)</figure>',
         step1_demo_repl, html, flags=re.S,
     )
+    # Verify bundle demo in verify Step 2: iframe on screen, Step 2 figure print only.
+    def verify_demo_repl(m):
+        return (
+            m.group(1)
+            + '\n<div class="demo-embed"><iframe src="'
+            + BASE
+            + 'verify-bundle-demo.html" title="Verify the bundle demo" loading="lazy"></iframe>'
+            + '<p class="demo-fullscreen"><a href="'
+            + BASE
+            + 'verify-bundle-demo.html">Open the demo full screen</a></p></div>'
+            + '\n<figure class="step-fig print-only">'
+            + m.group(2)
+            + '</figure>'
+        )
+    html = re.sub(
+        r'(<h2 id="step-2-download-the-bundle-verify-the-bundle">.*?</h2>)\s*<figure class="step-fig">(.*?)</figure>',
+        verify_demo_repl, html, flags=re.S,
+    )
     # path toggle at the end of Before you begin and the dice sheet.
     if 'id="where-are-your-coins-right-now"' in html:
         with open("templates/path-toggle-before.html") as f:

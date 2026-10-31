@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Verify the bundle</title>
+<style>
+  :root{color-scheme:dark}
+  body{margin:0;background:#0e0d0b;color:#efe9dc;
+    font-family:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+    display:flex;justify-content:center;padding:20px 14px}
+  .wrap{max-width:520px;width:100%}
+  .kicker{color:#c4a484;letter-spacing:.18em;text-transform:uppercase;font-size:12px;margin:0 0 8px}
+  h1{font-family:Newsreader,Georgia,serif;font-weight:600;font-size:30px;margin:0 0 6px}
+  .sub{color:#9b9384;margin:0 0 18px;font-size:15px}
+  .stage{background:#161411;border:1px solid #2a2722;border-radius:14px;padding:18px}
+  /* fake browser */
+  .browser{position:relative;background:#0e0d0b;border:1px solid #2a2722;border-radius:10px;overflow:hidden}
+  .chrome{display:flex;align-items:center;gap:8px;background:#1a1712;padding:8px 12px;border-bottom:1px solid #2a2722}
+  .chrome .dots{display:flex;gap:5px}
+  .chrome .dots span{width:9px;height:9px;border-radius:50%;background:#3a342c}
+  .chrome .url{flex:1;background:#0e0d0b;border:1px solid #2a2722;border-radius:6px;
+    color:#9b9384;font-size:11px;padding:4px 10px;font-family:"IBM Plex Mono",monospace;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .page{position:relative;min-height:340px;padding:16px}
+  .scene{position:absolute;inset:16px;transition:opacity .8s ease}
+  .scene.gone{opacity:0;pointer-events:none}
+  .page h3{font-family:Newsreader,Georgia,serif;font-size:21px;margin:0 0 6px;font-weight:600}
+  .page .intro{color:#9b9384;font-size:13px;margin:0 0 12px}
+  .page h4{font-size:13px;color:#c4a484;margin:12px 0 6px;letter-spacing:.06em}
+  /* downloads card */
+  .dlrow{display:flex;align-items:center;justify-content:space-between;background:#14110d;
+    border:1px solid #2a2722;border-radius:8px;padding:12px 14px;margin-top:26px}
+  .dlrow .name{font-family:"IBM Plex Mono",monospace;font-size:13px}
+  .dlrow .meta{color:#9b9384;font-size:11px;margin-top:3px}
+  .dlbtn{background:#c4a484;color:#14100b;border:none;border-radius:8px;padding:8px 16px;
+    font-size:13px;font-weight:700;cursor:pointer}
+  /* radio list */
+  .radio{display:flex;align-items:center;gap:10px;background:#14110d;border:1px solid #2a2722;
+    border-radius:8px;padding:9px 12px;margin:6px 0;font-family:"IBM Plex Mono",monospace;font-size:12.5px}
+  .radio .rdot{width:14px;height:14px;border-radius:50%;border:2px solid #5c564c;flex-shrink:0;transition:all .3s}
+  .radio.sel{border-color:#c4a484}
+  .radio.sel .rdot{border-color:#4ade80;background:#4ade80;box-shadow:inset 0 0 0 2.5px #14110d}
+  .radio.dim{opacity:.55}
+  /* drop zone */
+  .drop{border:2px dashed #5c564c;border-radius:10px;padding:22px 12px;text-align:center;
+    color:#9b9384;font-size:13px;transition:all .4s}
+  .drop.hot{border-color:#c4a484;background:#1a140d}
+  .drop.landed{border-color:#4ade80;border-style:solid}
+  /* zip chip */
+  .zipchip{position:absolute;background:#14110d;border:1px solid #c4a484;border-radius:8px;
+    padding:8px 12px;font-family:"IBM Plex Mono",monospace;font-size:12px;color:#e4c6a4;
+    transition:left 1.6s ease,top 1.6s ease,opacity .5s;z-index:5;white-space:nowrap}
+  /* verdict */
+  .verdict{margin-top:12px;text-align:center;font-weight:700;font-size:16px;letter-spacing:.06em;
+    min-height:24px;transition:opacity .5s}
+  .verdict.good{color:#4ade80}
+  .verdict.bad{color:#e07856}
+  .verdict.working{color:#9b9384;font-weight:400;font-size:13px}
+  /* pointer */
+  .pointer{position:absolute;z-index:10;transition:left 1.2s ease,top 1.2s ease;left:0;top:0}
+  .pointer svg{filter:drop-shadow(0 1px 2px rgba(0,0,0,.6))}
+  .pointer.click svg{animation:pulse .45s ease}
+  @keyframes pulse{0%{transform:scale(1)}40%{transform:scale(.78)}100%{transform:scale(1)}}
+  /* legend */
+  .legend{margin-top:14px;background:#101010;border:1px solid #2a2722;border-radius:10px;
+    padding:12px 16px;min-height:70px}
+  .legend .step{color:#c4a484;font-size:12px;letter-spacing:.14em;text-transform:uppercase;margin:0 0 4px}
+  .legend .desc{margin:0;font-size:15px;color:#efe9dc}
+  .note{color:#9b9384;font-size:13px;margin:14px 0 0}
+  .fade{transition:opacity .6s ease}
+  .hidden{opacity:0}
+  .shown{opacity:1}
+</style>
+</head>
+<body>
+<div class="wrap">
+    <div class="stage">
+    <div class="browser">
+      <div class="chrome">
+        <div class="dots"><span></span><span></span><span></span></div>
+        <div class="url" id="urlbar">plebumbtc.io/downloads.html</div>
+      </div>
+      <div class="page">
+        <!-- Scene 1: downloads -->
+        <div class="scene" id="scene-dl">
+          <h3>Downloads</h3>
+          <p class="intro">Files this site provides. Check every one before it touches your keys.</p>
+          <div class="dlrow" id="dlrow">
+            <div><div class="name">tools-bundle.zip</div><div class="meta">211,231 bytes · fingerprint in VERIFY.md</div></div>
+            <button class="dlbtn" id="dlbtn">Download</button>
+          </div>
+        </div>
+        <!-- Scene 2: verify page -->
+        <div class="scene gone" id="scene-verify">
+          <h3>Verify a file</h3>
+          <p class="intro">Pick the file you downloaded, then drop it below.</p>
+          <h4>1 · Which file is this?</h4>
+          <div class="radio dim" id="r0"><span class="rdot"></span>tools-bundle.zip</div>
+          <div class="radio dim"><span class="rdot"></span>dice-converter.html</div>
+          <div class="radio dim"><span class="rdot"></span>descriptor-tool.html</div>
+          <h4>2 · Drop the downloaded copy here</h4>
+          <div class="drop" id="drop">Drop a file here</div>
+          <div class="verdict" id="verdict"></div>
+        </div>
+        <div class="zipchip hidden" id="zip">tools-bundle.zip</div>
+        <div class="pointer" id="ptr">
+          <svg width="26" height="26" viewBox="0 0 26 26"><polygon points="6,3 20,13 12,14 10,22" fill="#efe9dc" stroke="#14100b" stroke-width="1.5"/></svg>
+        </div>
+      </div>
+    </div>
+    <div class="legend" aria-live="polite">
+      <p class="step" id="legend-step">Step 1 of 5</p>
+      <p class="desc" id="legend-desc">Download the tools bundle from the downloads page.</p>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  "use strict";
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var $ = function(id){ return document.getElementById(id); };
+  var timers = [];
+  function later(ms, fn){ var t = setTimeout(fn, ms); timers.push(t); return t; }
+  function setStep(n, text){
+    $('legend-step').textContent = 'Step ' + n + ' of 5';
+    $('legend-desc').textContent = text;
+  }
+  function movePtr(x, y, then){
+    var p = $('ptr');
+    p.style.left = x + 'px'; p.style.top = y + 'px';
+    if(then) later(1350, then);
+  }
+  function clickPtr(){
+    var p = $('ptr');
+    p.classList.remove('click'); void p.offsetWidth; p.classList.add('click');
+  }
+  function reset(){
+    timers.forEach(clearTimeout); timers = [];
+    $('scene-dl').classList.remove('gone');
+    $('scene-verify').classList.add('gone');
+    $('urlbar').textContent = 'plebumbtc.io/downloads.html';
+    $('r0').classList.add('dim'); $('r0').classList.remove('sel');
+    var d = $('drop'); d.classList.remove('hot'); d.classList.remove('landed');
+    d.textContent = 'Drop a file here';
+    var v = $('verdict'); v.textContent = ''; v.className = 'verdict';
+    var z = $('zip'); z.classList.add('hidden'); z.style.left = '300px'; z.style.top = '40px';
+    movePtr(20, 20);
+  }
+
+  function play(){
+    reset();
+    // Step 1: download the bundle (0-6s)
+    setStep(1, 'Download the tools bundle from the downloads page.');
+    movePtr(330, 148, function(){
+      clickPtr();
+      var z = $('zip');
+      z.style.left = '300px'; z.style.top = '96px';
+      z.classList.remove('hidden');
+      $('dlbtn').textContent = 'Saved ✓';
+    });
+
+    // Step 2: open verify page, pick the bundle (6-13s)
+    later(6500, function(){
+      setStep(2, "Open the verify page. Pick 'Tools bundle' from the list.");
+      $('scene-dl').classList.add('gone');
+      $('scene-verify').classList.remove('gone');
+      $('urlbar').textContent = 'plebumbtc.io/verify-file.html';
+      $('zip').classList.add('hidden');
+      movePtr(60, 178, function(){
+        clickPtr();
+        $('r0').classList.remove('dim'); $('r0').classList.add('sel');
+      });
+    });
+
+    // Step 3: drop the zip (13-20s)
+    later(13500, function(){
+      setStep(3, 'Drop the zip onto the page.');
+      var z = $('zip');
+      z.style.left = '300px'; z.style.top = '36px';
+      z.classList.remove('hidden');
+      movePtr(330, 60, function(){
+        clickPtr();
+        // drag to drop zone
+        z.style.left = '150px'; z.style.top = '238px';
+        movePtr(180, 262);
+        later(1700, function(){
+          z.classList.add('hidden');
+          var d = $('drop');
+          d.classList.add('hot'); d.textContent = 'tools-bundle.zip';
+          var v = $('verdict');
+          v.textContent = 'working out the fingerprint…';
+          v.className = 'verdict working';
+        });
+      });
+    });
+
+    // Step 4: MATCH (20-27s)
+    later(20500, function(){
+      setStep(4, 'MATCH means every file inside is the published copy. Extract it only after it matches.');
+      var d = $('drop'); d.classList.remove('hot'); d.classList.add('landed');
+      var v = $('verdict');
+      v.textContent = 'MATCH ✓';
+      v.className = 'verdict good';
+      movePtr(20, 20);
+    });
+
+    // Step 5: NO MATCH (27-34s)
+    later(27500, function(){
+      setStep(5, 'NO MATCH means delete the zip and download it again.');
+      var v = $('verdict');
+      v.textContent = 'NO MATCH';
+      v.className = 'verdict bad';
+      var d = $('drop');
+      d.classList.remove('landed'); d.textContent = 'tools-bundle.zip ✕';
+    });
+
+    later(34500, play);
+  }
+
+  if(reduced){
+    $('scene-dl').classList.add('gone');
+    $('scene-verify').classList.remove('gone');
+    $('urlbar').textContent = 'plebumbtc.io/verify-file.html';
+    $('r0').classList.remove('dim'); $('r0').classList.add('sel');
+    var d = $('drop'); d.classList.add('landed'); d.textContent = 'tools-bundle.zip';
+    var v = $('verdict'); v.textContent = 'MATCH ✓'; v.className = 'verdict good';
+    setStep(4, 'MATCH means every file inside is the published copy. Extract it only after it matches.');
+    $('ptr').style.display = 'none';
+  } else {
+    // park pointer offscreen initially
+    $('ptr').style.left = '400px'; $('ptr').style.top = '300px';
+    play();
+  }
+})();
+</script>
+</body>
+</html>
