@@ -1580,11 +1580,11 @@ html[data-motion="off"] .metal-anim .plate { transform: none; opacity: 1; }
 /* ---------- path toggle (TEST SITE ONLY, revamped version) ---------- */
 .path-toggle { margin: 2.5rem 0; }
 .path-toggle h2 { margin-bottom: 0.5rem; }
-.path-entropy-note { margin-top: 1.5rem; padding: 1rem 1.2rem; border: 1px solid var(--line); border-radius: 8px; background: var(--card); font-size: 0.9rem; }
-.path-entropy-note p { margin: 0 0 0.5rem; }
-.path-entropy-note ul { margin: 0; padding-left: 1.2rem; }
-.path-entropy-note li { margin-bottom: 0.5rem; }
-.path-entropy-note li:last-child { margin-bottom: 0; }
+.entropy-details { margin: 1rem 0; padding: 0.8rem 1rem; border: 1px solid var(--line); border-radius: 8px; background: var(--card); font-size: 0.9rem; }
+.entropy-details summary { cursor: pointer; font-weight: 700; color: var(--accent); }
+.entropy-details ul { margin: 0.5rem 0 0; padding-left: 1.2rem; }
+.entropy-details li { margin-bottom: 0.5rem; }
+.entropy-details li:last-child { margin-bottom: 0; }
 .path-seg { display: flex; gap: 8px; margin: 1rem 0 0.4rem; }
 .path-seg button { flex: 1; padding: 0.8rem 0.4rem; font-family: "IBM Plex Sans", sans-serif; font-size: 0.95rem; font-weight: 700; cursor: pointer; background: var(--card); color: var(--ink); border: 1px solid var(--line); border-radius: 6px; }
 .path-seg button.sel-easy { background: #E69F00; color: #0e0d0b; border-color: #E69F00; }

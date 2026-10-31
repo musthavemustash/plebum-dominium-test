@@ -210,14 +210,6 @@
 <div class="path-ends"><span>&larr; Less work, more trust</span><span>More work, less trust &rarr;</span></div>
 <div id="path-card-home" class="path-card path-card-full"></div>
 <p>The easier option is written out in full on the <a href="/plebum-dominium-test/path-risks.html">Risks of your path</a> page.</p>
-<aside class="path-entropy-note">
-<p><strong>This would have protected you against:</strong></p>
-<ul>
-<li><strong>Coldcard firmware bug (2021-2026):</strong> A firmware flaw weakened the random number generator to about 72 bits instead of 128. Attackers guessed the seeds and stole over $100 million from thousands of wallets. Physical dice would have given those wallets true randomness the firmware could not weaken.</li>
-<li><strong>Libbitcoin bx "Milk Sad" (2023):</strong> The <code>bx seed</code> command produced only 32 bits of entropy. About 2,600 wallets were exposed and roughly $900,000 was stolen. Dice rolls counted to 256 bits would have made those keys unguessable.</li>
-<li><strong>Android SecureRandom (2013):</strong> Android's random number generator repeated values, letting attackers recover private keys from signatures. Over 55 BTC was stolen from mobile wallets. Dice-generated keys never touched the broken generator.</li>
-</ul>
-</aside>
 </section>
 <script>
 (function () {
@@ -233,7 +225,13 @@
     card.className = "path-card " + p.cls;
     var html = "<h3>" + p.title + "</h3><p class=\"path-trade\">" + p.trade + "</p><p><strong>" + p.start + "</strong></p><ul>";
     p.steps.forEach(function (s) { html += "<li>" + s + "</li>"; });
-    html += "</ul><p><strong>" + p.risk + "</strong></p><p><a class=\"path-go\" href=\"" + p.go + "\">" + p.goText + " &rarr;</a></p>";
+    html += "</ul><p><strong>" + p.risk + "</strong></p>";
+    html += "<details class=\"entropy-details\"><summary>This would have protected you against</summary><ul>";
+    html += "<li><strong>Coldcard firmware bug (2021-2026):</strong> A firmware flaw weakened the random number generator to about 72 bits instead of 128. Attackers guessed the seeds and stole over $100 million from thousands of wallets. Physical dice would have given those wallets true randomness the firmware could not weaken.</li>";
+    html += "<li><strong>Libbitcoin bx \"Milk Sad\" (2023):</strong> The bx seed command produced only 32 bits of entropy. About 2,600 wallets were exposed and roughly $900,000 was stolen. Dice rolls counted to 256 bits would have made those keys unguessable.</li>";
+    html += "<li><strong>Android SecureRandom (2013):</strong> Android's random number generator repeated values, letting attackers recover private keys from signatures. Over 55 BTC was stolen from mobile wallets. Dice-generated keys never touched the broken generator.</li>";
+    html += "</ul></details>";
+    html += "<p><a class=\"path-go\" href=\"" + p.go + "\">" + p.goText + " &rarr;</a></p>";
     card.innerHTML = html;
     buttons.forEach(function (b) {
       var on = b.getAttribute("data-path") === path;
