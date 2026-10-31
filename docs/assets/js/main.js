@@ -567,6 +567,12 @@ document.querySelectorAll(".btn-onchain").forEach(function (btn) {
   function applyPath(path) {
     var info = PATHS[path];
     document.documentElement.setAttribute("data-path", path);
+    // Update header path subtitle (Jake 2026-10-31: replaces per-sheet banner)
+    var subtitle = document.getElementById("path-subtitle");
+    if (subtitle) {
+      var labels = { easy: "One device", one: "One key and a passphrase", full: "Three keys" };
+      subtitle.textContent = labels[path] || "";
+    }
     document.querySelectorAll("#sidebar-path button[data-path], #path-toggle .path-seg button[data-path], .path-seg button[data-path], .path-risks-switch button[data-path]").forEach(function (b) {
       var on = b.getAttribute("data-path") === path;
       b.setAttribute("aria-pressed", on ? "true" : "false");
