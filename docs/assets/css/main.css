@@ -1650,6 +1650,12 @@ body.path-gated .toc-col { display: none !important; }
 .path-seg button.sel-quick { background: #E69F00; color: #0e0d0b; border-color: #E69F00; }
 .path-card-quick { border-top-color: #E69F00; }
 
+.tier-switch{display:none;gap:.5rem;margin:1rem 0 .2rem;align-items:center}
+.tier-view-label{font-size:.82rem;font-weight:700;color:var(--muted);white-space:nowrap}
+.tier-switch button{flex:1;font:inherit;font-size:.8rem;font-weight:700;color:var(--muted);
+  background:var(--card);border:1px solid var(--line);border-radius:999px;padding:.45rem .3rem;cursor:pointer}
+.tier-switch button.on{color:var(--bg);background:var(--accent);border-color:var(--accent)}
+
 /* --- Why section: tier comparison table --- */
 :root{ --tier-hl: rgba(196,164,132,.09); --tier-yes:#009E73; --tier-no:#c0392b; }
 @media (prefers-color-scheme: light){
@@ -1678,17 +1684,13 @@ table.tier-chart{width:100%;min-width:640px;border-collapse:separate;border-spac
 .tier-cta{margin-top:1.4rem}
 .tier-note{color:var(--muted);font-size:.85rem}
 @media (max-width:640px){
+  .tier-switch{display:flex}
   .tier-scroll{overflow:visible;margin:0;padding:0}
-  table.tier-chart{min-width:0;background:none;border:none}
-  .tier-chart thead{display:none}
-  .tier-chart,.tier-chart tbody,.tier-chart tr,.tier-chart th,.tier-chart td{display:block;width:auto}
-  .tier-chart tr{background:var(--card);border:1px solid var(--line);border-radius:12px;margin-bottom:.9rem;overflow:hidden}
-  .tier-chart tbody th{background:var(--paper);padding:.6rem .9rem;font-size:.92rem}
-  .tier-chart td{border-bottom:1px solid var(--line);padding:.55rem .9rem}
-  .tier-chart td:last-child{border-bottom:none}
-  .tier-chart td::before{content:attr(data-setup);display:block;font-weight:700;font-size:.76rem;color:var(--muted);margin-bottom:.15rem}
-  .tier-chart tr.group{background:none;border:none;margin:1.2rem 0 .2rem}
-  .tier-chart tr.group th{background:none;padding:0 .2rem}
+  table.tier-chart{min-width:0}
+  .tier-chart tbody th{width:38%}
+  .tier-chart[data-tier="0"] .t1,.tier-chart[data-tier="0"] .t2{display:none}
+  .tier-chart[data-tier="1"] .t0,.tier-chart[data-tier="1"] .t2{display:none}
+  .tier-chart[data-tier="2"] .t0,.tier-chart[data-tier="2"] .t1{display:none}
 }
 
 /* --- Why section CTA: big centered button --- */
