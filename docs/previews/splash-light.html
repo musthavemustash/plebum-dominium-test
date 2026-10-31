@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Light mode preview: splash overlay</title>
+<style>
+  :root {
+    --paper: #f6f3ec;
+    --card: #ffffff;
+    --ink: #161410;
+    --muted: #5c564c;
+    --line: #e3d9cc;
+    --accent: #8a5a2a;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", system-ui, sans-serif;
+    line-height: 1.55;
+  }
+
+  /* The redesigned first-visit splash: full viewport, paper background */
+  .splash {
+    min-height: 100vh;
+    background: var(--paper);
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px 24px;
+  }
+  .splash-inner { max-width: 520px; }
+  .splash .coin {
+    width: 72px;
+    height: 72px;
+    border: 3px solid var(--accent);
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Newsreader", Georgia, serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+  .splash .kicker {
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 0.75rem;
+    color: var(--accent);
+    font-weight: 700;
+    margin: 0 0 12px;
+  }
+  .splash h1 {
+    font-family: "Newsreader", Georgia, serif;
+    font-size: 2.6rem;
+    font-weight: 700;
+    margin: 0 0 10px;
+    color: var(--ink);
+  }
+  .splash .pronunciation {
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin: 0 0 8px;
+  }
+  .splash .tagline {
+    font-size: 1.05rem;
+    color: var(--ink);
+    margin: 0 0 28px;
+  }
+  .splash .rule {
+    width: 64px;
+    height: 2px;
+    background: var(--accent);
+    border: 0;
+    margin: 0 auto 28px;
+  }
+  .splash button {
+    font-family: "IBM Plex Sans", sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    background: var(--accent);
+    color: #fff;
+    border: 0;
+    border-radius: 10px;
+    padding: 14px 36px;
+    cursor: pointer;
+  }
+  .splash .dismiss {
+    display: block;
+    margin: 16px auto 0;
+    background: none;
+    border: 0;
+    color: var(--muted);
+    font-size: 0.85rem;
+    font-weight: 400;
+    padding: 6px;
+    cursor: pointer;
+  }
+
+  .caption {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 32px 24px 48px;
+    background: var(--card);
+    border-top: 1px solid var(--line);
+  }
+  .caption h2 { font-size: 1rem; margin: 0 0 8px; }
+  .caption p { margin: 0 0 10px; font-size: 0.92rem; }
+  .caption p:last-child { margin-bottom: 0; }
+  code {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.85em;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 1px 6px;
+  }
+</style>
+</head>
+<body>
+
+<!-- Redesigned first-visit splash: a light welcome screen, not a black slab -->
+<div class="splash" id="pd-splash">
+  <div class="splash-inner">
+    <div class="coin" aria-hidden="true">₿</div>
+    <p class="kicker">A self-custody guide</p>
+    <h1>Plebum Dominium</h1>
+    <p class="pronunciation">pleh-bum doh-min-ee-um</p>
+    <hr class="rule">
+    <p class="tagline">Absolute Ownership by the Common People</p>
+    <button type="button">Enter the guide</button>
+    <button type="button" class="dismiss">Skip this screen</button>
+  </div>
+</div>
+
+<div class="caption">
+  <h2>The change</h2>
+  <p>Source: the splash overlay in <code>templates/base.html</code> (<code>div.splash#pd-splash</code>), styled by <code>.splash { background: #0e0d0b; }</code>. It currently covers the full viewport with a black slab and light text on every page's first visit.</p>
+  <p>The redesign keeps the full-viewport takeover but uses the light theme: <code>background: var(--paper)</code> (<code>#f6f3ec</code>), the site title in dark ink, a copper kicker, pronunciation line and rule, the copper-ringed coin mark as the logo, and a solid copper "Enter the guide" button. It reads as a light welcome screen rather than a black slab.</p>
+</div>
+
+</body>
+</html>

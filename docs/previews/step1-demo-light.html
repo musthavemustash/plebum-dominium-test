@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Step 1 demo · Light mode preview</title>
+<style>
+  :root {
+    --paper: #f6f3ec;
+    --ink: #161410;
+    --muted: #5c564c;
+    --line: #e3d9cc;
+    --accent: #8a5a2a;
+    --card: #ffffff;
+  }
+  body { background: var(--paper); color: var(--ink); font-family: Georgia, serif; margin: 0; padding: 2rem 1rem; }
+  main { max-width: 700px; margin: 0 auto; }
+  .label { font-family: sans-serif; font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1rem; }
+  h1 { font-size: 1.5rem; margin: 0 0 0.5rem; }
+  .note { color: var(--muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: 2rem; }
+  .screen-frame { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+  .s1-stage { position: relative; background: #dbe7f5; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; min-height: 300px; display: flex; flex-direction: column; }
+  .s1-topbar { height: 28px; background: var(--paper); color: var(--ink); font-family: sans-serif; font-size: 13px; display: flex; justify-content: space-between; align-items: center; padding: 0 10px; border-bottom: 1px solid var(--line); }
+  .s1-welcome { margin: 30px auto; width: 80%; max-width: 440px; background: var(--card); color: var(--ink); border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); padding: 16px; font-family: sans-serif; border: 1px solid var(--line); }
+  .s1-welcome h3 { margin: 0 0 8px; font-size: 15px; }
+  .s1-welcome p { margin: 0 0 12px; font-size: 13px; color: var(--muted); }
+  .s1-btn { display: inline-block; padding: 6px 14px; border-radius: 4px; font-size: 14px; margin-right: 8px; }
+  .s1-btn.primary { background: var(--accent); color: #fff; border: 1px solid var(--accent); }
+  .s1-btn.secondary { background: var(--card); color: var(--ink); border: 1px solid var(--line); }
+  .caption { margin-top: 1rem; font-size: 0.9rem; color: var(--muted); font-family: sans-serif; }
+</style>
+</head>
+<body>
+<main>
+  <div class="label">Light mode preview</div>
+  <h1>Step 1 networking demo</h1>
+  <p class="note">The Tails welcome screen keeps its blue identity but in a light tint. The dialog uses the light card style. The heavy saturated blue becomes a pale wash.</p>
+
+  <div class="screen-frame">
+    <div class="s1-stage">
+      <div class="s1-topbar"><span>Activities</span><span>Tails Welcome</span><span>⚙</span></div>
+      <div class="s1-welcome">
+        <h3>Welcome to Tails</h3>
+        <p>Networking is disabled. This computer cannot reach the internet.</p>
+        <span class="s1-btn primary">Start Tails</span>
+        <span class="s1-btn secondary">Shutdown</span>
+      </div>
+    </div>
+  </div>
+  <p class="caption">Original: /step1-demo.html on the encryption page. The #204987 saturated blue becomes #dbe7f5 pale blue; dialog uses light card.</p>
+</main>
+</body>
+</html>

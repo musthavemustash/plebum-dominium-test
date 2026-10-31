@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Signing animation, light mode redesign preview</title>
+<style>
+  :root {
+    --paper: #f6f3ec;
+    --ink: #161410;
+    --muted: #5c564c;
+    --line: #e3d9cc;
+    --accent: #8a5a2a;
+    --card: #ffffff;
+  }
+  body {
+    margin: 0; background: var(--paper); color: var(--ink);
+    font-family: "IBM Plex Sans", -apple-system, "Segoe UI", Inter, sans-serif;
+    padding: 2rem 1rem;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; }
+  h1 { font-family: Georgia, "Newsreader", serif; font-size: 1.7rem; margin: 0 0 1rem; }
+  .caption {
+    border: 1px solid var(--line); background: var(--card); border-radius: 12px;
+    padding: 1rem 1.2rem; margin: 1.25rem 0; font-size: 0.95rem; line-height: 1.6;
+  }
+  .caption strong { display: block; margin-bottom: 0.3rem; }
+
+  /* ---- static frame of the signing animation, light mode ---- */
+  .sign-anim .stage {
+    position: relative; height: 380px;
+    border: 1px solid var(--line); border-radius: 12px;
+    background: var(--card); overflow: hidden;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+  }
+  .zone-on {
+    position: absolute; top: 0; left: 0; right: 0; height: 34%;
+    background: #eef3e4;
+    border-bottom: 2px dashed var(--accent);
+  }
+  .zone-off {
+    position: absolute; bottom: 0; left: 0; right: 0; height: 66%;
+    background: #f8f0e2;
+  }
+  .gaplabel {
+    position: absolute; left: 50%; top: 34%; transform: translate(-50%, -50%);
+    background: var(--card); border: 1px solid var(--accent); color: var(--accent);
+    font-size: 0.62rem; font-weight: 700; letter-spacing: 0.14em;
+    padding: 3px 12px; border-radius: 999px; z-index: 3; white-space: nowrap;
+  }
+  .redline {
+    position: absolute; left: 50%; top: calc(34% + 82px); bottom: 0; width: 3px;
+    background: #c0392b; z-index: 3;
+    box-shadow: 0 0 12px rgba(192, 57, 43, 0.4);
+  }
+  .redline-tag {
+    position: absolute; left: 50%; top: calc(34% + 52px); transform: translateX(-50%);
+    z-index: 3; background: #fbeeea; border: 1px solid #c0392b; color: #a93226;
+    font-size: 0.78rem; font-weight: 800; letter-spacing: 0.14em;
+    padding: 6px 14px; border-radius: 6px; white-space: nowrap;
+  }
+  .usb {
+    position: absolute; left: 50%; top: calc(34% + 22px); transform: translateX(-50%);
+    width: 16px; height: 24px; background: #6b6560; border: 1px solid #3a3530;
+    border-radius: 3px; z-index: 3;
+  }
+  .usb i {
+    position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
+    width: 8px; height: 10px; background: #6b6560; border: 1px solid #3a3530;
+    border-bottom: 0; border-radius: 2px 2px 0 0;
+  }
+  .sidetab {
+    position: absolute; left: 0; font-size: 0.62rem; font-weight: 800;
+    letter-spacing: 0.2em; padding: 6px 10px 6px 12px; border-radius: 0 8px 8px 0; z-index: 2;
+  }
+  .st-on { top: 15%; background: #dce8cc; color: #3d5a26; border: 1px solid #b7cba1; border-left: 0; }
+  .st-off { bottom: 20%; background: #f3e3c6; color: var(--accent); border: 1px solid #dcc79c; border-left: 0; }
+  .ct-label {
+    position: absolute; left: 24%; top: 7%; transform: translateX(-50%);
+    font-size: 0.88rem; font-weight: 800; letter-spacing: 0.22em; color: var(--accent);
+    z-index: 2; white-space: nowrap;
+  }
+  .bc-label {
+    position: absolute; right: 24%; top: 7%; transform: translateX(50%);
+    font-size: 0.88rem; font-weight: 800; letter-spacing: 0.22em; color: var(--accent);
+    z-index: 2; white-space: nowrap;
+  }
+  .filebox {
+    position: absolute; width: 36px; height: 46px; z-index: 4;
+    background: transparent; overflow: hidden; border-radius: 6px;
+    left: 72%; top: 16%;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+  }
+  .filebox .fill {
+    position: absolute; left: 0; top: 0; bottom: 0; width: 100%;
+    background: var(--accent);
+  }
+  .filebox .outline { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .filebox .outline rect { fill: none; stroke: var(--ink); stroke-width: 2.5; }
+  .ped { position: absolute; width: 110px; text-align: center; }
+  .ped .plate {
+    width: 88px; height: 56px; margin: 0 auto 6px; border-radius: 8px;
+    background: linear-gradient(135deg, #d9d4cc 0%, #f2eee6 25%, #cfc9bf 50%, #b3ada4 78%, #9c958b 100%);
+    border: 1px solid #8a847e; position: relative;
+  }
+  .ped .plate i {
+    display: block; height: 3px; margin: 7px 12px 0; background: rgba(0,0,0,0.35);
+    border-radius: 2px;
+  }
+  .ped .plate i:first-child { margin-top: 10px; }
+  .ped span { font-size: 0.64rem; color: var(--muted); letter-spacing: 0.08em; font-weight: 700; }
+  .ped1 { left: 35%; bottom: 14%; transform: translateX(-50%); }
+  .ped2 { left: 65%; bottom: 14%; transform: translateX(-50%); }
+  .stamp {
+    position: absolute; font-size: 0.85rem; font-weight: 800; letter-spacing: 0.1em;
+    color: var(--accent); border: 2px solid var(--accent); border-radius: 8px;
+    padding: 6px 14px; background: rgba(255, 255, 255, 0.92); z-index: 3;
+  }
+  .stamp1 { left: 35%; bottom: 32%; transform: translateX(-50%) rotate(-8deg); }
+  .stamp2 { left: 65%; bottom: 32%; transform: translateX(-50%) rotate(-8deg); }
+  .barcs { position: absolute; left: 76%; top: 20%; z-index: 3; }
+  .barcs i {
+    position: absolute; border: 2px solid var(--accent); border-radius: 50%;
+    border-left-color: transparent; border-bottom-color: transparent;
+    transform: rotate(-45deg);
+  }
+  .barcs i:nth-child(1) { width: 36px; height: 36px; left: -18px; top: -18px; }
+  .barcs i:nth-child(2) { width: 56px; height: 56px; left: -28px; top: -28px; }
+  .barcs i:nth-child(3) { width: 76px; height: 76px; left: -38px; top: -38px; }
+
+  .legend { margin: 1.1rem 0 0; padding: 0; list-style: none; }
+  .legend li {
+    border-top: 1px solid var(--line); padding: 0.6rem 0;
+    font-size: 0.95rem; line-height: 1.55;
+  }
+  .legend li:first-child { border-top: 0; }
+  .legend li .n {
+    display: inline-block; width: 1.7em; height: 1.7em; line-height: 1.7em;
+    text-align: center; border: 1px solid var(--accent); color: var(--accent);
+    border-radius: 50%; font-size: 0.8rem; font-weight: 800; margin-right: 0.6em;
+  }
+  @media (max-width: 640px) {
+    .ct-label { left: 30%; font-size: 0.72rem; }
+    .bc-label { right: 30%; font-size: 0.72rem; }
+    .redline-tag { font-size: 0.66rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Signing animation: light mode redesign</h1>
+
+  <div class="sign-anim">
+    <div class="stage" role="img" aria-label="The filling file animation, shown in its final state: Seed 1 and Seed 2 have signed, and the twice-signed file broadcasts from the offline zone back across the airgap.">
+      <div class="zone-on"></div>
+      <div class="zone-off"></div>
+      <div class="gaplabel">THE AIRGAP</div>
+      <div class="redline"></div>
+      <div class="redline-tag">SHUTDOWN &middot; NEW SESSION</div>
+      <div class="usb"><i></i></div>
+      <div class="sidetab st-on">ONLINE</div>
+      <div class="sidetab st-off">OFFLINE</div>
+      <div class="ct-label">CREATE TRANSACTION</div>
+      <div class="bc-label">BROADCAST TRANSACTION</div>
+      <div class="filebox"><div class="fill"></div><svg class="outline" viewBox="0 0 36 46"><rect x="2.5" y="2.5" width="31" height="41" rx="4"/></svg></div>
+      <div class="ped ped1"><div class="plate"><i></i><i></i><i></i><i></i></div><span>SEED 1</span></div>
+      <div class="ped ped2"><div class="plate"><i></i><i></i><i></i><i></i></div><span>SEED 2</span></div>
+      <div class="stamp stamp1">1 OF 2</div>
+      <div class="stamp stamp2">2 OF 2</div>
+      <div class="barcs"><i></i><i></i><i></i></div>
+    </div>
+    <ol class="legend">
+      <li><span class="n">1</span><b>Create.</b> Watch-only builds the transaction. The file is an empty outline.</li>
+      <li><span class="n">2</span><b>Seed 1 signs.</b> The file fills halfway. <i>1 of 2.</i></li>
+      <li><span class="n">3</span><b>Shutdown.</b> The file stops at the red line: full shutdown, new session, then crosses deliberately.</li>
+      <li><span class="n">4</span><b>Seed 2 signs.</b> The file fills whole. <i>2 of 2.</i></li>
+      <li><span class="n">5</span><b>Broadcast.</b> Up and right, across the airgap. The twice-signed file goes out.</li>
+    </ol>
+  </div>
+
+  <div class="caption">
+    <strong>What this is</strong>
+    A static frame of the inlined "the filling file" animation from the signing sheet (original: https://plebumbtc.io/handouts/signing.html), redrawn for light mode.
+    <br><strong>What changed</strong>
+    The stage is a white card instead of a hardcoded near-black box. The online zone is a pale green tint and the offline zone is a pale copper tint, so the two zones still read at a glance. Labels, stamps, and legend are dark ink on light surfaces. The seed plates keep a brushed steel look, lightened for the theme. The red shutdown line, the airgap pill, and the fill meter keep their original meaning and positions.
+  </div>
+</div>
+</body>
+</html>
