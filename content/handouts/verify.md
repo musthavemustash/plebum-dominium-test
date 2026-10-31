@@ -22,9 +22,9 @@ Sparrow must be 2.5.5 exactly. A newer download will not match. That is a stop, 
 
 ::fig verify/compare-hash
 
-Download the tools bundle from the downloads page. Open the verify page, pick "Tools bundle", and drop the zip on it. MATCH means every file inside is the published copy. NO MATCH means delete the zip and download it again. Extract it only after it matches.
+**No command line:** Download the tools bundle from the downloads page. Open the [verify page](/verify-file.html), pick "Tools bundle", and drop the zip on it. MATCH means every file inside is the published copy. NO MATCH means delete the zip and download it again. Extract it only after it matches.
 
-If the page will not run in your browser, the fallback is the command line. Windows: PowerShell → Get-FileHash. Mac: Terminal → shasum -a 256. Compare the result with the fingerprint in VERIFY.md, every character.
+**Command line:** Windows: PowerShell → Get-FileHash. Mac: Terminal → shasum -a 256. Compare the result with the fingerprint in VERIFY.md, every character.
 
 ## Step 3 · Check the signature. Want: "Good signature".
 
