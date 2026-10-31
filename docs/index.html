@@ -20,7 +20,7 @@
 <meta name="twitter:description" content="Plebum Dominium: build a DIY Bitcoin 2-of-3 multisig wallet from dice, verified software, and titanium. No company, no custodian.">
 <meta name="twitter:image" content="https://plebumbtc.io/assets/img/og-banner.png">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "Plebum Dominium Test Site", "url": "https://plebumbtc.io/", "description": "Plebum Dominium: build a DIY Bitcoin 2-of-3 multisig wallet from dice, verified software, and titanium. No company, no custodian."}</script>
-<link rel="stylesheet" href="/plebum-dominium-test/assets/css/main.css?v=variants1">
+<link rel="stylesheet" href="/plebum-dominium-test/assets/css/main.css?v=whytiers1">
 <link rel="stylesheet" href="/plebum-dominium-test/assets/css/print.css" media="print">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -109,32 +109,94 @@
 <p>Three paths cover three levels of effort. Pick the one that fits your situation on the next page.</p>
 <p><a class="path-go" href="/plebum-dominium-test/handouts/threat-model.html">Start: Before you begin &rarr;</a></p>
 </section>
-<section class="why path-hidden" id="why-easy">
+<section class="why" id="why">
 <p class="why-kicker">Why this guide</p>
-<h2>Single point of failure</h2>
-<p>A single point of failure is any instance that can potentially compromise the wallet.</p>
-<h3>What this guide protects against</h3>
-<ul><li><b>Exchange fails:</b> The coins are in a wallet you control.</li><li><b>Weak device randomness:</b> The seed is made with dice you can watch.</li><li><b>Device stops working:</b> The plate holds the same words.</li><li><b>Word copied wrong:</b> Two tools must agree before stamping.</li></ul>
-<h3>What it does not protect against</h3>
-<ul><li><b>Plate stolen alone:</b> The plate alone can restore the full wallet. There is no passphrase to stop it. This is the major point of failure on this path.</li><li><b>Device fails or is tampered with:</b> One device and its maker are the whole trust.</li><li><b>Seed stolen alone:</b> Anyone with the 24 words holds the coins.</li><li><b>Plate and device together:</b> Together they are the wallet.</li><li><b>Words kept anywhere except titanium and the chosen device:</b> Words are only stamped into titanium and loaded onto the chosen device per the guide.</li></ul>
-</section>
-<section class="why path-hidden" id="why-one">
-<p class="why-kicker">Why this guide</p>
-<h2>Single point of failure</h2>
-<p>A single point of failure is any instance that can potentially compromise the wallet.</p>
-<h3>What this guide protects against</h3>
-<ul><li><b>One plate stolen:</b> The plate alone opens only an empty wallet.</li><li><b>Exchange fails:</b> The coins are in a wallet you control.</li><li><b>Weak device randomness:</b> The seed is made with dice you can watch.</li><li><b>Device stops working:</b> The plate holds the same words.</li><li><b>Word copied wrong:</b> Two tools must agree before stamping.</li></ul>
-<h3>What it does not protect against</h3>
-<ul><li><b>Passphrase lost:</b> No one can reset it. The coins are gone.</li><li><b>Passphrase found with the plate:</b> The passphrase then adds nothing.</li><li><b>Passphrase handed to a scammer:</b> Words and passphrase together open the wallet.</li><li><b>Device fails or is tampered with:</b> One device and its maker are still the trust.</li><li><b>One seed lost:</b> There is no second key to rebuild the wallet.</li><li><b>Words kept anywhere except titanium and the chosen device:</b> Words are only stamped into titanium and loaded onto the chosen device per the guide.</li></ul>
-</section>
-<section class="why" id="why-full">
-<p class="why-kicker">Why this guide</p>
-<h2>Single point of failure</h2>
-<p>A single point of failure is any instance that can potentially compromise the wallet.</p>
-<h3>What this guide protects against</h3>
-<ul><li><b>One plate stolen:</b> One key alone opens nothing.</li><li><b>One house lost:</b> Two plates plus the map rebuild the wallet.</li><li><b>Exchange fails:</b> The coins are in a wallet you control.</li><li><b>Weak device randomness:</b> The keys are made with dice, offline.</li><li><b>Device flaw or tamper:</b> Devices never create the keys.</li><li><b>Word copied wrong:</b> Two tools must agree before stamping.</li></ul>
-<h3>What it does not protect against</h3>
-<ul><li><b>Two plates in one place:</b> The separation is gone.</li><li><b>Map passphrase lost, with only two plates:</b> Two plates cannot rebuild the map.</li><li><b>Two plates lost:</b> One key alone cannot spend.</li><li><b>Passphrase on the 2-of-3:</b> That passphrase is a single point in disguise.</li><li><b>Words kept anywhere except titanium and the chosen device:</b> Words are only stamped into titanium and loaded onto the chosen device per the guide.</li><li><b>Heirs cannot find the plates and map:</b> The inheritance sheet only helps if they can find it.</li></ul>
+<h2>More work, less trust</h2>
+<p>This guide teaches Bitcoiners how to create their own Bitcoin self-custody wallet, with optional hardware afterwards.</p>
+<p>There are three setups. They differ in difficulty and in how much trust they ask you to place in any one device or maker. The full program is the most secure. It removes the most single points of failure.</p>
+<div class="tier-switch" role="group" aria-label="Choose a setup to compare">
+<button type="button" data-tier="0" class="on">One device</button>
+<button type="button" data-tier="1">One key and a passphrase</button>
+<button type="button" data-tier="2">Three keys</button>
+</div>
+<div class="tier-scroll">
+<table class="tier-chart" data-tier="0">
+<thead>
+<tr>
+<th></th>
+<th class="t0">One device<span class="tier-sub">Lowest work</span></th>
+<th class="t1">One key and a passphrase<span class="tier-sub">Medium work</span></th>
+<th class="t2 hl">Three keys<span class="tier-badge">Most secure</span><span class="tier-sub">Highest work</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>Best for</th>
+<td class="t0">Smaller amounts, and learning the process.</td>
+<td class="t1">Larger amounts on one key, with the passphrase as a second secret.</td>
+<td class="t2 hl">Savings you cannot afford to lose.</td>
+</tr>
+<tr>
+<th>Trust placed in</th>
+<td class="t0">One device and its maker.</td>
+<td class="t1">One key, one device, one passphrase.</td>
+<td class="t2 hl">No single key, device, or place.</td>
+</tr>
+<tr class="group"><th colspan="4">Theft</th></tr>
+<tr>
+<th>Exchange fails</th>
+<td class="t0"><span class="pill yes">✓</span><span class="cell-note">The coins are in a wallet you control.</span></td>
+<td class="t1"><span class="pill yes">✓</span><span class="cell-note">The coins are in a wallet you control.</span></td>
+<td class="t2 hl"><span class="pill yes">✓</span><span class="cell-note">The coins are in a wallet you control.</span></td>
+</tr>
+<tr>
+<th>Plate stolen alone</th>
+<td class="t0"><span class="pill no">✗</span><span class="cell-note">The plate alone can restore the full wallet.</span></td>
+<td class="t1"><span class="pill yes">✓</span><span class="cell-note">The plate alone opens only an empty wallet.</span></td>
+<td class="t2 hl"><span class="pill yes">✓</span><span class="cell-note">One key alone opens nothing.</span></td>
+</tr>
+<tr>
+<th>Device fails or is tampered with</th>
+<td class="t0"><span class="pill no">✗</span><span class="cell-note">One device and its maker are the whole trust.</span></td>
+<td class="t1"><span class="pill no">✗</span><span class="cell-note">One device and its maker are still the trust.</span></td>
+<td class="t2 hl"><span class="pill yes">✓</span><span class="cell-note">Devices never create the keys.</span></td>
+</tr>
+<tr class="group"><th colspan="4">Loss</th></tr>
+<tr>
+<th>Weak device randomness</th>
+<td class="t0"><span class="pill yes">✓</span><span class="cell-note">The seed is made with dice you can watch.</span></td>
+<td class="t1"><span class="pill yes">✓</span><span class="cell-note">The seed is made with dice you can watch.</span></td>
+<td class="t2 hl"><span class="pill yes">✓</span><span class="cell-note">The keys are made with dice, offline.</span></td>
+</tr>
+<tr>
+<th>Word copied wrong</th>
+<td class="t0"><span class="pill yes">✓</span><span class="cell-note">Two tools must agree before stamping.</span></td>
+<td class="t1"><span class="pill yes">✓</span><span class="cell-note">Two tools must agree before stamping.</span></td>
+<td class="t2 hl"><span class="pill yes">✓</span><span class="cell-note">Two tools must agree before stamping.</span></td>
+</tr>
+<tr>
+<th>Device stops working</th>
+<td class="t0"><span class="pill yes">✓</span><span class="cell-note">The plate holds the same words.</span></td>
+<td class="t1"><span class="pill yes">✓</span><span class="cell-note">The plate holds the same words.</span></td>
+<td class="t2 hl"><span class="pill yes">✓</span><span class="cell-note">The keys live on the plates, not the device.</span></td>
+</tr>
+<tr>
+<th>One failure that ends the wallet</th>
+<td class="t0">Lose the 24 words and the coins are gone.</td>
+<td class="t1">Lose the passphrase and the coins are gone.</td>
+<td class="t2 hl">Lose two plates and the map and the coins are locked.</td>
+</tr>
+<tr>
+<th>Heirs cannot find the plan</th>
+<td class="t0"><span class="pill no">✗</span><span class="cell-note">The inheritance sheet only helps if they can find it.</span></td>
+<td class="t1"><span class="pill no">✗</span><span class="cell-note">The inheritance sheet only helps if they can find it.</span></td>
+<td class="t2 hl"><span class="pill no">✗</span><span class="cell-note">The inheritance sheet only helps if they can find it.</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="tier-cta"><a class="path-go" href="/plebum-dominium-test/handouts/threat-model.html">Start: Before you begin &rarr;</a></p>
+<p class="tier-note">The setup is picked on the next page, not here.</p>
 </section>
 <section class="rules" id="house-rules">
 <p class="why-kicker">The limits</p>
@@ -191,7 +253,7 @@
   <p class="donate-addr"><code>bc1qcmvj7c79gyjrcg3zu5pxnp4mav54846epktyma4n6v8jsud2fhqsczmngw</code></p>
 </footer>
 
-<script src="/plebum-dominium-test/assets/js/main.js?v=variants1" defer></script>
+<script src="/plebum-dominium-test/assets/js/main.js?v=whytiers1" defer></script>
 <script data-goatcounter="https://plebumbtc.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <div id="newbie-banner" class="newbie-banner" role="dialog" aria-label="New to Bitcoin?" hidden>
   <p><strong>New to Bitcoin?</strong><br><a href="/plebum-dominium-test/#new-to-bitcoin" class="newbie-go">Start here &rarr;</a></p>

@@ -20,7 +20,7 @@
 <meta name="twitter:description" content="Before you begin: the threats a DIY Bitcoin wallet must survive: theft, fire and flood, your own mistakes, scams, and death. And one question: where are your coins right now?">
 <meta name="twitter:image" content="https://plebumbtc.io/assets/img/og-banner.png">
 
-<link rel="stylesheet" href="/plebum-dominium-test/assets/css/main.css?v=variants1">
+<link rel="stylesheet" href="/plebum-dominium-test/assets/css/main.css?v=whytiers1">
 <link rel="stylesheet" href="/plebum-dominium-test/assets/css/print.css" media="print">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -112,6 +112,52 @@
       </div>
 <nav class="step-banner" aria-label="Sheet 2 of 17"><a class="step-nav" href="/plebum-dominium-test/handouts/terms.html" rel="prev">&larr; T &middot; Terms</a><span class="step-pos"><strong>Step 2 of 8</strong> · Before you begin</span><a class="step-nav" href="/plebum-dominium-test/handouts/checklist.html" rel="next">03 &middot; Checklist &rarr;</a></nav>
 <section class="sheet-meta" aria-label="Sheet overview"><div class="meta-item"><span class="meta-label">Time</span><span class="meta-val">15 min</span></div><div class="meta-item"><span class="meta-label">Difficulty</span><span class="meta-val diff-easy">Easy</span></div><div class="meta-item"><span class="meta-label">Steps</span><span class="meta-val">1 worksheet</span></div><div class="meta-item meta-needs"><span class="meta-label">You will need</span><span class="meta-val"><a href="/plebum-dominium-test/handouts/checklist.html">Pen and paper</a></span></div></section>
+<section class="path-chooser-sheet" id="path-chooser">
+<h2>Choose your path</h2>
+<p>Pick the setup that fits your situation. You can change it later from the sidebar.</p>
+<div class="path-seg" role="group" aria-label="Choose a setup">
+<button type="button" data-path="easy" aria-pressed="false">One device</button>
+<button type="button" data-path="one" aria-pressed="false">One key and a passphrase</button>
+<button type="button" data-path="full" aria-pressed="true">Three keys</button>
+</div>
+<div class="path-ends"><span>&larr; Less work, more trust</span><span>More work, less trust &rarr;</span></div>
+<div id="path-card-sheet" class="path-card path-card-full"></div>
+</section>
+<script>
+(function () {
+  var PATHS = {
+    easy: { cls: "path-card-easy", sel: "sel-easy", title: "Words into one trusted device", trade: "Trust: one device and its maker. Work: lowest.", start: "Start: roll dice, stamp titanium, enter the words on the device.", steps: ["Roll dice for 24 words.", "Stamp the words in titanium first.", "Enter the words on the hardware wallet itself."], risk: "Risk: one device, one maker. If either fails you, the wallet fails.", go: "/plebum-dominium-test/handouts/dice.html", goText: "Start with the dice sheet" },
+    one: { cls: "path-card-one", sel: "sel-one", title: "One key and a passphrase", trade: "Trust: one key, one device, one passphrase. Work: medium.", start: "Start: the single-sig sheet.", steps: ["Roll dice for 24 words.", "Add a passphrase, kept on paper apart from the plate.", "Stamp the words in titanium. Use a watch-only wallet."], risk: "Risk: one key and one passphrase. Lose the passphrase and the wallet is gone.", go: "/plebum-dominium-test/handouts/single-sig.html", goText: "Start with the single-sig sheet" },
+    full: { cls: "path-card-full", sel: "sel-full", title: "Three keys, three places", trade: "Trust: no single key, device, or place. Work: highest.", start: "Start at the beginning. Work the steps.", steps: ["Roll three dice keys. Stamp three titanium plates. Keep them in three places.", "Build the 2-of-3. Practice spend first. Hide the encrypted map."], risk: "Risk: the most steps to get right. Lose two keys and the map and the funds are locked.", go: "/plebum-dominium-test/handouts/threat-model.html", goText: "Continue below" }
+  };
+  var card = document.getElementById("path-card-sheet");
+  var buttons = document.querySelectorAll("#path-chooser .path-seg button");
+  function show(path) {
+    var p = PATHS[path];
+    card.className = "path-card " + p.cls;
+    var html = "<h3>" + p.title + "</h3><p class=\"path-trade\">" + p.trade + "</p><p><strong>" + p.start + "</strong></p><ul>";
+    p.steps.forEach(function (s) { html += "<li>" + s + "</li>"; });
+    html += "</ul><p><strong>" + p.risk + "</strong></p>";
+    html += "<details class=\"entropy-details\"><summary>This would have protected you against</summary><ul>";
+    html += "<li><strong>Coldcard firmware bug (2021-2026):</strong> A firmware flaw weakened the random number generator to about 72 bits instead of 128. Attackers guessed the seeds and stole over $100 million from thousands of wallets. Physical dice would have given those wallets true randomness the firmware could not weaken.</li>";
+    html += "<li><strong>Libbitcoin bx \"Milk Sad\" (2023):</strong> The bx seed command produced only 32 bits of entropy. About 2,600 wallets were exposed and roughly $900,000 was stolen. Dice rolls counted to 256 bits would have made those keys unguessable.</li>";
+    html += "<li><strong>Android SecureRandom (2013):</strong> Android's random number generator repeated values, letting attackers recover private keys from signatures. Over 55 BTC was stolen from mobile wallets. Dice-generated keys never touched the broken generator.</li>";
+    html += "</ul></details>";
+    html += "<p><a class=\"path-go\" href=\"" + p.go + "\">" + p.goText + " &rarr;</a></p>";
+    card.innerHTML = html;
+    buttons.forEach(function (b) {
+      var on = b.getAttribute("data-path") === path;
+      b.setAttribute("aria-pressed", on ? "true" : "false");
+      b.className = on ? PATHS[b.getAttribute("data-path")].sel : "";
+    });
+  }
+  buttons.forEach(function (b) { b.addEventListener("click", function () { var p = b.getAttribute("data-path"); show(p); try { localStorage.setItem("pd-path", p); } catch (e) {} if (window.pdSetPath) window.pdSetPath(p); }); });
+  var saved = null;
+  try { saved = localStorage.getItem("pd-path"); } catch (e) {}
+  show(saved === "easy" || saved === "one" || saved === "full" ? saved : "full");
+})();
+</script>
+
 <p>Don&#x27;t trust, verify.</p>
 <ul>
 <li><strong>The seed phrase is the wallet.</strong></li>
@@ -171,13 +217,13 @@
   <p><strong>Plebum Dominium</strong>: independent at-home Bitcoin self-custody.</p>
   <p>Educational material, not financial advice. Bitcoin self-custody is irreversible. A mistake can permanently lose funds. Verify every download from its original source.</p>
   <p><a href="/plebum-dominium-test/kit/VERIFY.md">File fingerprints</a> · <a href="/plebum-dominium-test/downloads.html">Downloads</a> · <a href="/plebum-dominium-test/kit/02_Print_Packet.pdf">Print packet (PDF)</a> · <a href="/plebum-dominium-test/news.html">News</a> · <a href="/plebum-dominium-test/beyond.html">Beyond the kit</a></p>
-  <p class="footer-updated">Last updated October 31, 2026 · Version 1.0.0</p>
+  <p class="footer-updated">Last updated October 31, 2026 · Version 1.1.0</p>
   <p class="footer-contact">Contact: <a href="mailto:Muststackmoresats@gmail.com">Muststackmoresats@gmail.com</a> · X: <a href="https://x.com/MustHaveMustash" rel="noopener">@MustHaveMustash</a></p>
   <p class="donate-row"><a class="btn-lightning" href="lightning:musthavemoresats@speed.app"><span aria-hidden="true">⚡</span> Donate with Lightning</a> <button type="button" class="btn-onchain" data-copy="bc1qcmvj7c79gyjrcg3zu5pxnp4mav54846epktyma4n6v8jsud2fhqsczmngw"><span aria-hidden="true">₿</span> Donate Bitcoin</button></p>
   <p class="donate-addr"><code>bc1qcmvj7c79gyjrcg3zu5pxnp4mav54846epktyma4n6v8jsud2fhqsczmngw</code></p>
 </footer>
 
-<script src="/plebum-dominium-test/assets/js/main.js?v=variants1" defer></script>
+<script src="/plebum-dominium-test/assets/js/main.js?v=whytiers1" defer></script>
 <script data-goatcounter="https://plebumbtc.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <div id="newbie-banner" class="newbie-banner" role="dialog" aria-label="New to Bitcoin?" hidden>
   <p><strong>New to Bitcoin?</strong><br><a href="/plebum-dominium-test/#new-to-bitcoin" class="newbie-go">Start here &rarr;</a></p>

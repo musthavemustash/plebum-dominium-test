@@ -664,3 +664,17 @@ document.querySelectorAll(".btn-onchain").forEach(function (btn) {
   });
   applyPath(getPath());
 })();
+
+/* --- Why section: tier column switcher (mobile, no sideways scroll) --- */
+(function () {
+  document.querySelectorAll('.tier-switch').forEach(function (sw) {
+    var table = sw.parentElement.querySelector('.tier-chart');
+    if (!table) return;
+    sw.addEventListener('click', function (e) {
+      var b = e.target.closest('button');
+      if (!b) return;
+      table.setAttribute('data-tier', b.getAttribute('data-tier'));
+      sw.querySelectorAll('button').forEach(function (x) { x.classList.toggle('on', x === b); });
+    });
+  });
+})();
