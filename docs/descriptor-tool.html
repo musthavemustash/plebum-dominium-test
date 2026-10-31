@@ -359,9 +359,11 @@ const Uh=BigInt(0),Ph=BigInt(1),xh=BigInt(2);function Qh(e){const t=(rc(r=e,{adj
   }
   async function renderNet(){
     var pill=$('online-pill'),dot=$('online-dot'),word=$('online-word'),block=$('netblock');
-    if(pill){pill.hidden=false;dot.classList.remove('safe');word.textContent='Checking\u2026';}
+    if(pill){pill.hidden=false;dot.classList.remove('safe');word.textContent='Checking…';}
     if(block){block.hidden=false;}
-    var online=await probeOnline();
+    var online;
+    if(navigator.onLine===true){ online=true; }
+    else { online=await probeOnline(); }
     var wasBlocked=netBlocked;
     netBlocked=online;
     if(pill){dot.classList.toggle('safe',!online);word.textContent=online?'Online':'Offline';}

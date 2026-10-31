@@ -405,7 +405,7 @@ if(typeof module!=='undefined') module.exports={sha256:sha256,bytesToBits:bytesT
       li('good','No words recorded above to compare against. This list stands on its own check.', .18);
     }
   });
-  var netBlocked=true; // fail closed until the probe confirms offline
+  netBlocked=true; // fail closed until the probe confirms offline
   function probeOnline(){
     return new Promise(function(resolve){
       var urls=[
@@ -427,7 +427,9 @@ if(typeof module!=='undefined') module.exports={sha256:sha256,bytesToBits:bytesT
     var pill=$('online-pill'), dot=$('online-dot'), word=$('online-word'), block=$('netblock');
     if(pill){ pill.hidden=false; dot.classList.remove('safe'); word.textContent='Checking\u2026'; }
     if(block){ block.hidden=false; }
-    var online=await probeOnline();
+    var online;
+    if(navigator.onLine===true){ online=true; }
+    else { online=await probeOnline(); }
     var wasBlocked=netBlocked;
     netBlocked=online;
     if(pill){ dot.classList.toggle('safe', !online); word.textContent=online?'Online':'Offline'; }
