@@ -356,9 +356,12 @@ if(typeof module!=='undefined') module.exports={sha256:sha256,bytesToBits:bytesT
     $('words').innerHTML=''; $('pastebits').value=''; $('paste-note').textContent='';
     render();
   }
-  document.querySelectorAll('.diebtn').forEach(function(btn){
-    btn.addEventListener('click', function(){ addDie(parseInt(btn.getAttribute('data-face'),10)); });
-  });
+  var diebtns=document.querySelectorAll('.diebtn');
+  for(var bi=0; bi<diebtns.length; bi++){
+    (function(btn){
+      btn.addEventListener('click', function(){ addDie(parseInt(btn.getAttribute('data-face'),10)); });
+    })(diebtns[bi]);
+  }
   document.addEventListener('keydown', function(e){
     if(netBlocked) return;
     if(/INPUT|TEXTAREA/.test(document.activeElement.tagName)) return;
@@ -412,7 +415,7 @@ if(typeof module!=='undefined') module.exports={sha256:sha256,bytesToBits:bytesT
       li('good','No words recorded above to compare against. This list stands on its own check.', .18);
     }
   });
-  netBlocked=false; // DEMO: network check disabled until the probe confirms offline
+  netBlocked=false; // DEMO: network check disabled
   function probeOnline(){
     return new Promise(function(resolve){
       var urls=[
