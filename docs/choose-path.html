@@ -155,7 +155,7 @@
   window.pdShowPathCard = show;
   var saved = null;
   try { saved = localStorage.getItem("pd-path"); } catch (e) {}
-  show(saved === "easy" || saved === "one" || saved === "full" ? saved : "full");
+  show(saved === "one" || saved === "full" ? saved : "full");
 })();
 </script>
 
