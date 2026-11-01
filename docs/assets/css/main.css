@@ -1731,3 +1731,6 @@ table.tier-chart{width:100%;min-width:640px;border-collapse:separate;border-spac
 /* Path banner removed per Jake 2026-10-31: path shows as subtitle in header instead */
 .path-banner { display: none !important; }
 [data-path="easy"] [data-path="one"] [data-path="full"] 
+/* Jake 2026-11-01: prevent page-level horizontal scroll on Pixel */
+body { overflow-x: clip; }
+.keyring { max-width: 100%; box-sizing: border-box; }
