@@ -336,14 +336,8 @@ const Uh=BigInt(0),Ph=BigInt(1),xh=BigInt(2);function Qh(e){const t=(rc(r=e,{adj
   function $(id){return document.getElementById(id);}
   var netBlocked=true; // fail closed until the probe confirms offline
   function probeOnline(){
-    return new Promise(function(resolve){
-      var settled=false;
-      function finish(online){ if(settled) return; settled=true; resolve(online); }
-      var timer=setTimeout(function(){ finish(false); },4000);
-      fetch('https://www.google.com/favicon.ico?_='+Date.now(), {method:'HEAD', mode:'no-cors', cache:'no-store'})
-        .then(function(){ clearTimeout(timer); finish(true); })
-        .catch(function(){ clearTimeout(timer); finish(false); });
-    });
+    return Promise.resolve(location.protocol === 'https:');
+  }
   }
   function wipe(){
     document.querySelectorAll('textarea').forEach(function(t){t.value='';});

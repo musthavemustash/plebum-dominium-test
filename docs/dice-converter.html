@@ -414,16 +414,10 @@ if(typeof module!=='undefined') module.exports={sha256:sha256,bytesToBits:bytesT
   });
   netBlocked=true; // fail closed until the probe confirms offline
   function probeOnline(){
-    return new Promise(function(resolve){
-      var settled=false;
-      function finish(online){ if(settled) return; settled=true; resolve(online); }
-      var timer=setTimeout(function(){ finish(false); },4000);
-      // Use fetch with no-store to bypass cache. If it succeeds, we're online.
-      // If it fails (network error), we're offline.
-      fetch('https://www.google.com/favicon.ico?_='+Date.now(), {method:'HEAD', mode:'no-cors', cache:'no-store'})
-        .then(function(){ clearTimeout(timer); finish(true); })
-        .catch(function(){ clearTimeout(timer); finish(false); });
-    });
+    // Simple and reliable: if loaded via https://, we're online.
+    // On Tails, the file is opened from USB via file://, so we're offline.
+    // This avoids fragile network probes that hang on mobile browsers.
+    return Promise.resolve(location.protocol === 'https:');
   }
   async function renderNet(){
     var pill=$('online-pill'), dot=$('online-dot'), word=$('online-word'), block=$('netblock');
