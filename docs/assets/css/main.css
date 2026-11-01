@@ -1730,7 +1730,4 @@ table.tier-chart{width:100%;min-width:640px;border-collapse:separate;border-spac
 
 /* Path banner removed per Jake 2026-10-31: path shows as subtitle in header instead */
 .path-banner { display: none !important; }
-.path-subtitle { font-size: 0.85rem; font-weight: 600; margin-left: 0.5rem; }
-[data-path="easy"] .path-subtitle { color: #E69F00; }
-[data-path="one"] .path-subtitle { color: #0072B2; }
-[data-path="full"] .path-subtitle { color: #009E73; }
+[data-path="easy"] [data-path="one"] [data-path="full"] 
