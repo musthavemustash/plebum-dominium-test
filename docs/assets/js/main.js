@@ -511,7 +511,7 @@ document.querySelectorAll(".btn-onchain").forEach(function (btn) {
   "use strict";
   var PATHS = {
     one: { label: "One key", sheets: ["terms", "threat-model", "checklist", "verify", "airgap", "dice", "single-sig", "titanium", "inheritance", "fire-card", "faq"], summary: "One key plus a passphrase. Medium work, trust in one key, one device, and one passphrase." },
-    full: { label: "Three keys", sheets: null, summary: "Three keys, three places. Highest work, no single key, device, or place." }
+    full: { label: "Three keys", sheets: ["terms", "threat-model", "checklist", "verify", "airgap", "dice", "sparrow", "testnet", "signing", "titanium", "encryption", "inheritance", "faq", "briefing", "fire-card", "single-sig", "two-devices"], summary: "Three keys, three places. Highest work, no single key, device, or place." }
   };
   var VARIANTS = { faq: { one: "faq-one" }, titanium: { one: "titanium-one" }, checklist: { one: "checklist-one" }, "fire-card": { one: "fire-card-one" }, "threat-model": { one: "threat-model-one" }, dice: { one: "dice-one" } };
   var NOTES = {
@@ -582,6 +582,23 @@ document.querySelectorAll(".btn-onchain").forEach(function (btn) {
       li.classList.toggle("path-hidden", !ok);
       if (ok) shown++;
     });
+    // Update sidebar sheet numbers per path (Jake 2026-11-01: independent numbering)
+    if (info.sheets) {
+      document.querySelectorAll(".sidebar ul li[data-paths]").forEach(function (li) {
+        var a = li.querySelector('a[data-sheet]');
+        if (!a) return;
+        var slug = a.getAttribute('data-sheet');
+        // Handle variant suffixes (e.g., dice-one -> dice)
+        var base = slug.replace(/-(easy|one)$/, '');
+        var idx = info.sheets.indexOf(slug);
+        if (idx < 0) idx = info.sheets.indexOf(base);
+        var numEl = a.querySelector('.sheet-num');
+        if (numEl && idx >= 0) {
+          var n = idx + 1;
+          numEl.textContent = n < 10 ? '0' + n : '' + n;
+        }
+      });
+    }
     var count = document.getElementById("path-count");
     if (count) count.textContent = path === "full" ? "All " + total + " sheets" : "Showing " + shown + " of " + total + " sheets for " + info.label;
     var risksLabel = document.getElementById("path-risks-label");
