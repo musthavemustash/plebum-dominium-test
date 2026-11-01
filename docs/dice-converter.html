@@ -353,9 +353,12 @@ if(typeof module!=='undefined') module.exports={sha256:sha256,bytesToBits:bytesT
     $('words').innerHTML=''; $('pastebits').value=''; $('paste-note').textContent='';
     render();
   }
-  document.querySelectorAll('.diebtn').forEach(function(btn){
-    btn.addEventListener('click', function(){ addDie(parseInt(btn.getAttribute('data-face'),10)); });
-  });
+  var diebtns=document.querySelectorAll('.diebtn');
+  for(var bi=0; bi<diebtns.length; bi++){
+    (function(btn){
+      btn.addEventListener('click', function(){ addDie(parseInt(btn.getAttribute('data-face'),10)); });
+    })(diebtns[bi]);
+  }
   document.addEventListener('keydown', function(e){
     if(netBlocked) return;
     if(/INPUT|TEXTAREA/.test(document.activeElement.tagName)) return;
@@ -412,19 +415,14 @@ if(typeof module!=='undefined') module.exports={sha256:sha256,bytesToBits:bytesT
   netBlocked=true; // fail closed until the probe confirms offline
   function probeOnline(){
     return new Promise(function(resolve){
-      var urls=[
-        'https://www.google.com/favicon.ico',
-        'https://www.gstatic.com/favicon.ico'
-      ];
-      var pending=urls.length, settled=false;
+      var settled=false;
       function finish(online){ if(settled) return; settled=true; resolve(online); }
-      var timer=setTimeout(function(){ finish(false); },5000);
-      urls.forEach(function(base){
-        var img=new Image();
-        img.onload=function(){ clearTimeout(timer); finish(true); };
-        img.onerror=function(){ pending--; if(pending<=0){ clearTimeout(timer); finish(false); } };
-        img.src=base+'?_='+Date.now();
-      });
+      var timer=setTimeout(function(){ finish(false); },4000);
+      // Use fetch with no-store to bypass cache. If it succeeds, we're online.
+      // If it fails (network error), we're offline.
+      fetch('https://www.google.com/favicon.ico?_='+Date.now(), {method:'HEAD', mode:'no-cors', cache:'no-store'})
+        .then(function(){ clearTimeout(timer); finish(true); })
+        .catch(function(){ clearTimeout(timer); finish(false); });
     });
   }
   async function renderNet(){
