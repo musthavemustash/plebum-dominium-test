@@ -695,6 +695,31 @@ document.querySelectorAll(".btn-onchain").forEach(function (btn) {
           } else if (nextLink) {
             nextLink.style.display = 'none';
           }
+          // Update bottom prevnext-row for consistency (Jake 2026-11-01)
+          var prevBottom = document.querySelector('.prevnext-row a.prev, .prevnext-row a.prevnext.prev');
+          var nextBottom = document.querySelector('.prevnext-row a.next, .prevnext-row a.prevnext.next');
+          if (prevSlug && prevBottom) {
+            var pbi = sheetInfo(prevSlug);
+            if (pbi) {
+              prevBottom.setAttribute('href', pbi.href);
+              var pspan = prevBottom.querySelector('span');
+              if (pspan) pspan.textContent = '\u2190 ' + pbi.num + ' \u00b7 ' + pbi.title;
+              else prevBottom.innerHTML = '<span>\u2190 ' + pbi.num + ' \u00b7 ' + pbi.title + '</span>';
+            }
+          } else if (prevBottom) {
+            prevBottom.style.display = 'none';
+          }
+          if (nextSlug && nextBottom) {
+            var nbi = sheetInfo(nextSlug);
+            if (nbi) {
+              nextBottom.setAttribute('href', nbi.href);
+              var nspan = nextBottom.querySelector('span');
+              if (nspan) nspan.textContent = nbi.num + ' \u00b7 ' + nbi.title + ' \u2192';
+              else nextBottom.innerHTML = '<span>' + nbi.num + ' \u00b7 ' + nbi.title + ' \u2192</span>';
+            }
+          } else if (nextBottom) {
+            nextBottom.style.display = 'none';
+          }
         }
       }
     })();
