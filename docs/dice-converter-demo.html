@@ -430,7 +430,7 @@ if(typeof module!=='undefined') module.exports={sha256:sha256,bytesToBits:bytesT
       });
     });
   }
-  async function renderNet(){
+  async function renderNet(){ return; /* DEMO: disabled */
     var pill=$('online-pill'), dot=$('online-dot'), word=$('online-word'), block=$('netblock');
     if(pill){ pill.hidden=false; dot.classList.remove('safe'); word.textContent='Checking\u2026'; }
     if(block){ block.hidden=false; }
