@@ -703,8 +703,8 @@ document.querySelectorAll(".btn-onchain").forEach(function (btn) {
             if (pbi) {
               prevBottom.setAttribute('href', pbi.href);
               var pspan = prevBottom.querySelector('span');
-              if (pspan) pspan.textContent = '\u2190 ' + pbi.num + ' \u00b7 ' + pbi.title;
-              else prevBottom.innerHTML = '<span>\u2190 ' + pbi.num + ' \u00b7 ' + pbi.title + '</span>';
+              if (pspan) pspan.textContent = '\u2190 Back to ' + pbi.num + ' \u00b7 ' + pbi.title;
+              else prevBottom.innerHTML = '<span>\u2190 Back to ' + pbi.num + ' \u00b7 ' + pbi.title + '</span>';
             }
           } else if (prevBottom) {
             prevBottom.style.display = 'none';
@@ -714,8 +714,8 @@ document.querySelectorAll(".btn-onchain").forEach(function (btn) {
             if (nbi) {
               nextBottom.setAttribute('href', nbi.href);
               var nspan = nextBottom.querySelector('span');
-              if (nspan) nspan.textContent = nbi.num + ' \u00b7 ' + nbi.title + ' \u2192';
-              else nextBottom.innerHTML = '<span>' + nbi.num + ' \u00b7 ' + nbi.title + ' \u2192</span>';
+              if (nspan) nspan.textContent = 'Next to ' + nbi.num + ' \u00b7 ' + nbi.title + ' \u2192';
+              else nextBottom.innerHTML = '<span>Next to ' + nbi.num + ' \u00b7 ' + nbi.title + ' \u2192</span>';
             }
           } else if (nextBottom) {
             nextBottom.style.display = 'none';

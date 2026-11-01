@@ -339,12 +339,12 @@ pre code { background: none; color: inherit; padding: 0; }
 /* ---------- prev / next ---------- */
 .prevnext-row { display: flex; gap: 1rem; margin-top: 3rem; }
 .prevnext {
-  flex: 1; display: block; padding: 1rem 1.2rem;
-  background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
-  text-decoration: none; color: var(--ink); font-weight: 600;
-  transition: transform 150ms ease, box-shadow 150ms ease;
+  flex: 1; display: block; padding: 1.25rem 1.5rem;
+  background: var(--card); border: 2px solid var(--accent); border-radius: var(--radius);
+  text-decoration: none; color: var(--ink); font-weight: 700; font-size: 1.05rem;
+  transition: transform 150ms ease, box-shadow 150ms ease, background 150ms ease;
 }
-.prevnext:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(28,25,23,0.08); text-decoration: none; }
+.prevnext:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(28,25,23,0.12); text-decoration: none; background: var(--accent); color: var(--btn-ink); border-color: var(--accent); }
 .prevnext.next { text-align: right; }
 
 /* ---------- homepage ---------- */
