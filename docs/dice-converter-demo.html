@@ -340,12 +340,8 @@ if(typeof module!=='undefined') module.exports={sha256:sha256,bytesToBits:bytesT
       ol.appendChild(li);
     });
   }
-  async function addDie(face){
-    if(netBlocked){
-      // Re-probe on tap: the offline event may not have fired.
-      await renderNet();
-      if(netBlocked) return;
-    }
+  function addDie(face){
+    // DEMO: network check removed
     if(bits().length>=256 && !pastedBits) return;
     if(pastedBits){ clearAll(); }
     rolls.push({face:face, bits:faceToBits(face)});
