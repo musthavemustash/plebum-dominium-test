@@ -31,7 +31,7 @@
 /* set motion before first paint: saved choice wins, else reduced motion wins */
 (function(){try{var m=localStorage.getItem('pd-motion');if(!m){m=window.matchMedia('(prefers-reduced-motion: reduce)').matches?'off':'on';}document.documentElement.setAttribute('data-motion',m);}catch(e){document.documentElement.setAttribute('data-motion','on');}})();
 /* set path before first paint, so the color reminder is right from the start */
-(function(){try{var p=localStorage.getItem('pd-path');if(p!=='easy'&&p!=='one'&&p!=='full'){p='full';}document.documentElement.setAttribute('data-path',p);}catch(e){document.documentElement.setAttribute('data-path','full');}})();
+(function(){try{var p=localStorage.getItem('pd-path');if(p!=='one'&&p!=='full'){p='full';}document.documentElement.setAttribute('data-path',p);}catch(e){document.documentElement.setAttribute('data-path','full');}})();
 </script>
 </head>
 <body class="" id="top">
