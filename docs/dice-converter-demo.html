@@ -353,6 +353,11 @@ if(typeof module!=='undefined') module.exports={sha256:sha256,bytesToBits:bytesT
     render();
   }
   var diebtns=document.querySelectorAll('.diebtn');
+  // DEBUG: show count on page
+  var dbg=document.createElement('div');
+  dbg.style.cssText='background:red;color:white;padding:10px;position:fixed;top:0;left:0;z-index:9999';
+  dbg.textContent='Found '+diebtns.length+' die buttons';
+  document.body.appendChild(dbg);
   for(var bi=0; bi<diebtns.length; bi++){
     (function(btn){
       btn.addEventListener('click', function(){ addDie(parseInt(btn.getAttribute('data-face'),10)); });
