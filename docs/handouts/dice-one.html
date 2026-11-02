@@ -6,7 +6,7 @@
 <title>06 · Make one key · Plebum Dominium</title>
 <meta name="description" content="Make one Bitcoin seed key from five casino dice: roll the entropy, turn it into 24 words, and enter the words and the passphrase on the device itself.">
 <link rel="canonical" href="https://plebumbtc.io/handouts/dice.html">
-<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/plebum-dominium-test/assets/img/favicon.svg" type="image/svg+xml">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://plebumbtc.io/handouts/dice.html">
 <meta property="og:site_name" content="Plebum Dominium">
@@ -20,8 +20,8 @@
 <meta name="twitter:description" content="Make three Bitcoin seed keys from five casino dice: roll 256 bits of entropy, turn them into 24 words, and cross-check them with two independent tools.">
 <meta name="twitter:image" content="https://plebumbtc.io/assets/img/og-banner.png">
 
-<link rel="stylesheet" href="/assets/css/main.css?v=variants1">
-<link rel="stylesheet" href="/assets/css/print.css" media="print">
+<link rel="stylesheet" href="/plebum-dominium-test/assets/css/main.css?v=variants1">
+<link rel="stylesheet" href="/plebum-dominium-test/assets/css/print.css" media="print">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap">
@@ -84,7 +84,7 @@
 
 <header class="site-header">
   <button class="menu-btn" aria-label="Open guide navigation" aria-expanded="false">☰</button>
-  <a class="brand" href="/"><span class="brand-mark" aria-hidden="true">₿</span> Plebum Dominium</a>
+  <a class="brand" href="/plebum-dominium-test/"><span class="brand-mark" aria-hidden="true">₿</span> Plebum Dominium</a>
   <span class="header-sheet">06 · Plebum Dominium</span>
   <button class="ask-btn" id="ask-btn" type="button" aria-label="Search the guide">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
@@ -129,7 +129,7 @@
 <li data-paths="one full"><a href="/plebum-dominium-test/handouts/single-sig.html" class="" data-sheet="single-sig"><span class="sheet-num">16</span><span class="sheet-title">One key, done right</span><span class="sheet-check" aria-hidden="true">✓</span></a></li>
 <li data-paths="full"><a href="/plebum-dominium-test/handouts/two-devices.html" class="" data-sheet="two-devices"><span class="sheet-num">17</span><span class="sheet-title">Two devices and one dice key</span><span class="sheet-check" aria-hidden="true">✓</span></a></li>
     </ul>
-    <p class="sidebar-risks-wrap"><a class="sidebar-risks" id="sidebar-risks" href="/path-risks.html">Risks of your path: <span id="path-risks-label">Three keys</span> &rarr;</a></p>
+    <p class="sidebar-risks-wrap"><a class="sidebar-risks" id="sidebar-risks" href="/plebum-dominium-test/path-risks.html">Risks of your path: <span id="path-risks-label">Three keys</span> &rarr;</a></p>
     <p class="sidebar-note">Check off sheets as you finish them. Progress is saved on this device.</p>
   </nav>
   <div class="scrim" aria-hidden="true"></div>
@@ -138,6 +138,18 @@
     <article>
       <p class="kicker">06 · Plebum Dominium</p>
       <h1>Make one key</h1>
+<div class="tool-box" style="border:2px solid #c4a484;border-radius:12px;padding:1.25rem;margin:1.5rem 0;background:rgba(196,164,132,.07);">
+<h3 style="margin:0 0 .75rem;">Dice converter tool</h3>
+<p style="margin:0 0 1rem;">Turn your dice rolls into the 24 words.</p>
+<p style="margin:0 0 .5rem;font-weight:700;">&#9888; Use the converter on a fresh Tails boot only.</p>
+<p style="margin:0 0 1rem;font-size:15px;">Do not type real dice rolls into this website. Download the file below to a <strong>clean USB stick</strong> (not your Tails USB, that holds Tails only, nothing else). Then boot Tails with networking disabled, plug in the clean USB, and open the file from there.</p>
+<p style="margin:0 0 1rem;">
+<a href="/plebum-dominium-test/dice-converter.html" download="dice-converter.html" class="btn" style="display:inline-block;padding:.75rem 1.5rem;background:#c4a484;color:#0e0d0b;border-radius:8px;text-decoration:none;font-weight:600;margin-right:.75rem;">Download dice converter</a>
+</p>
+<p style="margin:0;font-size:14px;color:var(--muted);">Your Tails USB holds Tails and nothing else. The converter goes on a separate clean USB. Boot Tails, disable networking, insert the clean USB, open the file. Confirm no network connection before you type.</p>
+<p style="margin:1rem 0 0;font-size:15px;"><strong>Check your work two ways.</strong> The offline Ian Coleman page must print the same 24 words. Or run the Python script from downloads, it does the same math from the command line.</p>
+<p style="margin:.5rem 0 0;"><a href="/plebum-dominium-test/downloads.html" style="color:var(--muted);">Python script in downloads</a></p>
+</div>
       <div class="mobile-path" id="mobile-path">
         <p class="mobile-path-label">Your path</p>
         <div class="mobile-path-seg" role="group" aria-label="Choose a setup">
@@ -153,10 +165,10 @@
         <h2>Not on your path</h2>
         <p id="path-gate-note"></p>
         <p><button type="button" id="path-gate-full">Switch to Three keys to read this sheet</button></p>
-        <p><a href="/path-risks.html">Risks of your path &rarr;</a></p>
+        <p><a href="/plebum-dominium-test/path-risks.html">Risks of your path &rarr;</a></p>
       </div>
 <nav class="step-banner" aria-label="Sheet 6 of 17"><a class="step-nav" href="/plebum-dominium-test/handouts/airgap.html" rel="prev">&larr; 04 &middot; Two boots</a><span class="step-pos"><strong>Step 6 of 11</strong> · Make one key</span><a class="step-nav" href="/plebum-dominium-test/handouts/single-sig.html" rel="next">16 &middot; One key, done right &rarr;</a></nav>
-<section class="sheet-meta" aria-label="Sheet overview"><div class="meta-item"><span class="meta-label">Time</span><span class="meta-val">30-45 min</span></div><div class="meta-item"><span class="meta-label">Difficulty</span><span class="meta-val diff-moderate">Moderate</span></div><div class="meta-item"><span class="meta-label">Steps</span><span class="meta-val">4 sections</span></div><div class="meta-item meta-needs"><span class="meta-label">You will need</span><span class="meta-val"><a href="/plebum-dominium-test/handouts/checklist.html">5 dice</a> &middot; <a href="/plebum-dominium-test/handouts/checklist.html">Paper and pen</a> &middot; <a href="/downloads.html">The worksheet</a></span></div></section>
+<section class="sheet-meta" aria-label="Sheet overview"><div class="meta-item"><span class="meta-label">Time</span><span class="meta-val">30-45 min</span></div><div class="meta-item"><span class="meta-label">Difficulty</span><span class="meta-val diff-moderate">Moderate</span></div><div class="meta-item"><span class="meta-label">Steps</span><span class="meta-val">4 sections</span></div><div class="meta-item meta-needs"><span class="meta-label">You will need</span><span class="meta-val"><a href="/plebum-dominium-test/handouts/checklist.html">5 dice</a> &middot; <a href="/plebum-dominium-test/handouts/checklist.html">Paper and pen</a> &middot; <a href="/plebum-dominium-test/downloads.html">The worksheet</a></span></div></section>
 <div class="dice-anim" id="dice-anim">
 <div class="dice-play-overlay" id="dice-play-overlay" role="button" tabindex="0" aria-label="Play the dice rolling demo">
 <p style="margin:0;color:#efe9dc;font-size:1.1em;">See how the dice rolls work</p>
@@ -276,7 +288,7 @@ $ cd ~/Desktop$ python3 bip39_dice_converter.py
 <footer class="site-footer">
   <p><strong>Plebum Dominium</strong>: independent at-home Bitcoin self-custody.</p>
   <p>Educational material, not financial advice. Bitcoin self-custody is irreversible. A mistake can permanently lose funds. Verify every download from its original source.</p>
-  <p><a href="/kit/VERIFY.md">File fingerprints</a> · <a href="/downloads.html">Downloads</a> · <a href="/kit/02_Print_Packet.pdf">Print packet (PDF)</a> · <a href="/news.html">News</a> · <a href="/beyond.html">Beyond the kit</a></p>
+  <p><a href="/plebum-dominium-test/kit/VERIFY.md">File fingerprints</a> · <a href="/plebum-dominium-test/downloads.html">Downloads</a> · <a href="/plebum-dominium-test/kit/02_Print_Packet.pdf">Print packet (PDF)</a> · <a href="/plebum-dominium-test/news.html">News</a> · <a href="/plebum-dominium-test/beyond.html">Beyond the kit</a></p>
   <p class="footer-updated">Last updated October 27, 2026</p>
   <p class="footer-contact">Contact: <a href="mailto:Muststackmoresats@gmail.com">Muststackmoresats@gmail.com</a> · X: <a href="https://x.com/MustHaveMustash" rel="noopener">@MustHaveMustash</a></p>
   <p class="donate-row"><a class="btn-lightning" href="lightning:musthavemoresats@speed.app"><span aria-hidden="true">⚡</span> Donate with Lightning</a> <button type="button" class="btn-onchain" data-copy="bc1qcmvj7c79gyjrcg3zu5pxnp4mav54846epktyma4n6v8jsud2fhqsczmngw"><span aria-hidden="true">₿</span> Donate Bitcoin</button></p>
@@ -286,7 +298,7 @@ $ cd ~/Desktop$ python3 bip39_dice_converter.py
 <script src="/assets/js/main.js?v=variants1" defer></script>
 <script data-goatcounter="https://plebumbtc.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <div id="newbie-banner" class="newbie-banner" role="dialog" aria-label="New to Bitcoin?" hidden>
-  <p><strong>New to Bitcoin?</strong><br><a href="/#new-to-bitcoin" class="newbie-go">Start here &rarr;</a></p>
+  <p><strong>New to Bitcoin?</strong><br><a href="/plebum-dominium-test/#new-to-bitcoin" class="newbie-go">Start here &rarr;</a></p>
   <button type="button" class="newbie-close" aria-label="Dismiss">&times;</button>
 </div>
 <div class="ask-backdrop" id="ask-backdrop" hidden>
