@@ -514,7 +514,6 @@ document.querySelectorAll(".btn-onchain").forEach(function (btn) {
     full: { label: "Full program", sheets: null, summary: "Three keys, three places. Highest work, no single key, device, or place." }
   };
   var VARIANTS = { faq: { one: "faq-one" }, titanium: { one: "titanium-one" }, checklist: { one: "checklist-one" }, "fire-card": { one: "fire-card-one" }, "threat-model": { one: "threat-model-one" }, dice: { one: "dice-one" } };
-  var VARIANT_LABELS = { "dice-one": "Make one key", "faq-one": "If you get stuck", "titanium-one": "Metal and the map", "checklist-one": "Checklist", "fire-card-one": "Recovery card", "threat-model-one": "Before you begin" };
   var NOTES = {
     dice: {
       one: "On this path, make one key, then add a passphrase, kept on paper apart from the plate.",
@@ -631,19 +630,8 @@ document.querySelectorAll(".btn-onchain").forEach(function (btn) {
       var s = a.getAttribute("data-sheet");
       var v = VARIANTS[s] && VARIANTS[s][path];
       if (!a.getAttribute("data-base-href")) a.setAttribute("data-base-href", a.getAttribute("href"));
-      if (!a.getAttribute("data-base-label")) {
-        var lbl = a.querySelector(".sheet-title");
-        if (lbl) a.setAttribute("data-base-label", lbl.textContent);
-      }
-      if (v) {
-        a.setAttribute("href", a.getAttribute("data-base-href").replace(/[^\/]+\.html$/, v + ".html"));
-        var lbl2 = a.querySelector(".sheet-title");
-        if (lbl2 && VARIANT_LABELS[v]) lbl2.textContent = VARIANT_LABELS[v];
-      } else {
-        a.setAttribute("href", a.getAttribute("data-base-href"));
-        var lbl3 = a.querySelector(".sheet-title");
-        if (lbl3 && a.getAttribute("data-base-label")) lbl3.textContent = a.getAttribute("data-base-label");
-      }
+      if (v) a.setAttribute("href", a.getAttribute("data-base-href").replace(/[^\/]+\.html$/, v + ".html"));
+      else a.setAttribute("href", a.getAttribute("data-base-href"));
     });
     var curSlug = currentSlug();
     var curFile = (window.location.pathname.split("/").pop() || "").replace(/\.html$/, "");
