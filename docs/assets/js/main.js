@@ -513,7 +513,7 @@ document.querySelectorAll(".btn-onchain").forEach(function (btn) {
     one: { label: "One key", sheets: ["terms", "threat-model", "checklist", "verify", "airgap", "dice", "single-sig", "titanium", "fire-card", "faq"], summary: "One key plus a passphrase. Medium work, trust in one key, one device, and one passphrase." },
     full: { label: "Full program", sheets: null, summary: "Three keys, three places. Highest work, no single key, device, or place." }
   };
-  var VARIANTS = { faq: { one: "faq-one" }, titanium: { one: "titanium-one" }, checklist: { one: "checklist-one" }, "fire-card": { one: "fire-card-one" }, "threat-model": { one: "threat-model-one" }, dice: { one: "dice-one" } };
+  var VARIANTS = { faq: { one: "faq-one" }, titanium: { one: "titanium-one" }, checklist: { one: "checklist-one" }, "fire-card": { one: "fire-card-one" }, dice: { one: "dice-one" } };
   var NOTES = {
     dice: {
       one: "On this path, make one key, then add a passphrase, kept on paper apart from the plate.",
