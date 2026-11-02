@@ -510,20 +510,27 @@ document.querySelectorAll(".btn-onchain").forEach(function (btn) {
 (function () {
   "use strict";
   var PATHS = {
-    easy: { label: "Easy", sheets: ["terms", "threat-model", "checklist", "verify", "airgap", "dice", "titanium", "faq"], summary: "Words into one trusted device. Lowest work, most trust in one device and its maker." },
     one: { label: "One key", sheets: ["terms", "threat-model", "checklist", "verify", "airgap", "dice", "single-sig", "titanium", "fire-card", "faq"], summary: "One key plus a passphrase. Medium work, trust in one key, one device, and one passphrase." },
     full: { label: "Full program", sheets: null, summary: "Three keys, three places. Highest work, no single key, device, or place." }
   };
+  var VARIANTS = { faq: { one: "faq-one" }, titanium: { one: "titanium-one" }, checklist: { one: "checklist-one" }, "fire-card": { one: "fire-card-one" }, "threat-model": { one: "threat-model-one" }, dice: { one: "dice-one" } };
   var NOTES = {
     dice: {
-      easy: "On this path, make one key, not three. Stop after the first key, stamp it in titanium, then enter the words on the device itself.",
       one: "On this path, make one key, then add a passphrase, kept on paper apart from the plate.",
       full: "Make three keys, with a full shutdown between each key."
     },
     titanium: {
-      easy: "On this path, stamp the words in titanium first, before the device entry. The plate is the backup if the device fails.",
       one: "Stamp the words in titanium, and keep the passphrase paper apart from the plate.",
       full: "Stamp three plates, and keep them in three places."
+    },
+    verify: {
+      one: "On this path, Sparrow is watch-only only, Electrum is not used, and the wallet map and signing in the Later section do not apply. The checking steps above are the work."
+    },
+    airgap: {
+      one: "On this path, the map, signing a file, and exporting the map do not apply. A watch-only wallet comes later, in the single-sig sheet, and the device signs. Next, make one key."
+    },
+    terms: {
+      one: "On this path, three entries describe the Full program, not your wallet: 2-of-3, m/48'/0'/0'/2', and descriptor as a map. PSBT does not apply either, the device signs. The xpub entry fits as a watch key."
     },
     single: {},
     "single-sig": {
@@ -543,7 +550,7 @@ document.querySelectorAll(".btn-onchain").forEach(function (btn) {
   function getPath() {
     try {
       var p = localStorage.getItem("pd-path");
-      if (p === "easy" || p === "one" || p === "full") return p;
+      if (p === "one" || p === "full") return p;
     } catch (e) {}
     return "full";
   }
@@ -554,14 +561,14 @@ document.querySelectorAll(".btn-onchain").forEach(function (btn) {
   function applyPath(path) {
     var info = PATHS[path];
     document.documentElement.setAttribute("data-path", path);
-    document.querySelectorAll("#sidebar-path button[data-path], .path-risks-switch button[data-path]").forEach(function (b) {
+    document.querySelectorAll("#sidebar-path button[data-path], #path-toggle .path-seg button[data-path], .path-seg button[data-path], .path-risks-switch button[data-path]").forEach(function (b) {
       var on = b.getAttribute("data-path") === path;
       b.setAttribute("aria-pressed", on ? "true" : "false");
-      b.classList.toggle("sel-easy", on && path === "easy");
-      b.classList.toggle("sel-one", on && path === "one");
+            b.classList.toggle("sel-one", on && path === "one");
       b.classList.toggle("sel-full", on && path === "full");
-      if (!on) { b.classList.remove("sel-easy", "sel-one", "sel-full"); }
+      if (!on) { b.classList.remove("sel-one", "sel-full"); }
     });
+    if (window.pdShowPathCard) { try { window.pdShowPathCard(path); } catch (e) {} }
     var shown = 0, total = 0;
     document.querySelectorAll(".sidebar ul li[data-paths]").forEach(function (li) {
       total++;
@@ -573,7 +580,7 @@ document.querySelectorAll(".btn-onchain").forEach(function (btn) {
     if (count) count.textContent = path === "full" ? "All " + total + " sheets" : "Showing " + shown + " of " + total + " sheets for " + info.label;
     var risksLabel = document.getElementById("path-risks-label");
     if (risksLabel) risksLabel.textContent = info.label;
-    ["easy", "one", "full"].forEach(function (k) {
+    ["one", "full"].forEach(function (k) {
       var sec = document.getElementById("risks-" + k);
       if (sec) sec.classList.toggle("path-hidden", k !== path);
     });
@@ -593,6 +600,52 @@ document.querySelectorAll(".btn-onchain").forEach(function (btn) {
       }
       banner.hidden = false;
     }
+    var gate = document.getElementById("path-gate");
+    var gateNote = document.getElementById("path-gate-note");
+    var gated = false;
+    if (path !== "full") {
+      var gslug = currentSlug();
+      if (gslug && info.sheets && info.sheets.indexOf(gslug) < 0) gated = true;
+    }
+    document.body.classList.toggle("path-gated", gated);
+    if (gate) {
+      gate.hidden = !gated;
+      if (gated && gateNote) gateNote.textContent = "This sheet is part of the Full program, not your " + info.label + " path, so its content is not shown here. Switch to Full program to read it, or stay on your path.";
+    }
+    document.querySelectorAll(".stage .card").forEach(function (card) {
+      var href = card.getAttribute("href") || "";
+      var m = href.match(/handouts\/([a-z0-9-]+)\.html/);
+      if (!m) return;
+      var on = path === "full" || (info.sheets && info.sheets.indexOf(m[1]) >= 0);
+      card.classList.toggle("path-hidden", !on);
+    });
+    document.querySelectorAll(".stage").forEach(function (sec) {
+      var cards = sec.querySelectorAll(".card");
+      if (!cards.length) return;
+      var any = false;
+      cards.forEach(function (c) { if (!c.classList.contains("path-hidden")) any = true; });
+      sec.classList.toggle("path-hidden", !any);
+    });
+    document.querySelectorAll(".sidebar a[data-sheet]").forEach(function (a) {
+      var s = a.getAttribute("data-sheet");
+      var v = VARIANTS[s] && VARIANTS[s][path];
+      if (!a.getAttribute("data-base-href")) a.setAttribute("data-base-href", a.getAttribute("href"));
+      if (v) a.setAttribute("href", a.getAttribute("data-base-href").replace(/[^\/]+\.html$/, v + ".html"));
+      else a.setAttribute("href", a.getAttribute("data-base-href"));
+    });
+    var curSlug = currentSlug();
+    var curFile = (window.location.pathname.split("/").pop() || "").replace(/\.html$/, "");
+    if (curSlug && VARIANTS[curSlug]) {
+      var want = VARIANTS[curSlug][path];
+      if (want && curFile !== want) {
+        window.location.href = window.location.pathname.replace(/[^\/]+\.html$/, want + ".html");
+        return;
+      }
+      if (!want && curFile !== curSlug && (curFile === VARIANTS[curSlug].one)) {
+        window.location.href = window.location.pathname.replace(/[^\/]+\.html$/, curSlug + ".html");
+        return;
+      }
+    }
     var inSite = document.querySelector(".path-seg button[data-path=\"" + path + "\"]");
     if (inSite && inSite.getAttribute("aria-pressed") !== "true") inSite.click();
   }
@@ -600,8 +653,23 @@ document.querySelectorAll(".btn-onchain").forEach(function (btn) {
     try { localStorage.setItem("pd-path", path); } catch (e) {}
     applyPath(path);
   }
-  document.querySelectorAll("#sidebar-path button[data-path], .path-risks-switch button[data-path]").forEach(function (b) {
+  window.pdSetPath = setPath;
+  document.querySelectorAll("#sidebar-path button[data-path], #path-toggle .path-seg button[data-path], .path-seg button[data-path], .path-risks-switch button[data-path]").forEach(function (b) {
     b.addEventListener("click", function () { setPath(b.getAttribute("data-path")); });
   });
   applyPath(getPath());
+})();
+
+/* --- Why section: tier view switcher (mobile, no sideways scroll; view only, never chooses the path) --- */
+(function () {
+  document.querySelectorAll('.tier-switch').forEach(function (sw) {
+    var table = sw.parentElement.querySelector('.tier-chart');
+    if (!table) return;
+    sw.addEventListener('click', function (e) {
+      var b = e.target.closest('button');
+      if (!b) return;
+      table.setAttribute('data-tier', b.getAttribute('data-tier'));
+      sw.querySelectorAll('button').forEach(function (x) { x.classList.toggle('on', x === b); });
+    });
+  });
 })();
