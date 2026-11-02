@@ -1734,3 +1734,37 @@ table.tier-chart{width:100%;min-width:640px;border-collapse:separate;border-spac
 /* Jake 2026-11-01: prevent page-level horizontal scroll on Pixel */
 body { overflow-x: clip; }
 .keyring { max-width: 100%; box-sizing: border-box; }
+
+/* Mobile: stack prev/next buttons vertically to avoid crowding */
+@media (max-width: 600px) {
+  .prevnext-row {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .prevnext-row .prevnext,
+  .prevnext-row .mark-done {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Path-colored page kicker: keeps the user on track */
+html[data-path="one"] .kicker {
+  color: #0072B2;
+}
+html[data-path="full"] .kicker {
+  color: #009E73;
+}
+
+/* Hide the inline path chooser on handout pages (chosen on choose-path page) */
+.mobile-path {
+  display: none;
+}
+
+/* Blue accent for One key column (matches green for Three keys) */
+.tier-chart thead th.hl-one {
+  box-shadow: inset 0 3px 0 #0072B2;
+}
+.tier-chart tbody td.t1 {
+  background: rgba(0,114,178,.07);
+}

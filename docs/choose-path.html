@@ -3,21 +3,21 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Choose your path · Plebum Dominium Test Site</title>
-<meta name="description" content="Choose your path: three Bitcoin self-custody setups that differ in difficulty and trust. Pick the one that fits your situation, then work its steps.">
+<title>Plebum Dominium Test Site · Choose your path · Plebum Dominium</title>
+<meta name="description" content="Choose your path: two Bitcoin self-custody setups that differ in difficulty and trust. Pick the one that fits your situation, then work its steps.">
 <link rel="canonical" href="https://plebumbtc.io/choose-path.html">
 <link rel="icon" href="/plebum-dominium-test/assets/img/favicon.svg" type="image/svg+xml">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://plebumbtc.io/choose-path.html">
 <meta property="og:site_name" content="Plebum Dominium">
-<meta property="og:title" content="Choose your path · Plebum Dominium Test Site">
-<meta property="og:description" content="Choose your path: three Bitcoin self-custody setups that differ in difficulty and trust. Pick the one that fits your situation, then work its steps.">
+<meta property="og:title" content="Choose your path · Plebum Dominium">
+<meta property="og:description" content="Choose your path: two Bitcoin self-custody setups that differ in difficulty and trust. Pick the one that fits your situation, then work its steps.">
 <meta property="og:image" content="https://plebumbtc.io/assets/img/og-banner.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Choose your path · Plebum Dominium Test Site">
-<meta name="twitter:description" content="Choose your path: three Bitcoin self-custody setups that differ in difficulty and trust. Pick the one that fits your situation, then work its steps.">
+<meta name="twitter:title" content="Choose your path · Plebum Dominium">
+<meta name="twitter:description" content="Choose your path: two Bitcoin self-custody setups that differ in difficulty and trust. Pick the one that fits your situation, then work its steps.">
 <meta name="twitter:image" content="https://plebumbtc.io/assets/img/og-banner.png">
 
 <link rel="stylesheet" href="/plebum-dominium-test/assets/css/main.css?v=whytiers7">
@@ -33,6 +33,14 @@
 /* set path before first paint, so the color reminder is right from the start */
 (function(){try{var p=localStorage.getItem('pd-path');if(p!=='one'&&p!=='full'){p='full';}document.documentElement.setAttribute('data-path',p);}catch(e){document.documentElement.setAttribute('data-path','full');}})();
 </script>
+
+<style>
+.path-desc.selected {
+  border-color: #c4a484 !important;
+  box-shadow: 0 0 0 3px rgba(196,164,132,.45), 0 4px 18px rgba(0,0,0,.35);
+}
+</style>
+
 </head>
 <body class="" id="top">
 <div class="splash" id="pd-splash" hidden aria-hidden="true">
@@ -115,9 +123,8 @@
 
 <section class="path-chooser-sheet" id="path-chooser">
 <h2>Choose your path</h2>
-<p>Pick the setup that fits your situation. You can change it later from the sidebar.</p>
+<p>Pick the trade that fits your situation. The switch below routes you to the right starting sheet.</p>
 <div class="path-seg" role="group" aria-label="Choose a setup">
-
 <button type="button" data-path="one" aria-pressed="false">One key and a passphrase</button>
 <button type="button" data-path="full" aria-pressed="true">Three keys</button>
 </div>
@@ -131,8 +138,8 @@
 <script>
 (function () {
   var PATHS = {
-    one: { cls: "path-card-one", sel: "sel-one", title: "One key and a passphrase", trade: "Trust: one key, one device, one passphrase. Work: medium.", start: "Start: the single-sig sheet.", steps: ["Roll dice for 24 words.", "Add a passphrase, kept on paper apart from the plate.", "Stamp the words in titanium. Use a watch-only wallet."], risk: "Risk: one key and one passphrase. Lose the passphrase and the wallet is gone.", go: "/plebum-dominium-test/handouts/single-sig.html", goText: "Start with the single-sig sheet" },
-    full: { cls: "path-card-full", sel: "sel-full", title: "Three keys, three places", trade: "Trust: no single key, device, or place. Work: highest.", start: "Start at the beginning. Work the steps.", steps: ["Roll three dice keys. Stamp three titanium plates. Keep them in three places.", "Build the 2-of-3. Practice spend first. Hide the encrypted map."], risk: "Risk: the most steps to get right. Lose two keys and the map and the funds are locked.", go: "/plebum-dominium-test/handouts/terms.html", goText: "Start with the terms" }
+    one: { cls: "path-card-one", sel: "sel-one", title: "One key and a passphrase", trade: "Trust: one key, one device, one passphrase. Work: medium.", start: "Start: the single-sig sheet.", steps: ["Roll dice for 24 words.", "Add a passphrase, kept on paper apart from the plate.", "Stamp the words in titanium. Use a watch-only wallet."], risk: "Risk: one key and one passphrase. Lose the passphrase and the wallet is gone.", go: "/handouts/single-sig.html", goText: "Start with the single-sig sheet" },
+    full: { cls: "path-card-full", sel: "sel-full", title: "Three keys, three places", trade: "Trust: no single key, device, or place. Work: highest.", start: "Start at the beginning. Work the steps.", steps: ["Roll three dice keys. Stamp three titanium plates. Keep them in three places.", "Build the 2-of-3. Practice spend first. Hide the encrypted map."], risk: "Risk: the most steps to get right. Lose two keys and the map and the funds are locked.", go: "/handouts/terms.html", goText: "Start with the terms" }
   };
   var card = document.getElementById("path-card-sheet");
   var buttons = document.querySelectorAll("#path-chooser .path-seg button");
@@ -191,7 +198,7 @@
 </footer>
 
 <script src="/plebum-dominium-test/assets/js/main.js?v=whytiers7" defer></script>
-<script data-goatcounter="https://plebumbtc.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script data-goatcounter="https://plebumbtc.goatcounter.com/count" async src="/plebum-dominium-test//gc.zgo.at/count.js"></script>
 <div id="newbie-banner" class="newbie-banner" role="dialog" aria-label="New to Bitcoin?" hidden>
   <p><strong>New to Bitcoin?</strong><br><a href="/plebum-dominium-test/new-to-bitcoin.html" class="newbie-go">Start here &rarr;</a></p>
   <button type="button" class="newbie-close" aria-label="Dismiss">&times;</button>
@@ -204,5 +211,28 @@
     <p class="ask-foot">Search runs entirely in your browser. Nothing you type leaves this page unless you tap email. <span class="ask-keys">Up and down move, Enter opens, Esc closes.</span></p>
   </div>
 </div>
+
+<script>
+(function(){
+  function highlight(path){
+    var one = document.getElementById('desc-one');
+    var full = document.getElementById('desc-full');
+    if(one) one.classList.toggle('selected', path === 'one');
+    if(full) full.classList.toggle('selected', path === 'full');
+  }
+  // Hook into existing buttons
+  document.querySelectorAll('#path-chooser .path-seg button').forEach(function(b){
+    b.addEventListener('click', function(){
+      highlight(b.getAttribute('data-path'));
+    });
+  });
+  // Initial highlight based on saved path or default
+  try {
+    var saved = localStorage.getItem('pd-path');
+    highlight(saved === 'one' ? 'one' : 'full');
+  } catch(e) { highlight('full'); }
+})();
+</script>
+
 </body>
 </html>
