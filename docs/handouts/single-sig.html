@@ -3,24 +3,24 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>16 · One key, done right · Plebum Dominium Test Site</title>
+<title>16 · One key, done right · Plebum Dominium</title>
 <meta name="description" content="The spending wallet that lives on Plate A: Seed 1 plus a passphrase, for spending money while savings sit in the vault.">
 <link rel="canonical" href="https://plebumbtc.io/handouts/single-sig.html">
 <link rel="icon" href="/plebum-dominium-test/assets/img/favicon.svg" type="image/svg+xml">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://plebumbtc.io/handouts/single-sig.html">
 <meta property="og:site_name" content="Plebum Dominium">
-<meta property="og:title" content="16 · One key, done right · Plebum Dominium Test Site">
+<meta property="og:title" content="16 · One key, done right · Plebum Dominium">
 <meta property="og:description" content="The spending wallet that lives on Plate A: Seed 1 plus a passphrase, for spending money while savings sit in the vault.">
 <meta property="og:image" content="https://plebumbtc.io/assets/img/og-banner.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="16 · One key, done right · Plebum Dominium Test Site">
+<meta name="twitter:title" content="16 · One key, done right · Plebum Dominium">
 <meta name="twitter:description" content="The spending wallet that lives on Plate A: Seed 1 plus a passphrase, for spending money while savings sit in the vault.">
 <meta name="twitter:image" content="https://plebumbtc.io/assets/img/og-banner.png">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "HowTo", "name": "One key, done right", "description": "The spending wallet that lives on Plate A: Seed 1 plus a passphrase, for spending money while savings sit in the vault.", "step": [{"@type": "HowToStep", "position": 1, "name": "Step 1 · Grade your seed.", "url": "https://plebumbtc.io/handouts/single-sig.html#step-1-grade-your-seed"}, {"@type": "HowToStep", "position": 2, "name": "Step 2 · Exposed seed: port over.", "url": "https://plebumbtc.io/handouts/single-sig.html#step-2-exposed-seed-port-over"}, {"@type": "HowToStep", "position": 3, "name": "Step 3 · Clean seed: upgrade in place.", "url": "https://plebumbtc.io/handouts/single-sig.html#step-3-clean-seed-upgrade-in-place"}, {"@type": "HowToStep", "position": 4, "name": "Step 4 · Add a passphrase.", "url": "https://plebumbtc.io/handouts/single-sig.html#step-4-add-a-passphrase"}, {"@type": "HowToStep", "position": 5, "name": "Step 5 · Stamp it in metal.", "url": "https://plebumbtc.io/handouts/single-sig.html#step-5-stamp-it-in-metal"}, {"@type": "HowToStep", "position": 6, "name": "Step 6 · Watch-only, and the first coins.", "url": "https://plebumbtc.io/handouts/single-sig.html#step-6-watch-only-and-the-first-coins"}, {"@type": "HowToStep", "position": 7, "name": "Know the limits", "url": "https://plebumbtc.io/handouts/single-sig.html#know-the-limits"}]}</script>
-<link rel="stylesheet" href="/plebum-dominium-test/assets/css/main.css?v=whytiers7">
+<link rel="stylesheet" href="/plebum-dominium-test/assets/css/main.css?v=lightmode1">
 <link rel="stylesheet" href="/plebum-dominium-test/assets/css/print.css" media="print">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,13 +31,13 @@
 /* set motion before first paint: saved choice wins, else reduced motion wins */
 (function(){try{var m=localStorage.getItem('pd-motion');if(!m){m=window.matchMedia('(prefers-reduced-motion: reduce)').matches?'off':'on';}document.documentElement.setAttribute('data-motion',m);}catch(e){document.documentElement.setAttribute('data-motion','on');}})();
 /* set path before first paint, so the color reminder is right from the start */
-(function(){try{var p=localStorage.getItem('pd-path');if(p!=='one'&&p!=='full'){p='full';}document.documentElement.setAttribute('data-path',p);}catch(e){document.documentElement.setAttribute('data-path','full');}})();
+(function(){try{var p=localStorage.getItem('pd-path');if(p!=='easy'&&p!=='one'&&p!=='full'){p='full';}document.documentElement.setAttribute('data-path',p);}catch(e){document.documentElement.setAttribute('data-path','full');}})();
 </script>
 </head>
 <body class="" id="top">
 <div class="splash" id="pd-splash" hidden aria-hidden="true">
   <p class="splash-title">Plebum Dominium: Independent At-Home Bitcoin Self-custody</p>
-  <img class="splash-logo" src="/plebum-dominium-test/assets/img/logo-pleb-key.svg" alt="" width="360" height="360">
+  <img class="splash-logo" src="/assets/img/logo-pleb-key.svg" alt="" width="360" height="360">
 </div>
 <div class="progress" aria-hidden="true"><span></span></div>
 
@@ -45,7 +45,7 @@
 
 <header class="site-header">
   <button class="menu-btn" aria-label="Open guide navigation" aria-expanded="false">☰</button>
-  <a class="brand" href="/plebum-dominium-test/"><span class="brand-mark" aria-hidden="true">₿</span> Plebum Dominium</a><span class="path-subtitle" id="path-subtitle"></span>
+  <a class="brand" href="/plebum-dominium-test/"><span class="brand-mark" aria-hidden="true">₿</span> Plebum Dominium</a>
   <span class="header-sheet">16 · Plebum Dominium</span>
   <button class="ask-btn" id="ask-btn" type="button" aria-label="Search the guide">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
@@ -65,7 +65,6 @@
     <div class="sidebar-path" id="sidebar-path">
       <p class="sidebar-path-label">Choose a path</p>
       <div class="sidebar-path-seg" role="group" aria-label="Choose a setup">
-        
         <button type="button" data-path="one" aria-pressed="false">one key<br>+<br>Passphrase</button>
         <button type="button" data-path="full" aria-pressed="true">Three keys</button>
       </div>
@@ -73,7 +72,6 @@
     </div>
     <p class="sidebar-label">The bench sheets</p>
     <ul>
-<li><a href="/plebum-dominium-test/choose-path.html" class=""><span class="sheet-num">01</span><span class="sheet-title">Choose your path</span></a></li>
 <li data-paths="one full"><a href="/plebum-dominium-test/handouts/terms.html" class="" data-sheet="terms"><span class="sheet-num">T</span><span class="sheet-title">Terms</span><span class="sheet-check" aria-hidden="true">✓</span></a></li>
 <li data-paths="one full"><a href="/plebum-dominium-test/handouts/threat-model.html" class="" data-sheet="threat-model"><span class="sheet-num">02</span><span class="sheet-title">Before you begin</span><span class="sheet-check" aria-hidden="true">✓</span></a></li>
 <li data-paths="one full"><a href="/plebum-dominium-test/handouts/checklist.html" class="" data-sheet="checklist"><span class="sheet-num">03</span><span class="sheet-title">Checklist</span><span class="sheet-check" aria-hidden="true">✓</span></a></li>
@@ -101,19 +99,35 @@
     <article>
       <p class="kicker">16 · Plebum Dominium</p>
       <h1>One key, done right</h1>
+
+<div class="tool-box" style="border:2px solid #c4a484;border-radius:12px;padding:1.25rem;margin:1.5rem 0;background:rgba(196,164,132,.07);">
+<h3 style="margin:0 0 .75rem;">Passphrase mapper tool</h3>
+<p style="margin:0 0 1rem;">Map dice rolls to a passphrase. Use the HTML tool below.</p>
+<p style="margin:0;">
+<a href="/plebum-dominium-test/diceware-mapper.html" class="btn" style="display:inline-block;padding:.75rem 1.5rem;background:#c4a484;color:#0e0d0b;border-radius:8px;text-decoration:none;font-weight:600;">Open passphrase mapper (HTML)</a>
+</p>
+</div>
+
+      <div class="mobile-path" id="mobile-path">
+        <p class="mobile-path-label">Choose a path</p>
+        <div class="mobile-path-seg" role="group" aria-label="Choose a setup">
+          <button type="button" data-path="one" aria-pressed="false">one key<br>+<br>Passphrase</button>
+          <button type="button" data-path="full" aria-pressed="true">Three keys</button>
+        </div>
+      </div>
       <div class="path-banner" id="path-banner" hidden>
-        <p class="path-banner-label">Your path: <strong id="path-banner-label">Three keys</strong></p>
+        <p class="path-banner-label">Choose a path: <strong id="path-banner-label">Three keys</strong></p>
         <p class="path-banner-note" id="path-banner-note"></p>
       </div>
       <div class="path-gate" id="path-gate" hidden>
         <h2>Not on your path</h2>
         <p id="path-gate-note"></p>
-        <p><a href="/plebum-dominium-test/choose-path.html">Go to Choose your path to change it</a></p>
+        <p><button type="button" id="path-gate-full">Switch to Three keys to read this sheet</button></p>
         <p><a href="/plebum-dominium-test/path-risks.html">Risks of your path &rarr;</a></p>
       </div>
 <nav class="step-banner" aria-label="Sheet 16 of 17"><a class="step-nav" href="/plebum-dominium-test/handouts/fire-card.html" rel="prev">&larr; 15 &middot; Recovery card</a><span class="step-pos"><strong>Step 16 of 17</strong> · One key, done right</span><a class="step-nav" href="/plebum-dominium-test/handouts/two-devices.html" rel="next">17 &middot; Two devices and one dice key &rarr;</a></nav>
 <section class="sheet-meta" aria-label="Sheet overview"><div class="meta-item"><span class="meta-label">Time</span><span class="meta-val">1-2 hours</span></div><div class="meta-item"><span class="meta-label">Difficulty</span><span class="meta-val diff-careful">Careful</span></div><div class="meta-item"><span class="meta-label">Steps</span><span class="meta-val">8 sections</span></div><div class="meta-item meta-needs"><span class="meta-label">You will need</span><span class="meta-val">Your hardware wallet &middot; <a href="/plebum-dominium-test/handouts/checklist.html">Titanium plates</a> &middot; <a href="/plebum-dominium-test/handouts/checklist.html">Pen and paper</a></span></div></section>
-<p>The seed lives in one device and on one stamped plate. A passphrase guards it, kept on paper in a different place from the plate. This sheet is the whole wallet.</p>
+<p>The destination of this guide is the 2-of-3 build: three keys, three places, no single point of failure. In the full build, this sheet is also the spending wallet that lives on Plate A: Seed 1 plus a passphrase, for spending money while savings sit in the vault.</p>
 <p>Files used: Sparrow 2.5.5 for the watch-only wallet.</p>
 <figure class="step-fig"><svg width="360" height="296" viewBox="0 0 360 296" font-family="IBM Plex Sans, sans-serif">
         <rect x="8" y="8" width="344" height="132" rx="10" fill="var(--card)" stroke="var(--line)"/>
@@ -168,8 +182,8 @@
 <ul>
 <li>Word 24 is a checksum. It is never invented. If the two tools disagree, stop.</li>
 <li>Write the 24 words on paper, then type them into the device on the device itself,* in its own restore menu, on its own screen. Then shut everything down.</li>
-<li>No program on a computer does the restore, not Sparrow, and not a text field in a companion app. If a device needs its companion app to start the restore (BitBox App for a BitBox02, Blockstream Green for a Jade), the app only opens the connection. The words still go in on the device, never typed into the computer.</li>
-<li>The device signs. Boot your trusted online computer for Sparrow. Sparrow meets the device afterward, in Step 6, as the watch-only wallet that builds transactions for the device to sign.</li>
+<li>No program on a computer does the restore, not Sparrow, not Electrum, and not a text field in a companion app. If a device needs its companion app to start the restore (BitBox App for a BitBox02, Blockstream Green for a Jade), the app only opens the connection. The words still go in on the device, never typed into the computer.</li>
+<li>In the 2-of-3 build the airgapped boot signs, in Sparrow or Electrum. On this sheet the device signs. You boot your trusted online computer for Sparrow, and Sparrow meets the device afterward, in Step 6, as the watch-only wallet that builds transactions for the device to sign.</li>
 <li>The fresh seed has now lived in exactly two places: the offline boot, which forgot it, and the device.</li>
 <li>Steps 4 and 5 come before any coins move.</li>
 <li>The old device stays on as the signer, and the old seed retires.</li>
@@ -189,7 +203,7 @@
       <rect x="8" y="272" width="344" height="104" rx="10" fill="var(--card)" stroke="var(--line)"/>
       <text x="24" y="302" fill="var(--accent)" font-size="11" letter-spacing="2">3 · THE DEVICE SIGNS</text>
       <text x="24" y="330" fill="var(--ink)" font-size="17">Boot on trusted online computer</text>
-      <text x="24" y="356" fill="var(--muted)" font-size="14">The single key signs on the device</text>
+      <text x="24" y="356" fill="var(--muted)" font-size="14">The 2-of-3 build signs in Tails</text>
       <text x="176" y="396" fill="var(--accent)" font-size="16" text-anchor="middle">↓</text>
       <rect x="8" y="404" width="344" height="104" rx="10" fill="var(--card)" stroke="var(--line)"/>
       <text x="24" y="434" fill="var(--accent)" font-size="11" letter-spacing="2">4 · SPARROW, WATCH-ONLY</text>
@@ -250,6 +264,7 @@
 <li>Keep a small spending balance in the wallet without the passphrase. A plate found under pressure has something to show, and it is not your savings.</li>
 <li>Prove it works: note the first receiving address of the passphrase wallet. The restore check in Step 5 must bring back that same address. If it does not, no real money moves.</li>
 </ul>
+<aside class="callout callout-note" role="note"><p class="callout-label">Note</p><p>The 2-of-3 build in this guide uses no passphrase, on purpose. Do not add one there. Three keys in three places already do the work. This sheet is one key, so the passphrase carries weight here that it never has to carry in the vault.</p></aside>
 <h2 id="step-5-stamp-it-in-metal">Step 5 · Stamp it in metal.</h2>
 <ul>
 <li>One seed, one plate, stamped the way  teaches.</li>
@@ -288,7 +303,8 @@
 <li>A fire where the plate sleeps ends this wallet. The passphrase paper surviving somewhere else does not rebuild it.</li>
 <li>Theft of the plate plus the passphrase paper ends it.</li>
 <li>A word copied wrong and never restore-checked ends it.</li>
-<li>This sheet beats an exchange account and it beats a seed in a phone.</li>
+<li>This sheet beats an exchange account and it beats a seed in a phone. The distance between that and the vault is real.</li>
+<li>Graduate when the stack grows, or when the amount would hurt to lose. The 2-of-3 build starts at the . The dice, the metal, the watch-only habit, and the one rule about the words all carry over.</li>
 <li>For the people after you: an heir needs the plate, the passphrase paper, and one plain note that says what they are and which device can restore them.  shows how that note should read: plain words, no Bitcoin knowledge assumed, a small test send first.</li>
 </ul>
 <aside class="callout callout-stop" role="alert"><p class="callout-label">Stop if</p><ul>
@@ -297,7 +313,7 @@
 <li>A restored wallet shows a different address than the one you noted: stop. No coins move.</li>
 <li>Anyone asks for your words or your passphrase, for any reason, in any message: stop. The answer is no, forever.</li>
 </ul></aside>
-<p>Next.</p>
+<p>Next. When you are ready for the vault:</p>
       <nav class="prevnext-row" aria-label="Previous and next sheets">
 <a class="prevnext prev" href="/plebum-dominium-test/handouts/fire-card.html"><span>← 15 · Recovery card</span></a>
 <span class="step-pos-bottom"><strong>Step 16 of 17</strong> · One key, done right</span>
@@ -319,16 +335,16 @@
   <p><strong>Plebum Dominium</strong>: independent at-home Bitcoin self-custody.</p>
   <p>Educational material, not financial advice. Bitcoin self-custody is irreversible. A mistake can permanently lose funds. Verify every download from its original source.</p>
   <p><a href="/plebum-dominium-test/kit/VERIFY.md">File fingerprints</a> · <a href="/plebum-dominium-test/downloads.html">Downloads</a> · <a href="/plebum-dominium-test/kit/02_Print_Packet.pdf">Print packet (PDF)</a> · <a href="/plebum-dominium-test/news.html">News</a> · <a href="/plebum-dominium-test/beyond.html">Beyond the kit</a></p>
-  <p class="footer-updated">Last updated October 31, 2026 · Version 1.1.0</p>
+  <p class="footer-updated">Last updated October 31, 2026</p>
   <p class="footer-contact">Contact: <a href="mailto:Muststackmoresats@gmail.com">Muststackmoresats@gmail.com</a> · X: <a href="https://x.com/MustHaveMustash" rel="noopener">@MustHaveMustash</a></p>
   <p class="donate-row"><a class="btn-lightning" href="lightning:musthavemoresats@speed.app"><span aria-hidden="true">⚡</span> Donate with Lightning</a> <button type="button" class="btn-onchain" data-copy="bc1qcmvj7c79gyjrcg3zu5pxnp4mav54846epktyma4n6v8jsud2fhqsczmngw"><span aria-hidden="true">₿</span> Donate Bitcoin</button></p>
   <p class="donate-addr"><code>bc1qcmvj7c79gyjrcg3zu5pxnp4mav54846epktyma4n6v8jsud2fhqsczmngw</code></p>
 </footer>
 
-<script src="/plebum-dominium-test/assets/js/main.js?v=whytiers7" defer></script>
+<script src="/assets/js/main.js?v=variants1" defer></script>
 <script data-goatcounter="https://plebumbtc.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <div id="newbie-banner" class="newbie-banner" role="dialog" aria-label="New to Bitcoin?" hidden>
-  <p><strong>New to Bitcoin?</strong><br><a href="/plebum-dominium-test/new-to-bitcoin.html" class="newbie-go">Start here &rarr;</a></p>
+  <p><strong>New to Bitcoin?</strong><br><a href="/plebum-dominium-test/#new-to-bitcoin" class="newbie-go">Start here &rarr;</a></p>
   <button type="button" class="newbie-close" aria-label="Dismiss">&times;</button>
 </div>
 <div class="ask-backdrop" id="ask-backdrop" hidden>
