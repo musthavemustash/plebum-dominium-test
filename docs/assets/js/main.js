@@ -510,26 +510,32 @@ document.querySelectorAll(".btn-onchain").forEach(function (btn) {
 (function () {
   "use strict";
   var PATHS = {
-    one: { label: "One key", sheets: ["terms", "threat-model", "checklist", "verify", "airgap", "dice", "single-sig", "titanium", "inheritance", "fire-card", "faq"], summary: "One key plus a passphrase. Medium work, trust in one key, one device, and one passphrase." },
-    full: { label: "Three keys", sheets: ["terms", "threat-model", "checklist", "verify", "airgap", "dice", "sparrow", "testnet", "signing", "titanium", "encryption", "inheritance", "faq", "briefing", "fire-card", "single-sig", "two-devices"], summary: "Three keys, three places. Highest work, no single key, device, or place." }
+    easy: { label: "Easy", sheets: ["terms", "threat-model", "checklist", "verify", "airgap", "dice", "titanium", "faq"], summary: "Words into one trusted device. Lowest work, most trust in one device and its maker." },
+    one: { label: "One key", sheets: ["terms", "threat-model", "checklist", "verify", "airgap", "dice", "single-sig", "titanium", "fire-card", "faq"], summary: "One key plus a passphrase. Medium work, trust in one key, one device, and one passphrase." },
+    full: { label: "Full program", sheets: null, summary: "Three keys, three places. Highest work, no single key, device, or place." }
   };
-  var VARIANTS = { faq: { one: "faq-one" }, titanium: { one: "titanium-one" }, checklist: { one: "checklist-one" }, "fire-card": { one: "fire-card-one" }, "threat-model": { one: "threat-model-one" }, dice: { one: "dice-one" } };
+  var VARIANTS = { faq: { easy: "faq-easy", one: "faq-one" }, titanium: { easy: "titanium-easy", one: "titanium-one" }, checklist: { easy: "checklist-easy", one: "checklist-one" }, "fire-card": { one: "fire-card-one" }, "threat-model": { easy: "threat-model-easy", one: "threat-model-one" }, dice: { easy: "dice-easy", one: "dice-one" } };
   var NOTES = {
     dice: {
+      easy: "On this path, make one key, not three. Stop after the first key, stamp it in titanium, then enter the words on the device itself.",
       one: "On this path, make one key, then add a passphrase, kept on paper apart from the plate.",
       full: "Make three keys, with a full shutdown between each key."
     },
     titanium: {
+      easy: "On this path, stamp the words in titanium first, before the device entry. The plate is the backup if the device fails.",
       one: "Stamp the words in titanium, and keep the passphrase paper apart from the plate.",
       full: "Stamp three plates, and keep them in three places."
     },
     verify: {
+      easy: "On this path, the Later section does not apply. Sparrow, Electrum, the wallet map, and signing a file are Full program work. The checking steps above, download, fingerprint, signature, and kit check, are the work.",
       one: "On this path, Sparrow is watch-only only, Electrum is not used, and the wallet map and signing in the Later section do not apply. The checking steps above are the work."
     },
     airgap: {
+      easy: "On this path, three phrases in this sheet do not apply: a watch-only wallet that broadcasts, payment files and the map on the data USB, and signing a file or exporting the map. Your work here is Tails with networking off, one seed per session, and a full shutdown. Next, make one key.",
       one: "On this path, the map, signing a file, and exporting the map do not apply. A watch-only wallet comes later, in the single-sig sheet, and the device signs. Next, make one key."
     },
     terms: {
+      easy: "On this path, four entries describe the Full program, not your wallet: 2-of-3, m/48'/0'/0'/2', descriptor, and PSBT. Your wallet is one device and one plate.",
       one: "On this path, three entries describe the Full program, not your wallet: 2-of-3, m/48'/0'/0'/2', and descriptor as a map. PSBT does not apply either, the device signs. The xpub entry fits as a watch key."
     },
     single: {},
@@ -550,7 +556,7 @@ document.querySelectorAll(".btn-onchain").forEach(function (btn) {
   function getPath() {
     try {
       var p = localStorage.getItem("pd-path");
-      if (p === "one" || p === "full") return p;
+      if (p === "easy" || p === "one" || p === "full") return p;
     } catch (e) {}
     return "full";
   }
@@ -561,13 +567,13 @@ document.querySelectorAll(".btn-onchain").forEach(function (btn) {
   function applyPath(path) {
     var info = PATHS[path];
     document.documentElement.setAttribute("data-path", path);
-
     document.querySelectorAll("#sidebar-path button[data-path], #path-toggle .path-seg button[data-path], .path-seg button[data-path], .path-risks-switch button[data-path]").forEach(function (b) {
       var on = b.getAttribute("data-path") === path;
       b.setAttribute("aria-pressed", on ? "true" : "false");
+      b.classList.toggle("sel-easy", on && path === "easy");
       b.classList.toggle("sel-one", on && path === "one");
       b.classList.toggle("sel-full", on && path === "full");
-      if (!on) { b.classList.remove("sel-one", "sel-full"); }
+      if (!on) { b.classList.remove("sel-easy", "sel-one", "sel-full"); }
     });
     if (window.pdShowPathCard) { try { window.pdShowPathCard(path); } catch (e) {} }
     var shown = 0, total = 0;
@@ -577,28 +583,11 @@ document.querySelectorAll(".btn-onchain").forEach(function (btn) {
       li.classList.toggle("path-hidden", !ok);
       if (ok) shown++;
     });
-    // Update sidebar sheet numbers per path (Jake 2026-11-01: independent numbering)
-    if (info.sheets) {
-      document.querySelectorAll(".sidebar ul li[data-paths]").forEach(function (li) {
-        var a = li.querySelector('a[data-sheet]');
-        if (!a) return;
-        var slug = a.getAttribute('data-sheet');
-        // Handle variant suffixes (e.g., dice-one -> dice)
-        var base = slug.replace(/-(easy|one)$/, '');
-        var idx = info.sheets.indexOf(slug);
-        if (idx < 0) idx = info.sheets.indexOf(base);
-        var numEl = a.querySelector('.sheet-num');
-        if (numEl && idx >= 0) {
-          var n = idx + 1;
-          numEl.textContent = n < 10 ? '0' + n : '' + n;
-        }
-      });
-    }
     var count = document.getElementById("path-count");
     if (count) count.textContent = path === "full" ? "All " + total + " sheets" : "Showing " + shown + " of " + total + " sheets for " + info.label;
     var risksLabel = document.getElementById("path-risks-label");
     if (risksLabel) risksLabel.textContent = info.label;
-    ["one", "full"].forEach(function (k) {
+    ["easy", "one", "full"].forEach(function (k) {
       var sec = document.getElementById("risks-" + k);
       if (sec) sec.classList.toggle("path-hidden", k !== path);
     });
@@ -618,106 +607,6 @@ document.querySelectorAll(".btn-onchain").forEach(function (btn) {
       }
       banner.hidden = false;
     }
-    // Update step numbers for path (e.g., "Step 4 of 17" -> "Step 4 of 9" on Easy)
-    (function() {
-      var slug = currentSlug();
-      if (slug && info.sheets) {
-        var idx = info.sheets.indexOf(slug);
-        // Handle -easy/-one suffix variants (e.g., dice-easy -> dice)
-        if (idx < 0) {
-          var base = slug.replace(/-(easy|one)$/, '');
-          idx = info.sheets.indexOf(base);
-        }
-        if (idx >= 0) {
-          var total = info.sheets.length;
-          var stepNum = idx + 1;
-          document.querySelectorAll('.step-pos strong, .step-pos-bottom strong').forEach(function(el) {
-            var t = el.textContent;
-            var m = t.match(/Step\s+(\d+)\s+of\s+\d+/i);
-            if (m) {
-              el.textContent = t.replace(/Step\s+\d+\s+of\s+\d+/i, 'Step ' + stepNum + ' of ' + total);
-            }
-          });
-          // Update aria-label too
-          document.querySelectorAll('.step-banner').forEach(function(b) {
-            var al = b.getAttribute('aria-label');
-            if (al) {
-              b.setAttribute('aria-label', al.replace(/Sheet\s+\d+\s+of\s+\d+/i, 'Sheet ' + stepNum + ' of ' + total));
-            }
-          });
-        }
-      }
-    })();
-    // Update prev/next links for path
-    (function() {
-      var slug = currentSlug();
-      if (slug && info.sheets) {
-        var base = slug.replace(/-(easy|one)$/, '');
-        var idx = info.sheets.indexOf(base);
-        if (idx < 0) idx = info.sheets.indexOf(slug);
-        if (idx >= 0) {
-          var prevSlug = idx > 0 ? info.sheets[idx - 1] : null;
-          var nextSlug = idx < info.sheets.length - 1 ? info.sheets[idx + 1] : null;
-          // Find the sheet numbers and titles from sidebar
-          function sheetInfo(s) {
-            var a = document.querySelector('.sidebar a[data-sheet="' + s + '"]');
-            if (!a) return null;
-            var num = a.querySelector('.sheet-num');
-            var title = a.querySelector('.sheet-title');
-            return {
-              num: num ? num.textContent.trim() : '',
-              title: title ? title.textContent.trim() : s,
-              href: a.getAttribute('href')
-            };
-          }
-          var prevLink = document.querySelector('.step-banner a[rel="prev"]');
-          var nextLink = document.querySelector('.step-banner a[rel="next"]');
-          if (prevSlug && prevLink) {
-            var pi = sheetInfo(prevSlug);
-            if (pi) {
-              prevLink.setAttribute('href', pi.href);
-              prevLink.innerHTML = '&larr; ' + pi.num + ' &middot; ' + pi.title;
-            }
-          } else if (prevLink) {
-            prevLink.style.display = 'none';
-          }
-          if (nextSlug && nextLink) {
-            var ni = sheetInfo(nextSlug);
-            if (ni) {
-              nextLink.setAttribute('href', ni.href);
-              nextLink.innerHTML = ni.num + ' &middot; ' + ni.title + ' &rarr;';
-            }
-          } else if (nextLink) {
-            nextLink.style.display = 'none';
-          }
-          // Update bottom prevnext-row for consistency (Jake 2026-11-01)
-          var prevBottom = document.querySelector('.prevnext-row a.prev, .prevnext-row a.prevnext.prev');
-          var nextBottom = document.querySelector('.prevnext-row a.next, .prevnext-row a.prevnext.next');
-          if (prevSlug && prevBottom) {
-            var pbi = sheetInfo(prevSlug);
-            if (pbi) {
-              prevBottom.setAttribute('href', pbi.href);
-              var pspan = prevBottom.querySelector('span');
-              if (pspan) pspan.textContent = '\u2190 Back to ' + pbi.num + ' \u00b7 ' + pbi.title;
-              else prevBottom.innerHTML = '<span>\u2190 Back to ' + pbi.num + ' \u00b7 ' + pbi.title + '</span>';
-            }
-          } else if (prevBottom) {
-            prevBottom.style.display = 'none';
-          }
-          if (nextSlug && nextBottom) {
-            var nbi = sheetInfo(nextSlug);
-            if (nbi) {
-              nextBottom.setAttribute('href', nbi.href);
-              var nspan = nextBottom.querySelector('span');
-              if (nspan) nspan.textContent = 'Next to ' + nbi.num + ' \u00b7 ' + nbi.title + ' \u2192';
-              else nextBottom.innerHTML = '<span>Next to ' + nbi.num + ' \u00b7 ' + nbi.title + ' \u2192</span>';
-            }
-          } else if (nextBottom) {
-            nextBottom.style.display = 'none';
-          }
-        }
-      }
-    })();
     var gate = document.getElementById("path-gate");
     var gateNote = document.getElementById("path-gate-note");
     var gated = false;
@@ -759,7 +648,7 @@ document.querySelectorAll(".btn-onchain").forEach(function (btn) {
         window.location.href = window.location.pathname.replace(/[^\/]+\.html$/, want + ".html");
         return;
       }
-      if (!want && curFile !== curSlug && curFile === VARIANTS[curSlug].one) {
+      if (!want && curFile !== curSlug && (curFile === VARIANTS[curSlug].easy || curFile === VARIANTS[curSlug].one)) {
         window.location.href = window.location.pathname.replace(/[^\/]+\.html$/, curSlug + ".html");
         return;
       }
