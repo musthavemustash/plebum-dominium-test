@@ -21,6 +21,7 @@
 <meta name="twitter:image" content="https://plebumbtc.io/assets/img/og-banner.png">
 
 <link rel="stylesheet" href="/plebum-dominium-test/assets/css/main.css?v=whytiers7">
+<link rel="stylesheet" href="/plebum-dominium-test/assets/css/guide-steps.css?v=phasea1">
 <link rel="stylesheet" href="/plebum-dominium-test/assets/css/print.css" media="print">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -110,7 +111,7 @@
         <p><a href="/plebum-dominium-test/choose-path.html">Go to Choose your path to change it</a></p>
         <p><a href="/plebum-dominium-test/path-risks.html">Risks of your path &rarr;</a></p>
       </div>
-<nav class="step-banner" aria-label="Sheet 6 of 17"><a class="step-nav" href="/plebum-dominium-test/handouts/airgap.html" rel="prev">&larr; 04 &middot; Two boots</a><span class="step-pos"><strong>Step 6 of 10</strong> · Make one key</span><a class="step-nav" href="/plebum-dominium-test/handouts/single-sig.html" rel="next">16 &middot; One key, done right &rarr;</a></nav>
+<nav class="step-banner" aria-label="Sheet 6 of 17"><a class="step-nav" href="/plebum-dominium-test/handouts/airgap.html" rel="prev">&larr; 04 &middot; Two boots</a><span class="step-pos"><strong>Step 6 of 17</strong> · Make the three keys</span><a class="step-nav" href="/plebum-dominium-test/handouts/sparrow.html" rel="next">07 &middot; Build the 2-of-3 &rarr;</a></nav>
 <section class="sheet-meta" aria-label="Sheet overview"><div class="meta-item"><span class="meta-label">Time</span><span class="meta-val">30-45 min</span></div><div class="meta-item"><span class="meta-label">Difficulty</span><span class="meta-val diff-moderate">Moderate</span></div><div class="meta-item"><span class="meta-label">Steps</span><span class="meta-val">4 sections</span></div><div class="meta-item meta-needs"><span class="meta-label">You will need</span><span class="meta-val"><a href="/plebum-dominium-test/handouts/checklist.html">5 dice</a> &middot; <a href="/plebum-dominium-test/handouts/checklist.html">Paper and pen</a> &middot; <a href="/plebum-dominium-test/downloads.html">The worksheet</a></span></div></section>
 <div class="dice-anim">
 <div class="stage">
@@ -173,44 +174,30 @@
       </div>
     </div>
 <p class="note">Roll as many times as needed to get <strong>256 bits</strong> of entropy: about 39 shakes.</p>
-</div><aside class="callout callout-warning" role="note"><p class="callout-label">Warning</p><p>Never enter seed words on an online computer.</p></aside>
-<p>This work starts after Tails has booted with networking set to Disabled, and before any plate is stamped. Five casino dice are required, and every face has to be readable. The work is done once, for one key, and the computer is shut down fully after it. A private room, no camera.</p>
-<h2 id="the-faces">The faces</h2>
-<ul>
-<li>1 is 00. 2 is 01. 3 is 10. 4 is 11.</li>
-<li>5 and 6 are not bits. Roll those dice again.</li>
-<li>Read the dice left to right, the same way every shake.</li>
-<li>Example: 4, 6, 1, 3, 2 becomes 11, skip the 6, then 00, 10, 01.</li>
-</ul>
-<h2 id="turn-the-rolls-into-24-words">Turn the rolls into 24 words</h2>
-<p>The <a href=\"/plebum-dominium-test/dice-converter.html">dice converter page</a> does the recording, the counting, and the math. It runs offline in the Tails browser. If the page ever says the computer is online, it stops, and the work stops with it.</p>
-<ol>
-<li>01 · Boot Tails. Networking Disabled. Copy the checked dice converter page from the data USB to the Desktop.</li>
-<li>02 · Open the page in Tor Browser. Enter each face as you roll it. The page keeps faces 1 to 4, skips 5 and 6, and counts the pairs. It stops you at 128.</li>
-<li>03 · At 256 bits the page prints 24 words. Word 24 is the check. Do not invent it. Do not “fix” it.</li>
-<li>04 · Prove it with the second tool. Two options, pick the easier one. The Ian Coleman page takes the same rolls, no terminal. The Python converter takes the bits from the page, terminal. The 24 words must match. If they differ, stop. Do not pick the prettier list.</li>
-<li>05 · Write the 24 words on the grid. Read them back out loud once.</li>
-<li>06 · Shut Tails down. Wait until the screen is dark. Do not start a second key. This one key is the wallet.</li>
-</ol>
-<h2 id="the-last-word-is-a-check">The last word is a check</h2>
-<p>The 24 words are not 24 free choices. The last word carries a short check so a copying mistake is caught before metal is stamped. At least two of these checks are used. If they disagree, the work stops.</p>
-<ul>
-<li>Two tools, same rolls, same 24 words. The page, then the Ian Coleman page or the Python converter. Do not pick the prettier list.</li>
-<li>Let the device refuse a bad list. Enter the words on the device itself. If it will not open, do not change a word to force it.</li>
-<li>The math, if it needs to be seen. Twenty-four words are 264 bits. The first 256 are the dice. The last 8 are the check. Only word 24 can change to make that true. It is not chosen. The page appends it after the file has been checked.</li>
-</ul>
-<h2 id="practice-grid">Practice grid</h2>
-<p>The printed recording grid in the bench sheet PDF still works as the paper backup. One key needs about 39 shakes for 256 bits. Count the pairs as you go and stop at 128.</p>
+</div><p>&lt;section class=&quot;guide-overview&quot; aria-label=&quot;Sheet overview&quot;&gt; &lt;div class=&quot;guide-stat&quot;&gt;&lt;span&gt;Time&lt;/span&gt;&lt;strong&gt;30-45 min&lt;/strong&gt;&lt;/div&gt; &lt;div class=&quot;guide-stat&quot;&gt;&lt;span&gt;Difficulty&lt;/span&gt;&lt;strong&gt;Moderate&lt;/strong&gt;&lt;/div&gt; &lt;div class=&quot;guide-stat&quot;&gt;&lt;span&gt;Steps&lt;/span&gt;&lt;strong&gt;6&lt;/strong&gt;&lt;/div&gt; &lt;/section&gt;</p>
+<p>&lt;p class=&quot;guide-intro&quot;&gt;You will roll dice to create one Bitcoin seed phrase. Each one becomes 24 words. The computer never sees the network while you work.&lt;/p&gt;</p>
+<p>&lt;aside class=&quot;guide-warning&quot;&gt;&lt;strong&gt;Safety first:&lt;/strong&gt; Never enter seed words on an online computer. Boot Tails with networking Disabled before you start. Shut down fully between each key.&lt;/aside&gt;</p>
+<p>&lt;section class=&quot;guide-summary&quot;&gt; &lt;h2&gt;What you will do&lt;/h2&gt; &lt;ol&gt; &lt;li&gt;Boot Tails offline. Copy the dice converter page.&lt;/li&gt; &lt;li&gt;Roll dice. Enter the faces. The page counts to 256 bits.&lt;/li&gt; &lt;li&gt;Write down the 24 words. Prove them with a second tool.&lt;/li&gt; &lt;li&gt;Shut down when done. One key, one wallet.&lt;/li&gt; &lt;/ol&gt; &lt;/section&gt;</p>
+<p>&lt;section class=&quot;guide-section&quot;&gt; &lt;p class=&quot;guide-step-marker&quot;&gt;Step 1 / 6&lt;/p&gt; &lt;h2&gt;Boot Tails. Copy the converter.&lt;/h2&gt; &lt;p&gt;Boot Tails with networking set to Disabled. Copy the checked dice converter page from the data USB to the Desktop.&lt;/p&gt; &lt;p class=&quot;guide-verify&quot;&gt;&lt;strong&gt;Check:&lt;/strong&gt; The page opens in Tor Browser and shows the offline indicator. If it says online, stop.&lt;/p&gt; &lt;/section&gt;</p>
+<p>&lt;section class=&quot;guide-section&quot;&gt; &lt;p class=&quot;guide-step-marker&quot;&gt;Step 2 / 6&lt;/p&gt; &lt;h2&gt;Roll the dice. Enter the faces.&lt;/h2&gt; &lt;p&gt;Roll five dice at once. Enter each face as you roll it. Faces 1 to 4 count as bits (1=00, 2=01, 3=10, 4=11). Faces 5 and 6 are skipped, roll those dice again. The page counts the pairs and stops you at 128.&lt;/p&gt;</p>
+<p>&lt;div class=&quot;guide-demo&quot; data-stages=&#x27;[{&quot;title&quot;:&quot;Roll five dice&quot;,&quot;text&quot;:&quot;DEMO ONLY, FAKE DATA. Five dice land: 4, 6, 1, 3, 2.&quot;,&quot;html&quot;:&quot;&quot;},{&quot;title&quot;:&quot;Keep 1-4, skip 5-6&quot;,&quot;text&quot;:&quot;The 4 becomes 11. The 6 is skipped. The 1 becomes 00, the 3 becomes 10, the 2 becomes 01.&quot;,&quot;html&quot;:&quot;&quot;},{&quot;title&quot;:&quot;Count the pairs&quot;,&quot;text&quot;:&quot;Four pairs from this shake: 11, 00, 10, 01. That is 8 bits. Keep shaking until the page counts 128 pairs.&quot;,&quot;html&quot;:&quot;&quot;}]&#x27;&gt; &lt;div class=&quot;guide-demo-header&quot;&gt; &lt;span class=&quot;guide-demo-badge&quot;&gt;DEMO ONLY · FAKE DATA&lt;/span&gt; &lt;/div&gt; &lt;div class=&quot;guide-demo-stage&quot;&gt;&lt;/div&gt; &lt;div class=&quot;guide-demo-controls&quot;&gt; &lt;button data-demo=&quot;back&quot;&gt;Back&lt;/button&gt; &lt;button data-demo=&quot;play&quot;&gt;Play&lt;/button&gt; &lt;button data-demo=&quot;next&quot;&gt;Next&lt;/button&gt; &lt;button data-demo=&quot;reset&quot;&gt;Reset&lt;/button&gt; &lt;/div&gt; &lt;div class=&quot;guide-demo-progress&quot;&gt;&lt;/div&gt; &lt;/div&gt;</p>
+<p>&lt;p class=&quot;guide-verify&quot;&gt;&lt;strong&gt;Check:&lt;/strong&gt; The page shows 128 pairs and 256 bits. About 39 shakes.&lt;/p&gt; &lt;/section&gt;</p>
+<p>&lt;section class=&quot;guide-section&quot;&gt; &lt;p class=&quot;guide-step-marker&quot;&gt;Step 3 / 6&lt;/p&gt; &lt;h2&gt;Write the 24 words.&lt;/h2&gt; &lt;p&gt;At 256 bits the page prints 24 words. Word 24 is the check. Do not invent it. Do not &quot;fix&quot; it. Write all 24 on the grid. Read them back out loud once.&lt;/p&gt; &lt;p class=&quot;guide-verify&quot;&gt;&lt;strong&gt;Check:&lt;/strong&gt; The last word is marked as the check word on the page.&lt;/p&gt; &lt;/section&gt;</p>
+<p>&lt;section class=&quot;guide-section&quot;&gt; &lt;p class=&quot;guide-step-marker&quot;&gt;Step 4 / 6&lt;/p&gt; &lt;h2&gt;Prove it with a second tool.&lt;/h2&gt; &lt;p&gt;Pick one: the Ian Coleman page takes the same rolls, no terminal. Or the Python converter takes the bits from the page, in the terminal. The 24 words must match exactly. If they differ, stop. Do not pick the prettier list.&lt;/p&gt; &lt;p class=&quot;guide-verify&quot;&gt;&lt;strong&gt;Check:&lt;/strong&gt; Both tools show the same 24 words.&lt;/p&gt; &lt;/section&gt;</p>
+<p>&lt;section class=&quot;guide-section&quot;&gt; &lt;p class=&quot;guide-step-marker&quot;&gt;Step 5 / 6&lt;/p&gt; &lt;h2&gt;Shut down. Start the next key.&lt;/h2&gt; &lt;p&gt;Shut Tails down fully. Wait until the screen is dark. One key, one grid, one wallet.&lt;/p&gt; &lt;p class=&quot;guide-verify&quot;&gt;&lt;strong&gt;Check:&lt;/strong&gt; Each seed has its own 24 words on its own grid. Three grids total.&lt;/p&gt; &lt;/section&gt;</p>
+<p>&lt;section class=&quot;guide-section&quot;&gt; &lt;p class=&quot;guide-step-marker&quot;&gt;Step 6 / 6&lt;/p&gt; &lt;h2&gt;Confirm the checks agree.&lt;/h2&gt; &lt;p&gt;The last word carries a short check so copying mistakes are caught. At least two checks must agree: the two tools showing the same words, and the wallet (Sparrow or Electrum, offline) opening the list without error. If anything disagrees, stop.&lt;/p&gt; &lt;/section&gt;</p>
+<p>&lt;aside class=&quot;guide-stop&quot;&gt;&lt;strong&gt;Stop if:&lt;/strong&gt; The page says online. The two tools show different words. The wallet rejects the list. Any of these means stop and start that key over.&lt;/aside&gt;</p>
+<p>Next, Build the 2-of-3.</p>
       <nav class="prevnext-row" aria-label="Previous and next sheets">
-<a class="prevnext prev" href="/plebum-dominium-test/handouts/airgap.html"><span>← 04 &middot; Two boots</span></a>
-<span class="step-pos-bottom"><strong>Step 6 of 10</strong> · Make one key</span>
-<a class="prevnext next" href="/plebum-dominium-test/handouts/single-sig.html"><span>16 &middot; One key, done right &rarr;</span></a>
+<a class="prevnext prev" href="/plebum-dominium-test/handouts/airgap.html"><span>← 04 · Two boots</span></a>
+<span class="step-pos-bottom"><strong>Step 6 of 17</strong> · Make the three keys</span>
+<a class="prevnext next" href="/plebum-dominium-test/handouts/sparrow.html"><span>07 · Build the 2-of-3 →</span></a>
       </nav>
     </article>
   </main>
 
   <aside class="toc-col">
-<nav class="toc" aria-label="On this sheet"><p>On this sheet</p><ul><li><a href="#the-faces" data-toc="the-faces">The faces</a></li><li><a href="#turn-the-rolls-into-24-words" data-toc="turn-the-rolls-into-24-words">Turn the rolls into 24 words</a></li><li><a href="#the-last-word-is-a-check" data-toc="the-last-word-is-a-check">The last word is a check</a></li><li><a href="#practice-grid" data-toc="practice-grid">Practice grid</a></li></ul></nav>
+
   </aside>
 </div>
 
@@ -229,6 +216,7 @@
 </footer>
 
 <script src="/plebum-dominium-test/assets/js/main.js?v=whytiers7" defer></script>
+<script src="/plebum-dominium-test/assets/js/guide-demos.js?v=phasea1" defer></script>
 <script data-goatcounter="https://plebumbtc.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <div id="newbie-banner" class="newbie-banner" role="dialog" aria-label="New to Bitcoin?" hidden>
   <p><strong>New to Bitcoin?</strong><br><a href="/plebum-dominium-test/new-to-bitcoin.html" class="newbie-go">Start here &rarr;</a></p>
