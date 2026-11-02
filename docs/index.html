@@ -31,7 +31,7 @@
 /* set motion before first paint: saved choice wins, else reduced motion wins */
 (function(){try{var m=localStorage.getItem('pd-motion');if(!m){m=window.matchMedia('(prefers-reduced-motion: reduce)').matches?'off':'on';}document.documentElement.setAttribute('data-motion',m);}catch(e){document.documentElement.setAttribute('data-motion','on');}})();
 /* set path before first paint, so the color reminder is right from the start */
-(function(){try{var p=localStorage.getItem('pd-path');if(p!=='easy'&&p!=='one'&&p!=='full'){p='full';}document.documentElement.setAttribute('data-path',p);}catch(e){document.documentElement.setAttribute('data-path','full');}})();
+(function(){try{var p=localStorage.getItem('pd-path');if(p!=='one'&&p!=='full'){p='full';}document.documentElement.setAttribute('data-path',p);}catch(e){document.documentElement.setAttribute('data-path','full');}})();
 </script>
 </head>
 <body class="home" id="top">
@@ -65,7 +65,6 @@
     <div class="sidebar-path" id="sidebar-path">
       <p class="sidebar-path-label">Choose a path</p>
       <div class="sidebar-path-seg" role="group" aria-label="Choose a setup">
-        <button type="button" data-path="easy" aria-pressed="false">One device</button>
         <button type="button" data-path="one" aria-pressed="false">one key<br>+<br>Passphrase</button>
         <button type="button" data-path="full" aria-pressed="true">Three keys</button>
       </div>
@@ -74,19 +73,19 @@
     <p class="sidebar-label">The bench sheets</p>
     <ul>
 <li><a href="/plebum-dominium-test/choose-path.html" class=""><span class="sheet-num">01</span><span class="sheet-title">Choose your path</span></a></li>
-<li data-paths="easy one full"><a href="/plebum-dominium-test/handouts/terms.html" class="" data-sheet="terms"><span class="sheet-num">T</span><span class="sheet-title">Terms</span><span class="sheet-check" aria-hidden="true">✓</span></a></li>
-<li data-paths="easy one full"><a href="/plebum-dominium-test/handouts/threat-model.html" class="" data-sheet="threat-model"><span class="sheet-num">02</span><span class="sheet-title">Before you begin</span><span class="sheet-check" aria-hidden="true">✓</span></a></li>
-<li data-paths="easy one full"><a href="/plebum-dominium-test/handouts/checklist.html" class="" data-sheet="checklist"><span class="sheet-num">03</span><span class="sheet-title">Checklist</span><span class="sheet-check" aria-hidden="true">✓</span></a></li>
-<li data-paths="easy one full"><a href="/plebum-dominium-test/handouts/verify.html" class="" data-sheet="verify"><span class="sheet-num">05</span><span class="sheet-title">Check the files</span><span class="sheet-check" aria-hidden="true">✓</span></a></li>
-<li data-paths="easy one full"><a href="/plebum-dominium-test/handouts/airgap.html" class="" data-sheet="airgap"><span class="sheet-num">04</span><span class="sheet-title">Two boots</span><span class="sheet-check" aria-hidden="true">✓</span></a></li>
-<li data-paths="easy one full"><a href="/plebum-dominium-test/handouts/dice.html" class="" data-sheet="dice"><span class="sheet-num">06</span><span class="sheet-title">Make the three keys</span><span class="sheet-check" aria-hidden="true">✓</span></a></li>
+<li data-paths="one full"><a href="/plebum-dominium-test/handouts/terms.html" class="" data-sheet="terms"><span class="sheet-num">T</span><span class="sheet-title">Terms</span><span class="sheet-check" aria-hidden="true">✓</span></a></li>
+<li data-paths="one full"><a href="/plebum-dominium-test/handouts/threat-model.html" class="" data-sheet="threat-model"><span class="sheet-num">02</span><span class="sheet-title">Before you begin</span><span class="sheet-check" aria-hidden="true">✓</span></a></li>
+<li data-paths="one full"><a href="/plebum-dominium-test/handouts/checklist.html" class="" data-sheet="checklist"><span class="sheet-num">03</span><span class="sheet-title">Checklist</span><span class="sheet-check" aria-hidden="true">✓</span></a></li>
+<li data-paths="one full"><a href="/plebum-dominium-test/handouts/verify.html" class="" data-sheet="verify"><span class="sheet-num">05</span><span class="sheet-title">Check the files</span><span class="sheet-check" aria-hidden="true">✓</span></a></li>
+<li data-paths="one full"><a href="/plebum-dominium-test/handouts/airgap.html" class="" data-sheet="airgap"><span class="sheet-num">04</span><span class="sheet-title">Two boots</span><span class="sheet-check" aria-hidden="true">✓</span></a></li>
+<li data-paths="one full"><a href="/plebum-dominium-test/handouts/dice.html" class="" data-sheet="dice"><span class="sheet-num">06</span><span class="sheet-title">Make the three keys</span><span class="sheet-check" aria-hidden="true">✓</span></a></li>
 <li data-paths="full"><a href="/plebum-dominium-test/handouts/sparrow.html" class="" data-sheet="sparrow"><span class="sheet-num">07</span><span class="sheet-title">Build the 2-of-3</span><span class="sheet-check" aria-hidden="true">✓</span></a></li>
 <li data-paths="full"><a href="/plebum-dominium-test/handouts/testnet.html" class="" data-sheet="testnet"><span class="sheet-num">10</span><span class="sheet-title">Rehearse on testnet</span><span class="sheet-check" aria-hidden="true">✓</span></a></li>
 <li data-paths="full"><a href="/plebum-dominium-test/handouts/signing.html" class="" data-sheet="signing"><span class="sheet-num">08</span><span class="sheet-title">Practice spend</span><span class="sheet-check" aria-hidden="true">✓</span></a></li>
-<li data-paths="easy one full"><a href="/plebum-dominium-test/handouts/titanium.html" class="" data-sheet="titanium"><span class="sheet-num">09</span><span class="sheet-title">Metal and the map</span><span class="sheet-check" aria-hidden="true">✓</span></a></li>
+<li data-paths="one full"><a href="/plebum-dominium-test/handouts/titanium.html" class="" data-sheet="titanium"><span class="sheet-num">09</span><span class="sheet-title">Metal and the map</span><span class="sheet-check" aria-hidden="true">✓</span></a></li>
 <li data-paths="full"><a href="/plebum-dominium-test/handouts/encryption.html" class="" data-sheet="encryption"><span class="sheet-num">11</span><span class="sheet-title">Hide the wallet map</span><span class="sheet-check" aria-hidden="true">✓</span></a></li>
-<li data-paths="easy one full"><a href="/plebum-dominium-test/handouts/inheritance.html" class="" data-sheet="inheritance"><span class="sheet-num">12</span><span class="sheet-title">If I am gone</span><span class="sheet-check" aria-hidden="true">✓</span></a></li>
-<li data-paths="easy one full"><a href="/plebum-dominium-test/handouts/faq.html" class="" data-sheet="faq"><span class="sheet-num">13</span><span class="sheet-title">If you get stuck</span><span class="sheet-check" aria-hidden="true">✓</span></a></li>
+<li data-paths="one full"><a href="/plebum-dominium-test/handouts/inheritance.html" class="" data-sheet="inheritance"><span class="sheet-num">12</span><span class="sheet-title">If I am gone</span><span class="sheet-check" aria-hidden="true">✓</span></a></li>
+<li data-paths="one full"><a href="/plebum-dominium-test/handouts/faq.html" class="" data-sheet="faq"><span class="sheet-num">13</span><span class="sheet-title">If you get stuck</span><span class="sheet-check" aria-hidden="true">✓</span></a></li>
 <li data-paths="full"><a href="/plebum-dominium-test/handouts/briefing.html" class="" data-sheet="briefing"><span class="sheet-num">14</span><span class="sheet-title">Tough questions</span><span class="sheet-check" aria-hidden="true">✓</span></a></li>
 <li data-paths="one full"><a href="/plebum-dominium-test/handouts/fire-card.html" class="" data-sheet="fire-card"><span class="sheet-num">15</span><span class="sheet-title">Recovery card</span><span class="sheet-check" aria-hidden="true">✓</span></a></li>
 <li data-paths="one full"><a href="/plebum-dominium-test/handouts/single-sig.html" class="" data-sheet="single-sig"><span class="sheet-num">16</span><span class="sheet-title">One key, done right</span><span class="sheet-check" aria-hidden="true">✓</span></a></li>
@@ -114,95 +113,78 @@
 <h2>Single point of failure</h2>
 <p>A single point of failure is any instance that can potentially compromise the wallet.</p>
 <p>This guide teaches Bitcoiners how to create their own Bitcoin self-custody wallet, with optional hardware afterwards.</p>
-<p>There are three setups. They differ in difficulty and in how much trust they ask you to place in any one device or maker. The full program is the most secure. It removes the most single points of failure.</p>
+<p>There are two setups. They differ in difficulty and in how much trust they ask you to place in any one device or maker. The full program is the most secure. It removes the most single points of failure.</p>
 <div class="tier-switch" role="group" aria-label="Show one setup at a time">
 <span class="tier-view-label">View:</span>
-<button type="button" data-tier="0" class="on">One device</button>
-<button type="button" data-tier="1">One key and a passphrase</button>
-<button type="button" data-tier="2">Three keys</button>
+<button type="button" data-tier="0" class="on">One key and a passphrase</button>
+<button type="button" data-tier="1">Three keys</button>
 </div>
 <div class="tier-scroll">
 <table class="tier-chart" data-tier="0">
 <thead>
 <tr>
 <th></th>
-<th class="t0">One device<span class="tier-sub">Lowest work</span></th>
-<th class="t1">One key and a passphrase<span class="tier-sub">Medium work</span></th>
-<th class="t2 hl">Three keys<span class="tier-badge">Most secure</span><span class="tier-sub">Highest work</span></th>
+<th class="t0">One key and a passphrase<span class="tier-sub">Medium work</span></th>
+<th class="t1 hl">Three keys<span class="tier-badge">Most secure</span><span class="tier-sub">Highest work</span></th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <th>Best for</th>
-<td class="t0">Smaller amounts, and learning the process.</td>
-<td class="t1">Larger amounts on one key, with the passphrase as a second secret.</td>
-<td class="t2 hl">Savings you cannot afford to lose.</td>
+<td class="t0">Larger amounts on one key, with the passphrase as a second secret.</td>
+<td class="t1 hl">Savings you cannot afford to lose.</td>
 </tr>
 <tr>
 <th>Trust placed in</th>
-<td class="t0">One device and its maker.</td>
-<td class="t1">One key, one device, one passphrase.</td>
-<td class="t2 hl">No single key, device, or place.</td>
+<td class="t0">One key, one device, one passphrase.</td>
+<td class="t1 hl">No single key, device, or place.</td>
 </tr>
-<tr class="group"><th colspan="4">Theft</th></tr>
+<tr class="group"><th colspan="3">Theft</th></tr>
 <tr>
 <th>Exchange fails</th>
 <td class="t0"><span class="pill yes">✓</span><span class="cell-note">The coins are in a wallet you control.</span></td>
-<td class="t1"><span class="pill yes">✓</span><span class="cell-note">The coins are in a wallet you control.</span></td>
-<td class="t2 hl"><span class="pill yes">✓</span><span class="cell-note">The coins are in a wallet you control.</span></td>
+<td class="t1 hl"><span class="pill yes">✓</span><span class="cell-note">The coins are in a wallet you control.</span></td>
 </tr>
 <tr>
 <th>Plate stolen alone</th>
-<td class="t0"><span class="pill no">✗</span><span class="cell-note">The plate alone can restore the full wallet.</span></td>
-<td class="t1"><span class="pill yes">✓</span><span class="cell-note">The plate alone opens only an empty wallet.</span></td>
-<td class="t2 hl"><span class="pill yes">✓</span><span class="cell-note">One key alone opens nothing.</span></td>
+<td class="t0"><span class="pill yes">✓</span><span class="cell-note">The plate alone opens only an empty wallet.</span></td>
+<td class="t1 hl"><span class="pill yes">✓</span><span class="cell-note">One key alone opens nothing.</span></td>
 </tr>
 <tr>
 <th>Device fails or is tampered with</th>
-<td class="t0"><span class="pill no">✗</span><span class="cell-note">One device and its maker are the whole trust.</span></td>
-<td class="t1"><span class="pill no">✗</span><span class="cell-note">One device and its maker are still the trust.</span></td>
-<td class="t2 hl"><span class="pill yes">✓</span><span class="cell-note">Devices never create the keys.</span></td>
+<td class="t0"><span class="pill no">✗</span><span class="cell-note">One device and its maker are still the trust.</span></td>
+<td class="t1 hl"><span class="pill yes">✓</span><span class="cell-note">Devices never create the keys.</span></td>
 </tr>
-<tr class="group"><th colspan="4">Loss</th></tr>
+<tr class="group"><th colspan="3">Loss</th></tr>
 <tr>
 <th>Weak device randomness</th>
 <td class="t0"><span class="pill yes">✓</span><span class="cell-note">The seed is made with dice you can watch.</span></td>
-<td class="t1"><span class="pill yes">✓</span><span class="cell-note">The seed is made with dice you can watch.</span></td>
-<td class="t2 hl"><span class="pill yes">✓</span><span class="cell-note">The keys are made with dice, offline.</span></td>
+<td class="t1 hl"><span class="pill yes">✓</span><span class="cell-note">The keys are made with dice, offline.</span></td>
 </tr>
 <tr>
 <th>Word copied wrong</th>
 <td class="t0"><span class="pill yes">✓</span><span class="cell-note">Two tools must agree before stamping.</span></td>
-<td class="t1"><span class="pill yes">✓</span><span class="cell-note">Two tools must agree before stamping.</span></td>
-<td class="t2 hl"><span class="pill yes">✓</span><span class="cell-note">Two tools must agree before stamping.</span></td>
+<td class="t1 hl"><span class="pill yes">✓</span><span class="cell-note">Two tools must agree before stamping.</span></td>
 </tr>
 <tr>
 <th>Device stops working</th>
 <td class="t0"><span class="pill yes">✓</span><span class="cell-note">The plate holds the same words.</span></td>
-<td class="t1"><span class="pill yes">✓</span><span class="cell-note">The plate holds the same words.</span></td>
-<td class="t2 hl"><span class="pill yes">✓</span><span class="cell-note">The keys live on the plates, not the device.</span></td>
+<td class="t1 hl"><span class="pill yes">✓</span><span class="cell-note">The keys live on the plates, not the device.</span></td>
 </tr>
 <tr>
 <th>One failure that ends the wallet</th>
-<td class="t0">Lose the 24 words and the coins are gone.</td>
-<td class="t1">Lose the passphrase and the coins are gone.</td>
-<td class="t2 hl">Lose two plates and the map and the coins are locked.</td>
+<td class="t0">Lose the passphrase and the coins are gone.</td>
+<td class="t1 hl">Lose two plates and the map and the coins are locked.</td>
 </tr>
 <tr>
 <th>Heirs cannot find the plan</th>
 <td class="t0"><span class="pill no">✗</span><span class="cell-note">The inheritance sheet only helps if they can find it.</span></td>
-<td class="t1"><span class="pill no">✗</span><span class="cell-note">The inheritance sheet only helps if they can find it.</span></td>
-<td class="t2 hl"><span class="pill no">✗</span><span class="cell-note">The inheritance sheet only helps if they can find it.</span></td>
+<td class="t1 hl"><span class="pill no">✗</span><span class="cell-note">The inheritance sheet only helps if they can find it.</span></td>
 </tr>
 </tbody>
 </table>
 </div>
-<div class="quorum-trio" aria-label="The three setups">
-<div class="qtrio">
-<div class="lockwrap open"><div class="shackle"></div><div class="lockbody">1 key</div></div>
-<p class="qtrio-name">One device</p>
-<p class="qtrio-rule">One key opens it.</p>
-</div>
+<div class="quorum-trio" aria-label="The two setups">
 <div class="qtrio">
 <div class="lockwrap open"><div class="shackle"></div><div class="lockbody">key + paper</div></div>
 <p class="qtrio-name">One key and a passphrase</p>
