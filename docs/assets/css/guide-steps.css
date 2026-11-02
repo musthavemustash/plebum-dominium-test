@@ -195,3 +195,13 @@
 @media (max-width: 600px) {
   .guide-overview { grid-template-columns: 1fr; }
 }
+
+.guide-needs {
+  font-size: 0.95rem;
+  color: var(--muted);
+  margin: 0 0 1.5rem;
+  padding: 0.75rem 1rem;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
