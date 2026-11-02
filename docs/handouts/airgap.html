@@ -19,8 +19,9 @@
 <meta name="twitter:title" content="How do I set up an airgapped computer for Bitcoin with Tails? · Plebum Dominium Test Site">
 <meta name="twitter:description" content="One computer, used twice: an offline Tails boot that holds the seeds, and an everyday watch-only boot that never touches them.">
 <meta name="twitter:image" content="https://plebumbtc.io/assets/img/og-banner.png">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "HowTo", "name": "Two boots", "description": "One computer, used twice: an offline Tails boot that holds the seeds, and an everyday watch-only boot that never touches them.", "step": [{"@type": "HowToStep", "position": 1, "name": "What \"airgapped\" means here", "url": "https://plebumbtc.io/handouts/airgap.html#what-airgapped-means-here"}, {"@type": "HowToStep", "position": 2, "name": "Prepare the two USBs", "url": "https://plebumbtc.io/handouts/airgap.html#prepare-the-two-usbs"}, {"@type": "HowToStep", "position": 3, "name": "Every offline session", "url": "https://plebumbtc.io/handouts/airgap.html#every-offline-session"}, {"@type": "HowToStep", "position": 4, "name": "The dedicated laptop (optional, stronger)", "url": "https://plebumbtc.io/handouts/airgap.html#the-dedicated-laptop-optional-stronger"}]}</script>
+
 <link rel="stylesheet" href="/plebum-dominium-test/assets/css/main.css?v=whytiers7">
+<link rel="stylesheet" href="/plebum-dominium-test/assets/css/guide-steps.css?v=phasea1">
 <link rel="stylesheet" href="/plebum-dominium-test/assets/css/print.css" media="print">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -111,71 +112,37 @@
         <p><a href="/plebum-dominium-test/path-risks.html">Risks of your path &rarr;</a></p>
       </div>
 <nav class="step-banner" aria-label="Sheet 5 of 17"><a class="step-nav" href="/plebum-dominium-test/handouts/verify.html" rel="prev">&larr; 05 &middot; Check the files</a><span class="step-pos"><strong>Step 5 of 17</strong> · Two boots</span><a class="step-nav" href="/plebum-dominium-test/handouts/dice.html" rel="next">06 &middot; Make the three keys &rarr;</a></nav>
-<section class="sheet-meta" aria-label="Sheet overview"><div class="meta-item"><span class="meta-label">Time</span><span class="meta-val">45 min</span></div><div class="meta-item"><span class="meta-label">Difficulty</span><span class="meta-val diff-careful">Careful</span></div><div class="meta-item"><span class="meta-label">Steps</span><span class="meta-val">4 sections</span></div><div class="meta-item meta-needs"><span class="meta-label">You will need</span><span class="meta-val"><a href="/plebum-dominium-test/handouts/checklist.html">Everyday computer</a> &middot; <a href="/plebum-dominium-test/handouts/checklist.html">Tails USB</a></span></div></section>
-<div class="boots-anim" role="img" aria-label="Animation: Boot 1 builds the payment online, the machine shuts down, Boot 2 signs offline on Tails."><div class="boot boot1"><div class="boot-label">Boot 1 · Network on</div><h4>This computer</h4><p>Watches balances. Builds a payment. Never holds a seed.</p><div class="laptop"><div class="screen">Network on</div></div><ul><li>Verify files</li><li>Watch-only wallet</li><li>Export unsigned file</li></ul></div><div class="then">then<br>shut down</div><div class="boot boot2"><div class="boot-label">Boot 2 · Networking off</div><h4>Tails USB</h4><p>This stick is the offline computer. It borrows the hardware, then forgets.</p><div class="laptop"><div class="screen">Networking off</div></div><ul><li>One seed in memory</li><li>Sign the file</li><li>Full shutdown after</li></ul></div></div><p>One computer, used twice. The first boot stays online and never holds a seed. The second boot is the Tails USB: networking off, exactly one seed, then a full shutdown. The seed lives in memory only. Shutdown wipes it.</p>
-<p>Files used: Tails 7.15.1 or later 7.x (verified).</p>
-<figure class="step-fig"><svg width="460" height="180" viewBox="0 0 460 180" font-family="IBM Plex Sans, sans-serif">
-      <rect x="20" y="30" width="180" height="110" rx="10" fill="var(--card)" stroke="var(--line)"/>
-      <text x="110" y="56" fill="var(--muted)" font-size="11" font-weight="700" text-anchor="middle" letter-spacing="2">BOOT 1 · ONLINE</text>
-      <rect x="45" y="70" width="130" height="50" rx="4" fill="var(--card)"/>
-      <text x="110" y="92" fill="var(--muted)" font-size="20" text-anchor="middle">👁</text>
-      <text x="110" y="112" fill="var(--muted)" font-size="9" text-anchor="middle" letter-spacing="1">WATCH · NEVER A SEED</text>
-      <rect x="260" y="30" width="180" height="110" rx="10" fill="var(--card)" stroke="var(--accent)"/>
-      <text x="350" y="56" fill="var(--accent)" font-size="11" font-weight="700" text-anchor="middle" letter-spacing="2">BOOT 2 · TAILS</text>
-      <rect x="285" y="70" width="130" height="50" rx="4" fill="var(--card)"/>
-      <text x="350" y="92" fill="var(--accent)" font-size="13" font-weight="700" text-anchor="middle">1 SEED</text>
-      <text x="350" y="112" fill="var(--muted)" font-size="9" text-anchor="middle" letter-spacing="1">NETWORK OFF · THEN ⏻</text>
-      <text x="230" y="90" fill="var(--muted)" font-size="11" text-anchor="middle">⇄</text>
-      <text x="230" y="152" fill="var(--muted)" font-size="11" text-anchor="middle" letter-spacing="1">SAME COMPUTER · SHUT DOWN FULLY BETWEEN</text>
-    </svg></figure>
-<h2 id="what-airgapped-means-here">What &quot;airgapped&quot; means here</h2>
-<p>Yes:</p>
-<ul>
-<li>Networking Disabled on the Tails welcome screen, before the desktop.</li>
-<li>Files cross on the data USB: checked files in, results out.</li>
-<li>The online computer never holds a seed.</li>
-</ul>
-<p>Not airgapped:</p>
-<ul>
-<li>Turning networking off after a program opened.</li>
-<li>Unplugging a disk that was online yesterday.</li>
-<li>A photo of a seed. A password manager, printer, or cloud note as backup.</li>
-</ul>
-<h2 id="prepare-the-two-usbs">Prepare the two USBs</h2>
-<figure class="step-fig"><svg width="460" height="150" viewBox="0 0 460 150" font-family="IBM Plex Sans, sans-serif">
-      <rect x="40" y="25" width="160" height="90" rx="10" fill="var(--card)" stroke="var(--accent)"/>
-      <text x="120" y="52" fill="var(--accent)" font-size="12" font-weight="700" text-anchor="middle" letter-spacing="2">TAILS USB</text>
-      <text x="120" y="76" fill="var(--muted)" font-size="10" text-anchor="middle">checked file → written</text>
-      <text x="120" y="94" fill="var(--muted)" font-size="10" text-anchor="middle">with official installer</text>
-      <rect x="260" y="25" width="160" height="90" rx="10" fill="var(--card)" stroke="var(--line)"/>
-      <text x="340" y="52" fill="var(--muted)" font-size="12" font-weight="700" text-anchor="middle" letter-spacing="2">DATA USB</text>
-      <text x="340" y="76" fill="var(--muted)" font-size="10" text-anchor="middle">only checked files</text>
-      <text x="340" y="94" fill="var(--muted)" font-size="10" text-anchor="middle">labeled DATA</text>
-      <text x="230" y="140" fill="var(--stop)" font-size="11" text-anchor="middle" letter-spacing="1">NO PERSISTENT STORAGE. THE DRIVE STAYS AMNESIC</text>
-    </svg></figure>
-<p>Download Tails only from the official site. Check the signature and checksum before writing. Write it with the official installer, label it TAILS. Do not create Persistent Storage. Skip the passphrase. The data USB gets only files that already passed the checks.</p>
-<h2 id="every-offline-session">Every offline session</h2>
+<section class="guide-overview" aria-label="Sheet overview"><div class="guide-stat"><span>Time</span><strong>45 min</strong></div><div class="guide-stat"><span>Difficulty</span><strong>Careful</strong></div><div class="guide-stat"><span>Steps</span><strong>4 sections</strong></div></section><p class="guide-needs"><strong>You will need:</strong> <a href="/plebum-dominium-test/handouts/checklist.html">Everyday computer</a> &middot; <a href="/plebum-dominium-test/handouts/checklist.html">Tails USB</a></p>
+<div class="boots-anim" role="img" aria-label="Animation: Boot 1 builds the payment online, the machine shuts down, Boot 2 signs offline on Tails."><div class="boot boot1"><div class="boot-label">Boot 1 · Network on</div><h4>This computer</h4><p>Watches balances. Builds a payment. Never holds a seed.</p><div class="laptop"><div class="screen">Network on</div></div><ul><li>Verify files</li><li>Watch-only wallet</li><li>Export unsigned file</li></ul></div><div class="then">then<br>shut down</div><div class="boot boot2"><div class="boot-label">Boot 2 · Networking off</div><h4>Tails USB</h4><p>This stick is the offline computer. It borrows the hardware, then forgets.</p><div class="laptop"><div class="screen">Networking off</div></div><ul><li>One seed in memory</li><li>Sign the file</li><li>Full shutdown after</li></ul></div></div><p class="guide-intro">One computer, used twice. The first boot stays online and never holds a seed. The second boot is the Tails USB: networking off, exactly one seed, then a full shutdown. The seed lives in memory only. Shutdown wipes it.</p>
+<p>Files used: Tails 7.16 or later 7.x (verified).</p>
+<section class="guide-summary">
+<h2>What you will do</h2>
 <ol>
-<li>Boot the Tails drive. Networking Disabled. Don&#x27;t unlock Persistent Storage.</li>
-<li>Copy only the file that session needs from the data USB.</li>
-<li>Do the work: convert dice, check the words, or restore one seed.</li>
-<li>Copy the result back to the data USB. Shut down fully. Dark screen before the drive comes out.</li>
+<li>Prepare two USBs: Tails and data.</li>
+<li>Boot Tails offline for each seed session.</li>
+<li>Shut down fully between sessions.</li>
 </ol>
-<aside class="callout callout-stop" role="alert"><p class="callout-label">Stop if</p><ul>
-<li>Two seeds in one session: never.</li>
-<li>Networking turns on while a seed is in memory: that session is burned.</li>
-<li>Tails offers Persistent Storage: don&#x27;t create it, don&#x27;t unlock it.</li>
-</ul></aside>
-<p>&lt;!-- TEST MOCKUP: dedicated-laptop section, exploratory, not on live --&gt;</p>
-<h2 id="the-dedicated-laptop-optional-stronger">The dedicated laptop (optional, stronger)</h2>
-<p>A second computer takes the place of the second boot. It is an old laptop, bought used, that never touches a network.</p>
-<p>Buy used. A ThinkPad X230 or anything similar, around $200, with a Wi-Fi card that comes out. Wipe the drive on arrival and leave it blank. Nothing from its old life stays.</p>
-<p>Open the case and pull the Wi-Fi card. If Bluetooth shares the card, it goes with it. Never plug in Ethernet. This is the whole point: with no network hardware, no screen setting can put it online.</p>
-<p>The Tails USB boots on this laptop exactly as this sheet describes. Networking is still set to Disabled on the welcome screen. The data USB still carries files both ways. The daily computer never reboots. It stays online, and it never holds a seed.</p>
-<p>A hard drive remembers, so seed words never touch the laptop&#x27;s disk. They live in memory, on the grid, then on the plates. Tails forgetting everything at shutdown still applies.</p>
-<p>If a network cable ever touches the laptop, wipe it again before it holds a seed.</p>
-<p>The Tails file is still checked before it is written. The data USB still carries only checked files. The stick remains the only wire.</p>
-<p>Next, make the keys.</p>
+</section>
+<section class="guide-section">
+<p class="guide-step-marker">Step 1 / 3</p>
+<h2>Prepare the two USBs.</h2>
+<p>Download Tails only from the official site. Check the signature and checksum before writing. Write it with the official installer, label it TAILS. Do not create Persistent Storage. The data USB gets only files that already passed the checks.</p>
+<p class="guide-verify"><strong>Check:</strong> Tails USB is labeled. Data USB has only verified files.</p>
+</section>
+<section class="guide-section">
+<p class="guide-step-marker">Step 2 / 3</p>
+<h2>Boot offline. Do the work. Shut down.</h2>
+<p>Boot the Tails drive. Networking Disabled on the welcome screen, before the desktop. Copy only the file that session needs from the data USB. Do the work. Copy the result back. Shut down fully. Dark screen before the drive comes out.</p>
+<p class="guide-verify"><strong>Check:</strong> Networking was Disabled before the desktop appeared. One seed per session, never two.</p>
+</section>
+<section class="guide-section">
+<p class="guide-step-marker">Step 3 / 3</p>
+<h2>Know what "airgapped" means.</h2>
+<p><strong>Yes:</strong> Networking Disabled on the welcome screen. Files cross on the data USB. The online computer never holds a seed.</p>
+<p><strong>Not airgapped:</strong> Turning networking off after a program opened. A photo of a seed. A password manager or cloud note as backup.</p>
+</section>
+<aside class="guide-stop"><strong>Stop if:</strong> Two seeds in one session. Networking was on at any point. A seed was photographed or typed anywhere except the offline session.</aside>
+<p>Next, Make the three keys.</p>
 <section class="rules" id="house-rules">
 <p class="why-kicker">The limits</p>
 <h2>House rules</h2>
@@ -197,7 +164,7 @@
   </main>
 
   <aside class="toc-col">
-<nav class="toc" aria-label="On this sheet"><p>On this sheet</p><ul><li><a href="#what-airgapped-means-here" data-toc="what-airgapped-means-here">What &amp;quot;airgapped&amp;quot; means here</a></li><li><a href="#prepare-the-two-usbs" data-toc="prepare-the-two-usbs">Prepare the two USBs</a></li><li><a href="#every-offline-session" data-toc="every-offline-session">Every offline session</a></li><li><a href="#the-dedicated-laptop-optional-stronger" data-toc="the-dedicated-laptop-optional-stronger">The dedicated laptop (optional, stronger)</a></li></ul></nav>
+
   </aside>
 </div>
 
@@ -216,6 +183,7 @@
 </footer>
 
 <script src="/plebum-dominium-test/assets/js/main.js?v=whytiers7" defer></script>
+<script src="/plebum-dominium-test/assets/js/guide-demos.js?v=phasea1" defer></script>
 <script data-goatcounter="https://plebumbtc.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <div id="newbie-banner" class="newbie-banner" role="dialog" aria-label="New to Bitcoin?" hidden>
   <p><strong>New to Bitcoin?</strong><br><a href="/plebum-dominium-test/new-to-bitcoin.html" class="newbie-go">Start here &rarr;</a></p>

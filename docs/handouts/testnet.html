@@ -19,8 +19,9 @@
 <meta name="twitter:title" content="How do I practice Bitcoin multisig with testnet coins first? · Plebum Dominium Test Site">
 <meta name="twitter:description" content="Rehearse the whole multisig build on Bitcoin testnet with worthless coins first, so the real run holds no surprises.">
 <meta name="twitter:image" content="https://plebumbtc.io/assets/img/og-banner.png">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "HowTo", "name": "Rehearse on testnet", "description": "Rehearse the whole multisig build on Bitcoin testnet with worthless coins first, so the real run holds no surprises.", "step": [{"@type": "HowToStep", "position": 1, "name": "The rehearsal", "url": "https://plebumbtc.io/handouts/testnet.html#the-rehearsal"}, {"@type": "HowToStep", "position": 2, "name": "Graduate when", "url": "https://plebumbtc.io/handouts/testnet.html#graduate-when"}]}</script>
+
 <link rel="stylesheet" href="/plebum-dominium-test/assets/css/main.css?v=whytiers7">
+<link rel="stylesheet" href="/plebum-dominium-test/assets/css/guide-steps.css?v=phasea1">
 <link rel="stylesheet" href="/plebum-dominium-test/assets/css/print.css" media="print">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -111,21 +112,34 @@
         <p><a href="/plebum-dominium-test/path-risks.html">Risks of your path &rarr;</a></p>
       </div>
 <nav class="step-banner" aria-label="Sheet 8 of 17"><a class="step-nav" href="/plebum-dominium-test/handouts/sparrow.html" rel="prev">&larr; 07 &middot; Build the 2-of-3</a><span class="step-pos"><strong>Step 8 of 17</strong> · Rehearse on testnet</span><a class="step-nav" href="/plebum-dominium-test/handouts/signing.html" rel="next">08 &middot; Practice spend &rarr;</a></nav>
-<section class="sheet-meta" aria-label="Sheet overview"><div class="meta-item"><span class="meta-label">Time</span><span class="meta-val">30 min</span></div><div class="meta-item"><span class="meta-label">Difficulty</span><span class="meta-val diff-moderate">Moderate</span></div><div class="meta-item"><span class="meta-label">Steps</span><span class="meta-val">2 sections</span></div><div class="meta-item meta-needs"><span class="meta-label">You will need</span><span class="meta-val"><a href="/plebum-dominium-test/handouts/verify.html">Sparrow</a> &middot; Free testnet coins</span></div></section>
-<p>Before any plate exists, do the <strong>entire flow with play money</strong>: build the 2-of-3, receive, sign with two keys, shut down between sessions, broadcast. <strong>The clicks are identical to mainnet.</strong> Mistakes here cost nothing and teach everything.</p>
-<aside class="callout callout-warning" role="note"><p class="callout-label">Warning</p><p><strong>Testnet coins are worthless.</strong> They cannot be sold, converted, or spent as real bitcoin. That is the point: there is nothing at stake except your learning. Do not &quot;test&quot; with real bitcoin.</p></aside>
+<section class="guide-overview" aria-label="Sheet overview"><div class="guide-stat"><span>Time</span><strong>30 min</strong></div><div class="guide-stat"><span>Difficulty</span><strong>Moderate</strong></div><div class="guide-stat"><span>Steps</span><strong>2 sections</strong></div></section><p class="guide-needs"><strong>You will need:</strong> <a href="/plebum-dominium-test/handouts/verify.html">Sparrow</a> &middot; Free testnet coins</p>
+<p class="guide-intro">Before any plate exists, do the entire flow with play money: build the 2-of-3, receive, sign with two keys, shut down between sessions, broadcast. The clicks are identical to mainnet.</p>
+<aside class="guide-warning"><strong>Safety first:</strong> Testnet coins are worthless. They cannot be sold or spent as real bitcoin. That is the point. Do not "test" with real bitcoin.</aside>
 <p>Files used: Sparrow 2.5.5.</p>
-<h2 id="the-rehearsal">The rehearsal</h2>
+<section class="guide-summary">
+<h2>What you will do</h2>
 <ol>
-<li><strong>Get testnet coins from a faucet.</strong> Make a testnet address in Sparrow (network: <code>testnet</code>), paste it into a faucet, wait for confirmation. This is the only step that touches the internet with your test wallet. Fine, it&#x27;s worthless.</li>
-<li><strong>Build the 2-of-3 in Sparrow on testnet.</strong> Generate three <strong>throwaway</strong> test seeds. Roll dice if you like the ritual, but these get discarded afterward. Import them into Sparrow, build the 2-of-3, <strong>verify the first receiving address on a second screen</strong> (same as the mainnet sheet).</li>
-<li><strong>Receive the faucet coins.</strong> Send the tBTC to your test wallet&#x27;s first receiving address. Watch the transaction confirm. This is your first look at how receive works, on coins that don&#x27;t matter.</li>
-<li><strong>Two-key sign with a shutdown between.</strong> Build a small spend, sign with key 1, <strong>shut the machine down</strong>, boot fresh, sign with key 2, broadcast. This is the exact airgap shutdown ritual the mainnet practice spend demands. Rehearse it here where a forgotten step costs nothing.</li>
-<li><strong>Broadcast and confirm.</strong> Send the test coins onward (back to the faucet if it accepts returns, or to a second test address you control). Watch it confirm on a testnet block explorer. You just completed the whole loop.</li>
+<li>Get testnet coins from a faucet.</li>
+<li>Build a throwaway 2-of-3. Receive the coins.</li>
+<li>Sign with two keys, with a shutdown between.</li>
+<li>Broadcast. Then burn the test seeds.</li>
 </ol>
-<aside class="callout callout-stop" role="note"><p class="callout-label">Stop</p><p><strong>Rule:</strong> never reuse test seeds on mainnet. When the rehearsal is done, the test seeds are burned. They do not get stamped, written down, or kept.</p></aside>
-<h2 id="graduate-when">Graduate when</h2>
-<p>You built, received, two-key-signed across a shutdown, and broadcast, without the sheet open. If any step felt shaky, repeat it on testnet. <strong>The plates come after you&#x27;re bored of succeeding on testnet.</strong></p>
+</section>
+<section class="guide-section">
+<p class="guide-step-marker">Step 1 / 2</p>
+<h2>Run the rehearsal.</h2>
+<p><strong>Get testnet coins.</strong> Make a testnet address in Sparrow, paste it into a faucet, wait for confirmation.</p>
+<p><strong>Build the 2-of-3.</strong> Generate three throwaway test seeds. Import them, build the 2-of-3, verify the first address on a second screen.</p>
+<p><strong>Receive and sign.</strong> Send the tBTC to your test wallet. Build a small spend, sign with key 1, shut down, boot fresh, sign with key 2, broadcast.</p>
+<p class="guide-verify"><strong>Check:</strong> The transaction confirms on a testnet explorer. You completed the whole loop.</p>
+</section>
+<section class="guide-section">
+<p class="guide-step-marker">Step 2 / 2</p>
+<h2>Burn the test seeds.</h2>
+<p>Never reuse test seeds on mainnet. When the rehearsal is done, the test seeds are burned. They do not get stamped, written down, or kept.</p>
+</section>
+<aside class="guide-stop"><strong>Stop if:</strong> You're tempted to use real bitcoin for the rehearsal. You're tempted to keep a test seed.</aside>
+<p><strong>Graduate when:</strong> You built, received, two-key-signed across a shutdown, and broadcast, without the sheet open. The plates come after you're bored of succeeding on testnet.</p>
       <nav class="prevnext-row" aria-label="Previous and next sheets">
 <a class="prevnext prev" href="/plebum-dominium-test/handouts/sparrow.html"><span>← 07 · Build the 2-of-3</span></a>
 <span class="step-pos-bottom"><strong>Step 8 of 17</strong> · Rehearse on testnet</span>
@@ -135,7 +149,7 @@
   </main>
 
   <aside class="toc-col">
-<nav class="toc" aria-label="On this sheet"><p>On this sheet</p><ul><li><a href="#the-rehearsal" data-toc="the-rehearsal">The rehearsal</a></li><li><a href="#graduate-when" data-toc="graduate-when">Graduate when</a></li></ul></nav>
+
   </aside>
 </div>
 
@@ -154,6 +168,7 @@
 </footer>
 
 <script src="/plebum-dominium-test/assets/js/main.js?v=whytiers7" defer></script>
+<script src="/plebum-dominium-test/assets/js/guide-demos.js?v=phasea1" defer></script>
 <script data-goatcounter="https://plebumbtc.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <div id="newbie-banner" class="newbie-banner" role="dialog" aria-label="New to Bitcoin?" hidden>
   <p><strong>New to Bitcoin?</strong><br><a href="/plebum-dominium-test/new-to-bitcoin.html" class="newbie-go">Start here &rarr;</a></p>
