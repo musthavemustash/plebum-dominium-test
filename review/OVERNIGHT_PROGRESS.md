@@ -46,3 +46,14 @@ Observed during link QA: the Check the files page still has a production-domain-
 ## Independent-path deployment confirmed
 
 PR #7 merged as `434f27b37f98c0a77f838730519f85d8ef3ef71a`. GitHub Pages run [41812171757](https://github.com/musthavemustash/plebum-dominium-test/actions/runs/41812171757) completed successfully on November 4. Published route overviews: https://musthavemustash.github.io/plebum-dominium-test/paths/one/index.html and https://musthavemustash.github.io/plebum-dominium-test/paths/three/index.html . Public web retrieval of both URLs returned a tool access error; live rendering and interaction are not independently confirmed. Browser testing remains the first next-run task. Local search-index checks additionally confirmed 12/16 entries, correct ordering, and route-local URLs.
+
+## November 4 — homepage and glossary batch
+
+- Confirmed PR #8 main and successful Pages deployment; no open PRs at batch start.
+- Integrated preserved homepage and Terms content selectively. The homepage starts at Terms and uses readable cards with balanced tradeoffs; the glossary has 12 definitions and local filtering. The main navigation controller and user-requested page order remain intact.
+- Corrected the key-threshold demo so it never claims three seeds automatically reconstruct all configuration. Removed unverified headline ticker from the homepage; news.html still requires its own factual audit.
+- Fixed the remaining stale mobile position numbers in generated path pages and overview pages. All path copies/search indexes regenerated from the canonical handouts.
+- `node scripts/test_entry_interactions.js` covers filter states and key demo/reset using DOM doubles; path checks and 95-page link/drift checks pass. These are NOT browser tests. Browser/mobile/live visual QA remains outstanding after the earlier policy block.
+- The remaining content from local WIP `584827b` has now been considered for homepage/Terms; do not reapply its obsolete chooser or navigation code. Path-risk wording from that WIP remains to review.
+
+Next: confirm this batch's PR/Pages status, then prioritize Check the files, Two boots, and key-generation handouts for safety accuracy and path-specific clarity. Remaining supporting pages, downloads, news, and tools still require review. Full-site completion and wallet recovery validation are NOT claimed.

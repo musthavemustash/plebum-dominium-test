@@ -40,6 +40,7 @@ def render(path, step):
   s = re.sub(r'<div class="'+key+r'"[^>]*>.*?</div>', '', s, flags=re.S)
  label = escape(info['label']); position = f'Step {idx+1} of {len(steps)}'
  s = re.sub(r'<span class="header-sheet">.*?</span>', '<span class="header-sheet">'+position+'</span>',s)
+ s = re.sub(r'<span class="mobilebar-pos">.*?</span>', '<span class="mobilebar-pos">'+position+'</span>',s)
  s = re.sub(r'<p class="kicker">.*?</p>', '<p class="kicker">'+label+' · '+position+'</p>',s,count=1)
  def navlink(i, cls, rel):
   if i < 0: return '<a class="'+cls+'" href="'+BASE+'">← Home</a>'
@@ -82,6 +83,7 @@ def outputs():
   s=re.sub(r'<aside class="toc-col".*?</aside>','',s,flags=re.S)
   s=s.replace('data-guide-slug="terms"','data-guide-slug="index"').replace('class="active" aria-current="page"','')
   s=re.sub(r'<span class="header-sheet">.*?</span>','<span class="header-sheet">Path overview</span>',s)
+  s=re.sub(r'<span class="mobilebar-pos">.*?</span>','<span class="mobilebar-pos">Path overview</span>',s)
   s=re.sub(r'<title>.*?</title>','<title>'+escape(info['label'])+' · Plebum Dominium Test Site</title>',s)
   out['paths/'+path+'/index.html']=s
   entries=[]

@@ -49,3 +49,15 @@ Validation performed:
 - Search now loads a path-specific index and uses the same numbers as that route. Fixed the existing main-script base selector so cache-version query strings no longer break the search-index URL.
 - Browser QA NOT performed for this batch: preview initially refused connection; after the managed preview restarted, browser security policy denied access. No alternate browser surface or bypass was attempted. Runtime clicks, mobile rendering, keyboard interaction, and live browser confirmation remain outstanding. Static checks do not certify these.
 - No cryptographic implementation or offline-tool boundary was changed. Existing detailed handout custody guidance remains subject to the broader content audit. In particular, shared Two boots/Check the files content still needs review for path-specific explanations; this batch establishes independent navigation, not a complete rewrite of every procedure.
+
+## November 4 — homepage and glossary batch
+
+Baseline: PR #8 main `93131ec2f2555b5922e395eb48f94be329c5e347`, Pages success confirmed; no open PR at start. Integrated the preserved entry-page work selectively rather than overwriting the new navigation controller.
+
+Homepage now uses responsive two-column/one-column cards in normal document flow, one H1, balanced setup tradeoffs, explicit test-site/no-secret warning, and Terms-first CTA. Removed the unverified headline ticker from this page only. Terms has twelve visible definitions without JavaScript and a progressive local filter when JavaScript runs. Corrected the demo's three-seed recovery claim and retained descriptor/configuration backup advice. Mobile position labels now agree with route numbers, including overview pages.
+
+Primary references checked November 4: BIP39 https://raw.githubusercontent.com/bitcoin/bips/master/bip-0039.mediawiki (entropy/checksum, mnemonic-to-seed, every passphrase produces a seed); BIP174 https://raw.githubusercontent.com/bitcoin/bips/master/bip-0174.mediawiki (portable transaction/signature information and offline signers). Multisig backup guidance also follows the Sparrow source recorded in the earlier security review; its raw-source re-fetch was unavailable during this run.
+
+Validation: `node scripts/test_entry_interactions.js` passes glossary matching/no-match/clear behavior, all three key-demo states and reset, and the single homepage H1. These use DOM doubles and are not browser tests. Path traversal/parity tests, 95-page local-reference/source-drift validation, JavaScript syntax checks, and diff whitespace checks pass. No seed/private-key/passphrase inputs or cryptographic/offline-tool changes were introduced.
+
+Browser/live appearance remains unverified following the earlier browser policy block; no workaround was used. Actual mobile/keyboard/theme/print rendering and screen-reader behavior still require browser review. Responsive CSS and print behavior are implemented but not visually certified.

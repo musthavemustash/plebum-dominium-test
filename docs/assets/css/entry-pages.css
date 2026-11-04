@@ -1,0 +1,17 @@
+/* Entry pages: readable cards in ordinary document flow. */
+.entry-lead{font-size:clamp(1.1rem,2.1vw,1.4rem);line-height:1.6;max-width:48rem;color:var(--muted)}
+.entry-section{margin:2.5rem 0;border-top:1px solid var(--line);padding-top:2rem}
+.entry-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin:1.5rem 0}
+.entry-card{min-width:0;padding:1.4rem;border:1px solid var(--line);border-radius:14px;background:var(--card);overflow-wrap:anywhere}
+.entry-card h2,.entry-card h3{margin:0 0 .7rem}.entry-card p{margin:.65rem 0;line-height:1.65}.entry-card ul{padding-left:1.2rem}
+.entry-label{font:700 .75rem/1.5 "IBM Plex Mono",monospace;color:var(--accent);letter-spacing:.08em;text-transform:uppercase}
+.entry-actions{display:flex;gap:.75rem;flex-wrap:wrap;margin:1.5rem 0}.entry-actions a,.entry-select{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:.7rem 1rem;border:1px solid var(--accent);border-radius:9px;background:var(--card);color:var(--accent);font-family:inherit;font-weight:600;font-size:1rem;line-height:1.4;text-decoration:none;cursor:pointer}
+.entry-actions a:first-child,.entry-select[aria-pressed="true"]{background:var(--accent);color:var(--btn-ink,#fff)}
+.entry-card[data-selected="true"]{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+.entry-note{padding:1rem 1.25rem;border-left:4px solid var(--accent);background:var(--accent-soft);border-radius:0 10px 10px 0;line-height:1.65}
+.entry-status{font-weight:600;min-height:1.5em}.entry-sources{font-size:.9rem;color:var(--muted);line-height:1.6}
+.glossary-search{margin:1.5rem 0}.glossary-search label{display:block;font-weight:700;margin-bottom:.5rem}.glossary-search input{box-sizing:border-box;width:100%;min-height:48px;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;padding:.8rem 1rem;font:inherit}
+.entry-glossary{gap:1rem}.entry-glossary .term{padding:1.25rem;border-radius:14px}.entry-glossary dt{font-size:1rem;text-transform:none;letter-spacing:0;margin-bottom:.6rem}.entry-glossary dd{line-height:1.65}.entry-glossary .term[hidden]{display:none}
+.entry-page :focus-visible{outline:3px solid var(--accent);outline-offset:4px}
+@media(max-width:640px){.entry-grid{grid-template-columns:1fr}.entry-card{padding:1.15rem}.entry-section{margin:2rem 0}.entry-actions a{flex:1 1 100%;text-align:center}}
+@media print{.glossary-search,.entry-select,.entry-status{display:none}.entry-glossary .term[hidden]{display:block}.entry-grid{grid-template-columns:1fr}.entry-card{break-inside:avoid}}
