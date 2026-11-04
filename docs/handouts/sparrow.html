@@ -34,7 +34,14 @@
 /* set path before first paint, so the color reminder is right from the start */
 (function(){try{var p=localStorage.getItem('pd-path');if(p!=='one'&&p!=='full'){p='full';}document.documentElement.setAttribute('data-path',p);}catch(e){document.documentElement.setAttribute('data-path','full');}})();
 </script>
-</head>
+<style>
+.sparrow-open{max-width:100%;overflow:visible}
+.sparrow-open-grid{list-style:none!important;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin:1.5rem 0!important;padding:0!important}
+.sparrow-open-grid li{border:1px solid var(--line);border-radius:14px;background:var(--card);padding:1.25rem!important;margin:0!important;min-width:0}
+.sparrow-open-grid p{line-height:1.65;margin:.5rem 0 0}
+.sparrow-open-stop{border-left:4px solid var(--accent);background:var(--accent-soft);padding:1rem 1.25rem;border-radius:0 10px 10px 0}
+@media(max-width:740px){.sparrow-open-grid{grid-template-columns:1fr}}
+</style></head>
 <body class="" id="top">
 <div class="splash" id="pd-splash" hidden aria-hidden="true">
   <p class="splash-title">Plebum Dominium: Independent At-Home Bitcoin Self-custody</p>
@@ -161,11 +168,18 @@ $ ./bin/Sparrow</code></pre>
 <h2>Fresh boot. No seed. Build the vault.</h2>
 <p>Boot Tails again. Do not type any seed. New wallet → Multi Signature → Native Segwit → 2 of 3 → import the three xpub files. Confirm the path. Export the output descriptor to the data USB. That file is the wallet map.</p>
 </section>
-<section class="guide-section">
-<p class="guide-step-marker">Step 7 / 7</p>
-<h2>Confirm the first address on a second screen.</h2>
-<p><strong>1 · Build in Sparrow.</strong> Write down the first receiving address it shows. The full string, not the QR code.</p>
-<p><strong>2 · Cross-check independently.</strong> On a separate offline environment, reconstruct the intended 2-of-3 wallet using independently verified cosigner information. Comparing an address derived from the same unverified descriptor is not an independent security check.</p><p></p><p><strong>3 · Independently verify the wallet policy.</strong> On a second trusted device, independently obtain and verify each cosigner's master fingerprint, account derivation path, and extended public key against records taken directly from the corresponding signer. Confirm <strong>2-of-3</strong>, the intended script type (native SegWit), and the complete descriptor including key order and checksum where supported. Do not trust an xpub list or descriptor copied only from the coordinator you are checking.</p><p></p><p><strong>4 · Compare receive addresses.</strong> Reconstruct the watch-only wallet from those independently verified details on the second device, then compare several receive addresses character for character. Never enter seed words on a networked device. <strong>Matching addresses alone do not prove the coordinator is honest:</strong> two applications using the same substituted descriptor can display the same attacker-controlled addresses. If any key, fingerprint, path, policy, or address differs, stop; do not fund the wallet.</p></aside>
+<section class="guide-section sparrow-open" aria-labelledby="sparrow-verify-title">
+<p class="guide-step-marker">Step 7 / 7 · Before funding</p>
+<h2 id="sparrow-verify-title">Verify the wallet independently</h2>
+<p>Matching addresses alone cannot prove a coordinator is honest if both devices use the same unverified descriptor.</p>
+<ol class="sparrow-open-grid">
+<li><strong>01 · Record addresses</strong><p>Record several complete receiving addresses from Sparrow offline. Write the full strings, not just QR codes.</p></li>
+<li><strong>02 · Verify each cosigner</strong><p>On a separate trusted offline device, compare each cosigner’s master fingerprint, derivation path, and extended public key with records obtained directly from that signer—not solely from the coordinator.</p></li>
+<li><strong>03 · Check the wallet policy</strong><p>Confirm the 2-of-3 threshold, native SegWit script type, and full descriptor including key order and checksum where supported.</p></li>
+<li><strong>04 · Rebuild and compare</strong><p>Reconstruct a watch-only wallet from independently verified details. Compare several receiving addresses character for character. Never enter seeds on a networked device.</p></li>
+</ol>
+<p class="sparrow-open-stop"><strong>Stop before funding if anything differs.</strong> If a key, fingerprint, path, policy, or address differs, investigate offline. Two devices using the same substituted descriptor may show matching attacker-controlled addresses.</p>
+</section>
 <p>Next, Practice spend.</p>
       <nav class="prevnext-row" aria-label="Previous and next sheets">
 <a class="prevnext prev" href="/plebum-dominium-test/handouts/dice.html"><span>← 07 · Make the three keys</span></a>
