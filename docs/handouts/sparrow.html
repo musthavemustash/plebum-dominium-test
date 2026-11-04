@@ -161,11 +161,7 @@
 <p class="guide-step-marker">Step 7 / 7</p>
 <h2>Confirm the first address on a second screen.</h2>
 <p><strong>1 · Build in Sparrow.</strong> Write down the first receiving address it shows. The full string, not the QR code.</p>
-<p><strong>2 · Cross-check in Electrum.</strong> Rebuild the same 2-of-3 in Electrum offline from the same seeds. Compare the first address.</p>
-<p><strong>3 · Display on a second device.</strong> Load the wallet as watch-only (xpubs only, never seeds) on your phone or second computer. Compare character for character.</p>
-<p class="guide-verify"><strong>Check:</strong> All three agree. If anything differs, stop and rebuild. Do not fund the wallet until this matches.</p>
-</section>
-<aside class="guide-stop"><strong>Stop if:</strong> The path doesn't read <code>m/48'/0'/0'/2'</code>. Networking is on at any point. You're tempted to type a second seed without shutting down.</aside>
+<p><strong>2 · Cross-check independently.</strong> On a separate offline environment, reconstruct the intended 2-of-3 wallet using independently verified cosigner information. Comparing an address derived from the same unverified descriptor is not an independent security check.</p><p></p><p><strong>3 · Independently verify the wallet policy.</strong> On a second trusted device, independently obtain and verify each cosigner's master fingerprint, account derivation path, and extended public key against records taken directly from the corresponding signer. Confirm <strong>2-of-3</strong>, the intended script type (native SegWit), and the complete descriptor including key order and checksum where supported. Do not trust an xpub list or descriptor copied only from the coordinator you are checking.</p><p></p><p><strong>4 · Compare receive addresses.</strong> Reconstruct the watch-only wallet from those independently verified details on the second device, then compare several receive addresses character for character. Never enter seed words on a networked device. <strong>Matching addresses alone do not prove the coordinator is honest:</strong> two applications using the same substituted descriptor can display the same attacker-controlled addresses. If any key, fingerprint, path, policy, or address differs, stop; do not fund the wallet.</p></aside>
 <p>Next, Practice spend.</p>
       <nav class="prevnext-row" aria-label="Previous and next sheets">
 <a class="prevnext prev" href="/plebum-dominium-test/handouts/dice.html"><span>← 07 · Make the three keys</span></a>
