@@ -33,6 +33,23 @@
 /* set path before first paint, so the color reminder is right from the start */
 (function(){try{var p=localStorage.getItem('pd-path');if(p!=='one'&&p!=='full'){p='full';}document.documentElement.setAttribute('data-path',p);}catch(e){document.documentElement.setAttribute('data-path','full');}})();
 </script>
+<style>
+/* Staging-only Sparrow verification layout; ordinary page scrolling. */
+.sparrow-verify{margin:2.5rem 0 3rem;max-width:100%;border-top:1px solid var(--line);padding-top:2rem}
+.sparrow-verify-intro{max-width:46rem;margin-bottom:1.5rem}
+.sparrow-eyebrow{display:block;font:700 .73rem/1.4 "IBM Plex Mono",monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.7rem}
+.sparrow-verify h3{font-size:clamp(1.55rem,3vw,2.25rem);line-height:1.15;margin:0 0 .85rem}
+.sparrow-verify-intro p{font-size:1.04rem;line-height:1.7;color:var(--muted)}
+.sparrow-verify-grid{list-style:none!important;padding:0!important;margin:0!important;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;counter-reset:none}
+.sparrow-verify-grid>li{display:flex;gap:1rem;min-width:0;margin:0!important;padding:1.35rem!important;border:1px solid var(--line);border-radius:14px;background:var(--card)}
+.sparrow-step-number{font:700 .85rem/1.5 "IBM Plex Mono",monospace;color:var(--accent);flex:none}
+.sparrow-verify-grid h4{margin:0 0 .55rem;font-size:1.02rem;line-height:1.35}
+.sparrow-verify-grid p{margin:0;font-size:.94rem;line-height:1.65;overflow-wrap:anywhere}
+.sparrow-verify-stop{margin-top:1.2rem;border-left:4px solid var(--accent);background:var(--accent-soft);padding:1.1rem 1.25rem;line-height:1.65;border-radius:0 10px 10px 0}
+.sparrow-verify-stop strong{display:block;margin-bottom:.25rem}
+@media(max-width:740px){.sparrow-verify-grid{grid-template-columns:1fr}.sparrow-verify-grid>li{padding:1.1rem!important}.sparrow-verify{margin-top:2rem}}
+@media print{.sparrow-verify-grid{grid-template-columns:1fr}.sparrow-verify-grid>li{break-inside:avoid}}
+</style>
 </head>
 <body class="" id="top">
 <div class="splash" id="pd-splash" hidden aria-hidden="true">
@@ -194,7 +211,20 @@ $ ./bin/Sparrow
 <figure class="shot-fig"><img src="/plebum-dominium-test/assets/img/sparrow-step6-keystore1.png" alt="Sparrow Keystore 1 with derivation path and a redacted xpub field" loading="lazy"><span class="num" style="top:61.5%">1</span><span class="leader" style="left:6%;width:35.5%;top:61.5%"></span><span class="dot" style="left:41.5%;top:61.5%"></span><span class="num" style="top:67.5%">2</span><span class="leader" style="left:6%;width:35.5%;top:67.5%"></span><span class="dot" style="left:41.5%;top:67.5%"></span><span class="num" style="top:75.5%">3</span><span class="leader" style="left:6%;width:35.5%;top:75.5%"></span><span class="dot" style="left:41.5%;top:75.5%"></span></figure><ol class="shot-key"><li>Master fingerprint: check it against the key it came from.</li><li>Derivation: m/48'/0'/0'/2'. Anything else, stop.</li><li>xpub field: this is where s1-xpub.txt goes. The value is blacked out here because it is a dummy key, and a reader must never copy a screenshot key.</li></ol><figure class="shot-fig"><img src="/plebum-dominium-test/assets/img/sparrow-step6-apply.png" alt="Sparrow Keystore 3 filled, with Apply enabled" loading="lazy"><span class="numd" style="left:57.1%;top:48.8%">1</span><span class="num" style="top:32%">2</span><span class="leader" style="left:6%;width:29.2%;top:32%"></span><span class="dot" style="left:35.2%;top:32%"></span><span class="numd" style="left:68.8%;top:93%">3</span></figure><ol class="shot-key"><li>Keystore 3, filled the same way as Keystore 1 and Keystore 2.</li><li>Descriptor: wsh(sortedmulti(2, Keystore1, Keystore2, Keystore3)). That file is the wallet map.</li><li>Apply: enabled only when all three keystores are filled. Click it to build the vault.</li></ol><p class="shot-note">Real Sparrow screenshots, dummy keys only, xpub values blacked out. Step 4 keeps its diagram, because seed words are never photographed.</p>
 
 <p>Boot Tails again. Do not type any seed. New wallet → Multi Signature → Native Segwit → 2 of 3 → import the three xpub files. Confirm the path. Export the output descriptor to the data USB. That file is the wallet map.</p>
-<aside class="callout callout-stop" role="note"><p class="callout-label">Stop</p><p><strong>Confirm the first address on a second screen.</strong></p><p></p><p>Sparrow built your wallet from your seeds. But if malware sat on the build machine, it could show you <strong>an address it controls</strong> while you trust it. A second screen the malware can&#x27;t reach closes that hole. <strong>Do not fund the wallet until this matches.</strong></p><p></p><p><strong>1 · Build in Sparrow.</strong> Finish the 2-of-3 build on the airgapped machine as usual. Write down the <strong>first receiving address</strong> it shows. Write the full string, not the QR code.</p><p></p><p><strong>2 · Cross-check independently.</strong> On a separate offline environment, reconstruct the intended 2-of-3 wallet using independently verified cosigner information. Comparing an address derived from the same unverified descriptor is not an independent security check.</p><p></p><p><strong>3 · Independently verify the wallet policy.</strong> On a second trusted device, independently obtain and verify each cosigner's master fingerprint, account derivation path, and extended public key against records taken directly from the corresponding signer. Confirm <strong>2-of-3</strong>, the intended script type (native SegWit), and the complete descriptor including key order and checksum where supported. Do not trust an xpub list or descriptor copied only from the coordinator you are checking.</p><p></p><p><strong>4 · Compare receive addresses.</strong> Reconstruct the watch-only wallet from those independently verified details on the second device, then compare several receive addresses character for character. Never enter seed words on a networked device. <strong>Matching addresses alone do not prove the coordinator is honest:</strong> two applications using the same substituted descriptor can display the same attacker-controlled addresses. If any key, fingerprint, path, policy, or address differs, stop; do not fund the wallet.</p></aside>
+<section class="sparrow-verify" aria-labelledby="sparrow-verify-heading">
+  <div class="sparrow-verify-intro">
+    <span class="sparrow-eyebrow">Before you deposit bitcoin</span>
+    <h3 id="sparrow-verify-heading">Verify the wallet independently</h3>
+    <p>A matching address is not enough if both devices use the same unverified wallet descriptor. Confirm the actual cosigners and wallet policy first.</p>
+  </div>
+  <ol class="sparrow-verify-grid">
+    <li><span class="sparrow-step-number" aria-hidden="true">01</span><div><h4>Record the receiving addresses</h4><p>Finish the 2-of-3 setup in Sparrow offline. Write down several complete receiving addresses, not just QR codes.</p></div></li>
+    <li><span class="sparrow-step-number" aria-hidden="true">02</span><div><h4>Verify each cosigner</h4><p>On a separate trusted offline device, compare each cosigner’s master fingerprint, account derivation path, and extended public key with records obtained directly from that signer. Do not reuse only the coordinator’s exported descriptor.</p></div></li>
+    <li><span class="sparrow-step-number" aria-hidden="true">03</span><div><h4>Confirm the wallet policy</h4><p>Check the 2-of-3 threshold, native SegWit script type, and complete descriptor—including key order and checksum where supported—against your independently verified details.</p></div></li>
+    <li><span class="sparrow-step-number" aria-hidden="true">04</span><div><h4>Rebuild and compare</h4><p>Reconstruct a watch-only wallet from the verified details on the second device. Compare several receiving addresses character for character. Never enter seed words on a networked device.</p></div></li>
+  </ol>
+  <div class="sparrow-verify-stop" role="note"><strong>Stop before funding if anything differs.</strong> If any fingerprint, key, path, threshold, script type, descriptor, or receiving address does not match, investigate offline. Matching addresses from a copied, compromised descriptor do not prove the coordinator is honest.</div>
+</section>
 <h2 id="step-7-watch-only-on-the-everyday-computer">Step 7 · Watch-only on the everyday computer.</h2>
 <figure class="step-fig"><svg width="400" height="150" viewBox="0 0 400 150" font-family="IBM Plex Sans, sans-serif">
         <rect x="110" y="15" width="180" height="110" rx="10" fill="var(--card)" stroke="var(--line)"/>
