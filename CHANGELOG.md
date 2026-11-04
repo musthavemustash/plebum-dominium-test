@@ -4,6 +4,8 @@ Production releases will use Semantic Versioning and follow the staging-first re
 
 ## Unreleased (staging only)
 
+- Added reproducible public-vector and encryption compatibility tests plus tool-provenance findings. Core tests pass; download release remains blocked by provenance, version pins and offline/UI issues.
+
 - Removed the preselected-path shortcut above the chooser options on both routes.
 
 - Revised FAQ variants, briefing, single-sig, optional two-device guide and path-risk comparison. Corrected 2-of-3 compromise and passphrase migration claims. Downloads now flags five manifest mismatches and legacy documents pending reconciliation.
