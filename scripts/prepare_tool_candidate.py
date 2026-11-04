@@ -16,8 +16,7 @@ SOURCES = {
         'eff_large_wordlist.txt', 'hash_checker.html', 'verify_downloads.py',
         'verify_kit.sh')},
 }
-BLOCKERS = ['Electrum 4.8.3 artifact/signature not authenticated (HTTP 403)',
-            'Actual browser and target offline environment tests incomplete']
+BLOCKERS = ['Actual browser and target offline environment tests incomplete']
 
 def digest(data):
     return hashlib.sha256(data).hexdigest()

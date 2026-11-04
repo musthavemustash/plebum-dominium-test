@@ -1,0 +1,17 @@
+gpg: keybox '/tmp/tmpouoz7gd6/pubring.kbx' created
+gpg: /tmp/tmpouoz7gd6/trustdb.gpg: trustdb created
+gpg: key 2EBB056FD847F8A7: public key "Stephan Oeste (it) <it@oeste.de>" imported
+gpg: can't connect to the gpg-agent: Operation not permitted
+gpg: no gpg-agent running in this session
+gpg: key 7ED8D82B37192688: public key "Felix B. <f@f321x.com>" imported
+gpg: can't connect to the gpg-agent: Operation not permitted
+gpg: key CA9EEEC43DF911DC: 2 signatures not checked due to missing keys
+gpg: key CA9EEEC43DF911DC: public key "SomberNight/ghost43 (Electrum RELEASE signing key) <somber.night@protonmail.com>" imported
+gpg: can't connect to the gpg-agent: Operation not permitted
+gpg: key CFB2C83C66CD792A: public key "Sebastian van Staa <sebastian.van.staa@gmail.com>" imported
+gpg: can't connect to the gpg-agent: Operation not permitted
+gpg: key 2BD5824B7F9470E6: public key "Thomas Voegtlin (https://electrum.org) <thomasv@electrum.org>" imported
+gpg: can't connect to the gpg-agent: Operation not permitted
+gpg: Total number processed: 5
+gpg:               imported: 5
+gpg: no ultimately trusted keys found

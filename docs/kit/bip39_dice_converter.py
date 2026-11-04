@@ -2153,7 +2153,7 @@ def generate_mnemonic(raw_input: str):
 
 
 # Tails 7.16 hashes verified from downloaded images and signatures 2026-11-04.
-# Sparrow 2.5.5 manifest signature verified; Ian Coleman 0.5.6 signed checksum verified; Electrum pin remains unverified.
+# Sparrow 2.5.5 manifest signature verified; Ian Coleman 0.5.6 signed checksum verified; Electrum 4.8.3 uploaded artifact verified against all five publisher-linked signer keys.
 # A newer official file will not match. That is a failure.
 # Tails 7.16: tails.net latest.json
 # Sparrow 2.5.5: sparrow-2.5.5-manifest.txt
@@ -2164,7 +2164,7 @@ def generate_mnemonic(raw_input: str):
 # A Tails image that is present and wrong is still a failure.
 OFFICIAL_HASHES = {
     "sparrowwallet-2.5.5-x86_64.tar.gz": "7e8a59bf7e7293bd924518dda8ea7747696634297de54878c1c5f5cdb528559d",
-    "electrum-4.8.3-x86_64.AppImage": "6310ebd0b7965196ecc3eb7e1bfead260cdc9033a8847204561b9762e62a87c0",
+    "electrum-4.8.3-x86_64.AppImage": "aabe3bb2c99ffca172a004b0fd6f4afdf1b204079f7691b65f23bc5b63a9de0c",
     "bip39-standalone.html": "129b03505824879b8a4429576e3de6951c8599644c1afcaae80840f79237695a",
 }
 TAILS_ONE_OF = {
