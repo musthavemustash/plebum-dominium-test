@@ -34,6 +34,30 @@
 /* set path before first paint, so the color reminder is right from the start */
 (function(){try{var p=localStorage.getItem('pd-path');if(p!=='one'&&p!=='full'){p='full';}document.documentElement.setAttribute('data-path',p);}catch(e){document.documentElement.setAttribute('data-path','full');}})();
 </script>
+<style>
+/* Scoped Threat Model preview integration; retain site header, navigation, and footer. */
+.threat-preview-integrated{--tm-dark:#111312;--tm-panel:#1b1e1c;--tm-border:#343a35;--tm-ink:#f3f0e9;--tm-muted:#b9b9af;--tm-gold:#e5ac60}
+.threat-preview-integrated .guide-intro{font-size:clamp(1.35rem,3vw,1.9rem);font-weight:700;letter-spacing:-.03em;line-height:1.25}
+.threat-preview-integrated .tm-subtitle{font-size:1rem;line-height:1.65;max-width:43rem}
+.threat-preview-integrated .tm-section,.threat-preview-integrated .tm-summary,.threat-preview-integrated .tm-details{color:var(--tm-ink);background:var(--tm-dark);border:1px solid var(--tm-border);border-radius:18px;padding:clamp(18px,3vw,30px);margin:22px 0;max-width:100%;overflow:visible}
+.threat-preview-integrated .tm-section h2,.threat-preview-integrated .tm-summary h2{color:var(--tm-ink);font-size:clamp(1.2rem,2.5vw,1.55rem);line-height:1.3}
+.threat-preview-integrated .tm-step{display:inline-grid;place-items:center;width:32px;height:32px;border-radius:50%;background:#594024;color:#ffdb9e;margin-right:10px;font-size:.9rem}
+.threat-preview-integrated .tm-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;max-width:100%;margin-top:20px}
+.threat-preview-integrated .tm-card{display:block;position:relative;min-width:0;border:1px solid var(--tm-border);border-radius:14px;background:var(--tm-panel);padding:20px;cursor:pointer;color:var(--tm-ink);transition:border-color .15s,background .15s}
+.threat-preview-integrated .tm-card:has(input:checked){border-color:var(--tm-gold);background:#29241c}
+.threat-preview-integrated .tm-card:focus-within{outline:2px solid var(--tm-gold);outline-offset:2px}
+.threat-preview-integrated .tm-card input{position:static;appearance:auto;opacity:1;width:16px;height:16px;accent-color:var(--tm-gold);margin-right:8px;vertical-align:middle}
+.threat-preview-integrated .tm-card .tm-check,.threat-preview-integrated .tm-card .tm-radio{display:none}
+.threat-preview-integrated .tm-card-title{display:inline;font-size:1rem;font-weight:700;color:var(--tm-ink)}
+.threat-preview-integrated .tm-card-sub{display:block;margin:8px 0 0;color:var(--tm-muted);font-size:.92rem;line-height:1.5}
+.threat-preview-integrated .tm-summary{background:#201f1a;border-color:#56482f}
+.threat-preview-integrated .tm-summary p,.threat-preview-integrated .tm-details p,.threat-preview-integrated .tm-details li{color:var(--tm-muted)}
+.threat-preview-integrated .tm-details summary{color:var(--tm-ink);cursor:pointer;font-weight:700}
+.threat-preview-integrated .tm-details h3{color:var(--tm-ink)}
+.threat-preview-integrated .guide-actions .guide-primary{background:var(--tm-gold);color:#17120b;border-radius:9px;font-weight:700;padding:13px 21px}
+@media(max-width:650px){.threat-preview-integrated .tm-cards{grid-template-columns:1fr}.threat-preview-integrated .tm-card{padding:16px}}
+@media(prefers-reduced-motion:reduce){.threat-preview-integrated .tm-card{transition:none}}
+</style>
 </head>
 <body class="" id="top">
 <div class="splash" id="pd-splash" hidden aria-hidden="true">
@@ -97,7 +121,7 @@
   <div class="scrim" aria-hidden="true"></div>
 
   <main id="content">
-    <article>
+    <article class="threat-preview-integrated">
       <p class="kicker">01 · Plebum Dominium</p>
       <h1>Before you begin</h1>
       <div class="path-banner" id="path-banner" hidden>
@@ -208,5 +232,22 @@
     <p class="ask-foot">Search runs entirely in your browser. Nothing you type leaves this page unless you tap email. <span class="ask-keys">Up and down move, Enter opens, Esc closes.</span></p>
   </div>
 </div>
+<script>
+(function(){
+  const root=document.querySelector('.threat-preview-integrated');
+  if(!root)return;
+  const inputs=root.querySelectorAll('input[name="concern"],input[name="origin"]');
+  const output=root.querySelector('#tm-summary-text');
+  if(!output)return;
+  const labels={exchange:'an exchange',software:'a phone or software wallet',hardware:'a hardware wallet',new:'not started'};
+  function update(){
+    const risks=Array.from(root.querySelectorAll('input[name="concern"]:checked')).map(x=>x.value);
+    const origin=root.querySelector('input[name="origin"]:checked');
+    output.textContent=(risks.length?'Priorities: '+risks.join(', ')+'. ':'Choose one or more concerns. ')+(origin?'Starting point: '+(labels[origin.value]||origin.value)+'.':'Choose where your Bitcoin is today.');
+  }
+  inputs.forEach(input=>input.addEventListener('change',update));
+  update();
+})();
+</script>
 </body>
 </html>
