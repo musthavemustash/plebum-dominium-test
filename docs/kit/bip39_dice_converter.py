@@ -2153,19 +2153,19 @@ def generate_mnemonic(raw_input: str):
 
 
 # Tails 7.16 hashes verified from downloaded images and signatures 2026-11-04.
-# Sparrow 2.5.5 manifest signature verified; Electrum/Ian Coleman pins remain unverified.
+# Sparrow 2.5.5 manifest signature verified; Ian Coleman 0.5.6 signed checksum verified; Electrum pin remains unverified.
 # A newer official file will not match. That is a failure.
 # Tails 7.16: tails.net latest.json
 # Sparrow 2.5.5: sparrow-2.5.5-manifest.txt
 # Electrum 4.8.3: download.electrum.org AppImage
-# Ian Coleman: bip39-standalone.html
+# Ian Coleman 0.5.6: signed release checksum and downloaded HTML, verified 2026-11-04.
 # Every name in OFFICIAL_HASHES must be present and match.
 # The two Tails images are alternatives: at least one must be present and match.
 # A Tails image that is present and wrong is still a failure.
 OFFICIAL_HASHES = {
     "sparrowwallet-2.5.5-x86_64.tar.gz": "7e8a59bf7e7293bd924518dda8ea7747696634297de54878c1c5f5cdb528559d",
     "electrum-4.8.3-x86_64.AppImage": "6310ebd0b7965196ecc3eb7e1bfead260cdc9033a8847204561b9762e62a87c0",
-    "bip39-standalone.html": "eb504a906b92db0af1790b52151a1a87f4e13821e6e228fdac889b6957af9779",
+    "bip39-standalone.html": "129b03505824879b8a4429576e3de6951c8599644c1afcaae80840f79237695a",
 }
 TAILS_ONE_OF = {
     "tails-amd64-7.16.img": "7bef45b9aad430e6c2bbfd78c30c5a7ad2f143d498a002b96b88814a18c52a1d",
@@ -2251,7 +2251,7 @@ def verify_kit_integrity(directory_path=".", expected=None, one_of=None):
         print(" [CRITICAL AMBER ALERT] SECURITY COMPROMISE POSSIBLE ")
         print(" One or more files do not match the pinned SHA-256 hashes.")
         print(" This script does not check signatures.")
-        print(" ACTION REQUIRED: Format/wipe this flash drive entirely.")
+        print(" ACTION REQUIRED: Stop using the mismatched file. Preserve existing backups.")
         print(" Re-download the official tools from a trusted internet connection.")
         print("Verification FAILED.")
         print("!" * 50 + "\n")
