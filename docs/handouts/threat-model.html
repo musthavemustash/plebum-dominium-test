@@ -46,13 +46,14 @@
 .threat-preview-integrated .tm-card{display:block;position:relative;min-width:0;border:1px solid var(--tm-border);border-radius:14px;background:var(--tm-panel);padding:20px;cursor:pointer;color:var(--tm-ink);transition:border-color .15s,background .15s}
 .threat-preview-integrated .tm-card:has(input:checked){border-color:var(--tm-gold);background:#29241c}
 .threat-preview-integrated .tm-card:focus-within{outline:2px solid var(--tm-gold);outline-offset:2px}
-.threat-preview-integrated .tm-card input{position:static;appearance:auto;opacity:1;width:16px;height:16px;accent-color:var(--tm-gold);margin-right:8px;vertical-align:middle}
-.threat-preview-integrated .tm-card .tm-check,.threat-preview-integrated .tm-card .tm-radio{display:none}
+.threat-preview-integrated .tm-card input{position:static;pointer-events:auto;appearance:auto;opacity:1;width:16px;height:16px;accent-color:var(--tm-gold);margin-right:8px;vertical-align:middle}
+.threat-preview-integrated .tm-card .tm-check,.threat-preview-integrated .tm-card .tm-radio,.threat-preview-integrated .tm-card:has(input:checked) .tm-check,.threat-preview-integrated .tm-card:has(input:checked) .tm-radio{display:none}
 .threat-preview-integrated .tm-card-title{display:inline;font-size:1rem;font-weight:700;color:var(--tm-ink)}
 .threat-preview-integrated .tm-card-sub{display:block;margin:8px 0 0;color:var(--tm-muted);font-size:.92rem;line-height:1.5}
 .threat-preview-integrated .tm-summary{background:#201f1a;border-color:#56482f}
 .threat-preview-integrated .tm-summary p,.threat-preview-integrated .tm-details p,.threat-preview-integrated .tm-details li{color:var(--tm-muted)}
 .threat-preview-integrated .tm-details summary{color:var(--tm-ink);cursor:pointer;font-weight:700}
+.threat-preview-integrated .tm-details .guide-warning{background:#29241c;color:var(--tm-ink)}
 .threat-preview-integrated .tm-details h3{color:var(--tm-ink)}
 .threat-preview-integrated .guide-actions .guide-primary{background:var(--tm-gold);color:#17120b;border-radius:9px;font-weight:700;padding:13px 21px}
 @media(max-width:650px){.threat-preview-integrated .tm-cards{grid-template-columns:1fr}.threat-preview-integrated .tm-card{padding:16px}}
@@ -134,7 +135,7 @@
         <p><a href="/plebum-dominium-test/choose-path.html">Go to Choose your path to change it</a></p>
         <p><a href="/plebum-dominium-test/path-risks.html">Risks of your path &rarr;</a></p>
       </div>
-<nav class="step-banner" aria-label="Sheet 1 of 17"><span class="step-nav step-none" aria-hidden="true"></span><span class="step-pos"><strong>Step 1 of 17</strong> · Before you begin</span><a class="step-nav" href="/plebum-dominium-test/handouts/terms.html" rel="next">03 &middot; Terms &rarr;</a></nav>
+<nav class="step-banner" aria-label="Sheet 1 of 17"><span class="step-nav step-none" aria-hidden="true"></span><span class="step-pos"><strong>Step 1 of 17</strong> · Before you begin</span><a class="step-nav" href="/plebum-dominium-test/choose-path.html" rel="next">02 &middot; Choose your path &rarr;</a></nav>
 <section class="guide-overview" aria-label="Sheet overview"><div class="guide-stat"><span>Time</span><strong>5 min</strong></div><div class="guide-stat"><span>Difficulty</span><strong>Easy</strong></div><div class="guide-stat"><span>Steps</span><strong>1 worksheet</strong></div></section><p class="guide-needs"><strong>You will need:</strong> <a href="/plebum-dominium-test/handouts/checklist.html">Pen and paper</a></p>
 <p class="guide-intro">What are you protecting your Bitcoin from?</p>
 <p class="tm-subtitle">Two quick questions help you identify your risks. No secret keys or personal information are collected.</p>
@@ -157,9 +158,9 @@
 <label class="tm-card"><input type="radio" name="origin" value="new"><span class="tm-radio" aria-hidden="true"></span><span class="tm-card-title">I haven't started</span><span class="tm-card-sub">I want to begin correctly.</span></label>
 </div>
 </section>
-<section class="tm-summary" aria-live="polite">
+<section class="tm-summary">
 <h2>Your security priorities</h2>
-<p id="tm-summary-text">Select the risks you want to plan for, then choose where your Bitcoin is today.</p>
+<p id="tm-summary-text" role="status" aria-live="polite" aria-atomic="true">Select the risks you want to plan for, then choose where your Bitcoin is today.</p>
 <p class="tm-disclaimer">These choices help you think through risks; they do not automatically determine a safe wallet configuration.</p>
 </section>
 <div class="guide-actions">
@@ -175,13 +176,13 @@
 <li>One device, one maker. A flawed or tampered device can still fail you.</li>
 <li>Words and passphrase go into the device itself during recovery, nowhere else. No hardware company will ever ask for your seed phrase.</li>
 <li>Check the receiving address on the device screen, not only on the computer screen, before you accept coins.</li>
-<li>The watch-only wallet can watch, it cannot spend alone. Spending needs the device and the passphrase together.</li>
+<li>The watch-only wallet cannot sign. Spending requires the signing key for the passphrase-protected wallet; recovery requires the seed and the exact passphrase. A replacement compatible device can be used.</li>
 </ul>
 <h3>Three keys (2-of-3 multisig)</h3>
 <p>Separates signing keys across devices or locations, but makes setup and recovery more complicated. Securely preserve the wallet configuration/descriptor and test the recovery procedure.</p>
 <ul>
 <li>Most steps to get right. A missed step in any key can lock the wallet later.</li>
-<li>Lose two keys and the map, and the funds are locked. Keep three plates in three places, and keep the encrypted map apart from any single plate.</li>
+<li>If fewer than two signing keys remain available, you cannot spend, even with the wallet map. Losing the map can also prevent recovery when the missing public-key information cannot be reconstructed. Keep three plates in three places, and keep the encrypted map apart from any single plate.</li>
 <li>Two signing keys meet the 2-of-3 threshold, but recovery also requires the correct wallet configuration. Keep verified copies of the descriptor and recovery instructions in separate safe locations, and rehearse reconstruction and spending before funding the wallet.</li>
 <li>No passphrase on the 2-of-3. The protection comes from three keys in three places, not from a passphrase.</li>
 <li>Practice spend first, and rehearse on testnet if you have not done this before. Savings do not move until the practice spend works.</li>
@@ -232,22 +233,6 @@
     <p class="ask-foot">Search runs entirely in your browser. Nothing you type leaves this page unless you tap email. <span class="ask-keys">Up and down move, Enter opens, Esc closes.</span></p>
   </div>
 </div>
-<script>
-(function(){
-  const root=document.querySelector('.threat-preview-integrated');
-  if(!root)return;
-  const inputs=root.querySelectorAll('input[name="concern"],input[name="origin"]');
-  const output=root.querySelector('#tm-summary-text');
-  if(!output)return;
-  const labels={exchange:'an exchange',software:'a phone or software wallet',hardware:'a hardware wallet',new:'not started'};
-  function update(){
-    const risks=Array.from(root.querySelectorAll('input[name="concern"]:checked')).map(x=>x.value);
-    const origin=root.querySelector('input[name="origin"]:checked');
-    output.textContent=(risks.length?'Priorities: '+risks.join(', ')+'. ':'Choose one or more concerns. ')+(origin?'Starting point: '+(labels[origin.value]||origin.value)+'.':'Choose where your Bitcoin is today.');
-  }
-  inputs.forEach(input=>input.addEventListener('change',update));
-  update();
-})();
-</script>
+
 </body>
 </html>

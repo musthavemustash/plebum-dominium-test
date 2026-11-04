@@ -5,19 +5,41 @@
   /* --- mobile drawer --- */
   var btn = document.querySelector(".menu-btn");
   var scrim = document.querySelector(".scrim");
+  var drawer = document.querySelector('.sidebar');
+  var mobileNav = window.matchMedia('(max-width:760px)');
+  function syncNavAccessibility() {
+    if (drawer) drawer.inert = mobileNav.matches && !document.body.classList.contains('nav-open');
+  }
+  syncNavAccessibility();
+  mobileNav.addEventListener('change', syncNavAccessibility);
   function closeNav() {
     document.body.classList.remove("nav-open");
     if (btn) btn.setAttribute("aria-expanded", "false");
+    syncNavAccessibility();
   }
   if (btn) {
     btn.addEventListener("click", function () {
       var open = document.body.classList.toggle("nav-open");
       btn.setAttribute("aria-expanded", open ? "true" : "false");
+      syncNavAccessibility();
+      if (open && drawer) {
+        var first = drawer.querySelector('button, a');
+        if (first) first.focus();
+      }
     });
   }
   if (scrim) scrim.addEventListener("click", closeNav);
   document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape") closeNav();
+    if (e.key === "Escape" && document.body.classList.contains('nav-open')) {
+      closeNav();
+      if (btn) btn.focus();
+    }
+    if (e.key === 'Tab' && mobileNav.matches && drawer && document.body.classList.contains('nav-open')) {
+      var items = Array.from(drawer.querySelectorAll('a[href], button:not([disabled])')).filter(function (el) { return el.getClientRects().length; });
+      var first = items[0], last = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
   });
 
   /* --- copy buttons on code blocks --- */

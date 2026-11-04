@@ -1,0 +1,36 @@
+# Staging review — November 3, 2026 (Eastern)
+
+Baseline: `3030e444ef7aaf0418c4db148ff5cc04495492d9`. PRs #3 and #4 are merged. Independently visited both public GitHub Pages handouts and exercised their UI. The public pages match the newer `docs/handouts/` variants, including the four Sparrow verification cards and Threat Model worksheet.
+
+## Prioritized findings
+
+| Priority | Finding | Status |
+| --- | --- | --- |
+| P1 | Rebuilding replaces `docs/` using older Markdown/templates and root assets. The interactive Threat Model layout is absent from the generator source; root and docs handouts also differ. Reviewed fixes can disappear on regeneration. | Open release blocker. Establish a single authoritative build path before production; do not run the legacy generator over the reviewed staging pages. |
+| P1 | Sparrow overview still reduced verification to a first-address comparison, and said no seed touches the build despite later seed-entry steps. Threat Model said “lose two keys and the map,” obscuring independent failure conditions. | Corrected in the prepared patch where reviewed. Detailed independent cosigner verification warning retained. |
+| P2 | At a 390px iframe viewport, live pages had 436px body width with 375px usable width. Header theme/status controls overflowed horizontally. | Fixed with a wrapping mobile header. Local checks at 320px and 390px pass without document overflow. |
+| P2 | Closed mobile drawer remained in navigation/accessibility traversal; menu icon inherited a dark default color in dark theme. | Added inert closed state, drawer focus handling/Tab wrap, Escape return, and themed icon color. |
+| P2 | Threat Model top Next link went to Terms, whereas bottom Next and main CTA went to Choose your path. | Top link corrected. |
+| P2 | Two summary controllers updated the same live region. Checked cards also displayed a redundant custom indicator beside the native input. | Removed duplicate inline controller, retained shared summary, scoped the live status to changing text, removed redundant indicator. |
+| P2 | Sparrow commands included literal `$` prompt characters copied by the generic copy handler. Instructions relied on red text as an error signal. | Removed prompt characters from commands; clarified command completion, launch behavior, and actual errors. No software was executed. |
+| P3 | Sparrow overview said 9 sections but the rendered procedure has seven numbered steps. Site navigation numbers mix sheet counts and overall positions (Sparrow is sidebar 08 but Step 7 of 17). | Local step count corrected; site-wide numbering remains open. |
+| P3 | Threat Model uses permanently dark panels in light theme; mobile metadata cards consume substantial vertical space. | Existing design retained pending visual preference. |
+
+## Validation
+
+- Public staging desktop browser: navigated home → Threat Model → Sparrow; selected concern/origin, expanded tradeoffs, activated command Copy (UI reported Copied). Terminal markup renders as four separate lines; revised verification cards are present.
+- Public staging mobile: 390px iframe layout, menu open/Escape close, observed horizontal overflow and offscreen drawer exposure.
+- Prepared patch: desktop at 1363px; mobile iframe widths 320px and 390px (305px and 375px usable after scrollbars). No document-wide horizontal overflow on checked pages; Sparrow cards stack to one column.
+- Checked concern toggle by keyboard Space, origin radio selection, shared summary updates, mobile drawer open/Escape close, and light/dark appearance. Existing warning text and no-secret-input model retained.
+- JavaScript syntax checks and `git diff --check` pass. Both handouts have unique IDs and all linked staging file paths exist locally.
+- Browser preview is a local copy of staging docs. Narrow iframes test CSS layout and interactions, not physical iOS/Android browsers. Screen-reader software, full WCAG audit, print output, actual wallet creation/recovery, offline kit integrity, and all dependency/version claims were not validated. A complete custody walkthrough remains a release gate.
+
+## Security reference
+
+Sparrow’s own multisig backup dialog requires threshold signing seeds and all cosigner xpubs, recommending wallet-file or output-descriptor backup: https://github.com/sparrowwallet/sparrow/blob/master/src/main/java/com/sparrowwallet/sparrow/wallet/MultisigBackupDialog.java
+
+## Release status
+
+Prepared as a staging-only review branch. No production repository changes, production merge, tag, or deployment. Do not treat this patch as production-ready: generator alignment and end-to-end recovery validation remain outstanding.
+
+Next options: review browser preview, deploy this bounded patch to staging, or refine the design.
