@@ -60,6 +60,17 @@ def validate(site_dir):
                 errors.append(f'{page.relative_to(site_dir)}:{line}: escapes site directory: {ref}')
             elif not target.exists():
                 errors.append(f'{page.relative_to(site_dir)}:{line}: missing local target: {ref}')
+    if (site_dir / 'paths').exists():
+        import render_paths
+        original_docs = render_paths.DOCS
+        try:
+            render_paths.DOCS = site_dir
+            for relative, expected in render_paths.outputs().items():
+                target = site_dir / relative
+                if not target.exists() or target.read_text() != expected:
+                    errors.append(f'{relative}: stale path copy; run python3 scripts/render_paths.py')
+        finally:
+            render_paths.DOCS = original_docs
     return pages, errors
 
 

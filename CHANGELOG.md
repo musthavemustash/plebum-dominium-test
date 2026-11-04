@@ -22,3 +22,12 @@ Production releases will use Semantic Versioning and follow the staging-first re
 - Make the buildless `docs/` site authoritative; replace the obsolete destructive generator with non-mutating staging validation.
 - Check local references across all 65 HTML pages, reject a custom-domain CNAME or non-staging base.
 - Repair six malformed or incorrectly rooted references across dice-easy, inheritance variants, file verification and dice rolls.
+
+## Unreleased — independent staging paths
+
+- Add URL-addressable one-key/passphrase and three-key routes with matching sidebar, header, top/bottom navigation, and consecutive numbering.
+- Preserve the requested Terms → Before you begin → Pick your path order; select the correct one-key variants, including Inheritance.
+- Remove hidden-content path gates; old handout links resolve to a usable route or readable optional reference.
+- Keep route selection in the URL, isolate completion records, and provide route-specific search results and numbering.
+- Replace the path chooser's dynamic empty panel with native links and two readable cards; remove its unsupported incident anecdotes.
+- Add a bounded path renderer and stale-copy validation without restoring the historical destructive generator.
