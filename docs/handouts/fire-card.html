@@ -34,6 +34,7 @@
 /* set path before first paint, so the color reminder is right from the start */
 (function(){try{var p=localStorage.getItem('pd-path');if(p!=='one'&&p!=='full'){p='full';}document.documentElement.setAttribute('data-path',p);}catch(e){document.documentElement.setAttribute('data-path','full');}})();
 </script>
+<link rel="stylesheet" href="/plebum-dominium-test/assets/css/entry-pages.css?v=entry1">
 </head>
 <body class="" id="top">
 <div class="splash" id="pd-splash" hidden aria-hidden="true">
@@ -97,7 +98,7 @@
   <div class="scrim" aria-hidden="true"></div>
 
   <main id="content">
-    <article>
+    <article class="entry-page">
       <p class="kicker">16 · Plebum Dominium</p>
       <h1>Recovery card</h1>
       <div class="path-banner" id="path-banner" hidden>
@@ -105,71 +106,14 @@
         <p class="path-banner-note" id="path-banner-note"></p>
       </div>
       <div class="path-gate" id="path-gate" hidden>
-        <h2>Not on your path</h2>
+        <h2 id="not-on-your-path">Not on your path</h2>
         <p id="path-gate-note"></p>
         <p><a href="/plebum-dominium-test/choose-path.html">Go to Choose your path to change it</a></p>
         <p><a href="/plebum-dominium-test/path-risks.html">Risks of your path &rarr;</a></p>
       </div>
 <nav class="step-banner" aria-label="Sheet 15 of 17"><a class="step-nav" href="/plebum-dominium-test/handouts/briefing.html" rel="prev">&larr; 15 &middot; Tough questions</a><span class="step-pos"><strong>Step 15 of 17</strong> · Recovery card</span><a class="step-nav" href="/plebum-dominium-test/handouts/single-sig.html" rel="next">17 &middot; One key, done right &rarr;</a></nav>
-<section class="guide-overview" aria-label="Sheet overview"><div class="guide-stat"><span>Time</span><strong>15 min</strong></div><div class="guide-stat"><span>Difficulty</span><strong>Easy</strong></div><div class="guide-stat"><span>Steps</span><strong>3 steps</strong></div></section><p class="guide-needs"><strong>You will need:</strong> Printer &middot; Scissors</p>
-<p class="lede">The thing your heir actually grabs on the way out the door. Not the full inheritance sheet. Just the <strong>where-is-everything</strong> pointer: two plates, the wallet map, and this card. Fill in the locations by hand after the plates are stamped. This <strong>complements</strong> the inheritance sheet. It never replaces it.</p>
-
-<p class="nosecret-card">⛔ No seeds. No words. Nothing on this card can spend your bitcoin.</p>
-
-<div class="firecard">
-<div class="fc-side">
-<p class="fc-label">FRONT</p>
-<div class="fc-card">
-<div class="fc-brand">PLEBUM DOMINIUM<small>RECOVERY</small></div>
-<div class="fc-rule"><strong>2 plates + wallet map + this card = your bitcoin.</strong><br>The plates are useless without the map. The map is useless without two plates.</div>
-<div class="fc-path">Derivation path: <strong>m/48'/0'/0'/2'</strong><br><span class="fc-ns">(not a secret. It's how the wallet is shaped)</span></div>
-</div>
-</div>
-<div class="fc-side">
-<p class="fc-label">BACK</p>
-<div class="fc-card">
-<div>
-<h4>WHERE THINGS ARE</h4>
-<div class="fc-fill"><span class="fc-k">Plate A:</span><span class="fc-v"></span></div>
-<div class="fc-fill"><span class="fc-k">Plate B:</span><span class="fc-v"></span></div>
-<div class="fc-fill"><span class="fc-k">Plate C:</span><span class="fc-v"></span></div>
-<div class="fc-fill"><span class="fc-k">Wallet map:</span><span class="fc-v"></span></div>
-<div class="fc-fill"><span class="fc-k">Passphrase paper:</span><span class="fc-v"></span></div>
-</div>
-<div class="fc-foot">Full instructions: the inheritance sheet. This card is the map's map.</div>
-</div>
-</div>
-</div>
-
-<p class="fine">A print-ready PDF at true credit-card size (3.375 × 2.125 in) is in <a href="../kit/15_Fire_Card.pdf">the kit</a>. Print it, fill in the locations by hand, keep it with the inheritance sheet. Never with a plate.</p>
-
-<style>
-.firecard { display: flex; gap: 2rem; flex-wrap: wrap; margin: 1.5rem 0 2rem; }
-.fc-label { text-align: left; color: var(--muted); font-size: 0.78rem; letter-spacing: 0.14em; font-weight: 700; margin: 0 0 0.6rem; }
-.fc-card {
-  width: 430px; max-width: 100%; aspect-ratio: 85.6 / 53.98; border-radius: 14px;
-  background: #14110d; border: 1px solid var(--accent); color: #f0e8d6;
-  padding: 20px 24px; position: relative; overflow: hidden;
-  display: flex; flex-direction: column; justify-content: space-between;
-  box-shadow: 0 10px 32px rgba(0,0,0,0.5);
-}
-.fc-card::after { content: ""; position: absolute; inset: 8px; border: 1px solid rgba(196,164,132,0.4); border-radius: 9px; pointer-events: none; }
-.fc-brand { font-family: "Newsreader", Georgia, serif; font-weight: 700; font-size: 1.05rem; letter-spacing: 0.08em; color: var(--accent); }
-.fc-brand small { display: block; font-family: "IBM Plex Sans", sans-serif; font-weight: 600; font-size: 0.58rem; letter-spacing: 0.28em; color: #9b9384; margin-top: 2px; }
-.fc-rule { border-top: 1px solid rgba(196,164,132,0.5); padding-top: 10px; font-size: 0.86rem; line-height: 1.5; }
-.fc-rule strong { color: var(--accent); }
-.fc-path { font-family: "IBM Plex Mono", monospace; font-size: 0.8rem; color: #9b9384; }
-.fc-path strong { color: #f0e8d6; font-weight: 500; }
-.fc-ns { color: #c9a35c; font-size: 0.72rem; }
-.fc-card h4 { font-family: "IBM Plex Sans", sans-serif; font-size: 0.62rem; letter-spacing: 0.22em; color: var(--accent); margin: 0 0 6px; font-weight: 700; }
-.fc-fill { display: flex; align-items: baseline; gap: 8px; margin: 7px 0; font-size: 0.82rem; }
-.fc-k { flex: none; color: #9b9384; }
-.fc-v { flex: 1; border-bottom: 1px dotted rgba(196,164,132,0.7); min-height: 1.2em; }
-.fc-foot { font-size: 0.68rem; color: #9b9384; }
-.nosecret-card { display: inline-block; border: 1px solid var(--stop); color: var(--stop); border-radius: 6px; padding: 0.5rem 1rem; font-size: 0.88rem; margin: 0 0 0.5rem; background: var(--stop-bg); }
-</style>
-
-      <nav class="prevnext-row" aria-label="Previous and next sheets">
+<p class="entry-lead">A private pointer to your recovery plan—not a wallet backup.</p><div class="entry-grid"><section class="entry-card"><h2 id="what-this-card-is-for">What this card is for</h2><p>A short location record helps an authorized person find the complete instructions and required materials. It cannot replace at least two signing keys and the complete 2-of-3 wallet configuration.</p><p>Location information can help a thief too. Protect the card even though it contains no signing secrets.</p></section><section class="entry-card"><h2 id="write-these-pointers-offline">Write these pointers offline</h2><ul><li>Wallet type: 2-of-3 multisig.</li><li>Where to find the complete recovery instructions.</li><li>Separate seed-backup locations and wallet-configuration location.</li><li>Trusted contact and date last reviewed.</li><li>Location of any separate decryption instructions, if required.</li></ul><p>Write privately on paper. This page intentionally provides no form for entering real locations or secrets.</p></section><section class="entry-card"><h2 id="never-include-these">Never include these</h2><p>No seed words, raw entropy, private keys, wallet passphrases, or decryption passwords on the card. Keep it separate from the materials it points to.</p><p>A descriptor can contain private keys; only a verified public-only export belongs in the non-signing configuration records.</p></section><section class="entry-card"><h2 id="keep-it-current">Keep it current</h2><p>Check that the intended person can follow the pointers. Update the record after moving a backup or changing the recovery plan, then account for obsolete copies.</p><p>The downloadable legacy card/PDF has not yet been reconciled with these revised instructions. Do not treat that older packet as a verified version of this page.</p></section></div><aside class="guide-warning"><strong>Recovery still requires verification:</strong> use the complete, rehearsed procedure. A list of locations, a device brand, or a derivation-path label is not sufficient by itself.</aside>
+<nav class="prevnext-row" aria-label="Previous and next sheets">
 <a class="prevnext prev" href="/plebum-dominium-test/handouts/briefing.html"><span>← 15 · Tough questions</span></a>
 <span class="step-pos-bottom"><strong>Step 15 of 17</strong> · Recovery card</span>
 <a class="prevnext next" href="/plebum-dominium-test/handouts/single-sig.html"><span>17 · One key, done right →</span></a>
