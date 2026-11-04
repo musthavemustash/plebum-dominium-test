@@ -34,6 +34,7 @@
 /* set path before first paint, so the color reminder is right from the start */
 (function(){try{var p=localStorage.getItem('pd-path');if(p!=='one'&&p!=='full'){p='full';}document.documentElement.setAttribute('data-path',p);}catch(e){document.documentElement.setAttribute('data-path','full');}})();
 </script>
+<link rel="stylesheet" href="/plebum-dominium-test/assets/css/entry-pages.css">
 </head>
 <body class="" id="top">
 <div class="splash" id="pd-splash" hidden aria-hidden="true">
@@ -97,7 +98,7 @@
   <div class="scrim" aria-hidden="true"></div>
 
   <main id="content">
-    <article>
+    <article class="entry-page">
       <p class="kicker">09 · Plebum Dominium</p>
       <h1>Practice spend</h1>
       <div class="path-banner" id="path-banner" hidden>
@@ -111,68 +112,16 @@
         <p><a href="/plebum-dominium-test/path-risks.html">Risks of your path &rarr;</a></p>
       </div>
 <nav class="step-banner" aria-label="Sheet 8 of 17"><a class="step-nav" href="/plebum-dominium-test/handouts/sparrow.html" rel="prev">&larr; 08 &middot; Build the 2-of-3</a><span class="step-pos"><strong>Step 8 of 17</strong> · Practice spend</span><a class="step-nav" href="/plebum-dominium-test/handouts/titanium.html" rel="next">10 &middot; Metal and the map &rarr;</a></nav>
-<section class="guide-overview" aria-label="Sheet overview"><div class="guide-stat"><span>Time</span><strong>45 min</strong></div><div class="guide-stat"><span>Difficulty</span><strong>Careful</strong></div><div class="guide-stat"><span>Steps</span><strong>5 sections</strong></div></section><p class="guide-needs"><strong>You will need:</strong> <a href="/plebum-dominium-test/handouts/dice.html">Two seeds</a> &middot; <a href="/plebum-dominium-test/handouts/checklist.html">Tails USB</a> &middot; A small test amount</p>
-<div class="sign-anim">
-<div class="stage">
-      <div class="zone-on"></div>
-      <div class="zone-off"></div>
-      <div class="gaplabel">THE AIRGAP</div>
-      <div class="redline"></div>
-      <div class="redline-tag">SHUTDOWN &middot; NEW SESSION</div>
-      <div class="usb"><i></i></div>
-      <div class="sidetab st-on">ONLINE</div>
-      <div class="sidetab st-off">OFFLINE</div>
-      <div class="ct-label">CREATE TRANSACTION</div>
-      <div class="bc-label">BROADCAST TRANSACTION</div>
-      <div class="filebox"><div class="fill"></div><svg class="outline" viewBox="0 0 36 46"><rect x="2.5" y="2.5" width="31" height="41" rx="4" pathLength="1"/></svg></div>
-      <div class="ped ped1"><div class="plate"><i></i><i></i><i></i><i></i></div><span>SEED 1</span></div>
-      <div class="ped ped2"><div class="plate"><i></i><i></i><i></i><i></i></div><span>SEED 2</span></div>
-      <div class="stamp stamp1">1 OF 2</div>
-      <div class="stamp stamp2">2 OF 2</div>
-      <div class="barcs"><i></i><i></i><i></i></div>
-    </div>
-<ol class="legend">
-      <li><span class="n">1</span><b>Create.</b> Watch-only builds the transaction. The file is an empty outline.</li>
-      <li><span class="n">2</span><b>Seed 1 signs.</b> The file fills halfway. <i>1 of 2.</i></li>
-      <li><span class="n">3</span><b>Shutdown.</b> The file stops at the red line: full shutdown, new session, then crosses deliberately.</li>
-      <li><span class="n">4</span><b>Seed 2 signs.</b> The file fills whole. <i>2 of 2.</i></li>
-      <li><span class="n">5</span><b>Broadcast.</b> Up and right, across the airgap. The twice-signed file goes out.</li>
-    </ol>
-</div><p class="guide-intro">The practice spend uses a small amount, enough to pay a fee and no more. Write the destination, amount, and fee on paper before anything is exported.</p>
-<aside class="guide-warning"><strong>Safety first:</strong> Never enter seed words on an online computer. Read your paper notes again before each signature.</aside>
-<p>Files used: Sparrow 2.5.5. Tails 7.16 or later 7.x (verified).</p>
-<section class="guide-summary">
-<h2>What you will do</h2>
-<ol>
-<li>Build the spend on the online watch-only wallet.</li>
-<li>Sign with Seed 1 on Tails. Shut down.</li>
-<li>Sign with Seed 2 on a fresh boot. Shut down.</li>
-<li>Broadcast from the online computer.</li>
-</ol>
-</section>
-<section class="guide-section">
-<p class="guide-step-marker">Step 1 / 4</p>
-<h2>Build the spend (online, watch-only).</h2>
-<p>Open watch-only Sparrow. Send tab: destination, amount, fee. Finalize for signing. Export <code>tx-unsigned.psbt</code> to the data USB.</p>
-</section>
-<section class="guide-section">
-<p class="guide-step-marker">Step 2 / 4</p>
-<h2>Seed 1 signs (Tails, networking off).</h2>
-<p>Boot Tails, networking disabled. Restore Seed 1 only. Open <code>tx-unsigned.psbt</code>, confirm the fields against the paper, sign. Export <code>tx-partial-s1.psbt</code>. Full shutdown.</p>
-</section>
-<section class="guide-section">
-<p class="guide-step-marker">Step 3 / 4</p>
-<h2>Seed 2 signs (fresh boot).</h2>
-<p>Fresh Tails boot. Restore Seed 2 only. Open <code>tx-partial-s1.psbt</code>. Confirm the first signature and that the spend is unchanged. Sign. Export <code>tx-signed.psbt</code>. Full shutdown.</p>
-<p class="guide-verify"><strong>Check:</strong> Two signatures. The destination and amount match your paper.</p>
-</section>
-<section class="guide-section">
-<p class="guide-step-marker">Step 4 / 4</p>
-<h2>Broadcast (online computer).</h2>
-<p>On the online computer, open the signed transaction and broadcast it. Watch for confirmation.</p>
-</section>
-<aside class="guide-stop"><strong>Stop if:</strong> The fields don't match your paper. A signature is missing. Networking was on during signing.</aside>
-      <nav class="prevnext-row" aria-label="Previous and next sheets">
+<p class="entry-lead">Practice the complete transaction before relying on it.</p>
+<div class="entry-grid">
+<section class="entry-card"><h2 id="guide-step-1">Prepare a disposable rehearsal</h2><p>Use the <a href="/plebum-dominium-test/handouts/testnet.html">testnet rehearsal</a> first, with three disposable keys and a verified 2-of-3 wallet configuration. Never use a funded wallet’s seeds for a practice exercise. A successful practice spend is not a full recovery audit.</p><p>Keep the online coordinator watch-only. Each signer needs the correct wallet policy and relevant key information; restoring a seed alone does not establish the intended multisig wallet. Follow the documented setup for your particular signer.</p></section>
+<section class="entry-card"><h2 id="guide-step-2">1. Build and inspect</h2><p>In the online watch-only wallet, choose the destination, amount and fee, then export the unsigned PSBT. Record the intended payment using destination information obtained independently from the recipient, not just copied from the coordinator display.</p><p>A PSBT carries transaction and signing information. It is not a seed backup and can expose financial metadata. Transfer only the intended transaction file, never a wallet containing private keys.</p></section>
+<section class="entry-card"><h2 id="guide-step-3">2. Verify before the first signature</h2><p>On the first trusted signer, check the network, wallet policy, full recipient address, amount and total fee. Account for every output: any change must return to the verified wallet. Stop if the signer cannot identify change or explain an output.</p><p>Use the signer’s documented transaction review. Paper notes help compare intent but do not make a compromised computer trustworthy. For the Tails software-signing workflow, start in Offline Mode and load only this signer’s secret. Export the partially signed PSBT, then fully shut down.</p></section>
+<section class="entry-card"><h2 id="guide-step-4">3. Review again with the second signer</h2><p>Use a different key belonging to the same verified 2-of-3 wallet. Review the same transaction independently, including all outputs and the fee, before signing. A file name or signature count alone is not verification.</p><p>For software signing, use a fresh offline session. Rebooting the same computer does not provide independent hardware or remove a firmware compromise. Do not collect both seeds in the online coordinator or one saved wallet file.</p></section>
+<section class="entry-card"><h2 id="guide-step-5">4. Finalize and broadcast</h2><p>Return the signed PSBT to the online coordinator, finalize it when the required signatures are present for every input, and review the resulting transaction before broadcasting. Watch for confirmation on the selected network.</p><p>If any field changes unexpectedly, stop and investigate. Do not sign a replacement you have not reviewed. Record what worked and rehearse recovery separately before funding a real setup.</p></section>
+</div>
+<aside class="guide-warning"><strong>Pause and check:</strong> Stop if the wallet policy is uncertain, an output is unexplained, a fee is unexpected, or a signing secret reaches an online environment.</aside>
+<nav class="prevnext-row" aria-label="Previous and next sheets">
 <a class="prevnext prev" href="/plebum-dominium-test/handouts/sparrow.html"><span>← 08 · Build the 2-of-3</span></a>
 <span class="step-pos-bottom"><strong>Step 8 of 17</strong> · Practice spend</span>
 <a class="prevnext next" href="/plebum-dominium-test/handouts/titanium.html"><span>10 · Metal and the map →</span></a>
@@ -180,9 +129,7 @@
     </article>
   </main>
 
-  <aside class="toc-col">
-
-  </aside>
+  <aside class="toc-col"><nav class="toc" aria-label="On this sheet"><p>On this sheet</p><ul><li><a href="#guide-step-1" data-toc="guide-step-1">Prepare a disposable rehearsal</a></li><li><a href="#guide-step-2" data-toc="guide-step-2">1. Build and inspect</a></li><li><a href="#guide-step-3" data-toc="guide-step-3">2. Verify before the first signature</a></li><li><a href="#guide-step-4" data-toc="guide-step-4">3. Review again with the second signer</a></li><li><a href="#guide-step-5" data-toc="guide-step-5">4. Finalize and broadcast</a></li></ul></nav></aside>
 </div>
 
 <div class="mobilebar" aria-label="Sheet navigation">

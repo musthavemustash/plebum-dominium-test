@@ -34,6 +34,7 @@
 /* set path before first paint, so the color reminder is right from the start */
 (function(){try{var p=localStorage.getItem('pd-path');if(p!=='one'&&p!=='full'){p='full';}document.documentElement.setAttribute('data-path',p);}catch(e){document.documentElement.setAttribute('data-path','full');}})();
 </script>
+<link rel="stylesheet" href="/plebum-dominium-test/assets/css/entry-pages.css">
 <script>document.documentElement.setAttribute("data-path", "full");</script>
 </head>
 <body data-guide-path="three" data-guide-slug="testnet" class="" id="top">
@@ -79,47 +80,25 @@
   <div class="scrim" aria-hidden="true"></div>
 
   <main id="content">
-    <article>
+    <article class="entry-page">
       <p class="kicker">Three keys · Step 11 of 16</p>
       <h1>Rehearse on testnet</h1>
       
       
 <nav class="step-banner" aria-label="Step 11 of 16"><a class="step-nav" rel="prev" href="/plebum-dominium-test/paths/three/titanium.html">← 10 · Metal and the map</a><span class="step-pos"><strong>Step 11 of 16</strong> · Rehearse on testnet</span><a class="step-nav" rel="next" href="/plebum-dominium-test/paths/three/encryption.html">12 · Protect the wallet map →</a></nav>
-<section class="guide-overview" aria-label="Sheet overview"><div class="guide-stat"><span>Time</span><strong>30 min</strong></div><div class="guide-stat"><span>Difficulty</span><strong>Moderate</strong></div><div class="guide-stat"><span>Steps</span><strong>2 sections</strong></div></section><p class="guide-needs"><strong>You will need:</strong> <a href="/plebum-dominium-test/paths/three/verify.html">Sparrow</a> &middot; Free testnet coins</p>
-<p class="guide-intro">Before any plate exists, do the entire flow with play money: build the 2-of-3, receive, sign with two keys, shut down between sessions, broadcast. The clicks are identical to mainnet.</p>
-<aside class="guide-warning"><strong>Safety first:</strong> Testnet coins are worthless. They cannot be sold or spent as real bitcoin. That is the point. Do not "test" with real bitcoin.</aside>
-<p>Files used: Sparrow 2.5.5.</p>
-<section class="guide-summary">
-<h2>What you will do</h2>
-<ol>
-<li>Get testnet coins from a faucet.</li>
-<li>Build a throwaway 2-of-3. Receive the coins.</li>
-<li>Sign with two keys, with a shutdown between.</li>
-<li>Broadcast. Then burn the test seeds.</li>
-</ol>
-</section>
-<section class="guide-section">
-<p class="guide-step-marker">Step 1 / 2</p>
-<h2>Run the rehearsal.</h2>
-<p><strong>Get testnet coins.</strong> Make a testnet address in Sparrow, paste it into a faucet, wait for confirmation.</p>
-<p><strong>Build the 2-of-3.</strong> Generate three throwaway test seeds. Import them, build the 2-of-3, verify the first address on a second screen.</p>
-<p><strong>Receive and sign.</strong> Send the tBTC to your test wallet. Build a small spend, sign with key 1, shut down, boot fresh, sign with key 2, broadcast.</p>
-<p class="guide-verify"><strong>Check:</strong> The transaction confirms on a testnet explorer. You completed the whole loop.</p>
-</section>
-<section class="guide-section">
-<p class="guide-step-marker">Step 2 / 2</p>
-<h2>Burn the test seeds.</h2>
-<p>Never reuse test seeds on mainnet. When the rehearsal is done, the test seeds are burned. They do not get stamped, written down, or kept.</p>
-</section>
-<aside class="guide-stop"><strong>Stop if:</strong> You're tempted to use real bitcoin for the rehearsal. You're tempted to keep a test seed.</aside>
-<p><strong>Graduate when:</strong> You built, received, two-key-signed across a shutdown, and broadcast, without the sheet open. The plates come after you're bored of succeeding on testnet.</p>
-      <nav class="prevnext-row" aria-label="Previous and next sheets"><a class="prevnext prev" rel="prev" href="/plebum-dominium-test/paths/three/titanium.html">← 10 · Metal and the map</a><span class="step-pos-bottom">Step 11 of 16</span><a class="prevnext next" rel="next" href="/plebum-dominium-test/paths/three/encryption.html">12 · Protect the wallet map →</a></nav>
+<p class="entry-lead">Learn with disposable keys and test coins, then rehearse recovery too.</p>
+<div class="entry-grid">
+<section class="entry-card"><h2 id="guide-step-1">1. Select the test network</h2><p>Sparrow documents <strong>Tools → Restart in Testnet</strong>. Confirm the network shown by your installed version, and use a server, faucet and explorer for that same network. Different test networks are not interchangeable.</p><p>Test coins are for practice. Do not send real bitcoin, pay for test coins, or give a faucet seed words or a passphrase. A faucet needs only the intended public receive address. Interfaces and services can differ from mainnet.</p></section>
+<section class="entry-card"><h2 id="guide-step-2">2. Build a separate practice wallet</h2><p>Create three new disposable keys and a test-only 2-of-3 wallet. Label all records TEST ONLY. Keep the configuration and temporary test backups long enough to complete the recovery exercise. Never reuse these keys for real funds.</p><p>Verify the threshold, script type, all three cosigner public keys and their origins against independent signer records. A matching receive address alone does not prove the coordinator is trustworthy.</p></section>
+<section class="entry-card"><h2 id="guide-step-3">3. Receive, review and sign</h2><p>Receive test coins at an address verified against the intended wallet, wait for confirmation, then follow <a href="/plebum-dominium-test/paths/three/signing.html">Practice spend</a>. Review destination, amount, fee and change before each signature.</p><p>Broadcast on the same test network. A confirmation shows that transaction was accepted; it does not prove every backup or signer combination works.</p></section>
+<section class="entry-card"><h2 id="guide-step-4">4. Recover from the test backups</h2><p>Reconstruct the disposable wallet from its saved configuration and test backups in a separate test environment. Check its policy and transaction history, then rehearse spending using each intended pair of signers. Do not wipe a real working wallet.</p><p>Record failures and resolve them before committing real funds. Keep test records clearly separated while learning; when finished, retire the disposable wallet and its records. Never promote a test seed into a mainnet backup.</p></section>
+</div>
+<aside class="guide-warning"><strong>Pause and check:</strong> Stop if the network is unclear, you are using real wallet secrets, or recovery depends on missing configuration. This rehearsal can be done before funding even though the guide introduces backup concepts earlier.</aside>
+<nav class="prevnext-row" aria-label="Previous and next sheets"><a class="prevnext prev" rel="prev" href="/plebum-dominium-test/paths/three/titanium.html">← 10 · Metal and the map</a><span class="step-pos-bottom">Step 11 of 16</span><a class="prevnext next" rel="next" href="/plebum-dominium-test/paths/three/encryption.html">12 · Protect the wallet map →</a></nav>
     </article>
   </main>
 
-  <aside class="toc-col">
-
-  </aside>
+  <aside class="toc-col"><nav class="toc" aria-label="On this sheet"><p>On this sheet</p><ul><li><a href="#guide-step-1" data-toc="guide-step-1">1. Select the test network</a></li><li><a href="#guide-step-2" data-toc="guide-step-2">2. Build a separate practice wallet</a></li><li><a href="#guide-step-3" data-toc="guide-step-3">3. Receive, review and sign</a></li><li><a href="#guide-step-4" data-toc="guide-step-4">4. Recover from the test backups</a></li></ul></nav></aside>
 </div>
 
 <div class="mobilebar" aria-label="Sheet navigation">
