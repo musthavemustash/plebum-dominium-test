@@ -85,7 +85,7 @@
       
       
 <nav class="step-banner" aria-label="Step 7 of 16"><a class="step-nav" rel="prev" href="/plebum-dominium-test/paths/three/verify.html">← 6 · Check the files</a><span class="step-pos"><strong>Step 7 of 16</strong> · Make three keys</span><a class="step-nav" rel="next" href="/plebum-dominium-test/paths/three/sparrow.html">8 · Build the 2-of-3 →</a></nav>
-<section class="guide-overview" aria-label="Sheet overview"><div class="guide-stat"><span>Time</span><strong>30-45 min</strong></div><div class="guide-stat"><span>Difficulty</span><strong>Moderate</strong></div><div class="guide-stat"><span>Steps</span><strong>4 sections</strong></div></section><p class="guide-needs"><strong>You will need:</strong> <a href="/plebum-dominium-test/paths/three/checklist.html">5 dice</a> &middot; <a href="/plebum-dominium-test/paths/three/checklist.html">Paper and pen</a> &middot; <a href="/plebum-dominium-test/downloads.html">The worksheet</a></p>
+<section class="guide-overview" aria-label="Sheet overview"><div class="guide-stat"><span>Time</span><strong>30-45 min</strong></div><div class="guide-stat"><span>Difficulty</span><strong>Moderate</strong></div><div class="guide-stat"><span>Steps</span><strong>6 sections</strong></div></section><p class="guide-needs"><strong>You will need:</strong> <a href="/plebum-dominium-test/paths/three/checklist.html">5 dice</a> &middot; <a href="/plebum-dominium-test/paths/three/checklist.html">Paper and pen</a> &middot; <a href="/plebum-dominium-test/downloads.html">The worksheet</a></p>
 <p class="guide-intro">You will roll dice to create three separate Bitcoin seed phrases. Each one becomes 24 words. The computer never sees the network while you work.</p>
 <aside class="guide-warning"><strong>Safety first:</strong> Never enter seed words on an online computer. Boot Tails with networking Disabled before you start. Shut down fully between each key.</aside>
 <section class="guide-summary">
@@ -101,13 +101,13 @@
 <p class="guide-step-marker">Step 1 / 6</p>
 <h2>Boot Tails. Copy the converter.</h2>
 <p>Boot Tails with networking set to Disabled. Copy the checked dice converter page from the data USB to the Desktop.</p>
-<p class="guide-verify"><strong>Check:</strong> The page opens in Tor Browser and shows the offline indicator. If it says online, stop.</p>
+<p class="guide-verify"><strong>Check:</strong> Open only the verified local copy after enabling Tails Offline Mode. An offline indicator alone does not prove network isolation. If it reports online, stop.</p>
 </section>
 <section class="guide-section">
 <p class="guide-step-marker">Step 2 / 6</p>
 <h2>Roll the dice. Enter the faces.</h2>
-<p>Roll five dice at once. Enter each face as you roll it. Faces 1 to 4 count as bits (1=00, 2=01, 3=10, 4=11). Faces 5 and 6 are skipped, roll those dice again. The page counts the pairs and stops you at 128.</p>
-<p><div class="dice-anim">
+<p>Roll five dice at once. Enter each face as you roll it. Using fair, independently rolled dice and a fixed reading order, faces 1 to 4 count as bits (1=00, 2=01, 3=10, 4=11). Faces 5 and 6 are skipped, roll those dice again. The page counts the pairs and stops you at 128.</p>
+<div class="dice-anim">
 <div class="stage">
       <div class="round r1l">SHAKE 1</div>
       <div class="round r2l">SHAKE 2</div>
@@ -168,19 +168,19 @@
       </div>
     </div>
 <p class="note">Roll as many times as needed to get <strong>256 bits</strong> of entropy: about 39 shakes.</p>
-</div></p>
-<p class="guide-verify"><strong>Check:</strong> The page shows 128 pairs and 256 bits. About 39 shakes.</p>
+</div>
+<p class="guide-verify"><strong>Check:</strong> The page shows 128 pairs and 256 bits. Count accepted pairs, not an estimated number of shakes.</p>
 </section>
 <section class="guide-section">
 <p class="guide-step-marker">Step 3 / 6</p>
 <h2>Write the 24 words.</h2>
-<p>At 256 bits the page prints 24 words. Word 24 is the check. Do not invent it. Do not "fix" it. Write all 24 on the grid. Read them back out loud once.</p>
-<p class="guide-verify"><strong>Check:</strong> The last word is marked as the check word on the page.</p>
+<p>At 256 bits the page prints 24 words. In a 24-word BIP39 phrase, the last word contains three entropy bits and eight checksum bits. It is not an arbitrary check word: never invent or alter it. Write all 24 on the grid. Compare them privately in order, away from cameras and microphones.</p>
+<p class="guide-verify"><strong>Check:</strong> All 24 words and their positions are recorded accurately; a valid checksum does not prove safe randomness.</p>
 </section>
 <section class="guide-section">
 <p class="guide-step-marker">Step 4 / 6</p>
 <h2>Prove it with a second tool.</h2>
-<p>Pick one: the Ian Coleman page takes the same rolls, no terminal. Or the Python converter takes the bits from the page, in the terminal. The 24 words must match exactly. If they differ, stop. Do not pick the prettier list.</p>
+<p>Use a separately verified offline implementation with the exact same 256-bit entropy and BIP39 settings. Raw dice inputs are not interchangeable between tools: some hash the roll string while this guide maps accepted faces to bit pairs. Confirm the input method before comparing all 24 words. If you cannot establish that the inputs and method match, stop; do not guess or choose a preferred output.</p>
 <p class="guide-verify"><strong>Check:</strong> Both tools show the same 24 words.</p>
 </section>
 <section class="guide-section">
@@ -192,7 +192,7 @@
 <section class="guide-section">
 <p class="guide-step-marker">Step 6 / 6</p>
 <h2>Confirm the checks agree.</h2>
-<p>The last word carries a short check so copying mistakes are caught. At least two checks must agree: the two tools showing the same words, and the wallet (Sparrow or Electrum, offline) opening the list without error. If anything disagrees, stop.</p>
+<p>The checksum detects many transcription errors, but not all of them. It does not authenticate the source of the words. At least two checks must agree: the two tools showing the same words, and the wallet (Sparrow or Electrum, offline) opening the list without error. If anything disagrees, stop.</p>
 </section>
 <aside class="guide-stop"><strong>Stop if:</strong> The page says online. The two tools show different words. The wallet rejects the list. Any of these means stop and start that key over.</aside>
 <p>Next, Build the 2-of-3.</p>

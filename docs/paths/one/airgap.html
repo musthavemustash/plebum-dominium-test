@@ -34,6 +34,7 @@
 /* set path before first paint, so the color reminder is right from the start */
 (function(){try{var p=localStorage.getItem('pd-path');if(p!=='one'&&p!=='full'){p='full';}document.documentElement.setAttribute('data-path',p);}catch(e){document.documentElement.setAttribute('data-path','full');}})();
 </script>
+<link rel="stylesheet" href="/plebum-dominium-test/assets/css/entry-pages.css?v=entry1">
 <script>document.documentElement.setAttribute("data-path", "one");</script>
 </head>
 <body data-guide-path="one" data-guide-slug="airgap" class="" id="top">
@@ -79,56 +80,26 @@
   <div class="scrim" aria-hidden="true"></div>
 
   <main id="content">
-    <article>
+    <article class="entry-page">
       <p class="kicker">One key + passphrase · Step 5 of 12</p>
       <h1>Two boots</h1>
       
       
 <nav class="step-banner" aria-label="Step 5 of 12"><a class="step-nav" rel="prev" href="/plebum-dominium-test/paths/one/checklist.html">← 4 · Checklist</a><span class="step-pos"><strong>Step 5 of 12</strong> · Two boots</span><a class="step-nav" rel="next" href="/plebum-dominium-test/paths/one/verify.html">6 · Check the files →</a></nav>
 <section class="guide-overview" aria-label="Sheet overview"><div class="guide-stat"><span>Time</span><strong>45 min</strong></div><div class="guide-stat"><span>Difficulty</span><strong>Careful</strong></div><div class="guide-stat"><span>Steps</span><strong>4 sections</strong></div></section><p class="guide-needs"><strong>You will need:</strong> <a href="/plebum-dominium-test/paths/one/checklist.html">Everyday computer</a> &middot; <a href="/plebum-dominium-test/paths/one/checklist.html">Tails USB</a></p>
-<div class="boots-anim" role="img" aria-label="Animation: Boot 1 builds the payment online, the machine shuts down, Boot 2 signs offline on Tails."><div class="boot boot1"><div class="boot-label">Boot 1 · Network on</div><h4>This computer</h4><p>Watches balances. Builds a payment. Never holds a seed.</p><div class="laptop"><div class="screen">Network on</div></div><ul><li>Verify files</li><li>Watch-only wallet</li><li>Export unsigned file</li></ul></div><div class="then">then<br>shut down</div><div class="boot boot2"><div class="boot-label">Boot 2 · Networking off</div><h4>Tails USB</h4><p>This stick is the offline computer. It borrows the hardware, then forgets.</p><div class="laptop"><div class="screen">Networking off</div></div><ul><li>One seed in memory</li><li>Sign the file</li><li>Full shutdown after</li></ul></div></div><p class="guide-intro">One computer, used twice. The first boot stays online and never holds a seed. The second boot is the Tails USB: networking off, exactly one seed, then a full shutdown. The seed lives in memory only. Shutdown wipes it.</p>
-<p>Files used: Tails 7.16 or later 7.x (verified).</p>
-<section class="guide-summary">
-<h2>What you will do</h2>
-<ol>
-<li>Prepare two USBs: Tails and data.</li>
-<li>Boot Tails offline for each seed session.</li>
-<li>Shut down fully between sessions.</li>
-</ol>
-</section>
-<section class="guide-section">
-<p class="guide-step-marker">Step 1 / 3</p>
-<h2>Prepare the two USBs.</h2>
-<p>Download Tails only from the official site. Check the signature and checksum before writing. Write it with the official installer, label it TAILS. Do not create Persistent Storage. The data USB gets only files that already passed the checks.</p>
-<p class="guide-verify"><strong>Check:</strong> Tails USB is labeled. Data USB has only verified files.</p>
-</section>
-<section class="guide-section">
-<p class="guide-step-marker">Step 2 / 3</p>
-<h2>Boot offline. Do the work. Shut down.</h2>
-<p>Boot the Tails drive. Networking Disabled on the welcome screen, before the desktop. Copy only the file that session needs from the data USB. Do the work. Copy the result back. Shut down fully. Dark screen before the drive comes out.</p>
-<p class="guide-verify"><strong>Check:</strong> Networking was Disabled before the desktop appeared. One seed per session, never two.</p>
-</section>
-<section class="guide-section">
-<p class="guide-step-marker">Step 3 / 3</p>
-<h2>Know what "airgapped" means.</h2>
-<p><strong>Yes:</strong> Networking Disabled on the welcome screen. Files cross on the data USB. The online computer never holds a seed.</p>
-<p><strong>Not airgapped:</strong> Turning networking off after a program opened. A photo of a seed. A password manager or cloud note as backup.</p>
-</section>
-<aside class="guide-stop"><strong>Stop if:</strong> Two seeds in one session. Networking was on at any point. A seed was photographed or typed anywhere except the offline session.</aside>
-<p>Next, Make the three keys.</p>
-<section class="rules" id="house-rules">
-<p class="why-kicker">The limits</p>
-<h2>House rules</h2>
-<div class="rcards">
-<div class="rcard"><div class="ic">&#10015;</div><h3>No photos</h3><p>No seed, plate, or word-bearing screen on a camera.</p></div>
-<div class="rcard"><div class="ic">&#9199;</div><h3>Networking off before the seed</h3><p>A seed never sits on a machine that had the network up.</p></div>
-<div class="rcard"><div class="ic">1</div><h3>One seed / boot</h3><p>Load Seed 1. Sign. Full shutdown. Then Seed 2.</p></div>
-<div class="rcard"><div class="ic">=</div><h3>Hash fails &rarr; stop</h3><p>Do not improvise. Redownload from the project&rsquo;s own site.</p></div>
-<div class="rcard"><div class="ic">+</div><h3>Hardware later</h3><p>Optional signer. Different vendors if more than one.</p></div>
+<p class="entry-lead">Separate online preparation from offline secret handling.</p>
+<p>This page explains the session boundaries. Read <a href="/plebum-dominium-test/paths/one/verify.html">Check the files</a> and complete verification before installing or running downloaded software. Page order is not permission to skip that check.</p>
+<aside class="guide-warning"><strong>Limits:</strong> Tails and Offline Mode cannot make compromised hardware or firmware trustworthy. Reusing one computer for several keys creates shared risks that a reboot does not remove.</aside>
+<div class="entry-grid">
+<section class="entry-card"><p class="entry-label">Online preparation</p><h2>Download and verify first</h2><p>Follow the <a href="https://tails.net/install/index.en.html">official Tails installation instructions</a> for your computer and release. Authenticate the image before writing it. Keep a separate data USB for the specific verified files you need.</p><p>Do not put seed phrases, raw entropy, private keys, or passphrases on the data USB or in the everyday operating system. Do not create or unlock Persistent Storage for this guide’s temporary secret-handling sessions.</p></section>
+<section class="entry-card"><p class="entry-label">Offline session</p><h2>Set the boundary before secrets</h2><p>At the Tails Welcome Screen, enable <strong>Offline Mode</strong> before starting the desktop. Older instructions may call this networking disabled. Disconnect network cables and do not enable networking during the session.</p><p>Use only the verified local tools required for the task. A webpage’s “offline” badge is a reminder, not proof of network isolation or a safe computer.</p><details><summary>One key or three?</summary><p>The one-key path creates one seed. The three-key path uses a separate session for each seed. Do not load multiple signing seeds in one session. Separate sessions reduce accidental mixing; they do not establish independent hardware trust.</p></details></section>
+<section class="entry-card"><p class="entry-label">Transfer boundary</p><h2>Export only what the next step needs</h2><p>When the guide calls for a transfer, export only reviewed public wallet information or the required transaction file. Public descriptors and xpubs expose wallet activity and still need privacy protection.</p><p><strong>Never copy seeds, raw entropy, private-key exports, or secret-bearing wallet files back to the online computer.</strong> Do not assume a file is public because its name says “backup.” Inspect the export type and follow the wallet’s documentation.</p></section>
+<section class="entry-card"><p class="entry-label">End the session</p><h2>Power off fully</h2><p>Finish the offline task and shut down Tails completely before another key session. Do not substitute suspend or hibernate. Keep your physical backup private, away from cameras and microphones.</p><p>Shutdown ends the session; it does not undo a disclosure, erase a file you saved elsewhere, or remove malicious firmware. If isolation or software integrity is in doubt, stop and investigate before using that key.</p></section>
 </div>
-</section>
-
-      <nav class="prevnext-row" aria-label="Previous and next sheets"><a class="prevnext prev" rel="prev" href="/plebum-dominium-test/paths/one/checklist.html">← 4 · Checklist</a><span class="step-pos-bottom">Step 5 of 12</span><a class="prevnext next" rel="next" href="/plebum-dominium-test/paths/one/verify.html">6 · Check the files →</a></nav>
+<aside class="guide-stop"><strong>Stop if:</strong> verification is incomplete, networking was enabled while a secret was present, a secret was saved to transfer media, or you cannot identify what an export contains. Do not use a real funded wallet for a rehearsal.</aside>
+<p class="entry-sources">Official references: <a href="https://tails.net/doc/first_steps/welcome_screen/index.en.html">Welcome Screen and Offline Mode</a> · <a href="https://tails.net/doc/about/warnings/computer/index.en.html">Untrusted computer risks</a>.</p>
+<p>Next, Check the files. Return to these session rules when the later steps require offline work.</p>
+<nav class="prevnext-row" aria-label="Previous and next sheets"><a class="prevnext prev" rel="prev" href="/plebum-dominium-test/paths/one/checklist.html">← 4 · Checklist</a><span class="step-pos-bottom">Step 5 of 12</span><a class="prevnext next" rel="next" href="/plebum-dominium-test/paths/one/verify.html">6 · Check the files →</a></nav>
     </article>
   </main>
 
