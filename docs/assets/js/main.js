@@ -462,16 +462,16 @@ document.querySelectorAll(".btn-onchain").forEach(function (btn) {
     if (lock) lock.classList.toggle("open", n >= 2);
     if (n === 0) {
       caption.innerHTML = "<strong>Vault locked.</strong> No keys selected.";
-      desc.textContent = "Descriptor: not shown yet. Tap keys to see if it is needed.";
+      desc.textContent = "Always preserve the verified wallet configuration.";
     } else if (n === 1) {
       caption.innerHTML = "<strong>Vault locked.</strong> One key alone cannot spend.";
       desc.textContent = "Descriptor: not enough yet. One key alone cannot spend, with or without the map.";
     } else if (n === 2) {
-      caption.innerHTML = "<strong>Vault opens, but a descriptor is needed.</strong>";
-      desc.textContent = "Descriptor: needed. Two seeds alone cannot rebuild the third key, so you need the wallet map (the descriptor) to rebuild the wallet.";
+      caption.innerHTML = "<strong>Two keys meet the signing threshold.</strong>";
+      desc.textContent = "Recovery also needs the full public wallet configuration, including the third cosigner’s public key. Preserve the verified descriptor.";
     } else {
-      caption.innerHTML = "<strong>Vault opens, no descriptor needed.</strong>";
-      desc.textContent = "Descriptor: not needed. Three seeds rebuild the map exactly.";
+      caption.innerHTML = "<strong>Three keys are available; two signatures are required.</strong>";
+      desc.textContent = "Keep the descriptor anyway. Reconstructing the wallet from all seeds still requires the correct derivation paths, script type, and wallet policy.";
     }
   }
   keys.forEach(function (k) {
@@ -490,8 +490,8 @@ document.querySelectorAll(".btn-onchain").forEach(function (btn) {
         k.setAttribute("aria-pressed", "false");
       });
       if (lock) lock.classList.remove("open");
-      caption.innerHTML = "<strong>Any two keys</strong> open it. One alone cannot.";
-      desc.textContent = "Select keys to see if the descriptor is needed.";
+      caption.innerHTML = "<strong>Two signing keys are required.</strong> One alone cannot spend.";
+      desc.textContent = "Always preserve the verified wallet configuration.";
       resetBtn.hidden = true;
     });
   }

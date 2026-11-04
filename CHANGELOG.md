@@ -31,3 +31,11 @@ Production releases will use Semantic Versioning and follow the staging-first re
 - Keep route selection in the URL, isolate completion records, and provide route-specific search results and numbering.
 - Replace the path chooser's dynamic empty panel with native links and two readable cards; remove its unsupported incident anecdotes.
 - Add a bounded path renderer and stale-copy validation without restoring the historical destructive generator.
+
+## Unreleased — homepage and glossary
+
+- Replace the dense homepage comparison with responsive cards, balanced custody tradeoffs, and a Terms-first entry point.
+- Remove unverified news headlines from the homepage ticker; the separate news archive still needs review.
+- Expand Terms to twelve definitions with local filtering, explicit recovery context, and BIP39/PSBT references.
+- Correct the signing-threshold demo: retain verified wallet configuration even when all three seeds are available.
+- Align the path pages' mobile position label with their existing route numbering; regenerate path copies and search indexes from reviewed sources.
