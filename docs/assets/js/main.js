@@ -84,7 +84,7 @@
   }
 
   /* --- sheet check-off, persisted on this device --- */
-  var KEY = "plebum-dominium-done";
+  var KEY = "plebum-dominium-done-" + (document.body.getAttribute("data-guide-path") || "reference");
   var done = {};
   try { done = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) { done = {}; }
   document.querySelectorAll(".sidebar a[data-sheet]").forEach(function (a) {
@@ -259,7 +259,7 @@ document.querySelectorAll(".btn-onchain").forEach(function (btn) {
   var selected = -1, lastFocus = null;
 
   function basePath() {
-    var s = document.querySelector('script[src$="assets/js/main.js"]');
+    var s = document.querySelector('script[src*="assets/js/main.js"]');
     if (s) {
       var src = s.getAttribute("src") || "";
       var i = src.indexOf("assets/js/main.js");
@@ -364,7 +364,9 @@ document.querySelectorAll(".btn-onchain").forEach(function (btn) {
   function loadIndex() {
     if (loading) return;
     loading = true;
-    fetch(basePath() + "assets/search-index.json")
+    var searchPath = document.body.getAttribute('data-guide-path');
+    if (!searchPath) { try { searchPath = localStorage.getItem('pd-path') === 'one' ? 'one' : 'three'; } catch (e) { searchPath = 'three'; } }
+    fetch(basePath() + 'paths/' + searchPath + '/search-index.json')
       .then(function (r) { return r.json(); })
       .then(function (data) {
         loading = false;
@@ -528,163 +530,88 @@ document.querySelectorAll(".btn-onchain").forEach(function (btn) {
   } catch (e) {}
 })();
 
-/* ---------- sidebar path toggle (TEST SITE ONLY): Easy / One key / Full program, saved on this device ---------- */
+/* ---------- independent, URL-addressable learning paths ---------- */
 (function () {
-  "use strict";
+  'use strict';
+  var BASE = '/plebum-dominium-test/';
   var PATHS = {
-    one: { label: "One key", sheets: ["terms", "threat-model", "checklist", "verify", "airgap", "dice", "single-sig", "titanium", "fire-card", "faq"], summary: "One key plus a passphrase. Medium work, trust in one key, one device, and one passphrase." },
-    full: { label: "Full program", sheets: null, summary: "Three keys, three places. Highest work, no single key, device, or place." }
+    one: { label: 'One key + passphrase', steps: ['terms','threat-model','choose-path','checklist','airgap','verify','dice','titanium','inheritance','faq','fire-card','single-sig'] },
+    three: { label: 'Three keys', steps: ['terms','threat-model','choose-path','checklist','airgap','verify','dice','sparrow','signing','titanium','testnet','encryption','inheritance','faq','briefing','fire-card'] }
   };
-  var VARIANTS = { faq: { one: "faq-one" }, titanium: { one: "titanium-one" }, checklist: { one: "checklist-one" }, "fire-card": { one: "fire-card-one" }, dice: { one: "dice-one" } };
-  var NOTES = {
-    dice: {
-      one: "On this path, make one key, then add a passphrase, kept on paper apart from the plate.",
-      full: "Make three keys, with a full shutdown between each key."
-    },
-    titanium: {
-      one: "Stamp the words in titanium, and keep the passphrase paper apart from the plate.",
-      full: "Stamp three plates, and keep them in three places."
-    },
-    verify: {
-      one: "On this path, Sparrow is watch-only only, Electrum is not used, and the wallet map and signing in the Later section do not apply. The checking steps above are the work."
-    },
-    airgap: {
-      one: "On this path, the map, signing a file, and exporting the map do not apply. A watch-only wallet comes later, in the single-sig sheet, and the device signs. Next, make one key."
-    },
-    terms: {
-      one: "On this path, three entries describe the Full program, not your wallet: 2-of-3, m/48'/0'/0'/2', and descriptor as a map. PSBT does not apply either, the device signs. The xpub entry fits as a watch key."
-    },
-    single: {},
-    "single-sig": {
-      one: "This is your main sheet on this path. One key, one passphrase, one watch-only wallet.",
-      full: "On the full program, this sheet is the spending wallet on Plate A. Savings stay in the 2-of-3."
-    },
-    sparrow: {
-      full: "Build the 2-of-3 from the three dice keys, then practice spend before any savings move."
-    },
-    encryption: {
-      full: "Hide the wallet map, encrypted, apart from any single plate. Two seeds alone cannot rebuild the third key without it."
-    },
-    inheritance: {
-      full: "Write the inheritance sheet for a non-Bitcoiner, and keep it where your family can find it."
+  var titles = {'choose-path':'Pick your path','threat-model':'Before you begin', terms:'Terms', checklist:'Checklist',verify:'Check the files',airgap:'Two boots',dice:'Make three keys','single-sig':'One key + passphrase',titanium:'Metal and the map',inheritance:'If I am gone',faq:'If you get stuck','fire-card':'Recovery card',sparrow:'Build the 2-of-3',signing:'Practice spend',testnet:'Rehearse on testnet',encryption:'Protect the wallet map',briefing:'Tough questions'};
+  function link(path,slug) { return BASE+'paths/'+path+'/'+slug+'.html'; }
+  var route = document.body.getAttribute('data-guide-path');
+  var file = (location.pathname.split('/').pop() || '').replace(/\.html$/,'');
+  var slug = document.body.getAttribute('data-guide-slug') || file.replace(/-(one|easy)$/,'');
+  var saved = 'three';
+  try { saved = localStorage.getItem('pd-path') === 'one' ? 'one' : 'three'; } catch(e) {}
+  var path = route || (/-one$/.test(file) ? 'one' : saved);
+  // Old bookmarks resolve to the matching route, never a hidden-content gate.
+  if (!route && location.pathname.indexOf(BASE+'handouts/') === 0) {
+    if (PATHS[path].steps.indexOf(slug) < 0) path = PATHS.one.steps.indexOf(slug) >= 0 ? 'one' : 'three';
+    if (PATHS[path].steps.indexOf(slug) >= 0) {
+      location.replace(link(path,slug)+location.search+location.hash);
+      return;
     }
-  };
-  function getPath() {
-    try {
-      var p = localStorage.getItem("pd-path");
-      if (p === "one" || p === "full") return p;
-    } catch (e) {}
-    return "full";
   }
-  function currentSlug() {
-    var a = document.querySelector(".sidebar a.active");
-    return a ? a.getAttribute("data-sheet") : null;
+  document.documentElement.setAttribute('data-path',path === 'one' ? 'one' : 'full');
+  try { localStorage.setItem('pd-path',path === 'one' ? 'one' : 'full'); } catch(e) {}
+  document.body.classList.remove('path-gated');
+  document.querySelectorAll('#path-gate,#path-banner').forEach(function(el) { el.remove(); });
+  var info=PATHS[path];
+  var count=document.getElementById('path-count');
+  if(count) count.textContent=info.label+' · '+info.steps.length+' steps';
+  // Supporting pages offer the same complete sidebar; path pages already contain it statically.
+  if (!route) {
+    var list=document.querySelector('.sidebar ul');
+    if(list) {
+      list.textContent='';
+      info.steps.forEach(function(s,i) {
+        var li=document.createElement('li'), a=document.createElement('a');
+        a.href=link(path,s);
+        var n=document.createElement('span');n.className='sheet-num';n.textContent=String(i+1).padStart(2,'0');
+        var t=document.createElement('span');t.className='sheet-title';t.textContent=path==='one'&&s==='dice'?'Make one key':path==='one'&&s==='titanium'?'Back up your key':titles[s];
+        a.append(n,t);li.appendChild(a);list.appendChild(li);
+      });
+    }
+    // Non-sequence handouts remain readable as optional references, with a route back.
+    if(location.pathname.indexOf(BASE+'handouts/')===0) {
+      document.querySelectorAll('.header-sheet,.kicker').forEach(function(el){el.textContent='Optional reference';});
+      document.querySelectorAll('.step-banner,.prevnext-row').forEach(function(el){
+        el.textContent='';var a=document.createElement('a');a.className='step-nav';a.href=link(path,'index');a.textContent='Return to '+info.label+' overview';el.appendChild(a);
+      });
+    }
   }
-  function applyPath(path) {
-    var info = PATHS[path];
-    document.documentElement.setAttribute("data-path", path);
-    document.querySelectorAll("#sidebar-path button[data-path], #path-toggle .path-seg button[data-path], .path-seg button[data-path], .path-risks-switch button[data-path]").forEach(function (b) {
-      var on = b.getAttribute("data-path") === path;
-      b.setAttribute("aria-pressed", on ? "true" : "false");
-            b.classList.toggle("sel-one", on && path === "one");
-      b.classList.toggle("sel-full", on && path === "full");
-      if (!on) { b.classList.remove("sel-one", "sel-full"); }
-    });
-    if (window.pdShowPathCard) { try { window.pdShowPathCard(path); } catch (e) {} }
-    var shown = 0, total = 0;
-    document.querySelectorAll(".sidebar ul li[data-paths]").forEach(function (li) {
-      total++;
-      var ok = li.getAttribute("data-paths").split(" ").indexOf(path) >= 0;
-      li.classList.toggle("path-hidden", !ok);
-      if (ok) shown++;
-    });
-    var count = document.getElementById("path-count");
-    if (count) count.textContent = path === "full" ? "All " + total + " sheets" : "Showing " + shown + " of " + total + " sheets for " + info.label;
-    var risksLabel = document.getElementById("path-risks-label");
-    if (risksLabel) risksLabel.textContent = info.label;
-    ["one", "full"].forEach(function (k) {
-      var sec = document.getElementById("risks-" + k);
-      if (sec) sec.classList.toggle("path-hidden", k !== path);
-    });
-    var banner = document.getElementById("path-banner");
-    if (banner) {
-      var slug = currentSlug();
-      // Before you begin is path-neutral: it helps you choose, so no "Your path" banner.
-      if (slug === "threat-model") {
-        banner.hidden = true;
-      } else {
-        var label = document.getElementById("path-banner-label");
-        var note = document.getElementById("path-banner-note");
-        if (label) label.textContent = info.label;
-        if (slug && info.sheets && info.sheets.indexOf(slug) < 0) {
-          banner.classList.add("path-banner-warn");
-          if (note) note.innerHTML = "This sheet is not on your " + info.label + " path. " + info.summary + " Switch to Full program in the sidebar to see all sheets, or pick a sheet on your path.";
-        } else {
-          banner.classList.remove("path-banner-warn");
-          var n = slug && NOTES[slug] && NOTES[slug][path] ? NOTES[slug][path] : info.summary;
-          if (note) note.textContent = n;
-        }
-        banner.hidden = false;
-      }
-    }
-    var gate = document.getElementById("path-gate");
-    var gateNote = document.getElementById("path-gate-note");
-    var gated = false;
-    if (path !== "full") {
-      var gslug = currentSlug();
-      if (gslug && info.sheets && info.sheets.indexOf(gslug) < 0) gated = true;
-    }
-    document.body.classList.toggle("path-gated", gated);
-    if (gate) {
-      gate.hidden = !gated;
-      if (gated && gateNote) gateNote.textContent = "This sheet is part of the Full program, not your " + info.label + " path, so its content is not shown here. Switch to Full program to read it, or stay on your path.";
-    }
-    document.querySelectorAll(".stage .card").forEach(function (card) {
-      var href = card.getAttribute("href") || "";
-      var m = href.match(/handouts\/([a-z0-9-]+)\.html/);
-      if (!m) return;
-      var on = path === "full" || (info.sheets && info.sheets.indexOf(m[1]) >= 0);
-      card.classList.toggle("path-hidden", !on);
-    });
-    document.querySelectorAll(".stage").forEach(function (sec) {
-      var cards = sec.querySelectorAll(".card");
-      if (!cards.length) return;
-      var any = false;
-      cards.forEach(function (c) { if (!c.classList.contains("path-hidden")) any = true; });
-      sec.classList.toggle("path-hidden", !any);
-    });
-    document.querySelectorAll(".sidebar a[data-sheet]").forEach(function (a) {
-      var s = a.getAttribute("data-sheet");
-      var v = VARIANTS[s] && VARIANTS[s][path];
-      if (!a.getAttribute("data-base-href")) a.setAttribute("data-base-href", a.getAttribute("href"));
-      if (v) a.setAttribute("href", a.getAttribute("data-base-href").replace(/[^\/]+\.html$/, v + ".html"));
-      else a.setAttribute("href", a.getAttribute("data-base-href"));
-    });
-    var curSlug = currentSlug();
-    var curFile = (window.location.pathname.split("/").pop() || "").replace(/\.html$/, "");
-    if (curSlug && VARIANTS[curSlug]) {
-      var want = VARIANTS[curSlug][path];
-      if (want && curFile !== want) {
-        window.location.href = window.location.pathname.replace(/[^\/]+\.html$/, want + ".html");
-        return;
-      }
-      if (!want && curFile !== curSlug && (curFile === VARIANTS[curSlug].one)) {
-        window.location.href = window.location.pathname.replace(/[^\/]+\.html$/, curSlug + ".html");
-        return;
-      }
-    }
-    var inSite = document.querySelector(".path-seg button[data-path=\"" + path + "\"]");
-    if (inSite && inSite.getAttribute("aria-pressed") !== "true") inSite.click();
+  function switchPath(value) {
+    var target=value==='one'?'one':'three';
+    var next=PATHS[target].steps.indexOf(slug)>=0?slug:'terms';
+    location.href=link(target,next);
   }
-  function setPath(path) {
-    try { localStorage.setItem("pd-path", path); } catch (e) {}
-    applyPath(path);
-  }
-  window.pdSetPath = setPath;
-  document.querySelectorAll("#sidebar-path button[data-path], #path-toggle .path-seg button[data-path], .path-seg button[data-path], .path-risks-switch button[data-path]").forEach(function (b) {
-    b.addEventListener("click", function () { setPath(b.getAttribute("data-path")); });
+  window.pdSetPath=switchPath;
+  document.querySelectorAll('#sidebar-path button[data-path], .path-seg button[data-path]').forEach(function(b){
+    b.setAttribute('aria-pressed',(b.getAttribute('data-path')==='one' ? 'one':'three')===path?'true':'false');
+    b.addEventListener('click',function(){switchPath(b.getAttribute('data-path'));});
   });
-  applyPath(getPath());
+  function showRisks(value) {
+    document.querySelectorAll('.path-risks-switch button[data-path]').forEach(function(b){b.setAttribute('aria-pressed',b.getAttribute('data-path')===value?'true':'false');});
+    ['one','full'].forEach(function(k){var sec=document.getElementById('risks-'+k);if(sec) sec.classList.toggle('path-hidden',k!==value);});
+    var label=document.getElementById('path-risks-label');if(label)label.textContent=value==='one'?PATHS.one.label:PATHS.three.label;
+  }
+  showRisks(path==='one'?'one':'full');
+  document.querySelectorAll('.path-risks-switch button[data-path]').forEach(function(b){b.addEventListener('click',function(){showRisks(b.getAttribute('data-path'));});});
+  // Keep links from home, search results, and contextual references inside the active route
+  // when that sheet exists there. Other references stay readable and are never gated.
+  function routeLinks(root) {
+    root.querySelectorAll('a[href]').forEach(function(a){
+      var u=new URL(a.getAttribute('href'),location.href);
+      if(u.origin!==location.origin || u.pathname.indexOf(BASE+'handouts/')!==0)return;
+      var s=u.pathname.split('/').pop().replace(/\.html$/,'').replace(/-(one|easy)$/,'');
+      if(info.steps.indexOf(s)>=0)a.setAttribute('href',link(path,s)+u.search+u.hash);
+    });
+  }
+  routeLinks(document);
+  var results=document.querySelector('#ask-results');
+  if(results)new MutationObserver(function(){routeLinks(results);}).observe(results,{childList:true,subtree:true});
 })();
 
 /* --- Why section: tier view switcher (mobile, no sideways scroll; view only, never chooses the path) --- */

@@ -34,3 +34,18 @@ Sparrow’s own multisig backup dialog requires threshold signing seeds and all 
 Prepared as a staging-only review branch. No production repository changes, production merge, tag, or deployment. Do not treat this patch as production-ready: generator alignment and end-to-end recovery validation remain outstanding.
 
 Next options: review browser preview, deploy this bounded patch to staging, or refine the design.
+
+## November 4 — independent-path batch
+
+PR #6 / `995525c85152415beecc3b1cbd2ef9db1566d957` Pages deployment confirmed successful on this run. No open PR or newer main commit was found before editing.
+
+User clarified that the order is Terms → Before you begin (Threat Model) → Pick your path. Both routes now follow that order, with the remaining sheets in the existing order. One-key has 12 numbered pages; three-key has 16. Two devices is an optional reference. A selected route is encoded in its URL rather than a local-storage gate. Switching routes keeps equivalent topics when available; otherwise it opens Terms. Old variant bookmarks resolve to usable route pages. Reading completion remains separate from custody/recovery verification.
+
+Validation performed:
+
+- `python3 scripts/test_paths.py`: all 28 numbered pages, 2 overview pages, consecutive sidebar numbering, exact sidebar destinations, both top/bottom Previous and Next destinations, unique IDs, absence of path gates, expected variant rendering, JS/static sequence parity, and separate completion-key code passed.
+- `python3 scripts/build.py`: 95 HTML pages have valid local file references and staging base paths. Also checks generated page/search-index equality against current reviewed sources, without rewriting files.
+- `python3 scripts/render_paths.py --check`, `node --check docs/assets/js/main.js`, and `git diff --check` passed.
+- Search now loads a path-specific index and uses the same numbers as that route. Fixed the existing main-script base selector so cache-version query strings no longer break the search-index URL.
+- Browser QA NOT performed for this batch: preview initially refused connection; after the managed preview restarted, browser security policy denied access. No alternate browser surface or bypass was attempted. Runtime clicks, mobile rendering, keyboard interaction, and live browser confirmation remain outstanding. Static checks do not certify these.
+- No cryptographic implementation or offline-tool boundary was changed. Existing detailed handout custody guidance remains subject to the broader content audit. In particular, shared Two boots/Check the files content still needs review for path-specific explanations; this batch establishes independent navigation, not a complete rewrite of every procedure.
