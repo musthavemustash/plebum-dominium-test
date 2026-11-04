@@ -4,6 +4,8 @@ Production releases will use Semantic Versioning and follow the staging-first re
 
 ## Unreleased (staging only)
 
+- Hardened offline tool controls and reconnect cleanup; prevent stale/late results. Corrected Tails 7.16 pins after image and signature verification. Download release remains blocked pending remaining verification and packaging.
+
 - Added reproducible public-vector and encryption compatibility tests plus tool-provenance findings. Core tests pass; download release remains blocked by provenance, version pins and offline/UI issues.
 
 - Removed the preselected-path shortcut above the chooser options on both routes.

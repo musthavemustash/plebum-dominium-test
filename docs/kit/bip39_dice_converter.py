@@ -2152,7 +2152,8 @@ def generate_mnemonic(raw_input: str):
     return words, original_length
 
 
-# Pinned 2026-09-27 from each project's own checksum.
+# Tails 7.16 hashes verified from downloaded images and signatures 2026-11-04.
+# Sparrow 2.5.5 manifest signature verified; Electrum/Ian Coleman pins remain unverified.
 # A newer official file will not match. That is a failure.
 # Tails 7.16: tails.net latest.json
 # Sparrow 2.5.5: sparrow-2.5.5-manifest.txt
@@ -2167,8 +2168,8 @@ OFFICIAL_HASHES = {
     "bip39-standalone.html": "eb504a906b92db0af1790b52151a1a87f4e13821e6e228fdac889b6957af9779",
 }
 TAILS_ONE_OF = {
-    "tails-amd64-7.16.img": "8c4e63c7c47a000335bf2e66158c0d062c063619599e45d717759d8f1621f468",
-    "tails-amd64-7.16.iso": "cacb025f452ad010257dd5d3ba7bf7cb1bdfde50e8e583670d604d0bb6336682",
+    "tails-amd64-7.16.img": "7bef45b9aad430e6c2bbfd78c30c5a7ad2f143d498a002b96b88814a18c52a1d",
+    "tails-amd64-7.16.iso": "db90cb147cbfa74a801ede758061a3dcf1393b102405bdeccab4708e2fdbd71e",
 }
 
 

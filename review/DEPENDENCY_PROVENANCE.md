@@ -76,3 +76,5 @@ Existing pin `6310ebd0b7965196ecc3eb7e1bfead260cdc9033a8847204561b9762e62a87c0` 
 ## Next action
 
 Proceed with the already identified offline/UI repairs while preserving the download block. Before repackaging, close Tails image verification, Electrum artifact access/signatures and the additional unversioned Ian Coleman pin. Maintain the distinction between matching a published dependency and certifying a complete custody workflow.
+
+Follow-up: [OFFLINE_CONTROL_REPAIR.md](OFFLINE_CONTROL_REPAIR.md) records completed Tails image/signature verification and repaired offline/UI issues. Electrum, browser validation and packaging remain open.
