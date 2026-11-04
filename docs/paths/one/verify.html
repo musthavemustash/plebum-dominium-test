@@ -34,6 +34,7 @@
 /* set path before first paint, so the color reminder is right from the start */
 (function(){try{var p=localStorage.getItem('pd-path');if(p!=='one'&&p!=='full'){p='full';}document.documentElement.setAttribute('data-path',p);}catch(e){document.documentElement.setAttribute('data-path','full');}})();
 </script>
+<link rel="stylesheet" href="/plebum-dominium-test/assets/css/entry-pages.css?v=entry1">
 <script>document.documentElement.setAttribute("data-path", "one");</script>
 </head>
 <body data-guide-path="one" data-guide-slug="verify" class="" id="top">
@@ -79,51 +80,25 @@
   <div class="scrim" aria-hidden="true"></div>
 
   <main id="content">
-    <article>
+    <article class="entry-page">
       <p class="kicker">One key + passphrase · Step 6 of 12</p>
       <h1>Check the files</h1>
       
       
 <nav class="step-banner" aria-label="Step 6 of 12"><a class="step-nav" rel="prev" href="/plebum-dominium-test/paths/one/airgap.html">← 5 · Two boots</a><span class="step-pos"><strong>Step 6 of 12</strong> · Check the files</span><a class="step-nav" rel="next" href="/plebum-dominium-test/paths/one/dice.html">7 · Make one key →</a></nav>
 <section class="guide-overview" aria-label="Sheet overview"><div class="guide-stat"><span>Time</span><strong>30 min</strong></div><div class="guide-stat"><span>Difficulty</span><strong>Careful</strong></div><div class="guide-stat"><span>Steps</span><strong>7 sections</strong></div></section><p class="guide-needs"><strong>You will need:</strong> The downloaded files &middot; Two verification tools</p>
-<p class="guide-intro">Every file gets checked before the computer goes offline. A file that fails is deleted, no exceptions. A compromised file compromises the funds.</p>
-<aside class="guide-warning"><strong>Safety first:</strong> These instructions only protect you on <strong>plebumbtc.io</strong>. Check the address bar. The domain must read exactly <code>plebumbtc.io</code>. Click the lock icon and confirm the certificate. If anything looks wrong, stop.</aside>
-<section class="guide-summary">
-<h2>What you will do</h2>
-<ol>
-<li>Download each file only from the real sites.</li>
-<li>Compare fingerprints. They must match exactly.</li>
-<li>Check the signature. Want: "Good signature".</li>
-<li>Run the kit check. One failure stops the work.</li>
-</ol>
-</section>
-<section class="guide-section">
-<p class="guide-step-marker">Step 1 / 4</p>
-<h2>Download only from the real sites.</h2>
-<p>Download each file only from the project's own site. The HTML tool pages are the files this site provides; their fingerprints are in VERIFY.md. They are on the <a href="/plebum-dominium-test/downloads.html">downloads page</a>.</p>
-<p class="guide-verify"><strong>Check:</strong> Every file came from its official source. No mirrors, no copies.</p>
-</section>
-<section class="guide-section">
-<p class="guide-step-marker">Step 2 / 4</p>
-<h2>Compare the fingerprints.</h2>
-<p><strong>No command line:</strong> Open the <a href="/plebum-dominium-test/verify-file.html">verify page</a>, pick the file, and drop your download on it. MATCH means it is the published copy. NO MATCH means delete it and download again.</p>
-<p><strong>Command line:</strong> Run <code>shasum -a 256</code> (Mac) or <code>Get-FileHash</code> (Windows). Compare every character with VERIFY.md.</p>
-<p class="guide-verify"><strong>Check:</strong> Every character matches. One character off means delete the file.</p>
-</section>
-<section class="guide-section">
-<p class="guide-step-marker">Step 3 / 4</p>
-<h2>Check the signature.</h2>
-<p>Import the signing key, confirm its fingerprint, then verify. The "not certified" warning is normal on first import. What matters: the line says Good signature and the fingerprint matches.</p>
-<p class="guide-verify"><strong>Check:</strong> "Good signature" appears. The fingerprint matches the download page.</p>
-</section>
-<section class="guide-section">
-<p class="guide-step-marker">Step 4 / 4</p>
-<h2>Run the kit check.</h2>
-<p>Put the downloads next to the verify script and run it. It checks the pinned fingerprints. One failure: the work stops.</p>
-</section>
-<aside class="guide-stop"><strong>Stop if:</strong> A fingerprint differs by one character. The signature isn't Good. The two tools disagree on the words. Delete the file, stop the work.</aside>
-<p>Next, Two boots.</p>
-      <nav class="prevnext-row" aria-label="Previous and next sheets"><a class="prevnext prev" rel="prev" href="/plebum-dominium-test/paths/one/airgap.html">← 5 · Two boots</a><span class="step-pos-bottom">Step 6 of 12</span><a class="prevnext next" rel="next" href="/plebum-dominium-test/paths/one/dice.html">7 · Make one key →</a></nav>
+<p class="entry-lead">Verify the file, its source, and the signing key before running it.</p>
+<aside class="guide-warning"><strong>Staging guide:</strong> a familiar domain or HTTPS connection does not certify software safety. This site’s tools and instructions remain under review. Never enter signing secrets into the live website.</aside>
+<div class="entry-grid">
+<section class="entry-card"><p class="entry-label">1 · Source</p><h2>Start with the project</h2><p>Use the developer’s official download and verification instructions for the exact release and operating system. Avoid links from advertisements, unsolicited messages, or search-result lookalikes.</p><p>For this kit, the <a href="/plebum-dominium-test/downloads.html">downloads page</a> and <a href="/plebum-dominium-test/kit/VERIFY.md">manifest</a> identify distributed files. They do not independently audit their code.</p><details><summary>What HTTPS tells you</summary><p>HTTPS protects the connection to the named domain. It does not prove that the domain, its publisher, or the downloaded program is trustworthy.</p></details></section>
+<section class="entry-card"><p class="entry-label">2 · Integrity</p><h2>Compare the complete hash</h2><p>Calculate the downloaded file’s SHA-256 digest and compare every character with the authenticated expected value for that exact release. The <a href="/plebum-dominium-test/verify-file.html">file checker</a> can compare a kit file with its listed digest.</p><p><strong>A match means the bytes agree with the reference.</strong> If an attacker replaces both the file and the reference, that comparison will still pass.</p><details><summary>Command-line alternatives</summary><p>On macOS, use <code>shasum -a 256</code> followed by the file path. In Windows PowerShell, use <code>Get-FileHash -Algorithm SHA256</code> with the file path. Follow the project’s instructions for your platform.</p></details></section>
+<section class="entry-card"><p class="entry-label">3 · Authenticity</p><h2>Verify the signer, then the signature</h2><p>Where the publisher provides signatures, authenticate the signing key’s full fingerprint using the publisher’s documented verification process and an independently trusted source. Then verify the signature for the exact downloaded file or signed checksum manifest.</p><p><strong>“Good signature” alone is insufficient.</strong> It means the signature verifies under a key; you must establish whose key it is. A new key or unexplained fingerprint change needs investigation.</p><details><summary>About trust warnings</summary><p>A message that a key is not certified can reflect your local trust settings. Do not dismiss it without independently checking the key identity. Stop for a bad signature, unexpected key, or unresolved warning.</p></details></section>
+<section class="entry-card"><p class="entry-label">4 · Ready to proceed?</p><h2>Keep a verification record</h2><p>Record the release, file name, hash, verification method, and signing-key fingerprint when applicable. Run any kit verification script only after reviewing and authenticating that script too.</p><p>Never run a failed or unexplained download. Recheck the source and release before trying again. A successful checksum or signature does not establish that software is bug-free or appropriate for custody.</p></section>
+</div>
+<aside class="guide-stop"><strong>Stop if:</strong> the source is uncertain, a hash differs, a signature fails, the key identity is unverified, or the release cannot be matched to its verification instructions. Do not proceed to secret-handling work.</aside>
+<p class="entry-sources">Use the current official instructions: <a href="https://tails.net/install/index.en.html">Tails installation</a> · <a href="https://sparrowwallet.com/download/">Sparrow downloads and verification</a>.</p>
+<p>Next, follow your path’s key-generation page. Verify every required file before opening an offline secret-handling session.</p>
+<nav class="prevnext-row" aria-label="Previous and next sheets"><a class="prevnext prev" rel="prev" href="/plebum-dominium-test/paths/one/airgap.html">← 5 · Two boots</a><span class="step-pos-bottom">Step 6 of 12</span><a class="prevnext next" rel="next" href="/plebum-dominium-test/paths/one/dice.html">7 · Make one key →</a></nav>
     </article>
   </main>
 

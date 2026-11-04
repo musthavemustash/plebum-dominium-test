@@ -39,3 +39,10 @@ Production releases will use Semantic Versioning and follow the staging-first re
 - Expand Terms to twelve definitions with local filtering, explicit recovery context, and BIP39/PSBT references.
 - Correct the signing-threshold demo: retain verified wallet configuration even when all three seeds are available.
 - Align the path pages' mobile position label with their existing route numbering; regenerate path copies and search indexes from reviewed sources.
+
+## Unreleased — verification and offline-session guidance
+
+- Rework Check the files and Two boots into readable responsive cards with native explanatory disclosures.
+- Distinguish file integrity from signer identity and software trust; remove the production-domain-only safety claim.
+- Clarify Tails Offline Mode, shared hardware risks, secret-free transfer files, and shutdown limitations.
+- Fix one-key dice instructions that mistakenly requested three seeds; correct BIP39 last-word/checksum explanations and incompatible cross-tool input assumptions.

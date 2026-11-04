@@ -57,3 +57,13 @@ PR #7 merged as `434f27b37f98c0a77f838730519f85d8ef3ef71a`. GitHub Pages run [41
 - The remaining content from local WIP `584827b` has now been considered for homepage/Terms; do not reapply its obsolete chooser or navigation code. Path-risk wording from that WIP remains to review.
 
 Next: confirm this batch's PR/Pages status, then prioritize Check the files, Two boots, and key-generation handouts for safety accuracy and path-specific clarity. Remaining supporting pages, downloads, news, and tools still require review. Full-site completion and wallet recovery validation are NOT claimed.
+
+## November 4 — verification and offline-session batch
+
+- PR #9 merge `77b479ccb0fc1c1c9e8653c74acc31f49ee4e5b9` and successful Pages deployment confirmed. No open PR or overlapping remote batch found.
+- Revised Check the files and Two boots with responsive cards, signer/source/integrity distinctions, explicit no-secret transfer rules, Tails Offline Mode, and shared-hardware/shutdown limitations. Removed stale prose Next destinations while preserving route order.
+- Corrected dice and dice-one checksum/input-method explanations. dice-one no longer creates three seeds. Narrow correction only on legacy dice-easy. Both routes and their search indexes regenerated; navigation, link/drift, and existing interaction-logic checks pass. Browser/mobile and real custody execution remain unverified.
+- Official Sparrow page now lists 2.5.6 while kit instructions pin 2.5.5. Do not silently update version labels without coordinating binaries, signatures, hashes and compatibility review. Tails installer page lists 7.16, while checklist variants contain older lower bounds.
+- Cross-tool entropy equivalence is an outstanding validation requirement, not a proven procedure. Revised text says to stop if input methods cannot be matched. Cryptographic code and offline boundaries were not modified.
+
+Next: confirm this batch deployment; review Checklist variants and backup/recovery/inheritance instructions. Downloads/kit versions, tools test vectors, news and remaining supporting pages still need their full reviews. Browser QA is outstanding for all batches after PR #6. Do not claim the site is fully revised or ready for production.

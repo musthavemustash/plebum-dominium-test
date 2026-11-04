@@ -61,3 +61,18 @@ Primary references checked November 4: BIP39 https://raw.githubusercontent.com/b
 Validation: `node scripts/test_entry_interactions.js` passes glossary matching/no-match/clear behavior, all three key-demo states and reset, and the single homepage H1. These use DOM doubles and are not browser tests. Path traversal/parity tests, 95-page local-reference/source-drift validation, JavaScript syntax checks, and diff whitespace checks pass. No seed/private-key/passphrase inputs or cryptographic/offline-tool changes were introduced.
 
 Browser/live appearance remains unverified following the earlier browser policy block; no workaround was used. Actual mobile/keyboard/theme/print rendering and screen-reader behavior still require browser review. Responsive CSS and print behavior are implemented but not visually certified.
+
+## November 4 — verification/offline guidance batch
+
+Baseline `77b479ccb0fc1c1c9e8653c74acc31f49ee4e5b9` (PR #9); Pages success confirmed and no open PRs at start. Reworked canonical verify/airgap handouts and regenerated both routes. Check the files now separates source, integrity, authenticated signer, and verification records. Two boots explains Offline Mode, public-data-only transfer boundaries, hardware/firmware limits, and full shutdown without claiming it reverses compromise. One-key dice no longer asks for Seeds 2/3. Dice text clarifies fair independent rolls, exact entropy-method compatibility, and the final word's three entropy/eight checksum bits for 24-word BIP39.
+
+Primary sources checked November 4:
+- https://tails.net/doc/first_steps/welcome_screen/index.en.html — Offline Mode before starting the desktop.
+- https://tails.net/doc/about/warnings/computer/index.en.html — compromised installation systems and hardware/firmware limitations.
+- https://tails.net/install/index.en.html — current official installation/verification entry points; lists 7.16. No blanket future-version compatibility claim retained in revised airgap page.
+- https://sparrowwallet.com/download/ — signed manifest, full signing fingerprint and local key-trust warnings. Current download is 2.5.6; existing kit pins 2.5.5. Updating pins/binaries is NOT part of this batch and requires coordinated verification.
+- BIP39 specification checked in the preceding batch for entropy/checksum layout; no converter code was changed.
+
+Checks passed: local file references/drift across 95 HTML pages, all 28 numbered navigation routes, glossary/demo logic regression, unique IDs on five touched canonical handouts, targeted assertions removing one-key three-seed instructions and unsafe verification/transfer claims, and diff whitespace checks. Existing tool files and offline enforcement were not modified. Browser/mobile/live rendering remains unverified after the prior policy block; no bypass attempted.
+
+Outstanding: independently exercise the actual offline converters with public test vectors and matching entropy input settings before endorsing a specific cross-tool procedure. Existing instructions are now explicit to stop if equivalence cannot be established. No real seed material was used. dice-easy received only a narrow explanatory correction, not a full content review. Checklist versions and the pinned download inventory still need reconciliation; no compatibility upgrade is claimed.
