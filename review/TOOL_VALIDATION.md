@@ -50,3 +50,5 @@ node scripts/test_tool_network.cjs
 ## Follow-up
 
 See [DEPENDENCY_PROVENANCE.md](DEPENDENCY_PROVENANCE.md): OpenPGP package identity and Sparrow signed-manifest checks are now established. Tails pins mismatch official metadata; Electrum artifact verification is blocked by HTTP 403. Other release blockers remain.
+
+Follow-up: [OFFLINE_CONTROL_REPAIR.md](OFFLINE_CONTROL_REPAIR.md) records completed Tails image/signature verification and repaired offline/UI issues. Electrum, browser validation and packaging remain open.

@@ -1,0 +1,9 @@
+gpg: keybox '/tmp/tmpzvr15he1/pubring.kbx' created
+gpg: /tmp/tmpzvr15he1/trustdb.gpg: trustdb created
+gpg: key DBB802B258ACD84F: public key "Tails developers <tails@tails.net>" imported
+gpg: error running '/usr/bin/gpg-agent': exit status 2
+gpg: failed to start gpg-agent '/usr/bin/gpg-agent': General error
+gpg: can't connect to the gpg-agent: General error
+gpg: Total number processed: 1
+gpg:               imported: 1
+gpg: no ultimately trusted keys found

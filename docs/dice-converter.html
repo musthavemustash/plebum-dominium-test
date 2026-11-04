@@ -282,8 +282,9 @@ function wordsFromBitsInput(raw){
   var note='';
   if(bits.length<256) return {words:null, note:'Need 256 bits. Pasted text holds '+bits.length+'.'};
   if(bits.length>256){
+    var originalLength = bits.length;
     bits=bytesToBits(sha256(bitsToBytes(bits)));
-    note='Pasted '+bits.length+' bits. Hashed down to 256, like the Python tool.';
+    note='Pasted '+originalLength+' bits. Hashed down to 256, like the Python tool.';
   }
   return {words:bitsToWords(bits), note:note, bits:bits};
 }
@@ -355,10 +356,11 @@ if(typeof module!=='undefined') module.exports={sha256:sha256,bytesToBits:bytesT
     });
   }
   async function addDie(face){
+    if (location.protocol !== 'file:' || navigator.onLine !== false) { await renderNet(); return; }
     if(netBlocked){
       // Re-probe on tap: the offline event may not have fired.
       await renderNet();
-      if(netBlocked) return;
+      if(netBlocked || location.protocol !== 'file:' || navigator.onLine !== false) return;
     }
     if(bits().length>=256 && !pastedBits) return;
     if(pastedBits){ clearAll(); }
@@ -377,7 +379,7 @@ if(typeof module!=='undefined') module.exports={sha256:sha256,bytesToBits:bytesT
     })(diebtns[bi]);
   }
   document.addEventListener('keydown', function(e){
-    if(netBlocked) return;
+    if(netBlocked || location.protocol !== 'file:' || navigator.onLine !== false) return;
     if(/INPUT|TEXTAREA/.test(document.activeElement.tagName)) return;
     if(e.key>='1'&&e.key<='6') addDie(parseInt(e.key,10));
     else if(e.key==='Backspace'){ rolls.pop(); render(); e.preventDefault(); }
@@ -385,6 +387,7 @@ if(typeof module!=='undefined') module.exports={sha256:sha256,bytesToBits:bytesT
   $('undo').addEventListener('click', function(){ rolls.pop(); render(); });
   $('clear').addEventListener('click', clearAll);
   $('testfill').addEventListener('click', function(){
+    if (location.protocol !== 'file:' || navigator.onLine !== false) return;
     clearAll();
     var seed=123456789;
     function rnd(){ seed=(seed*1103515245+12345)&0x7fffffff; return seed/0x7fffffff; }
@@ -398,6 +401,7 @@ if(typeof module!=='undefined') module.exports={sha256:sha256,bytesToBits:bytesT
   $('pastebits').addEventListener('input', function(){
     clearTimeout(pasteT);
     pasteT=setTimeout(function(){
+      if (location.protocol !== 'file:' || navigator.onLine !== false) { clearAll(); return; }
       var raw=$('pastebits').value;
       var r=wordsFromBitsInput(raw);
       var note=$('paste-note');
@@ -408,7 +412,7 @@ if(typeof module!=='undefined') module.exports={sha256:sha256,bytesToBits:bytesT
     },350);
   });
   $('validate').addEventListener('click', function(){
-    if(netBlocked) return;
+    if(netBlocked || location.protocol !== 'file:' || navigator.onLine !== false) return;
     var raw=$('valwords').value.trim().split(/\s+/).filter(function(w){return w.length;});
     var ul=$('results'); ul.innerHTML='';
     function li(cls,text,delay){
@@ -429,13 +433,8 @@ if(typeof module!=='undefined') module.exports={sha256:sha256,bytesToBits:bytesT
       li('good','No words recorded above to compare against. This list stands on its own check.', .18);
     }
   });
-  netBlocked=true; // fail closed until the probe confirms offline
-  function probeOnline(){
-    // Simple and reliable: if loaded via https://, we're online.
-    // On Tails, the file is opened from USB via file://, so we're offline.
-    // This avoids fragile network probes that hang on mobile browsers.
-    return Promise.resolve(location.protocol === 'https:');
-  }
+  netBlocked=true; // blocked until a local file and an explicit offline signal are observed
+
   async function renderNet(){
     var pill=$('online-pill'), dot=$('online-dot'), word=$('online-word'), block=$('netblock');
     if(pill){ pill.hidden=false; dot.classList.remove('safe'); word.textContent='Checking\u2026'; }
@@ -444,7 +443,7 @@ if(typeof module!=='undefined') module.exports={sha256:sha256,bytesToBits:bytesT
     // file: means opened locally, not that networking is disabled.
     // https: means served over network. User must disable and verify networking independently.
     var servedOverNetwork = (location.protocol === 'https:' || location.protocol === 'http:');
-    var online = servedOverNetwork || (navigator.onLine===true);
+    var online = location.protocol !== 'file:' || navigator.onLine !== false;
     var wasBlocked=netBlocked;
     netBlocked=online;
     if(pill){ dot.classList.toggle('safe', !online); word.textContent=online?'Network detected':'Local file'; }
@@ -454,7 +453,8 @@ if(typeof module!=='undefined') module.exports={sha256:sha256,bytesToBits:bytesT
         block.innerHTML='<strong>Warning:</strong> This tool was loaded over the network ('+location.protocol+'). For real keys, download this file, disconnect from the network, verify networking is disabled, then open the local copy. This page cannot verify air-gap status for you.';
       }
     }
-    if(online && !wasBlocked){
+    if(online){
+      clearTimeout(pasteT);
       clearAll();
       $('valwords').value='';
       $('results').innerHTML='';
