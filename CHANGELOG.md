@@ -4,6 +4,8 @@ Production releases will use Semantic Versioning and follow the staging-first re
 
 ## Unreleased (staging only)
 
+- Removed the preselected-path shortcut above the chooser options on both routes.
+
 - Revised FAQ variants, briefing, single-sig, optional two-device guide and path-risk comparison. Corrected 2-of-3 compromise and passphrase migration claims. Downloads now flags five manifest mismatches and legacy documents pending reconciliation.
 
 - Revised signing, testnet rehearsal and map-encryption guides with responsive sections, complete transaction-output checks, disposable-wallet recovery practice and explicit encryption recovery limitations.

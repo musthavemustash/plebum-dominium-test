@@ -102,3 +102,7 @@ Next: confirm this batch deployment; continue FAQ variants, briefing, single-sig
 - Passed: 95 HTML reference/base/source-drift checks; 28 route steps and two overviews; existing glossary/demo logic; IDs and internal section links on all eight revised sources; whitespace checks. Browser/mobile/print and actual signing/recovery remain unverified after the prior browser-policy block. Tool cryptography and offline enforcement unchanged.
 
 Next: confirm PR/Pages status. Highest priority is tool provenance/hash/archive reconciliation and known-answer tests, then PDF regeneration and visual review. Remaining legacy easy handouts, chooser claims, supporting newcomer/news/beyond/demo pages and site-wide search/browser regression still need review. This batch completes the named web-page revisions but only triages downloads; full-site completion is not claimed.
+
+## November 4 — chooser shortcut removal
+
+User requested removal of the Continue with Three keys link above the path options. Removed its generator insertion for both routes, regenerated pages/search indexes, and verified absence on both chooser variants. Existing path-option links retained. 95-page validator and 28-step route regression passed. Browser visual verification remains unavailable. Staging only; confirm this batch Pages deployment on next run.
