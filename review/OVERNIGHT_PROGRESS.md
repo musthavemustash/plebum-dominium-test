@@ -106,3 +106,11 @@ Next: confirm PR/Pages status. Highest priority is tool provenance/hash/archive 
 ## November 4 — chooser shortcut removal
 
 User requested removal of the Continue with Three keys link above the path options. Removed its generator insertion for both routes, regenerated pages/search indexes, and verified absence on both chooser variants. Existing path-option links retained. 95-page validator and 28-step route regression passed. Browser visual verification remains unavailable. Staging only; confirm this batch Pages deployment on next run.
+
+## November 4 — tool provenance and repeatable tests
+
+Baseline aa06ea2f4d317acd39b0d863f36aa46c8f12774c; no open PRs at start. Investigated all five mismatches and bundle differences. Four manifest hashes match older available Git versions. EFF direct download exactly matches current wordlist; manifest is stale. Python version labels changed without changing external software hashes. Bundle retains older permissive binary-input handling and active network probes.
+
+Added public fixtures and repeatable Python/Node core tests: eight published 256-bit BIP39 vectors, embedded wordlists, mapping/checksum/input validation, excess-bit parity, Python/GPG↔embedded JS encryption with Unicode, wrong-password/truncation/corruption rejection. Network-state logic tested with DOM doubles. Found unknown-status permissiveness, reconnect password wipe mismatch, stale decrypt output, and unconfirmed embedded dependency provenance. See TOOL_VALIDATION.md for exact evidence and repair sequence.
+
+No tools, hashes or ZIP modified; downloads remain blocked for release. No real secrets used. Browser/target-Tails execution and network egress not certified. Next: dependency and upstream-pin provenance, guard/UI repairs with tests, then atomic packaging only after passing the remaining gates. This investigation does not resolve all five release blockers merely because core algorithms pass.

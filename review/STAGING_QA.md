@@ -111,3 +111,11 @@ Next: confirm this batch deployment; continue FAQ variants, briefing, single-sig
 - Passed: 95 HTML reference/base/source-drift checks; 28 route steps and two overviews; existing glossary/demo logic; IDs and internal section links on all eight revised sources; whitespace checks. Browser/mobile/print and actual signing/recovery remain unverified after the prior browser-policy block. Tool cryptography and offline enforcement unchanged.
 
 Next: confirm PR/Pages status. Highest priority is tool provenance/hash/archive reconciliation and known-answer tests, then PDF regeneration and visual review. Remaining legacy easy handouts, chooser claims, supporting newcomer/news/beyond/demo pages and site-wide search/browser regression still need review. This batch completes the named web-page revisions but only triages downloads; full-site completion is not claimed.
+
+## November 4 — tool provenance and repeatable tests
+
+Baseline aa06ea2f4d317acd39b0d863f36aa46c8f12774c; no open PRs at start. Investigated all five mismatches and bundle differences. Four manifest hashes match older available Git versions. EFF direct download exactly matches current wordlist; manifest is stale. Python version labels changed without changing external software hashes. Bundle retains older permissive binary-input handling and active network probes.
+
+Added public fixtures and repeatable Python/Node core tests: eight published 256-bit BIP39 vectors, embedded wordlists, mapping/checksum/input validation, excess-bit parity, Python/GPG↔embedded JS encryption with Unicode, wrong-password/truncation/corruption rejection. Network-state logic tested with DOM doubles. Found unknown-status permissiveness, reconnect password wipe mismatch, stale decrypt output, and unconfirmed embedded dependency provenance. See TOOL_VALIDATION.md for exact evidence and repair sequence.
+
+No tools, hashes or ZIP modified; downloads remain blocked for release. No real secrets used. Browser/target-Tails execution and network egress not certified. Next: dependency and upstream-pin provenance, guard/UI repairs with tests, then atomic packaging only after passing the remaining gates. This investigation does not resolve all five release blockers merely because core algorithms pass.
