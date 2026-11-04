@@ -16,3 +16,9 @@ Production releases will use Semantic Versioning and follow the staging-first re
 - Align Threat Model navigation and summary behavior; clarify recovery wording.
 - Make Sparrow commands copyable without shell prompts and align the verification overview.
 - Record browser QA and outstanding release blockers in `review/STAGING_QA.md`.
+
+## Unreleased — preserve reviewed staging source
+
+- Make the buildless `docs/` site authoritative; replace the obsolete destructive generator with non-mutating staging validation.
+- Check local references across all 65 HTML pages, reject a custom-domain CNAME or non-staging base.
+- Repair six malformed or incorrectly rooted references across dice-easy, inheritance variants, file verification and dice rolls.
