@@ -34,7 +34,7 @@
 /* set path before first paint, so the color reminder is right from the start */
 (function(){try{var p=localStorage.getItem('pd-path');if(p!=='one'&&p!=='full'){p='full';}document.documentElement.setAttribute('data-path',p);}catch(e){document.documentElement.setAttribute('data-path','full');}})();
 </script>
-</head>
+<link rel="stylesheet" href="/plebum-dominium-test/assets/css/entry-pages.css"></head>
 <body class="" id="top">
 <div class="splash" id="pd-splash" hidden aria-hidden="true">
   <p class="splash-title">Plebum Dominium: Independent At-Home Bitcoin Self-custody</p>
@@ -97,7 +97,7 @@
   <div class="scrim" aria-hidden="true"></div>
 
   <main id="content">
-    <article>
+    <article class="entry-page">
       <p class="kicker">18 · Plebum Dominium</p>
       <h1>Two devices and one dice key</h1>
       <div class="path-banner" id="path-banner" hidden>
@@ -110,66 +110,7 @@
         <p><a href="/plebum-dominium-test/choose-path.html">Go to Choose your path to change it</a></p>
         <p><a href="/plebum-dominium-test/path-risks.html">Risks of your path &rarr;</a></p>
       </div>
-<nav class="step-banner" aria-label="Sheet 17 of 17"><a class="step-nav" href="/plebum-dominium-test/handouts/single-sig.html" rel="prev">&larr; 17 &middot; One key, done right</a><span class="step-pos"><strong>Step 17 of 17</strong> · Two devices and one dice key</span><span class="step-nav step-none" aria-hidden="true"></span></nav>
-<section class="guide-overview" aria-label="Sheet overview"><div class="guide-stat"><span>Time</span><strong>1-2 hours</strong></div><div class="guide-stat"><span>Difficulty</span><strong>Moderate</strong></div><div class="guide-stat"><span>Steps</span><strong>8 sections</strong></div></section><p class="guide-needs"><strong>You will need:</strong> Two hardware devices &middot; <a href="/plebum-dominium-test/handouts/checklist.html">5 dice</a> &middot; <a href="/plebum-dominium-test/handouts/checklist.html">Titanium plates</a></p>
-<p class="guide-intro">- A 2-of-3 wallet. Two keys live on hardware devices from different makers. The third key is a dice seed that no device ever made.</p>
-<ul>
-<li>No one device, one maker, or one place can move the fund alone.</li>
-<li><strong>The seed phrase is the wallet.</strong> The device only signs.</li>
-<li><strong>One rule:</strong> the words go into the device itself, during recovery, and nowhere else. Never a website, never an app, never a form from an email.</li>
-</ul>
-<p>Files used: Sparrow 2.5.5.</p>
-<figure class="step-fig"><svg width="620" height="150" viewBox="0 0 620 150" font-family="IBM Plex Sans, sans-serif"><rect x="40" y="30" width="160" height="60" rx="8" fill="#8a847e" stroke="#44403c"/><text x="120" y="57" fill="#0b0a08" font-size="12" font-weight="800" text-anchor="middle">JADE</text><text x="120" y="77" fill="#0b0a08" font-size="10" text-anchor="middle">device</text><text x="215" y="65" fill="var(--tip)" font-size="20" text-anchor="middle">+</text><rect x="230" y="30" width="160" height="60" rx="8" fill="#8a847e" stroke="#44403c"/><text x="310" y="57" fill="#0b0a08" font-size="12" font-weight="800" text-anchor="middle">BITBOX</text><text x="310" y="77" fill="#0b0a08" font-size="10" text-anchor="middle">device</text><text x="405" y="65" fill="var(--tip)" font-size="20" text-anchor="middle">+</text><rect x="420" y="30" width="160" height="60" rx="8" fill="var(--card)" stroke="var(--accent)"/><text x="500" y="57" fill="var(--accent)" font-size="12" font-weight="800" text-anchor="middle">DICE</text><text x="500" y="77" fill="var(--muted)" font-size="10" text-anchor="middle">rolled offline</text><text x="310" y="130" fill="var(--muted)" font-size="11" text-anchor="middle" letter-spacing="1">THREE KEYS. ANY TWO OPEN THE FUND.</text></svg>
-</figure>
-<h2 id="step-1-buy-two-devices-two-makers">Step 1 · Buy two devices, two makers.</h2>
-<ul>
-<li>One Jade from Blockstream&amp;rsquo;s own shop. One BitBox from BitBox&amp;rsquo;s own shop. Not two of the same box.</li>
-<li>A device bought used, or from a marketplace seller, is not a signer. Do not trust it to hold anything.</li>
-<li>Check the device before it holds anything: the maker&amp;rsquo;s own verification, the seals, the screen. A reseller device from 2026 taught this lesson with real money.</li>
-</ul>
-<h2 id="step-2-make-the-dice-key">Step 2 · Make the dice key.</h2>
-<ul>
-<li>Roll it on an offline boot, the way  teaches. Five dice, faces 1 to 4. Two tools must print the same 24 words.</li>
-<li>Never let a device roll its own entropy for this stack. The dice key is the key no maker touched.</li>
-<li>Write the 24 words on paper. They become a plate in Step 4.</li>
-</ul>
-<h2 id="step-3-build-the-2-of-3-in-sparrow">Step 3 · Build the 2-of-3 in Sparrow.</h2>
-<ul>
-<li>Import the public keys from both devices and the dice key. Sparrow builds the wallet. It cannot spend.</li>
-<li>Verify the first receiving address on a device screen before anything is sent to it. If the screens disagree, stop.</li>
-</ul>
-<h2 id="step-4-back-it-all-up-in-metal">Step 4 · Back it all up in metal.</h2>
-<ul>
-<li>Stamp the dice seed on its own plate, the way  teaches.</li>
-<li>Each device seed gets its own backup, on metal or on the maker&amp;rsquo;s own backup device, kept apart from the other keys.</li>
-<li>Three keys, three places. If one place burns, the other two keys still open the fund.</li>
-</ul>
-<h2 id="step-5-hide-the-wallet-map">Step 5 · Hide the wallet map.</h2>
-<ul>
-<li>Encrypt the descriptor the way  teaches. The map alone tells a finder nothing.</li>
-<li>Store the map apart from every key.</li>
-</ul>
-<h2 id="step-6-practice-spend-then-real-coins">Step 6 · Practice spend, then real coins.</h2>
-<ul>
-<li>Send a small amount in. Spend it with the two devices.</li>
-<li>Spend it once with a device and the dice key, through the offline boot, so you know that path works before it matters.</li>
-<li>Confirm each spend lands. Then move the rest.</li>
-</ul>
-<figure class="step-fig"><svg width="620" height="170" viewBox="0 0 620 170" font-family="IBM Plex Sans, sans-serif"><rect x="40" y="15" width="130" height="55" rx="8" fill="#8a847e" stroke="#44403c"/><text x="105" y="38" fill="#0b0a08" font-size="12" font-weight="800" text-anchor="middle">JADE</text><text x="105" y="58" fill="#0b0a08" font-size="10" text-anchor="middle">device</text><text x="185" y="50" fill="var(--tip)" font-size="20" text-anchor="middle">+</text><rect x="200" y="15" width="130" height="55" rx="8" fill="#8a847e" stroke="#44403c"/><text x="265" y="38" fill="#0b0a08" font-size="12" font-weight="800" text-anchor="middle">BITBOX</text><text x="265" y="58" fill="#0b0a08" font-size="10" text-anchor="middle">device</text><text x="350" y="50" fill="var(--accent)" font-size="20" text-anchor="middle">&#8594;</text><text x="375" y="50" fill="var(--ink)" font-size="12" font-weight="800">EVERYDAY SPEND</text><rect x="40" y="100" width="130" height="55" rx="8" fill="#8a847e" stroke="#44403c"/><text x="105" y="123" fill="#0b0a08" font-size="12" font-weight="800" text-anchor="middle">ONE DEVICE</text><text x="105" y="143" fill="#0b0a08" font-size="10" text-anchor="middle">either one</text><text x="185" y="135" fill="var(--tip)" font-size="20" text-anchor="middle">+</text><rect x="200" y="100" width="130" height="55" rx="8" fill="var(--card)" stroke="var(--accent)"/><text x="265" y="123" fill="var(--accent)" font-size="12" font-weight="800" text-anchor="middle">OFFLINE BOOT</text><text x="265" y="143" fill="var(--muted)" font-size="10" text-anchor="middle">dice key</text><text x="350" y="135" fill="var(--accent)" font-size="20" text-anchor="middle">&#8594;</text><text x="375" y="135" fill="var(--ink)" font-size="12" font-weight="800">BACKUP PATH</text></svg>
-</figure>
-<h2 id="know-the-limits">Know the limits</h2>
-<ul>
-<li>Two devices from two makers still trust firmware. The dice key is what breaks that trust: it takes two makers failing together, plus the dice key, to move the fund.</li>
-<li>Two devices stored in one place fail together. Geography is not optional.</li>
-<li>The dice key&amp;rsquo;s offline signing is the hardest step on this sheet. Practice it on testnet first, or with a small amount, before it carries real money.</li>
-<li>For the people after you: an heir needs any two keys plus the map. The  sheet walks them through it, with the dice plate standing in for one plate.</li>
-</ul>
-<aside class="callout callout-stop" role="alert"><p class="callout-label">Stop if</p><ul>
-<li>A device comes from a reseller, a marketplace, or a link in a message: stop.</li>
-<li>Both devices come from the same maker: stop. One maker failing takes both keys.</li>
-<li>Anyone asks for your words, for any reason, in any message: stop. They get no answer.</li>
-</ul></aside>
-      <nav class="prevnext-row" aria-label="Previous and next sheets">
+<nav class="step-banner" aria-label="Sheet 17 of 17"><a class="step-nav" href="/plebum-dominium-test/handouts/single-sig.html" rel="prev">&larr; 17 &middot; One key, done right</a><span class="step-pos"><strong>Step 17 of 17</strong> · Two devices and one dice key</span><span class="step-nav step-none" aria-hidden="true"></span></nav><p class="entry-lead">Optional three-key reference: two hardware signers and a separately prepared third key.</p><div class="entry-grid"><section class="entry-card"><h2 id="topic-1">The threshold stays two of three</h2><p>Any two distinct signing keys can authorize a transaction. Compromise of both device keys is sufficient; an attacker does not also need the dice key. Different manufacturers may reduce some shared risks but do not guarantee independence.</p></section><section class="entry-card"><h2 id="topic-2">Select compatible signers</h2><p>Check current official device documentation for the chosen multisig script type, policy registration, backup format and transaction review. No specific brand pairing is certified here. Use trusted acquisition and verification procedures before loading keys.</p></section><section class="entry-card"><h2 id="topic-3">Build and verify the policy</h2><p>Keep the coordinator watch-only. Verify the threshold, script type and every cosigner’s public key and origin against independent signer records. A matching first address alone does not establish trust. Follow <a href="/plebum-dominium-test/handouts/sparrow.html">Build the 2-of-3</a>.</p></section><section class="entry-card"><h2 id="topic-4">Back up all three keys and configuration</h2><p>Each key needs a recoverable backup; keep enough keys separated so one incident does not expose the threshold. Preserve the complete public wallet configuration. An unencrypted public descriptor can reveal wallet activity, while an export containing private keys is signing-secret material.</p></section><section class="entry-card"><h2 id="topic-5">Practice every intended recovery path</h2><p>Use disposable test keys first. Test the two-device pair and each device with the third signer, then reconstruct from backups. The third key must have a compatible, tested signing method. Follow <a href="/plebum-dominium-test/handouts/testnet.html">testnet rehearsal</a> and <a href="/plebum-dominium-test/handouts/signing.html">transaction review</a>.</p></section><section class="entry-card"><h2 id="topic-6">Know the remaining trust</h2><p>A shared computer, firmware or coordinator can create correlated failures. Fresh boots do not erase hardware compromise. Keep the optional architecture separate from the main guide until you can explain and rehearse its recovery without collecting secrets on an online machine.</p></section></div><nav class="prevnext-row" aria-label="Previous and next sheets">
 <a class="prevnext prev" href="/plebum-dominium-test/handouts/single-sig.html"><span>← 17 · One key, done right</span></a>
 <span class="step-pos-bottom"><strong>Step 17 of 17</strong> · Two devices and one dice key</span>
 
@@ -177,9 +118,7 @@
     </article>
   </main>
 
-  <aside class="toc-col">
-<nav class="toc" aria-label="On this sheet"><p>On this sheet</p><ul><li><a href="#step-1-buy-two-devices-two-makers" data-toc="step-1-buy-two-devices-two-makers">Step 1 · Buy two devices, two makers.</a></li><li><a href="#step-2-make-the-dice-key" data-toc="step-2-make-the-dice-key">Step 2 · Make the dice key.</a></li><li><a href="#step-3-build-the-2-of-3-in-sparrow" data-toc="step-3-build-the-2-of-3-in-sparrow">Step 3 · Build the 2-of-3 in Sparrow.</a></li><li><a href="#step-4-back-it-all-up-in-metal" data-toc="step-4-back-it-all-up-in-metal">Step 4 · Back it all up in metal.</a></li><li><a href="#step-5-hide-the-wallet-map" data-toc="step-5-hide-the-wallet-map">Step 5 · Hide the wallet map.</a></li><li><a href="#step-6-practice-spend-then-real-coins" data-toc="step-6-practice-spend-then-real-coins">Step 6 · Practice spend, then real coins.</a></li><li><a href="#know-the-limits" data-toc="know-the-limits">Know the limits</a></li></ul></nav>
-  </aside>
+  <aside class="toc-col"><nav class="toc" aria-label="On this sheet"><p>On this sheet</p><ul><li><a href="#topic-1" data-toc="topic-1">The threshold stays two of three</a></li><li><a href="#topic-2" data-toc="topic-2">Select compatible signers</a></li><li><a href="#topic-3" data-toc="topic-3">Build and verify the policy</a></li><li><a href="#topic-4" data-toc="topic-4">Back up all three keys and configuration</a></li><li><a href="#topic-5" data-toc="topic-5">Practice every intended recovery path</a></li><li><a href="#topic-6" data-toc="topic-6">Know the remaining trust</a></li></ul></nav></aside>
 </div>
 
 <div class="mobilebar" aria-label="Sheet navigation">

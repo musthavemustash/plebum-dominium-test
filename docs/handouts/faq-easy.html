@@ -33,7 +33,7 @@
 /* set path before first paint, so the color reminder is right from the start */
 (function(){try{var p=localStorage.getItem('pd-path');if(p!=='easy'&&p!=='one'&&p!=='full'){p='full';}document.documentElement.setAttribute('data-path',p);}catch(e){document.documentElement.setAttribute('data-path','full');}})();
 </script>
-</head>
+<link rel="stylesheet" href="/plebum-dominium-test/assets/css/entry-pages.css"></head>
 <body class="" id="top">
 <div class="splash" id="pd-splash" hidden aria-hidden="true">
   <p class="splash-title">Plebum Dominium: Independent At-Home Bitcoin Self-custody</p>
@@ -98,7 +98,7 @@
   <div class="scrim" aria-hidden="true"></div>
 
   <main id="content">
-    <article>
+    <article class="entry-page">
       <p class="kicker">13 · Plebum Dominium</p>
       <h1>If you get stuck</h1>
       <div class="path-banner" id="path-banner" hidden>
@@ -111,32 +111,7 @@
         <p><a href="/plebum-dominium-test/choose-path.html">Go to Choose your path to change it</a></p>
         <p><a href="/plebum-dominium-test/path-risks.html">Risks of your path &rarr;</a></p>
       </div>
-<nav class="step-banner" aria-label="Sheet 13 of 17"><a class="step-nav" href="/plebum-dominium-test/handouts/titanium.html" rel="prev">&larr; 09 &middot; Metal and the map</a><span class="step-pos"><strong>Step 13 of 17</strong> · If you get stuck</span></nav>
-<section class="sheet-meta" aria-label="Sheet overview"><div class="meta-item"><span class="meta-label">Time</span><span class="meta-val">10 min</span></div><div class="meta-item"><span class="meta-label">Difficulty</span><span class="meta-val diff-easy">Easy</span></div><div class="meta-item"><span class="meta-label">Steps</span><span class="meta-val">7 questions</span></div><div class="meta-item meta-needs"><span class="meta-label">You will need</span><span class="meta-val">Nothing, find your question</span></div></section>
-<p class="lede">Find the question that matches your problem. When in doubt, <strong>stop is always a valid step.</strong></p>
-
-<div class="qa"><h3>What am I actually making?</h3>
-<p>One set of 24 words, made at home with dice. The words go into one trusted device. The device and the titanium plate together are the wallet. There is no second key, and there is no multisig.</p></div>
-
-<div class="qa"><h3>I already own a hardware wallet. Do I start there?</h3>
-<p>Stamp the words in titanium first, before the device entry. Then enter the words on the device itself, never on a computer, phone, or website. If the device fails during setup, the plate is the backup.</p></div>
-
-<div class="qa"><h3>The download is newer than the version on the sheet.</h3>
-<p><span class="stopword">Stop.</span> This kit checks the files the sheet names. A newer file will not match. That is a stop, not an upgrade. Delete it.</p></div>
-
-<div class="qa"><h3>The two word lists don&rsquo;t match.</h3>
-<p><span class="stopword">Stop.</span> Don&rsquo;t pick the nicer list. Don&rsquo;t &ldquo;fix&rdquo; word 24. Roll again or find the copying mistake. A fixed word is a destroyed key.</p></div>
-
-<div class="qa"><h3>Can I keep the words in a password manager?</h3>
-<p>No. A photo, note, password manager, or email is one hacked account from the whole seed. <strong>Words go on metal.</strong> There is no passphrase on this path, so a found plate alone can restore the wallet. Keep the plate and the device in different places.</p></div>
-
-<div class="qa"><h3>What if the device fails, or the plate is lost?</h3>
-<p>Device fails: the plate restores the wallet on a compatible device. Plate lost and the device still works: move the coins to a fresh wallet made the same way, then stamp a new plate. Device and plate both gone: the wallet is gone. That is the risk of this path.</p></div>
-
-<div class="qa"><h3>What does my family do?</h3>
-<p>Leave a written note, apart from the plate and the device, saying where the device is and where the plate is, and that the two together are the wallet. Do not write the words down anywhere else. Do not send them the multisig inheritance sheet. It does not match this wallet.</p></div>
-
-      <nav class="prevnext-row" aria-label="Previous and next sheets">
+<nav class="step-banner" aria-label="Sheet 13 of 17"><a class="step-nav" href="/plebum-dominium-test/handouts/titanium.html" rel="prev">&larr; 09 &middot; Metal and the map</a><span class="step-pos"><strong>Step 13 of 17</strong> · If you get stuck</span></nav><p class="entry-lead">Find the problem, preserve what still works, and stop when the next step is uncertain.</p><div class="entry-grid"><section class="entry-card"><h2 id="topic-1">What setup is this?</h2><p>This is a legacy single-key reference without a wallet passphrase, not a third numbered route. A seed backup can restore a compatible wallet without the original device.</p></section><section class="entry-card"><h2 id="topic-2">What recovery information matters?</h2><p>Protect the seed from both theft and loss. A device and its backup are alternative access/recovery mechanisms, not a two-part lock. See the current route choices before starting a new setup.</p></section><section class="entry-card"><h2 id="topic-3">The download or version does not match</h2><p>Stop before running it. Confirm the exact release, file, signature and full hash from the intended publisher. Do not assume a newer release is compatible or an older release is safe. The staging download inventory has unresolved mismatches; see <a href="/plebum-dominium-test/downloads.html">Downloads</a>.</p></section><section class="entry-card"><h2 id="topic-4">The two converters disagree</h2><p>Preserve the original rolls privately. Check transcription, input method, bit order and settings. Do not guess a replacement word or choose whichever output you prefer. Use public test vectors before trusting the procedure; funded-wallet backups must not be edited to make a check pass.</p></section><section class="entry-card"><h2 id="topic-5">The restored wallet looks empty</h2><p>Stop before wiping or discarding anything. Check the network, account, script type, derivation settings, passphrase if used, and synchronization. Preserve working devices and backups while investigating. Never send secrets to someone offering recovery help.</p></section><section class="entry-card"><h2 id="topic-6">Where should secrets be kept?</h2><p>Keep signing secrets offline and protected from theft and loss. Avoid photographs, email, cloud notes and online forms. Plan durable copies and separate locations, then test recovery. A location card is not a substitute for the backups.</p></section><section class="entry-card"><h2 id="topic-7">How can a helper prepare?</h2><p>Practice with a disposable wallet and a private written plan. Use <a href="/plebum-dominium-test/handouts/inheritance.html">the recovery planning guide</a> where it matches your wallet. Never paste real seeds, passwords or passphrases into this site.</p></section></div><nav class="prevnext-row" aria-label="Previous and next sheets">
 <a class="prevnext prev" href="/plebum-dominium-test/handouts/titanium.html"><span>← 09 &middot; Metal and the map</span></a>
 <span class="step-pos-bottom"><strong>Step 13 of 17</strong> · If you get stuck</span>
 
@@ -144,9 +119,7 @@
     </article>
   </main>
 
-  <aside class="toc-col">
-
-  </aside>
+  <aside class="toc-col"><nav class="toc" aria-label="On this sheet"><p>On this sheet</p><ul><li><a href="#topic-1" data-toc="topic-1">What setup is this?</a></li><li><a href="#topic-2" data-toc="topic-2">What recovery information matters?</a></li><li><a href="#topic-3" data-toc="topic-3">The download or version does not match</a></li><li><a href="#topic-4" data-toc="topic-4">The two converters disagree</a></li><li><a href="#topic-5" data-toc="topic-5">The restored wallet looks empty</a></li><li><a href="#topic-6" data-toc="topic-6">Where should secrets be kept?</a></li><li><a href="#topic-7" data-toc="topic-7">How can a helper prepare?</a></li></ul></nav></aside>
 </div>
 
 <div class="mobilebar" aria-label="Sheet navigation">

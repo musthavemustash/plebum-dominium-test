@@ -33,7 +33,7 @@
 /* set path before first paint, so the color reminder is right from the start */
 (function(){try{var p=localStorage.getItem('pd-path');if(p!=='one'&&p!=='full'){p='full';}document.documentElement.setAttribute('data-path',p);}catch(e){document.documentElement.setAttribute('data-path','full');}})();
 </script>
-<script>document.documentElement.setAttribute("data-path", "one");</script>
+<link rel="stylesheet" href="/plebum-dominium-test/assets/css/entry-pages.css"><script>document.documentElement.setAttribute("data-path", "one");</script>
 </head>
 <body data-guide-path="one" data-guide-slug="faq" class="" id="top">
 <div class="splash" id="pd-splash" hidden aria-hidden="true">
@@ -79,43 +79,16 @@
   <div class="scrim" aria-hidden="true"></div>
 
   <main id="content">
-    <article>
+    <article class="entry-page">
       <p class="kicker">One key + passphrase · Step 10 of 12</p>
       <h1>If you get stuck</h1>
       
       
-<nav class="step-banner" aria-label="Step 10 of 12"><a class="step-nav" rel="prev" href="/plebum-dominium-test/paths/one/inheritance.html">← 9 · If I am gone</a><span class="step-pos"><strong>Step 10 of 12</strong> · If you get stuck</span><a class="step-nav" rel="next" href="/plebum-dominium-test/paths/one/fire-card.html">11 · Recovery card →</a></nav>
-<section class="sheet-meta" aria-label="Sheet overview"><div class="meta-item"><span class="meta-label">Time</span><span class="meta-val">10 min</span></div><div class="meta-item"><span class="meta-label">Difficulty</span><span class="meta-val diff-easy">Easy</span></div><div class="meta-item"><span class="meta-label">Steps</span><span class="meta-val">7 questions</span></div><div class="meta-item meta-needs"><span class="meta-label">You will need</span><span class="meta-val">Nothing, find your question</span></div></section>
-<p class="lede">Find the question that matches your problem. When in doubt, <strong>stop is always a valid step.</strong></p>
-
-<div class="qa"><h3>What am I actually making?</h3>
-<p>One key plus a passphrase. The 24 words go on a device, the passphrase goes on paper apart from the plate, and a watch-only wallet watches the coins. The device and the passphrase together can spend.</p></div>
-
-<div class="qa"><h3>I already own a hardware wallet. Do I start there?</h3>
-<p>Stamp the words in titanium first. Then enter the words and the passphrase on the device itself, never on a computer, phone, or website. Keep the passphrase paper apart from the plate at all times.</p></div>
-
-<div class="qa"><h3>The download is newer than the version on the sheet.</h3>
-<p><span class="stopword">Stop.</span> This kit checks Tails 7.13, Sparrow 2.5.5, Electrum 4.8.2. A newer file will not match. That is a stop, not an upgrade. Delete it.</p></div>
-
-<div class="qa"><h3>The two word lists don&rsquo;t match.</h3>
-<p><span class="stopword">Stop.</span> Don&rsquo;t pick the nicer list. Don&rsquo;t &ldquo;fix&rdquo; word 24. Roll again or find the copying mistake. A fixed word is a destroyed key.</p></div>
-
-<div class="qa"><h3>Can I keep the words in a password manager?</h3>
-<p>No. A photo, note, password manager, or email is one hacked account from the whole seed. <strong>Words go on metal, passphrase goes on paper.</strong> Never together, never in a password manager. If the plate and the passphrase paper are found together, the passphrase adds nothing.</p></div>
-
-<div class="qa"><h3>What if the passphrase is lost?</h3>
-<p>The wallet is gone, even with the plate and the device in hand. There is no way back without it. Back up the passphrase paper in a second place, apart from the plate, before you fund the wallet.</p></div>
-
-<div class="qa"><h3>What does my family do?</h3>
-<p>Leave a written note, apart from both the plate and the passphrase paper, saying where the device is, where the plate is, and where the passphrase paper is, and that all three are needed together. Do not write the passphrase itself in the note. Do not send them the multisig inheritance sheet. It does not match this wallet.</p></div>
-
-      <nav class="prevnext-row" aria-label="Previous and next sheets"><a class="prevnext prev" rel="prev" href="/plebum-dominium-test/paths/one/inheritance.html">← 9 · If I am gone</a><span class="step-pos-bottom">Step 10 of 12</span><a class="prevnext next" rel="next" href="/plebum-dominium-test/paths/one/fire-card.html">11 · Recovery card →</a></nav>
+<nav class="step-banner" aria-label="Step 10 of 12"><a class="step-nav" rel="prev" href="/plebum-dominium-test/paths/one/inheritance.html">← 9 · If I am gone</a><span class="step-pos"><strong>Step 10 of 12</strong> · If you get stuck</span><a class="step-nav" rel="next" href="/plebum-dominium-test/paths/one/fire-card.html">11 · Recovery card →</a></nav><p class="entry-lead">Find the problem, preserve what still works, and stop when the next step is uncertain.</p><div class="entry-grid"><section class="entry-card"><h2 id="topic-1">What setup is this?</h2><p>This route uses one signing seed and an exact wallet passphrase, backed up separately. A replacement compatible signer can recover it; the original device is not an additional required secret.</p></section><section class="entry-card"><h2 id="topic-2">What recovery information matters?</h2><p>The seed and exact passphrase select the intended wallet. Preserve the configuration too. A different passphrase selects a different wallet; it does not add a password to funds already held elsewhere.</p></section><section class="entry-card"><h2 id="topic-3">The download or version does not match</h2><p>Stop before running it. Confirm the exact release, file, signature and full hash from the intended publisher. Do not assume a newer release is compatible or an older release is safe. The staging download inventory has unresolved mismatches; see <a href="/plebum-dominium-test/downloads.html">Downloads</a>.</p></section><section class="entry-card"><h2 id="topic-4">The two converters disagree</h2><p>Preserve the original rolls privately. Check transcription, input method, bit order and settings. Do not guess a replacement word or choose whichever output you prefer. Use public test vectors before trusting the procedure; funded-wallet backups must not be edited to make a check pass.</p></section><section class="entry-card"><h2 id="topic-5">The restored wallet looks empty</h2><p>Stop before wiping or discarding anything. Check the network, account, script type, derivation settings, passphrase if used, and synchronization. Preserve working devices and backups while investigating. Never send secrets to someone offering recovery help.</p></section><section class="entry-card"><h2 id="topic-6">Where should secrets be kept?</h2><p>Keep signing secrets offline and protected from theft and loss. Avoid photographs, email, cloud notes and online forms. Plan durable copies and separate locations, then test recovery. A location card is not a substitute for the backups.</p></section><section class="entry-card"><h2 id="topic-7">How can a helper prepare?</h2><p>Practice with a disposable wallet and a private written plan. Use <a href="/plebum-dominium-test/paths/one/inheritance.html">the recovery planning guide</a> where it matches your wallet. Never paste real seeds, passwords or passphrases into this site.</p></section></div><nav class="prevnext-row" aria-label="Previous and next sheets"><a class="prevnext prev" rel="prev" href="/plebum-dominium-test/paths/one/inheritance.html">← 9 · If I am gone</a><span class="step-pos-bottom">Step 10 of 12</span><a class="prevnext next" rel="next" href="/plebum-dominium-test/paths/one/fire-card.html">11 · Recovery card →</a></nav>
     </article>
   </main>
 
-  <aside class="toc-col">
-
-  </aside>
+  <aside class="toc-col"><nav class="toc" aria-label="On this sheet"><p>On this sheet</p><ul><li><a href="#topic-1" data-toc="topic-1">What setup is this?</a></li><li><a href="#topic-2" data-toc="topic-2">What recovery information matters?</a></li><li><a href="#topic-3" data-toc="topic-3">The download or version does not match</a></li><li><a href="#topic-4" data-toc="topic-4">The two converters disagree</a></li><li><a href="#topic-5" data-toc="topic-5">The restored wallet looks empty</a></li><li><a href="#topic-6" data-toc="topic-6">Where should secrets be kept?</a></li><li><a href="#topic-7" data-toc="topic-7">How can a helper prepare?</a></li></ul></nav></aside>
 </div>
 
 <div class="mobilebar" aria-label="Sheet navigation">

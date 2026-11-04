@@ -34,7 +34,7 @@
 /* set path before first paint, so the color reminder is right from the start */
 (function(){try{var p=localStorage.getItem('pd-path');if(p!=='one'&&p!=='full'){p='full';}document.documentElement.setAttribute('data-path',p);}catch(e){document.documentElement.setAttribute('data-path','full');}})();
 </script>
-<script>document.documentElement.setAttribute("data-path", "full");</script>
+<link rel="stylesheet" href="/plebum-dominium-test/assets/css/entry-pages.css"><script>document.documentElement.setAttribute("data-path", "full");</script>
 </head>
 <body data-guide-path="three" data-guide-slug="faq" class="" id="top">
 <div class="splash" id="pd-splash" hidden aria-hidden="true">
@@ -79,43 +79,16 @@
   <div class="scrim" aria-hidden="true"></div>
 
   <main id="content">
-    <article>
+    <article class="entry-page">
       <p class="kicker">Three keys · Step 14 of 16</p>
       <h1>If you get stuck</h1>
       
       
-<nav class="step-banner" aria-label="Step 14 of 16"><a class="step-nav" rel="prev" href="/plebum-dominium-test/paths/three/inheritance.html">← 13 · If I am gone</a><span class="step-pos"><strong>Step 14 of 16</strong> · If you get stuck</span><a class="step-nav" rel="next" href="/plebum-dominium-test/paths/three/briefing.html">15 · Tough questions →</a></nav>
-<section class="guide-overview" aria-label="Sheet overview"><div class="guide-stat"><span>Time</span><strong>10 min</strong></div><div class="guide-stat"><span>Difficulty</span><strong>Easy</strong></div><div class="guide-stat"><span>Steps</span><strong>7 questions</strong></div></section><p class="guide-needs"><strong>You will need:</strong> Nothing, find your question</p>
-<p class="lede">Find the question that matches your problem. When in doubt, <strong>stop is always a valid step.</strong></p>
-
-<div class="qa"><h3>What am I actually making?</h3>
-<p>Three keys, made at home with dice, on a computer with no internet. <strong>Any two can spend; one cannot.</strong> The keys are stamped into titanium and kept in three places. A hardware wallet is optional, and it never creates the keys.</p></div>
-
-<div class="qa"><h3>I already own a hardware wallet. Do I start there?</h3>
-<p>No. It stays in the drawer until the plates exist and a small payment has moved. If a key later goes on a device, the second key goes on a <strong>different maker&rsquo;s</strong> device. All three never go on hardware. <strong>The plates are the backup.</strong></p></div>
-
-<div class="qa"><h3>The download is newer than the version on the sheet.</h3>
-<p><span class="stopword">Stop.</span> Sparrow and Electrum must match the version on the sheet exactly. A newer Sparrow or Electrum file is a stop. Delete it. Tails is different. Download the latest Tails 7.x release from tails.net, and verify its signature and checksum. If either check fails, or if any boot step differs from the guide, stop. Delete the file. A Tails 8 release is not covered. It needs a guide update first.</p></div>
-
-<div class="qa"><h3>The two word lists don&rsquo;t match.</h3>
-<p><span class="stopword">Stop.</span> Don&rsquo;t pick the nicer list. Don&rsquo;t &ldquo;fix&rdquo; word 24. Roll again or find the copying mistake. A fixed word is a destroyed key.</p></div>
-
-<div class="qa"><h3>Can I keep the words in a password manager?</h3>
-<p>No. A photo, note, password manager, or email is one hacked account from the whole seed. <strong>Words go on metal.</strong> The map is encrypted; its passphrase is on paper, away from the plates.</p></div>
-
-<div class="qa"><h3>What if the map, or its passphrase, is lost?</h3>
-<p>Three plates rebuild the map exactly, so the coins aren&rsquo;t gone. But <strong>two plates cannot</strong>. The third key can&rsquo;t be derived from the other two. Back up the passphrase paper in two places, away from the plates. (Full rule on the map sheet.)</p></div>
-
-<div class="qa"><h3>What does my family do?</h3>
-<p>Hand them the <strong>&ldquo;If I am gone&rdquo;</strong> sheet. Two plates and the map. A Jade and a BitBox from the makers&rsquo; own shops, one plate per device. No Tails. No typing words into a phone.</p></div>
-
-      <nav class="prevnext-row" aria-label="Previous and next sheets"><a class="prevnext prev" rel="prev" href="/plebum-dominium-test/paths/three/inheritance.html">← 13 · If I am gone</a><span class="step-pos-bottom">Step 14 of 16</span><a class="prevnext next" rel="next" href="/plebum-dominium-test/paths/three/briefing.html">15 · Tough questions →</a></nav>
+<nav class="step-banner" aria-label="Step 14 of 16"><a class="step-nav" rel="prev" href="/plebum-dominium-test/paths/three/inheritance.html">← 13 · If I am gone</a><span class="step-pos"><strong>Step 14 of 16</strong> · If you get stuck</span><a class="step-nav" rel="next" href="/plebum-dominium-test/paths/three/briefing.html">15 · Tough questions →</a></nav><p class="entry-lead">Find the problem, preserve what still works, and stop when the next step is uncertain.</p><div class="entry-grid"><section class="entry-card"><h2 id="topic-1">What setup is this?</h2><p>A 2-of-3 wallet uses three distinct signing keys; any two can authorize a spend under the correct wallet policy.</p></section><section class="entry-card"><h2 id="topic-2">What recovery information matters?</h2><p>Keep the complete wallet configuration and all three cosigner public records as well as the signing backups. Losing two signing keys can prevent spending; losing configuration is a separate recovery problem. Three seeds do not guarantee automatic reconstruction.</p></section><section class="entry-card"><h2 id="topic-3">The download or version does not match</h2><p>Stop before running it. Confirm the exact release, file, signature and full hash from the intended publisher. Do not assume a newer release is compatible or an older release is safe. The staging download inventory has unresolved mismatches; see <a href="/plebum-dominium-test/downloads.html">Downloads</a>.</p></section><section class="entry-card"><h2 id="topic-4">The two converters disagree</h2><p>Preserve the original rolls privately. Check transcription, input method, bit order and settings. Do not guess a replacement word or choose whichever output you prefer. Use public test vectors before trusting the procedure; funded-wallet backups must not be edited to make a check pass.</p></section><section class="entry-card"><h2 id="topic-5">The restored wallet looks empty</h2><p>Stop before wiping or discarding anything. Check the network, account, script type, derivation settings, passphrase if used, and synchronization. Preserve working devices and backups while investigating. Never send secrets to someone offering recovery help.</p></section><section class="entry-card"><h2 id="topic-6">Where should secrets be kept?</h2><p>Keep signing secrets offline and protected from theft and loss. Avoid photographs, email, cloud notes and online forms. Plan durable copies and separate locations, then test recovery. A location card is not a substitute for the backups.</p></section><section class="entry-card"><h2 id="topic-7">How can a helper prepare?</h2><p>Practice with a disposable wallet and a private written plan. Use <a href="/plebum-dominium-test/paths/three/inheritance.html">the recovery planning guide</a> where it matches your wallet. Never paste real seeds, passwords or passphrases into this site.</p></section></div><nav class="prevnext-row" aria-label="Previous and next sheets"><a class="prevnext prev" rel="prev" href="/plebum-dominium-test/paths/three/inheritance.html">← 13 · If I am gone</a><span class="step-pos-bottom">Step 14 of 16</span><a class="prevnext next" rel="next" href="/plebum-dominium-test/paths/three/briefing.html">15 · Tough questions →</a></nav>
     </article>
   </main>
 
-  <aside class="toc-col">
-
-  </aside>
+  <aside class="toc-col"><nav class="toc" aria-label="On this sheet"><p>On this sheet</p><ul><li><a href="#topic-1" data-toc="topic-1">What setup is this?</a></li><li><a href="#topic-2" data-toc="topic-2">What recovery information matters?</a></li><li><a href="#topic-3" data-toc="topic-3">The download or version does not match</a></li><li><a href="#topic-4" data-toc="topic-4">The two converters disagree</a></li><li><a href="#topic-5" data-toc="topic-5">The restored wallet looks empty</a></li><li><a href="#topic-6" data-toc="topic-6">Where should secrets be kept?</a></li><li><a href="#topic-7" data-toc="topic-7">How can a helper prepare?</a></li></ul></nav></aside>
 </div>
 
 <div class="mobilebar" aria-label="Sheet navigation">
