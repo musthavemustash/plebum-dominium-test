@@ -34,6 +34,7 @@
 /* set path before first paint, so the color reminder is right from the start */
 (function(){try{var p=localStorage.getItem('pd-path');if(p!=='one'&&p!=='full'){p='full';}document.documentElement.setAttribute('data-path',p);}catch(e){document.documentElement.setAttribute('data-path','full');}})();
 </script>
+<link rel="stylesheet" href="/plebum-dominium-test/assets/css/entry-pages.css?v=entry1">
 <script>document.documentElement.setAttribute("data-path", "full");</script>
 </head>
 <body data-guide-path="three" data-guide-slug="titanium" class="" id="top">
@@ -79,56 +80,14 @@
   <div class="scrim" aria-hidden="true"></div>
 
   <main id="content">
-    <article>
+    <article class="entry-page">
       <p class="kicker">Three keys · Step 10 of 16</p>
       <h1>Metal and the map</h1>
       
       
 <nav class="step-banner" aria-label="Step 10 of 16"><a class="step-nav" rel="prev" href="/plebum-dominium-test/paths/three/signing.html">← 9 · Practice spend</a><span class="step-pos"><strong>Step 10 of 16</strong> · Metal and the map</span><a class="step-nav" rel="next" href="/plebum-dominium-test/paths/three/testnet.html">11 · Rehearse on testnet →</a></nav>
-<section class="guide-overview" aria-label="Sheet overview"><div class="guide-stat"><span>Time</span><strong>1-2 hours</strong></div><div class="guide-stat"><span>Difficulty</span><strong>Moderate</strong></div><div class="guide-stat"><span>Steps</span><strong>4 sections</strong></div></section><p class="guide-needs"><strong>You will need:</strong> <a href="/plebum-dominium-test/paths/three/checklist.html">Titanium plates</a> &middot; <a href="/plebum-dominium-test/paths/three/checklist.html">Metal stamp set</a> &middot; <a href="/plebum-dominium-test/paths/three/dice.html">The paper keys</a></p>
-<div class="metal-anim">
-<div class="stage">
-      <div class="mapline"></div>
-      <div class="place p1"><div class="plate pa1"><span class="tag">S1</span><i></i><i></i><i></i></div><div class="house">🏠</div><span>HOME SAFE</span></div>
-      <div class="place p2"><div class="plate pa2"><span class="tag">S2</span><i></i><i></i><i></i></div><div class="house">🏢</div><span>OFF-SITE 1</span></div>
-      <div class="place p3"><div class="plate pa3"><span class="tag">S3</span><i></i><i></i><i></i></div><div class="house">🏦</div><span>OFF-SITE 2</span></div>
-      <div class="cap">THREE PLATES THREE PLACES</div>
-    </div>
-</div><p class="guide-intro">A small payment has gone out and come back. Now the keys leave paper for good. Three titanium plates. One seed per plate. Three separate places.</p>
-<aside class="guide-warning"><strong>Safety first:</strong> If two plates sleep in the same house, the separation is gone, and the single point of failure is back.</aside>
-<section class="guide-summary">
-<h2>What you will do</h2>
-<ol>
-<li>Stamp each seed on its own plate.</li>
-<li>Verify each plate by restoring from it.</li>
-<li>Place the three plates in three separate locations.</li>
-<li>Destroy the paper.</li>
-</ol>
-</section>
-<section class="guide-section">
-<p class="guide-step-marker">Step 1 / 4</p>
-<h2>Stamp the plates.</h2>
-<p>Private room, no camera. Plate on a solid block, each letter stamped deep. Words numbered 1 to 24. Label the plate quietly: S1. No names, no "Bitcoin." One seed per plate. Never two.</p>
-<p>StampSeed (recommended): the kit holds 1 plate, buy 2 more. Cryptotag: the kit holds 2, buy 1 more. Pick one method; don't mix them.</p>
-<p class="guide-verify"><strong>Check:</strong> Read the plate back against the paper. A mis-stamp is a bricked backup.</p>
-</section>
-<section class="guide-section">
-<p class="guide-step-marker">Step 2 / 4</p>
-<h2>Restore from the plate.</h2>
-<p>Restore from the plate, not the paper. It must open the same wallet. If it doesn't, the plate is wrong.</p>
-</section>
-<section class="guide-section">
-<p class="guide-step-marker">Step 3 / 4</p>
-<h2>Place the three plates.</h2>
-<p>Three places, far enough apart that one fire, flood, or burglary can't take all three. No photo, no note, no password manager, no email. Any copy outside the plates is a leak.</p>
-</section>
-<section class="guide-section">
-<p class="guide-step-marker">Step 4 / 4</p>
-<h2>Destroy the paper.</h2>
-<p>Only after all three plates verify, destroy the paper seeds and the bit notes with them.</p>
-</section>
-<aside class="guide-stop"><strong>Stop if:</strong> A plate doesn't restore correctly. Two plates would end up in the same place. You're tempted to photograph a plate.</aside>
-      <nav class="prevnext-row" aria-label="Previous and next sheets"><a class="prevnext prev" rel="prev" href="/plebum-dominium-test/paths/three/signing.html">← 9 · Practice spend</a><span class="step-pos-bottom">Step 10 of 16</span><a class="prevnext next" rel="next" href="/plebum-dominium-test/paths/three/testnet.html">11 · Rehearse on testnet →</a></nav>
+<p class="entry-lead">Make a durable backup without losing the ability to recover.</p><div class="entry-grid"><section class="entry-card"><h2 id="record-accurately">Record accurately</h2><p>Back up each of the three seeds separately using the chosen medium’s instructions. Preserve word order and any required encoding information. Work privately and compare every entry against the original.</p><p>Keep the original protected while checking the replacement. A damaged or ambiguous mark needs correction before you rely on it.</p></section><section class="entry-card"><h2 id="check-recovery-safely">Check recovery safely</h2><p>Use the wallet’s documented backup-check or recovery procedure on trusted equipment. Do not wipe your only working signer to test an unproven backup. Never type seeds into this website or an online form.</p><p>For a rehearsal, use a disposable test wallet. For an existing funded wallet, plan the verification carefully before changing devices or backups.</p></section><section class="entry-card"><h2 id="keep-the-complete-recovery-information">Keep the complete recovery information</h2><p>Preserve a verified public descriptor or compatible wallet-configuration backup containing all three cosigners’ public information, key origins, derivation paths and the 2-of-3 policy. Two seeds alone do not supply the missing cosigner’s public information.</p><p>A public-only descriptor cannot sign by itself, but it reveals wallet information. Confirm that the export contains no private keys before treating it as public data. Protect its availability and privacy.</p></section><section class="entry-card"><h2 id="plan-copies-and-locations">Plan copies and locations</h2><p>Balance loss, theft, access, and disaster risks. More copies can improve availability and also expose secrets in more places. Document which locations contain which material; do not combine enough signing secrets in one place to defeat your separation plan.</p><p>Do not destroy an original merely because a new backup looks correct. Retire it only after a successful recovery check and a deliberate review of the remaining copies. Revisit the plan when locations or helpers change.</p></section></div><aside class="guide-warning"><strong>Stop if:</strong> a backup is unreadable, the recovered wallet differs, or any required passphrase or configuration is missing. Do not overwrite or discard the remaining working material.</aside>
+<nav class="prevnext-row" aria-label="Previous and next sheets"><a class="prevnext prev" rel="prev" href="/plebum-dominium-test/paths/three/signing.html">← 9 · Practice spend</a><span class="step-pos-bottom">Step 10 of 16</span><a class="prevnext next" rel="next" href="/plebum-dominium-test/paths/three/testnet.html">11 · Rehearse on testnet →</a></nav>
     </article>
   </main>
 

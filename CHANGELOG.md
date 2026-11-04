@@ -4,6 +4,8 @@ Production releases will use Semantic Versioning and follow the staging-first re
 
 ## Unreleased (staging only)
 
+- Revised both paths’ checklists, durable backups, inheritance guidance and recovery cards into readable responsive sections. Clarified secrets versus configuration, safe backup checks and empty-wallet troubleshooting; removed automatic paper-destruction and backup-copy prohibitions.
+
 - Proposed biweekly Tuesday release window (10:00 a.m. America/New_York).
 - Proposed Semantic Versioning, batched cosmetic changes, and explicit approval before production merge.
 - Added a reusable production release checklist.

@@ -33,6 +33,7 @@
 /* set path before first paint, so the color reminder is right from the start */
 (function(){try{var p=localStorage.getItem('pd-path');if(p!=='one'&&p!=='full'){p='full';}document.documentElement.setAttribute('data-path',p);}catch(e){document.documentElement.setAttribute('data-path','full');}})();
 </script>
+<link rel="stylesheet" href="/plebum-dominium-test/assets/css/entry-pages.css?v=entry1">
 <script>document.documentElement.setAttribute("data-path", "one");</script>
 </head>
 <body data-guide-path="one" data-guide-slug="fire-card" class="" id="top">
@@ -79,70 +80,14 @@
   <div class="scrim" aria-hidden="true"></div>
 
   <main id="content">
-    <article>
+    <article class="entry-page">
       <p class="kicker">One key + passphrase · Step 11 of 12</p>
       <h1>Recovery card</h1>
       
       
 <nav class="step-banner" aria-label="Step 11 of 12"><a class="step-nav" rel="prev" href="/plebum-dominium-test/paths/one/faq.html">← 10 · If you get stuck</a><span class="step-pos"><strong>Step 11 of 12</strong> · Recovery card</span><a class="step-nav" rel="next" href="/plebum-dominium-test/paths/one/single-sig.html">12 · One key + passphrase →</a></nav>
-<section class="sheet-meta" aria-label="Sheet overview"><div class="meta-item"><span class="meta-label">Time</span><span class="meta-val">15 min</span></div><div class="meta-item"><span class="meta-label">Difficulty</span><span class="meta-val diff-easy">Easy</span></div><div class="meta-item"><span class="meta-label">Steps</span><span class="meta-val">3 steps</span></div><div class="meta-item meta-needs"><span class="meta-label">You will need</span><span class="meta-val">Printer &middot; Scissors</span></div></section>
-<p class="lede">The thing your heir actually grabs on the way out the door. Just the <strong>where-is-everything</strong> pointer: one plate, the passphrase paper, the device, and this card. Fill in the locations by hand after the plate is stamped.</p>
-
-<p class="nosecret-card">⛔ No seeds. No words. Nothing on this card can spend your bitcoin.</p>
-
-<div class="firecard">
-<div class="fc-side">
-<p class="fc-label">FRONT</p>
-<div class="fc-card">
-<div class="fc-brand">PLEBUM DOMINIUM<small>RECOVERY</small></div>
-<div class="fc-rule"><strong>1 plate + passphrase paper + device + this card = your bitcoin.</strong><br>The plate alone cannot spend without the passphrase. The passphrase alone is useless without the plate.</div>
-<div class="fc-path">Wallet: <strong>one key plus a passphrase</strong><br><span class="fc-ns">(the passphrase itself is never written on this card)</span></div>
-</div>
-</div>
-<div class="fc-side">
-<p class="fc-label">BACK</p>
-<div class="fc-card">
-<div>
-<h4>WHERE THINGS ARE</h4>
-<div class="fc-fill"><span class="fc-k">Plate:</span><span class="fc-v"></span></div>
-<div class="fc-fill"><span class="fc-k">Passphrase paper:</span><span class="fc-v"></span></div>
-<div class="fc-fill"><span class="fc-k">Device:</span><span class="fc-v"></span></div>
-<div class="fc-fill"><span class="fc-k">This card kept at:</span><span class="fc-v"></span></div>
-</div>
-<div class="fc-foot">Keep this card apart from the plate and the passphrase paper. Never with a plate.</div>
-</div>
-</div>
-</div>
-
-<p class="fine">A print-ready PDF at true credit-card size (3.375 × 2.125 in) is in <a href="/plebum-dominium-test/kit/15_Fire_Card.pdf">the kit</a>. Print it, fill in the locations by hand, keep it apart from the plate and the passphrase paper.</p>
-
-<style>
-.firecard { display: flex; gap: 2rem; flex-wrap: wrap; margin: 1.5rem 0 2rem; }
-.fc-label { text-align: left; color: var(--muted); font-size: 0.78rem; letter-spacing: 0.14em; font-weight: 700; margin: 0 0 0.6rem; }
-.fc-card {
-  width: 430px; max-width: 100%; aspect-ratio: 85.6 / 53.98; border-radius: 14px;
-  background: #14110d; border: 1px solid var(--accent); color: #f0e8d6;
-  padding: 20px 24px; position: relative; overflow: hidden;
-  display: flex; flex-direction: column; justify-content: space-between;
-  box-shadow: 0 10px 32px rgba(0,0,0,0.5);
-}
-.fc-card::after { content: ""; position: absolute; inset: 8px; border: 1px solid rgba(196,164,132,0.4); border-radius: 9px; pointer-events: none; }
-.fc-brand { font-family: "Newsreader", Georgia, serif; font-weight: 700; font-size: 1.05rem; letter-spacing: 0.08em; color: var(--accent); }
-.fc-brand small { display: block; font-family: "IBM Plex Sans", sans-serif; font-weight: 600; font-size: 0.58rem; letter-spacing: 0.28em; color: #9b9384; margin-top: 2px; }
-.fc-rule { border-top: 1px solid rgba(196,164,132,0.5); padding-top: 10px; font-size: 0.86rem; line-height: 1.5; }
-.fc-rule strong { color: var(--accent); }
-.fc-path { font-family: "IBM Plex Mono", monospace; font-size: 0.8rem; color: #9b9384; }
-.fc-path strong { color: #f0e8d6; font-weight: 500; }
-.fc-ns { color: #c9a35c; font-size: 0.72rem; }
-.fc-card h4 { font-family: "IBM Plex Sans", sans-serif; font-size: 0.62rem; letter-spacing: 0.22em; color: var(--accent); margin: 0 0 6px; font-weight: 700; }
-.fc-fill { display: flex; align-items: baseline; gap: 8px; margin: 7px 0; font-size: 0.82rem; }
-.fc-k { flex: none; color: #9b9384; }
-.fc-v { flex: 1; border-bottom: 1px dotted rgba(196,164,132,0.7); min-height: 1.2em; }
-.fc-foot { font-size: 0.68rem; color: #9b9384; }
-.nosecret-card { display: inline-block; border: 1px solid var(--stop); color: var(--stop); border-radius: 6px; padding: 0.5rem 1rem; font-size: 0.88rem; margin: 0 0 0.5rem; background: var(--stop-bg); }
-</style>
-
-      <nav class="prevnext-row" aria-label="Previous and next sheets"><a class="prevnext prev" rel="prev" href="/plebum-dominium-test/paths/one/faq.html">← 10 · If you get stuck</a><span class="step-pos-bottom">Step 11 of 12</span><a class="prevnext next" rel="next" href="/plebum-dominium-test/paths/one/single-sig.html">12 · One key + passphrase →</a></nav>
+<p class="entry-lead">A private pointer to your recovery plan—not a wallet backup.</p><div class="entry-grid"><section class="entry-card"><h2 id="what-this-card-is-for">What this card is for</h2><p>A short location record helps an authorized person find the complete instructions and required materials. It cannot replace the seed backup and the exact wallet passphrase.</p><p>Location information can help a thief too. Protect the card even though it contains no signing secrets.</p></section><section class="entry-card"><h2 id="write-these-pointers-offline">Write these pointers offline</h2><ul><li>Wallet type: one key + passphrase.</li><li>Where to find the complete recovery instructions.</li><li>Seed-backup location and separate passphrase-record location.</li><li>Trusted contact and date last reviewed.</li><li>Location of any separate decryption instructions, if required.</li></ul><p>Write privately on paper. This page intentionally provides no form for entering real locations or secrets.</p></section><section class="entry-card"><h2 id="never-include-these">Never include these</h2><p>No seed words, raw entropy, private keys, wallet passphrases, or decryption passwords on the card. Keep it separate from the materials it points to.</p><p>A descriptor can contain private keys; only a verified public-only export belongs in the non-signing configuration records.</p></section><section class="entry-card"><h2 id="keep-it-current">Keep it current</h2><p>Check that the intended person can follow the pointers. Update the record after moving a backup or changing the recovery plan, then account for obsolete copies.</p><p>The downloadable legacy card/PDF has not yet been reconciled with these revised instructions. Do not treat that older packet as a verified version of this page.</p></section></div><aside class="guide-warning"><strong>Recovery still requires verification:</strong> use the complete, rehearsed procedure. A list of locations, a device brand, or a derivation-path label is not sufficient by itself.</aside>
+<nav class="prevnext-row" aria-label="Previous and next sheets"><a class="prevnext prev" rel="prev" href="/plebum-dominium-test/paths/one/faq.html">← 10 · If you get stuck</a><span class="step-pos-bottom">Step 11 of 12</span><a class="prevnext next" rel="next" href="/plebum-dominium-test/paths/one/single-sig.html">12 · One key + passphrase →</a></nav>
     </article>
   </main>
 
