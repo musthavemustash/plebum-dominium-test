@@ -112,10 +112,10 @@
       </div>
 <nav class="step-banner" aria-label="Sheet 2 of 17"><a class="step-nav" href="/plebum-dominium-test/handouts/terms.html" rel="prev">&larr; T &middot; Terms</a><span class="step-pos"><strong>Step 2 of 17</strong> · Before you begin</span><a class="step-nav" href="/plebum-dominium-test/handouts/checklist.html" rel="next">03 &middot; Checklist &rarr;</a></nav>
 <section class="sheet-meta" aria-label="Sheet overview"><div class="meta-item"><span class="meta-label">Time</span><span class="meta-val">15 min</span></div><div class="meta-item"><span class="meta-label">Difficulty</span><span class="meta-val diff-easy">Easy</span></div><div class="meta-item"><span class="meta-label">Steps</span><span class="meta-val">1 worksheet</span></div><div class="meta-item meta-needs"><span class="meta-label">You will need</span><span class="meta-val"><a href="/plebum-dominium-test/handouts/checklist.html">Pen and paper</a></span></div></section>
-<p>Don&#x27;t trust, verify.</p>
+<p class="guide-intro">What are you protecting your Bitcoin from?</p><p>Start with the threats that matter to you, then consider how you would recover your wallet if something went wrong. Never enter seed words or passphrases into a website.</p>
 <ul>
 <li><strong>The seed phrase is the wallet.</strong></li>
-<li>Anyone who holds the words holds the coins. No device can stop them.</li>
+<li>For a single-signature wallet without a BIP39 passphrase, anyone who obtains the complete seed phrase can restore and spend the coins. In a correctly configured 2-of-3 multisig, one seed alone is insufficient.</li>
 <li>Check every threat you actually care about. The guide answers each one under its checkbox.</li>
 </ul>
 <figure class="step-fig"><svg width="360" height="296" viewBox="0 0 360 296" font-family="IBM Plex Sans, sans-serif">
@@ -131,9 +131,9 @@
 <h2 id="what-am-i-protecting-against">What am I protecting against?</h2>
 <ul>
 <li>☐ <strong>Theft:</strong> burglar, coercion, the $5 wrench</li>
-<li>One stolen seed buys an attacker nothing. They need a second, in another place.</li>
+<li>In a correctly configured 2-of-3 multisig, one stolen signing seed alone is insufficient to spend. Protect the wallet descriptor and all signing keys.</li>
 <li>☐ <strong>Fire, flood, disaster:</strong> one location stops existing</li>
-<li>Three places, stamped titanium. Two surviving plates plus the map rebuild the wallet.</li>
+<li>Three places, stamped titanium. Two surviving signing seeds and the correct verified wallet configuration can restore signing capability; test recovery before relying on it.</li>
 <li>☐ <strong>My own mistakes:</strong> lost paper, copied a word wrong</li>
 <li>Two tools must agree on every word before anything is stamped.</li>
 <li>☐ <strong>Scams:</strong> an email or a site that looks official asks for my words</li>
