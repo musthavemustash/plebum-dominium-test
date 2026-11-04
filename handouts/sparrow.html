@@ -130,7 +130,7 @@
 <nav class="step-banner" aria-label="Sheet 7 of 17"><a class="step-nav" href="/plebum-dominium-test/handouts/dice.html" rel="prev">&larr; 06 &middot; Make the three keys</a><span class="step-pos"><strong>Step 7 of 17</strong> · Build the 2-of-3</span><a class="step-nav" href="/plebum-dominium-test/handouts/testnet.html" rel="next">10 &middot; Rehearse on testnet &rarr;</a></nav>
 <section class="sheet-meta" aria-label="Sheet overview"><div class="meta-item"><span class="meta-label">Time</span><span class="meta-val">45-60 min</span></div><div class="meta-item"><span class="meta-label">Difficulty</span><span class="meta-val diff-careful">Careful</span></div><div class="meta-item"><span class="meta-label">Steps</span><span class="meta-val">9 sections</span></div><div class="meta-item meta-needs"><span class="meta-label">You will need</span><span class="meta-val"><a href="/plebum-dominium-test/handouts/dice.html">The three paper keys</a> &middot; <a href="/plebum-dominium-test/handouts/verify.html">Verified Sparrow</a></span></div></section>
 <aside class="callout callout-warning" role="note"><p class="callout-label">Warning</p><p>Never enter seed words on an online computer.</p></aside>
-<p>Three public keys go into Sparrow, and no seed ever touches this build. What comes out is the wallet map, which can watch the money and never spend it.</p>
+<p>The final watch-only wallet is built from three public keys. Earlier steps use one seed per offline boot to obtain each public key. What comes out is the wallet map, which can watch the money and never spend it.</p>
 <p>You will boot Tails four times: once per seed to copy its public key, then once more with no seed to build the vault.</p>
 <p>Files used: Sparrow 2.5.5. Tails 7.15.1 or later 7.x (verified). Electrum 4.8.3 for the cross-check.</p>
 <section class="you-need"><p class="you-need-label">What is required</p><ul>
@@ -151,24 +151,24 @@
 <figure class="step-fig"><svg width="460" height="190" viewBox="0 0 460 190" font-family="IBM Plex Mono, monospace">
         <rect x="20" y="10" width="420" height="170" rx="10" fill="var(--card)" stroke="var(--line)"/>
         <circle cx="42" cy="30" r="5" fill="#c0392b"/><circle cx="60" cy="30" r="5" fill="var(--accent)"/><circle cx="78" cy="30" r="5" fill="var(--tip)"/>
-        <text x="40" y="62" fill="var(--accent)" font-size="13">$ cd ~/Desktop</text>
-        <text x="40" y="88" fill="var(--accent)" font-size="13">$ tar -xvf sparrowwallet-2.5.5-x86_64.tar.gz</text>
-        <text x="40" y="114" fill="var(--accent)" font-size="13">$ cd Sparrow</text>
-        <text x="40" y="140" fill="var(--accent)" font-size="13">$ ./bin/Sparrow</text>
+        <text x="40" y="62" fill="var(--accent)" font-size="13">cd ~/Desktop</text>
+        <text x="40" y="88" fill="var(--accent)" font-size="13">tar -xvf sparrowwallet-2.5.5-x86_64.tar.gz</text>
+        <text x="40" y="114" fill="var(--accent)" font-size="13">cd Sparrow</text>
+        <text x="40" y="140" fill="var(--accent)" font-size="13">./bin/Sparrow</text>
         <text x="40" y="166" fill="var(--tip)" font-size="13">▊</text>
       </svg></figure>
-<p>Type these four lines, one at a time. Wait for the prompt to come back after each.</p>
+<p>Run these commands one at a time. Wait for each command to finish before entering the next. The shell prompt is not part of a command.</p>
 <pre><code>
-$ cd ~/Desktop
+cd ~/Desktop
 
-$ tar -xvf sparrowwallet-2.5.5-x86_64.tar.gz
+tar -xvf sparrowwallet-2.5.5-x86_64.tar.gz
 
-$ cd Sparrow
+cd Sparrow
 
-$ ./bin/Sparrow
+./bin/Sparrow
 
 </code></pre>
-<p>Wait 15 to 30 seconds. Sparrow opens. Type exactly. Spaces count. If a line turns red, stop.</p>
+<p>Sparrow may take 15 to 30 seconds to open. The terminal may remain occupied while Sparrow runs. If a command reports an error or the expected window does not open, stop and investigate; text color alone is not an error check.</p>
 <h2 id="step-3-new-wallet-2-of-3-native-segwit">Step 3 · New wallet: 2 of 3, native Segwit.</h2>
 <figure class="shot-fig"><img src="/plebum-dominium-test/assets/img/sparrow-step3-settings.png" alt="Sparrow Settings showing Multi Signature HD, Native Segwit, and 2 of 3" loading="lazy"><span class="num" style="top:17.25%">1</span><span class="leader" style="left:6%;width:29.3%;top:17.25%"></span><span class="dot" style="left:35.3%;top:17.25%"></span><span class="num" style="top:23.25%">2</span><span class="leader" style="left:6%;width:29.3%;top:23.25%"></span><span class="dot" style="left:35.3%;top:23.25%"></span><span class="numd" style="left:63.3%;top:17%">3</span><span class="numd" style="left:57.1%;top:48.8%">4</span></figure><ol class="shot-key"><li>Policy Type: Multi Signature HD.</li><li>Script Type: Native Segwit (P2WSH).</li><li>M of N: 2 / 3. The slider sits on 2, with 3 cosigners in total. Number 3 sits in the white space to the left of Cosigners and M of N.</li><li>Keystore tabs: 1, 2 and 3. Each one gets filled in turn.</li></ol><p class="shot-note">Real Sparrow screenshot, dummy keys only. No xpub is shown in this shot.</p>
 

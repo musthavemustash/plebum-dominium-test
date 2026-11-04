@@ -5,7 +5,7 @@
 > [!WARNING]
 > Never enter seed words on an online computer.
 
-Three public keys go into Sparrow, and no seed ever touches this build. What comes out is the wallet map, which can watch the money and never spend it.
+The final watch-only wallet is built from three public keys. Earlier steps use one seed per offline boot to obtain each public key. What comes out is the wallet map, which can watch the money and never spend it.
 
 You will boot Tails four times: once per seed to copy its public key, then once more with no seed to build the vault.
 
@@ -26,16 +26,16 @@ The entire sheet happens with networking Disabled. Check it on every boot.
 
 ::fig sparrow/terminal
 
-Type these four lines, one at a time. Wait for the prompt to come back after each.
+Run these commands one at a time. Wait for each command to finish before entering the next. The shell prompt is not part of a command.
 
 ```
-$ cd ~/Desktop
-$ tar -xvf sparrowwallet-2.5.5-x86_64.tar.gz
-$ cd Sparrow
-$ ./bin/Sparrow
+cd ~/Desktop
+tar -xvf sparrowwallet-2.5.5-x86_64.tar.gz
+cd Sparrow
+./bin/Sparrow
 ```
 
-Wait 15 to 30 seconds. Sparrow opens. Type exactly. Spaces count. If a line turns red, stop.
+Sparrow may take 15 to 30 seconds to open. The terminal may remain occupied while Sparrow runs. If a command reports an error or the expected window does not open, stop and investigate; text color alone is not an error check.
 
 ## Step 3 · New wallet: 2 of 3, native Segwit.
 
@@ -61,9 +61,9 @@ Boot again for Seed 2 → s2-xpub.txt. Shut down. Boot again for Seed 3 → s3-x
 
 Boot Tails again. Do not type any seed. New wallet → Multi Signature → Native Segwit → 2 of 3 → import the three xpub files. Confirm the path. Export the output descriptor to the data USB. That file is the wallet map.
 
-> [!STOP] **Confirm the first address on a second screen.**
+> [!STOP] **Independently verify the cosigners and wallet policy, then compare several receiving addresses.**
 >
-> Sparrow built your wallet from your seeds. But if malware sat on the build machine, it could show you **an address it controls** while you trust it. A second screen the malware can't reach closes that hole. **Do not fund the wallet until this matches.**
+> Sparrow built your wallet from your seeds. But if malware sat on the build machine, it could show you **an address it controls** while you trust it. A second screen alone does not establish independence. **Do not fund the wallet until this matches.**
 >
 > **1 · Build in Sparrow.** Finish the 2-of-3 build on the airgapped machine as usual. Write down the **first receiving address** it shows. Write the full string, not the QR code.
 >

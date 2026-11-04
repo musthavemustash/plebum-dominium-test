@@ -9,3 +9,10 @@ Production releases will use Semantic Versioning and follow the staging-first re
 - Added a reusable production release checklist.
 
 **No production version has been assigned and no production release is authorized by this changelog.**
+
+## Unreleased — staging QA patch
+
+- Keep mobile header controls on screen and improve drawer keyboard access.
+- Align Threat Model navigation and summary behavior; clarify recovery wording.
+- Make Sparrow commands copyable without shell prompts and align the verification overview.
+- Record browser QA and outstanding release blockers in `review/STAGING_QA.md`.

@@ -158,6 +158,7 @@ body {
   text-transform: uppercase; letter-spacing: 0.12em;
 }
 .menu-btn {
+  color: var(--ink);
   display: none; border: 1px solid var(--line); background: var(--card);
   border-radius: 8px; font-size: 1.1rem; padding: 0.35rem 0.6rem; cursor: pointer;
 }
@@ -1713,3 +1714,14 @@ table.tier-chart{width:100%;min-width:640px;border-collapse:separate;border-spac
 .qtrio .lockwrap { transform: scale(0.82); transform-origin: top center; margin-bottom: -0.5rem; }
 .qtrio-name { font-weight: 700; margin: 0.55rem 0 0.15rem; font-size: 0.92rem; }
 .qtrio-rule { color: var(--muted); font-size: 0.85rem; margin: 0; }
+
+/* Keep all header controls reachable on narrow screens without sideways scrolling. */
+@media (max-width:600px) {
+  .site-header { flex-wrap:wrap; gap:.5rem; padding:.5rem .75rem; }
+  .site-header .brand { flex:1 0 calc(100% - 60px); white-space:normal; }
+  .site-header button { min-width:44px; min-height:44px; }
+  .site-header .ask-btn { margin-left:0; }
+  .site-header .motion-btn { margin-right:auto; }
+  .site-header .theme-btn { margin-left:0; }
+  .site-header .online-word { display:inline; }
+}

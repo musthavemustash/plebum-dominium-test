@@ -118,8 +118,8 @@
         <p><a href="/plebum-dominium-test/path-risks.html">Risks of your path &rarr;</a></p>
       </div>
 <nav class="step-banner" aria-label="Sheet 7 of 17"><a class="step-nav" href="/plebum-dominium-test/handouts/dice.html" rel="prev">&larr; 07 &middot; Make the three keys</a><span class="step-pos"><strong>Step 7 of 17</strong> · Build the 2-of-3</span><a class="step-nav" href="/plebum-dominium-test/handouts/signing.html" rel="next">09 &middot; Practice spend &rarr;</a></nav>
-<section class="guide-overview" aria-label="Sheet overview"><div class="guide-stat"><span>Time</span><strong>45-60 min</strong></div><div class="guide-stat"><span>Difficulty</span><strong>Careful</strong></div><div class="guide-stat"><span>Steps</span><strong>9 sections</strong></div></section><p class="guide-needs"><strong>You will need:</strong> <a href="/plebum-dominium-test/handouts/dice.html">The three paper keys</a> &middot; <a href="/plebum-dominium-test/handouts/verify.html">Verified Sparrow</a></p>
-<p class="guide-intro">Three public keys go into Sparrow, and no seed ever touches this build. What comes out is the wallet map, which can watch the money and never spend it.</p>
+<section class="guide-overview" aria-label="Sheet overview"><div class="guide-stat"><span>Time</span><strong>45-60 min</strong></div><div class="guide-stat"><span>Difficulty</span><strong>Careful</strong></div><div class="guide-stat"><span>Steps</span><strong>7 steps</strong></div></section><p class="guide-needs"><strong>You will need:</strong> <a href="/plebum-dominium-test/handouts/dice.html">The three paper keys</a> &middot; <a href="/plebum-dominium-test/handouts/verify.html">Verified Sparrow</a></p>
+<p class="guide-intro">The final watch-only wallet is built from three public keys. Earlier steps use one seed per offline boot to obtain each public key. What comes out is the wallet map, which can watch the money and never spend it.</p>
 <aside class="guide-warning"><strong>Safety first:</strong> Never enter seed words on an online computer. You will boot Tails four times: once per seed to copy its public key, then once more with no seed to build the vault.</aside>
 <p>Files used: Sparrow 2.5.5. Tails 7.16 or later 7.x (verified). Electrum 4.8.3 for the cross-check.</p>
 <section class="guide-summary">
@@ -128,7 +128,7 @@
 <li>Boot Tails offline. Launch Sparrow from the terminal.</li>
 <li>Extract each seed's public key, one per boot.</li>
 <li>Build the 2-of-3 vault with no seed. Export the map.</li>
-<li>Confirm the first address on a second screen.</li>
+<li>Independently verify the cosigners and wallet policy, then compare several receiving addresses.</li>
 </ol>
 </section>
 <section class="guide-section">
@@ -139,12 +139,12 @@
 <section class="guide-section">
 <p class="guide-step-marker">Step 2 / 7</p>
 <h2>Open the terminal. Launch Sparrow.</h2>
-<p>Type these four lines, one at a time. Wait for the prompt to come back after each.</p>
-<pre><code>$ cd ~/Desktop
-$ tar -xvf sparrowwallet-2.5.5-x86_64.tar.gz
-$ cd Sparrow
-$ ./bin/Sparrow</code></pre>
-<p>Wait 15 to 30 seconds. Sparrow opens. Type exactly. Spaces count. If a line turns red, stop.</p>
+<p>Run these commands one at a time. Wait for each command to finish before entering the next. The shell prompt is not part of a command.</p>
+<pre><code>cd ~/Desktop
+tar -xvf sparrowwallet-2.5.5-x86_64.tar.gz
+cd Sparrow
+./bin/Sparrow</code></pre>
+<p>Sparrow may take 15 to 30 seconds to open. The terminal may remain occupied while Sparrow runs. If a command reports an error or the expected window does not open, stop and investigate; text color alone is not an error check.</p>
 </section>
 <section class="guide-section">
 <p class="guide-step-marker">Step 3 / 7</p>
