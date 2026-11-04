@@ -46,3 +46,7 @@ node scripts/test_tool_network.cjs
 ## Release decision and next repair
 
 **Do not republish a reconciled tool bundle yet.** Core tests pass within the bounds above; provenance, external version pins, offline guards and UI state remain incomplete. Next: establish official OpenPGP artifact provenance and authenticate version-specific upstream pins; repair guard/password/stale-output handling with regression tests; complete browser/target-environment testing; then rebuild ZIP, full-hash manifest and verifier expectations atomically from the approved files. Keep known-answer tests as repeatable release checks. Do not replace manifest hashes merely to turn mismatches into matches.
+
+## Follow-up
+
+See [DEPENDENCY_PROVENANCE.md](DEPENDENCY_PROVENANCE.md): OpenPGP package identity and Sparrow signed-manifest checks are now established. Tails pins mismatch official metadata; Electrum artifact verification is blocked by HTTP 403. Other release blockers remain.
