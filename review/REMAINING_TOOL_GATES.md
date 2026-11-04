@@ -44,3 +44,18 @@ Other passing checks on this batch:
 - `node scripts/test_entry_interactions.js`: glossary/demo logic.
 
 Node VM/DOM doubles are not a browser. Actual network egress, desktop/mobile interaction, OS offline isolation, Tails boot and recovery workflows remain unverified. Use public fixtures only when closing these gates; no real secrets. Published download warning must remain until these checks and Electrum authentication are complete. PDFs are still a separate unfinished task.
+
+## November 4 — Electrum upload authenticated
+
+User supplied Electrum 4.8.3 AppImage and detached signature. GPG verification returned exit 0 and five VALIDSIG results against keys retrieved through links on https://electrum.org/ . File: 93845696 bytes, SHA-256 `aabe3bb2c99ffca172a004b0fd6f4afdf1b204079f7691b65f23bc5b63a9de0c`. This differs from the old carried-over pin, which is now corrected. No AppImage execution. Public keys, detached signature and status/import receipts are in review/provenance/electrum/; binary is not committed. No ultimate trust assigned. Key provenance is publisher HTTPS; ThomasV and SomberNight fingerprints also match the complete values printed on the official site.
+
+Valid signing fingerprints (primary fingerprint for Emzy additionally recorded in receipt):
+- Emzy signing subkey: 637DB1E23370F84AFF88CCE03152347D07DA627C; primary 9EDAFF80E080659604F4A76B2EBB056FD847F8A7.
+- Felix B.: AA0BC6824B397BBA99776E157ED8D82B37192688.
+- SomberNight: 0EEDCFD5CAFB459067349B23CA9EEEC43DF911DC.
+- Sebastian van Staa: 33C103B4B2794170546CCF7BCFB2C83C66CD792A.
+- ThomasV: 6694D8DE7BE8EE5631BED9502BD5824B7F9470E6.
+
+Key URLs: https://raw.githubusercontent.com/spesmilo/electrum/master/pubkeys/ with filenames ThomasV.asc, sombernight_releasekey.asc, Emzy.asc, felixb_f321x.asc and svanstaa.asc, each linked by the official site. Signature dates October 24, 2026. Import agent-start diagnostics did not prevent public key imports or signature verification.
+
+This supersedes the Electrum HTTP403 blocker above. Step one's identified provenance checks are complete at their documented scope (Sparrow remains a signed-manifest pin check, not archive execution). Candidate builder now retains only actual browser/target-offline testing as a release blocker. Tool release remains withheld; ZIP/manifest/verifier not published.

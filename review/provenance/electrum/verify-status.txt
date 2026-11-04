@@ -1,0 +1,68 @@
+[GNUPG:] NEWSIG
+[GNUPG:] KEY_CONSIDERED 9EDAFF80E080659604F4A76B2EBB056FD847F8A7 0
+[GNUPG:] SIG_ID a0kAG9uS9m24jwlv+YMi9i40BA4 2026-10-24 1792850312
+[GNUPG:] GOODSIG 3152347D07DA627C Stephan Oeste (it) <it@oeste.de>
+[GNUPG:] VALIDSIG 637DB1E23370F84AFF88CCE03152347D07DA627C 2026-10-24 1792850312 0 4 0 1 10 00 9EDAFF80E080659604F4A76B2EBB056FD847F8A7
+[GNUPG:] KEY_CONSIDERED 9EDAFF80E080659604F4A76B2EBB056FD847F8A7 0
+[GNUPG:] TRUST_UNDEFINED 0 pgp
+[GNUPG:] NEWSIG
+[GNUPG:] KEY_CONSIDERED AA0BC6824B397BBA99776E157ED8D82B37192688 0
+[GNUPG:] SIG_ID BMFQePXp5g36cTiM/PmfwLCgfW8 2026-10-24 1792832785
+[GNUPG:] GOODSIG 7ED8D82B37192688 Felix B. <f@f321x.com>
+[GNUPG:] VALIDSIG AA0BC6824B397BBA99776E157ED8D82B37192688 2026-10-24 1792832785 0 4 0 19 8 00 AA0BC6824B397BBA99776E157ED8D82B37192688
+[GNUPG:] TRUST_UNDEFINED 0 pgp
+[GNUPG:] NEWSIG
+[GNUPG:] KEY_CONSIDERED 0EEDCFD5CAFB459067349B23CA9EEEC43DF911DC 0
+[GNUPG:] SIG_ID CQRHxGD4VGOdUqd/qo4sG0J846U 2026-10-24 1792830033
+[GNUPG:] GOODSIG CA9EEEC43DF911DC SomberNight/ghost43 (Electrum RELEASE signing key) <somber.night@protonmail.com>
+[GNUPG:] VALIDSIG 0EEDCFD5CAFB459067349B23CA9EEEC43DF911DC 2026-10-24 1792830033 0 4 0 1 10 00 0EEDCFD5CAFB459067349B23CA9EEEC43DF911DC
+[GNUPG:] TRUST_UNDEFINED 0 pgp
+[GNUPG:] NEWSIG
+[GNUPG:] KEY_CONSIDERED 33C103B4B2794170546CCF7BCFB2C83C66CD792A 0
+[GNUPG:] SIG_ID 31/sh4HkMtF89u2T8sMiVSwddtA 2026-10-24 1792831836
+[GNUPG:] GOODSIG CFB2C83C66CD792A Sebastian van Staa <sebastian.van.staa@gmail.com>
+[GNUPG:] VALIDSIG 33C103B4B2794170546CCF7BCFB2C83C66CD792A 2026-10-24 1792831836 0 4 0 1 10 00 33C103B4B2794170546CCF7BCFB2C83C66CD792A
+[GNUPG:] TRUST_UNDEFINED 0 pgp
+[GNUPG:] NEWSIG
+[GNUPG:] KEY_CONSIDERED 6694D8DE7BE8EE5631BED9502BD5824B7F9470E6 0
+[GNUPG:] SIG_ID AwYjAT/NUP4UrREGErR3wFj9wVs 2026-10-24 1792820971
+[GNUPG:] GOODSIG 2BD5824B7F9470E6 Thomas Voegtlin (https://electrum.org) <thomasv@electrum.org>
+[GNUPG:] VALIDSIG 6694D8DE7BE8EE5631BED9502BD5824B7F9470E6 2026-10-24 1792820971 0 4 0 1 10 00 6694D8DE7BE8EE5631BED9502BD5824B7F9470E6
+[GNUPG:] TRUST_UNDEFINED 0 pgp
+gpg: Signature made Sat Oct 24 09:58:32 2026 EDT
+gpg:                using RSA key 637DB1E23370F84AFF88CCE03152347D07DA627C
+gpg: Good signature from "Stephan Oeste (it) <it@oeste.de>" [unknown]
+gpg:                 aka "Stephan Oeste (Master-key) <stephan@oeste.de>" [unknown]
+gpg:                 aka "Emzy E. (emzy) <emzy@emzy.de>" [unknown]
+gpg: WARNING: This key is not certified with a trusted signature!
+gpg:          There is no indication that the signature belongs to the owner.
+Primary key fingerprint: 9EDA FF80 E080 6596 04F4  A76B 2EBB 056F D847 F8A7
+     Subkey fingerprint: 637D B1E2 3370 F84A FF88  CCE0 3152 347D 07DA 627C
+gpg: Signature made Sat Oct 24 05:06:25 2026 EDT
+gpg:                using ECDSA key AA0BC6824B397BBA99776E157ED8D82B37192688
+gpg: Good signature from "Felix B. <f@f321x.com>" [unknown]
+gpg:                 aka "[jpeg image of size 5304]" [unknown]
+gpg: WARNING: This key is not certified with a trusted signature!
+gpg:          There is no indication that the signature belongs to the owner.
+Primary key fingerprint: AA0B C682 4B39 7BBA 9977  6E15 7ED8 D82B 3719 2688
+gpg: Signature made Sat Oct 24 04:20:33 2026 EDT
+gpg:                using RSA key 0EEDCFD5CAFB459067349B23CA9EEEC43DF911DC
+gpg: Good signature from "SomberNight/ghost43 (Electrum RELEASE signing key) <somber.night@protonmail.com>" [unknown]
+gpg: WARNING: This key is not certified with a trusted signature!
+gpg:          There is no indication that the signature belongs to the owner.
+Primary key fingerprint: 0EED CFD5 CAFB 4590 6734  9B23 CA9E EEC4 3DF9 11DC
+gpg: Signature made Sat Oct 24 04:50:36 2026 EDT
+gpg:                using RSA key 33C103B4B2794170546CCF7BCFB2C83C66CD792A
+gpg: Good signature from "Sebastian van Staa <sebastian.van.staa@gmail.com>" [unknown]
+gpg:                 aka "Sebastian van Staa <svanstaa@protonmail.com>" [unknown]
+gpg: WARNING: This key is not certified with a trusted signature!
+gpg:          There is no indication that the signature belongs to the owner.
+Primary key fingerprint: 33C1 03B4 B279 4170 546C  CF7B CFB2 C83C 66CD 792A
+gpg: Signature made Sat Oct 24 01:49:31 2026 EDT
+gpg:                using RSA key 6694D8DE7BE8EE5631BED9502BD5824B7F9470E6
+gpg: Good signature from "Thomas Voegtlin (https://electrum.org) <thomasv@electrum.org>" [unknown]
+gpg:                 aka "ThomasV <thomasv1@gmx.de>" [unknown]
+gpg:                 aka "Thomas Voegtlin <thomasv1@gmx.de>" [unknown]
+gpg: WARNING: This key is not certified with a trusted signature!
+gpg:          There is no indication that the signature belongs to the owner.
+Primary key fingerprint: 6694 D8DE 7BE8 EE56 31BE  D950 2BD5 824B 7F94 70E6
