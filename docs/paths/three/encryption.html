@@ -34,6 +34,7 @@
 /* set path before first paint, so the color reminder is right from the start */
 (function(){try{var p=localStorage.getItem('pd-path');if(p!=='one'&&p!=='full'){p='full';}document.documentElement.setAttribute('data-path',p);}catch(e){document.documentElement.setAttribute('data-path','full');}})();
 </script>
+<link rel="stylesheet" href="/plebum-dominium-test/assets/css/entry-pages.css">
 <script>document.documentElement.setAttribute("data-path", "full");</script>
 </head>
 <body data-guide-path="three" data-guide-slug="encryption" class="" id="top">
@@ -79,118 +80,26 @@
   <div class="scrim" aria-hidden="true"></div>
 
   <main id="content">
-    <article>
+    <article class="entry-page">
       <p class="kicker">Three keys · Step 12 of 16</p>
       <h1>Hide the wallet map</h1>
       
       
 <nav class="step-banner" aria-label="Step 12 of 16"><a class="step-nav" rel="prev" href="/plebum-dominium-test/paths/three/testnet.html">← 11 · Rehearse on testnet</a><span class="step-pos"><strong>Step 12 of 16</strong> · Protect the wallet map</span><a class="step-nav" rel="next" href="/plebum-dominium-test/paths/three/inheritance.html">13 · If I am gone →</a></nav>
-<section class="guide-overview" aria-label="Sheet overview"><div class="guide-stat"><span>Time</span><strong>30 min</strong></div><div class="guide-stat"><span>Difficulty</span><strong>Careful</strong></div><div class="guide-stat"><span>Steps</span><strong>5 steps</strong></div></section><p class="guide-needs"><strong>You will need:</strong> descriptor-tool.html (verified) &middot; A dice passphrase</p>
-<figure class="sheet-diagram"><div class="geo-fig" role="img" aria-label="Geography: 3 seeds, secured separately in 3 different locations. No single point of failure."><p class="geo-kicker">Geography</p><p class="geo-head">3 seeds, secured separately in 3 different locations</p><div class="geo-cards"><div class="geo-card"><p class="geo-house">HOUSE 1</p><p class="geo-plate">Plate A</p><p class="geo-detail">Seed 1 only</p><p class="geo-detail">Home safe / fire box</p><p class="geo-map">Wallet map lives here too</p><p class="geo-note">(the map is not a third seed)</p></div><div class="geo-card"><p class="geo-house">HOUSE 2</p><p class="geo-plate">Plate B</p><p class="geo-detail">Seed 2 only</p><p class="geo-detail">Different building, different risk</p><p class="geo-map">A copy of the map may sit here</p></div><div class="geo-card"><p class="geo-house">HOUSE 3</p><p class="geo-plate">Plate C</p><p class="geo-detail">Seed 3 only</p><p class="geo-detail">Another town or trusted party</p><p class="geo-map">Do not park Seed 1 or 2 here</p></div></div></div><figcaption>Geography: three plates in three places. No single point of failure.</figcaption></figure><p><strong>At a glance.</strong> Time: 30 minutes. Difficulty: Careful. Steps: 5.</p>
-<ol>
-<li>Boot Tails. Copy the tool and the map.</li>
-<li>Open the tool. Encrypt the map.</li>
-<li>Copy the locked file. Delete the plain one.</li>
-<li>Write the passphrase on paper. Twice.</li>
-<li>Prove it opens. Check the first address.</li>
-</ol>
-<p>The map can watch the money, but it cannot spend. Anyone who can read it can see the balance, so it never sits around as plain text.</p>
-<p>Files used: Tails 7.16 or later 7.x (verified).</p>
-<h2 id="get-the-descriptor-tool">Get the descriptor tool</h2>
-<p>Download the descriptor tool page. Save it. Check its fingerprint on the verify page before you copy it to your data USB.</p>
-<p><a href="/plebum-dominium-test/descriptor-tool.html">Open descriptor tool (HTML)</a></p>
-<p>The Python script is the backup check. It lives in the kit.</p>
-<h2 id="make-a-passphrase-with-dice">Make a passphrase with dice</h2>
-<p>Roll five dice. Read the faces left to right. Look the five-digit number up in the EFF word list. Write the word down. Do this six times. Six words give about 77 bits.</p>
-<p>Use the word list or the Diceware mapper from a saved copy, on Tails with networking disabled. Never in an everyday browser.</p>
-<p>Watch how it works:</p>
-<div class="demo-embed"><iframe src="/plebum-dominium-test/passphrase-demo.html" title="Passphrase mapper demo" loading="lazy"></iframe><p class="demo-fullscreen"><a href="/plebum-dominium-test/passphrase-demo.html">Open the demo full screen</a></p></div>
-<p>Write the six words on paper, in two separate places. Never stamp a passphrase on a plate. Never keep it with the plate, the map, or the USBs.</p>
-<p>Seed words and passphrase words use different dice methods. Seeds keep faces 1 to 4 and reroll 5 and 6. Passphrases keep all six faces, no rerolls. A passphrase word is never a seed word.</p>
-<h2 id="step-1-boot-tails-copy-the-tool-and-the-map">Step 1 · Boot Tails. Copy the tool and the map.</h2>
-<div class="demo-embed"><iframe src="/plebum-dominium-test/step1-demo.html" title="Step 1 networking demo" loading="lazy"></iframe><p class="demo-fullscreen"><a href="/plebum-dominium-test/step1-demo.html">Open the demo full screen</a></p></div>
-<figure class="step-fig"><svg width="460" height="150" viewBox="0 0 460 150" font-family="IBM Plex Sans, sans-serif">
-        <rect x="20" y="40" width="80" height="70" rx="10" fill="var(--card)" stroke="var(--accent)"/>
-        <text x="60" y="68" fill="var(--accent)" font-size="11" font-weight="700" text-anchor="middle">TAILS</text>
-        <text x="60" y="88" fill="var(--muted)" font-size="9" text-anchor="middle">network off</text>
-        <path d="M112 75 h28 m-10 -10 l10 10 l-10 10" stroke="var(--accent)" stroke-width="3" fill="none"/>
-        <rect x="152" y="25" width="130" height="100" rx="8" fill="var(--card)" stroke="var(--line)"/>
-        <text x="217" y="48" fill="var(--muted)" font-size="10" text-anchor="middle" letter-spacing="2">DESKTOP</text>
-        <rect x="166" y="60" width="102" height="26" rx="5" fill="var(--card)" stroke="var(--line)"/>
-        <text x="217" y="77" fill="var(--muted)" font-size="9" text-anchor="middle" font-family="IBM Plex Mono, monospace">descriptor-tool.html</text>
-        <rect x="166" y="92" width="102" height="26" rx="5" fill="var(--card)" stroke="var(--line)"/>
-        <text x="217" y="109" fill="var(--muted)" font-size="9" text-anchor="middle" font-family="IBM Plex Mono, monospace">map.txt</text>
-        <text x="340" y="152" fill="var(--muted)" font-size="11" text-anchor="middle" letter-spacing="1" transform="translate(-40,0)">NEVER OPEN THE MAP ON A PHONE</text>
-      </svg></figure>
-<p>Boot Tails, networking Disabled. Copy the tool page and map.txt to the Desktop.</p>
-<h2 id="step-2-open-the-tool-encrypt-the-map">Step 2 · Open the tool. Encrypt the map.</h2>
-<div class="demo-embed"><iframe src="/plebum-dominium-test/descriptor-demo.html" title="Descriptor tool demo" loading="lazy"></iframe><p class="demo-fullscreen"><a href="/plebum-dominium-test/descriptor-demo.html">Open the demo full screen</a></p></div>
-<figure class="step-fig print-only"><svg width="460" height="190" viewBox="0 0 460 190" font-family="IBM Plex Sans, sans-serif">
-        <rect x="20" y="15" width="420" height="160" rx="10" fill="#0e0d0b" stroke="var(--line)"/>
-        <text x="40" y="42" fill="var(--accent)" font-size="14" font-weight="700">Descriptor tool</text>
-        <circle cx="400" cy="38" r="5" fill="#3aa655"/><text x="412" y="42" fill="var(--muted)" font-size="11">Offline</text>
-        <rect x="40" y="54" width="150" height="26" rx="6" fill="var(--accent)"/><text x="115" y="71" fill="#14100b" font-size="12" font-weight="700" text-anchor="middle">Encrypt a map</text>
-        <rect x="200" y="54" width="150" height="26" rx="6" fill="none" stroke="var(--muted)"/><text x="275" y="71" fill="var(--muted)" font-size="12" text-anchor="middle">Decrypt a map</text>
-        <rect x="40" y="92" width="380" height="34" rx="6" fill="none" stroke="var(--muted)" stroke-dasharray="5 4"/><text x="230" y="113" fill="var(--muted)" font-size="12" text-anchor="middle">Drop map.txt here, or paste the text</text>
-        <text x="40" y="148" fill="var(--muted)" font-size="12">Passphrase: <tspan fill="var(--muted)">••••••••••</tspan>  (twice)</text>
-        <text x="40" y="168" fill="var(--tip)" font-size="12">Download map.txt.asc ✓</text>
-      </svg>
-</figure>
-<p>Open the tool page. It checks the computer is offline before it starts. Choose Encrypt a map. Drop map.txt on the page or paste the text. Enter your passphrase twice. Review, then Encrypt. Download map.txt.asc.</p>
-<h2 id="step-3-copy-the-locked-file-delete-the-plain-one">Step 3 · Copy the locked file. Delete the plain one.</h2>
-<figure class="step-fig"><svg width="460" height="160" viewBox="0 0 460 160" font-family="IBM Plex Sans, sans-serif">
-        <rect x="20" y="30" width="110" height="70" rx="8" fill="var(--card)" stroke="var(--tip)"/>
-        <text x="75" y="58" fill="var(--tip)" font-size="11" font-weight="700" text-anchor="middle">map.txt.asc</text>
-        <text x="75" y="80" fill="var(--muted)" font-size="10" text-anchor="middle">🔒 locked</text>
-        <path d="M142 65 h25 m-8 -8 l8 8 l-8 8" stroke="var(--tip)" stroke-width="3" fill="none"/>
-        <rect x="179" y="30" width="60" height="70" rx="6" fill="var(--card)" stroke="var(--line)"/>
-        <text x="209" y="62" fill="var(--muted)" font-size="10" text-anchor="middle">USB 1</text>
-        <rect x="249" y="30" width="60" height="70" rx="6" fill="var(--card)" stroke="var(--line)"/>
-        <text x="279" y="62" fill="var(--muted)" font-size="10" text-anchor="middle">USB 2</text>
-        <rect x="340" y="30" width="100" height="70" rx="8" fill="rgba(192,57,43,0.08)" stroke="var(--stop)"/>
-        <text x="390" y="58" fill="var(--stop)" font-size="11" font-weight="700" text-anchor="middle">map.txt</text>
-        <text x="390" y="80" fill="var(--stop)" font-size="16" text-anchor="middle">🗑</text>
-        <text x="230" y="140" fill="var(--muted)" font-size="11" text-anchor="middle" letter-spacing="1">EMPTY THE TRASH</text>
-      </svg></figure>
-<p>Copy map.txt.asc to two USB drives. Delete map.txt from the Desktop and the USB. Empty the trash.</p>
-<h2 id="step-4-write-the-passphrase-on-paper-twice">Step 4 · Write the passphrase on paper. Twice.</h2>
-<figure class="step-fig"><svg width="460" height="150" viewBox="0 0 460 150" font-family="IBM Plex Sans, sans-serif">
-        <rect x="60" y="25" width="150" height="90" rx="8" fill="#f3eee4"/>
-        <text x="135" y="52" fill="#161410" font-size="11" font-weight="700" text-anchor="middle" letter-spacing="1">PASSPHRASE</text>
-        <line x1="80" y1="66" x2="190" y2="66" stroke="var(--muted)" stroke-width="3"/>
-        <line x1="80" y1="82" x2="190" y2="82" stroke="var(--muted)" stroke-width="3"/>
-        <text x="135" y="104" fill="var(--muted)" font-size="10" text-anchor="middle">place #1</text>
-        <rect x="250" y="25" width="150" height="90" rx="8" fill="#f3eee4"/>
-        <text x="325" y="52" fill="#161410" font-size="11" font-weight="700" text-anchor="middle" letter-spacing="1">PASSPHRASE</text>
-        <line x1="270" y1="66" x2="380" y2="66" stroke="var(--muted)" stroke-width="3"/>
-        <line x1="270" y1="82" x2="380" y2="82" stroke="var(--muted)" stroke-width="3"/>
-        <text x="325" y="104" fill="var(--muted)" font-size="10" text-anchor="middle">place #2</text>
-        <text x="230" y="140" fill="var(--stop)" font-size="11" text-anchor="middle" letter-spacing="1">AWAY FROM THE PLATES · AWAY FROM THE USBs</text>
-      </svg></figure>
-<p>Two copies, two separate places. This paper unlocks every encrypted copy of the map. Treat it like a plate.</p>
-<h2 id="step-5-prove-it-opens-check-the-first-address">Step 5 · Prove it opens. Check the first address.</h2>
-<figure class="step-fig"><svg width="460" height="150" viewBox="0 0 460 150" font-family="IBM Plex Mono, monospace">
-        <rect x="20" y="15" width="420" height="120" rx="10" fill="var(--card)" stroke="var(--line)"/>
-        <text x="40" y="48" fill="var(--muted)" font-size="12"><tspan fill="var(--accent)" font-weight="700">Decrypt a map</tspan>  <tspan fill="var(--muted)" font-family="IBM Plex Sans, sans-serif">(later offline boot)</tspan></text>
-        <text x="40" y="76" fill="var(--muted)" font-size="12">Passphrase: <tspan fill="var(--muted)">••••••••••</tspan></text>
-        <text x="40" y="104" fill="var(--ink)" font-size="11">first address: bc1q…7x2k</text>
-        <text x="300" y="104" fill="var(--tip)" font-size="13" font-weight="700">✓ MATCHES</text>
-      </svg></figure>
-<p>On a later offline boot, open the tool again. Choose Decrypt a map. Paste the armored text. Enter the passphrase once. The restored map must match, and the first address must match what you wrote down.</p>
-<p>If the passphrase is lost, the coins aren&#x27;t gone, as long as all three plates still exist. Three seeds rebuild the map. Two cannot.</p>
-<aside class="callout callout-stop" role="alert"><p class="callout-label">Stop if</p><ul>
-<li>The tool says the computer is online: stop. Do not type the passphrase.</li>
-<li>You want the xpubs on paper &quot;just in case&quot;: that&#x27;s a leak. Stop.</li>
-<li>You want to invent your own cipher: stop. Use the tool.</li>
-</ul></aside>
-<p>Next, If I am gone.</p>
-      <nav class="prevnext-row" aria-label="Previous and next sheets"><a class="prevnext prev" rel="prev" href="/plebum-dominium-test/paths/three/testnet.html">← 11 · Rehearse on testnet</a><span class="step-pos-bottom">Step 12 of 16</span><a class="prevnext next" rel="next" href="/plebum-dominium-test/paths/three/inheritance.html">13 · If I am gone →</a></nav>
+<p class="entry-lead">Protect the wallet map’s privacy without making recovery depend on an untested file.</p>
+<div class="entry-grid">
+<section class="entry-card"><h2 id="guide-step-1">Understand the map</h2><p>A verified public-only descriptor describes the wallet’s scripts, cosigner public keys and derivation information. It can reveal wallet activity but cannot sign by itself. Some exports contain private keys: confirm the export type before treating it as public data.</p><p>Keep the complete verified configuration. Do not assume three seeds alone automatically recover every script type, derivation path or wallet setting. Encryption protects confidentiality; it does not replace configuration backups.</p></section>
+<section class="entry-card"><h2 id="guide-step-2">Choose a recoverable protection plan</h2><p>Decide who needs access after loss or incapacity. Keep more than one protected copy, with a durable record of the decryption method and its password or required key. Avoid making every copy depend on one forgotten password.</p><p>The file-encryption password is separate from a Bitcoin wallet passphrase and a device PIN. Do not reuse signing secrets as encryption passwords. Arrange separate access to encrypted copies and their unlocking material without making either impossible for your recovery plan.</p></section>
+<section class="entry-card"><h2 id="guide-step-3">Encrypt offline using a documented method</h2><p>Tails includes Kleopatra: select <strong>Sign/Encrypt</strong>, choose the file, then <strong>Encrypt with password</strong> for password-based encryption. Use <strong>Decrypt/Verify</strong> to open the encrypted file. Follow the <a href="https://tails.net/doc/encryption_and_privacy/kleopatra/index.en.html">official Tails instructions</a> for your installed version.</p><p>Use an offline session and trusted software. Never enter a real encryption password, private key or seed on this hosted website. A browser’s offline indicator is not proof that the system is isolated.</p></section>
+<section class="entry-card"><h2 id="guide-step-4">Verify before replacing any copy</h2><p>Start with harmless sample text. Test decryption in a later session, using the exact software intended for recovery. For a real map, verify the entire recovered contents against the original before relying on the encrypted copy.</p><p>Keep the existing protected backup until these checks pass. Deleting a file or emptying the trash does not prove every copy has been erased. Plan plaintext handling before writing sensitive material to persistent storage.</p></section>
+<section class="entry-card"><h2 id="guide-step-5">Keep the existing tool in review</h2><p>The bundled <a href="/plebum-dominium-test/descriptor-tool.html">descriptor tool</a> remains available, but its cross-tool compatibility and offline behavior still need independent testing in this review. Do not use it as your only recovery path or assume its self-reported checks certify it.</p><p>No encryption implementation has been changed here. Rehearse with non-sensitive sample data and retain a verified recovery option. The legacy print packet has not yet been reconciled with this guidance.</p></section>
+</div>
+<aside class="guide-warning"><strong>Pause and check:</strong> Stop if decryption fails, the recovered map differs, the export contains unexpected private material, or you cannot explain how a trusted helper would regain access.</aside>
+<nav class="prevnext-row" aria-label="Previous and next sheets"><a class="prevnext prev" rel="prev" href="/plebum-dominium-test/paths/three/testnet.html">← 11 · Rehearse on testnet</a><span class="step-pos-bottom">Step 12 of 16</span><a class="prevnext next" rel="next" href="/plebum-dominium-test/paths/three/inheritance.html">13 · If I am gone →</a></nav>
     </article>
   </main>
 
-  <aside class="toc-col">
-<nav class="toc" aria-label="On this sheet"><p>On this sheet</p><ul><li><a href="#get-the-descriptor-tool" data-toc="get-the-descriptor-tool">Get the descriptor tool</a></li><li><a href="#make-a-passphrase-with-dice" data-toc="make-a-passphrase-with-dice">Make a passphrase with dice</a></li><li><a href="#step-1-boot-tails-copy-the-tool-and-the-map" data-toc="step-1-boot-tails-copy-the-tool-and-the-map">Step 1 · Boot Tails. Copy the tool and the map.</a></li><li><a href="#step-2-open-the-tool-encrypt-the-map" data-toc="step-2-open-the-tool-encrypt-the-map">Step 2 · Open the tool. Encrypt the map.</a></li><li><a href="#step-3-copy-the-locked-file-delete-the-plain-one" data-toc="step-3-copy-the-locked-file-delete-the-plain-one">Step 3 · Copy the locked file. Delete the plain one.</a></li><li><a href="#step-4-write-the-passphrase-on-paper-twice" data-toc="step-4-write-the-passphrase-on-paper-twice">Step 4 · Write the passphrase on paper. Twice.</a></li><li><a href="#step-5-prove-it-opens-check-the-first-address" data-toc="step-5-prove-it-opens-check-the-first-address">Step 5 · Prove it opens. Check the first address.</a></li></ul></nav>
-  </aside>
+  <aside class="toc-col"><nav class="toc" aria-label="On this sheet"><p>On this sheet</p><ul><li><a href="#guide-step-1" data-toc="guide-step-1">Understand the map</a></li><li><a href="#guide-step-2" data-toc="guide-step-2">Choose a recoverable protection plan</a></li><li><a href="#guide-step-3" data-toc="guide-step-3">Encrypt offline using a documented method</a></li><li><a href="#guide-step-4" data-toc="guide-step-4">Verify before replacing any copy</a></li><li><a href="#guide-step-5" data-toc="guide-step-5">Keep the existing tool in review</a></li></ul></nav></aside>
 </div>
 
 <div class="mobilebar" aria-label="Sheet navigation">

@@ -78,3 +78,15 @@ Next: confirm this batch deployment; review Checklist variants and backup/recove
 - Validation: 95-page link/base/drift check; all 28 route steps/2 overviews, independent navigation and numbering; existing glossary/demo logic checks; internal section anchors for all eight revised route pages; git diff whitespace check. Browser/mobile/print rendering remains unverified after the earlier browser-policy block. No funded-wallet or actual recovery execution performed.
 
 Next: confirm this batch PR/Pages deployment; review remaining signing, testnet, encryption, FAQ variants, briefing, single-sig/two-devices, path risks, supporting pages and downloads/tools. Legacy easy variants and downloadable print packet still need reconciliation. Full-site completion is not claimed.
+
+## November 4 — signing, testnet and encryption batch
+
+- Baseline main `43094a3c33337af7af84925772320a9415768788` (PR #11); Pages run 41858924172 succeeded. No open PRs or conflicting remote work at start.
+- Reworked Practice spend, Rehearse on testnet and Hide the wallet map into responsive document-flow cards. Regenerated the three-key copies and search index; preserved route ordering and independent one-key route.
+- Signing now requires policy, recipient, amount, fee and change review for each signer, and distinguishes rebooting from independent hardware. Testnet now uses disposable keys, explicit network matching, full policy verification and recovery rehearsals rather than first-address-only assurance.
+- Encryption now distinguishes public-only descriptors from exports containing private keys; removes guarantees about three seeds automatically restoring configuration and trash deletion erasing all copies. Describes documented Kleopatra encryption/decryption and verification before replacing backups. Bundled descriptor tool remains unchanged and explicitly pending independent compatibility/offline tests.
+- Primary sources checked November 4: https://www.sparrowwallet.com/docs/faq.html (testnet setup); https://raw.githubusercontent.com/bitcoin/bips/master/bip-0174.mediawiki (PSBT); https://raw.githubusercontent.com/bitcoin/bips/master/bip-0380.mediawiki (descriptor configuration and key types); https://tails.net/doc/encryption_and_privacy/kleopatra/index.en.html (file encryption/decryption).
+- Passed: 95-page link/base/source-drift validation, 28-step/two-overview route regression, existing glossary/demo logic, all six touched source/route page IDs and section anchors, whitespace checks. These are source/logic checks, not browser or wallet execution. No tool cryptography, secret input, or offline enforcement changed.
+- Browser/mobile/print verification remains outstanding after the earlier policy block. Neither actual signing/recovery nor encryption interoperability was exercised. No production changes.
+
+Next: confirm this batch deployment; continue FAQ variants, briefing, single-sig/two-devices, path risks and supporting pages. Downloads, PDFs, pinned version compatibility and offline tool vectors remain unresolved. Full-site completion is not claimed.
