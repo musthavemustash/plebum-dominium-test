@@ -34,7 +34,7 @@
 /* set path before first paint, so the color reminder is right from the start */
 (function(){try{var p=localStorage.getItem('pd-path');if(p!=='one'&&p!=='full'){p='full';}document.documentElement.setAttribute('data-path',p);}catch(e){document.documentElement.setAttribute('data-path','full');}})();
 </script>
-<script>document.documentElement.setAttribute("data-path", "full");</script>
+<link rel="stylesheet" href="/plebum-dominium-test/assets/css/entry-pages.css"><script>document.documentElement.setAttribute("data-path", "full");</script>
 </head>
 <body data-guide-path="three" data-guide-slug="briefing" class="" id="top">
 <div class="splash" id="pd-splash" hidden aria-hidden="true">
@@ -79,39 +79,16 @@
   <div class="scrim" aria-hidden="true"></div>
 
   <main id="content">
-    <article>
+    <article class="entry-page">
       <p class="kicker">Three keys · Step 15 of 16</p>
       <h1>Tough questions</h1>
       
       
-<nav class="step-banner" aria-label="Step 15 of 16"><a class="step-nav" rel="prev" href="/plebum-dominium-test/paths/three/faq.html">← 14 · If you get stuck</a><span class="step-pos"><strong>Step 15 of 16</strong> · Tough questions</span><a class="step-nav" rel="next" href="/plebum-dominium-test/paths/three/fire-card.html">16 · Recovery card →</a></nav>
-<section class="guide-overview" aria-label="Sheet overview"><div class="guide-stat"><span>Time</span><strong>15 min</strong></div><div class="guide-stat"><span>Difficulty</span><strong>Easy</strong></div><div class="guide-stat"><span>Steps</span><strong>6 questions</strong></div></section><p class="guide-needs"><strong>You will need:</strong> Nothing, read and discuss</p>
-<div class="qa"><h3>You typed the seed on a laptop. Isn&rsquo;t that exposed?</h3>
-<p>Typed on Tails, networking off, one seed per boot, then a full shutdown. Tails forgets the session. A hardware keylogger is still possible. But one captured seed <strong>still can&rsquo;t spend</strong>: the fund needs two. Never type two seeds on one boot.</p></div>
-
-<div class="qa"><h3>Why not start with a hardware wallet?</h3>
-<p>A signer can join later; it is not how these keys are made. The randomness is <strong>dice you can watch</strong>. No chip to trust, no firmware to audit.</p></div>
-
-<div class="qa"><h3>Is dice randomness weaker than a hardware RNG?</h3>
-<p>No. <strong>256 bits is 256 bits</strong>, whatever made them.</p></div>
-
-<div class="qa"><h3>If the map passphrase is lost, are the coins gone?</h3>
-<p>Not with all three plates. They rebuild the map exactly. But two plates plus a lost passphrase means the addresses are <strong>unrecoverable</strong>. Back up the passphrase paper in two places, away from the plates and USBs.</p></div>
-
-<div class="qa"><h3>What if someone finds one plate?</h3>
-<p>They can&rsquo;t spend. One key alone opens nothing. But <strong>never keep two plates in one place</strong>: that&rsquo;s the whole lock in one drawer.</p></div>
-
-<div class="qa"><h3>Shouldn&rsquo;t I add a passphrase to the multisig?</h3>
-<p>No. The security is the <strong>distribution</strong>, not one more secret. A passphrase on the 2-of-3 is a single point of failure in disguise. Lose it and two plates aren&rsquo;t enough. The home plate&rsquo;s small decoy wallet is the separate, optional place for a passphrase.</p></div>
-
-
-      <nav class="prevnext-row" aria-label="Previous and next sheets"><a class="prevnext prev" rel="prev" href="/plebum-dominium-test/paths/three/faq.html">← 14 · If you get stuck</a><span class="step-pos-bottom">Step 15 of 16</span><a class="prevnext next" rel="next" href="/plebum-dominium-test/paths/three/fire-card.html">16 · Recovery card →</a></nav>
+<nav class="step-banner" aria-label="Step 15 of 16"><a class="step-nav" rel="prev" href="/plebum-dominium-test/paths/three/faq.html">← 14 · If you get stuck</a><span class="step-pos"><strong>Step 15 of 16</strong> · Tough questions</span><a class="step-nav" rel="next" href="/plebum-dominium-test/paths/three/fire-card.html">16 · Recovery card →</a></nav><p class="entry-lead">Understand what the design protects—and what still depends on your equipment and recovery plan.</p><div class="entry-grid"><section class="entry-card"><h2 id="topic-1">Does a fresh boot remove every risk?</h2><p>No. Offline sessions reduce network exposure but do not establish trustworthy hardware or firmware. A persistent compromise can observe keys across different boots on the same computer. One key per boot is not independent hardware isolation.</p></section><section class="entry-card"><h2 id="topic-2">Are dice automatically trustworthy?</h2><p>The input must be unpredictable and the conversion correct. Biased rolls, transcription errors or incompatible input methods undermine the result. Observable dice do not eliminate trust in the software that turns rolls into keys.</p></section><section class="entry-card"><h2 id="topic-3">Can one stolen key spend?</h2><p>One distinct key cannot satisfy a correctly configured 2-of-3 policy alone. Two compromised signing keys can. Devices containing copies of the same key do not create independent cosigners.</p></section><section class="entry-card"><h2 id="topic-4">Can I recreate the map from seeds?</h2><p>Do not rely on that as the backup plan. Preserve verified configuration, including script type, key origins and all cosigner public information. Protect its privacy and test that it restores the intended wallet.</p></section><section class="entry-card"><h2 id="topic-5">Should every cosigner have a passphrase?</h2><p>A cosigner passphrase adds a recovery dependency. This guide’s basic three-key route does not require one. Adding any requires documenting exactly which signer uses it and testing the resulting configuration; it is not a substitute for key separation.</p></section><section class="entry-card"><h2 id="topic-6">What proves the plan works?</h2><p>Rehearse setup, signing and recovery with disposable test keys, including the intended signer pairs. A matching receive address or a single successful payment is useful evidence, not proof that a coordinator is trustworthy or every backup works.</p></section></div><nav class="prevnext-row" aria-label="Previous and next sheets"><a class="prevnext prev" rel="prev" href="/plebum-dominium-test/paths/three/faq.html">← 14 · If you get stuck</a><span class="step-pos-bottom">Step 15 of 16</span><a class="prevnext next" rel="next" href="/plebum-dominium-test/paths/three/fire-card.html">16 · Recovery card →</a></nav>
     </article>
   </main>
 
-  <aside class="toc-col">
-
-  </aside>
+  <aside class="toc-col"><nav class="toc" aria-label="On this sheet"><p>On this sheet</p><ul><li><a href="#topic-1" data-toc="topic-1">Does a fresh boot remove every risk?</a></li><li><a href="#topic-2" data-toc="topic-2">Are dice automatically trustworthy?</a></li><li><a href="#topic-3" data-toc="topic-3">Can one stolen key spend?</a></li><li><a href="#topic-4" data-toc="topic-4">Can I recreate the map from seeds?</a></li><li><a href="#topic-5" data-toc="topic-5">Should every cosigner have a passphrase?</a></li><li><a href="#topic-6" data-toc="topic-6">What proves the plan works?</a></li></ul></nav></aside>
 </div>
 
 <div class="mobilebar" aria-label="Sheet navigation">
