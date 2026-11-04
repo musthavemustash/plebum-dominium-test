@@ -62,8 +62,6 @@ def render(path, step):
   dest = slug if any(t[0]==slug for t in other) else other[0][0]
   return '<a class="path-route-choice" href="'+href(target,dest)+'"'+(' aria-current="true"' if target==path else '')+'>'+escape(PATHS[target]['label'])+'</a>'
  s = re.sub(r'<button type="button" data-path="(one|full)"[^>]*>.*?</button>',switch,s,flags=re.S)
- if slug == 'choose-path':
-  s = s.replace('<p>Choose one complete guide.', '<p><a class="path-go" href="'+href(path,'checklist')+'">Continue with '+label+' →</a></p><p>Choose one complete guide.')
  # In-path cross references stay in this route, including legacy variant URLs.
  for t in steps:
   for name in {t[0],t[2],t[0]+'-one',t[0]+'-easy'}:
