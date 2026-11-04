@@ -67,9 +67,11 @@ Boot Tails again. Do not type any seed. New wallet → Multi Signature → Nativ
 >
 > **1 · Build in Sparrow.** Finish the 2-of-3 build on the airgapped machine as usual. Write down the **first receiving address** it shows. Write the full string, not the QR code.
 >
-> **2 · Cross-check in Electrum.** Rebuild the same 2-of-3 in Electrum offline from the same seeds and compare the first address. This catches entry mistakes.
+> **2 · Cross-check independently.** On a separate offline environment, reconstruct the intended 2-of-3 wallet using independently verified cosigner information. Comparing an address derived from the same unverified descriptor is not an independent security check.
 >
-> **3 · NEW: Display it on a second device.** Load the wallet as **watch-only** (xpubs / wallet descriptor only, never seeds) on your phone or a second computer. Compare the first receiving address **character for character**. If all three agree, the coordinator didn't lie. If anything differs, stop and rebuild.
+> **3 · Independently verify the wallet policy.** On a second trusted device, independently obtain and verify each cosigner's master fingerprint, account derivation path, and extended public key against records taken directly from the corresponding signer. Confirm **2-of-3**, the intended script type (native SegWit), and the complete descriptor including key order and checksum where supported. Do not trust an xpub list or descriptor copied only from the coordinator you are checking.
+>
+> **4 · Compare receive addresses.** Reconstruct the watch-only wallet from those independently verified details on the second device, then compare several receive addresses character for character. Never enter seed words on a networked device. **Matching addresses alone do not prove the coordinator is honest:** two applications using the same substituted descriptor can display the same attacker-controlled addresses. If any key, fingerprint, path, policy, or address differs, stop; do not fund the wallet.
 
 ## Step 7 · Watch-only on the everyday computer.
 
