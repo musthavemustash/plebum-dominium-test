@@ -616,6 +616,49 @@ document.querySelectorAll(".btn-onchain").forEach(function (btn) {
     });
   }
   routeLinks(document);
+  // Reuse the sidebar's resolved route for the fixed mobile sheet strip.
+  var mobilebar = document.querySelector('.mobilebar');
+  var sheets = document.querySelectorAll('.sidebar ul a[href]');
+  if (mobilebar && sheets.length) {
+    var mobileNav = document.createElement('nav');
+    mobileNav.className = 'mobilebar-track';
+    mobileNav.setAttribute('aria-label', 'Guide sheets on mobile');
+    var currentSheet;
+    sheets.forEach(function (sheet) {
+      var number = sheet.querySelector('.sheet-num');
+      var title = sheet.querySelector('.sheet-title');
+      if (!title) return;
+      var item = document.createElement('a');
+      item.href = sheet.href;
+      item.textContent = (number ? number.textContent + ' · ' : '') + title.textContent;
+      if (item.pathname === location.pathname) {
+        item.setAttribute('aria-current', 'page');
+        currentSheet = item;
+      }
+      mobileNav.appendChild(item);
+    });
+    if (mobileNav.childElementCount) {
+      var label = document.createElement('span');
+      label.className = 'mobilebar-label';
+      label.textContent = 'Sheets ↔';
+      label.setAttribute('aria-hidden', 'true');
+      mobilebar.replaceChildren(label, mobileNav);
+      mobilebar.removeAttribute('aria-label');
+      mobilebar.classList.add('mobilebar-sheets');
+      document.body.classList.add('has-mobile-sheets');
+      if (currentSheet) {
+        var mobileViewport = window.matchMedia('(max-width: 760px)');
+        var showCurrentSheet = function () {
+          if (mobileViewport.matches) {
+            mobileNav.scrollLeft = currentSheet.getBoundingClientRect().left -
+              mobileNav.getBoundingClientRect().left + mobileNav.scrollLeft - 8;
+          }
+        };
+        showCurrentSheet();
+        mobileViewport.addEventListener('change', showCurrentSheet);
+      }
+    }
+  }
   var results=document.querySelector('#ask-results');
   if(results)new MutationObserver(function(){routeLinks(results);}).observe(results,{childList:true,subtree:true});
 })();

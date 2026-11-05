@@ -1744,3 +1744,33 @@ table.tier-chart{width:100%;min-width:640px;border-collapse:separate;border-spac
 .route-options { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px; }
 .route-options .path-card { min-width:0; margin:0; }
 @media(max-width:640px) { .route-options { grid-template-columns:1fr; } }
+
+/* Mobile guide navigation stays put while the links scroll by touch. */
+@media (max-width: 760px) {
+  .mobilebar.mobilebar-sheets {
+    justify-content: flex-start;
+    padding: 0 0 env(safe-area-inset-bottom, 0px);
+  }
+  .mobilebar-label {
+    flex: none; padding: 0 .6rem;
+    font: 700 .72rem/1.5 "IBM Plex Sans", sans-serif;
+    color: var(--accent);
+  }
+  .mobilebar-track {
+    display: flex; min-width: 0; flex: 1;
+    overflow-x: auto; overscroll-behavior-x: contain;
+    scrollbar-width: thin;
+    border-inline-start: 1px solid var(--line);
+  }
+  .mobilebar-track a {
+    flex: none; display: flex; align-items: center;
+    min-height: 44px; padding: .35rem .75rem;
+    color: var(--ink); white-space: nowrap; text-decoration: none;
+  }
+  .mobilebar-track a[aria-current="page"] {
+    color: var(--btn-ink); background: var(--accent);
+  }
+  .mobilebar-track a:focus-visible { outline: 2px solid currentColor; outline-offset: -4px; }
+  .has-mobile-sheets .site-footer { padding-bottom: calc(4rem + env(safe-area-inset-bottom, 0px)); }
+  .has-mobile-sheets .newbie-banner { bottom: calc(4rem + env(safe-area-inset-bottom, 0px)); }
+}
