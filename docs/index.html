@@ -115,6 +115,9 @@ html[data-theme="light"] .entry-page .home-keyhole-subtitle {
 }
 html[data-hero="b"] .entry-page .home-keyhole { padding-block: clamp(18px, 2.5vw, 28px); }
 html[data-hero="b"] .home-keyhole-mark { width: clamp(50px, 8vw, 70px); margin-bottom: 8px; }
+html[data-theme="light"] .entry-page .entry-actions > .home-test-cta {
+  color: #fff;
+}
 </style>
 <script>
 if (new URLSearchParams(location.search).get('hero') === 'b') {
@@ -200,7 +203,7 @@ if (new URLSearchParams(location.search).get('hero') === 'b') {
   <p class="home-keyhole-subtitle">Hold your own Bitcoin with a plan you can understand, verify, and recover.</p>
 </header>
 <p>Plebum Dominium is a practical guide to self-custody: choosing a setup, checking software, protecting backups, and rehearsing a spend.</p>
-<div class="entry-actions"><a href="/plebum-dominium-test/test-the-site.html">Help test the site →</a><a href="/plebum-dominium-test/handouts/terms.html">Start with Terms →</a><a href="/plebum-dominium-test/new-to-bitcoin.html">New to Bitcoin?</a></div>
+<div class="entry-actions"><a class="home-test-cta" href="/plebum-dominium-test/test-the-site.html">Help test the site →</a><a href="/plebum-dominium-test/handouts/terms.html">Start with Terms →</a><a href="/plebum-dominium-test/new-to-bitcoin.html">New to Bitcoin?</a></div>
 
 <section class="entry-section" id="what"><p class="entry-label">The work ahead</p><h2>Build confidence one step at a time</h2>
 <div class="entry-grid"><div class="entry-card"><h3>Understand</h3><p>Identify the failures you need to survive. Choose a setup you and your recovery helper can maintain.</p></div><div class="entry-card"><h3>Verify</h3><p>Check software sources, wallet details, and backup records. A second tool is useful only when the check is meaningfully independent.</p></div><div class="entry-card"><h3>Protect</h3><p>Keep signing secrets offline and plan separate backup locations. Record the public wallet configuration needed for recovery.</p></div><div class="entry-card"><h3>Rehearse</h3><p>Restore, receive, and spend with test funds. Write instructions that still make sense when the original device is gone.</p></div></div></section>
