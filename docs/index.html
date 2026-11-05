@@ -5,20 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Plebum Dominium Test Site · Independent At-Home Bitcoin Self-Custody</title>
 <meta name="description" content="Plebum Dominium: build a DIY Bitcoin 2-of-3 multisig wallet from dice, verified software, and titanium. No company, no custodian.">
-<link rel="canonical" href="https://plebumbtc.io/">
+<link rel="canonical" href="https://musthavemustash.github.io/plebum-dominium-test/">
 <link rel="icon" href="/plebum-dominium-test/assets/img/favicon.svg" type="image/svg+xml">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://plebumbtc.io/">
+<meta property="og:url" content="https://musthavemustash.github.io/plebum-dominium-test/">
 <meta property="og:site_name" content="Plebum Dominium">
 <meta property="og:title" content="Plebum Dominium Test Site · Independent At-Home Bitcoin Self-Custody">
-<meta property="og:description" content="Plebum Dominium: build a DIY Bitcoin 2-of-3 multisig wallet from dice, verified software, and titanium. No company, no custodian.">
-<meta property="og:image" content="https://plebumbtc.io/assets/img/og-banner.png">
+<meta property="og:description" content="Preview the Bitcoin self-custody guides and help test the site.">
+<meta property="og:image" content="https://musthavemustash.github.io/plebum-dominium-test/assets/img/staging-review-card-v1.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Plebum Dominium Test Site · Independent At-Home Bitcoin Self-Custody">
-<meta name="twitter:description" content="Plebum Dominium: build a DIY Bitcoin 2-of-3 multisig wallet from dice, verified software, and titanium. No company, no custodian.">
-<meta name="twitter:image" content="https://plebumbtc.io/assets/img/og-banner.png">
+<meta name="twitter:description" content="Preview the Bitcoin self-custody guides and help test the site.">
+<meta name="twitter:image" content="https://musthavemustash.github.io/plebum-dominium-test/assets/img/staging-review-card-v1.png">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "Plebum Dominium Test Site", "url": "https://plebumbtc.io/", "description": "Plebum Dominium: build a DIY Bitcoin 2-of-3 multisig wallet from dice, verified software, and titanium. No company, no custodian."}</script>
 <link rel="stylesheet" href="/plebum-dominium-test/assets/css/main.css?v=whytiers7">
 <link rel="stylesheet" href="/plebum-dominium-test/assets/css/guide-steps.css?v=phasea1">
@@ -92,7 +92,16 @@
   color: #ded1c0;
   font: clamp(1.2rem, 3.3cqi, 1.85rem)/1.45 Georgia, serif;
 }
+html[data-hero="b"] .entry-page .home-keyhole { padding-block: clamp(18px, 2.5vw, 28px); }
+html[data-hero="b"] .home-keyhole-mark { width: clamp(50px, 8vw, 70px); margin-bottom: 8px; }
 </style>
+<script>
+if (new URLSearchParams(location.search).get('hero') === 'b') {
+  document.documentElement.dataset.hero = 'b';
+}
+</script>
+<meta property="og:image:alt" content="Plebum Dominium. A practical guide to Bitcoin self-custody. Test Site · Public Review.">
+<meta name="twitter:image:alt" content="Plebum Dominium. A practical guide to Bitcoin self-custody. Test Site · Public Review.">
 </head>
 <body class="home" id="top">
 <div class="splash" id="pd-splash" hidden aria-hidden="true">
