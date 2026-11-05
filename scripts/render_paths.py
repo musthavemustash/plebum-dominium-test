@@ -62,6 +62,12 @@ def render(path, step):
   dest = slug if any(t[0]==slug for t in other) else other[0][0]
   return '<a class="path-route-choice" href="'+href(target,dest)+'"'+(' aria-current="true"' if target==path else '')+'>'+escape(PATHS[target]['label'])+'</a>'
  s = re.sub(r'<button type="button" data-path="(one|full)"[^>]*>.*?</button>',switch,s,flags=re.S)
+ # Inheritance instructions show only the current wallet setup in the sidebar.
+ if slug == 'inheritance':
+  current = '<div class="sidebar-path-seg"><span class="path-route-choice" aria-current="true">'+label+'</span><a class="path-route-choice" href="'+href(path,'choose-path')+'">Change path</a></div>'
+  s = s.replace('<p class="sidebar-path-label">Choose a path</p>', '<p class="sidebar-path-label">Current path</p>', 1)
+  s = re.sub(r'(<div class="sidebar-path"[^>]*>.*?)(<div class="sidebar-path-seg".*?</div>)',
+             lambda m: m[1]+current,s,count=1,flags=re.S)
  # In-path cross references stay in this route, including legacy variant URLs.
  for t in steps:
   for name in {t[0],t[2],t[0]+'-one',t[0]+'-easy'}:
