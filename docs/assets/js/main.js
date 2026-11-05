@@ -627,3 +627,21 @@ document.querySelectorAll(".btn-onchain").forEach(function (btn) {
     });
   });
 })();
+
+/* Feedback is a link only: no Google scripts or background requests.
+   Never attach feedback controls to offline custody tools. */
+(function () {
+  if (location.protocol !== 'https:' || location.hostname !== 'musthavemustash.github.io' ||
+      location.pathname.indexOf('/plebum-dominium-test/') !== 0) return;
+  var footer = document.querySelector('.site-footer');
+  if (!footer || document.querySelector('[data-feedback-link]')) return;
+  var note = document.createElement('p');
+  var link = document.createElement('a');
+  link.setAttribute('data-feedback-link', '');
+  link.href = 'https://docs.google.com/forms/d/e/1FAIpQLSfOkY3FrZmZpIVro5oxWLy_YvU7U-1BOrL3KB9VCI3jXjad2Q/viewform';
+  link.rel = 'noreferrer';
+  link.textContent = 'Give feedback on this page (Google Form)';
+  note.appendChild(link);
+  note.appendChild(document.createTextNode(' — include this page’s link. Never submit wallet secrets.'));
+  footer.appendChild(note);
+})();
