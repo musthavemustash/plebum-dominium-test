@@ -1,0 +1,93 @@
+{
+  "release": "alpha-20261105-7240f0d",
+  "status": "PUBLIC_TEST_ONLY",
+  "custody_approved": false,
+  "source_commit": "7240f0def1fe1b06ba4c60bde423f96fd80ee2b0",
+  "archive": {
+    "name": "plebum-tools-alpha-20261105-7240f0d.zip",
+    "sha256": "dc24889a982b7c9315596caa8f306cb39ecd01f66e818045160b4e7d89162889",
+    "size": 226376
+  },
+  "files": {
+    "README.txt": {
+      "sha256": "027fe4d14ae6aca6eff358ad2b15a5574823e2f34c657e20d07ec9a9118bb47d",
+      "size": 1799
+    },
+    "RESULTS.csv": {
+      "sha256": "130da6cc99bc7adb7b886d079105ab9369c22874727283d0e85d70a0a66f29b0",
+      "size": 316
+    },
+    "SHA256SUMS.txt": {
+      "sha256": "a5d1bdf1a41613e93eef5c1846f3216198795c0d305107278584b4fe058b999a",
+      "size": 1640
+    },
+    "SOURCE.json": {
+      "sha256": "dea9e6b2e0fde510af997030cf0bf64a96998ee72740fc094987e5236159672b",
+      "size": 2251
+    },
+    "TESTING.txt": {
+      "sha256": "0ab7a115df1f3efa4542a55f77c4eded10d462167e5aaa2ca561dbe4b700745b",
+      "size": 3185
+    },
+    "VERIFY.md": {
+      "sha256": "fe82303c3f989f343edf9296da8a23e6566883f96427e04439b4c5aa689d7b6f",
+      "size": 189
+    },
+    "bip39_dice_converter.py": {
+      "sha256": "177b4b3554d7f7b5357e0f5389a3adf3e3e47daf2e0bcd44a338e56e7c72dd8d",
+      "size": 38169
+    },
+    "descriptor-tool.html": {
+      "sha256": "6688105711c3cb9875a750804de0484e1ee3f3a8d341faba584f03c1c75db12f",
+      "size": 416397
+    },
+    "descriptor_obfuscator.py": {
+      "sha256": "7fd7aa4f021973da394a864751a2dc00ebd46c29a745c353154d1615232f264c",
+      "size": 8653
+    },
+    "dice-converter.html": {
+      "sha256": "29cd00ff558f111bfd40dc6064bf3a8b98deac8a5d7246bacda5d5cd4f703ca3",
+      "size": 44034
+    },
+    "eff_large_wordlist.txt": {
+      "sha256": "addd35536511597a02fa0a9ff1e5284677b8883b83e986e43f15a3db996b903e",
+      "size": 108800
+    },
+    "fixtures/README.md": {
+      "sha256": "dcba53ac8586a848a4cc31b3b1bbc05c1217f673f5a281d651286da0b106220d",
+      "size": 871
+    },
+    "fixtures/bip39-english.txt": {
+      "sha256": "2f5eed53a4727b4bf8880d8f3f199efc90e58503646d9ff8eff3a2ed3b24dbda",
+      "size": 13116
+    },
+    "fixtures/bip39-vectors.json": {
+      "sha256": "039d01695f3ad359d622a93c0dcbf9c0e2c8c3796172c759350fc5fd834b9b0a",
+      "size": 1995
+    },
+    "fixtures/ones-256.txt": {
+      "sha256": "cfe8dd49bb3d49755eac9c75fbb21a4144e12a3daa262799048fd480aa47d53f",
+      "size": 257
+    },
+    "fixtures/password.txt": {
+      "sha256": "1f4f8804a6104b63f6c177965b22e32d66d70929619cef0a5b2870dc5716db64",
+      "size": 36
+    },
+    "fixtures/public-map.txt": {
+      "sha256": "086af3ea787b1bb6cf9ef1049165399de6a7c41bd6d6e91b104cffa8808b4e84",
+      "size": 50
+    },
+    "fixtures/python-mnemonic-LICENSE": {
+      "sha256": "d5e3c7c62a84e80073201e2f6e5130e9e6804fa05f8ac4f8b26a13c7d3969697",
+      "size": 1084
+    },
+    "fixtures/zeros-256.txt": {
+      "sha256": "d4b23dd7605cc838226e095c3dd351fb515df1c5626b03bbce27e032e65c0f6e",
+      "size": 257
+    },
+    "verify_package.py": {
+      "sha256": "57e897505eabff185bf775f9cc013a955b23d17f78d7d5e63cb89557ef2a98d1",
+      "size": 711
+    }
+  }
+}

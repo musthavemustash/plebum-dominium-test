@@ -142,3 +142,8 @@ Created and published eight-question Google Form in the user-created form 11BcGn
 ## November 4 — public tester task checklist
 
 Added test-the-site.html with seven concrete tasks, expected results, PASS/FAIL/NOT TESTED reporting, a report example and direct questionnaire links. Linked from homepage and online guide footers. Clearly separates browser/read-only review from advanced physical Tails tests and calls for a refreshed candidate before advanced work. No offline tool or production changes. Static/source/route checks and JS syntax pass; full mobile testing remains outstanding.
+
+
+## November 5 — public testing alpha
+
+Published a separate, versioned tool-test ZIP with public fixtures, expected outputs, package checks and feedback instructions. Downloads now explicitly welcomes testing while retaining the real-wallet restriction. Source tool bytes and production are unchanged. Packaging and automated tool checks pass; six existing generated-route/index mismatches remain unchanged. See [PUBLIC_ALPHA_2026-11-05.md](PUBLIC_ALPHA_2026-11-05.md) for evidence and limitations.
