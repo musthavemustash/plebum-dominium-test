@@ -74,6 +74,13 @@ def render(path, step):
    s = s.replace(BASE+'handouts/'+name+'.html',href(path,t[0]))
  s = s.replace('href="'+BASE+'choose-path.html"', 'href="'+href(path,'choose-path')+'"') if idx > 0 else s
  s = s.replace('main.js?v=whytiers7','main.js?v=paths1')
+ # Keep previously reviewed route-specific demo and recovery explanations.
+ overrides = ROOT / 'scripts/reviewed_route_overrides.json'
+ if overrides.exists():
+  for rule in json.loads(overrides.read_text()).get(path+'/'+slug, []):
+   if rule['from'] not in s:
+    raise ValueError('Reviewed route override needs reconciliation: '+path+'/'+slug)
+   s = s.replace(rule['from'], rule['to'], 1)
  return s
 
 def outputs():
