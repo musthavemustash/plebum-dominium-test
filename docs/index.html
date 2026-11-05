@@ -115,6 +115,14 @@ html[data-theme="light"] .entry-page .home-keyhole-subtitle {
 }
 html[data-hero="b"] .entry-page .home-keyhole { padding-block: clamp(18px, 2.5vw, 28px); }
 html[data-hero="b"] .home-keyhole-mark { width: clamp(50px, 8vw, 70px); margin-bottom: 8px; }
+
+.home-name { position: relative; width: fit-content; max-width: 100%; margin: 0 auto .8rem; font: .85rem/1.5 "IBM Plex Sans", sans-serif; }
+.home-name > summary { color: inherit; cursor: pointer; text-decoration: underline; text-underline-offset: .2em; }
+.home-name > summary:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+.home-name-popup { position: absolute; z-index: 5; top: calc(100% + .5rem); left: 50%; transform: translateX(-50%); width: min(330px, 72vw); padding: 1rem; text-align: left; color: var(--ink); background: var(--card); border: 1px solid var(--accent); border-radius: 10px; box-shadow: 0 8px 24px rgba(0,0,0,.2); }
+.home-name-popup p { margin: 0 0 .7rem; }
+.home-name-popup p:last-child { margin-bottom: 0; }
+.home-name-pron { color: var(--accent); }
 </style>
 <script>
 if (new URLSearchParams(location.search).get('hero') === 'b') {
@@ -197,6 +205,15 @@ if (new URLSearchParams(location.search).get('hero') === 'b') {
   <div class="home-keyhole-mark"><img src="/plebum-dominium-test/assets/img/logo-pleb-key.svg" alt="" width="104" height="104"></div>
   <p class="home-keyhole-eyebrow">Independent at-home Bitcoin self-custody</p>
   <h1>Plebum Dominium</h1>
+  <details class="home-name">
+    <summary>About the name</summary>
+    <div class="home-name-popup">
+      <p><strong>Plebum Dominium</strong></p>
+      <p class="home-name-pron">PLAY-boom doh-MIN-ee-oom</p>
+      <p>A Latin-inspired name. “Pleb” refers to an everyday Bitcoiner and draws on Latin <em>plebs</em>, the common people. <em>Dominium</em> means ownership or dominion.</p>
+      <p>The name expresses <strong>“Ownership by the common people.”</strong> Here, that means holding your own Bitcoin and controlling the keys.</p>
+    </div>
+  </details>
   <p class="home-keyhole-subtitle">Hold your own Bitcoin with a plan you can understand, verify, and recover.</p>
 </header>
 <p>Plebum Dominium is a practical guide to self-custody: choosing a setup, checking software, protecting backups, and rehearsing a spend.</p>
@@ -252,5 +269,20 @@ if (new URLSearchParams(location.search).get('hero') === 'b') {
   </div>
 </div>
 <script src="/plebum-dominium-test/assets/js/entry-pages.js?v=entry1" defer></script>
+<script>
+(function () {
+  var name = document.querySelector('.home-name');
+  if (!name) return;
+  document.addEventListener('click', function (event) {
+    if (name.open && !name.contains(event.target)) name.open = false;
+  });
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape' && name.open) {
+      name.open = false;
+      name.querySelector('summary').focus();
+    }
+  });
+})();
+</script>
 </body>
 </html>
