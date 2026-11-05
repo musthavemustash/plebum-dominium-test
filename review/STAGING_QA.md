@@ -135,3 +135,7 @@ PR #17 Pages run 41917775493 succeeded; main c0a8e5a0964962218b5360986d339c204c2
 ## November 4 — Electrum blocker resolved
 
 Uploaded 4.8.3 AppImage verified successfully against all five official-site-linked signing keys. Corrected the stale SHA-256 pin to aabe3bb2c99ffca172a004b0fd6f4afdf1b204079f7691b65f23bc5b63a9de0c. Preserved keys/signature/GPG receipts; no binary execution or repository binary upload. See REMAINING_TOOL_GATES.md for scope and fingerprints. Removed Electrum from internal candidate blockers. Browser/target-Tails tests remain required before public bundle release; production untouched.
+
+## November 4 — public-review warning and backup-message correction
+
+Baseline 8af048577a4f1db6cc24b919b1b59a933b0b5f43; no open PRs. Replaced the standalone Python encryption tool's immediate deletion message with preserving the original until saved-file decryption and recovery backups are verified; bumped its displayed version. Added an above-the-introduction homepage public-review notice and removed the invitation to use test funds during this review. Updated Downloads to distinguish completed upstream provenance from outstanding browser/Tails testing and unreconciled published artifacts. Earlier emailed/community ZIPs are unchanged historical candidates and still contain the old message; they must not be represented as this revised standalone file. No archive/manifest republishing or production changes. Browser visual review remains outstanding.
