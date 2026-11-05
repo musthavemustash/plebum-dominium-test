@@ -6,7 +6,7 @@ import sys
 
 # Bump this date whenever the tool changes. It prints in the banner so a
 # reader can tell which tool they hold without checking a hash.
-TOOL_VERSION = "2026.10.25"
+TOOL_VERSION = "2026.11.04"
 
 BANNER = """
 ====================================================================
@@ -187,7 +187,8 @@ def write_encrypted(text):
     with open(name, "w", encoding="utf-8") as handle:
         handle.write(text + "\n")
     print(f"\n[NOTICE] Encrypted wallet map written to {name}.")
-    print("[NOTICE] Delete the plain map. Do not leave either file on an online machine.")
+    print("[NOTICE] Preserve the original map until you have reopened and decrypted the saved file and verified your recovery backups.")
+    print("[NOTICE] Keep wallet maps and their backups protected and offline. Encryption alone is not a reason to delete your only recoverable copy.")
 
 
 def main():

@@ -4,6 +4,8 @@ Production releases will use Semantic Versioning and follow the staging-first re
 
 ## Unreleased (staging only)
 
+- Preserve original wallet maps until saved-file decryption and recovery backups are verified. Clarify homepage public-review scope and unfinished-tool download status.
+
 - Authenticated uploaded Electrum 4.8.3 against five release signatures and corrected its stale hash pin. Actual browser/offline validation remains the tool release blocker.
 
 - Verified Ian Coleman 0.5.6 signed checksum and corrected its pin; preserved backups on integrity failure. Added deterministic internal tool packaging and consistency tests. Public tool release remains blocked by Electrum and browser/offline verification.
