@@ -643,5 +643,10 @@ document.querySelectorAll(".btn-onchain").forEach(function (btn) {
   link.textContent = 'Give feedback on this page (Google Form)';
   note.appendChild(link);
   note.appendChild(document.createTextNode(' — include this page’s link. Never submit wallet secrets.'));
+  var checklist = document.createElement('a');
+  checklist.href = '/plebum-dominium-test/test-the-site.html';
+  checklist.textContent = 'Tester tasks and expected results';
+  note.appendChild(document.createTextNode(' '));
+  note.appendChild(checklist);
   footer.appendChild(note);
 })();
