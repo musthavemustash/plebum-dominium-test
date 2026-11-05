@@ -638,10 +638,15 @@ document.querySelectorAll(".btn-onchain").forEach(function (btn) {
       mobileNav.appendChild(item);
     });
     if (mobileNav.childElementCount) {
-      var label = document.createElement('span');
+      var label = document.createElement('button');
+      label.type = 'button';
       label.className = 'mobilebar-label';
       label.textContent = path === 'one' ? 'One key' : 'Three keys';
-      label.setAttribute('aria-hidden', 'true');
+      label.setAttribute('aria-label', info.label + '. Switch to ' +
+        (path === 'one' ? PATHS.three.label : PATHS.one.label));
+      label.addEventListener('click', function () {
+        switchPath(path === 'one' ? 'full' : 'one');
+      });
       mobilebar.replaceChildren(label, mobileNav);
       mobilebar.removeAttribute('aria-label');
       mobilebar.classList.add('mobilebar-sheets');
