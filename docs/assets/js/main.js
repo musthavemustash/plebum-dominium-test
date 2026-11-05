@@ -622,7 +622,7 @@ document.querySelectorAll(".btn-onchain").forEach(function (btn) {
   if (mobilebar && sheets.length) {
     var mobileNav = document.createElement('nav');
     mobileNav.className = 'mobilebar-track';
-    mobileNav.setAttribute('aria-label', 'Guide sheets on mobile');
+    mobileNav.setAttribute('aria-label', info.label + ' guide sheets');
     var currentSheet;
     sheets.forEach(function (sheet) {
       var number = sheet.querySelector('.sheet-num');
@@ -640,7 +640,7 @@ document.querySelectorAll(".btn-onchain").forEach(function (btn) {
     if (mobileNav.childElementCount) {
       var label = document.createElement('span');
       label.className = 'mobilebar-label';
-      label.textContent = 'Sheets ↔';
+      label.textContent = path === 'one' ? 'One key' : 'Three keys';
       label.setAttribute('aria-hidden', 'true');
       mobilebar.replaceChildren(label, mobileNav);
       mobilebar.removeAttribute('aria-label');
