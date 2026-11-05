@@ -20,7 +20,7 @@
 <meta name="twitter:description" content="Preview the Bitcoin self-custody guides and help test the site.">
 <meta name="twitter:image" content="https://musthavemustash.github.io/plebum-dominium-test/assets/img/staging-review-card-v1.png">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "Plebum Dominium Test Site", "url": "https://plebumbtc.io/", "description": "Plebum Dominium: build a DIY Bitcoin 2-of-3 multisig wallet from dice, verified software, and titanium. No company, no custodian."}</script>
-<link rel="stylesheet" href="/plebum-dominium-test/assets/css/main.css?v=whytiers7">
+<link rel="stylesheet" href="/plebum-dominium-test/assets/css/main.css?v=keyring1">
 <link rel="stylesheet" href="/plebum-dominium-test/assets/css/guide-steps.css?v=phasea1">
 <link rel="stylesheet" href="/plebum-dominium-test/assets/css/print.css" media="print">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -208,7 +208,7 @@ if (new URLSearchParams(location.search).get('hero') === 'b') {
 <div class="entry-grid"><div class="entry-card"><h3>One key + a passphrase</h3><p>A simpler signing arrangement with an additional recovery secret. Both the seed backup and exact passphrase must remain available.</p><p><strong>Watch for:</strong> a forgotten passphrase, compromised signer, or backups that are stored together.</p></div><div class="entry-card"><h3>Three keys · 2-of-3</h3><p>Two signing keys authorize a spend. Proper separation can tolerate one unavailable key, but recovery also depends on the complete wallet configuration.</p><p><strong>Watch for:</strong> shared-device compromise, missing public-key records, and recovery complexity.</p></div></div>
 <p class="entry-note">Dice can supply seed entropy when used correctly. They do not make a compromised computer or signing implementation safe.</p>
 <div class="entry-actions"><a href="/plebum-dominium-test/choose-path.html">Compare and choose a path →</a><a href="/plebum-dominium-test/handouts/terms.html">Learn the terms</a></div></section>
-<section class="entry-section"><p class="entry-label">Try the threshold</p><h2>What does 2-of-3 mean?</h2><div class="keyring" id="keyring" aria-label="Explore the 2-of-3 signing threshold"><p class="keyring-try">Try it: tap a key, then tap a second key.</p><div class="keys"><button type="button" class="key key-a" aria-pressed="false">A</button><button type="button" class="key key-b" aria-pressed="false">B</button><button type="button" class="key key-c" aria-pressed="false">C</button></div><div class="lockwrap" id="keyring-lock"><div class="shackle"></div><div class="lockbody">2-of-3</div></div><p class="keyring-caption" id="keyring-caption" role="status" aria-live="polite"><strong>Two signing keys are required.</strong> Recovery also needs the wallet configuration.</p><p class="keyring-caption" id="keyring-descriptor">Always back up the verified wallet descriptor. This illustration does not create a wallet.</p><button type="button" class="keyring-reset" id="keyring-reset" hidden>Reset</button></div><p class="entry-sources">The buttons illustrate signing authority only. They do not simulate a secure wallet or prove that recovery will work.</p></section>
+<section class="entry-section"><p class="entry-label">Try the threshold</p><h2>What does 2-of-3 mean?</h2><div class="keyring" id="keyring" aria-label="Explore the 2-of-3 signing threshold"><p class="keyring-try">Tap two different keys to open the lock. Tap again to reset.</p><div class="keys"><button type="button" class="key key-a" aria-pressed="false">A</button><button type="button" class="key key-b" aria-pressed="false">B</button><button type="button" class="key key-c" aria-pressed="false">C</button></div><div class="lockwrap" id="keyring-lock"><div class="shackle"></div><div class="lockbody">2-of-3</div></div><p class="keyring-caption" id="keyring-caption" role="status" aria-live="polite"><strong>Two signing keys are required.</strong> Recovery also needs the wallet configuration.</p><p class="keyring-caption" id="keyring-descriptor">Always back up the verified wallet descriptor. This illustration does not create a wallet.</p><button type="button" class="keyring-reset" id="keyring-reset" hidden>Reset</button></div><p class="entry-sources">The buttons illustrate signing authority only. They do not simulate a secure wallet or prove that recovery will work.</p></section>
       <nav class="prevnext-row" aria-label="Previous and next sheets">
 
 
@@ -236,7 +236,7 @@ if (new URLSearchParams(location.search).get('hero') === 'b') {
   <p class="donate-addr"><code>bc1qcmvj7c79gyjrcg3zu5pxnp4mav54846epktyma4n6v8jsud2fhqsczmngw</code></p>
 </footer>
 
-<script src="/plebum-dominium-test/assets/js/main.js?v=whytiers7" defer></script>
+<script src="/plebum-dominium-test/assets/js/main.js?v=keyring1" defer></script>
 <script src="/plebum-dominium-test/assets/js/guide-demos.js?v=phasea1" defer></script>
 <script data-goatcounter="https://plebumbtc.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <div id="newbie-banner" class="newbie-banner" role="dialog" aria-label="New to Bitcoin?" hidden>

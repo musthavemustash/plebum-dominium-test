@@ -517,9 +517,21 @@ pre code { background: none; color: inherit; padding: 0; }
 .keyring button.key { cursor: pointer; font-family: inherit; }
 .keyring.tapped .key-a, .keyring.tapped .key-b, .keyring.tapped .key-c,
 .keyring.tapped .shackle, .keyring.tapped .lockbody { animation: none; }
-.key.sel { border-color: var(--accent); color: var(--accent); box-shadow: 0 0 0 5px var(--accent-soft); }
-.lockwrap.open .shackle { transform: translateY(-7px); border-color: var(--accent); }
-.lockwrap.open .lockbody { border-color: var(--accent); color: var(--accent); }
+.keyring.tapped .key[aria-pressed="true"] {
+  background: var(--accent); border-color: var(--accent); color: var(--btn-ink);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+.keyring.tapped .lockwrap.open .shackle {
+  transform: translateY(-9px) rotate(-24deg); border-color: var(--accent);
+}
+.keyring.tapped .lockwrap.open .lockbody {
+  background: var(--accent); border-color: var(--accent); color: var(--btn-ink);
+}
+.keyring.tapped .shackle { transform-origin: 18% 100%; }
+@media (prefers-reduced-motion: no-preference) {
+  .keyring.tapped .shackle { transition: transform 330ms cubic-bezier(.22,.9,.35,1.2), border-color 180ms ease; }
+  .keyring.tapped .lockbody { transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease; }
+}
 .lockwrap { display: flex; flex-direction: column; align-items: center; }
 .shackle {
   width: 34px; height: 24px;
