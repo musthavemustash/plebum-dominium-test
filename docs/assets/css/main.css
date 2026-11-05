@@ -76,6 +76,7 @@ body {
   }
 }
 :root[data-theme="light"] {
+  --btn-ink: #ffffff;
   --paper: #f6f3ec;
   --header-bg: rgba(246, 243, 236, 0.92);
   --hover-bg: #efe9db;
@@ -233,7 +234,7 @@ article { max-width: var(--content-w); }
 }
 .sidebar a:hover { background: var(--hover-bg); }
 .sidebar a.active { background: var(--accent-soft); font-weight: 600; }
-.sidebar a.active .sheet-num { background: var(--accent); color: #fff; border-color: var(--accent); }
+.sidebar a.active .sheet-num { background: var(--accent); color: var(--btn-ink); border-color: var(--accent); }
 .sheet-num {
   flex: none; width: 1.9rem; height: 1.9rem;
   display: inline-flex; align-items: center; justify-content: center;
@@ -1318,7 +1319,7 @@ pre code { background: none; color: inherit; padding: 0; }
   color: var(--accent); border: 1px solid var(--accent);
   padding: 0.5rem 1rem; border-radius: 999px;
 }
-.dl-btn:hover { background: var(--accent); color: #1a1206; }
+.dl-btn:hover, .dl-btn:focus-visible { background: var(--accent); color: var(--btn-ink); }
 
 /* ---------- step banner (top of each sheet) ---------- */
 .step-banner {
@@ -1381,7 +1382,7 @@ body.news article h1 { text-align: center; font-size: 3.4rem; line-height: 1; ma
 .news-pill {
   display: inline-block; font-family: "IBM Plex Mono", monospace; font-size: 0.68rem;
   font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
-  color: var(--paper); background: var(--accent); border-radius: 3px; padding: 0.2rem 0.55rem;
+  color: var(--btn-ink); background: var(--accent); border-radius: 3px; padding: 0.2rem 0.55rem;
 }
 .news-date {
   display: block; text-align: center; margin-top: 0.6rem;
@@ -1662,7 +1663,7 @@ html[data-path="full"] .path-gate { border-top-color: #009E73; }
 .tier-view-label{font-size:.82rem;font-weight:700;color:var(--muted);white-space:nowrap}
 .tier-switch button{flex:1;font:inherit;font-size:.8rem;font-weight:700;color:var(--muted);
   background:var(--card);border:1px solid var(--line);border-radius:999px;padding:.45rem .3rem;cursor:pointer}
-.tier-switch button.on{color:var(--bg);background:var(--accent);border-color:var(--accent)}
+.tier-switch button.on{color:var(--btn-ink);background:var(--accent);border-color:var(--accent)}
 
 /* --- Why section: tier comparison table --- */
 :root{ --tier-hl: rgba(196,164,132,.09); --tier-yes:#009E73; --tier-no:#c0392b; }
