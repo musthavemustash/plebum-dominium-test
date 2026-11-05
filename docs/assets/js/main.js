@@ -465,7 +465,7 @@ document.querySelectorAll(".btn-onchain").forEach(function (btn) {
   }
   function update() {
     var n = selectedCount();
-    if (lock) lock.classList.toggle("open", n === 2);
+    if (lock) lock.classList.toggle("open", n >= 2);
     if (resetBtn) resetBtn.hidden = n === 0;
     if (n === 0) {
       caption.innerHTML = "<strong>Vault locked.</strong> No keys selected.";
@@ -473,9 +473,12 @@ document.querySelectorAll(".btn-onchain").forEach(function (btn) {
     } else if (n === 1) {
       caption.innerHTML = "<strong>Vault locked.</strong> One key alone cannot spend.";
       desc.textContent = "Choose a second key to meet the signing threshold.";
-    } else {
-      caption.innerHTML = "<strong>Two keys meet the signing threshold.</strong> Tap any key to reset.";
+    } else if (n === 2) {
+      caption.innerHTML = "<strong>Two keys meet the signing threshold.</strong>";
       desc.textContent = "Recovery also needs the full public wallet configuration, including the third cosigner’s public key. Preserve the verified descriptor.";
+    } else {
+      caption.innerHTML = "<strong>All three keys are selected.</strong> Only two signatures are required.";
+      desc.textContent = "With all three original seeds, the public keys can be re-derived if you know the original derivation paths. You still need the wallet’s script type and key ordering rules. Keep the verified descriptor as a backup.";
     }
   }
   function reset() {
@@ -485,13 +488,12 @@ document.querySelectorAll(".btn-onchain").forEach(function (btn) {
   keys.forEach(function (key) {
     key.addEventListener("click", function () {
       ring.classList.add("tapped");
-      if (selectedCount() === 2) {
-        reset();
-        return;
-      }
       setSelected(key, !key.classList.contains("sel"));
       update();
     });
+  });
+  document.addEventListener("click", function (event) {
+    if (selectedCount() && !ring.contains(event.target)) reset();
   });
   if (resetBtn) {
     resetBtn.addEventListener("click", function () {
