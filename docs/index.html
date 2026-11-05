@@ -43,6 +43,54 @@
   font: 600 0.875rem/1.5 system-ui, sans-serif;
 }
 .home-review-note > p { margin: 0 0 0.75rem; }
+.entry-page .home-keyhole {
+  position: relative;
+  container-type: inline-size;
+  text-align: center;
+  padding: clamp(25px, 5vw, 58px) clamp(12px, 4vw, 44px);
+  margin: 1rem 0 1.5rem;
+  border: 1px solid #493a2c;
+  border-radius: 12px;
+  background: #201810;
+  color: #f4ede0;
+}
+.home-keyhole::before {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border: 1px solid #6a5039;
+  border-radius: 7px;
+  pointer-events: none;
+}
+.home-keyhole-mark {
+  box-sizing: border-box;
+  width: clamp(60px, 12vw, 104px);
+  padding: 7px;
+  margin: 0 auto clamp(12px, 2.5vw, 23px);
+  border: 1px solid #9c7857;
+  border-radius: 50% 50% 4px 4px / 43% 43% 4px 4px;
+  background: #18130e;
+}
+.home-keyhole-mark img { display: block; width: 100%; height: auto; }
+.entry-page .home-keyhole-eyebrow {
+  margin: 0;
+  color: #d3af8b;
+  font: 600 clamp(.7rem, 2cqi, .92rem)/1.5 ui-monospace, monospace;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.entry-page .home-keyhole h1 {
+  margin: .19em 0 .24em;
+  color: inherit;
+  font: italic 500 clamp(2.3rem, 11cqi, 7.25rem)/.96 Georgia, serif;
+  letter-spacing: -.045em;
+}
+.entry-page .home-keyhole-subtitle {
+  max-width: 36ch;
+  margin: 0 auto;
+  color: #ded1c0;
+  font: clamp(1.2rem, 3.3cqi, 1.85rem)/1.45 Georgia, serif;
+}
 </style>
 </head>
 <body class="home" id="top">
@@ -107,8 +155,6 @@
 
   <main id="content">
     <article class="entry-page">
-      <p class="kicker">Independent At-Home Bitcoin Self-Custody</p>
-      <h1>Plebum Dominium Test Site</h1>
 <details class="entry-note home-review-note">
   <summary><strong>Test site · No real wallet use</strong></summary>
   <p>Review the guides and navigation only. Custody tools are not approved for real use; browser and Tails testing is incomplete. Do not enter real wallet data or send funds for this review. <a href="/plebum-dominium-test/downloads.html">Read the testing and download limitations</a>.</p>
@@ -116,8 +162,12 @@
 </details>
 
 
-<p class="entry-label">Learn the process. Practice the recovery.</p>
-<p class="entry-lead">Hold your own Bitcoin with a plan you can understand, verify, and recover.</p>
+<header class="home-keyhole">
+  <div class="home-keyhole-mark"><img src="/plebum-dominium-test/assets/img/logo-pleb-key.svg" alt="" width="104" height="104"></div>
+  <p class="home-keyhole-eyebrow">Independent at-home Bitcoin self-custody</p>
+  <h1>Plebum Dominium</h1>
+  <p class="home-keyhole-subtitle">Hold your own Bitcoin with a plan you can understand, verify, and recover.</p>
+</header>
 <p>Plebum Dominium is a practical guide to self-custody: choosing a setup, checking software, protecting backups, and rehearsing a spend.</p>
 <div class="entry-actions"><a href="/plebum-dominium-test/test-the-site.html">Help test the site →</a><a href="/plebum-dominium-test/handouts/terms.html">Start with Terms →</a><a href="/plebum-dominium-test/new-to-bitcoin.html">New to Bitcoin?</a></div>
 
