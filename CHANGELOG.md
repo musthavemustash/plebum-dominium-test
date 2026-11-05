@@ -4,6 +4,8 @@ Production releases will use Semantic Versioning and follow the staging-first re
 
 ## Unreleased (staging only)
 
+- Link the published feedback questionnaire from the homepage and online guide footers; keep offline custody tools free of feedback integrations.
+
 - Preserve original wallet maps until saved-file decryption and recovery backups are verified. Clarify homepage public-review scope and unfinished-tool download status.
 
 - Authenticated uploaded Electrum 4.8.3 against five release signatures and corrected its stale hash pin. Actual browser/offline validation remains the tool release blocker.
