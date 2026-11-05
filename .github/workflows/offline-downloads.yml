@@ -1,0 +1,44 @@
+name: Publish offline tester downloads
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/publish_offline_downloads.py
+      - scripts/check_offline_downloads.py
+      - scripts/reviewed_route_overrides.json
+      - .github/workflows/offline-downloads.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+concurrency:
+  group: offline-tester-publication
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Assemble and validate public test downloads
+        run: |
+          python3 scripts/publish_offline_downloads.py
+          python3 scripts/build.py
+          python3 scripts/test_paths.py
+          python3 scripts/check_offline_downloads.py
+      - name: Preserve published source and packages
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add docs
+          git diff --cached --quiet || git commit -m 'Publish complete offline tester and website tools downloads'
+          git push
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+      - name: Deploy test site
+        id: deployment
+        uses: actions/deploy-pages@v4
