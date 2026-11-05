@@ -474,8 +474,8 @@ document.querySelectorAll(".btn-onchain").forEach(function (btn) {
       caption.innerHTML = "<strong>Vault locked.</strong> One key alone cannot spend.";
       desc.textContent = "Choose a second key to meet the signing threshold.";
     } else if (n === 2) {
-      caption.innerHTML = "<strong>Two keys meet the signing threshold.</strong>";
-      desc.textContent = "Recovery also needs the full public wallet configuration, including the third cosigner’s public key. Preserve the verified descriptor.";
+      caption.innerHTML = "<strong>Two keys can sign.</strong> Use the saved wallet map to recover.";
+      desc.textContent = "If one seed plate is missing, the verified descriptor supplies that signer’s public key. Select the third key to see how recovery works without the saved file.";
     } else {
       caption.innerHTML = "<strong>No saved descriptor file needed.</strong> All three original seeds can rebuild this wallet.";
       desc.textContent = "The third seed lets you re-derive the last public key. Recreate the original 2-of-3 native SegWit setup using the guide’s derivation path, then verify a known receive address. Only two signatures are needed to spend.";
