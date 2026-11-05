@@ -1,6 +1,6 @@
 (() => {
   const card = document.querySelector('#quorum-demo .quorum-card');
-  const keys = [...quorum-card.querySelectorAll('.quorum-key')];
+  const keys = [...card.querySelectorAll('.quorum-key')];
   const map = card.querySelector('.quorum-map');
   const lock = card.querySelector('.quorum-lock');
   const sign = document.getElementById('quorum-sign');
@@ -59,7 +59,7 @@
       }
     });
   }
-  for (const button of [...quorum-keys, map]) {
+  for (const button of [...keys, map]) {
     button.addEventListener('click', () => {
       button.setAttribute('aria-pressed', String(!selected(button)));
       render();
