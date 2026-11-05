@@ -35,6 +35,15 @@
 (function(){try{var p=localStorage.getItem('pd-path');if(p!=='one'&&p!=='full'){p='full';}document.documentElement.setAttribute('data-path',p);}catch(e){document.documentElement.setAttribute('data-path','full');}})();
 </script>
 <link rel="stylesheet" href="/plebum-dominium-test/assets/css/entry-pages.css?v=entry1">
+<style>
+.home-review-note { padding: 0 0.75rem; }
+.home-review-note > summary {
+  padding-block: 0.5rem;
+  cursor: pointer;
+  font: 600 0.875rem/1.5 system-ui, sans-serif;
+}
+.home-review-note > p { margin: 0 0 0.75rem; }
+</style>
 </head>
 <body class="home" id="top">
 <div class="splash" id="pd-splash" hidden aria-hidden="true">
@@ -100,13 +109,16 @@
     <article class="entry-page">
       <p class="kicker">Independent At-Home Bitcoin Self-Custody</p>
       <h1>Plebum Dominium Test Site</h1>
-<p class="entry-note"><strong>Public review — unfinished test site.</strong> Review the guides and navigation only. Custody tools are not approved for real use; browser and Tails testing is incomplete. Do not enter real wallet data or send funds for this review. <a href="/plebum-dominium-test/downloads.html">Read the testing and download limitations</a>.</p>
+<details class="entry-note home-review-note">
+  <summary><strong>Test site · No real wallet use</strong></summary>
+  <p>Review the guides and navigation only. Custody tools are not approved for real use; browser and Tails testing is incomplete. Do not enter real wallet data or send funds for this review. <a href="/plebum-dominium-test/downloads.html">Read the testing and download limitations</a>.</p>
+  <p><a href="https://docs.google.com/forms/d/e/1FAIpQLSfOkY3FrZmZpIVro5oxWLy_YvU7U-1BOrL3KB9VCI3jXjad2Q/viewform" rel="noreferrer">Give feedback on the test site (Google Form)</a>. Include the page link and what you expected. Never submit wallet secrets.</p>
+</details>
 
 
 <p class="entry-label">Learn the process. Practice the recovery.</p>
 <p class="entry-lead">Hold your own Bitcoin with a plan you can understand, verify, and recover.</p>
-<p>Plebum Dominium is a practical guide to self-custody: choosing a setup, checking software, protecting backups, and rehearsing a spend. For this review, read the instructions without creating or funding a wallet.</p>
-<p class="entry-note"><a href="https://docs.google.com/forms/d/e/1FAIpQLSfOkY3FrZmZpIVro5oxWLy_YvU7U-1BOrL3KB9VCI3jXjad2Q/viewform" rel="noreferrer">Give feedback on the test site (Google Form)</a>. Include the page link and what you expected. Never submit wallet secrets.</p>
+<p>Plebum Dominium is a practical guide to self-custody: choosing a setup, checking software, protecting backups, and rehearsing a spend.</p>
 <div class="entry-actions"><a href="/plebum-dominium-test/test-the-site.html">Help test the site →</a><a href="/plebum-dominium-test/handouts/terms.html">Start with Terms →</a><a href="/plebum-dominium-test/new-to-bitcoin.html">New to Bitcoin?</a></div>
 
 <section class="entry-section" id="what"><p class="entry-label">The work ahead</p><h2>Build confidence one step at a time</h2>
