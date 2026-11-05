@@ -477,8 +477,8 @@ document.querySelectorAll(".btn-onchain").forEach(function (btn) {
       caption.innerHTML = "<strong>Two keys meet the signing threshold.</strong>";
       desc.textContent = "Recovery also needs the full public wallet configuration, including the third cosigner’s public key. Preserve the verified descriptor.";
     } else {
-      caption.innerHTML = "<strong>All three keys are selected.</strong> Only two signatures are required.";
-      desc.textContent = "With all three original seeds, the public keys can be re-derived if you know the original derivation paths. You still need the wallet’s script type and key ordering rules. Keep the verified descriptor as a backup.";
+      caption.innerHTML = "<strong>No saved descriptor file needed.</strong> All three original seeds can rebuild this wallet.";
+      desc.textContent = "The third seed lets you re-derive the last public key. Recreate the original 2-of-3 native SegWit setup using the guide’s derivation path, then verify a known receive address. Only two signatures are needed to spend.";
     }
   }
   function reset() {
