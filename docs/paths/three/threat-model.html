@@ -58,6 +58,33 @@
 .threat-preview-integrated .guide-actions .guide-primary{background:var(--tm-gold);color:#17120b;border-radius:9px;font-weight:700;padding:13px 21px}
 @media(max-width:650px){.threat-preview-integrated .tm-cards{grid-template-columns:1fr}.threat-preview-integrated .tm-card{padding:16px}}
 @media(prefers-reduced-motion:reduce){.threat-preview-integrated .tm-card{transition:none}}
+
+/* Follow the site's explicit theme choice for the worksheet. */
+html[data-theme="light"] .threat-preview-integrated {
+  --tm-dark: #fff;
+  --tm-panel: #f6f3ec;
+  --tm-border: #d8c5b1;
+  --tm-ink: #35251b;
+  --tm-muted: #66513f;
+  --tm-gold: #8a5a2a;
+}
+html[data-theme="light"] .threat-preview-integrated .tm-step {
+  background: var(--tm-gold);
+  color: #fff;
+}
+html[data-theme="light"] .threat-preview-integrated .tm-card:has(input:checked) {
+  background: #f3e8d6;
+}
+html[data-theme="light"] .threat-preview-integrated .tm-summary {
+  background: #f7efe3;
+  border-color: var(--tm-border);
+}
+html[data-theme="light"] .threat-preview-integrated .tm-details .guide-warning {
+  background: #fff3d9;
+}
+html[data-theme="light"] .threat-preview-integrated .guide-actions .guide-primary {
+  color: #fff;
+}
 </style>
 <script>document.documentElement.setAttribute("data-path", "full");</script>
 </head>
