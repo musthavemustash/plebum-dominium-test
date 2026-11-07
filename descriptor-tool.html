@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Descriptor tool (TEST ONLY)</title>
+<title>T4 fix 2026.11.06 — Descriptor tool (TEST ONLY)</title>
 <style>
   body { background: #0e0d0b; color: #e8e0d0; font-family: Georgia, 'Times New Roman', serif; margin: 0; padding: 2rem 1rem; }
   main { max-width: 72ch; margin: 0 auto; }
@@ -87,7 +87,7 @@
       <button type="button" id="enc-download">Download map.txt.asc</button>
       <ul>
         <li>Save the downloaded file where the encrypted map belongs.</li>
-        <li>Delete the plain map file from the USB.</li>
+        <li>Preserve the original until you have reopened and decrypted the saved file and verified recovery backups.</li>
         <li>Close this page when finished.</li>
       </ul>
       <p class="status" id="enc-status-r"></p>
@@ -128,7 +128,7 @@
   </div>
 
   <h2>Format notes</h2>
-  <p class="fine">This tool writes OpenPGP symmetric messages: AES-256, SEIPD version 1 with a modification detection code, iterated and salted S2K with count 65011712, matching the Python tool. One difference: this build derives the key with SHA-256, while the Python tool uses SHA-512. The parameters travel inside each message, so either tool opens the other's output. Both directions were tested before this file was handed to you. This test build uses OpenPGP.js version 6 (6.3.2), a supported release. AEAD stays off, so the format stays SEIPD version 1 for GPG 2.2 on Tails.</p>
+  <p class="fine">This tool writes OpenPGP symmetric messages: AES-256, SEIPD version 1 with a modification detection code, iterated and salted S2K with count 65011712, matching the Python tool. Both this build and the Python tool configure SHA-512 for password-based key derivation. The parameters travel inside each message, so either tool opens the other's output. Cross-decryption passed public-data core tests; target-browser and offline-environment validation remains required. This test build uses OpenPGP.js version 6 (6.3.2), a supported release. AEAD stays off, so the format stays SEIPD version 1 for GPG 2.2 on Tails.</p>
 </main>
 <div id="netblock" hidden>
   <div class="stopcard" role="alert">
@@ -165,6 +165,9 @@ const Uh=BigInt(0),Ph=BigInt(1),xh=BigInt(2);function Qh(e){const t=(rc(r=e,{adj
 <script>
 (function () {
   'use strict';
+  var session = window.custodySession = {epoch: 0, allowed: function () {
+    return location.protocol === 'file:' && navigator.onLine === false;
+  }};
   openpgp.config.preferredSymmetricAlgorithm = openpgp.enums.symmetric.aes256;
   openpgp.config.preferredHashAlgorithm = openpgp.enums.hash.sha512;
   openpgp.config.s2kIterationCountByte = 255;
@@ -172,6 +175,7 @@ const Uh=BigInt(0),Ph=BigInt(1),xh=BigInt(2);function Qh(e){const t=(rc(r=e,{adj
   function $(id) { return document.getElementById(id); }
   function status(el, msg, ok) { el.textContent = msg; el.style.color = ok ? '#3aa655' : '#e07856'; }
   function download(filename, text, statusEl) {
+    if (!session.allowed()) return;
     var blob = new Blob([text], { type: 'text/plain' });
     var a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
@@ -183,10 +187,25 @@ const Uh=BigInt(0),Ph=BigInt(1),xh=BigInt(2);function Qh(e){const t=(rc(r=e,{adj
     status(statusEl, 'Downloaded ' + filename + '.', true);
   }
   function readFile(file, textEl, statusEl, setName, updateFn) {
+    if (!session.allowed()) return;
+    var epoch = ++session.epoch;
     var reader = new FileReader();
-    reader.onload = function () { textEl.value = reader.result; setName(file.name); status(statusEl, 'Loaded file: ' + file.name + '.', true); updateFn(); };
+    reader.onload = function () {
+      if (!session.allowed() || epoch !== session.epoch) return;
+      try {
+        if (textEl.id === 'enc-text') {
+          var bytes = new Uint8Array(reader.result);
+          var decoded = new TextDecoder('utf-8', {fatal: true, ignoreBOM: true}).decode(bytes);
+          encBytes = bytes; textEl.value = decoded;
+        } else { textEl.value = reader.result; }
+        setName(file.name); status(statusEl, 'Loaded file: ' + file.name + '.', true); updateFn();
+      } catch (e) {
+        encBytes = null; textEl.value = ''; setName(''); updateFn();
+        status(statusEl, 'Could not read that file as UTF-8 text.', false);
+      }
+    };
     reader.onerror = function () { status(statusEl, 'Could not read that file.', false); };
-    reader.readAsText(file);
+    if (textEl.id === 'enc-text') reader.readAsArrayBuffer(file); else reader.readAsText(file);
   }
   function setupDrop(zoneId, inputId, textId, statusEl, setName, updateFn) {
     var zone = $(zoneId), input = $(inputId), text = $(textId);
@@ -207,11 +226,16 @@ const Uh=BigInt(0),Ph=BigInt(1),xh=BigInt(2);function Qh(e){const t=(rc(r=e,{adj
     });
   }
   var encFileName = '', decFileName = '';
+  var encBytes = null, decBytes = null;
+  session.clearPayloads = function () { encBytes = null; decBytes = null; encFileName = ''; decFileName = ''; };
+  function plaintextBytes() {
+    return encBytes !== null ? encBytes : new TextEncoder().encode($('enc-text').value);
+  }
   function updateEncReview() {
-    var text = $('enc-text').value.trim();
+    var text = new TextDecoder('utf-8', {ignoreBOM: true}).decode(plaintextBytes());
     if (!text) { $('enc-review').textContent = 'Drop or paste a map to see the review.'; $('enc-preview').value = ''; return; }
     $('enc-preview').value = text;
-    $('enc-review').textContent = 'Ready to encrypt: ' + text.length + ' characters' + (encFileName ? ' from file ' + encFileName + '.' : ' from pasted text.') + ' Check the map below is the right one.';
+    $('enc-review').textContent = 'Ready to encrypt: ' + text.length + ' characters; ' + plaintextBytes().length + ' UTF-8 bytes' + (encFileName ? ' from file ' + encFileName + '.' : ' from pasted text.') + ' Check the map below is the right one.';
   }
   function updateDecReview() {
     var text = $('dec-text').value.trim();
@@ -242,8 +266,8 @@ const Uh=BigInt(0),Ph=BigInt(1),xh=BigInt(2);function Qh(e){const t=(rc(r=e,{adj
       readFile(file, $('dec-text'), $('dec-status-1'), function (n) { decFileName = n; }, updateDecReview);
     }
   });
-  $('enc-text').addEventListener('input', function () { encFileName = ''; updateEncReview(); });
-  $('dec-text').addEventListener('input', function () { decFileName = ''; updateDecReview(); });
+  $('enc-text').addEventListener('input', function () { session.epoch++; encBytes = null; encFileName = ''; updateEncReview(); });
+  $('dec-text').addEventListener('input', function () { session.epoch++; decFileName = ''; updateDecReview(); });
   function showMode(mode) {
     $('flow-enc').hidden = mode !== 'enc';
     $('flow-dec').hidden = mode !== 'dec';
@@ -254,18 +278,22 @@ const Uh=BigInt(0),Ph=BigInt(1),xh=BigInt(2);function Qh(e){const t=(rc(r=e,{adj
   $('mode-dec').addEventListener('click', function () { showMode('dec'); });
   $('enc-btn').addEventListener('click', async function () {
     var btn = $('enc-btn');
-    var plaintext = $('enc-text').value.trim();
+    $('enc-out').value = ''; $('enc-result').hidden = true;
+    if (!session.allowed()) return;
+    var epoch = ++session.epoch;
+    var plaintext = plaintextBytes();
     var pass = $('enc-pass').value, pass2 = $('enc-pass2').value;
-    if (!plaintext) { status($('enc-status-1'), 'Enter or drop a map first.', false); return; }
+    if (!plaintext.length) { status($('enc-status-1'), 'Enter or drop a map first.', false); return; }
     if (!pass) { status($('enc-status-2'), 'Enter a passphrase.', false); return; }
     if (pass !== pass2) { status($('enc-status-2'), 'Passphrases do not match.', false); return; }
     btn.disabled = true; status($('enc-status-3'), 'Working...', true);
     try {
-      var message = await openpgp.createMessage({ text: plaintext });
+      var message = await openpgp.createMessage({ binary: plaintext });
       var armored = await openpgp.encrypt({ message: message, passwords: [pass], format: 'armored' });
+      if (!session.allowed() || epoch !== session.epoch) { btn.disabled = false; return; }
       $('enc-out').value = armored;
       $('enc-result').hidden = false;
-      status($('enc-status-3'), 'Encrypted. Download the file, then delete the plain map.', true);
+      status($('enc-status-3'), 'Encrypted. Test decryption before replacing any protected backup.', true);
     } catch (e) { status($('enc-status-3'), 'Encryption failed.', false); }
     $('enc-pass').value = ''; $('enc-pass2').value = '';
     btn.disabled = false;
@@ -276,12 +304,15 @@ const Uh=BigInt(0),Ph=BigInt(1),xh=BigInt(2);function Qh(e){const t=(rc(r=e,{adj
   });
   $('enc-again').addEventListener('click', function () {
     $('enc-text').value = ''; $('enc-pass').value = ''; $('enc-pass2').value = '';
-    $('enc-out').value = ''; encFileName = ''; $('enc-result').hidden = true;
+    session.epoch++; encBytes = null; $('enc-out').value = ''; encFileName = ''; $('enc-result').hidden = true;
     status($('enc-status-1'), '', true); status($('enc-status-2'), '', true); status($('enc-status-3'), '', true);
     updateEncReview();
   });
   $('dec-btn').addEventListener('click', async function () {
     var btn = $('dec-btn');
+    decBytes = null; $('dec-out').value = ''; $('dec-result').hidden = true;
+    if (!session.allowed()) return;
+    var epoch = ++session.epoch;
     var armored = $('dec-text').value.trim();
     var pass = $('dec-pass').value;
     if (!armored) { status($('dec-status-1'), 'Enter or drop an encrypted file first.', false); return; }
@@ -289,8 +320,10 @@ const Uh=BigInt(0),Ph=BigInt(1),xh=BigInt(2);function Qh(e){const t=(rc(r=e,{adj
     btn.disabled = true; status($('dec-status-3'), 'Working...', true);
     try {
       var message = await openpgp.readMessage({ armoredMessage: armored });
-      var out = await openpgp.decrypt({ message: message, passwords: [pass], format: 'utf8' });
-      $('dec-out').value = out.data;
+      var out = await openpgp.decrypt({ message: message, passwords: [pass], format: 'binary' });
+      if (!session.allowed() || epoch !== session.epoch) { btn.disabled = false; return; }
+      decBytes = out.data;
+      $('dec-out').value = new TextDecoder('utf-8', {ignoreBOM: true}).decode(decBytes);
       $('dec-result').hidden = false;
       status($('dec-status-3'), 'Restored.', true);
     } catch (e) { status($('dec-status-3'), 'Decryption failed. Wrong passphrase or damaged file.', false); }
@@ -298,12 +331,11 @@ const Uh=BigInt(0),Ph=BigInt(1),xh=BigInt(2);function Qh(e){const t=(rc(r=e,{adj
     btn.disabled = false;
   });
   $('dec-download').addEventListener('click', function () {
-    var text = $('dec-out').value;
-    if (text) download('map.txt', text, $('dec-status-r'));
+    if (decBytes !== null) download('map.txt', decBytes, $('dec-status-r'));
   });
   $('dec-again').addEventListener('click', function () {
     $('dec-text').value = ''; $('dec-pass').value = '';
-    $('dec-out').value = ''; decFileName = ''; $('dec-result').hidden = true;
+    session.epoch++; decBytes = null; $('dec-out').value = ''; decFileName = ''; $('dec-result').hidden = true;
     status($('dec-status-1'), '', true); status($('dec-status-2'), '', true); status($('dec-status-3'), '', true);
     updateDecReview();
   });
@@ -318,7 +350,7 @@ const Uh=BigInt(0),Ph=BigInt(1),xh=BigInt(2);function Qh(e){const t=(rc(r=e,{adj
     var lib = (typeof openpgp !== 'undefined' && openpgp);
     var btn = document.getElementById('enc-btn');
     if (lib && btn) {
-      el.textContent = 'Code loaded: encryption library ready.';
+      el.textContent = 'Code loaded: encryption library ready. T4 fix 2026.11.06.';
     } else if (lib) {
       el.textContent = 'Library loaded, but the page buttons are missing.';
     } else {
@@ -334,28 +366,34 @@ const Uh=BigInt(0),Ph=BigInt(1),xh=BigInt(2);function Qh(e){const t=(rc(r=e,{adj
 (function(){
   "use strict";
   function $(id){return document.getElementById(id);}
-  var netBlocked=true; // fail closed until the probe confirms offline
-  function probeOnline(){
-    return Promise.resolve(location.protocol === 'https:');
-  }
-  }
+  var netBlocked=true; // blocked until a local file and an explicit offline signal are observed
+
   function wipe(){
+    if (window.custodySession) { window.custodySession.epoch++; window.custodySession.clearPayloads(); }
+    ['enc-result','dec-result'].forEach(function(id){ $(id).hidden=true; });
     document.querySelectorAll('textarea').forEach(function(t){t.value='';});
-    document.querySelectorAll('.pw').forEach(function(p){p.textContent='';});
+    document.querySelectorAll('input[type="password"]').forEach(function(p){p.value='';});
     var s=document.querySelectorAll('.status');s.forEach(function(x){x.textContent='';});
   }
   async function renderNet(){
     var pill=$('online-pill'),dot=$('online-dot'),word=$('online-word'),block=$('netblock');
     if(pill){pill.hidden=false;dot.classList.remove('safe');word.textContent='Checking…';}
     if(block){block.hidden=false;}
-    var online;
-    var probeResult = await probeOnline();
-    online = (navigator.onLine===true) || probeResult;
+    // Conservative: we cannot prove air-gap status from the browser.
+    // file: means opened locally, not that networking is disabled.
+    // https: means served over network. User must disable and verify networking independently.
+    var servedOverNetwork = (location.protocol === 'https:' || location.protocol === 'http:');
+    var online = location.protocol !== 'file:' || navigator.onLine !== false;
     var wasBlocked=netBlocked;
     netBlocked=online;
-    if(pill){dot.classList.toggle('safe',!online);word.textContent=online?'Online':'Offline';}
-    if(block){block.hidden=!online;}
-    if(online&&!wasBlocked){wipe();}
+    if(pill){dot.classList.toggle('safe',!online);word.textContent=online?'Network detected':'Local file';}
+    if(block){
+      block.hidden=!online;
+      if(online && servedOverNetwork){
+        block.innerHTML='<strong>Warning:</strong> This tool was loaded over the network ('+location.protocol+'). For real keys, download this file, disconnect from the network, verify networking is disabled, then open the local copy. This page cannot verify air-gap status for you.';
+      }
+    }
+    if(online){wipe();}
   }
   window.addEventListener('online',renderNet);
   window.addEventListener('offline',renderNet);

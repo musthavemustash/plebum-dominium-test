@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Descriptor tool (TEST ONLY)</title>
+<title>T4 fix 2026.11.06 — Descriptor tool (TEST ONLY)</title>
 <style>
   body { background: #0e0d0b; color: #e8e0d0; font-family: Georgia, 'Times New Roman', serif; margin: 0; padding: 2rem 1rem; }
   main { max-width: 72ch; margin: 0 auto; }
@@ -87,7 +87,7 @@
       <button type="button" id="enc-download">Download map.txt.asc</button>
       <ul>
         <li>Save the downloaded file where the encrypted map belongs.</li>
-        <li>Delete the plain map file from the USB.</li>
+        <li>Preserve the original until you have reopened and decrypted the saved file and verified recovery backups.</li>
         <li>Close this page when finished.</li>
       </ul>
       <p class="status" id="enc-status-r"></p>
@@ -190,9 +190,22 @@ const Uh=BigInt(0),Ph=BigInt(1),xh=BigInt(2);function Qh(e){const t=(rc(r=e,{adj
     if (!session.allowed()) return;
     var epoch = ++session.epoch;
     var reader = new FileReader();
-    reader.onload = function () { if (!session.allowed() || epoch !== session.epoch) return; textEl.value = reader.result; setName(file.name); status(statusEl, 'Loaded file: ' + file.name + '.', true); updateFn(); };
+    reader.onload = function () {
+      if (!session.allowed() || epoch !== session.epoch) return;
+      try {
+        if (textEl.id === 'enc-text') {
+          var bytes = new Uint8Array(reader.result);
+          var decoded = new TextDecoder('utf-8', {fatal: true, ignoreBOM: true}).decode(bytes);
+          encBytes = bytes; textEl.value = decoded;
+        } else { textEl.value = reader.result; }
+        setName(file.name); status(statusEl, 'Loaded file: ' + file.name + '.', true); updateFn();
+      } catch (e) {
+        encBytes = null; textEl.value = ''; setName(''); updateFn();
+        status(statusEl, 'Could not read that file as UTF-8 text.', false);
+      }
+    };
     reader.onerror = function () { status(statusEl, 'Could not read that file.', false); };
-    reader.readAsText(file);
+    if (textEl.id === 'enc-text') reader.readAsArrayBuffer(file); else reader.readAsText(file);
   }
   function setupDrop(zoneId, inputId, textId, statusEl, setName, updateFn) {
     var zone = $(zoneId), input = $(inputId), text = $(textId);
@@ -213,11 +226,16 @@ const Uh=BigInt(0),Ph=BigInt(1),xh=BigInt(2);function Qh(e){const t=(rc(r=e,{adj
     });
   }
   var encFileName = '', decFileName = '';
+  var encBytes = null, decBytes = null;
+  session.clearPayloads = function () { encBytes = null; decBytes = null; encFileName = ''; decFileName = ''; };
+  function plaintextBytes() {
+    return encBytes !== null ? encBytes : new TextEncoder().encode($('enc-text').value);
+  }
   function updateEncReview() {
-    var text = $('enc-text').value.trim();
+    var text = new TextDecoder('utf-8', {ignoreBOM: true}).decode(plaintextBytes());
     if (!text) { $('enc-review').textContent = 'Drop or paste a map to see the review.'; $('enc-preview').value = ''; return; }
     $('enc-preview').value = text;
-    $('enc-review').textContent = 'Ready to encrypt: ' + text.length + ' characters' + (encFileName ? ' from file ' + encFileName + '.' : ' from pasted text.') + ' Check the map below is the right one.';
+    $('enc-review').textContent = 'Ready to encrypt: ' + text.length + ' characters; ' + plaintextBytes().length + ' UTF-8 bytes' + (encFileName ? ' from file ' + encFileName + '.' : ' from pasted text.') + ' Check the map below is the right one.';
   }
   function updateDecReview() {
     var text = $('dec-text').value.trim();
@@ -248,8 +266,8 @@ const Uh=BigInt(0),Ph=BigInt(1),xh=BigInt(2);function Qh(e){const t=(rc(r=e,{adj
       readFile(file, $('dec-text'), $('dec-status-1'), function (n) { decFileName = n; }, updateDecReview);
     }
   });
-  $('enc-text').addEventListener('input', function () { encFileName = ''; updateEncReview(); });
-  $('dec-text').addEventListener('input', function () { decFileName = ''; updateDecReview(); });
+  $('enc-text').addEventListener('input', function () { session.epoch++; encBytes = null; encFileName = ''; updateEncReview(); });
+  $('dec-text').addEventListener('input', function () { session.epoch++; decFileName = ''; updateDecReview(); });
   function showMode(mode) {
     $('flow-enc').hidden = mode !== 'enc';
     $('flow-dec').hidden = mode !== 'dec';
@@ -263,14 +281,14 @@ const Uh=BigInt(0),Ph=BigInt(1),xh=BigInt(2);function Qh(e){const t=(rc(r=e,{adj
     $('enc-out').value = ''; $('enc-result').hidden = true;
     if (!session.allowed()) return;
     var epoch = ++session.epoch;
-    var plaintext = $('enc-text').value.trim();
+    var plaintext = plaintextBytes();
     var pass = $('enc-pass').value, pass2 = $('enc-pass2').value;
-    if (!plaintext) { status($('enc-status-1'), 'Enter or drop a map first.', false); return; }
+    if (!plaintext.length) { status($('enc-status-1'), 'Enter or drop a map first.', false); return; }
     if (!pass) { status($('enc-status-2'), 'Enter a passphrase.', false); return; }
     if (pass !== pass2) { status($('enc-status-2'), 'Passphrases do not match.', false); return; }
     btn.disabled = true; status($('enc-status-3'), 'Working...', true);
     try {
-      var message = await openpgp.createMessage({ text: plaintext });
+      var message = await openpgp.createMessage({ binary: plaintext });
       var armored = await openpgp.encrypt({ message: message, passwords: [pass], format: 'armored' });
       if (!session.allowed() || epoch !== session.epoch) { btn.disabled = false; return; }
       $('enc-out').value = armored;
@@ -286,13 +304,13 @@ const Uh=BigInt(0),Ph=BigInt(1),xh=BigInt(2);function Qh(e){const t=(rc(r=e,{adj
   });
   $('enc-again').addEventListener('click', function () {
     $('enc-text').value = ''; $('enc-pass').value = ''; $('enc-pass2').value = '';
-    $('enc-out').value = ''; encFileName = ''; $('enc-result').hidden = true;
+    session.epoch++; encBytes = null; $('enc-out').value = ''; encFileName = ''; $('enc-result').hidden = true;
     status($('enc-status-1'), '', true); status($('enc-status-2'), '', true); status($('enc-status-3'), '', true);
     updateEncReview();
   });
   $('dec-btn').addEventListener('click', async function () {
     var btn = $('dec-btn');
-    $('dec-out').value = ''; $('dec-result').hidden = true;
+    decBytes = null; $('dec-out').value = ''; $('dec-result').hidden = true;
     if (!session.allowed()) return;
     var epoch = ++session.epoch;
     var armored = $('dec-text').value.trim();
@@ -302,9 +320,10 @@ const Uh=BigInt(0),Ph=BigInt(1),xh=BigInt(2);function Qh(e){const t=(rc(r=e,{adj
     btn.disabled = true; status($('dec-status-3'), 'Working...', true);
     try {
       var message = await openpgp.readMessage({ armoredMessage: armored });
-      var out = await openpgp.decrypt({ message: message, passwords: [pass], format: 'utf8' });
+      var out = await openpgp.decrypt({ message: message, passwords: [pass], format: 'binary' });
       if (!session.allowed() || epoch !== session.epoch) { btn.disabled = false; return; }
-      $('dec-out').value = out.data;
+      decBytes = out.data;
+      $('dec-out').value = new TextDecoder('utf-8', {ignoreBOM: true}).decode(decBytes);
       $('dec-result').hidden = false;
       status($('dec-status-3'), 'Restored.', true);
     } catch (e) { status($('dec-status-3'), 'Decryption failed. Wrong passphrase or damaged file.', false); }
@@ -312,12 +331,11 @@ const Uh=BigInt(0),Ph=BigInt(1),xh=BigInt(2);function Qh(e){const t=(rc(r=e,{adj
     btn.disabled = false;
   });
   $('dec-download').addEventListener('click', function () {
-    var text = $('dec-out').value;
-    if (text) download('map.txt', text, $('dec-status-r'));
+    if (decBytes !== null) download('map.txt', decBytes, $('dec-status-r'));
   });
   $('dec-again').addEventListener('click', function () {
     $('dec-text').value = ''; $('dec-pass').value = '';
-    $('dec-out').value = ''; decFileName = ''; $('dec-result').hidden = true;
+    session.epoch++; decBytes = null; $('dec-out').value = ''; decFileName = ''; $('dec-result').hidden = true;
     status($('dec-status-1'), '', true); status($('dec-status-2'), '', true); status($('dec-status-3'), '', true);
     updateDecReview();
   });
@@ -332,7 +350,7 @@ const Uh=BigInt(0),Ph=BigInt(1),xh=BigInt(2);function Qh(e){const t=(rc(r=e,{adj
     var lib = (typeof openpgp !== 'undefined' && openpgp);
     var btn = document.getElementById('enc-btn');
     if (lib && btn) {
-      el.textContent = 'Code loaded: encryption library ready.';
+      el.textContent = 'Code loaded: encryption library ready. T4 fix 2026.11.06.';
     } else if (lib) {
       el.textContent = 'Library loaded, but the page buttons are missing.';
     } else {
@@ -351,7 +369,7 @@ const Uh=BigInt(0),Ph=BigInt(1),xh=BigInt(2);function Qh(e){const t=(rc(r=e,{adj
   var netBlocked=true; // blocked until a local file and an explicit offline signal are observed
 
   function wipe(){
-    if (window.custodySession) window.custodySession.epoch++;
+    if (window.custodySession) { window.custodySession.epoch++; window.custodySession.clearPayloads(); }
     ['enc-result','dec-result'].forEach(function(id){ $(id).hidden=true; });
     document.querySelectorAll('textarea').forEach(function(t){t.value='';});
     document.querySelectorAll('input[type="password"]').forEach(function(p){p.value='';});

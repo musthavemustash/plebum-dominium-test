@@ -11,6 +11,8 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCES = {
+    'RETEST-WINDOWS.txt': 'docs/testing/t4-20261106/RETEST-WINDOWS.txt',
+    'VALIDATION.txt': 'docs/testing/t4-20261106/VALIDATION.txt',
     'dice-converter.html': 'docs/dice-converter.html',
     'descriptor-tool.html': 'docs/descriptor-tool.html',
     'bip39_dice_converter.py': 'docs/kit/bip39_dice_converter.py',
@@ -29,7 +31,7 @@ def build(output, source_commit):
         raise ValueError('Supply the full reviewed source commit SHA')
     output = Path(output)
     output.mkdir(parents=True, exist_ok=False)
-    release = 'alpha-20261105-' + source_commit[:7]
+    release = 'alpha-20261106-t3-t4'
     archive = 'plebum-tools-' + release + '.zip'
     files = {name: (ROOT / source).read_bytes() for name, source in SOURCES.items()}
     source_files = {name: {'source_path': source, 'sha256': sha(files[name]), 'size': len(files[name])}
@@ -101,6 +103,8 @@ hex entropy must be converted to exactly 256 binary digits before input.
 These are publicly known examples. Never fund a wallet derived from them.
 
 T4 — Wallet-map encryption/decryption
+For exact file-based Windows commands, read RETEST-WINDOWS.txt. Its fixture
+uses password public-test-only; the fixture below uses password.txt instead.
 Use fixtures/public-map.txt and the disposable password in fixtures/password.txt.
 Encrypt, save the result, close/reopen, and decrypt. Expected: exact original
 text, including Unicode and line breaks. Ciphertext bytes may differ per run.
@@ -125,8 +129,8 @@ task is listed. Never submit private wallet data or credentials.
 '''.encode()
     files['fixtures/zeros-256.txt'] = ('0' * 256 + '\n').encode()
     files['fixtures/ones-256.txt'] = ('1' * 256 + '\n').encode()
-    files['fixtures/public-map.txt'] = 'PUBLIC TEST ONLY\nUnicode: café\nNo wallet secrets\n'.encode()
-    files['fixtures/password.txt'] = b'public-fixture-password-not-for-use\n'
+    files['fixtures/public-map.txt'] = (ROOT / 'review/fixtures/t4-public-map.txt').read_bytes()
+    files['fixtures/password.txt'] = b'public-test-only\n'
     results = io.StringIO(newline='')
     writer = csv.writer(results)
     writer.writerow(['release', 'task', 'result', 'date', 'OS', 'browser', 'Tails_version',

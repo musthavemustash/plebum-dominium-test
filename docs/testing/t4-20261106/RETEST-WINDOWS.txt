@@ -1,0 +1,75 @@
+PLEBUM DOMINIUM — T4 FIX CANDIDATE 2026.11.06-t4.1
+PUBLIC TEST ONLY. No real wallet secrets. Not a production release.
+
+Extract this ZIP into a NEW folder. Open PowerShell in that folder.
+Keep your old test results as evidence; these are replacement candidates.
+Python and GnuPG must already be installed. No pip packages are required.
+Close the tool, disable Wi-Fi/Ethernet, then open the local HTML file.
+The browser tool requires file: plus the browser offline signal.
+The Python tool gives an offline notice; it does not detect networking.
+
+Use fixtures/public-map.txt and the password public-test-only.
+The password is deliberately public. Do not use it to protect anything real.
+The fixture is 49 characters / 50 UTF-8 bytes, with a final LF newline.
+
+T4.1 — BROWSER EXACT RESTORATION
+1. Open descriptor-tool.html. Confirm the status includes T4 fix 2026.11.06.
+2. Choose Encrypt a map. Load fixtures/public-map.txt using the file picker.
+   Do not copy/paste this fixture. Enter the test password twice.
+3. Encrypt and save the ASC file. Copy it into this extracted folder with
+   the exact name browser-map.asc. Close and reopen the HTML tool.
+4. Choose Decrypt a map, load browser-map.asc, enter the password, decrypt.
+5. Download the restored text. Copy it here as browser-restored.txt.
+6. Run this one-line PowerShell command:
+
+py -c "from pathlib import Path; a=Path('fixtures/public-map.txt').read_bytes(); b=Path('browser-restored.txt').read_bytes(); print('PASS: exact bytes' if a==b else 'FAIL: files differ')"
+
+Send the restored TXT and the comparison output. A recording alone cannot
+prove exact bytes. Extra final newlines must also be preserved.
+
+T4.4A — BROWSER ENCRYPTS, PYTHON DECRYPTS
+Use the undamaged browser-map.asc from T4.1. Run:
+
+py .\descriptor_obfuscator.py --decrypt .\browser-map.asc --output .\python-restored.txt
+
+Enter public-test-only when prompted. Typing is completely hidden.
+Then compare:
+
+py -c "from pathlib import Path; a=Path('fixtures/public-map.txt').read_bytes(); b=Path('python-restored.txt').read_bytes(); print('PASS: exact bytes' if a==b else 'FAIL: files differ')"
+
+T4.4B — PYTHON ENCRYPTS, BROWSER DECRYPTS
+Run:
+
+py .\descriptor_obfuscator.py --encrypt .\fixtures\public-map.txt --output .\python-map.asc
+
+Enter public-test-only twice. Open the local HTML tool, select Decrypt a map,
+load python-map.asc, and decrypt with that password. Download and copy the
+restored TXT here as browser-from-python.txt. Compare:
+
+py -c "from pathlib import Path; a=Path('fixtures/public-map.txt').read_bytes(); b=Path('browser-from-python.txt').read_bytes(); print('PASS: exact bytes' if a==b else 'FAIL: files differ')"
+
+All output filenames must be NEW. The Python tool refuses to overwrite
+existing files. On a repeat, choose a new name and use it in the comparison.
+No arguments also starts an interactive file-based E/D/Q menu.
+
+REGRESSION CHECKS ON THIS CANDIDATE
+Repeat T4.2 (wrong password) and T4.3 (damaged ASC copy) on these new files.
+Expected: error, no plaintext and no plaintext download/output file.
+Keep the undamaged original ASC. Also reconnect while browser plaintext is
+visible: fields/results should clear, and downloads should be blocked.
+Disconnect and reload a fixture before continuing.
+
+WHAT CHANGED
+Browser: preserve original loaded UTF-8 bytes independently of textarea
+newline normalization; encrypt/decrypt binary literal data; download exact
+restored bytes. Keep raw state cleared by Start over and network blocking.
+Python: replace POSIX-only pass_fds with an anonymous stdin pipe; file-based
+binary input/output supports multiline data, CRLF, BOM and whitespace;
+nonzero GPG exit withholds partial output; no password in command arguments,
+environment, or temporary files; existing output files are never overwritten.
+Passphrases are no longer stripped. Enter them exactly as originally used.
+
+STATUS
+This candidate has automated local checks, not a completed Windows or Tails
+sign-off. Retest results supersede the old failures only when verified.
+This candidate is now available on staging; Windows/browser retesting remains pending.

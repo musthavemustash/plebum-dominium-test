@@ -5,7 +5,8 @@ ROOT=Path(__file__).resolve().parents[1]
 def module(name,file):
  spec=importlib.util.spec_from_file_location(name,ROOT/file);m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);return m
 def node(mode,**kw):
- return subprocess.run(['node',str(ROOT/'scripts/test_tool_core.cjs')],input=json.dumps(dict(mode=mode,**kw)),text=True,capture_output=True)
+ result=subprocess.run(['node',str(ROOT/'scripts/test_tool_core.cjs')],input=json.dumps(dict(mode=mode,**kw)).encode(),capture_output=True)
+ result.stdout=result.stdout.decode();result.stderr=result.stderr.decode();return result
 def main():
  dice=module('dice','docs/kit/bip39_dice_converter.py');enc=module('enc','docs/kit/descriptor_obfuscator.py')
  vectors=json.loads((ROOT/'review/fixtures/bip39-vectors.json').read_text())['english'];vectors=[v for v in vectors if len(v[0])==64]
@@ -30,15 +31,15 @@ def main():
   os.chmod(home,0o700);old=os.environ.get('GNUPGHOME');os.environ['GNUPGHOME']=home
   Path(home,'gpg.conf').write_text('no-symkey-cache\n')
   try:
-   sample='PUBLIC TEST ONLY\nUnicode: café\nNo wallet secrets';password='public-fixture-password-not-for-use';pw=bytearray(password.encode())
+   sample='PUBLIC TEST ONLY\r\nUnicode: café\r\nNo wallet secrets\n'.encode();password='public-fixture-password-not-for-use';pw=bytearray(password.encode())
    py=enc.encrypt_descriptor(sample,pw);assert enc.decrypt_descriptor(py,pw)==sample
-   js=node('encrypt',text=sample,password=password);assert js.returncode==0,js.stderr
-   assert enc.decrypt_descriptor(js.stdout,pw)==sample
-   dec=node('decrypt',text=py,password=password);assert dec.returncode==0,dec.stderr;assert dec.stdout==sample
-   for ciphertext in [py,js.stdout]:
+   js=node('encrypt',text=sample.decode('utf-8'),password=password);assert js.returncode==0,js.stderr
+   assert enc.decrypt_descriptor(js.stdout.encode(),pw)==sample
+   dec=node('decrypt',text=py.decode(),password=password);assert dec.returncode==0,dec.stderr;assert dec.stdout.encode()==sample
+   for ciphertext in [py.decode(),js.stdout]:
     lines=ciphertext.splitlines(); idx=next(i for i,l in enumerate(lines) if re.fullmatch(r'[A-Za-z0-9+/]{20,}={0,2}',l)); lines[idx]=('A' if lines[idx][0]!='A' else 'B')+lines[idx][1:]; damaged='\n'.join(lines)
     for candidate,secret in [(ciphertext,'wrong-public-password'),(ciphertext[:len(ciphertext)//2],password),(damaged,password)]:
-     try:enc.decrypt_descriptor(candidate,bytearray(secret.encode()))
+     try:enc.decrypt_descriptor(candidate.encode(),bytearray(secret.encode()))
      except RuntimeError:pass
      else:raise AssertionError('GPG accepted wrong password/truncation')
      assert node('decrypt',text=candidate,password=secret).returncode!=0

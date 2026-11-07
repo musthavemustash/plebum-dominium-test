@@ -3,6 +3,9 @@ on:
   push:
     branches: [main]
     paths:
+      - docs/**
+      - review/fixtures/**
+      - scripts/prepare_public_test_release.py
       - scripts/publish_offline_downloads.py
       - scripts/check_offline_downloads.py
       - scripts/reviewed_route_overrides.json
@@ -25,6 +28,9 @@ jobs:
       - uses: actions/checkout@v4
       - name: Assemble and validate public test downloads
         run: |
+          python3 scripts/prepare_public_test_release.py /tmp/plebum-current-alpha --source-commit "$(git rev-parse HEAD)"
+          mkdir -p docs/testing/alpha-20261106-t3-t4
+          cp /tmp/plebum-current-alpha/* docs/testing/alpha-20261106-t3-t4/
           python3 scripts/publish_offline_downloads.py
           python3 scripts/build.py
           python3 scripts/test_paths.py

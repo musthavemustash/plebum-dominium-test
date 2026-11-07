@@ -5,9 +5,9 @@ const scripts=[...html.matchAll(/<script[^>]*>([\s\S]*?)<\/script>/g)].map(m=>m[
 const els={},events={},readers=[];
 const el=id=>els[id]??={id,value:'',textContent:'',style:{},hidden:false,disabled:false,handlers:{},classList:{add(){},remove(){},toggle(){}},addEventListener(n,f){this.handlers[n]=f;}};
 const document={getElementById:el,addEventListener(){},querySelectorAll(sel){if(sel==='input[type="password"]')return ['enc-pass','enc-pass2','dec-pass'].map(el);if(sel==='textarea')return ['enc-text','enc-preview','enc-out','dec-text','dec-preview','dec-out'].map(el);if(sel==='.status')return [];throw Error('unexpected selector '+sel);}};
-const pgp={config:{},enums:{symmetric:{aes256:9},hash:{sha512:10}},createMessage:async x=>x,readMessage:async x=>x,encrypt:async()=> 'ciphertext',decrypt:async()=>({data:'PUBLIC SAMPLE'})};
+const pgp={config:{},enums:{symmetric:{aes256:9},hash:{sha512:10}},createMessage:async x=>x,readMessage:async x=>x,encrypt:async()=> 'ciphertext',decrypt:async()=>({data:new TextEncoder().encode('PUBLIC SAMPLE')})};
 const window={addEventListener(n,f){events[n]=f;}};
-const ctx=vm.createContext({document,window,location:{protocol:'file:'},navigator:{onLine:false},openpgp:pgp,FileReader:class{constructor(){readers.push(this);} readAsText(){}},setTimeout,clearTimeout});
+const ctx=vm.createContext({TextEncoder,TextDecoder,Uint8Array,document,window,location:{protocol:'file:'},navigator:{onLine:false},openpgp:pgp,FileReader:class{constructor(){readers.push(this);} readAsText(){} readAsArrayBuffer(){}},setTimeout,clearTimeout});
 vm.runInContext(scripts[1],ctx);vm.runInContext(scripts[3],ctx);
 (async()=>{
  el('dec-text').value='ciphertext';el('dec-pass').value='public-test';await el('dec-btn').handlers.click();assert.equal(el('dec-out').value,'PUBLIC SAMPLE');

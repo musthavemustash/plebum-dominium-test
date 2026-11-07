@@ -17,10 +17,10 @@ import zipfile
 ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / 'docs'
 BASE = '/plebum-dominium-test/'
-DEST = 'testing/offline-20261105'
+DEST = 'testing/offline-20261106'
 OUT = DOCS / DEST
-FULL = 'plebum-complete-offline-tester-20261105.zip'
-TOOLS = 'plebum-website-tools-only-20261105.zip'
+FULL = 'plebum-complete-offline-tester-20261106.zip'
+TOOLS = 'plebum-website-tools-only-20261106.zip'
 SENSITIVE = {'dice-converter.html', 'descriptor-tool.html'}
 TOOL_NAMES = [
     'dice-converter.html', 'descriptor-tool.html', 'fingerprint-checker.html',
@@ -134,10 +134,12 @@ def package(full):
         if not p.is_file() or p.is_relative_to(OUT):
             continue
         name = p.relative_to(DOCS).as_posix()
+        if name.startswith('testing/') and not name.startswith(('testing/alpha-20261106-t3-t4/', 'testing/t4-20261106/')):
+            continue
         if not full and not (name in TOOL_NAMES or name.startswith('assets/') or name in ['kit/' + n for n in PYTHON]):
             continue
         files[name] = offline_copy(name, p.read_bytes())
-    alpha = DOCS / 'testing/alpha-20261105-7240f0d/plebum-tools-alpha-20261105-7240f0d.zip'
+    alpha = DOCS / 'testing/alpha-20261106-t3-t4/plebum-tools-alpha-20261106-t3-t4.zip'
     with zipfile.ZipFile(alpha) as z:
         for name in z.namelist():
             if not name.endswith('/'):
@@ -146,7 +148,7 @@ def package(full):
     if not full:
         # Reference-only return link in the dice reference has no guide in this ZIP.
         files['dice-rolls.html'] = files['dice-rolls.html'].replace(b'href="handouts/dice.html"', b'href="START.html"')
-    files['README.txt'] = ('''PLEBUM DOMINIUM — OFFLINE PUBLIC TESTER — 2026-11-05
+    files['README.txt'] = ('''PLEBUM DOMINIUM — OFFLINE PUBLIC TESTER — 2026-11-06
 PUBLIC TEST DATA ONLY. NOT APPROVED FOR REAL-WALLET USE.
 
 Extract the complete ZIP into one folder, then open START.html in a browser.
@@ -164,7 +166,7 @@ need a network connection and cannot be performed fully offline.
 
 Read public-tests/TESTING.txt; record results in public-tests/RESULTS.csv.
 The source tools in the package root retain their original sensitive controls.
-public-tests contains the focused alpha's fixtures and its own README/manifest.
+public-tests contains the current focused alpha's matching tools and fixtures and its own README/manifest.
 Its instructions apply to that subfolder, not the complete package layout.
 Legacy PDFs and spreadsheets in the full package remain unreconciled and are
 provided as review material. The HTML guides are the current reviewed text.

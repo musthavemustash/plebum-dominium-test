@@ -20,7 +20,7 @@ if(req.mode==='dice'){
  // Use configuration statements directly from the shipped UI controller.
  const config=parts[1].match(/  openpgp\.config\.[^;]+;/g);if(!config||config.length!==4)throw Error('configuration extraction');
  vm.runInContext(config.join('\n'),c);const pgp=c.openpgp;
- if(req.mode==='encrypt')process.stdout.write(await pgp.encrypt({message:await pgp.createMessage({text:req.text}),passwords:[req.password],format:'armored'}));
- else process.stdout.write((await pgp.decrypt({message:await pgp.readMessage({armoredMessage:req.text}),passwords:[req.password],format:'utf8'})).data);
+ if(req.mode==='encrypt')process.stdout.write(await pgp.encrypt({message:await pgp.createMessage({binary:new TextEncoder().encode(req.text)}),passwords:[req.password],format:'armored'}));
+ else process.stdout.write(Buffer.from((await pgp.decrypt({message:await pgp.readMessage({armoredMessage:req.text}),passwords:[req.password],format:'binary'})).data));
 }
 })().catch(e=>{console.error(e.message);process.exitCode=1;});

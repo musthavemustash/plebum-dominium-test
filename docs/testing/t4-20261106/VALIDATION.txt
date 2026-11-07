@@ -1,0 +1,20 @@
+AUTOMATED LOCAL VALIDATION — 2026.11.06-t4.1
+Environment: Linux, GnuPG 2.4.4; Node 24.22.1 with WebCrypto.
+The embedded OpenPGP.js library is unchanged from the uploaded HTML.
+Browser application scripts executed with a DOM/FileReader test harness,
+including simulated textarea newline normalization. This is not an actual
+Windows browser UI test or a physical Tails test.
+
+PASS: Python/GPG exact round trips for LF+Unicode+final newline,
+CRLF+leading/trailing spaces+blank lines, UTF-8 BOM, whitespace-only payload.
+PASS: Python→embedded OpenPGP.js browser handlers, all four fixtures.
+PASS: browser handlers→Python/GPG, all four fixtures.
+PASS: browser exact download bytes, including CRLF and BOM.
+PASS: browser wrong-password and corrupted-data rejection, no output/download.
+PASS: Python wrong-password and corrupted-data rejection, no output file.
+PASS: Python command-line input/output and overwrite refusal.
+PASS: browser pasted edit invalidates raw file buffer.
+PASS: simulated network reconnection clears raw/output state and blocks downloads.
+
+Windows Python 3.15 / GnuPG 2.5.24 and actual target-browser checks remain
+for the tester. The POSIX-only pass_fds call was removed entirely.
