@@ -1,0 +1,27 @@
+/* Optional testing belongs after the guide content, before onward navigation. */
+.page-test-module{margin:2rem 0;border:1px solid var(--line);border-radius:14px;background:var(--card);font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:14px;line-height:1.65;color:var(--ink);overflow-wrap:anywhere}
+.page-test-module>summary{cursor:pointer;display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:1.1rem 1.25rem;list-style:none;border-radius:14px}
+.page-test-module>summary::-webkit-details-marker{display:none}
+.page-test-module>summary::after{content:"+";margin-left:auto;flex:none;color:var(--accent);font-size:24px;line-height:1}
+.page-test-module[open]>summary::after{content:"−"}
+.page-test-module[open]>summary{border-bottom:1px solid var(--line);border-radius:14px 14px 0 0}
+.ptm-heading{font-weight:700;font-size:16px}
+.ptm-count{color:var(--muted);font-size:12px}
+.ptm-body{padding:1.25rem}
+.page-test-module p{max-width:none;margin:0 0 .75rem}
+.ptm-intro{color:var(--muted)}
+.ptm-public{border-left:3px solid var(--accent);padding:.65rem .8rem;background:var(--accent-soft);border-radius:0 6px 6px 0}
+.ptm-tasks{list-style:none;margin:1.2rem 0;padding:0;counter-reset:page-test}
+.ptm-tasks>li{counter-increment:page-test;border-top:1px solid var(--line);padding:1rem 0 .35rem}
+.ptm-task-id{font-size:11px;letter-spacing:.03em;color:var(--muted)}
+.ptm-task-id::before{content:counter(page-test) " / ";font-family:monospace}
+.ptm-task-id code,.ptm-build code{font-family:"IBM Plex Mono",Consolas,monospace;background:transparent;color:inherit;padding:0;word-break:break-word}
+.ptm-try{font-size:15px;font-weight:600}
+.ptm-evidence,.ptm-build,.ptm-form-note,.ptm-offline{color:var(--muted);font-size:12px}
+.ptm-report-note{padding-top:1rem;border-top:1px solid var(--line)}
+.ptm-report{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:44px;padding:.7rem 1rem;margin:.25rem 0 .8rem;border:1px solid var(--accent);border-radius:8px;background:var(--accent);color:var(--btn-ink,#fff);font-weight:600;text-decoration:none;line-height:1.4}
+.ptm-report:hover{text-decoration:underline;text-underline-offset:3px}
+.page-test-module :focus-visible{outline:3px solid var(--accent);outline-offset:4px}
+.ptm-offline{margin-bottom:0!important}
+@media(max-width:640px){.page-test-module>summary{padding:1rem;gap:8px}.ptm-heading{font-size:15px}.ptm-body{padding:1rem}.ptm-report{width:100%;text-align:center}.ptm-count{font-size:11px}}
+@media print{.page-test-module{display:none!important}}
