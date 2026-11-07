@@ -360,6 +360,12 @@
         "try": "Explain the coordinator, PSBT, and two distinct signing keys in the documented rehearsal.",
         "expected": "The coordinator can remain watch-only, a PSBT is not a seed backup, and the configured threshold requires two distinct signing keys.",
         "evidence": "Report unclear roles or ordering using a paper walkthrough or public examples."
+      },
+      {
+        "id": "P-SIGNING-03",
+        "try": "Walk through the recovery exercise using fictional TEST ONLY records, including a missing seed copy or missing wallet map. Identify each intended signing pair and the boundary at the end of rehearsal.",
+        "expected": "Recovery uses preserved test backups and complete configuration; intended signer pairs are checked separately, and disposable keys are never reused for an intended mainnet wallet.",
+        "evidence": "Report missing recovery dependencies, an unclear stop point, or confusion between rehearsal and the later backup steps; share no real wallet data."
       }
     ]
   },
@@ -425,9 +431,9 @@
       },
       {
         "id": "P-TESTNET-02",
-        "try": "List records and checks needed to complete a fictional recovery rehearsal.",
-        "expected": "The plan includes full configuration, intended recovery key pairs, and independent wallet and transaction checks; an address match alone is insufficient.",
-        "evidence": "Report unclear dependencies or omitted checks. A paper walkthrough is sufficient."
+        "try": "Use fictional TEST ONLY records to check what must be saved before leaving this setup page. Follow the link to Practice spending and recovery.",
+        "expected": "Separate temporary seed records, all three cosigners’ public details, the complete wallet configuration, and the selected test network are recorded; spending and recovery continue on the next sheet.",
+        "evidence": "Report missing records, an unclear readiness check, or a wrong destination. A paper walkthrough is sufficient."
       }
     ]
   },
