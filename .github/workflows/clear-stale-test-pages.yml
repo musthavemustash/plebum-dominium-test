@@ -1,0 +1,42 @@
+name: Clear stale test Pages deployment
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/clear-stale-test-pages.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+concurrency:
+  group: clear-stale-test-pages
+  cancel-in-progress: false
+jobs:
+  clear-stale:
+    if: github.repository == 'musthavemustash/plebum-dominium-test'
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Cancel the previously timed-out test deployment
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 - <<'PY'
+          import json, os, time, urllib.request
+          base = 'https://api.github.com/repos/musthavemustash/plebum-dominium-test/pages/deployments/e5f0d76393a8c6b02a081516c807bfc0ec3a9dc1'
+          headers = {'Authorization': 'Bearer ' + os.environ['GH_TOKEN'], 'Accept': 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28'}
+          def request(suffix, method='GET'):
+              req = urllib.request.Request(base + suffix, headers=headers, method=method)
+              with urllib.request.urlopen(req, timeout=20) as response:
+                  data = response.read()
+                  return json.loads(data) if data else {}
+          print('Status before cancellation:', request('/status'))
+          print('Cancellation response:', request('/cancel', 'POST'))
+          for attempt in range(6):
+              state = request('/status')
+              print('Status after cancellation:', state, flush=True)
+              if state.get('status') in ('cancelled', 'canceled', 'succeed', 'succeeded', 'failure', 'failed', 'deployment_failed'):
+                  break
+              if attempt < 5: time.sleep(5)
+          else:
+              raise SystemExit('GitHub still reports this deployment active after cancellation; do not start another deployment.')
+          PY
