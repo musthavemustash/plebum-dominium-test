@@ -29,6 +29,23 @@ PATHS = {
  ('fire-card','Recovery card','fire-card')]}}
 
 def href(path, slug): return BASE + 'paths/' + path + '/' + slug + '.html'
+
+def compact_row(row):
+ # Keep the original link text for desktop, and provide a short mobile label
+ # with the complete destination title. The mobile scrolling strip is separate.
+ if 'data-page-controls' in row:
+  return row
+ for kind, direction in [('prev', '← Previous'), ('next', 'Next →')]:
+  def wrap(m):
+   original = m[2]
+   title = unescape(re.sub(r'<[^>]+>', '', original)).strip()
+   title = re.sub(r'^←\s*', '', title)
+   title = re.sub(r'^\d+\s*·\s*', '', title)
+   title = re.sub(r'\s*→$', '', title)
+   return m[1]+'<span class="pager-original">'+original+'</span><span class="pager-label">'+direction+'</span><span class="pager-title">'+escape(title)+'</span>'+m[3]
+  row = re.sub(r'(<a class="prevnext '+kind+r'"[^>]*>)(.*?)(</a>)', wrap, row, flags=re.S)
+ return row.replace('class="prevnext-row"', 'class="prevnext-row" data-page-controls', 1)
+
 def render(path, step):
  info = PATHS[path]; steps = info['steps']; slug, title, source = step; idx = steps.index(step)
  s = (DOCS / 'handouts' / (source+'.html')).read_text()
@@ -52,7 +69,7 @@ def render(path, step):
   if i >= len(steps): return '<a class="'+cls+'" href="'+BASE+'paths/'+path+'/index.html">Review this path →</a>'
   return '<a class="'+cls+'" rel="'+rel+'" href="'+href(path,steps[i][0])+'">'+('← ' if rel=='prev' else '')+str(i+1)+' · '+escape(steps[i][1])+(' →' if rel=='next' else '')+'</a>'
  top = '<nav class="step-banner" aria-label="'+position+'">'+navlink(idx-1,'step-nav','prev')+'<span class="step-pos"><strong>'+position+'</strong> · '+escape(title)+'</span>'+navlink(idx+1,'step-nav','next')+'</nav>'
- bottom = '<nav class="prevnext-row" aria-label="Previous and next sheets">'+navlink(idx-1,'prevnext prev','prev')+'<span class="step-pos-bottom">'+position+'</span>'+navlink(idx+1,'prevnext next','next')+'</nav>'
+ bottom = compact_row('<nav class="prevnext-row" aria-label="Previous and next sheets">'+navlink(idx-1,'prevnext prev','prev')+'<span class="step-pos-bottom">'+position+'</span>'+navlink(idx+1,'prevnext next','next')+'</nav>')
  if '<nav class="step-banner"' in s:
   s = re.sub(r'<nav class="step-banner".*?</nav>',top,s,flags=re.S)
  else:
@@ -78,7 +95,7 @@ def render(path, step):
   for name in {t[0],t[2],t[0]+'-one',t[0]+'-easy'}:
    s = s.replace(BASE+'handouts/'+name+'.html',href(path,t[0]))
  s = s.replace('href="'+BASE+'choose-path.html"', 'href="'+href(path,'choose-path')+'"') if idx > 0 else s
- s = re.sub(r'main\.js\?v=[A-Za-z0-9_-]+', 'main.js?v=rehearsal1', s)
+ s = re.sub(r'main\.js\?v=[A-Za-z0-9_-]+', 'main.js?v=pagebuttons1', s)
  # Keep previously reviewed route-specific demo and recovery explanations.
  overrides = ROOT / 'scripts/reviewed_route_overrides.json'
  if overrides.exists():

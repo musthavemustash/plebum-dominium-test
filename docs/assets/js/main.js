@@ -108,12 +108,12 @@
       var b = document.createElement("button");
       b.className = "prevnext";
       b.type = "button";
-      b.innerHTML = "<span>✓ Mark this sheet done</span>";
+      b.innerHTML = "<span>✓ Mark as read</span>";
       b.addEventListener("click", function () {
         done[slug] = true;
         try { localStorage.setItem(KEY, JSON.stringify(done)); } catch (e) {}
         here.parentElement.classList.add("done");
-        b.innerHTML = "<span>✓ Done. Nice work.</span>";
+        b.innerHTML = "<span>✓ Marked as read</span>";
         b.disabled = true;
       });
       row.appendChild(b);
