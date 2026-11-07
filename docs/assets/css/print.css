@@ -4,7 +4,7 @@
 html, body { background: #fff !important; color: #000 !important; font-size: 11pt; line-height: 1.5; }
 
 /* hide everything that is not sheet content */
-.site-header, .sidebar, .scrim, .toc-col, .mobilebar, .site-footer,
+.news-ticker, .site-header, .sidebar, .scrim, .toc-col, .mobilebar, .site-footer,
 .progress, .prevnext-row, .copy-btn, .keyring,
 .step-banner { display: none !important; }
 /* the sheet overview card prints: time/difficulty/needs belong on paper */

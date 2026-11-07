@@ -20,7 +20,7 @@
 <meta name="twitter:description" content="Encrypt your wallet map (the descriptor) with GPG AES-256 and a dice passphrase, so the map alone tells a finder nothing.">
 <meta name="twitter:image" content="https://plebumbtc.io/assets/img/og-banner.png">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "HowTo", "name": "Protect the wallet map", "description": "Encrypt your wallet map (the descriptor) with GPG AES-256 and a dice passphrase, so the map alone tells a finder nothing.", "step": [{"@type": "HowToStep", "position": 1, "name": "Get the descriptor tool", "url": "https://plebumbtc.io/handouts/encryption.html#get-the-descriptor-tool"}, {"@type": "HowToStep", "position": 2, "name": "Make a passphrase with dice", "url": "https://plebumbtc.io/handouts/encryption.html#make-a-passphrase-with-dice"}, {"@type": "HowToStep", "position": 3, "name": "Step 1 · Boot Tails. Copy the tool and the map.", "url": "https://plebumbtc.io/handouts/encryption.html#step-1-boot-tails-copy-the-tool-and-the-map"}, {"@type": "HowToStep", "position": 4, "name": "Step 2 · Open the tool. Encrypt the map.", "url": "https://plebumbtc.io/handouts/encryption.html#step-2-open-the-tool-encrypt-the-map"}, {"@type": "HowToStep", "position": 5, "name": "Step 3 · Copy the locked file. Delete the plain one.", "url": "https://plebumbtc.io/handouts/encryption.html#step-3-copy-the-locked-file-delete-the-plain-one"}, {"@type": "HowToStep", "position": 6, "name": "Step 4 · Write the passphrase on paper. Twice.", "url": "https://plebumbtc.io/handouts/encryption.html#step-4-write-the-passphrase-on-paper-twice"}, {"@type": "HowToStep", "position": 7, "name": "Step 5 · Prove it opens. Check the first address.", "url": "https://plebumbtc.io/handouts/encryption.html#step-5-prove-it-opens-check-the-first-address"}]}</script>
-<link rel="stylesheet" href="/plebum-dominium-test/assets/css/main.css?v=mobile-nav3">
+<link rel="stylesheet" href="/plebum-dominium-test/assets/css/main.css?v=newsticker1">
 <link rel="stylesheet" href="/plebum-dominium-test/assets/css/guide-steps.css?v=pagebuttons1">
 <link rel="stylesheet" href="/plebum-dominium-test/assets/css/print.css" media="print">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -46,6 +46,17 @@
 <div class="progress" aria-hidden="true"><span></span></div>
 
 
+
+<!-- news-ticker -->
+<nav class="news-ticker" aria-label="Latest news">
+  <a class="ticker-label" href="/plebum-dominium-test/news.html">News</a>
+  <span class="ticker-price" id="ticker-price" hidden></span>
+  <div class="ticker-viewport"><div class="ticker-track">
+    <span class="ticker-set"><a class="ticker-item ticker-action" href="/plebum-dominium-test/new-to-bitcoin.html">New to Bitcoin? Start here →</a><span class="ticker-sep" aria-hidden="true">·</span><a class="ticker-item" href="/plebum-dominium-test/news.html#binance-outflows">Binance: suspected exploit drains billions from hot wallets <span class="ticker-date">Oct 2026</span></a><span class="ticker-sep" aria-hidden="true">·</span><a class="ticker-item" href="/plebum-dominium-test/news.html#coinbase-amplitude">Coinbase vendor breach exposes customer contact data <span class="ticker-date">Oct 2026</span></a><span class="ticker-sep" aria-hidden="true">·</span><a class="ticker-item" href="/plebum-dominium-test/news.html#keystone-breach">Keystone breach exposes customer shipping addresses <span class="ticker-date">Oct 2026</span></a><span class="ticker-sep" aria-hidden="true">·</span><a class="ticker-item" href="/plebum-dominium-test/news.html#sbi-breach">State Bank of India: 3,897 customer records on the dark web <span class="ticker-date">Oct 2026</span></a><span class="ticker-sep" aria-hidden="true">·</span><a class="ticker-item" href="/plebum-dominium-test/news.html#south-korea-banks">South Korea: hacking incidents at seven banks linked to one attacker <span class="ticker-date">Oct 2026</span></a><span class="ticker-sep" aria-hidden="true">·</span><a class="ticker-item" href="/plebum-dominium-test/news.html#two-hardware-failures">Two hardware failures in one year <span class="ticker-date">Oct 2026</span></a><span class="ticker-sep" aria-hidden="true">·</span><a class="ticker-item" href="/plebum-dominium-test/news.html#russia-off-ramp">Russia closes the exchange off-ramp <span class="ticker-date">Oct 2026</span></a><span class="ticker-sep" aria-hidden="true">·</span></span>
+    <span class="ticker-set" aria-hidden="true"><a tabindex="-1" class="ticker-item ticker-action" href="/plebum-dominium-test/new-to-bitcoin.html">New to Bitcoin? Start here →</a><span class="ticker-sep" aria-hidden="true">·</span><a tabindex="-1" class="ticker-item" href="/plebum-dominium-test/news.html#binance-outflows">Binance: suspected exploit drains billions from hot wallets <span class="ticker-date">Oct 2026</span></a><span class="ticker-sep" aria-hidden="true">·</span><a tabindex="-1" class="ticker-item" href="/plebum-dominium-test/news.html#coinbase-amplitude">Coinbase vendor breach exposes customer contact data <span class="ticker-date">Oct 2026</span></a><span class="ticker-sep" aria-hidden="true">·</span><a tabindex="-1" class="ticker-item" href="/plebum-dominium-test/news.html#keystone-breach">Keystone breach exposes customer shipping addresses <span class="ticker-date">Oct 2026</span></a><span class="ticker-sep" aria-hidden="true">·</span><a tabindex="-1" class="ticker-item" href="/plebum-dominium-test/news.html#sbi-breach">State Bank of India: 3,897 customer records on the dark web <span class="ticker-date">Oct 2026</span></a><span class="ticker-sep" aria-hidden="true">·</span><a tabindex="-1" class="ticker-item" href="/plebum-dominium-test/news.html#south-korea-banks">South Korea: hacking incidents at seven banks linked to one attacker <span class="ticker-date">Oct 2026</span></a><span class="ticker-sep" aria-hidden="true">·</span><a tabindex="-1" class="ticker-item" href="/plebum-dominium-test/news.html#two-hardware-failures">Two hardware failures in one year <span class="ticker-date">Oct 2026</span></a><span class="ticker-sep" aria-hidden="true">·</span><a tabindex="-1" class="ticker-item" href="/plebum-dominium-test/news.html#russia-off-ramp">Russia closes the exchange off-ramp <span class="ticker-date">Oct 2026</span></a><span class="ticker-sep" aria-hidden="true">·</span></span>
+  </div></div>
+</nav>
+<!-- /news-ticker -->
 
 <header class="site-header">
   <button class="menu-btn" aria-label="Open guide navigation" aria-expanded="false">☰</button>
@@ -120,7 +131,7 @@
   <p class="donate-addr"><code>bc1qcmvj7c79gyjrcg3zu5pxnp4mav54846epktyma4n6v8jsud2fhqsczmngw</code></p>
 </footer>
 
-<script src="/plebum-dominium-test/assets/js/main.js?v=pagebuttons1" defer></script>
+<script src="/plebum-dominium-test/assets/js/main.js?v=newsticker1" defer></script>
 <script src="/plebum-dominium-test/assets/js/guide-demos.js?v=phasea1" defer></script>
 <script data-goatcounter="https://plebumbtc.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <div id="newbie-banner" class="newbie-banner" role="dialog" aria-label="New to Bitcoin?" hidden>

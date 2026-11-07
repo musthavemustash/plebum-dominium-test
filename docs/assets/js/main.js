@@ -220,24 +220,37 @@ document.querySelectorAll(".btn-onchain").forEach(function (btn) {
   document.addEventListener("keydown", dismiss);
 })();
 
-/* Ticker price: free mempool.space fetch, no key, no account, no user
-   data asked for. Loads once, then refreshes every minute. On any
-   failure the readout stays hidden and the bar looks as it did before. */
+/* Ticker price: existing mempool.space feed, refreshed once a minute.
+   No request from local/offline guides. Hide failed or invalid quotes so a
+   previously displayed price is never presented as a fresh result. */
 (function () {
   var el = document.getElementById("ticker-price");
-  if (!el) return;
+  if (!el || window.PD_OFFLINE_ROOT || !/^https?:$/.test(location.protocol)) return;
+  function hide() { el.hidden = true; el.textContent = ""; }
   function load() {
-    fetch("https://mempool.space/api/v1/prices")
-      .then(function (r) { return r.json(); })
+    if (navigator.onLine === false) { hide(); return; }
+    var controller = new AbortController();
+    var timeout = setTimeout(function () { controller.abort(); }, 10000);
+    return fetch("https://mempool.space/api/v1/prices", {
+      signal: controller.signal, credentials: "omit", referrerPolicy: "no-referrer"
+    })
+      .then(function (r) {
+        if (!r.ok) throw new Error("Price unavailable");
+        return r.json();
+      })
       .then(function (p) {
-        if (!p || typeof p.USD !== "number") return;
+        if (!p || !Number.isFinite(p.USD) || p.USD <= 0) throw new Error("Invalid price");
         el.textContent = "BTC $" + p.USD.toLocaleString("en-US");
+        el.title = "BTC / USD · mempool.space · updates every minute";
         el.hidden = false;
       })
-      .catch(function () { /* stay hidden */ });
+      .catch(hide)
+      .finally(function () { clearTimeout(timeout); });
   }
   load();
   setInterval(load, 60000);
+  window.addEventListener("offline", hide);
+  window.addEventListener("online", load);
 })();
 
 /* ---------- Ask the guide: header search over a build-time index ----------
