@@ -22,8 +22,8 @@ PATHS = {
  ('terms','Terms','terms'), ('threat-model','Before you begin','threat-model'), ('choose-path','Pick your path','../choose-path'),
  ('checklist','Checklist','checklist'), ('airgap','Two boots','airgap'),
  ('verify','Check the files','verify'), ('dice','Make three keys','dice'),
- ('sparrow','Build the 2-of-3','sparrow'), ('signing','Practice spend','signing'),
- ('titanium','Metal and the map','titanium'), ('testnet','Rehearse on testnet','testnet'),
+ ('sparrow','Build the 2-of-3','sparrow'), ('testnet','Set up a test wallet','testnet'),
+ ('signing','Practice spending and recovery','signing'), ('titanium','Back up your keys and wallet map','titanium'),
  ('encryption','Protect the wallet map','encryption'), ('inheritance','If I am gone','inheritance'),
  ('faq','If you get stuck','faq'), ('briefing','Tough questions','briefing'),
  ('fire-card','Recovery card','fire-card')]}}
@@ -78,7 +78,7 @@ def render(path, step):
   for name in {t[0],t[2],t[0]+'-one',t[0]+'-easy'}:
    s = s.replace(BASE+'handouts/'+name+'.html',href(path,t[0]))
  s = s.replace('href="'+BASE+'choose-path.html"', 'href="'+href(path,'choose-path')+'"') if idx > 0 else s
- s = s.replace('main.js?v=whytiers7','main.js?v=paths1')
+ s = re.sub(r'main\.js\?v=[A-Za-z0-9_-]+', 'main.js?v=rehearsal1', s)
  # Keep previously reviewed route-specific demo and recovery explanations.
  overrides = ROOT / 'scripts/reviewed_route_overrides.json'
  if overrides.exists():
