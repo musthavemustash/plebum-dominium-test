@@ -147,3 +147,12 @@ Added test-the-site.html with seven concrete tasks, expected results, PASS/FAIL/
 ## November 5 — public testing alpha
 
 Published a separate, versioned tool-test ZIP with public fixtures, expected outputs, package checks and feedback instructions. Downloads now explicitly welcomes testing while retaining the real-wallet restriction. Source tool bytes and production are unchanged. Packaging and automated tool checks pass; six existing generated-route/index mismatches remain unchanged. See [PUBLIC_ALPHA_2026-11-05.md](PUBLIC_ALPHA_2026-11-05.md) for evidence and limitations.
+
+## November 7 — visual file-verification guide
+
+- Integrated the approved diagram preview into canonical Check the files, preserving site navigation and both custody paths. The three guide views explain the source/signer/contents checkpoints, the four example verification files, and stop/continue outcomes.
+- Kept examples explicitly illustrative, including full 64-character hashes and an interactive mismatch. Publisher-key identity precedes reliance on signed checksums. Direct-file signatures remain a documented alternative; no success state certifies software safety or custody readiness.
+- Scoped CSS and JavaScript to this sheet. Retained existing theme controls, added keyboard tab navigation, static instructions without JavaScript, paper-friendly styles, and separated public kit downloads from upstream verification instructions.
+- Regenerated both route copies and search indexes. Local checks pass for 96 HTML pages, 28 route pages plus two overviews, and extracted complete/tools-only packages (202/71 checksum entries before the publication workflow refreshes alpha metadata). Offline checks preserve sensitive-tool bytes and close local links; diagram assets are local.
+- Browser QA exercised guide views, file-role selection, mismatch and unknown-key outcomes, light/dark themes, both route navigation states, and a 390px mobile frame. Print styles and no-JavaScript fallbacks were source-reviewed, not physical print or device tests.
+- User authorized test-site deployment only. Production is separate and unchanged. Main's existing publication workflow rebuilds current download packages and deploys Pages after merge; do not claim deployment until that run completes successfully.
