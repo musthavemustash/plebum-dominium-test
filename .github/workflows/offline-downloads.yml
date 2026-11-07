@@ -1,3 +1,4 @@
+# Fresh publication from current main; approved homepage source unchanged.
 name: Publish offline tester downloads
 on:
   push:
