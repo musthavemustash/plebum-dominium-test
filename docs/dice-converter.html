@@ -319,6 +319,7 @@ if(typeof module!=='undefined') module.exports={sha256:sha256,bytesToBits:bytesT
   "use strict";
   var rolls=[]; // {face, bits|null}
   var pastedBits=null;
+  var netBlocked=true; // blocked until a local file and an explicit offline signal are observed
   function $(id){return document.getElementById(id);}
   function bits(){return rolls.filter(function(r){return r.bits;}).map(function(r){return r.bits;}).join('');}
   function pairs(){return rolls.filter(function(r){return r.bits;}).length;}
@@ -341,7 +342,10 @@ if(typeof module!=='undefined') module.exports={sha256:sha256,bytesToBits:bytesT
     $('bits').textContent=grouped.trim();
     var done=b.length>=256;
     $('done256').hidden=!done;
-    if(done && !pastedBits) showWords(bitsToWords(b));
+    if(!pastedBits){
+      if(done) showWords(bitsToWords(b));
+      else $('words').innerHTML='';
+    }
   }
   function showWords(words){
     var ol=$('words'); ol.innerHTML='';
@@ -433,8 +437,6 @@ if(typeof module!=='undefined') module.exports={sha256:sha256,bytesToBits:bytesT
       li('good','No words recorded above to compare against. This list stands on its own check.', .18);
     }
   });
-  netBlocked=true; // blocked until a local file and an explicit offline signal are observed
-
   async function renderNet(){
     var pill=$('online-pill'), dot=$('online-dot'), word=$('online-word'), block=$('netblock');
     if(pill){ pill.hidden=false; dot.classList.remove('safe'); word.textContent='Checking\u2026'; }
