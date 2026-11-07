@@ -95,7 +95,7 @@ def render(path, step):
   for name in {t[0],t[2],t[0]+'-one',t[0]+'-easy'}:
    s = s.replace(BASE+'handouts/'+name+'.html',href(path,t[0]))
  s = s.replace('href="'+BASE+'choose-path.html"', 'href="'+href(path,'choose-path')+'"') if idx > 0 else s
- s = re.sub(r'main\.js\?v=[A-Za-z0-9_-]+', 'main.js?v=pagebuttons1', s)
+ s = re.sub(r'main\.js\?v=[A-Za-z0-9_-]+', 'main.js?v=newsticker1', s)
  # Keep previously reviewed route-specific demo and recovery explanations.
  overrides = ROOT / 'scripts/reviewed_route_overrides.json'
  if overrides.exists():

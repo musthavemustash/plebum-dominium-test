@@ -182,10 +182,16 @@ body {
   font-size: 0.82rem; color: var(--muted); white-space: nowrap;
 }
 .ticker-price[hidden] { display: none; }
-.ticker-viewport { overflow: hidden; flex: 1; display: flex; align-items: center; }
+.ticker-viewport { overflow-x: auto; overflow-y: hidden; min-width: 0; flex: 1; display: flex; align-items: center; scrollbar-width: none; }
+.ticker-viewport::-webkit-scrollbar { display: none; }
 /* About 20 seconds per headline; stretch when headlines are added. */
 .ticker-track { display: flex; flex: none; animation: tickerScroll 140s linear infinite; }
 .news-ticker:hover .ticker-track { animation-play-state: paused; }
+/* Keep every headline reachable when tabbing, swiping, or motion is disabled. */
+.news-ticker:focus-within .ticker-track { animation: none; transform: none; }
+.news-ticker:focus-within .ticker-set[aria-hidden="true"],
+html[data-motion="off"] .ticker-set[aria-hidden="true"] { display: none; }
+.ticker-item:focus-visible, .ticker-label:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
 .ticker-set { display: flex; align-items: center; flex: none; }
 .ticker-set > * { margin-right: 1.5rem; }
 .ticker-item {
@@ -199,8 +205,6 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .ticker-track { animation: none; }
   .ticker-set[aria-hidden="true"] { display: none; }
-  .ticker-set .ticker-item ~ .ticker-item ~ .ticker-item { display: none; }
-  .ticker-set .ticker-sep { display: none; }
 }
 
 /* ---------- layout ---------- */
