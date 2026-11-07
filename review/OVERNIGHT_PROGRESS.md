@@ -175,3 +175,11 @@ Published a separate, versioned tool-test ZIP with public fixtures, expected out
 - Checks passed for 96 static pages, all route/navigation edges and runtime parity, all 61 page-testing panels and offline equivalents, both offline archive/link/preserved-tool checks, JavaScript syntax and whitespace. Independent content review found no remaining blocker after the record-retention fix.
 - Browser QA followed Next from test-wallet setup through spending/recovery, durable backups and map protection. The updated labels and step positions were readable on desktop and a 390px frame. These are content/navigation checks, not executed wallet transactions or physical-device recovery tests.
 - Deployment authorized for the test site only; final source stamp and offline packages are refreshed by the publication workflow after merge.
+
+## November 7 — simpler tester-page introduction
+
+- Made Before you begin the first section after the page title. Removed the early action-button stacks and jump-link row; preparation now uses inline links and distinguishes website feedback from tool testing.
+- Wrapped each T1–T5 track and the stage update in separate native disclosures, all closed by default. General website feedback also starts collapsed. Preserved every original track Do/Report body; stage-update findings and evidence links remain available below the reporting section.
+- Kept one primary reporting action near the bottom and repaired the contents links, including the old missing offline anchor. Native controls work without JavaScript and have visible keyboard focus.
+- Validation passed for 96 static pages, both offline archive/link/preserved-tool checks, exact track-content preservation, first-section order, one primary action and closed disclosure states in both source and the complete offline ZIP. Mobile browser QA confirmed the first section, default closed states and keyboard expansion of T4 and the stage update.
+- The cleaner mobile-navigation design is a separate downloadable preview; it is not included in this page-only test-site deployment. Production is unchanged.
