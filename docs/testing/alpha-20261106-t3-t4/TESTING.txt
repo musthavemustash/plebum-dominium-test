@@ -1,0 +1,54 @@
+PUBLIC TESTS ONLY — alpha-20261106-t3-t4
+
+Before each test, record release ID, OS/browser versions, date and file hashes.
+Disconnect the test machine before opening HTML tools via file://. An offline
+indicator is only a browser signal, not proof of network isolation. Use the OS
+network controls too. Leave unsupported or unperformed checks as NOT TESTED.
+
+T1 — Package integrity
+Run python3 verify_package.py (Windows: py verify_package.py).
+Expected: PASS for every listed file. Stop on a mismatch and download again.
+The checker does not authenticate the download or run any custody tool.
+
+T2 — Local/offline safeguards
+On a connected machine, open the local HTML tools without entering any inputs.
+Expected: sensitive operations blocked. On an offline machine, open local copies.
+Expected: tools permit public-fixture tests only when the offline signal agrees.
+If controls stay blocked, record the environment; do not bypass the safeguard.
+If possible, reconnect after a public-fixture test. Expected: sensitive controls
+block and stale sensitive output clears. Never perform this with real data.
+
+T3 — Dice converter known-answer output
+Paste fixtures/zeros-256.txt (256 zero bits) into the HTML binary-input box.
+Expected: 24 words: 'abandon' repeated 23 times, followed by 'art'.
+Repeat using python3 bip39_dice_converter.py; outputs must match.
+Then use fixtures/ones-256.txt: 'zoo' repeated 23 times, followed by 'vote'.
+Try 255 bits and a string containing x. Expected: rejection, no valid output.
+The eight reference entropy/mnemonic pairs are in fixtures/bip39-vectors.json;
+hex entropy must be converted to exactly 256 binary digits before input.
+These are publicly known examples. Never fund a wallet derived from them.
+
+T4 — Wallet-map encryption/decryption
+For exact file-based Windows commands, read RETEST-WINDOWS.txt. Its fixture
+uses password public-test-only; the fixture below uses password.txt instead.
+Use fixtures/public-map.txt and the disposable password in fixtures/password.txt.
+Encrypt, save the result, close/reopen, and decrypt. Expected: exact original
+text, including Unicode and line breaks. Ciphertext bytes may differ per run.
+Try a wrong password and a truncated COPY of the ciphertext. Expected: failure
+without plaintext. Preserve your original fixture and encrypted test file.
+Where GnuPG is available, cross-check HTML-encrypted text in the Python tool and
+Python-encrypted text in the HTML tool. Report each direction separately.
+
+T5 — Physical Tails (experienced volunteers)
+Record Tails version and actual hardware. Boot with networking disabled, check
+OS network state, open the extracted local HTML files and repeat T2–T4.
+Record missing dependencies and browser restrictions. Close the tools and reboot;
+record what remains on the removable drive and whether tools restart correctly.
+Do not infer secure erasure or full recovery from a successful restart.
+
+REPORTING
+Use one response per task/failure. Include release, task ID, PASS/FAIL/NOT TESTED,
+environment, steps, expected/actual result and whether it repeats. The existing
+form accepts these details in its description; use general feedback if no tool
+task is listed. Never submit private wallet data or credentials.
+https://docs.google.com/forms/d/e/1FAIpQLSfOkY3FrZmZpIVro5oxWLy_YvU7U-1BOrL3KB9VCI3jXjad2Q/viewform

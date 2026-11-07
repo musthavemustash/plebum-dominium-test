@@ -1,0 +1,101 @@
+{
+  "release": "alpha-20261106-t3-t4",
+  "status": "PUBLIC_TEST_ONLY",
+  "custody_approved": false,
+  "source_commit": "eb599c767752426b2c8e440bd320669eadbc9ed4",
+  "archive": {
+    "name": "plebum-tools-alpha-20261106-t3-t4.zip",
+    "sha256": "9e65a5578d2c321ff5245da2b4208c2dce40af94a0acc604630ac98fe3b0298c",
+    "size": 228993
+  },
+  "files": {
+    "README.txt": {
+      "sha256": "45dd37dd3be4e68ca8c8976342799dda56886ba76ddd40da9aee66d1198f166b",
+      "size": 1797
+    },
+    "RESULTS.csv": {
+      "sha256": "d9211ffc3962a2f01345c1165889463460f7c861dbdfb194d6c101754556a566",
+      "size": 306
+    },
+    "RETEST-WINDOWS.txt": {
+      "sha256": "70e76534a4ae0755586050c1f5d334a4a23aea0c714aece467abe7fcb9acdfc5",
+      "size": 4118
+    },
+    "SHA256SUMS.txt": {
+      "sha256": "69ea8b3d696b6e482365bdd22410376f48351c35a0d737cc1ee75df2c4792507",
+      "size": 1806
+    },
+    "SOURCE.json": {
+      "sha256": "517a8c2e10b07d7313abc8289dc3b3d9ffd6873f9676688c74b21e888615d0b2",
+      "size": 2653
+    },
+    "TESTING.txt": {
+      "sha256": "f6315a1d04428e8e8a51cbb63abe5a2c2b5e971ac3fad286567ee8da5e3f03db",
+      "size": 3336
+    },
+    "VALIDATION.txt": {
+      "sha256": "0ec55496530ebd02e02b803b743525c36f380eb1052bcab57f2ea049420102b3",
+      "size": 1203
+    },
+    "VERIFY.md": {
+      "sha256": "02aa83f7eed7d04e6762ea4de7edc04d5f770de75e26b9fec68fb5d2f20fa6f9",
+      "size": 187
+    },
+    "bip39_dice_converter.py": {
+      "sha256": "177b4b3554d7f7b5357e0f5389a3adf3e3e47daf2e0bcd44a338e56e7c72dd8d",
+      "size": 38169
+    },
+    "descriptor-tool.html": {
+      "sha256": "7cdd864c7bdeb52426de8be1ff7380591bf1bd98db961d69da0289de23e44380",
+      "size": 417638
+    },
+    "descriptor_obfuscator.py": {
+      "sha256": "deaf9a4277e775c961bbb577669ec99040d15e143c1f2838278d33c38ebbfa4a",
+      "size": 5396
+    },
+    "dice-converter.html": {
+      "sha256": "1f51da461db6d3b4e083acf6c3d6304b9f3e7bd98e1d632ff6276ba4bf2835c2",
+      "size": 44087
+    },
+    "eff_large_wordlist.txt": {
+      "sha256": "addd35536511597a02fa0a9ff1e5284677b8883b83e986e43f15a3db996b903e",
+      "size": 108800
+    },
+    "fixtures/README.md": {
+      "sha256": "dcba53ac8586a848a4cc31b3b1bbc05c1217f673f5a281d651286da0b106220d",
+      "size": 871
+    },
+    "fixtures/bip39-english.txt": {
+      "sha256": "2f5eed53a4727b4bf8880d8f3f199efc90e58503646d9ff8eff3a2ed3b24dbda",
+      "size": 13116
+    },
+    "fixtures/bip39-vectors.json": {
+      "sha256": "039d01695f3ad359d622a93c0dcbf9c0e2c8c3796172c759350fc5fd834b9b0a",
+      "size": 1995
+    },
+    "fixtures/ones-256.txt": {
+      "sha256": "cfe8dd49bb3d49755eac9c75fbb21a4144e12a3daa262799048fd480aa47d53f",
+      "size": 257
+    },
+    "fixtures/password.txt": {
+      "sha256": "21a064772b42abf505fd1f2a5d00e8c91c5d1107117384b1b955ff9308850af3",
+      "size": 17
+    },
+    "fixtures/public-map.txt": {
+      "sha256": "086af3ea787b1bb6cf9ef1049165399de6a7c41bd6d6e91b104cffa8808b4e84",
+      "size": 50
+    },
+    "fixtures/python-mnemonic-LICENSE": {
+      "sha256": "d5e3c7c62a84e80073201e2f6e5130e9e6804fa05f8ac4f8b26a13c7d3969697",
+      "size": 1084
+    },
+    "fixtures/zeros-256.txt": {
+      "sha256": "d4b23dd7605cc838226e095c3dd351fb515df1c5626b03bbce27e032e65c0f6e",
+      "size": 257
+    },
+    "verify_package.py": {
+      "sha256": "57e897505eabff185bf775f9cc013a955b23d17f78d7d5e63cb89557ef2a98d1",
+      "size": 711
+    }
+  }
+}
