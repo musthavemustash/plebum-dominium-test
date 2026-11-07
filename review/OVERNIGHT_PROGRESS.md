@@ -183,3 +183,11 @@ Published a separate, versioned tool-test ZIP with public fixtures, expected out
 - Kept one primary reporting action near the bottom and repaired the contents links, including the old missing offline anchor. Native controls work without JavaScript and have visible keyboard focus.
 - Validation passed for 96 static pages, both offline archive/link/preserved-tool checks, exact track-content preservation, first-section order, one primary action and closed disclosure states in both source and the complete offline ZIP. Mobile browser QA confirmed the first section, default closed states and keyboard expansion of T4 and the stage update.
 - The cleaner mobile-navigation design is a separate downloadable preview; it is not included in this page-only test-site deployment. Production is unchanged.
+
+## November 7 — approved compact page buttons
+
+- Applied the approved actual-page preview to the in-page Previous/Next row: a small step count, equal destination cards on one mobile row, and a modest Mark as read action below. Full destination titles wrap; desktop link text is retained.
+- Kept the existing header, sidebar, top step banner, path switch and bottom scrolling strip. Compared those HTML blocks across all 68 changed pages with the base commit: identical. main.css is unchanged, and main.js differs only in the two completion labels; completion storage and mobile navigation behavior are untouched.
+- Scoped the new mobile rules with data-page-controls, refreshed asset versions, and regenerated both guide paths. First Home and final Review this path links preserve their original targets. No preview-only scripts, automatic scroll, export rewrites or demonstration content were deployed.
+- Checks passed for 96 static pages, route edges/numbering/runtime parity, 61 live/offline page-testing panels, both offline archives and preserved tool bytes, JavaScript syntax, renderer idempotence and whitespace. Independent review found no blocker.
+- Browser QA at 390px and 320px confirmed equal-width destination cards, full title wrapping, completion behavior, Next navigation, the unchanged bottom strip and equivalent-page switching to the other path. No custody-tool implementation changed. Deployment authorized for the test site only.
