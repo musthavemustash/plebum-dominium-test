@@ -6,6 +6,7 @@ import json, re, sys
 from pathlib import Path
 from html import escape, unescape
 from urllib.parse import urljoin
+from page_test_modules import CSS, MARKER, with_page_test
 ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / 'docs'
 BASE = '/plebum-dominium-test/'
@@ -31,6 +32,10 @@ def href(path, slug): return BASE + 'paths/' + path + '/' + slug + '.html'
 def render(path, step):
  info = PATHS[path]; steps = info['steps']; slug, title, source = step; idx = steps.index(step)
  s = (DOCS / 'handouts' / (source+'.html')).read_text()
+ # Reviewed overrides match the original guide markup. Add the optional panel
+ # and its stylesheet only after those overrides and route rewrites finish.
+ s = re.sub(MARKER, '', s, flags=re.S)
+ s = s.replace('<link rel="stylesheet" href="'+CSS+'">\n', '')
  # Resolve relative assets before relocating the document.
  s = re.sub(r'(href|src)="([^"#]+)"', lambda m: m[1]+'="'+urljoin(BASE+'handouts/'+source+'.html',m[2])+'"', s)
  s = s.replace('<body ', '<body data-guide-path="'+path+'" data-guide-slug="'+slug+'" ', 1)
@@ -81,6 +86,7 @@ def render(path, step):
    if rule['from'] not in s:
     raise ValueError('Reviewed route override needs reconciliation: '+path+'/'+slug)
    s = s.replace(rule['from'], rule['to'], 1)
+ s = with_page_test(s, source.split('/')[-1], href(path,slug), DOCS)
  return s
 
 def outputs():
@@ -96,12 +102,13 @@ def outputs():
   s=re.sub(r'<span class="header-sheet">.*?</span>','<span class="header-sheet">Path overview</span>',s)
   s=re.sub(r'<span class="mobilebar-pos">.*?</span>','<span class="mobilebar-pos">Path overview</span>',s)
   s=re.sub(r'<title>.*?</title>','<title>'+escape(info['label'])+' · Plebum Dominium Test Site</title>',s)
+  s=with_page_test(s, 'path-overview', href(path,'index'), DOCS)
   out['paths/'+path+'/index.html']=s
   entries=[]
   for i,(slug,title,source) in enumerate(info['steps']):
    page=out['paths/'+path+'/'+slug+'.html']
    article=re.search(r'<article[^>]*>(.*?)</article>',page,re.S)[1]
-   article=re.sub(r'<script.*?</script>|<style.*?</style>','',article,flags=re.S)
+   article=re.sub(r'<script.*?</script>|<style.*?</style>|<!-- page-test-module -->.*?<!-- /page-test-module -->','',article,flags=re.S)
    text=unescape(re.sub(r'<[^>]+>',' ',article))
    entries.append(dict(slug=slug,num=str(i+1).zfill(2),title=title,url=href(path,slug),text=' '.join(text.split())))
   out['paths/'+path+'/search-index.json']=json.dumps(entries,ensure_ascii=False,indent=2)+'\n'
