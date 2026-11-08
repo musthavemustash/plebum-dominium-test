@@ -374,8 +374,8 @@
     "tasks": [
       {
         "id": "P-SINGLE-SIG-01",
-        "try": "Use a fictional existing wallet to follow the preparation and recovery steps without changing a device.",
-        "expected": "The guide preserves the working signer and backups, requires recovery verification before funding, and distinguishes the exact passphrase from a device PIN.",
+        "try": "Use a fictional existing wallet to follow the preparation and recovery steps without changing a wallet.",
+        "expected": "The guide uses offline software without a hardware wallet, preserves existing wallets and backups, checks metal backups and recovery before funding, and requires the exact passphrase. Optional hardware signing comes afterward.",
         "evidence": "Report unclear or risky instructions without including actual wallet details."
       },
       {
@@ -432,7 +432,7 @@
       {
         "id": "P-TESTNET-02",
         "try": "Use fictional TEST ONLY records to check what must be saved before leaving this setup page. Follow the link to Practice spending and recovery.",
-        "expected": "Separate temporary seed records, all three cosigners’ public details, the complete wallet configuration, and the selected test network are recorded; spending and recovery continue on the next sheet.",
+        "expected": "Separate temporary seed records, all three cosigners’ public details, the complete wallet configuration, and the selected test network are recorded; the backup check comes before spending and recovery. Paper rehearsal does not pass metal checks.",
         "evidence": "Report missing records, an unclear readiness check, or a wrong destination. A paper walkthrough is sufficient."
       }
     ]
@@ -551,7 +551,7 @@
       {
         "id": "P-TWO-DEVICES-02",
         "try": "Compare two fictional signers using the setup and recovery requirements. Find what must be checked before importing secrets.",
-        "expected": "The page requires policy compatibility, complete configuration for all three cosigners, and rehearsal of intended recovery pairs.",
+        "expected": "The page requires checked metal backups before optional hardware signing, existing offline-created keys, complete wallet configuration, compatible signing tools and recovery with offline software.",
         "evidence": "Report missing compatibility or record-keeping guidance without device identifiers or real wallet data."
       }
     ]

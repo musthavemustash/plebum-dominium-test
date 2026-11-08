@@ -105,14 +105,7 @@
 <p>Four things change the count: the target (128, 160, or 256 bits), whether faces are mapped to bits directly or recorded whole and hashed, whether rejected faces are skipped or rerolled on the spot, and whether dice stand alone or supplement device entropy.</p>
 <p>Coldcard and SeedSigner record whole rolls and hash them: 99 single rolls, or about 20 shakes of 5 dice at once (99 divided by 5 = 19.8). The guide maps faces to bits and skips 5s and 6s: about 39 shakes of 5 dice. A binary mapping (1 to 3 = 0, 4 to 6 = 1) gives 1 bit per roll and needs 256 rolls. Each count is right for its own method and wrong for the others. A count from one method does not transfer to another.</p>
 
-<h2>A quicker option</h2>
-
-<p>The full program builds a 2-of-3 multisig across three keys and three places. That is the main path, and it stays. Some readers are regular people who need a quick setup. For them, there is a shorter option.</p>
-<p>Generate the words with dice, the same way as the main path. Stamp the words in titanium first, so the durable backup exists before the wallet is used. Then enter the words directly into the trusted hardware wallet, on the device itself, never into a computer, phone, or website. The device then holds the wallet, and the titanium plates hold the backup.</p>
-<p>The tradeoff is plain: this option trusts one device. Putting words into a hardware wallet adds trust in its maker, firmware, chip, and shop. The full program spreads that trust across three keys and three places instead. A reader who takes the quicker option should know what they are trading for speed.</p>
-<p>The single-sig sheet covers entering words on the device itself. A companion app only opens the connection. The words still go in on the device.</p>
-
-<h2>References</h2>
+<h2>Both paths use offline software</h2><p><strong>Plebum Dominium teaches self-custody without a hardware wallet.</strong> Create and verify keys with offline software, put the backups on metal, and check that they restore the intended wallet. Use offline software to sign. Hardware wallets are optional signing tools introduced only after the metal backups are complete and checked.</p><p>The device methods above compare dice-counting rules. They are not instructions to generate Plebum Dominium keys on hardware wallets. <a href="https://musthavemustash.github.io/plebum-dominium-test/choose-path.html">Choose the one-key or three-key path.</a></p><h2>References</h2>
 
 <ol class="refs">
 <li><a href="https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki">BIP39 specification, bitcoin/bips</a>. The target: 128 bits for 12 words, 256 bits for 24 words, checksum ENT/32.</li>

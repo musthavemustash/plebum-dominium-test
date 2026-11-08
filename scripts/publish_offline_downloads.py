@@ -77,7 +77,7 @@ def update_guides():
     section = f'''<!-- offline-downloads --><section class="entry-card" id="offline-tester">
 <p class="entry-label">Start here · Complete offline public tester</p>
 <h2>Download the whole site for offline testing</h2>
-<p>Both guide paths, navigation, local search, diagrams, website tools, Python helpers, wordlist, public fixtures and testing instructions in one ZIP. No internet connection or local server is needed to browse the extracted site.</p>
+<p>Both guide paths, navigation, local search, diagrams, website tools, Python helpers, wordlist, public fixtures and testing instructions in one ZIP. Legacy PDFs, slides and the recovery worksheet are excluded pending reconciliation. No internet connection or local server is needed to browse the extracted site.</p>
 <div class="entry-actions">{link(DEST + '/' + FULL, 'Download complete offline tester ZIP →')}{link(DEST + '/' + TOOLS, 'Download website tools only ZIP →')}</div>
 {offline_verifier_notice()}
 <p><strong>Extract the entire ZIP, open the <code>plebum-offline</code> folder, then open <code>START.html</code>.</strong> For the T2–T5 tool checks, open <code>public-tests</code> inside that folder. Its <code>fixtures</code> folder holds the supplied test inputs: <code>plebum-offline/public-tests/fixtures/</code>. Use the matching HTML and Python tools beside that <code>fixtures</code> folder.</p>
@@ -157,6 +157,8 @@ def manifest_files(files):
 def package(full):
     files = {}
     for p in sorted(DOCS.rglob('*')):
+        if p.suffix.lower() in {'.pdf', '.pptx', '.xlsx'}:
+            continue  # Legacy documents await content reconciliation and print review.
         if not p.is_file() or p.is_relative_to(OUT):
             continue
         name = p.relative_to(DOCS).as_posix()
@@ -216,8 +218,8 @@ Read public-tests/TESTING.txt; record results in public-tests/RESULTS.csv.
 The source tools in the package root retain their original sensitive controls.
 public-tests contains the current focused alpha's matching tools and fixtures and its own README/manifest.
 Its instructions apply to that subfolder, not the complete package layout.
-Legacy PDFs and spreadsheets in the full package remain unreconciled and are
-provided as review material. The HTML guides are the current reviewed text.
+Legacy PDFs, slides and spreadsheets are excluded pending reconciliation
+and print review. Use the current HTML guides for printable instructions.
 Browser/OS isolation, cross-platform operation and physical Tails tests remain
 incomplete. Successful file checks do not certify safety or recovery.
 
