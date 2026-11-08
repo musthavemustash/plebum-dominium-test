@@ -11,6 +11,11 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCES = {
+    'fingerprint-checker.html': 'docs/fingerprint-checker.html',
+    'diceware-mapper.html': 'docs/diceware-mapper.html',
+    'TOOL-FINISH-RETEST.txt': 'docs/testing/t5-20261108/TOOL-FINISH-RETEST.txt',
+    'PUBLIC-SESSION-CONTRACT.txt': 'docs/testing/t5-20261108/PUBLIC-SESSION-CONTRACT.txt',
+    'make_truncated_fixture.py': 'review/fixtures/make_truncated_fixture.py',
     'compare_files.py': 'review/fixtures/compare_files.py',
     'T5-dice-reference-inputs.txt': 'review/fixtures/T5-dice-reference-inputs.txt',
     'TAILS-RETEST-RESULTS.txt': 'docs/testing/t5-20261108/TAILS-RETEST-RESULTS.txt',
@@ -30,11 +35,13 @@ def sha(data):
     return hashlib.sha256(data).hexdigest()
 
 def build(output, source_commit):
+    from build_tool_fingerprints import build as update_fingerprints
+    update_fingerprints()
     if not re.fullmatch(r'[0-9a-f]{40}', source_commit):
         raise ValueError('Supply the full reviewed source commit SHA')
     output = Path(output)
     output.mkdir(parents=True, exist_ok=False)
-    release = 'alpha-20261108-t5-r1'
+    release = 'alpha-20261108-t5-r2'
     archive = 'plebum-tools-' + release + '.zip'
     files = {name: (ROOT / source).read_bytes() for name, source in SOURCES.items()}
     source_files = {name: {'source_path': source, 'sha256': sha(files[name]), 'size': len(files[name])}
@@ -43,7 +50,7 @@ def build(output, source_commit):
         'release': release, 'status': 'PUBLIC_TEST_ONLY', 'custody_approved': False,
         'source_repository': 'https://github.com/musthavemustash/plebum-dominium-test',
         'source_commit': source_commit, 'source_files': source_files,
-        'outstanding': ['Actual browser and OS offline-isolation testing', 'Fresh Windows/Tails checks of this rebuilt package',
+        'outstanding': ['Target-environment evidence for the documented OS-managed public-test procedure', 'Fresh Windows/Tails checks of this rebuilt package',
                         'Recovery-workflow validation', 'Stable release reconciliation'],
     }, indent=2) + '\n').encode()
     files['README.txt'] = f'''PLEBUM DOMINIUM — PUBLIC ALPHA TEST RELEASE
@@ -79,8 +86,9 @@ No installation or dependency download is performed by the package checker.
 The packaged tools and public fixtures are byte-for-byte copies of the source
 paths recorded in SOURCE.json. No cryptographic implementation was changed.
 Earlier candidate Tails results are in TAILS-RETEST-RESULTS.txt. This rebuilt
-package needs fresh Windows/Tails checks. Automatic isolation/reconnection
-acceptance and complete wallet recovery remain unresolved.
+package needs fresh Windows/Tails checks. Browser isolation is not certified by this package. See PUBLIC-SESSION-CONTRACT.txt
+for the public-test boundary and TOOL-FINISH-RETEST.txt for the remaining checks.
+Complete wallet recovery remains unresolved.
 Older ZIPs and kit/VERIFY.md do not describe this alpha. Use this package's hashes.
 Hashes detect changed bytes; they do not independently authenticate the publisher
 or establish that a tool is safe. This alpha does not approve a stable release.
@@ -90,7 +98,7 @@ or establish that a tool is safe. This alpha does not approve a stable release.
 START IN THE TEST FOLDER
 Complete offline or website-tools ZIP: extract it, open plebum-offline,
 then open public-tests. Its fixtures are in public-tests/fixtures/.
-Focused dice/map ZIP: extract it, then open plebum-public-test.
+Focused tool ZIP: extract it, then open plebum-public-test.
 Its fixtures folder is directly inside plebum-public-test.
 Use the matching HTML/Python tools in that test folder. Open your terminal
 there: all commands and fixtures/... paths below are relative to it.
@@ -107,16 +115,15 @@ Run python3 verify_package.py (Windows: py verify_package.py).
 Expected: PASS for every listed file. Stop on a mismatch and download again.
 The checker does not authenticate the download or run any custody tool.
 
-T2 — Public-session controls; automatic-isolation acceptance UNRESOLVED
-Open only local file:// copies after disabling OS networking and checking it.
-Expect locked startup with both acknowledgments unchecked. Complete them only
-with public fixtures and OS networking disabled. Browser flag true may appear
-in isolated Tails; the page cannot verify isolation. Test Lock and clear and
-reopen: expect blank inputs/output and fresh unchecked confirmations.
-Detected network events revoke the session, but Tor may mask both events and
-flags. Do not reconnect during this fixture run; lock and clear first. These
-manual checks do not pass the legacy connected/reconnected blocking requirement.
-Record automatic-isolation acceptance as UNRESOLVED, never as a manual PASS.
+T2 — Local public-test session controls
+Read PUBLIC-SESSION-CONTRACT.txt. Open file:// copies with OS networking disabled
+and verified by the tester. Startup is locked; acknowledge both conditions only
+when true. Check manual Lock and clear and reopening. Expect blank visible
+inputs/output, with both confirmations unchecked after locking/reopening.
+HTTP/HTTPS copies remain blocked. Observed network events clear the session,
+but Tor may mask events and flags. Do not reconnect during this fixture test.
+This checks the public-test controls, not automatic network isolation.
+The legacy automatic-isolation requirement is not reported as passed.
 
 T3 — Dice converter known-answer output
 Paste fixtures/zeros-256.txt (256 zero bits) into the HTML binary-input box.
@@ -139,6 +146,10 @@ Try a wrong password and a truncated COPY of the ciphertext. Expected: failure
 without plaintext. Preserve your original fixture and encrypted test file.
 Where GnuPG is available, cross-check HTML-encrypted text in the Python tool and
 Python-encrypted text in the HTML tool. Report each direction separately.
+
+Diceware mapper — new in r2
+Follow TOOL-FINISH-RETEST.txt for the separate six-word EFF mapper. Its words are
+not a BIP39 seed. Use only the supplied public roll examples.
 
 T5 — Physical Tails (experienced volunteers)
 Record Tails version and actual hardware. Boot with networking disabled, check

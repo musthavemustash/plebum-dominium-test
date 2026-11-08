@@ -17,11 +17,11 @@ import zipfile
 ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / 'docs'
 BASE = '/plebum-dominium-test/'
-DEST = 'testing/offline-20261108-r1'
+DEST = 'testing/offline-20261108-r2'
 OUT = DOCS / DEST
-FULL = 'plebum-complete-offline-tester-20261108-r1.zip'
-TOOLS = 'plebum-website-tools-only-20261108-r1.zip'
-SENSITIVE = {'dice-converter.html', 'descriptor-tool.html'}
+FULL = 'plebum-complete-offline-tester-20261108-r2.zip'
+TOOLS = 'plebum-website-tools-only-20261108-r2.zip'
+SENSITIVE = {'dice-converter.html', 'descriptor-tool.html', 'diceware-mapper.html'}
 TOOL_NAMES = [
     'dice-converter.html', 'descriptor-tool.html', 'fingerprint-checker.html',
     'diceware-mapper.html', 'diceware.html', 'dice-rolls.html', 'quorum-demo.html',
@@ -81,16 +81,16 @@ def update_guides():
 <div class="entry-actions">{link(DEST + '/' + FULL, 'Download complete offline tester ZIP →')}{link(DEST + '/' + TOOLS, 'Download website tools only ZIP →')}</div>
 {offline_verifier_notice()}
 <p><strong>Extract the entire ZIP, open the <code>plebum-offline</code> folder, then open <code>START.html</code>.</strong> For the T2–T5 tool checks, open <code>public-tests</code> inside that folder. Its <code>fixtures</code> folder holds the supplied test inputs: <code>plebum-offline/public-tests/fixtures/</code>. Use the matching HTML and Python tools beside that <code>fixtures</code> folder.</p>
-<p>For T1, run <code>verify_package.py</code> from <code>plebum-offline</code> to check the whole offline package. Commands and paths in <code>public-tests/TESTING.txt</code> start from <code>public-tests</code>; open your terminal there for those checks. The focused dice/map ZIP instead uses <code>plebum-public-test/fixtures/</code>.</p>
+<p>For T1, run <code>verify_package.py</code> from <code>plebum-offline</code> to check the whole offline package. Commands and paths in <code>public-tests/TESTING.txt</code> start from <code>public-tests</code>; open your terminal there for those checks. The focused tool ZIP instead uses <code>plebum-public-test/fixtures/</code>.</p>
 <p><a href="{BASE}offline-folder-guide.html">Illustrated guide: find the test tools and fixtures →</a></p>
 <p>Disconnect before testing sensitive tools. They must run as local files; keep their existing safeguards in place. Python helpers require Python 3; the Python wallet-map tool also requires GnuPG, installed separately before disconnecting.</p>
 <p>The tools-only ZIP contains the site’s utilities, demos, Python helpers, wordlist and public fixtures, without the guides or legacy print documents. Neither ZIP includes Tails, Sparrow, Electrum or other external software. Feedback, external references, live prices and network transactions require internet access.</p>
-<p><strong>Public testing only. Do not use real wallet secrets, passwords, entropy or funds.</strong> The earlier focused candidate passed the exercised Tails checks. Fresh Windows/Tails validation of these rebuilt ZIPs is pending; automatic isolation acceptance remains unresolved.</p>
+<p><strong>Public testing only. Do not use real wallet secrets, passwords, entropy or funds.</strong> The earlier focused candidate passed the exercised Tails checks. The r2 mapper and wallet-map fixes have passed automated checks. A short Windows/Tails retest is pending. Browser network isolation is never certified; see the public-session contract and focused retest in public-tests.</p>
 <p><a href="{BASE}{DEST}/README.txt">Setup and contents</a> · <a href="{BASE}{DEST}/SHA256SUMS.txt">ZIP checksums</a> · <a href="{BASE}{DEST}/manifest.json">Package manifests</a> · <a href="{BASE}test-the-site.html#tasks">Testing tasks and feedback</a></p>
 </section><!-- /offline-downloads -->'''
     s = s.replace('<h1>Downloads</h1>', '<h1>Downloads</h1>' + section, 1)
     s = s.replace('The tools are open for public testing. Download the alpha, try the supplied test cases, and help us check the results.', 'Choose the complete offline tester, the website tools only, or individual files below. All downloads are for public testing.')
-    s = s.replace('Download public test ZIP →', 'Download focused dice/map test ZIP →')
+    s = s.replace('Download public test ZIP →', 'Download focused tool test ZIP →')
     path.write_text(s)
     subprocess.run([sys.executable, str(ROOT / 'scripts/render_paths.py')], check=True)
 
@@ -166,12 +166,12 @@ def package(full):
         name = p.relative_to(DOCS).as_posix()
         if name == 'verify-download.html':
             continue  # Generated after ZIPs; downloaded separately for offline use.
-        if name.startswith('testing/') and not name.startswith(('testing/alpha-20261108-t5-r1/', 'testing/t4-20261106/', 'testing/t5-20261108/')):
+        if name.startswith('testing/') and not name.startswith(('testing/alpha-20261108-t5-r2/', 'testing/t4-20261106/', 'testing/t5-20261108/')):
             continue
         if not full and not (name in TOOL_NAMES or name == 'offline-folder-guide.html' or name.startswith('assets/') or name in ['kit/' + n for n in PYTHON]):
             continue
         files[name] = offline_copy(name, p.read_bytes())
-    alpha = DOCS / 'testing/alpha-20261108-t5-r1/plebum-tools-alpha-20261108-t5-r1.zip'
+    alpha = DOCS / 'testing/alpha-20261108-t5-r2/plebum-tools-alpha-20261108-t5-r2.zip'
     with zipfile.ZipFile(alpha) as z:
         for name in z.namelist():
             if not name.endswith('/'):
@@ -180,7 +180,7 @@ def package(full):
     if not full:
         # Reference-only return link in the dice reference has no guide in this ZIP.
         files['dice-rolls.html'] = files['dice-rolls.html'].replace(b'href="handouts/dice.html"', b'href="START.html"')
-    files['README.txt'] = ('''PLEBUM DOMINIUM — OFFLINE PUBLIC TESTER — 2026-11-08-r1
+    files['README.txt'] = ('''PLEBUM DOMINIUM — OFFLINE PUBLIC TESTER — 2026-11-08-r2
 PUBLIC TEST DATA ONLY. NOT APPROVED FOR REAL-WALLET USE.
 
 FIND THE RIGHT FOLDER
@@ -201,7 +201,7 @@ FIND THE RIGHT FOLDER
    Its separate verify_package.py checks only the focused test subset.
 
 These paths apply to both the complete offline ZIP and tools-only ZIP.
-The separate focused dice/map ZIP instead extracts to plebum-public-test;
+The separate focused tool ZIP instead extracts to plebum-public-test;
 its fixtures folder is plebum-public-test/fixtures/.
 
 No installation, internet connection or local server is needed for HTML tools.
@@ -273,6 +273,8 @@ sys.exit(bool(bad))
 
 
 def main():
+    from build_tool_fingerprints import build as update_fingerprints
+    update_fingerprints()
     OUT.mkdir(parents=True, exist_ok=True)
     update_guides()
     packages = [package(True), package(False)]
