@@ -1,5 +1,15 @@
 PUBLIC TESTS ONLY — alpha-20261106-t3-t4
 
+START IN THE TEST FOLDER
+Complete offline or website-tools ZIP: extract it, open plebum-offline,
+then open public-tests. Its fixtures are in public-tests/fixtures/.
+Focused dice/map ZIP: extract it, then open plebum-public-test.
+Its fixtures folder is directly inside plebum-public-test.
+Use the matching HTML/Python tools in that test folder. Open your terminal
+there: all commands and fixtures/... paths below are relative to it.
+For the complete offline package's full T1 check, run verify_package.py
+from plebum-offline first. The checker here verifies only this test subset.
+
 Before each test, record release ID, OS/browser versions, date and file hashes.
 Disconnect the test machine before opening HTML tools via file://. An offline
 indicator is only a browser signal, not proof of network isolation. Use the OS

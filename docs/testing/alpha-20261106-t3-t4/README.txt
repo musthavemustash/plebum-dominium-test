@@ -1,14 +1,20 @@
 PLEBUM DOMINIUM — PUBLIC ALPHA TEST RELEASE
 Release: alpha-20261106-t3-t4
-Source: 87bd64357b189fa067b6855d7ad7a8cf32247a8a
+Source: 6cbc2f2dba5f69576cafa17768cfbc6ede87d2b8
 
 AVAILABLE FOR TESTING. NOT APPROVED FOR REAL-WALLET USE.
 Use the included public fixtures and disposable test data only. Never use real
 seed phrases, private keys, entropy, passwords, wallet backups or funds.
 This restriction also applies to any older custody instructions inside the tools.
 
-1. Extract the entire ZIP. Do not launch tools inside the compressed archive.
-2. Read TESTING.txt. Check the files with: python3 verify_package.py
+1. Extract the entire ZIP. Open the extracted plebum-public-test folder.
+   Tools, TESTING.txt and the fixtures folder are directly inside it.
+   If using the complete offline or website-tools ZIP, open plebum-offline,
+   then public-tests instead. Its fixtures are in public-tests/fixtures/.
+   Do not launch tools inside the compressed archive.
+2. Open a terminal in that test folder and read TESTING.txt. All commands
+   and paths such as fixtures/public-map.txt start from that folder.
+   Check this test subset with: python3 verify_package.py
    On Windows with Python installed, use: py verify_package.py
 3. Open the HTML tools as local files on a disconnected test machine.
    HTTP/HTTPS and localhost are deliberately blocked by the sensitive tools.
