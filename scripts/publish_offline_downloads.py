@@ -40,6 +40,11 @@ def link(path, label):
     return f'<a href="{BASE}{path}" download>{label}</a>'
 
 
+def offline_verifier_notice():
+    # A verifier containing this archive's final hash must be saved separately.
+    return '''<!-- download-verifier --><section id="verify-download" class="entry-card"><h3>Verify the ZIP before extracting</h3><p>Use the <a href="https://musthavemustash.github.io/plebum-dominium-test/verify-download.html">download verifier</a> to select your ZIP and compare it on your device. Save that verifier separately before disconnecting if you want to check offline. Then run the included <code>verify_package.py</code> for T1 after extraction.</p></section><!-- /download-verifier -->'''
+
+
 def update_guides():
     links = {
         'dice': [('dice-converter.html', 'Dice converter HTML'), ('kit/bip39_dice_converter.py', 'Python dice converter')],
@@ -74,6 +79,7 @@ def update_guides():
 <h2>Download the whole site for offline testing</h2>
 <p>Both guide paths, navigation, local search, diagrams, website tools, Python helpers, wordlist, public fixtures and testing instructions in one ZIP. No internet connection or local server is needed to browse the extracted site.</p>
 <div class="entry-actions">{link(DEST + '/' + FULL, 'Download complete offline tester ZIP →')}{link(DEST + '/' + TOOLS, 'Download website tools only ZIP →')}</div>
+{offline_verifier_notice()}
 <p><strong>Extract the entire ZIP, open the <code>plebum-offline</code> folder, then open <code>START.html</code>.</strong> For the T2–T5 tool checks, open <code>public-tests</code> inside that folder. Its <code>fixtures</code> folder holds the supplied test inputs: <code>plebum-offline/public-tests/fixtures/</code>. Use the matching HTML and Python tools beside that <code>fixtures</code> folder.</p>
 <p>For T1, run <code>verify_package.py</code> from <code>plebum-offline</code> to check the whole offline package. Commands and paths in <code>public-tests/TESTING.txt</code> start from <code>public-tests</code>; open your terminal there for those checks. The focused dice/map ZIP instead uses <code>plebum-public-test/fixtures/</code>.</p>
 <p><a href="{BASE}offline-folder-guide.html">Illustrated guide: find the test tools and fixtures →</a></p>
@@ -108,6 +114,10 @@ def offline_copy(name, data):
         s = s.replace(DEST + '/README.txt', 'README.txt').replace(DEST + '/SHA256SUMS.txt', 'SHA256SUMS.txt').replace(DEST + '/manifest.json', 'package-manifest.json')
         if name == 'downloads.html':
             s = s.replace('Download complete offline tester ZIP →', 'Open offline start page →').replace('Download website tools only ZIP →', 'Open offline tools list →')
+            # Replace after local-path rewriting so the absolute online link
+            # stays intact. Never embed an archive's own checksum in itself.
+            s = re.sub(r'<!-- download-verifier -->.*?<!-- /download-verifier -->',
+                       lambda _: offline_verifier_notice(), s, flags=re.S)
     if name == 'assets/js/main.js':
         s = s.replace('function basePath() {', 'function basePath() {\n    if (window.PD_OFFLINE_ROOT) return window.PD_OFFLINE_ROOT;')
         s = s.replace("var BASE = '/plebum-dominium-test/';", 'var BASE = window.PD_OFFLINE_ROOT;')
@@ -150,6 +160,8 @@ def package(full):
         if not p.is_file() or p.is_relative_to(OUT):
             continue
         name = p.relative_to(DOCS).as_posix()
+        if name == 'verify-download.html':
+            continue  # Generated after ZIPs; downloaded separately for offline use.
         if name.startswith('testing/') and not name.startswith(('testing/alpha-20261106-t3-t4/', 'testing/t4-20261106/')):
             continue
         if not full and not (name in TOOL_NAMES or name == 'offline-folder-guide.html' or name.startswith('assets/') or name in ['kit/' + n for n in PYTHON]):
@@ -263,6 +275,8 @@ def main():
         (OUT / 'README.txt').write_bytes(z.read('plebum-offline/README.txt'))
     for p in packages:
         print(p['name'], p['size'], 'bytes;', len(p['files']), 'files;', p['sha256'])
+    from build_download_verifier import build
+    build()
 
 
 if __name__ == '__main__':

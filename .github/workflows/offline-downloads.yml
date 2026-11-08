@@ -9,6 +9,9 @@ on:
       - scripts/prepare_public_test_release.py
       - scripts/publish_offline_downloads.py
       - scripts/check_offline_downloads.py
+      - scripts/build_download_verifier.py
+      - scripts/test_download_verifier.cjs
+      - templates/download-verifier.html
       - scripts/reviewed_route_overrides.json
       - scripts/render_paths.py
       - scripts/page_test_modules.py
@@ -38,6 +41,7 @@ jobs:
           cp /tmp/plebum-current-alpha/* docs/testing/alpha-20261106-t3-t4/
           python3 scripts/page_test_modules.py --build "$(git rev-parse HEAD)"
           python3 scripts/publish_offline_downloads.py
+          node scripts/test_download_verifier.cjs
           python3 scripts/build.py
           python3 scripts/test_paths.py
           python3 scripts/test_page_test_modules.py

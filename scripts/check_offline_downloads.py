@@ -35,6 +35,11 @@ def check():
                 assert z.testzip() is None
                 z.extractall(temp)
             root = Path(temp) / 'plebum-offline'
+            assert not (root / 'verify-download.html').exists(), 'ZIP verifier must be saved separately'
+            if (root / 'downloads.html').exists():
+                offline_downloads = (root / 'downloads.html').read_text()
+                assert 'pd-verify-catalog' not in offline_downloads, 'Circular archive hash reference'
+                assert 'href="https://musthavemustash.github.io/plebum-dominium-test/verify-download.html"' in offline_downloads, 'Broken online verifier link'
             subprocess.run([sys.executable, str(root / 'verify_package.py')], check=True)
             for name in SENSITIVE:
                 assert (root / name).read_bytes() == (DOCS / name).read_bytes()

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta name="description" content="Check a downloaded Plebum Dominium test ZIP against its published SHA-256 checksum, locally in your browser.">
+  <title>Verify your download · Plebum Dominium</title>
+  <style>{{VERIFIER_CSS}}</style>
+</head>
+<body class="pd-verifier-page">
+  <div class="pd-verifier-shell">
+    <header class="pd-verifier-brand">
+      <a href="https://musthavemustash.github.io/plebum-dominium-test/" aria-label="Plebum Dominium test site"><span aria-hidden="true">₿</span> Plebum Dominium</a>
+      <span>Public test downloads</span>
+    </header>
+    <main>
+      <div class="pd-verifier-introduction">
+        <p>Download → Check → Extract</p>
+        <h1>Verify your download.</h1>
+        <p>A quick checksum comparison before you open the package.</p>
+      </div>
+
+<!-- verifier-widget:start -->
+<section id="verify-download" class="pd-verify" data-zip-verifier data-state="ready" data-enabled="false" aria-label="Verify a Plebum Dominium ZIP">
+  <script type="application/json" class="pd-verify-catalog">{{CATALOG_JSON}}</script>
+  <header class="pd-verify-heading">
+    <div>
+      <p class="pd-verify-eyebrow">After downloading</p>
+      <h2>Select ZIP to verify</h2>
+    </div>
+    <span class="pd-verify-local"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="2.5" y="3" width="15" height="10.5" rx="1.5"/><path d="M6 17h8M10 13.5V17m-4-9 2.5 2.5L14 6"/></svg>On your device</span>
+  </header>
+  <p class="pd-verify-intro">Choose the ZIP you downloaded. Your browser compares it with the published package fingerprints. <strong>Your file is not uploaded.</strong></p>
+
+  <div class="pd-verify-dropzone" data-verify-dropzone>
+    <div class="pd-verify-actions">
+      <label class="pd-verify-picker">
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 2.5h6l4 4v11H5zM11 2.5v4h4M7.5 11l2 2 3-3"/></svg>
+        <span>Select ZIP to verify</span>
+        <input type="file" accept=".zip,application/zip,application/x-zip-compressed" data-verify-file disabled aria-label="Select a downloaded ZIP to verify">
+      </label>
+      <button type="button" class="pd-verify-reset" data-verify-reset disabled>Reset</button>
+    </div>
+    <p class="pd-verify-drop-hint">Or drop a ZIP here · Maximum 32 MiB</p>
+  </div>
+
+  <p class="pd-verify-file-info" data-verify-file-info hidden><span data-verify-filename></span><span data-verify-filesize></span></p>
+  <progress class="pd-verify-progress" data-verify-progress aria-label="Checking ZIP on this device" hidden></progress>
+  <div class="pd-verify-status" data-verify-status role="status" aria-live="polite" aria-atomic="true">
+    <h3 data-verify-status-title>Verification has not run</h3>
+    <p data-verify-status-text>The checker will become available when JavaScript and browser support are ready.</p>
+  </div>
+  <noscript><p class="pd-verify-noscript">JavaScript is disabled, so this checker cannot run. Use the published <a href="https://musthavemustash.github.io/plebum-dominium-test/downloads.html">checksum lists on the downloads page</a> to compare your ZIP with a local SHA-256 tool.</p></noscript>
+
+  <details class="pd-verify-details" data-verify-hash-details hidden>
+    <summary>Show this file’s SHA-256</summary>
+    <dl>
+      <dt>Calculated SHA-256</dt>
+      <dd><code data-verify-hash></code></dd>
+      <dt>Published reference</dt>
+      <dd data-verify-reference></dd>
+    </dl>
+  </details>
+
+  <div class="pd-verify-next" data-verify-next hidden>
+    <h3>Next: check the extracted files (T1)</h3>
+    <p>Extract the ZIP and open a terminal in <code>plebum-offline</code> for the complete or tools-only package, or <code>plebum-public-test</code> for the focused dice/map package.</p>
+    <div class="pd-verify-commands">
+      <div><span>Windows</span><code>py verify_package.py</code></div>
+      <div><span>Tails / Linux</span><code>python3 verify_package.py</code></div>
+    </div>
+    <p>Continue with the tool tests only when every listed file passes. A ZIP checksum match does not replace this per-file check.</p>
+  </div>
+
+  <details class="pd-verify-details pd-verify-package-details">
+    <summary>Published packages and saved references</summary>
+    <p class="pd-verify-catalog-note">This copy recognizes the references listed below, including any marked earlier. An offline copy does not fetch newer releases. <a href="https://musthavemustash.github.io/plebum-dominium-test/verify-download.html">Open the current verifier</a> when online.</p>
+    <ul class="pd-verify-packages" data-verify-packages></ul>
+  </details>
+
+  <p class="pd-verify-scope">A match confirms the published checksum and file size. It does not independently verify the publisher or certify the tools for real-wallet use.</p>
+  <p class="pd-verify-download"><a href="https://musthavemustash.github.io/plebum-dominium-test/verify-download.html" download="plebum-download-verifier.html">Download this verifier for offline use <span aria-hidden="true">↓</span></a></p>
+</section>
+<!-- verifier-widget:end -->
+
+      <footer class="pd-verifier-footer"><a href="https://musthavemustash.github.io/plebum-dominium-test/downloads.html">Back to downloads <span aria-hidden="true">↗</span></a><p>Plebum Dominium · Public testing only</p></footer>
+    </main>
+  </div>
+  <script>{{VERIFIER_JS}}</script>
+</body>
+</html>

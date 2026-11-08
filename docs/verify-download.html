@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta name="description" content="Check a downloaded Plebum Dominium test ZIP against its published SHA-256 checksum, locally in your browser.">
+  <title>Verify your download · Plebum Dominium</title>
+  <style>/* Scoped to the verifier; use the guide's existing light/dark theme tokens. */
+.pd-verify,
+.pd-verifier-page {
+  --pv-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  --pv-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+}
+.pd-verifier-page {
+  --paper: #f6f3ec;
+  --card: #fff;
+  --ink: #161410;
+  --muted: #5c564c;
+  --line: #e3d9cc;
+  --accent: #8a5a2a;
+  --accent-bright: #6e4528;
+  --accent-soft: #f3e8d6;
+  --btn-ink: #fff;
+  --tip: #166534;
+  --tip-bg: #f0fdf4;
+  --warn: #8a5408;
+  --warn-bg: #fff8e7;
+  --stop: #b91c1c;
+  --stop-bg: #fef2f2;
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 17px/1.6 var(--pv-sans);
+  -webkit-font-smoothing: antialiased;
+}
+.pd-verifier-page *,
+.pd-verify * { box-sizing: border-box; }
+.pd-verifier-shell {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 28px 36px;
+}
+.pd-verifier-brand {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px 24px;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--line);
+}
+.pd-verifier-brand > a {
+  color: var(--ink);
+  font: 700 21px/1.3 Georgia, "Times New Roman", serif;
+  text-decoration: none;
+}
+.pd-verifier-brand > a > span { color: var(--accent); margin-right: 5px; }
+.pd-verifier-brand > span {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+}
+.pd-verifier-introduction { padding: 34px 0 24px; }
+.pd-verifier-introduction > p:first-child {
+  margin: 0 0 10px;
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.pd-verifier-introduction h1 {
+  margin: 0;
+  color: var(--ink);
+  font: 600 clamp(30px, 5.4vw, 44px)/1.14 Georgia, "Times New Roman", serif;
+  letter-spacing: -.025em;
+}
+.pd-verifier-introduction > p:last-child { margin: 12px 0 0; color: var(--muted); }
+.pd-verifier-footer { padding-top: 24px; color: var(--muted); font-size: 13px; }
+.pd-verifier-footer a { color: var(--accent); font-weight: 600; text-underline-offset: 3px; }
+.pd-verifier-footer p { margin: 10px 0 0; }
+
+.pd-verify {
+  margin: 1.25rem 0;
+  padding: clamp(1.1rem, 3vw, 1.65rem);
+  border: 1px solid var(--line, #e3d9cc);
+  border-radius: 14px;
+  background: var(--card, #fff);
+  color: var(--ink, #161410);
+  font: 400 15px/1.6 var(--pv-sans);
+  scroll-margin-top: 6rem;
+}
+.pd-verify [hidden] { display: none !important; }
+.pd-verify p { margin: 0; }
+.pd-verify a {
+  color: var(--accent, #8a5a2a);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.pd-verify a:hover { color: var(--accent-bright, #6e4528); }
+.pd-verify a:focus-visible,
+.pd-verify button:focus-visible,
+.pd-verify summary:focus-visible,
+.pd-verifier-page a:focus-visible {
+  outline: 3px solid var(--accent, #8a5a2a);
+  outline-offset: 4px;
+}
+.pd-verify-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 20px;
+  flex-wrap: wrap;
+}
+.pd-verify .pd-verify-eyebrow {
+  margin-bottom: 5px;
+  color: var(--accent, #8a5a2a);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+}
+.pd-verify h2 {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  color: var(--ink, #161410);
+  font: 700 clamp(22px, 3vw, 27px)/1.2 Georgia, "Times New Roman", serif;
+  letter-spacing: -.02em;
+}
+.pd-verify-local {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex: none;
+  border: 1px solid var(--line, #e3d9cc);
+  border-radius: 100px;
+  padding: 5px 9px;
+  color: var(--muted, #5c564c);
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.pd-verify-local svg { width: 17px; height: 17px; }
+.pd-verify .pd-verify-intro { margin-top: 14px; max-width: 65ch; color: var(--muted, #5c564c); }
+.pd-verify-intro strong { color: var(--ink, #161410); font-weight: 600; }
+.pd-verify-dropzone {
+  margin-top: 18px;
+  padding: 16px;
+  border: 1px dashed var(--line, #e3d9cc);
+  border-radius: 10px;
+  background: var(--paper, #f6f3ec);
+}
+.pd-verify-dropzone.is-dragover {
+  border-color: var(--accent, #8a5a2a);
+  background: var(--accent-soft, #f3e8d6);
+  outline: 2px solid var(--accent, #8a5a2a);
+  outline-offset: 2px;
+}
+.pd-verify-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.pd-verify-picker {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 46px;
+  padding: 11px 16px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: var(--accent, #8a5a2a);
+  color: var(--btn-ink, #fff);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.3;
+  text-align: center;
+  cursor: pointer;
+}
+.pd-verify-picker:hover { background: var(--accent-bright, #6e4528); }
+.pd-verify-picker:focus-within { outline: 3px solid var(--accent, #8a5a2a); outline-offset: 4px; }
+.pd-verify-picker svg { width: 20px; height: 20px; flex: none; }
+.pd-verify-picker input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.pd-verify[data-enabled="false"] .pd-verify-picker { opacity: .55; cursor: not-allowed; }
+.pd-verify[data-enabled="false"] .pd-verify-picker input { cursor: not-allowed; }
+.pd-verify-reset {
+  min-height: 44px;
+  padding: 8px 14px;
+  border: 1px solid var(--line, #e3d9cc);
+  border-radius: 8px;
+  background: var(--card, #fff);
+  color: var(--ink, #161410);
+  font: 600 13px/1.3 var(--pv-sans);
+  cursor: pointer;
+}
+.pd-verify-reset:hover:enabled { border-color: var(--accent, #8a5a2a); }
+.pd-verify-reset:disabled { opacity: .5; cursor: default; }
+.pd-verify .pd-verify-drop-hint { margin-top: 9px; color: var(--muted, #5c564c); font-size: 12px; }
+.pd-verify .pd-verify-file-info {
+  display: flex;
+  justify-content: space-between;
+  gap: 4px 14px;
+  flex-wrap: wrap;
+  margin-top: 13px;
+  color: var(--muted, #5c564c);
+  font-size: 12px;
+}
+.pd-verify-file-info > span:first-child { color: var(--ink, #161410); font-weight: 600; overflow-wrap: anywhere; }
+.pd-verify-progress {
+  display: block;
+  width: 100%;
+  height: 6px;
+  margin: 12px 0;
+  border: 0;
+  accent-color: var(--accent, #8a5a2a);
+}
+.pd-verify-status {
+  margin-top: 16px;
+  padding: 13px 15px;
+  border: 1px solid var(--line, #e3d9cc);
+  border-left: 3px solid var(--line, #e3d9cc);
+  border-radius: 8px;
+  background: var(--paper, #f6f3ec);
+}
+.pd-verify h3 {
+  margin: 0;
+  padding: 0;
+  color: var(--ink, #161410);
+  font: 700 14px/1.4 var(--pv-sans);
+}
+.pd-verify-status > p { margin-top: 5px; color: var(--muted, #5c564c); font-size: 13px; overflow-wrap: anywhere; }
+.pd-verify[data-state="checking"] .pd-verify-status { border-left-color: var(--accent, #8a5a2a); }
+.pd-verify[data-state="match"] .pd-verify-status { border-color: var(--tip, #166534); background: var(--tip-bg, #f0fdf4); }
+.pd-verify[data-state="match"] .pd-verify-status h3 { color: var(--tip, #166534); }
+.pd-verify[data-state="earlier"] .pd-verify-status,
+.pd-verify[data-state="mismatch"] .pd-verify-status { border-color: var(--warn, #8a5408); background: var(--warn-bg, #fff8e7); }
+.pd-verify[data-state="earlier"] .pd-verify-status h3,
+.pd-verify[data-state="mismatch"] .pd-verify-status h3 { color: var(--warn, #8a5408); }
+.pd-verify[data-state="error"] .pd-verify-status,
+.pd-verify[data-state="unsupported"] .pd-verify-status { border-color: var(--stop, #b91c1c); background: var(--stop-bg, #fef2f2); }
+.pd-verify[data-state="error"] .pd-verify-status h3,
+.pd-verify[data-state="unsupported"] .pd-verify-status h3 { color: var(--stop, #b91c1c); }
+.pd-verify .pd-verify-noscript { margin: 12px 0; color: var(--stop, #b91c1c); font-size: 13px; }
+.pd-verify-details {
+  margin-top: 16px;
+  padding: 0;
+  border: 0;
+  border-top: 1px solid var(--line, #e3d9cc);
+  border-radius: 0;
+  background: transparent;
+}
+.pd-verify-details > summary {
+  display: list-item;
+  padding: 13px 0 0;
+  color: var(--ink, #161410);
+  font: 600 13px/1.5 var(--pv-sans);
+  cursor: pointer;
+}
+.pd-verify-details[open] > summary { padding-bottom: 10px; }
+.pd-verify-details dl { margin: 0; }
+.pd-verify-details dt { margin-top: 10px; color: var(--muted, #5c564c); font-size: 11px; font-weight: 700; }
+.pd-verify-details dd { margin: 4px 0 0; color: var(--ink, #161410); font-size: 12px; overflow-wrap: anywhere; }
+.pd-verify code {
+  padding: 2px 4px;
+  border-radius: 3px;
+  background: var(--paper, #f6f3ec);
+  color: var(--ink, #161410);
+  font: .9em/1.5 var(--pv-mono);
+  overflow-wrap: anywhere;
+}
+.pd-verify-details dd code { display: block; padding: 8px 10px; font-size: 11px; }
+.pd-verify-next { margin-top: 17px; padding: 16px; border: 1px solid var(--line, #e3d9cc); border-radius: 8px; }
+.pd-verify-next > p { margin-top: 7px; color: var(--muted, #5c564c); font-size: 12px; }
+.pd-verify-commands { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; margin: 12px 0; }
+.pd-verify-commands > div { padding: 9px 10px; border-radius: 6px; background: var(--paper, #f6f3ec); }
+.pd-verify-commands span { display: block; color: var(--muted, #5c564c); font-size: 10px; font-weight: 700; }
+.pd-verify-commands code { display: block; margin-top: 3px; padding: 0; font-size: 11px; }
+.pd-verify .pd-verify-catalog-note { color: var(--muted, #5c564c); font-size: 12px; }
+.pd-verify-packages { margin: 8px 0 0; padding: 0; list-style: none; }
+.pd-verify-packages > li { margin: 0; padding: 13px 0; border-bottom: 1px solid var(--line, #e3d9cc); }
+.pd-verify-packages > li:last-child { padding-bottom: 0; border-bottom: 0; }
+.pd-verify-package-title { display: flex; align-items: baseline; flex-wrap: wrap; gap: 5px 8px; }
+.pd-verify-package-title strong { color: var(--ink, #161410); font-size: 13px; }
+.pd-verify-package-badge { color: var(--muted, #5c564c); font-size: 10px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+.pd-verify-package-badge.is-earlier { color: var(--warn, #8a5408); }
+.pd-verify .pd-verify-package-meta { margin-top: 3px; color: var(--muted, #5c564c); font-size: 11px; overflow-wrap: anywhere; }
+.pd-verify-packages > li > code { display: block; margin-top: 7px; padding: 7px 9px; font-size: 10px; }
+.pd-verify .pd-verify-package-links { display: flex; flex-wrap: wrap; gap: 7px 14px; margin-top: 7px; font-size: 11px; }
+.pd-verify .pd-verify-scope { margin-top: 17px; color: var(--muted, #5c564c); font-size: 11px; }
+.pd-verify .pd-verify-download { margin-top: 11px; font-size: 12px; font-weight: 600; }
+
+@media (prefers-color-scheme: dark) {
+  .pd-verifier-page {
+    --paper: #0e0d0b;
+    --card: #161411;
+    --ink: #efe9dc;
+    --muted: #aaa091;
+    --line: #3b352d;
+    --accent: #c4a484;
+    --accent-bright: #e4c6a4;
+    --accent-soft: #231b0f;
+    --btn-ink: #0e0d0b;
+    --tip: #4ade80;
+    --tip-bg: #122419;
+    --warn: #e0b866;
+    --warn-bg: #2b2212;
+    --stop: #f87171;
+    --stop-bg: #2b1414;
+  }
+}
+:root[data-theme="dark"] .pd-verifier-page {
+  --paper: #0e0d0b; --card: #161411; --ink: #efe9dc; --muted: #aaa091;
+  --line: #3b352d; --accent: #c4a484; --accent-bright: #e4c6a4; --accent-soft: #231b0f; --btn-ink: #0e0d0b;
+  --tip: #4ade80; --tip-bg: #122419; --warn: #e0b866; --warn-bg: #2b2212; --stop: #f87171; --stop-bg: #2b1414;
+}
+:root[data-theme="light"] .pd-verifier-page {
+  --paper: #f6f3ec; --card: #fff; --ink: #161410; --muted: #5c564c;
+  --line: #e3d9cc; --accent: #8a5a2a; --accent-bright: #6e4528; --accent-soft: #f3e8d6; --btn-ink: #fff;
+  --tip: #166534; --tip-bg: #f0fdf4; --warn: #8a5408; --warn-bg: #fff8e7; --stop: #b91c1c; --stop-bg: #fef2f2;
+}
+@media (max-width: 520px) {
+  .pd-verifier-shell { padding: 0 16px 24px; }
+  .pd-verifier-brand { padding: 20px 0; }
+  .pd-verifier-brand > span { font-size: 10px; }
+  .pd-verifier-introduction { padding: 26px 0 15px; }
+  .pd-verifier-introduction > p:last-child { font-size: 14px; }
+  .pd-verify-heading { align-items: flex-start; gap: 10px; }
+  .pd-verify-local { font-size: 10px; padding: 4px 7px; }
+  .pd-verify .pd-verify-intro { font-size: 13px; }
+  .pd-verify-dropzone { padding: 12px; }
+  .pd-verify-picker { flex: 1; padding: 11px 12px; font-size: 13px; }
+  .pd-verify-reset { padding: 8px 10px; }
+  .pd-verify-commands { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pd-verify *, .pd-verifier-page * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
+html[data-motion="off"] .pd-verify * { animation: none !important; transition: none !important; }
+@media print {
+  .pd-verify-picker, .pd-verify-reset, .pd-verify-drop-hint, .pd-verify-progress, .pd-verify-download { display: none !important; }
+  .pd-verify { break-inside: avoid; }
+}
+</style>
+</head>
+<body class="pd-verifier-page">
+  <div class="pd-verifier-shell">
+    <header class="pd-verifier-brand">
+      <a href="https://musthavemustash.github.io/plebum-dominium-test/" aria-label="Plebum Dominium test site"><span aria-hidden="true">₿</span> Plebum Dominium</a>
+      <span>Public test downloads</span>
+    </header>
+    <main>
+      <div class="pd-verifier-introduction">
+        <p>Download → Check → Extract</p>
+        <h1>Verify your download.</h1>
+        <p>A quick checksum comparison before you open the package.</p>
+      </div>
+
+<!-- verifier-widget:start -->
+<section id="verify-download" class="pd-verify" data-zip-verifier data-state="ready" data-enabled="false" aria-label="Verify a Plebum Dominium ZIP">
+  <script type="application/json" class="pd-verify-catalog">{
+  "schema": 1,
+  "packages": [
+    {
+      "id": "complete",
+      "label": "Complete offline tester",
+      "name": "plebum-complete-offline-tester-20261106.zip",
+      "release": "offline-20261106",
+      "sha256": "7b8bdf49502aa172240ea9ce6570c10efb82016e7641ce71e3a5d6ab74dba06a",
+      "bytes": 3028553,
+      "checksumUrl": "https://musthavemustash.github.io/plebum-dominium-test/testing/offline-20261106/SHA256SUMS.txt",
+      "downloadUrl": "https://musthavemustash.github.io/plebum-dominium-test/testing/offline-20261106/plebum-complete-offline-tester-20261106.zip",
+      "current": true
+    },
+    {
+      "id": "tools",
+      "label": "Website tools only",
+      "name": "plebum-website-tools-only-20261106.zip",
+      "release": "offline-20261106",
+      "sha256": "1a04a3970d0e191f64f9fb1006f8be6bf10c0f4643ba9176825527ae435706e1",
+      "bytes": 1477354,
+      "checksumUrl": "https://musthavemustash.github.io/plebum-dominium-test/testing/offline-20261106/SHA256SUMS.txt",
+      "downloadUrl": "https://musthavemustash.github.io/plebum-dominium-test/testing/offline-20261106/plebum-website-tools-only-20261106.zip",
+      "current": true
+    },
+    {
+      "id": "focused",
+      "label": "Focused dice and wallet-map tests",
+      "name": "plebum-tools-alpha-20261106-t3-t4.zip",
+      "release": "alpha-20261106-t3-t4",
+      "sha256": "f047cc52740b2c432b9c1b0105aa7923ef4d96c1c4c164f8d31a00bab3090509",
+      "bytes": 229607,
+      "checksumUrl": "https://musthavemustash.github.io/plebum-dominium-test/testing/alpha-20261106-t3-t4/SHA256SUMS.txt",
+      "downloadUrl": "https://musthavemustash.github.io/plebum-dominium-test/testing/alpha-20261106-t3-t4/plebum-tools-alpha-20261106-t3-t4.zip",
+      "current": true
+    }
+  ]
+}</script>
+  <header class="pd-verify-heading">
+    <div>
+      <p class="pd-verify-eyebrow">After downloading</p>
+      <h2>Select ZIP to verify</h2>
+    </div>
+    <span class="pd-verify-local"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="2.5" y="3" width="15" height="10.5" rx="1.5"/><path d="M6 17h8M10 13.5V17m-4-9 2.5 2.5L14 6"/></svg>On your device</span>
+  </header>
+  <p class="pd-verify-intro">Choose the ZIP you downloaded. Your browser compares it with the published package fingerprints. <strong>Your file is not uploaded.</strong></p>
+
+  <div class="pd-verify-dropzone" data-verify-dropzone>
+    <div class="pd-verify-actions">
+      <label class="pd-verify-picker">
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 2.5h6l4 4v11H5zM11 2.5v4h4M7.5 11l2 2 3-3"/></svg>
+        <span>Select ZIP to verify</span>
+        <input type="file" accept=".zip,application/zip,application/x-zip-compressed" data-verify-file disabled aria-label="Select a downloaded ZIP to verify">
+      </label>
+      <button type="button" class="pd-verify-reset" data-verify-reset disabled>Reset</button>
+    </div>
+    <p class="pd-verify-drop-hint">Or drop a ZIP here · Maximum 32 MiB</p>
+  </div>
+
+  <p class="pd-verify-file-info" data-verify-file-info hidden><span data-verify-filename></span><span data-verify-filesize></span></p>
+  <progress class="pd-verify-progress" data-verify-progress aria-label="Checking ZIP on this device" hidden></progress>
+  <div class="pd-verify-status" data-verify-status role="status" aria-live="polite" aria-atomic="true">
+    <h3 data-verify-status-title>Verification has not run</h3>
+    <p data-verify-status-text>The checker will become available when JavaScript and browser support are ready.</p>
+  </div>
+  <noscript><p class="pd-verify-noscript">JavaScript is disabled, so this checker cannot run. Use the published <a href="https://musthavemustash.github.io/plebum-dominium-test/downloads.html">checksum lists on the downloads page</a> to compare your ZIP with a local SHA-256 tool.</p></noscript>
+
+  <details class="pd-verify-details" data-verify-hash-details hidden>
+    <summary>Show this file’s SHA-256</summary>
+    <dl>
+      <dt>Calculated SHA-256</dt>
+      <dd><code data-verify-hash></code></dd>
+      <dt>Published reference</dt>
+      <dd data-verify-reference></dd>
+    </dl>
+  </details>
+
+  <div class="pd-verify-next" data-verify-next hidden>
+    <h3>Next: check the extracted files (T1)</h3>
+    <p>Extract the ZIP and open a terminal in <code>plebum-offline</code> for the complete or tools-only package, or <code>plebum-public-test</code> for the focused dice/map package.</p>
+    <div class="pd-verify-commands">
+      <div><span>Windows</span><code>py verify_package.py</code></div>
+      <div><span>Tails / Linux</span><code>python3 verify_package.py</code></div>
+    </div>
+    <p>Continue with the tool tests only when every listed file passes. A ZIP checksum match does not replace this per-file check.</p>
+  </div>
+
+  <details class="pd-verify-details pd-verify-package-details">
+    <summary>Published packages and saved references</summary>
+    <p class="pd-verify-catalog-note">This copy recognizes the references listed below, including any marked earlier. An offline copy does not fetch newer releases. <a href="https://musthavemustash.github.io/plebum-dominium-test/verify-download.html">Open the current verifier</a> when online.</p>
+    <ul class="pd-verify-packages" data-verify-packages></ul>
+  </details>
+
+  <p class="pd-verify-scope">A match confirms the published checksum and file size. It does not independently verify the publisher or certify the tools for real-wallet use.</p>
+  <p class="pd-verify-download"><a href="https://musthavemustash.github.io/plebum-dominium-test/verify-download.html" download="plebum-download-verifier.html">Download this verifier for offline use <span aria-hidden="true">↓</span></a></p>
+</section>
+<!-- verifier-widget:end -->
+
+      <footer class="pd-verifier-footer"><a href="https://musthavemustash.github.io/plebum-dominium-test/downloads.html">Back to downloads <span aria-hidden="true">↗</span></a><p>Plebum Dominium · Public testing only</p></footer>
+    </main>
+  </div>
+  <script>/* Plebum Dominium ZIP checksum comparison. No network, storage, or uploads. */
+(function () {
+  'use strict';
+
+  var MAX_BYTES = 32 * 1024 * 1024;
+  var CHECKSUM = /^[a-f0-9]{64}$/i;
+
+  function text(value, maxLength) {
+    return typeof value === 'string' && value.trim().length > 0 && value.length <= maxLength;
+  }
+
+  function httpsUrl(value) {
+    if (!text(value, 2048)) return false;
+    try {
+      var url = new URL(value);
+      return url.protocol === 'https:' && !url.username && !url.password;
+    } catch (error) {
+      return false;
+    }
+  }
+
+  function parseCatalog(node) {
+    if (!node) throw new Error('Missing package reference.');
+    var data = JSON.parse(node.textContent);
+    if (!data || data.schema !== 1 || !Array.isArray(data.packages) ||
+        !data.packages.length || data.packages.length > 32) {
+      throw new Error('Invalid package reference.');
+    }
+    return data.packages.map(function (entry) {
+      if (!entry || !text(entry.id, 160) || !text(entry.label, 200) ||
+          !text(entry.name, 255) || !text(entry.release, 160) ||
+          typeof entry.sha256 !== 'string' || !CHECKSUM.test(entry.sha256) ||
+          !Number.isSafeInteger(entry.bytes) || entry.bytes <= 0 || entry.bytes > MAX_BYTES ||
+          !httpsUrl(entry.checksumUrl) || !httpsUrl(entry.downloadUrl) ||
+          (entry.current !== undefined && typeof entry.current !== 'boolean')) {
+        throw new Error('Incomplete package reference.');
+      }
+      return {
+        id: entry.id, label: entry.label, name: entry.name, release: entry.release,
+        sha256: entry.sha256.toLowerCase(), bytes: entry.bytes,
+        checksumUrl: entry.checksumUrl, downloadUrl: entry.downloadUrl,
+        current: entry.current !== false
+      };
+    }).sort(function (a, b) {
+      return Number(b.current) - Number(a.current);
+    });
+  }
+
+  function byteLabel(bytes) {
+    if (bytes < 1024) return bytes + ' bytes';
+    if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KiB · ' + bytes + ' bytes';
+    return (bytes / (1024 * 1024)).toFixed(2) + ' MiB · ' + bytes + ' bytes';
+  }
+
+  function element(tag, className, content) {
+    var node = document.createElement(tag);
+    if (className) node.className = className;
+    if (content !== undefined) node.textContent = content;
+    return node;
+  }
+
+  function initialize(root) {
+    if (root.dataset.verifierInitialized === 'true') return;
+    root.dataset.verifierInitialized = 'true';
+
+    function find(name) { return root.querySelector('[data-verify-' + name + ']'); }
+
+    var input = find('file');
+    var resetButton = find('reset');
+    var status = find('status');
+    var statusTitle = find('status-title');
+    var statusText = find('status-text');
+    var progress = find('progress');
+    var fileInfo = find('file-info');
+    var filename = find('filename');
+    var filesize = find('filesize');
+    var hashDetails = find('hash-details');
+    var hashOutput = find('hash');
+    var reference = find('reference');
+    var packageList = find('packages');
+    var next = find('next');
+    var dropzone = find('dropzone');
+    var requestToken = 0;
+    var packages;
+    var available = false;
+    var cryptoProvider = window.crypto;
+
+    function show(state, title, detail) {
+      root.dataset.state = state;
+      root.setAttribute('aria-busy', state === 'checking' ? 'true' : 'false');
+      statusTitle.textContent = title;
+      statusText.textContent = detail;
+      progress.hidden = state !== 'checking';
+    }
+
+    function clearResult() {
+      requestToken += 1;
+      progress.hidden = true;
+      fileInfo.hidden = true;
+      filename.textContent = '';
+      filesize.textContent = '';
+      hashDetails.hidden = true;
+      hashDetails.open = false;
+      hashOutput.textContent = '';
+      reference.textContent = '';
+      next.hidden = true;
+      resetButton.disabled = true;
+      root.setAttribute('aria-busy', 'false');
+      if (dropzone) dropzone.classList.remove('is-dragover');
+      return requestToken;
+    }
+
+    function ready() {
+      show('ready', 'Ready to check', 'Choose a ZIP to compare it with the saved published references. Renamed copies are recognized by their contents.');
+    }
+
+    function reset(focus) {
+      clearResult();
+      input.value = '';
+      if (available) ready();
+      if (focus && available && typeof input.focus === 'function') input.focus();
+    }
+
+    function lock(state, title, detail) {
+      available = false;
+      root.dataset.enabled = 'false';
+      input.disabled = true;
+      resetButton.disabled = true;
+      show(state, title, detail);
+    }
+
+    if (!input || !resetButton || !status || !statusTitle || !statusText || !progress ||
+        !fileInfo || !filename || !filesize || !hashDetails || !hashOutput || !reference ||
+        !packageList || !next) {
+      if (input) input.disabled = true;
+      if (resetButton) resetButton.disabled = true;
+      root.dataset.enabled = 'false';
+      root.dataset.state = 'error';
+      if (statusTitle) statusTitle.textContent = 'Checker unavailable';
+      if (statusText) statusText.textContent = 'This verifier is incomplete. Open the current verifier or use the published checksum list.';
+      return;
+    }
+
+    clearResult();
+    try {
+      packages = parseCatalog(root.querySelector('.pd-verify-catalog'));
+    } catch (error) {
+      lock('error', 'Package references unavailable', 'This copy has no valid package references. Open the current verifier or use the published checksum lists. No verification has run.');
+      return;
+    }
+
+    packageList.textContent = '';
+    packages.forEach(function (entry) {
+      var item = element('li');
+      var heading = element('div', 'pd-verify-package-title');
+      heading.appendChild(element('strong', '', entry.label));
+      heading.appendChild(element('span', 'pd-verify-package-badge' + (entry.current ? '' : ' is-earlier'), entry.current ? 'Current reference' : 'Earlier reference'));
+      item.appendChild(heading);
+      item.appendChild(element('p', 'pd-verify-package-meta', entry.name + ' · ' + entry.release + ' · ' + byteLabel(entry.bytes)));
+      item.appendChild(element('code', '', entry.sha256));
+      var links = element('p', 'pd-verify-package-links');
+      var checksumLink = element('a', '', entry.current ? 'Published checksum list' : 'Checksum history');
+      checksumLink.href = entry.checksumUrl;
+      links.appendChild(checksumLink);
+      if (entry.current) {
+        var downloadLink = element('a', '', 'Download package');
+        downloadLink.href = entry.downloadUrl;
+        links.appendChild(downloadLink);
+      }
+      item.appendChild(links);
+      packageList.appendChild(item);
+    });
+
+    if (window.isSecureContext === false || !cryptoProvider || !cryptoProvider.subtle ||
+        typeof cryptoProvider.subtle.digest !== 'function' ||
+        typeof File === 'undefined' || !File.prototype || typeof File.prototype.arrayBuffer !== 'function') {
+      lock('unsupported', 'Browser verification unavailable', 'This browser does not provide the required local SHA-256 tools here. Open the HTTPS verifier in a supported browser, or compare the published SHA-256 with a local file-hashing tool. No verification has run.');
+      return;
+    }
+
+    available = true;
+    root.dataset.enabled = 'true';
+    input.disabled = false;
+    ready();
+
+    async function checkFile(file) {
+      var token = clearResult();
+      if (!available) return;
+      if (!file) { ready(); return; }
+      resetButton.disabled = false;
+      fileInfo.hidden = false;
+      filename.textContent = typeof file.name === 'string' ? file.name : 'Selected file';
+
+      if (!Number.isSafeInteger(file.size) || file.size < 0 || typeof file.arrayBuffer !== 'function') {
+        show('error', 'File could not be read', 'Select a regular downloaded ZIP file, then try again. No verification has run.');
+        return;
+      }
+      filesize.textContent = byteLabel(file.size);
+      if (file.size > MAX_BYTES) {
+        show('error', 'File exceeds the 32 MiB limit', 'This checker is for the listed Plebum Dominium ZIP packages. The selected file was not read.');
+        return;
+      }
+      if (file.size === 0) {
+        show('mismatch', 'No matching published checksum', 'The selected file is empty. Choose the completed ZIP download, or download the package again.');
+        return;
+      }
+
+      show('checking', 'Checking on your device…', 'Reading the selected file and calculating its SHA-256. Nothing is uploaded.');
+      var bytes;
+      var hash;
+      try {
+        bytes = await file.arrayBuffer();
+        if (token !== requestToken) return;
+        if (!bytes || bytes.byteLength !== file.size) {
+          show('error', 'File could not be read completely', 'The bytes read do not match the selected file size. Select the completed ZIP again; no match has been confirmed.');
+          return;
+        }
+        var digest = await cryptoProvider.subtle.digest('SHA-256', bytes);
+        if (token !== requestToken) return;
+        hash = Array.from(new Uint8Array(digest)).map(function (byte) {
+          return byte.toString(16).padStart(2, '0');
+        }).join('');
+        if (!CHECKSUM.test(hash)) throw new Error('Invalid digest output.');
+      } catch (error) {
+        if (token !== requestToken) return;
+        show('error', 'Could not complete the check', 'The browser could not read or hash this file. Select it again, or use a local SHA-256 tool with the published checksum list. No match has been confirmed.');
+        return;
+      } finally {
+        bytes = null;
+      }
+
+      if (token !== requestToken) return;
+      hashOutput.textContent = hash;
+      hashDetails.hidden = false;
+      var match = packages.find(function (entry) {
+        return entry.sha256 === hash && entry.bytes === file.size;
+      });
+      if (!match) {
+        reference.textContent = 'No saved reference matches both this SHA-256 and this file size.';
+        show('mismatch', 'No matching published checksum', 'This file does not match the packages listed in this verifier. Check the selected ZIP and release, or download a fresh copy. An older offline verifier may not recognize a newer package.');
+        return;
+      }
+
+      reference.textContent = match.name + ' · ' + match.release + ' · ' + byteLabel(match.bytes) + (match.current ? ' · Current reference in this copy' : ' · Earlier published reference');
+      next.hidden = false;
+      if (match.current) {
+        show('match', 'Matches published package', match.label + ' · ' + match.release + '. The SHA-256 and file size match this copy’s published reference. Continue with the extracted-file check below.');
+      } else {
+        show('earlier', 'Matches an earlier published package', match.label + ' · ' + match.release + '. This is a recognized older ZIP. Keep its hash with an existing test run; download the current package if you are beginning new tests.');
+      }
+    }
+
+    input.addEventListener('click', function () { reset(false); });
+    input.addEventListener('cancel', function () { reset(false); });
+    input.addEventListener('change', function () {
+      if (input.files && input.files.length > 1) {
+        clearResult();
+        resetButton.disabled = false;
+        show('error', 'Choose one ZIP at a time', 'Select a single downloaded package to check. No verification has run.');
+        return;
+      }
+      checkFile(input.files && input.files[0]);
+    });
+    resetButton.addEventListener('click', function () { reset(true); });
+
+    if (dropzone) {
+      dropzone.addEventListener('dragover', function (event) {
+        event.preventDefault();
+        if (available) {
+          dropzone.classList.add('is-dragover');
+          if (event.dataTransfer) event.dataTransfer.dropEffect = 'copy';
+        }
+      });
+      dropzone.addEventListener('dragleave', function () { dropzone.classList.remove('is-dragover'); });
+      dropzone.addEventListener('drop', function (event) {
+        event.preventDefault();
+        dropzone.classList.remove('is-dragover');
+        if (!available) return;
+        input.value = '';
+        var files = event.dataTransfer && event.dataTransfer.files;
+        if (!files || files.length !== 1) {
+          clearResult();
+          resetButton.disabled = false;
+          show('error', 'Choose one ZIP at a time', 'Drop a single downloaded ZIP file into the checker. No verification has run.');
+          return;
+        }
+        checkFile(files[0]);
+      });
+    }
+  }
+
+  function start() {
+    Array.prototype.forEach.call(document.querySelectorAll('[data-zip-verifier]'), initialize);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start, { once: true });
+  else start();
+}());
+</script>
+</body>
+</html>
