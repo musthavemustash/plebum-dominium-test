@@ -1,6 +1,8 @@
 // Execute the shipped mapper controller with DOM doubles; not a browser/Tails test.
 const fs=require('fs'),vm=require('vm'),assert=require('assert');
 const html=fs.readFileSync('docs/diceware-mapper.html','utf8');
+assert.match(html, /href="diceware-mapper.html" download="diceware-mapper.html"/, 'download must use original file bytes, not serialize runtime state');
+assert(!html.includes('cloneNode('));
 assert.match(html, /id="slots"><\/div>/, 'source must not contain saved dice inputs');
 const ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(x=>x[1]);assert.equal(new Set(ids).size,ids.length);
 const elements={},events={};

@@ -51,3 +51,11 @@ Fresh evidence for affected r2 behavior remains pending. Follow
 TOOL-FINISH-RETEST.txt on Windows and Tails; do not repeat unchanged known-answer
 cases without a regression. Full wallet setup, signing, recovery, backup and
 inheritance rehearsals remain separate beta gates.
+
+## r3 download correction
+
+The standalone mapper download previously serialized a cleaned DOM, producing
+bytes different from the published source fingerprint. r3 serves the original
+blank HTML file through a normal download link instead. Runtime input is never
+serialized. The download contract is covered in the mapper regression test.
+The r2 package remains historical; use r3 for the focused physical retest.
