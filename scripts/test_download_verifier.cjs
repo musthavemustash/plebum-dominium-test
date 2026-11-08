@@ -17,15 +17,15 @@ const nextTurn = () => new Promise(resolve => setImmediate(resolve));
 const inputs = [];
 
 function loadPublishedPackages() {
-  const offlineDir = 'testing/offline-20261106/';
-  const focusedDir = 'testing/alpha-20261106-t3-t4/';
+  const offlineDir = 'testing/offline-20261108-r1/';
+  const focusedDir = 'testing/alpha-20261108-t5-r1/';
   const offline = JSON.parse(fs.readFileSync(path.join(rootDir, 'docs', offlineDir, 'manifest.json'), 'utf8'));
   const focused = JSON.parse(fs.readFileSync(path.join(rootDir, 'docs', focusedDir, 'manifest.json'), 'utf8'));
   const definitions = [
     ...offline.packages.map((p, index) => ({
       item: p, dir: offlineDir, id: index === 0 ? 'complete' : 'website-tools',
       label: index === 0 ? 'Complete offline tester' : 'Website tools only',
-      release: 'offline-20261106'
+      release: 'offline-20261108-r1'
     })),
     { item: focused.archive, dir: focusedDir, id: 'focused', label: 'Focused public tests', release: focused.release }
   ];

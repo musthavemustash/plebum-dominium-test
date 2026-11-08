@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; connect-src 'none'; img-src data:; worker-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>T4 fix 2026.11.06 — Descriptor tool (TEST ONLY)</title>
+<title>Wallet-map tool · T5 candidate</title>
 <style>
   body { background: #0e0d0b; color: #e8e0d0; font-family: Georgia, 'Times New Roman', serif; margin: 0; padding: 2rem 1rem; }
   main { max-width: 72ch; margin: 0 auto; }
@@ -41,16 +42,26 @@
   .dl-guide{margin-top:18px;padding-top:16px;border-top:1px solid #3a2f28;}
   .dl-guide p{margin:8px 0;}
   a.dl-btn{display:inline-block;background:#c4a484;color:#14100b;border-radius:10px;padding:10px 20px;font-size:15px;font-weight:700;text-decoration:none;}
+
+/* Keep the initial gate usable on short and narrow screens. */
+#netblock{overflow-y:auto;align-items:flex-start;box-sizing:border-box}
+.stopcard{margin:auto;box-sizing:border-box;width:100%;max-width:640px}
+.stopcard label{display:block;margin:14px 0;line-height:1.5;color:#e8e0d0}
+.stopcard input{width:auto;margin-right:8px}
+button:disabled{opacity:.5;cursor:default}
+.t5-notice{border:1px solid #c4a484;padding:12px;margin:12px 0;color:#e8e0d0}
+.online-pill{white-space:normal}
 </style>
 </head>
 <body>
-<main>
+<main id="tool-main" inert>
+<div class="t5-notice" role="note"><strong>T5 public-test candidate · not approved for real wallets.</strong> Network isolation is not verified by this page. Keep OS networking disabled. <button type="button" class="ghost" id="session-lock">Lock and clear</button></div>
 <div class="topbar"><span class="online-pill" id="online-pill" role="status" hidden><span class="online-dot" id="online-dot"></span><span id="online-word">Online</span></span></div>
 
   <h1>Descriptor tool</h1>
   <noscript><div class="js-off"><strong>JavaScript is off.</strong> This tool needs JavaScript to run. In Tor Browser, set the security level to Standard and reload this page.</div></noscript>
   <p id="code-status">Code loading. If this line never changes, the code did not start.</p>
-  <div class="banner"><strong>Offline use only.</strong> This page runs entirely in your browser. Nothing leaves this page. Nothing is stored. On Tails with networking disabled, open this file in Tor Browser. Use Tor Browser Standard security level. Safest disables the code this page needs. If the pill at the top ever says Online, stop and close the page.</div>
+  <div class="banner"><strong>Public test data only.</strong> Open the verified local file with Tails networking disabled. The browser cannot verify that isolation. JavaScript must run for these tests; record the Tor Browser security level and any restriction.</div>
 
   <div class="mode">
     <button type="button" id="mode-enc" class="mode-btn active">Encrypt a map</button>
@@ -130,17 +141,20 @@
   <h2>Format notes</h2>
   <p class="fine">This tool writes OpenPGP symmetric messages: AES-256, SEIPD version 1 with a modification detection code, iterated and salted S2K with count 65011712, matching the Python tool. Both this build and the Python tool configure SHA-512 for password-based key derivation. The parameters travel inside each message, so either tool opens the other's output. Cross-decryption passed public-data core tests; target-browser and offline-environment validation remains required. This test build uses OpenPGP.js version 6 (6.3.2), a supported release. AEAD stays off, so the format stays SEIPD version 1 for GPG 2.2 on Tails.</p>
 </main>
-<div id="netblock" hidden>
-  <div class="stopcard" role="alert">
-    <p><span class="online-pill"><span class="online-dot"></span><span>Online</span></span></p>
-    <h2>Stop. This computer is online.</h2>
-    <p>A passphrase typed on a computer that can reach the network can be leaked by malware, a bad extension, or the network itself. One leak burns the passphrase, and a burned passphrase means the locked maps must be treated as readable.</p>
-    <p>Close this page. Boot Tails with networking set to Disabled, or disconnect this machine from the network, then open the file again. If this page still says Online on a machine you believe is offline, trust the page. Something is still connected.</p>
-    <div class="dl-guide">
-      <p><strong>Get this file onto your offline machine.</strong></p>
-      <p><a class="dl-btn" data-dl href="descriptor-tool.html" download="descriptor-tool.html">Download descriptor-tool.html</a></p>
-      <p>Then check its fingerprint on the verify page, copy it to your data USB, and open it on Tails with networking disabled.</p>
-    </div>
+<div id="netblock">
+  <div class="stopcard" role="region" aria-labelledby="session-title">
+    <h2 id="session-title">Before this public test</h2>
+    <p><strong>T5 candidate 2026.11.08 — public test data only.</strong></p>
+    <p>This page cannot establish whether the computer is offline. Tor Browser can report an online flag even with networking disabled. Keep Tor's privacy settings unchanged.</p>
+    <p>Disable networking in your operating system and disconnect network cables. On Tails, boot with <strong>Offline Mode → Disable all networking</strong>. Check the OS network status before continuing and keep networking disabled throughout the test.</p>
+    <p id="session-code" role="status">Code has not started. If this stays visible, leave the tool locked.</p>
+    <p id="browser-signal">Browser connection flag not checked.</p>
+    <label><input type="checkbox" id="confirm-offline" autocomplete="off"> I have disabled networking in the operating system and checked its network status.</label>
+    <label><input type="checkbox" id="confirm-public" autocomplete="off"> I will use only public fixtures and disposable test passwords. No real wallet data or entropy.</label>
+    <button type="button" class="ghost" id="session-start" disabled>Start public test</button>
+    <p>These confirmations are your checks, not automatic verification. Browser network events may be masked, so this page cannot reliably detect reconnection. Lock and clear before changing network settings.</p>
+    <noscript><p>JavaScript is disabled. The test remains locked. Record this browser restriction.</p></noscript>
+    <div class="dl-guide"><a class="dl-btn" data-dl href="descriptor-tool.html" download="descriptor-tool.html">Download local test file</a></div>
   </div>
 </div>
 
@@ -165,9 +179,67 @@ const Uh=BigInt(0),Ph=BigInt(1),xh=BigInt(2);function Qh(e){const t=(rc(r=e,{adj
 <script>
 (function () {
   'use strict';
-  var session = window.custodySession = {epoch: 0, allowed: function () {
-    return location.protocol === 'file:' && navigator.onLine === false;
-  }};
+/* T5 candidate: local public-data testing only; never attests network isolation.
+ * Embedded into each standalone controller. No storage or network requests.
+ * Tor's fingerprinting protection can mask onLine and its change events.
+ */
+function createPublicTestSession() {
+  var active = false, ready = false, observed = navigator.onLine;
+  var wipe = function () {};
+  function el(id) { return document.getElementById(id); }
+  function render() {
+    var local = location.protocol === 'file:';
+    el('netblock').hidden = active;
+    el('tool-main').inert = !active;
+    el('session-start').disabled = !ready || !local || !el('confirm-offline').checked || !el('confirm-public').checked;
+    el('session-title').textContent = local ? 'Before this public test' : 'Download and open the local file';
+    el('browser-signal').textContent = 'Browser connection flag: ' + String(navigator.onLine) + '. This does not verify network isolation.';
+    el('online-pill').hidden = false;
+    el('online-word').textContent = active ? 'Public test · isolation not verified' : 'Test session locked';
+  }
+  function revoke() {
+    active = false;
+    el('confirm-offline').checked = false;
+    el('confirm-public').checked = false;
+    observed = navigator.onLine;
+    wipe();
+    render();
+  }
+  function allowed() {
+    if (location.protocol !== 'file:' || navigator.onLine !== observed) { revoke(); }
+    return ready && active && location.protocol === 'file:';
+  }
+  el('confirm-offline').addEventListener('change', render);
+  el('confirm-public').addEventListener('change', render);
+  el('session-start').addEventListener('click', function () {
+    if (!ready || location.protocol !== 'file:' || !el('confirm-offline').checked || !el('confirm-public').checked) return;
+    wipe();
+    observed = navigator.onLine;
+    active = true;
+    render();
+  });
+  el('session-lock').addEventListener('click', revoke);
+  window.addEventListener('online', revoke);
+  window.addEventListener('offline', revoke);
+  window.addEventListener('pagehide', revoke);
+  window.addEventListener('pageshow', revoke);
+  setInterval(function () {
+    if (navigator.onLine !== observed) revoke();
+  }, 1000);
+  render();
+  return {
+    allowed: allowed,
+    revoke: revoke,
+    ready: function (clear) { wipe = clear; ready = true; el('session-code').textContent = 'Code ready. Public testing only.'; revoke(); }
+  };
+}
+
+  var testSession = createPublicTestSession();
+  var session = window.custodySession = {epoch: 0, allowed: testSession.allowed};
+  if (typeof openpgp === 'undefined' || !openpgp) {
+    document.getElementById('session-code').textContent = 'Encryption library unavailable. Open the verified local file in a browser with JavaScript and WebCrypto support. Leave the tool locked if this persists.';
+    return;
+  }
   openpgp.config.preferredSymmetricAlgorithm = openpgp.enums.symmetric.aes256;
   openpgp.config.preferredHashAlgorithm = openpgp.enums.hash.sha512;
   openpgp.config.s2kIterationCountByte = 255;
@@ -300,7 +372,7 @@ const Uh=BigInt(0),Ph=BigInt(1),xh=BigInt(2);function Qh(e){const t=(rc(r=e,{adj
   });
   $('enc-download').addEventListener('click', function () {
     var text = $('enc-out').value;
-    if (text) download('map.txt.asc', text, $('enc-status-r'));
+    if (session.allowed() && text) download('map.txt.asc', text, $('enc-status-r'));
   });
   $('enc-again').addEventListener('click', function () {
     $('enc-text').value = ''; $('enc-pass').value = ''; $('enc-pass2').value = '';
@@ -331,13 +403,23 @@ const Uh=BigInt(0),Ph=BigInt(1),xh=BigInt(2);function Qh(e){const t=(rc(r=e,{adj
     btn.disabled = false;
   });
   $('dec-download').addEventListener('click', function () {
-    if (decBytes !== null) download('map.txt', decBytes, $('dec-status-r'));
+    if (session.allowed() && decBytes !== null) download('map.txt', decBytes, $('dec-status-r'));
   });
   $('dec-again').addEventListener('click', function () {
     $('dec-text').value = ''; $('dec-pass').value = '';
     session.epoch++; decBytes = null; $('dec-out').value = ''; decFileName = ''; $('dec-result').hidden = true;
     status($('dec-status-1'), '', true); status($('dec-status-2'), '', true); status($('dec-status-3'), '', true);
     updateDecReview();
+  });
+  testSession.ready(function () {
+    session.epoch++;
+    session.clearPayloads();
+    document.querySelectorAll('textarea').forEach(function (t) { t.value=''; });
+    document.querySelectorAll('input[type="password"]').forEach(function (p) { p.value=''; });
+    document.querySelectorAll('.status').forEach(function (s) { s.textContent=''; });
+    ['enc-result','dec-result'].forEach(function (id) { $(id).hidden=true; });
+    ['enc-btn','dec-btn'].forEach(function (id) { $(id).disabled=false; });
+    updateEncReview(); updateDecReview();
   });
 })();
 </script>
@@ -350,7 +432,7 @@ const Uh=BigInt(0),Ph=BigInt(1),xh=BigInt(2);function Qh(e){const t=(rc(r=e,{adj
     var lib = (typeof openpgp !== 'undefined' && openpgp);
     var btn = document.getElementById('enc-btn');
     if (lib && btn) {
-      el.textContent = 'Code loaded: encryption library ready. T4 fix 2026.11.06.';
+      el.textContent = 'Code loaded: encryption library ready. T5 candidate 2026.11.08.';
     } else if (lib) {
       el.textContent = 'Library loaded, but the page buttons are missing.';
     } else {
@@ -362,49 +444,6 @@ const Uh=BigInt(0),Ph=BigInt(1),xh=BigInt(2);function Qh(e){const t=(rc(r=e,{adj
 })();
 </script>
 
-<script>
-(function(){
-  "use strict";
-  function $(id){return document.getElementById(id);}
-  var netBlocked=true; // blocked until a local file and an explicit offline signal are observed
 
-  function wipe(){
-    if (window.custodySession) { window.custodySession.epoch++; window.custodySession.clearPayloads(); }
-    ['enc-result','dec-result'].forEach(function(id){ $(id).hidden=true; });
-    document.querySelectorAll('textarea').forEach(function(t){t.value='';});
-    document.querySelectorAll('input[type="password"]').forEach(function(p){p.value='';});
-    var s=document.querySelectorAll('.status');s.forEach(function(x){x.textContent='';});
-  }
-  async function renderNet(){
-    var pill=$('online-pill'),dot=$('online-dot'),word=$('online-word'),block=$('netblock');
-    if(pill){pill.hidden=false;dot.classList.remove('safe');word.textContent='Checking…';}
-    if(block){block.hidden=false;}
-    // Conservative: we cannot prove air-gap status from the browser.
-    // file: means opened locally, not that networking is disabled.
-    // https: means served over network. User must disable and verify networking independently.
-    var servedOverNetwork = (location.protocol === 'https:' || location.protocol === 'http:');
-    var online = location.protocol !== 'file:' || navigator.onLine !== false;
-    var wasBlocked=netBlocked;
-    netBlocked=online;
-    if(pill){dot.classList.toggle('safe',!online);word.textContent=online?'Network detected':'Local file';}
-    if(block){
-      block.hidden=!online;
-      if(online && servedOverNetwork){
-        block.innerHTML='<strong>Warning:</strong> This tool was loaded over the network ('+location.protocol+'). For real keys, download this file, disconnect from the network, verify networking is disabled, then open the local copy. This page cannot verify air-gap status for you.';
-      }
-    }
-    if(online){wipe();}
-  }
-  window.addEventListener('online',renderNet);
-  window.addEventListener('offline',renderNet);
-  document.addEventListener('click',function(e){
-    if(netBlocked&&!(e.target.closest&&e.target.closest('[data-dl]'))){e.stopPropagation();e.preventDefault();}
-  },true);
-  document.addEventListener('keydown',function(e){
-    if(netBlocked&&!(e.target.closest&&e.target.closest('[data-dl]'))){e.stopPropagation();e.preventDefault();}
-  },true);
-  renderNet();
-})();
-</script>
 </body>
 </html>

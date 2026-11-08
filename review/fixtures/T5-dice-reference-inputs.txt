@@ -1,0 +1,215 @@
+PLEBUM DOMINIUM — T5.4 PUBLIC DICE TEST INPUTS
+Prepared November 8, 2026. Public fixtures only. Never fund these examples.
+
+Source: plebum-t5-html-retest-20261108.zip / fixtures/bip39-vectors.json
+Exact candidate ZIP SHA-256:
+839bee50bebf7c7aebf48434c84f4ccd5995139fae7064a126668170499e55f4
+
+HOW TO USE
+Open this text file locally. Copy only the single 256-bit line for the chosen
+reference. Paste into the HTML binary-input field, then into the Python converter
+when prompted. Check every expected word in order. Leading zeros matter.
+Save results separately; this file contains expected answers, not PASS evidence.
+
+SCREENSHOTS
+HTML: T5.4-html-vector-NN.png
+Python: T5.4-python-vector-NN.png
+Use the two-digit reference number. Preserve original screenshot extensions.
+For references 01 and 04, existing zeros/ones evidence may be reused for this
+same candidate and environment; do not rename away original evidence.
+
+This copy sheet is included in the refreshed public package manifest.
+The source hash above identifies the earlier tested focused candidate, not this ZIP.
+
+================================================================
+REFERENCE 01
+================================================================
+
+Hex reference:
+0000000000000000000000000000000000000000000000000000000000000000
+
+COPY THIS ENTIRE 256-BIT LINE:
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+
+EXPECTED WORDS:
+01-04: abandon abandon abandon abandon
+05-08: abandon abandon abandon abandon
+09-12: abandon abandon abandon abandon
+13-16: abandon abandon abandon abandon
+17-20: abandon abandon abandon abandon
+21-24: abandon abandon abandon art
+
+Space-separated expected words:
+abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon art
+
+HTML screenshot: T5.4-html-vector-01.png
+Python screenshot: T5.4-python-vector-01.png
+
+================================================================
+REFERENCE 02
+================================================================
+
+Hex reference:
+7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f
+
+COPY THIS ENTIRE 256-BIT LINE:
+0111111101111111011111110111111101111111011111110111111101111111011111110111111101111111011111110111111101111111011111110111111101111111011111110111111101111111011111110111111101111111011111110111111101111111011111110111111101111111011111110111111101111111
+
+EXPECTED WORDS:
+01-04: legal winner thank year
+05-08: wave sausage worth useful
+09-12: legal winner thank year
+13-16: wave sausage worth useful
+17-20: legal winner thank year
+21-24: wave sausage worth title
+
+Space-separated expected words:
+legal winner thank year wave sausage worth useful legal winner thank year wave sausage worth useful legal winner thank year wave sausage worth title
+
+HTML screenshot: T5.4-html-vector-02.png
+Python screenshot: T5.4-python-vector-02.png
+
+================================================================
+REFERENCE 03
+================================================================
+
+Hex reference:
+8080808080808080808080808080808080808080808080808080808080808080
+
+COPY THIS ENTIRE 256-BIT LINE:
+1000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000
+
+EXPECTED WORDS:
+01-04: letter advice cage absurd
+05-08: amount doctor acoustic avoid
+09-12: letter advice cage absurd
+13-16: amount doctor acoustic avoid
+17-20: letter advice cage absurd
+21-24: amount doctor acoustic bless
+
+Space-separated expected words:
+letter advice cage absurd amount doctor acoustic avoid letter advice cage absurd amount doctor acoustic avoid letter advice cage absurd amount doctor acoustic bless
+
+HTML screenshot: T5.4-html-vector-03.png
+Python screenshot: T5.4-python-vector-03.png
+
+================================================================
+REFERENCE 04
+================================================================
+
+Hex reference:
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+
+COPY THIS ENTIRE 256-BIT LINE:
+1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
+
+EXPECTED WORDS:
+01-04: zoo zoo zoo zoo
+05-08: zoo zoo zoo zoo
+09-12: zoo zoo zoo zoo
+13-16: zoo zoo zoo zoo
+17-20: zoo zoo zoo zoo
+21-24: zoo zoo zoo vote
+
+Space-separated expected words:
+zoo zoo zoo zoo zoo zoo zoo zoo zoo zoo zoo zoo zoo zoo zoo zoo zoo zoo zoo zoo zoo zoo zoo vote
+
+HTML screenshot: T5.4-html-vector-04.png
+Python screenshot: T5.4-python-vector-04.png
+
+================================================================
+REFERENCE 05
+================================================================
+
+Hex reference:
+68a79eaca2324873eacc50cb9c6eca8cc68ea5d936f98787c60c7ebc74e6ce7c
+
+COPY THIS ENTIRE 256-BIT LINE:
+0110100010100111100111101010110010100010001100100100100001110011111010101100110001010000110010111001110001101110110010101000110011000110100011101010010111011001001101101111100110000111100001111100011000001100011111101011110001110100111001101100111001111100
+
+EXPECTED WORDS:
+01-04: hamster diagram private dutch
+05-08: cause delay private meat
+09-12: slide toddler razor book
+13-16: happy fancy gospel tennis
+17-20: maple dilemma loan word
+21-24: shrug inflict delay length
+
+Space-separated expected words:
+hamster diagram private dutch cause delay private meat slide toddler razor book happy fancy gospel tennis maple dilemma loan word shrug inflict delay length
+
+HTML screenshot: T5.4-html-vector-05.png
+Python screenshot: T5.4-python-vector-05.png
+
+================================================================
+REFERENCE 06
+================================================================
+
+Hex reference:
+9f6a2878b2520799a44ef18bc7df394e7061a224d2c33cd015b157d746869863
+
+COPY THIS ENTIRE 256-BIT LINE:
+1001111101101010001010000111100010110010010100100000011110011001101001000100111011110001100010111100011111011111001110010100111001110000011000011010001000100100110100101100001100111100110100000001010110110001010101111101011101000110100001101001100001100011
+
+EXPECTED WORDS:
+01-04: panda eyebrow bullet gorilla
+05-08: call smoke muffin taste
+09-12: mesh discover soft ostrich
+13-16: alcohol speed nation flash
+17-20: devote level hobby quick
+21-24: inner drive ghost inside
+
+Space-separated expected words:
+panda eyebrow bullet gorilla call smoke muffin taste mesh discover soft ostrich alcohol speed nation flash devote level hobby quick inner drive ghost inside
+
+HTML screenshot: T5.4-html-vector-06.png
+Python screenshot: T5.4-python-vector-06.png
+
+================================================================
+REFERENCE 07
+================================================================
+
+Hex reference:
+066dca1a2bb7e8a1db2832148ce9933eea0f3ac9548d793112d9a95c9407efad
+
+COPY THIS ENTIRE 256-BIT LINE:
+0000011001101101110010100001101000101011101101111110100010100001110110110010100000110010000101001000110011101001100100110011111011101010000011110011101011001001010101001000110101111001001100010001001011011001101010010101110010010100000001111110111110101101
+
+EXPECTED WORDS:
+01-04: all hour make first
+05-08: leader extend hole alien
+09-12: behind guard gospel lava
+13-16: path output census museum
+17-20: junior mass reopen famous
+21-24: sing advance salt reform
+
+Space-separated expected words:
+all hour make first leader extend hole alien behind guard gospel lava path output census museum junior mass reopen famous sing advance salt reform
+
+HTML screenshot: T5.4-html-vector-07.png
+Python screenshot: T5.4-python-vector-07.png
+
+================================================================
+REFERENCE 08
+================================================================
+
+Hex reference:
+f585c11aec520db57dd353c69554b21a89b20fb0650966fa0a9d6f74fd989d8f
+
+COPY THIS ENTIRE 256-BIT LINE:
+1111010110000101110000010001101011101100010100100000110110110101011111011101001101010011110001101001010101010100101100100001101010001001101100100000111110110000011001010000100101100110111110100000101010011101011011110111010011111101100110001001110110001111
+
+EXPECTED WORDS:
+01-04: void come effort suffer
+05-08: camp survey warrior heavy
+09-12: shoot primary clutch crush
+13-16: open amazing screen patrol
+17-20: group space point ten
+21-24: exist slush involve unfold
+
+Space-separated expected words:
+void come effort suffer camp survey warrior heavy shoot primary clutch crush open amazing screen patrol group space point ten exist slush involve unfold
+
+HTML screenshot: T5.4-html-vector-08.png
+Python screenshot: T5.4-python-vector-08.png
+
