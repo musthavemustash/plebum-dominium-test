@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>What do I need to build a DIY Bitcoin multisig wallet? · Plebum Dominium Test Site</title>
-<meta name="description" content="Everything to gather before building a DIY Bitcoin 2-of-3 multisig wallet: five dice, titanium plates, two USB drives, and the free software, with prices.">
+<meta name="description" content="Retired reference. Use the current software-first Plebum Dominium guide.">
 <link rel="canonical" href="https://plebumbtc.io/handouts/checklist.html">
 <link rel="icon" href="/plebum-dominium-test/assets/img/favicon.svg" type="image/svg+xml">
 <meta property="og:type" content="website">
@@ -77,7 +77,7 @@
     <div class="sidebar-path" id="sidebar-path">
       <p class="sidebar-path-label">Choose a path</p>
       <div class="sidebar-path-seg" role="group" aria-label="Choose a setup">
-        <button type="button" data-path="easy" aria-pressed="false">One device</button>
+
         <button type="button" data-path="one" aria-pressed="false">one key<br>+<br>Passphrase</button>
         <button type="button" data-path="full" aria-pressed="true">Three keys</button>
       </div>
@@ -108,59 +108,9 @@
   <div class="scrim" aria-hidden="true"></div>
 
   <main id="content">
-    <article>
-      <p class="kicker">03 · Plebum Dominium</p>
-      <h1>Checklist</h1>
-      <div class="path-banner" id="path-banner" hidden>
-        <p class="path-banner-label">Your path: <strong id="path-banner-label">Three keys</strong> (<a href="/plebum-dominium-test/choose-path.html">change</a>)</p>
-        <p class="path-banner-note" id="path-banner-note"></p>
-      </div>
-      <div class="path-gate" id="path-gate" hidden>
-        <h2>Not on your path</h2>
-        <p id="path-gate-note"></p>
-        <p><a href="/plebum-dominium-test/choose-path.html">Go to Choose your path to change it</a></p>
-        <p><a href="/plebum-dominium-test/path-risks.html">Risks of your path &rarr;</a></p>
-      </div>
-<nav class="step-banner" aria-label="Sheet 3 of 17"><a class="step-nav" href="/plebum-dominium-test/handouts/threat-model.html" rel="prev">&larr; 02 &middot; Before you begin</a><span class="step-pos"><strong>Step 3 of 8</strong> · Checklist</span><a class="step-nav" href="/plebum-dominium-test/handouts/verify.html" rel="next">05 &middot; Check the files &rarr;</a></nav>
-<section class="sheet-meta" aria-label="Sheet overview"><div class="meta-item"><span class="meta-label">Time</span><span class="meta-val">30 min + shopping</span></div><div class="meta-item"><span class="meta-label">Difficulty</span><span class="meta-val diff-moderate">Moderate</span></div><div class="meta-item"><span class="meta-label">Steps</span><span class="meta-val">11 items</span></div><div class="meta-item meta-needs"><span class="meta-label">You will need</span><span class="meta-val">This sheet &middot; A budget for the kit</span></div></section>
-<p class="lede">Gather everything on this list before the first boot, so nothing has to be ordered in the middle of the build.</p>
-
-<div class="check-group">
-<div class="check-icon"><svg viewBox="0 0 64 64"><rect x="6" y="6" width="24" height="24" rx="6" fill="#f3eee4"/><circle cx="14" cy="14" r="2.5" fill="#161410"/><circle cx="22" cy="22" r="2.5" fill="#161410"/><rect x="34" y="6" width="24" height="24" rx="6" fill="#f3eee4"/><circle cx="46" cy="18" r="2.5" fill="#161410"/><rect x="6" y="34" width="24" height="24" rx="6" fill="#f3eee4"/><circle cx="18" cy="46" r="2.5" fill="#161410"/><rect x="34" y="34" width="24" height="24" rx="6" fill="#f3eee4"/><circle cx="42" cy="42" r="2.5" fill="#161410"/><circle cx="50" cy="50" r="2.5" fill="#161410"/></svg></div>
-<div><h2><span class="n">On the table</span>The dice table</h2>
-<ul><li><strong>Five casino dice</strong> with readable faces</li><li><strong>Pencil</strong> and the recording grid</li><li>A <strong>private room</strong>, no camera</li></ul></div>
-</div>
-
-<div class="check-group">
-<div class="check-icon"><svg viewBox="0 0 64 64"><rect x="8" y="14" width="48" height="32" rx="4" fill="var(--card)" stroke="var(--accent)"/><text x="32" y="34" fill="var(--accent)" font-size="11" text-anchor="middle" font-family="sans-serif" font-weight="700">1</text><rect x="8" y="50" width="48" height="6" rx="3" fill="var(--line)"/><rect x="24" y="14" width="16" height="32" fill="var(--accent)" opacity="0.25"/></svg></div>
-<div><h2><span class="n">The computer</span>One machine, two boots</h2>
-<ul><li><strong>Boot 1:</strong> stays online, never holds a seed</li><li><strong>Boot 2:</strong> Tails USB, networking off</li><li><strong>Data USB:</strong> carries only checked files</li></ul></div>
-</div>
-
-<div class="check-group">
-<div class="check-icon"><svg viewBox="0 0 64 64"><rect x="10" y="8" width="18" height="24" rx="3" fill="var(--card)" stroke="var(--muted)"/><rect x="36" y="8" width="18" height="24" rx="3" fill="var(--card)" stroke="var(--muted)"/><rect x="10" y="36" width="18" height="24" rx="3" fill="var(--card)" stroke="var(--muted)"/><rect x="36" y="36" width="18" height="24" rx="3" fill="var(--card)" stroke="var(--muted)"/><circle cx="32" cy="32" r="9" fill="var(--accent)"/><text x="32" y="36" fill="#0b0a08" font-size="12" text-anchor="middle" font-weight="700" font-family="sans-serif">&#10003;</text></svg></div>
-<div><h2><span class="n">Files</span>Checked before anything goes offline</h2>
-<ul><li><strong>Tails 7.15.1 or later 7.x</strong> (verified)</li><li><strong>Tools bundle</strong> (in this kit, verified before extracting) &middot; <strong>Ian Coleman</strong> page (offline only)</li></ul></div>
-</div>
-
-<div class="check-group">
-<div class="check-icon"><svg viewBox="0 0 64 64"><rect x="6" y="20" width="26" height="18" rx="4" fill="#8a847e" stroke="#44403c"/><rect x="34" y="14" width="26" height="18" rx="4" fill="#8a847e" stroke="#44403c"/><rect x="20" y="36" width="26" height="18" rx="4" fill="#8a847e" stroke="#44403c"/><line x1="10" y1="27" x2="28" y2="27" stroke="#44403c" stroke-width="2"/><line x1="38" y1="21" x2="56" y2="21" stroke="#44403c" stroke-width="2"/><line x1="24" y1="43" x2="42" y2="43" stroke="#44403c" stroke-width="2"/></svg></div>
-<div><h2><span class="n">Metal</span>One plate, one place</h2>
-<ul><li><strong>One titanium plate</strong>, one set of words on it</li>
-<li><strong>StampSeed</strong> kit holds 1 &middot; <strong>Cryptotag</strong> holds 2, use one plate only. Don&rsquo;t mix methods. Do not buy extra plates for this wallet</li>
-<li>One place, <strong>apart from the device</strong></li></ul></div>
-</div>
-
-<p class="check-note"><strong>Nothing is bought mid-build.</strong> If a plate or USB is missing when its sheet arrives, stop and get it first.</p>
-
-
+    <article class="entry-page"><h1>Use the current guide</h1><p>This older route page has been retired. Plebum Dominium has two complete paths, both using offline software without a hardware wallet.</p><p><strong>Plebum Dominium teaches self-custody without a hardware wallet.</strong> Create and verify keys with offline software, put the backups on metal, and check that they restore the intended wallet. Use offline software to sign. Hardware wallets are optional signing tools introduced only after the metal backups are complete and checked.</p><p><a href="/plebum-dominium-test/paths/one/checklist.html">Open the current one-key guide</a> or <a href="/plebum-dominium-test/choose-path.html">compare both paths</a>.</p><p>Public-alpha testing uses disposable data and the designated test network only.</p>
 <!-- page-test-module --><details class="page-test-module" id="help-test-page"><summary><span class="ptm-heading">Help test this page</span><span class="ptm-count">Optional · 2 checks</span></summary><div class="ptm-body"><p class="ptm-intro">Try these checks and tell us what happened. Testing is optional for readers; reading this sheet does not complete a verification test.</p><p class="ptm-public"><strong>Public examples only.</strong> Never use or share real seed words, private keys, passphrases, funds, wallet details, or personal recovery locations.</p><ol class="ptm-tasks"><li><p class="ptm-task-id"><code>P-CHECKLIST-EASY-01</code></p><p class="ptm-try">Compare this older single-key checklist with the current One key + passphrase route from Choose your path.</p><p><strong>Expected:</strong> The current route is reachable; differences in passphrase requirements, backup advice, or versions can be identified before following the older instructions.</p><p class="ptm-evidence"><strong>Evidence:</strong> Record conflicting passages and current page links; do not remove or destroy backups.</p></li><li><p class="ptm-task-id"><code>P-CHECKLIST-EASY-02</code></p><p class="ptm-try">Read the materials list as a first-time visitor and identify any item whose purpose you cannot explain.</p><p><strong>Expected:</strong> Each item has enough explanation or a useful working reference; unclear or outdated items are reported.</p><p class="ptm-evidence"><strong>Evidence:</strong> Name the item and missing explanation using a fictional setup.</p></li></ol><p class="ptm-report-note">Record <strong>PASS, FAIL or NOT TESTED for each task</strong>. If a check is skipped or blocked, use NOT TESTED. Include your OS/browser versions and network state; attach output or a short recording where useful.</p><p class="ptm-build">Website content build <code>b49bc994223f</code>. If you test a tool, also record its exact package filename and hash.</p><a class="ptm-report" href="https://docs.google.com/forms/d/e/1FAIpQLSfOkY3FrZmZpIVro5oxWLy_YvU7U-1BOrL3KB9VCI3jXjad2Q/viewform?usp=pp_url&amp;entry.460741145=General+website+feedback&amp;entry.1551279696=Getting+Started+%2F+guides&amp;entry.1164893128=https%3A%2F%2Fmusthavemustash.github.io%2Fplebum-dominium-test%2Fhandouts%2Fchecklist-easy.html&amp;entry.846110096=Website+build+b49bc994223f7085c1a539133a10f9669725d0f7&amp;entry.760527846=Page%3A+https%3A%2F%2Fmusthavemustash.github.io%2Fplebum-dominium-test%2Fhandouts%2Fchecklist-easy.html%0AWebsite+content+build%3A+b49bc994223f7085c1a539133a10f9669725d0f7%0AMode+tested+%28live+website+%2F+offline+copy%29%3A%0ATool%2Fpackage+filename+and+SHA-256%2C+if+applicable%3A%0A%0AP-CHECKLIST-EASY-01%0AResult+%28enter+PASS%2C+FAIL+or+NOT+TESTED%29%3A%0AExpected%3A+The+current+route+is+reachable%3B+differences+in+passphrase+requirements%2C+backup+advice%2C+or+versions+can+be+identified+before+following+the+older+instructions.%0AActual%3A%0ASteps+or+error+messages%3A%0A%0AP-CHECKLIST-EASY-02%0AResult+%28enter+PASS%2C+FAIL+or+NOT+TESTED%29%3A%0AExpected%3A+Each+item+has+enough+explanation+or+a+useful+working+reference%3B+unclear+or+outdated+items+are+reported.%0AActual%3A%0ASteps+or+error+messages%3A%0A%0AEvidence+link+or+output+%28public+fixtures+only%29%3A" target="_blank" rel="noopener noreferrer">Report results for this page <span aria-hidden="true">↗</span></a><p class="ptm-form-note">Opens Google Forms with the public page URL, task IDs and website build filled in. Choose your own result. Use General website feedback for these page checks; the full T1–T5 tool suites have their own sections.</p><p class="ptm-offline">Using an offline copy? Finish testing before reconnecting to report. Say “offline copy” and identify your downloaded package. The reporting link uses the public page URL, never your local file path.</p></div></details><!-- /page-test-module -->
-      <nav class="prevnext-row" data-page-controls aria-label="Previous and next sheets">
-<a class="prevnext prev" href="/plebum-dominium-test/handouts/threat-model.html"><span class="pager-original"><span>← 02 · Before you begin</span></span><span class="pager-label">← Previous</span><span class="pager-title">Before you begin</span></a>
-<span class="step-pos-bottom"><strong>Step 3 of 8</strong> · Checklist</span>
-<a class="prevnext next" href="/plebum-dominium-test/handouts/verify.html"><span class="pager-original"><span>05 · Check the files →</span></span><span class="pager-label">Next →</span><span class="pager-title">Check the files</span></a>
-      </nav>
-    </article>
+</article>
   </main>
 
   <aside class="toc-col">
@@ -175,7 +125,7 @@
 <footer class="site-footer">
   <p><strong>Plebum Dominium</strong>: independent at-home Bitcoin self-custody.</p>
   <p>Educational material, not financial advice. Bitcoin self-custody is irreversible. A mistake can permanently lose funds. Verify every download from its original source.</p>
-  <p><a href="/plebum-dominium-test/kit/VERIFY.md">File fingerprints</a> · <a href="/plebum-dominium-test/downloads.html">Downloads</a> · <a href="/plebum-dominium-test/kit/02_Print_Packet.pdf">Print packet (PDF)</a> · <a href="/plebum-dominium-test/news.html">News</a> · <a href="/plebum-dominium-test/beyond.html">Beyond the kit</a></p>
+  <p><a href="/plebum-dominium-test/kit/VERIFY.md">File fingerprints</a> · <a href="/plebum-dominium-test/downloads.html">Downloads</a> · <a href="/plebum-dominium-test/downloads.html#legacy-document-status">Current printable guide and legacy document status</a> · <a href="/plebum-dominium-test/news.html">News</a> · <a href="/plebum-dominium-test/beyond.html">Beyond the kit</a></p>
   <p class="footer-updated">Last updated November 2, 2026 · Version 1.1.0</p>
   <p class="footer-contact">Contact: <a href="mailto:Muststackmoresats@gmail.com">Muststackmoresats@gmail.com</a> · X: <a href="https://x.com/MustHaveMustash" rel="noopener">@MustHaveMustash</a></p>
   <p class="donate-row"><a class="btn-lightning" href="lightning:musthavemoresats@speed.app"><span aria-hidden="true">⚡</span> Donate with Lightning</a> <button type="button" class="btn-onchain" data-copy="bc1qcmvj7c79gyjrcg3zu5pxnp4mav54846epktyma4n6v8jsud2fhqsczmngw"><span aria-hidden="true">₿</span> Donate Bitcoin</button></p>

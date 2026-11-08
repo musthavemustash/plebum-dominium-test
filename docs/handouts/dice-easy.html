@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>How do I roll dice to make a Bitcoin seed phrase? · Plebum Dominium Test Site</title>
-<meta name="description" content="Make three Bitcoin seed keys from five casino dice: roll 256 bits of entropy, turn them into 24 words, and cross-check them with two independent tools.">
+<meta name="description" content="Retired reference. Use the current software-first Plebum Dominium guide.">
 <link rel="canonical" href="https://plebumbtc.io/handouts/dice.html">
 <link rel="icon" href="/plebum-dominium-test/assets/img/favicon.svg" type="image/svg+xml">
 <meta property="og:type" content="website">
@@ -77,7 +77,7 @@
     <div class="sidebar-path" id="sidebar-path">
       <p class="sidebar-path-label">Choose a path</p>
       <div class="sidebar-path-seg" role="group" aria-label="Choose a setup">
-        <button type="button" data-path="easy" aria-pressed="false">One device</button>
+
         <button type="button" data-path="one" aria-pressed="false">one key<br>+<br>Passphrase</button>
         <button type="button" data-path="full" aria-pressed="true">Three keys</button>
       </div>
@@ -108,118 +108,9 @@
   <div class="scrim" aria-hidden="true"></div>
 
   <main id="content">
-    <article>
-      <p class="kicker">06 · Plebum Dominium</p>
-      <h1>Make one key</h1>
-      <div class="path-banner" id="path-banner" hidden>
-        <p class="path-banner-label">Your path: <strong id="path-banner-label">Three keys</strong> (<a href="/plebum-dominium-test/choose-path.html">change</a>)</p>
-        <p class="path-banner-note" id="path-banner-note"></p>
-      </div>
-      <div class="path-gate" id="path-gate" hidden>
-        <h2>Not on your path</h2>
-        <p id="path-gate-note"></p>
-        <p><a href="/plebum-dominium-test/choose-path.html">Go to Choose your path to change it</a></p>
-        <p><a href="/plebum-dominium-test/path-risks.html">Risks of your path &rarr;</a></p>
-      </div>
-<nav class="step-banner" aria-label="Sheet 6 of 17"><a class="step-nav" href="/plebum-dominium-test/handouts/airgap.html" rel="prev">&larr; 04 &middot; Two boots</a><span class="step-pos"><strong>Step 6 of 8</strong> · Make one key</span><a class="step-nav" href="/plebum-dominium-test/handouts/titanium.html" rel="next">09 &middot; Stamp the plate &rarr;</a></nav>
-<section class="sheet-meta" aria-label="Sheet overview"><div class="meta-item"><span class="meta-label">Time</span><span class="meta-val">30-45 min</span></div><div class="meta-item"><span class="meta-label">Difficulty</span><span class="meta-val diff-moderate">Moderate</span></div><div class="meta-item"><span class="meta-label">Steps</span><span class="meta-val">4 sections</span></div><div class="meta-item meta-needs"><span class="meta-label">You will need</span><span class="meta-val"><a href="/plebum-dominium-test/handouts/checklist.html">5 dice</a> &middot; <a href="/plebum-dominium-test/handouts/checklist.html">Paper and pen</a> &middot; <a href="/plebum-dominium-test/downloads.html">The worksheet</a></span></div></section>
-<div class="dice-anim">
-<div class="stage">
-      <div class="round r1l">SHAKE 1</div>
-      <div class="round r2l">SHAKE 2</div>
-      <div class="round r3l">SHAKE 3</div>
-
-
-      <div class="tray tray1">
-        <div class="die d1"><i class="p-tl"></i><i class="p-tr"></i><i class="p-bl"></i><i class="p-br"></i><span class="bp">11</span></div>
-        <div class="die re d2">
-          <div class="face fb"><i class="p-tl"></i><i class="p-ml"></i><i class="p-bl"></i><i class="p-tr"></i><i class="p-mr"></i><i class="p-br"></i></div>
-          <div class="face fa"><i class="p-tl"></i><i class="p-br"></i></div>
-          <span class="retag">RE-ROLL</span><span class="bp">01</span>
-        </div>
-        <div class="die d3"><i class="p-c"></i><span class="bp">00</span></div>
-        <div class="die d4"><i class="p-tl"></i><i class="p-c"></i><i class="p-br"></i><span class="bp">10</span></div>
-        <div class="die d5"><i class="p-tl"></i><i class="p-br"></i><span class="bp">01</span></div>
-      </div>
-
-
-      <div class="tray tray2">
-        <div class="die d1"><i class="p-tl"></i><i class="p-br"></i><span class="bp">01</span></div>
-        <div class="die re d2">
-          <div class="face fb"><i class="p-tl"></i><i class="p-tr"></i><i class="p-c"></i><i class="p-bl"></i><i class="p-br"></i></div>
-          <div class="face fa"><i class="p-tl"></i><i class="p-tr"></i><i class="p-bl"></i><i class="p-br"></i></div>
-          <span class="retag">RE-ROLL</span><span class="bp">11</span>
-        </div>
-        <div class="die d3"><i class="p-tl"></i><i class="p-tr"></i><i class="p-bl"></i><i class="p-br"></i><span class="bp">11</span></div>
-        <div class="die d4"><i class="p-c"></i><span class="bp">00</span></div>
-        <div class="die d5"><i class="p-tl"></i><i class="p-c"></i><i class="p-br"></i><span class="bp">10</span></div>
-      </div>
-
-
-      <div class="tray tray3">
-        <div class="die d1"><i class="p-c"></i><span class="bp">00</span></div>
-        <div class="die d2"><i class="p-tl"></i><i class="p-c"></i><i class="p-br"></i><span class="bp">10</span></div>
-        <div class="die re d3">
-          <div class="face fb"><i class="p-tl"></i><i class="p-ml"></i><i class="p-bl"></i><i class="p-tr"></i><i class="p-mr"></i><i class="p-br"></i></div>
-          <div class="face fa"><i class="p-c"></i></div>
-          <span class="retag">RE-ROLL</span><span class="bp">00</span>
-        </div>
-        <div class="die d4"><i class="p-tl"></i><i class="p-br"></i><span class="bp">01</span></div>
-        <div class="die re d5">
-          <div class="face fb"><i class="p-tl"></i><i class="p-tr"></i><i class="p-c"></i><i class="p-bl"></i><i class="p-br"></i></div>
-          <div class="face fa"><i class="p-tl"></i><i class="p-c"></i><i class="p-br"></i></div>
-          <span class="retag">RE-ROLL</span><span class="bp">10</span>
-        </div>
-      </div>
-
-      <div class="panel">
-        <div class="phead">256-BIT STRING</div>
-        <div class="pbits"><span class="sg sg1">11 00 10 01 01</span> <span class="sg sg2">01 11 00 10 11</span> <span class="sg sg3">00 10 00 01 10</span> <span class="sg sg4"><br>…keep rolling… <b>256 / 256 BITS</b></span></div>
-        <div class="pbar"><i></i></div>
-        <div class="pcount c1"><b>10</b> / 256</div>
-        <div class="pcount c2"><b>20</b> / 256</div>
-        <div class="pcount c3"><b>30</b> / 256</div>
-        <div class="pcount c4"><b>256</b> / 256</div>
-        <div class="wstamp">24 WORDS</div>
-      </div>
-    </div>
-<p class="note">Roll as many times as needed to get <strong>256 bits</strong> of entropy: about 39 shakes.</p>
-</div><aside class="callout callout-warning" role="note"><p class="callout-label">Warning</p><p>Never enter seed words on an online computer.</p></aside>
-<p>This work starts after Tails has booted with networking set to Disabled, and before any plate is stamped. Five casino dice are required, and every face has to be readable. The work is done once, for one key, and the computer is shut down fully after it. A private room, no camera.</p>
-<h2 id="the-faces">The faces</h2>
-<ul>
-<li>1 is 00. 2 is 01. 3 is 10. 4 is 11.</li>
-<li>5 and 6 are not bits. Roll those dice again.</li>
-<li>Read the dice left to right, the same way every shake.</li>
-<li>Example: 4, 6, 1, 3, 2 becomes 11, skip the 6, then 00, 10, 01.</li>
-</ul>
-<h2 id="turn-the-rolls-into-24-words">Turn the rolls into 24 words</h2>
-<p>The <a href="/plebum-dominium-test/dice-converter.html">dice converter page</a> does the recording, the counting, and the math. It runs offline in the Tails browser. If the page ever says the computer is online, it stops, and the work stops with it.</p>
-<ol>
-<li>01 · Boot Tails. Networking Disabled. Copy the checked dice converter page from the data USB to the Desktop.</li>
-<li>02 · Open the page in Tor Browser. Enter each face as you roll it. The page keeps faces 1 to 4, skips 5 and 6, and counts the pairs. It stops you at 128.</li>
-<li>03 · At 256 bits the page prints 24 words. Word 24 is the check. Do not invent it. Do not “fix” it.</li>
-<li>04 · Prove it with the second tool. Two options, pick the easier one. The Ian Coleman page takes the same rolls, no terminal. The Python converter takes the bits from the page, terminal. The 24 words must match. If they differ, stop. Do not pick the prettier list.</li>
-<li>05 · Write the 24 words on the grid. Compare them privately in order, away from cameras and microphones.</li>
-<li>06 · Shut Tails down. Wait until the screen is dark. Do not start a second key. This one key is the wallet.</li>
-</ol>
-<h2 id="the-last-word-is-a-check">The last word is a check</h2>
-<p>The 24 words are not 24 free choices. The last word carries a short check so a copying mistake is caught before metal is stamped. At least two of these checks are used. If they disagree, the work stops.</p>
-<ul>
-<li>Two tools, same rolls, same 24 words. The page, then the Ian Coleman page or the Python converter. Do not pick the prettier list.</li>
-<li>Let the device refuse a bad list. Enter the words on the device itself. If it will not open, do not change a word to force it.</li>
-<li>The math, if it needs to be seen. Twenty-four words are 264 bits. The first 256 are the dice. The last 8 are the check. Only word 24 can change to make that true. It is not chosen. The page appends it after the file has been checked.</li>
-</ul>
-<h2 id="practice-grid">Practice grid</h2>
-<p>The printed recording grid in the bench sheet PDF still works as the paper backup. One key needs about 39 shakes for 256 bits. Count the pairs as you go and stop at 128.</p>
-
+    <article class="entry-page"><h1>Use the current guide</h1><p>This older route page has been retired. Plebum Dominium has two complete paths, both using offline software without a hardware wallet.</p><p><strong>Plebum Dominium teaches self-custody without a hardware wallet.</strong> Create and verify keys with offline software, put the backups on metal, and check that they restore the intended wallet. Use offline software to sign. Hardware wallets are optional signing tools introduced only after the metal backups are complete and checked.</p><p><a href="/plebum-dominium-test/paths/one/dice.html">Open the current one-key guide</a> or <a href="/plebum-dominium-test/choose-path.html">compare both paths</a>.</p><p>Public-alpha testing uses disposable data and the designated test network only.</p>
 <!-- page-test-module --><details class="page-test-module" id="help-test-page"><summary><span class="ptm-heading">Help test this page</span><span class="ptm-count">Optional · 3 checks</span></summary><div class="ptm-body"><p class="ptm-intro">Try these checks and tell us what happened. Testing is optional for readers; reading this sheet does not complete a verification test.</p><p class="ptm-public"><strong>Public examples only.</strong> Never use or share real seed words, private keys, passphrases, funds, wallet details, or personal recovery locations.</p><ol class="ptm-tasks"><li><p class="ptm-task-id"><code>P-DICE-EASY-01</code></p><p class="ptm-try">Using only public practice rolls, enter 1, 2, 3, and 4, then try 5 and 6 in the linked converter. Check buttons, keyboard entry, counters, Undo, and Clear.</p><p><strong>Expected:</strong> The documented mapping is 00, 01, 10, 11; 5 and 6 add no bits. Counters and Undo/Clear stay consistent. Report actual results for each input method.</p><p class="ptm-evidence"><strong>Evidence:</strong> Use a short recording or screenshots of public rolls; include browser and operating system.</p></li><li><p class="ptm-task-id"><code>P-DICE-EASY-02</code></p><p class="ptm-try">For T3, paste a public 255-bit string. In a separate case, replace one bit of a public 256-bit string with x. Clear the converter before each case.</p><p><strong>Expected:</strong> Short and non-binary inputs are rejected without producing a valid mnemonic. Report stale output or unexpected acceptance.</p><p class="ptm-evidence"><strong>Evidence:</strong> Show the public input length or invalid character and the displayed response.</p></li><li><p class="ptm-task-id"><code>P-DICE-EASY-03</code></p><p class="ptm-try">For T3, convert each supplied public hex fixture to exactly 256 binary digits, preserving leading zeros. Compare each generated mnemonic with the fixture.</p><p><strong>Expected:</strong> Every completed fixture matches word for word. Report how many fixtures and which tools were checked; incomplete checks are not a pass.</p><p class="ptm-evidence"><strong>Evidence:</strong> Record fixture IDs, tool versions, and expected versus actual results; use only public vectors.</p></li></ol><p class="ptm-report-note">Record <strong>PASS, FAIL or NOT TESTED for each task</strong>. If a check is skipped or blocked, use NOT TESTED. Include your OS/browser versions and network state; attach output or a short recording where useful.</p><p class="ptm-build">Website content build <code>b49bc994223f</code>. If you test a tool, also record its exact package filename and hash.</p><a class="ptm-report" href="https://docs.google.com/forms/d/e/1FAIpQLSfOkY3FrZmZpIVro5oxWLy_YvU7U-1BOrL3KB9VCI3jXjad2Q/viewform?usp=pp_url&amp;entry.460741145=General+website+feedback&amp;entry.1551279696=Downloads+%2F+testing+tools&amp;entry.1164893128=https%3A%2F%2Fmusthavemustash.github.io%2Fplebum-dominium-test%2Fhandouts%2Fdice-easy.html&amp;entry.846110096=Website+build+b49bc994223f7085c1a539133a10f9669725d0f7&amp;entry.760527846=Page%3A+https%3A%2F%2Fmusthavemustash.github.io%2Fplebum-dominium-test%2Fhandouts%2Fdice-easy.html%0AWebsite+content+build%3A+b49bc994223f7085c1a539133a10f9669725d0f7%0AMode+tested+%28live+website+%2F+offline+copy%29%3A%0ATool%2Fpackage+filename+and+SHA-256%2C+if+applicable%3A%0A%0AP-DICE-EASY-01%0AResult+%28enter+PASS%2C+FAIL+or+NOT+TESTED%29%3A%0AExpected%3A+The+documented+mapping+is+00%2C+01%2C+10%2C+11%3B+5+and+6+add+no+bits.+Counters+and+Undo%2FClear+stay+consistent.+Report+actual+results+for+each+input+method.%0AActual%3A%0ASteps+or+error+messages%3A%0A%0AP-DICE-EASY-02%0AResult+%28enter+PASS%2C+FAIL+or+NOT+TESTED%29%3A%0AExpected%3A+Short+and+non-binary+inputs+are+rejected+without+producing+a+valid+mnemonic.+Report+stale+output+or+unexpected+acceptance.%0AActual%3A%0ASteps+or+error+messages%3A%0A%0AP-DICE-EASY-03%0AResult+%28enter+PASS%2C+FAIL+or+NOT+TESTED%29%3A%0AExpected%3A+Every+completed+fixture+matches+word+for+word.+Report+how+many+fixtures+and+which+tools+were+checked%3B+incomplete+checks+are+not+a+pass.%0AActual%3A%0ASteps+or+error+messages%3A%0A%0AEvidence+link+or+output+%28public+fixtures+only%29%3A" target="_blank" rel="noopener noreferrer">Report results for this page <span aria-hidden="true">↗</span></a><p class="ptm-form-note">Opens Google Forms with the public page URL, task IDs and website build filled in. Choose your own result. Use General website feedback for these page checks; the full T1–T5 tool suites have their own sections.</p><p class="ptm-offline">Using an offline copy? Finish testing before reconnecting to report. Say “offline copy” and identify your downloaded package. The reporting link uses the public page URL, never your local file path.</p></div></details><!-- /page-test-module -->
-      <nav class="prevnext-row" data-page-controls aria-label="Previous and next sheets">
-<a class="prevnext prev" href="/plebum-dominium-test/handouts/airgap.html"><span class="pager-original"><span>← 04 &middot; Two boots</span></span><span class="pager-label">← Previous</span><span class="pager-title">Two boots</span></a>
-<span class="step-pos-bottom"><strong>Step 6 of 8</strong> · Make one key</span>
-<a class="prevnext next" href="/plebum-dominium-test/handouts/titanium.html"><span class="pager-original"><span>09 &middot; Stamp the plate &rarr;</span></span><span class="pager-label">Next →</span><span class="pager-title">Stamp the plate</span></a>
-      </nav>
-    </article>
+</article>
   </main>
 
   <aside class="toc-col">
@@ -234,7 +125,7 @@
 <footer class="site-footer">
   <p><strong>Plebum Dominium</strong>: independent at-home Bitcoin self-custody.</p>
   <p>Educational material, not financial advice. Bitcoin self-custody is irreversible. A mistake can permanently lose funds. Verify every download from its original source.</p>
-  <p><a href="/plebum-dominium-test/kit/VERIFY.md">File fingerprints</a> · <a href="/plebum-dominium-test/downloads.html">Downloads</a> · <a href="/plebum-dominium-test/kit/02_Print_Packet.pdf">Print packet (PDF)</a> · <a href="/plebum-dominium-test/news.html">News</a> · <a href="/plebum-dominium-test/beyond.html">Beyond the kit</a></p>
+  <p><a href="/plebum-dominium-test/kit/VERIFY.md">File fingerprints</a> · <a href="/plebum-dominium-test/downloads.html">Downloads</a> · <a href="/plebum-dominium-test/downloads.html#legacy-document-status">Current printable guide and legacy document status</a> · <a href="/plebum-dominium-test/news.html">News</a> · <a href="/plebum-dominium-test/beyond.html">Beyond the kit</a></p>
   <p class="footer-updated">Last updated November 2, 2026 · Version 1.1.0</p>
   <p class="footer-contact">Contact: <a href="mailto:Muststackmoresats@gmail.com">Muststackmoresats@gmail.com</a> · X: <a href="https://x.com/MustHaveMustash" rel="noopener">@MustHaveMustash</a></p>
   <p class="donate-row"><a class="btn-lightning" href="lightning:musthavemoresats@speed.app"><span aria-hidden="true">⚡</span> Donate with Lightning</a> <button type="button" class="btn-onchain" data-copy="bc1qcmvj7c79gyjrcg3zu5pxnp4mav54846epktyma4n6v8jsud2fhqsczmngw"><span aria-hidden="true">₿</span> Donate Bitcoin</button></p>

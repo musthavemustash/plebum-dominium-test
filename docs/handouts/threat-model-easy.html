@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>What threats does a DIY Bitcoin wallet need to survive? · Plebum Dominium Test Site</title>
-<meta name="description" content="Before you begin: the threats a DIY Bitcoin wallet must survive: theft, fire and flood, your own mistakes, scams, and death. And one question: where are your coins right now?">
+<meta name="description" content="Retired reference. Use the current software-first Plebum Dominium guide.">
 <link rel="canonical" href="https://plebumbtc.io/handouts/threat-model.html">
 <link rel="icon" href="/plebum-dominium-test/assets/img/favicon.svg" type="image/svg+xml">
 <meta property="og:type" content="website">
@@ -77,7 +77,7 @@
     <div class="sidebar-path" id="sidebar-path">
       <p class="sidebar-path-label">Choose a path</p>
       <div class="sidebar-path-seg" role="group" aria-label="Choose a setup">
-        <button type="button" data-path="easy" aria-pressed="false">One device</button>
+
         <button type="button" data-path="one" aria-pressed="false">one key<br>+<br>Passphrase</button>
         <button type="button" data-path="full" aria-pressed="true">Three keys</button>
       </div>
@@ -108,67 +108,9 @@
   <div class="scrim" aria-hidden="true"></div>
 
   <main id="content">
-    <article>
-      <p class="kicker">02 · Plebum Dominium</p>
-      <h1>Before you begin</h1>
-      <div class="path-banner" id="path-banner" hidden>
-        <p class="path-banner-label">Your path: <strong id="path-banner-label">Three keys</strong> (<a href="/plebum-dominium-test/choose-path.html">change</a>)</p>
-        <p class="path-banner-note" id="path-banner-note"></p>
-      </div>
-      <div class="path-gate" id="path-gate" hidden>
-        <h2>Not on your path</h2>
-        <p id="path-gate-note"></p>
-        <p><a href="/plebum-dominium-test/choose-path.html">Go to Choose your path to change it</a></p>
-        <p><a href="/plebum-dominium-test/path-risks.html">Risks of your path &rarr;</a></p>
-      </div>
-<nav class="step-banner" aria-label="Sheet 2 of 17"><a class="step-nav" href="/plebum-dominium-test/handouts/terms.html" rel="prev">&larr; T &middot; Terms</a><span class="step-pos"><strong>Step 2 of 8</strong> · Before you begin</span><a class="step-nav" href="/plebum-dominium-test/handouts/checklist.html" rel="next">03 &middot; Checklist &rarr;</a></nav>
-<section class="sheet-meta" aria-label="Sheet overview"><div class="meta-item"><span class="meta-label">Time</span><span class="meta-val">15 min</span></div><div class="meta-item"><span class="meta-label">Difficulty</span><span class="meta-val diff-easy">Easy</span></div><div class="meta-item"><span class="meta-label">Steps</span><span class="meta-val">1 worksheet</span></div><div class="meta-item meta-needs"><span class="meta-label">You will need</span><span class="meta-val"><a href="/plebum-dominium-test/handouts/checklist.html">Pen and paper</a></span></div></section>
-<p>Don&#x27;t trust, verify.</p>
-<ul>
-<li><strong>The seed phrase is the wallet.</strong></li>
-<li>Anyone who holds the words holds the coins. No device can stop them.</li>
-<li>Check every threat you actually care about. The guide answers each one under its checkbox.</li>
-</ul>
-<figure class="step-fig"><svg width="360" height="296" viewBox="0 0 360 296" font-family="IBM Plex Sans, sans-serif">
-        <rect x="8" y="8" width="344" height="132" rx="10" fill="var(--card)" stroke="var(--line)"/>
-        <text x="24" y="38" fill="var(--accent)" font-size="11" letter-spacing="2">ONE SEED, STOLEN OR LOST</text>
-        <text x="24" y="68" fill="var(--ink)" font-size="17">Loses the wallet</text>
-        <text x="24" y="122" fill="var(--accent)" font-size="15" font-weight="700">→ NO SECOND KEY</text>
-        <rect x="8" y="156" width="344" height="132" rx="10" fill="var(--card)" stroke="var(--line)"/>
-        <text x="24" y="186" fill="var(--accent)" font-size="11" letter-spacing="2">PLATE + DEVICE, KEPT APART</text>
-        <text x="24" y="216" fill="var(--ink)" font-size="17">Together, they are the wallet</text>
-        <text x="24" y="270" fill="var(--accent)" font-size="15" font-weight="700">→ TOGETHER, NEVER APART</text>
-      </svg></figure>
-<h2 id="what-am-i-protecting-against">What am I protecting against?</h2>
-<ul>
-<li>☐ <strong>Theft:</strong> burglar, coercion, the $5 wrench</li>
-<li>One stolen seed loses everything. There is no second key.</li>
-<li>☐ <strong>Fire, flood, disaster:</strong> one location stops existing</li>
-<li>One plate, stamped titanium, kept apart from the device. If the plate and the device are both gone, the wallet is gone.</li>
-<li>☐ <strong>My own mistakes:</strong> lost paper, copied a word wrong</li>
-<li>Two tools must agree on every word before anything is stamped.</li>
-<li>☐ <strong>Scams:</strong> an email or a site that looks official asks for my words</li>
-<li>Words into the device itself, during recovery, nowhere else. No hardware company will ever ask for your seed phrase. A message that asks is the attack.</li>
-<li>☐ <strong>Death or incapacitation:</strong> heirs who aren&#x27;t Bitcoiners</li>
-<li>A written note, apart from the plate and the device, saying where the device is and where the plate is. The words are written nowhere else.</li>
-</ul>
-<aside class="callout callout-note" role="note"><p class="callout-label">Note</p><p><strong>Read it back:</strong> checked theft and disaster, one device and one plate is your wallet. There is no second key.</p></aside>
-<h2 id="where-are-your-coins-right-now">Where are your coins right now?</h2>
-<ul>
-<li>☐ <strong>On an exchange.</strong> The exchange holds the keys, so the exchange holds the coins.</li>
-<li>☐ <strong>In a phone app or software wallet.</strong> Your words have lived on a connected device. Treat that seed as exposed. This makes a fresh seed the offline way and moves the coins onto it.</li>
-<li>☐ <strong>On a hardware wallet, one seed.</strong> You are closer than you think. This is your upgrade path: check how the seed was born, stamp the words in metal, enter them on the device itself.</li>
-<li>☐ <strong>Nowhere yet.</strong> Start at the beginning. Work the steps.</li>
-</ul>
-<p>Next, the checklist.</p>
-
+    <article class="entry-page"><h1>Use the current guide</h1><p>This older route page has been retired. Plebum Dominium has two complete paths, both using offline software without a hardware wallet.</p><p><strong>Plebum Dominium teaches self-custody without a hardware wallet.</strong> Create and verify keys with offline software, put the backups on metal, and check that they restore the intended wallet. Use offline software to sign. Hardware wallets are optional signing tools introduced only after the metal backups are complete and checked.</p><p><a href="/plebum-dominium-test/paths/one/threat-model.html">Open the current one-key guide</a> or <a href="/plebum-dominium-test/choose-path.html">compare both paths</a>.</p><p>Public-alpha testing uses disposable data and the designated test network only.</p>
 <!-- page-test-module --><details class="page-test-module" id="help-test-page"><summary><span class="ptm-heading">Help test this page</span><span class="ptm-count">Optional · 2 checks</span></summary><div class="ptm-body"><p class="ptm-intro">Try these checks and tell us what happened. Testing is optional for readers; reading this sheet does not complete a verification test.</p><p class="ptm-public"><strong>Public examples only.</strong> Never use or share real seed words, private keys, passphrases, funds, wallet details, or personal recovery locations.</p><ol class="ptm-tasks"><li><p class="ptm-task-id"><code>P-THREAT-MODEL-EASY-01</code></p><p class="ptm-try">Compare this older risk sheet with the current Threat model and relevant current numbered path.</p><p><strong>Expected:</strong> Current guidance is reachable and conflicting claims about seeds, passphrases, devices, or backup copies can be flagged before relying on this reference.</p><p class="ptm-evidence"><strong>Evidence:</strong> Record links and the short conflicting passage; do not describe actual holdings or security arrangements.</p></li><li><p class="ptm-task-id"><code>P-THREAT-MODEL-EASY-02</code></p><p class="ptm-try">Use fictional risks to try the checkboxes and references with a keyboard or narrow screen.</p><p><strong>Expected:</strong> Control state and advice are readable, and linked destinations are clear.</p><p class="ptm-evidence"><strong>Evidence:</strong> Record the fictional choice, input method, and ambiguous or inaccessible behavior.</p></li></ol><p class="ptm-report-note">Record <strong>PASS, FAIL or NOT TESTED for each task</strong>. If a check is skipped or blocked, use NOT TESTED. Include your OS/browser versions and network state; attach output or a short recording where useful.</p><p class="ptm-build">Website content build <code>b49bc994223f</code>. If you test a tool, also record its exact package filename and hash.</p><a class="ptm-report" href="https://docs.google.com/forms/d/e/1FAIpQLSfOkY3FrZmZpIVro5oxWLy_YvU7U-1BOrL3KB9VCI3jXjad2Q/viewform?usp=pp_url&amp;entry.460741145=General+website+feedback&amp;entry.1551279696=Threat+Model+%2F+security+information&amp;entry.1164893128=https%3A%2F%2Fmusthavemustash.github.io%2Fplebum-dominium-test%2Fhandouts%2Fthreat-model-easy.html&amp;entry.846110096=Website+build+b49bc994223f7085c1a539133a10f9669725d0f7&amp;entry.760527846=Page%3A+https%3A%2F%2Fmusthavemustash.github.io%2Fplebum-dominium-test%2Fhandouts%2Fthreat-model-easy.html%0AWebsite+content+build%3A+b49bc994223f7085c1a539133a10f9669725d0f7%0AMode+tested+%28live+website+%2F+offline+copy%29%3A%0ATool%2Fpackage+filename+and+SHA-256%2C+if+applicable%3A%0A%0AP-THREAT-MODEL-EASY-01%0AResult+%28enter+PASS%2C+FAIL+or+NOT+TESTED%29%3A%0AExpected%3A+Current+guidance+is+reachable+and+conflicting+claims+about+seeds%2C+passphrases%2C+devices%2C+or+backup+copies+can+be+flagged+before+relying+on+this+reference.%0AActual%3A%0ASteps+or+error+messages%3A%0A%0AP-THREAT-MODEL-EASY-02%0AResult+%28enter+PASS%2C+FAIL+or+NOT+TESTED%29%3A%0AExpected%3A+Control+state+and+advice+are+readable%2C+and+linked+destinations+are+clear.%0AActual%3A%0ASteps+or+error+messages%3A%0A%0AEvidence+link+or+output+%28public+fixtures+only%29%3A" target="_blank" rel="noopener noreferrer">Report results for this page <span aria-hidden="true">↗</span></a><p class="ptm-form-note">Opens Google Forms with the public page URL, task IDs and website build filled in. Choose your own result. Use General website feedback for these page checks; the full T1–T5 tool suites have their own sections.</p><p class="ptm-offline">Using an offline copy? Finish testing before reconnecting to report. Say “offline copy” and identify your downloaded package. The reporting link uses the public page URL, never your local file path.</p></div></details><!-- /page-test-module -->
-      <nav class="prevnext-row" data-page-controls aria-label="Previous and next sheets">
-<a class="prevnext prev" href="/plebum-dominium-test/handouts/terms.html"><span class="pager-original"><span>← T · Terms</span></span><span class="pager-label">← Previous</span><span class="pager-title">T · Terms</span></a>
-<span class="step-pos-bottom"><strong>Step 2 of 8</strong> · Before you begin</span>
-<a class="prevnext next" href="/plebum-dominium-test/handouts/checklist.html"><span class="pager-original"><span>03 · Checklist →</span></span><span class="pager-label">Next →</span><span class="pager-title">Checklist</span></a>
-      </nav>
-    </article>
+</article>
   </main>
 
   <aside class="toc-col">
@@ -183,7 +125,7 @@
 <footer class="site-footer">
   <p><strong>Plebum Dominium</strong>: independent at-home Bitcoin self-custody.</p>
   <p>Educational material, not financial advice. Bitcoin self-custody is irreversible. A mistake can permanently lose funds. Verify every download from its original source.</p>
-  <p><a href="/plebum-dominium-test/kit/VERIFY.md">File fingerprints</a> · <a href="/plebum-dominium-test/downloads.html">Downloads</a> · <a href="/plebum-dominium-test/kit/02_Print_Packet.pdf">Print packet (PDF)</a> · <a href="/plebum-dominium-test/news.html">News</a> · <a href="/plebum-dominium-test/beyond.html">Beyond the kit</a></p>
+  <p><a href="/plebum-dominium-test/kit/VERIFY.md">File fingerprints</a> · <a href="/plebum-dominium-test/downloads.html">Downloads</a> · <a href="/plebum-dominium-test/downloads.html#legacy-document-status">Current printable guide and legacy document status</a> · <a href="/plebum-dominium-test/news.html">News</a> · <a href="/plebum-dominium-test/beyond.html">Beyond the kit</a></p>
   <p class="footer-updated">Last updated November 2, 2026 · Version 1.1.0</p>
   <p class="footer-contact">Contact: <a href="mailto:Muststackmoresats@gmail.com">Muststackmoresats@gmail.com</a> · X: <a href="https://x.com/MustHaveMustash" rel="noopener">@MustHaveMustash</a></p>
   <p class="donate-row"><a class="btn-lightning" href="lightning:musthavemoresats@speed.app"><span aria-hidden="true">⚡</span> Donate with Lightning</a> <button type="button" class="btn-onchain" data-copy="bc1qcmvj7c79gyjrcg3zu5pxnp4mav54846epktyma4n6v8jsud2fhqsczmngw"><span aria-hidden="true">₿</span> Donate Bitcoin</button></p>

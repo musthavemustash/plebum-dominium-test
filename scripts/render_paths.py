@@ -23,7 +23,7 @@ PATHS = {
  ('checklist','Checklist','checklist'), ('airgap','Two boots','airgap'),
  ('verify','Check the files','verify'), ('dice','Make three keys','dice'),
  ('sparrow','Build the 2-of-3','sparrow'), ('testnet','Set up a test wallet','testnet'),
- ('signing','Practice spending and recovery','signing'), ('titanium','Back up your keys and wallet map','titanium'),
+ ('titanium','Back up your keys and wallet map','titanium'), ('signing','Practice spending and recovery','signing'),
  ('encryption','Protect the wallet map','encryption'), ('inheritance','If I am gone','inheritance'),
  ('faq','If you get stuck','faq'), ('briefing','Tough questions','briefing'),
  ('fire-card','Recovery card','fire-card')]}}
