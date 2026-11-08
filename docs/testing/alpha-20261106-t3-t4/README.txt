@@ -1,6 +1,6 @@
 PLEBUM DOMINIUM — PUBLIC ALPHA TEST RELEASE
 Release: alpha-20261106-t3-t4
-Source: 2a708dcdc7790cbcb4302f21688cc85a2b93a280
+Source: 15aaf0645dfab5304504b7046ea32fe0a21a43eb
 
 AVAILABLE FOR TESTING. NOT APPROVED FOR REAL-WALLET USE.
 Use the included public fixtures and disposable test data only. Never use real
