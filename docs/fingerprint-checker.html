@@ -115,9 +115,9 @@
 // Pre-filled fingerprints for this site's own tools
 // Computed from the live files. Update when the tools change.
 const KNOWN = {
-  'converter': 'cb2f89aae1596e1dc644c58c9057b73c2c682fa2d93dd2b4fd7a6f6cb3de17d6',
-  'descriptor': '589157011ee333d9835bcdc829a8a00caae6b73d4f2dc796617f9167215b7bd9',
-  'mapper': '5a6d8c2ae3cd59d5d286a1578309202e19bc26f4f7a7defe61d6071bc61fb35f',
+  'converter': '4f6949247291a95a37a1475b40f61e23de99f665fd0e3a5b9cd526b10e01e69c',
+  'descriptor': '16efdc386a226849263529ca1660e32950bd95e87dfa2adb235162f653b6d0a0',
+  'mapper': '21d778aef8bbac8f101d13d5f52078eef3c864870cdee2e4e705e26ad77ed1ac',
 };
 
 const fileSelect = document.getElementById('file-select');
@@ -130,6 +130,14 @@ const computedDiv = document.getElementById('computed');
 const expectedOutDiv = document.getElementById('expected-out');
 
 let selectedFile = null;
+let revision = 0;
+function expectedHash() { return expectedInput.value.replace(/\s/g, '').toLowerCase(); }
+function resetResult() {
+  revision++;
+  resultDiv.className = ''; resultDiv.style.display = 'none';
+  verdictDiv.textContent = ''; computedDiv.textContent = ''; expectedOutDiv.textContent = '';
+}
+function changed() { resetResult(); updateButton(); }
 
 fileSelect.addEventListener('change', () => {
   const val = fileSelect.value;
@@ -138,22 +146,22 @@ fileSelect.addEventListener('change', () => {
   } else if (val !== 'custom') {
     expectedInput.value = '';
   }
-  updateButton();
+  changed();
 });
 
-expectedInput.addEventListener('input', updateButton);
+expectedInput.addEventListener('input', changed);
 
 fileInput.addEventListener('change', (e) => {
   selectedFile = e.target.files[0] || null;
-  resultDiv.className = '';
-  resultDiv.style.display = 'none';
-  updateButton();
+  changed();
 });
 
 function updateButton() {
   const hasFile = !!selectedFile;
-  const hasExpected = expectedInput.value.trim().length === 64;
-  checkBtn.disabled = !(hasFile && hasExpected);
+  const hasExpected = /^[a-f0-9]{64}$/.test(expectedHash());
+  const supported = typeof crypto !== 'undefined' && !!crypto.subtle;
+  checkBtn.disabled = !(hasFile && hasExpected && supported);
+  if (!supported) { checkBtn.textContent = 'SHA-256 unavailable in this browser'; return; }
   checkBtn.textContent = !hasFile ? 'Select a file to begin'
     : !hasExpected ? 'Paste a 64-character fingerprint'
     : 'Compute and compare';
@@ -167,15 +175,18 @@ async function sha256(buffer) {
 }
 
 checkBtn.addEventListener('click', async () => {
-  if (!selectedFile) return;
-  const expected = expectedInput.value.trim().toLowerCase().replace(/\s/g, '');
+  if (!selectedFile || !/^[a-f0-9]{64}$/.test(expectedHash()) || typeof crypto === 'undefined' || !crypto.subtle) return;
+  resetResult();
+  const attempt = revision, file = selectedFile, expected = expectedHash();
 
   checkBtn.disabled = true;
   checkBtn.textContent = 'Computing...';
 
   try {
-    const buffer = await selectedFile.arrayBuffer();
+    const buffer = await file.arrayBuffer();
+    if (attempt !== revision) return;
     const computed = await sha256(buffer);
+    if (attempt !== revision) return;
 
     computedDiv.textContent = computed;
     expectedOutDiv.textContent = expected;
@@ -189,6 +200,7 @@ checkBtn.addEventListener('click', async () => {
     }
     resultDiv.style.display = 'block';
   } catch (err) {
+    if (attempt !== revision) return;
     resultDiv.className = 'mismatch';
     verdictDiv.textContent = 'Error reading the file.';
     computedDiv.textContent = '';
@@ -196,8 +208,9 @@ checkBtn.addEventListener('click', async () => {
     resultDiv.style.display = 'block';
   }
 
-  updateButton();
+  if (attempt === revision) updateButton();
 });
+updateButton();
 
 // Theme
 (function() {

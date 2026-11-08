@@ -1,0 +1,40 @@
+PLEBUM DOMINIUM — PUBLIC-TEST SESSION CONTRACT — r2, 2026-11-08
+Scope: dice-converter.html, descriptor-tool.html, diceware-mapper.html.
+Status: implemented for disposable public fixtures; not real-custody approval.
+
+WHAT THE TESTER DOES
+Disable networking in the OS and unplug network cables before opening tools.
+On Tails, use Offline Mode / Disable all networking at startup. Check the OS
+network controls and record them. "Disconnected" alone does not demonstrate
+that networking has been disabled. Keep networking disabled throughout testing.
+Only public fixtures, example rolls and disposable passwords belong in this run.
+
+WHAT THE PAGE ENFORCES
+- It starts locked and requires file://, loaded code and two acknowledgments.
+- HTTP, HTTPS and other non-file contexts cannot start a session.
+- Manual Lock and clear clears visible tool input, output and status, cancels
+  pending result publication and resets acknowledgments.
+- Page hide/show and observed online/offline events revoke the session. A changed
+  browser connection flag also revokes it at the next check.
+- The same unchanged browser flag, including true in Tor, is diagnostic only.
+  Acknowledgments record the tester's checks; they do not verify those checks.
+
+WHAT IT CANNOT ENFORCE OR PROVE
+A web page cannot certify an air gap, detect every reconnection, undo an already
+requested clipboard write, clear the system clipboard, prove memory erasure,
+or protect against a compromised OS/browser. File:// is a location, not proof
+of disabled networking. Lock and clear before changing network settings.
+Mozilla documents onLine as inherently unreliable:
+https://developer.mozilla.org/en-US/docs/Web/API/Navigator/onLine
+
+ACCEPTANCE AND EVIDENCE
+T2 for public fixtures now means the controls above plus the recorded OS-managed
+procedure. The old requirement that every connected/reconnected machine must
+be detected automatically is NOT passed by this design and must not be claimed.
+This is an explicit change to the public-test specification, not a retrospective
+PASS. Beta/release review must accept the documented operating procedure and
+limitations; real-wallet authorization remains outside this candidate.
+
+Controller tests use DOM doubles and simulated signals. They verify logic, not
+physical isolation. Physical Windows/Tails evidence must identify the final
+package, OS/browser, actual network settings and each exercised behavior.
