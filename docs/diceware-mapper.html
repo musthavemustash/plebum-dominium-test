@@ -385,6 +385,7 @@
         .slot-word { transition: color 160ms ease; }
         .digits input { transition: border-color 120ms ease; }
       }
+      a.btn-download { display: inline-block; text-decoration: none; }
       [hidden] { display: none !important; }
       #netblock { margin: 24px 0; padding: 20px; border: 1px solid var(--copper); }
       #netblock label { display: block; margin: 16px 0; }
@@ -421,7 +422,7 @@
     <button type="button" class="ghost" id="session-start" disabled>Start public test</button>
     <p>These confirmations are your checks, not automatic verification. Browser network events may be masked, so this page cannot reliably detect reconnection. Lock and clear before changing network settings.</p>
     <noscript><p>JavaScript is disabled. The test remains locked. Record this browser restriction.</p></noscript>
-    <button type="button" class="btn-download" id="downloadBtn">Download local test file</button><p id="downloadStatus" role="status"></p>
+    <a class="btn-download" href="diceware-mapper.html" download="diceware-mapper.html">Download local test file</a><p>The download is the original blank file, with the same bytes as its published fingerprint. Your entered test rolls are not included.</p>
   </div>
 </div>
 
@@ -808,60 +809,6 @@ function createPublicTestSession() {
           themeToggle.textContent = "Dark";
           themeToggle.setAttribute("aria-label", "Switch to dark theme");
         }
-      });
-
-      // Download a pristine copy of this page as one self-contained file:
-      // serialize a clone with the entered rolls and session state stripped,
-      // so what gets saved is the blank tool, never anyone's passphrase.
-      var downloadBtn = document.getElementById("downloadBtn");
-      var downloadStatus = document.getElementById("downloadStatus");
-      downloadBtn.addEventListener("click", function () {
-        var clone = document.documentElement.cloneNode(true);
-        clone.removeAttribute("data-theme");
-        // Strip the webfont links from the saved copy: it must reference
-        // nothing on the network at all. The font stacks fall back to
-        // local serif/sans/mono faces, and the tool itself is unaffected.
-        var cLinks = clone.querySelectorAll('link[href*="fonts.googleapis.com"], link[href*="fonts.gstatic.com"]');
-        for (var li = 0; li < cLinks.length; li++) cLinks[li].parentNode.removeChild(cLinks[li]);
-        var cSlots = clone.querySelector("#slots");
-        if (cSlots) cSlots.innerHTML = "";
-        var cPhrase = clone.querySelector("#phrase");
-        if (cPhrase) cPhrase.innerHTML = "";
-        var cProgress = clone.querySelector("#progress");
-        if (cProgress) cProgress.textContent = "";
-        var cCopy = clone.querySelector("#copyBtn");
-        if (cCopy) cCopy.setAttribute("disabled", "");
-        var cCopyStatus = clone.querySelector("#copyStatus");
-        if (cCopyStatus) cCopyStatus.textContent = "";
-        var cDlStatus = clone.querySelector("#downloadStatus");
-        if (cDlStatus) cDlStatus.textContent = "";
-        clone.querySelector('#tool-main').setAttribute('inert', '');
-        clone.querySelector('#netblock').removeAttribute('hidden');
-        clone.querySelector('#session-start').setAttribute('disabled', '');
-        clone.querySelectorAll('input[type="checkbox"]').forEach(function (input) { input.checked = false; input.removeAttribute('checked'); });
-        clone.querySelector('#session-code').textContent = 'Code has not started. If this stays visible, leave the tool locked.';
-        clone.querySelector('#online-word').textContent = 'Test session locked';
-        clone.querySelector('#browser-signal').textContent = 'Browser connection flag not checked.';
-        var cNet = clone.querySelector("#netStatus");
-        if (cNet) { cNet.classList.remove("online"); cNet.classList.remove("offline"); }
-        var cNetText = clone.querySelector("#netStatusText");
-        if (cNetText) cNetText.textContent = "Checking whether this device is online\u2026";
-        var cToggle = clone.querySelector("#themeToggle");
-        if (cToggle) {
-          cToggle.textContent = "Light";
-          cToggle.setAttribute("aria-label", "Switch to light theme");
-        }
-        var html = "<!doctype html>\n" + clone.outerHTML;
-        var blob = new Blob([html], { type: "text/html" });
-        var url = URL.createObjectURL(blob);
-        var a = document.createElement("a");
-        a.href = url;
-        a.download = "diceware-passphrase-mapper.html";
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
-        downloadStatus.textContent = "Saved as diceware-passphrase-mapper.html. Put it on your Tails USB, then open it there, offline.";
       });
 
       buildSlots();

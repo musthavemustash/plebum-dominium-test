@@ -1,5 +1,5 @@
 PLEBUM DOMINIUM — SHORT TOOL-FINISH RETEST
-Release: alpha-20261108-t5-r2 / offline-20261108-r2
+Release: alpha-20261108-t5-r3 / offline-20261108-r3
 Public test data only. No real wallet seeds, passphrases or funds.
 
 Keep the earlier Tails evidence. This run checks the changed behavior; it does
@@ -8,7 +8,7 @@ Run the short checks on Windows first, then in an offline physical Tails session
 Record each environment separately. Leave anything not performed NOT TESTED.
 
 1. OPEN THE RIGHT FOLDER
-Extract the new r2 ZIP. Complete/tools-only ZIP: plebum-offline/public-tests.
+Extract the new r3 ZIP. Complete/tools-only ZIP: plebum-offline/public-tests.
 Focused tool ZIP: plebum-public-test. All filenames below are in that folder.
 Record the ZIP filename/hash. Check the root package with verify_package.py;
 also check the public-tests subset if using the full ZIP.
@@ -19,7 +19,8 @@ Open fingerprint-checker.html and choose each built-in tool in turn. Select its
 matching file from this same folder. Expected: MATCH for dice converter, wallet
 map and Diceware mapper. Select a different file: expected MISMATCH. Changing
 the file or expected hash must clear the old result. This checks matching bytes,
-not independent publisher identity or safety.
+not independent publisher identity or safety. The mapper download button also
+saves the original blank file; its bytes should match the mapper fingerprint.
 
 2. DICEWARE MAPPER (the six-word passphrase mapper, not the BIP39 converter)
 Open diceware-mapper.html. Expect locked startup. Acknowledge the two checks.
@@ -46,9 +47,9 @@ Copying is optional; clearing the page does not clear your system clipboard.
 
 3. WALLET MAP — MESSAGES, CLEARING AND A CONTROLLED TRUNCATION
 Open descriptor-tool.html and start the public test after OS checks.
-Encrypt fixtures/public-map.txt using public-test-only. Save as r2-map.asc.
-Decrypt that saved file. Download as r2-restored.txt.
-  python3 compare_files.py fixtures/public-map.txt r2-restored.txt
+Encrypt fixtures/public-map.txt using public-test-only. Save as r3-map.asc.
+Decrypt that saved file. Download as r3-restored.txt.
+  python3 compare_files.py fixtures/public-map.txt r3-restored.txt
 Expected: PASS, byte-for-byte identical. Use py on Windows.
 
 Enter a wrong password and try Decrypt. Expect one failure and no restored map.
@@ -58,9 +59,9 @@ Enter the correct password; expect success. Edit the ciphertext afterward:
 the old restored output/download must disappear before another attempt.
 
 Create an exactly defined damaged COPY (preserves the original):
-  python3 make_truncated_fixture.py r2-map.asc r2-truncated.asc
+  python3 make_truncated_fixture.py r3-map.asc r3-truncated.asc
 The helper saves the first half of the source bytes and prints both sizes/hashes.
-Load r2-truncated.asc and enter the correct password. Expect failure with no
+Load r3-truncated.asc and enter the correct password. Expect failure with no
 restored output. Save the helper output and the rejection screenshot.
 Lock and clear; close/reopen; expect blank fields and unchecked confirmations.
 
