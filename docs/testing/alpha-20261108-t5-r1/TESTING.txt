@@ -1,0 +1,68 @@
+PUBLIC TESTS ONLY — alpha-20261108-t5-r1
+
+START IN THE TEST FOLDER
+Complete offline or website-tools ZIP: extract it, open plebum-offline,
+then open public-tests. Its fixtures are in public-tests/fixtures/.
+Focused dice/map ZIP: extract it, then open plebum-public-test.
+Its fixtures folder is directly inside plebum-public-test.
+Use the matching HTML/Python tools in that test folder. Open your terminal
+there: all commands and fixtures/... paths below are relative to it.
+For the complete offline package's full T1 check, run verify_package.py
+from plebum-offline first. The checker here verifies only this test subset.
+
+Before each test, record release ID, OS/browser versions, date and file hashes.
+Disconnect the test machine before opening HTML tools via file://. An offline
+indicator is only a browser signal, not proof of network isolation. Use the OS
+network controls too. Leave unsupported or unperformed checks as NOT TESTED.
+
+T1 — Package integrity
+Run python3 verify_package.py (Windows: py verify_package.py).
+Expected: PASS for every listed file. Stop on a mismatch and download again.
+The checker does not authenticate the download or run any custody tool.
+
+T2 — Public-session controls; automatic-isolation acceptance UNRESOLVED
+Open only local file:// copies after disabling OS networking and checking it.
+Expect locked startup with both acknowledgments unchecked. Complete them only
+with public fixtures and OS networking disabled. Browser flag true may appear
+in isolated Tails; the page cannot verify isolation. Test Lock and clear and
+reopen: expect blank inputs/output and fresh unchecked confirmations.
+Detected network events revoke the session, but Tor may mask both events and
+flags. Do not reconnect during this fixture run; lock and clear first. These
+manual checks do not pass the legacy connected/reconnected blocking requirement.
+Record automatic-isolation acceptance as UNRESOLVED, never as a manual PASS.
+
+T3 — Dice converter known-answer output
+Paste fixtures/zeros-256.txt (256 zero bits) into the HTML binary-input box.
+Expected: 24 words: 'abandon' repeated 23 times, followed by 'art'.
+Repeat using python3 bip39_dice_converter.py; outputs must match.
+Then use fixtures/ones-256.txt: 'zoo' repeated 23 times, followed by 'vote'.
+Try 255 bits and a string containing x. Expected: rejection, no valid output.
+The eight reference entropy/mnemonic pairs are in fixtures/bip39-vectors.json;
+all eight include the zero/one cases. Use T5-dice-reference-inputs.txt for
+copyable 256-bit inputs and all expected words. Preserve leading zeros.
+These are publicly known examples. Never fund a wallet derived from them.
+
+T4 — Wallet-map encryption/decryption
+For exact file-based Windows commands, read RETEST-WINDOWS.txt. Its fixture
+uses password public-test-only; the fixture below uses password.txt instead.
+Use fixtures/public-map.txt and the disposable password in fixtures/password.txt.
+Encrypt, save the result, close/reopen, and decrypt. Expected: exact original
+text, including Unicode and line breaks. Ciphertext bytes may differ per run.
+Try a wrong password and a truncated COPY of the ciphertext. Expected: failure
+without plaintext. Preserve your original fixture and encrypted test file.
+Where GnuPG is available, cross-check HTML-encrypted text in the Python tool and
+Python-encrypted text in the HTML tool. Report each direction separately.
+
+T5 — Physical Tails (experienced volunteers)
+Record Tails version and actual hardware. Boot with networking disabled, check
+OS network state, open the extracted local HTML files and repeat T2–T4.
+Record missing dependencies and browser restrictions. Close the tools and reboot;
+record what remains on the removable drive and whether tools restart correctly.
+Do not infer secure erasure or full recovery from a successful restart.
+
+REPORTING
+Use one response per task/failure. Include release, task ID, PASS/FAIL/NOT TESTED,
+environment, steps, expected/actual result and whether it repeats. The existing
+form accepts these details in its description; use general feedback if no tool
+task is listed. Never submit private wallet data or credentials.
+https://docs.google.com/forms/d/e/1FAIpQLSfOkY3FrZmZpIVro5oxWLy_YvU7U-1BOrL3KB9VCI3jXjad2Q/viewform
