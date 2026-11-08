@@ -2,15 +2,15 @@
   "release": "alpha-20261106-t3-t4",
   "status": "PUBLIC_TEST_ONLY",
   "custody_approved": false,
-  "source_commit": "0817846622b06b5d992e81f0077a8db652cee683",
+  "source_commit": "b9c20667d9383007f79bbdd33319bc5641a0ddbd",
   "archive": {
     "name": "plebum-tools-alpha-20261106-t3-t4.zip",
-    "sha256": "2c75ae874877c90082c8d8dfcf9d2873cf45e063f09082a3eceb0a4504675f33",
-    "size": 229609
+    "sha256": "77853660272712b36cf11c158f73a14a7aab5a86756d58d5e536d78017bd22ad",
+    "size": 229608
   },
   "files": {
     "README.txt": {
-      "sha256": "c6153d6679529db3d44d86bea1491a6add3a8a5b818f9769351d81e529c3ac87",
+      "sha256": "d9d824a86833981cb5fa4d62cf55abadd2994f91a00a33ebb6190c4aa70c55ca",
       "size": 2198
     },
     "RESULTS.csv": {
@@ -22,11 +22,11 @@
       "size": 4785
     },
     "SHA256SUMS.txt": {
-      "sha256": "ad7e6740999f6dc0cd8d069f0daf6446171c91767e9a5d6991eb4ed0dde17b6a",
+      "sha256": "19aac41fec88e4208df2e75bd7e52c68a79d651027fc9d855c0fc676394d87d6",
       "size": 1806
     },
     "SOURCE.json": {
-      "sha256": "2f4b8080d5eeb2b21b6c9fc808103000d5912dbd3e1a9808af345555ee0428d6",
+      "sha256": "363cdb10a25780c0f1a75c8db49bd0ab54a54d35e384cf0b6208ae526b8ee5fb",
       "size": 2653
     },
     "TESTING.txt": {
