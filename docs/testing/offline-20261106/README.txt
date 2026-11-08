@@ -38,8 +38,8 @@ Read public-tests/TESTING.txt; record results in public-tests/RESULTS.csv.
 The source tools in the package root retain their original sensitive controls.
 public-tests contains the current focused alpha's matching tools and fixtures and its own README/manifest.
 Its instructions apply to that subfolder, not the complete package layout.
-Legacy PDFs and spreadsheets in the full package remain unreconciled and are
-provided as review material. The HTML guides are the current reviewed text.
+Legacy PDFs, slides and spreadsheets are excluded pending reconciliation
+and print review. Use the current HTML guides for printable instructions.
 Browser/OS isolation, cross-platform operation and physical Tails tests remain
 incomplete. Successful file checks do not certify safety or recovery.
 
