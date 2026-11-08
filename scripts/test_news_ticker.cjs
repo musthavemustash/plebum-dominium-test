@@ -30,7 +30,7 @@ function walk(dir) {
   }
 }
 walk(docs);
-assert.equal(count, 68);
+assert.equal(count, 82);
 const main = fs.readFileSync(path.join(docs,'assets/js/main.js'),'utf8');
 const code = main.slice(main.indexOf('/* Ticker price:'), main.indexOf('/* ---------- Ask the guide:'));
 const flush = () => new Promise(resolve=>setImmediate(resolve));
@@ -60,5 +60,5 @@ async function scenario({protocol='https:', online=true, offlineRoot, present=tr
   }
   s.reply={ok:true,json:async()=>({USD:76000})};await s.events.online();assert.equal(s.el.hidden,false);
   s.events.offline();assert.equal(s.el.hidden,true);assert.equal(s.el.textContent,'');
-  console.log('PASS: 68 static tickers, all destinations and fragments, non-focusable duplicates, price refresh/failure/reconnect, no local/offline price requests.');
+  console.log('PASS: 82 static tickers, all destinations and fragments, non-focusable duplicates, price refresh/failure/reconnect, no local/offline price requests.');
 })().catch(error=>{console.error(error);process.exitCode=1;});
