@@ -108,6 +108,9 @@ def render(path, step):
 
 def outputs():
  out={}
+ # News is shared by both routes, including searches opened on the news page.
+ news_entries = [entry for entry in json.loads((DOCS / 'assets/search-index.json').read_text())
+                 if entry.get('slug', '').startswith('news-')]
  for path,info in PATHS.items():
   for step in info['steps']: out['paths/'+path+'/'+step[0]+'.html'] = render(path,step)
   # Route overview and finish destination; all stages remain revisitable.
@@ -128,7 +131,7 @@ def outputs():
    article=re.sub(r'<script.*?</script>|<style.*?</style>|<!-- page-test-module -->.*?<!-- /page-test-module -->','',article,flags=re.S)
    text=unescape(re.sub(r'<[^>]+>',' ',article))
    entries.append(dict(slug=slug,num=str(i+1).zfill(2),title=title,url=href(path,slug),text=' '.join(text.split())))
-  out['paths/'+path+'/search-index.json']=json.dumps(entries,ensure_ascii=False,indent=2)+'\n'
+  out['paths/'+path+'/search-index.json']=json.dumps(entries+news_entries,ensure_ascii=False,indent=2)+'\n'
 
  return out
 
