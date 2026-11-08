@@ -1,0 +1,33 @@
+name: Dice controller regression checks
+on:
+  pull_request:
+    paths:
+      - docs/dice-converter.html
+      - scripts/test_dice_controller.cjs
+      - scripts/test_tool_network.cjs
+      - review/fixtures/bip39-vectors.json
+      - .github/workflows/dice-controller.yml
+  push:
+    branches: [main]
+    paths:
+      - docs/dice-converter.html
+      - scripts/test_dice_controller.cjs
+      - scripts/test_tool_network.cjs
+      - review/fixtures/bip39-vectors.json
+      - .github/workflows/dice-controller.yml
+permissions:
+  contents: read
+jobs:
+  controller:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exercise full dice controller and network guards
+        run: |
+          node scripts/test_dice_controller.cjs
+          node scripts/test_tool_network.cjs
+      - name: Validate staging source
+        run: python3 scripts/build.py
