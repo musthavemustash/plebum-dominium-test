@@ -11,6 +11,9 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCES = {
+    'compare_files.py': 'review/fixtures/compare_files.py',
+    'T5-dice-reference-inputs.txt': 'review/fixtures/T5-dice-reference-inputs.txt',
+    'TAILS-RETEST-RESULTS.txt': 'docs/testing/t5-20261108/TAILS-RETEST-RESULTS.txt',
     'RETEST-WINDOWS.txt': 'docs/testing/t4-20261106/RETEST-WINDOWS.txt',
     'VALIDATION.txt': 'docs/testing/t4-20261106/VALIDATION.txt',
     'dice-converter.html': 'docs/dice-converter.html',
@@ -31,7 +34,7 @@ def build(output, source_commit):
         raise ValueError('Supply the full reviewed source commit SHA')
     output = Path(output)
     output.mkdir(parents=True, exist_ok=False)
-    release = 'alpha-20261106-t3-t4'
+    release = 'alpha-20261108-t5-r1'
     archive = 'plebum-tools-' + release + '.zip'
     files = {name: (ROOT / source).read_bytes() for name, source in SOURCES.items()}
     source_files = {name: {'source_path': source, 'sha256': sha(files[name]), 'size': len(files[name])}
@@ -40,7 +43,7 @@ def build(output, source_commit):
         'release': release, 'status': 'PUBLIC_TEST_ONLY', 'custody_approved': False,
         'source_repository': 'https://github.com/musthavemustash/plebum-dominium-test',
         'source_commit': source_commit, 'source_files': source_files,
-        'outstanding': ['Actual browser and OS offline-isolation testing', 'Physical Tails testing',
+        'outstanding': ['Actual browser and OS offline-isolation testing', 'Fresh Windows/Tails checks of this rebuilt package',
                         'Recovery-workflow validation', 'Stable release reconciliation'],
     }, indent=2) + '\n').encode()
     files['README.txt'] = f'''PLEBUM DOMINIUM — PUBLIC ALPHA TEST RELEASE
@@ -63,7 +66,9 @@ This restriction also applies to any older custody instructions inside the tools
    On Windows with Python installed, use: py verify_package.py
 3. Open the HTML tools as local files on a disconnected test machine.
    HTTP/HTTPS and localhost are deliberately blocked by the sensitive tools.
-   Do not bypass their safeguards if your browser reports the wrong state.
+   Complete the OS checks before the public-test acknowledgments. A stable
+   browser flag of true may occur in isolated Tails. It is not proof either way.
+   Keep networking disabled; Lock and clear before changing network settings.
 4. Record PASS, FAIL or NOT TESTED in RESULTS.csv. Submit non-sensitive results
    through the form after finishing the offline session: {FORM}
 
@@ -73,7 +78,9 @@ No installation or dependency download is performed by the package checker.
 
 The packaged tools and public fixtures are byte-for-byte copies of the source
 paths recorded in SOURCE.json. No cryptographic implementation was changed.
-Browser/OS isolation, physical Tails operation and recovery remain unverified.
+Earlier candidate Tails results are in TAILS-RETEST-RESULTS.txt. This rebuilt
+package needs fresh Windows/Tails checks. Automatic isolation/reconnection
+acceptance and complete wallet recovery remain unresolved.
 Older ZIPs and kit/VERIFY.md do not describe this alpha. Use this package's hashes.
 Hashes detect changed bytes; they do not independently authenticate the publisher
 or establish that a tool is safe. This alpha does not approve a stable release.
@@ -100,13 +107,16 @@ Run python3 verify_package.py (Windows: py verify_package.py).
 Expected: PASS for every listed file. Stop on a mismatch and download again.
 The checker does not authenticate the download or run any custody tool.
 
-T2 — Local/offline safeguards
-On a connected machine, open the local HTML tools without entering any inputs.
-Expected: sensitive operations blocked. On an offline machine, open local copies.
-Expected: tools permit public-fixture tests only when the offline signal agrees.
-If controls stay blocked, record the environment; do not bypass the safeguard.
-If possible, reconnect after a public-fixture test. Expected: sensitive controls
-block and stale sensitive output clears. Never perform this with real data.
+T2 — Public-session controls; automatic-isolation acceptance UNRESOLVED
+Open only local file:// copies after disabling OS networking and checking it.
+Expect locked startup with both acknowledgments unchecked. Complete them only
+with public fixtures and OS networking disabled. Browser flag true may appear
+in isolated Tails; the page cannot verify isolation. Test Lock and clear and
+reopen: expect blank inputs/output and fresh unchecked confirmations.
+Detected network events revoke the session, but Tor may mask both events and
+flags. Do not reconnect during this fixture run; lock and clear first. These
+manual checks do not pass the legacy connected/reconnected blocking requirement.
+Record automatic-isolation acceptance as UNRESOLVED, never as a manual PASS.
 
 T3 — Dice converter known-answer output
 Paste fixtures/zeros-256.txt (256 zero bits) into the HTML binary-input box.
@@ -115,7 +125,8 @@ Repeat using python3 bip39_dice_converter.py; outputs must match.
 Then use fixtures/ones-256.txt: 'zoo' repeated 23 times, followed by 'vote'.
 Try 255 bits and a string containing x. Expected: rejection, no valid output.
 The eight reference entropy/mnemonic pairs are in fixtures/bip39-vectors.json;
-hex entropy must be converted to exactly 256 binary digits before input.
+all eight include the zero/one cases. Use T5-dice-reference-inputs.txt for
+copyable 256-bit inputs and all expected words. Preserve leading zeros.
 These are publicly known examples. Never fund a wallet derived from them.
 
 T4 — Wallet-map encryption/decryption
@@ -143,6 +154,8 @@ form accepts these details in its description; use general feedback if no tool
 task is listed. Never submit private wallet data or credentials.
 {FORM}
 '''.encode()
+    files['fixtures/short-255.txt'] = ('0' * 255 + '\n').encode()
+    files['fixtures/invalid-character.txt'] = ('0' * 255 + 'x\n').encode()
     files['fixtures/zeros-256.txt'] = ('0' * 256 + '\n').encode()
     files['fixtures/ones-256.txt'] = ('1' * 256 + '\n').encode()
     files['fixtures/public-map.txt'] = (ROOT / 'review/fixtures/t4-public-map.txt').read_bytes()

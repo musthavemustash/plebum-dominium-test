@@ -8,6 +8,7 @@ from zipfile import ZipFile
 
 from page_test_modules import BASE, DOCS, ORIGIN, STAMP, catalog, with_page_test
 from render_paths import PATHS
+from publish_offline_downloads import OUT, FULL
 
 
 def check_page(path, public_path, tasks, build, source=None):
@@ -65,7 +66,7 @@ def main():
     assert 'paths%2Fone%2Fverify.html' in one
     assert 'paths%2Fthree%2Fverify.html' in three
     # Check the published offline artifact, after its base-path rewriting, too.
-    archive = DOCS / 'testing/offline-20261106/plebum-complete-offline-tester-20261106.zip'
+    archive = OUT / FULL
     with ZipFile(archive) as zipped:
         assert 'plebum-offline/assets/css/page-test-modules.css' in zipped.namelist()
         for name, tasks in expected.items():

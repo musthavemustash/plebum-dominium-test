@@ -17,10 +17,10 @@ import zipfile
 ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / 'docs'
 BASE = '/plebum-dominium-test/'
-DEST = 'testing/offline-20261106'
+DEST = 'testing/offline-20261108-r1'
 OUT = DOCS / DEST
-FULL = 'plebum-complete-offline-tester-20261106.zip'
-TOOLS = 'plebum-website-tools-only-20261106.zip'
+FULL = 'plebum-complete-offline-tester-20261108-r1.zip'
+TOOLS = 'plebum-website-tools-only-20261108-r1.zip'
 SENSITIVE = {'dice-converter.html', 'descriptor-tool.html'}
 TOOL_NAMES = [
     'dice-converter.html', 'descriptor-tool.html', 'fingerprint-checker.html',
@@ -85,8 +85,8 @@ def update_guides():
 <p><a href="{BASE}offline-folder-guide.html">Illustrated guide: find the test tools and fixtures →</a></p>
 <p>Disconnect before testing sensitive tools. They must run as local files; keep their existing safeguards in place. Python helpers require Python 3; the Python wallet-map tool also requires GnuPG, installed separately before disconnecting.</p>
 <p>The tools-only ZIP contains the site’s utilities, demos, Python helpers, wordlist and public fixtures, without the guides or legacy print documents. Neither ZIP includes Tails, Sparrow, Electrum or other external software. Feedback, external references, live prices and network transactions require internet access.</p>
-<p><strong>Public testing only. Do not use real wallet secrets, passwords, entropy or funds.</strong> Browser and physical Tails validation remain incomplete.</p>
-<p><a href="{BASE}{DEST}/README.txt">Setup and contents</a> · <a href="{BASE}{DEST}/SHA256SUMS.txt">ZIP checksums</a> · <a href="{BASE}{DEST}/manifest.json">Package manifests</a> · <a href="{BASE}test-the-site.html#advanced">Testing tasks and feedback</a></p>
+<p><strong>Public testing only. Do not use real wallet secrets, passwords, entropy or funds.</strong> The earlier focused candidate passed the exercised Tails checks. Fresh Windows/Tails validation of these rebuilt ZIPs is pending; automatic isolation acceptance remains unresolved.</p>
+<p><a href="{BASE}{DEST}/README.txt">Setup and contents</a> · <a href="{BASE}{DEST}/SHA256SUMS.txt">ZIP checksums</a> · <a href="{BASE}{DEST}/manifest.json">Package manifests</a> · <a href="{BASE}test-the-site.html#tasks">Testing tasks and feedback</a></p>
 </section><!-- /offline-downloads -->'''
     s = s.replace('<h1>Downloads</h1>', '<h1>Downloads</h1>' + section, 1)
     s = s.replace('The tools are open for public testing. Download the alpha, try the supplied test cases, and help us check the results.', 'Choose the complete offline tester, the website tools only, or individual files below. All downloads are for public testing.')
@@ -109,6 +109,8 @@ def offline_copy(name, data):
         boot = '<script>window.PD_OFFLINE_ROOT=new URL(' + json.dumps(prefix or './') + ',location.href).href;</script>'
         s = s.replace('<head>', '<head>' + boot, 1)
         s = s.replace(BASE, prefix)
+        s = s.replace('testing/offline-20261106/', DEST + '/')
+        s = s.replace('plebum-complete-offline-tester-20261106.zip', FULL).replace('plebum-website-tools-only-20261106.zip', TOOLS)
         s = s.replace('href="' + prefix + '"', 'href="' + prefix + 'index.html"')
         s = s.replace(DEST + '/' + FULL, 'START.html').replace(DEST + '/' + TOOLS, 'START.html')
         s = s.replace(DEST + '/README.txt', 'README.txt').replace(DEST + '/SHA256SUMS.txt', 'SHA256SUMS.txt').replace(DEST + '/manifest.json', 'package-manifest.json')
@@ -157,19 +159,19 @@ def manifest_files(files):
 def package(full):
     files = {}
     for p in sorted(DOCS.rglob('*')):
-        if p.suffix.lower() in {'.pdf', '.pptx', '.xlsx'}:
+        if p.suffix.lower() in {'.pdf', '.pptx', '.xlsx', '.pyc'}:
             continue  # Legacy documents await content reconciliation and print review.
-        if not p.is_file() or p.is_relative_to(OUT):
+        if not p.is_file() or p.is_relative_to(OUT) or '__pycache__' in p.parts:
             continue
         name = p.relative_to(DOCS).as_posix()
         if name == 'verify-download.html':
             continue  # Generated after ZIPs; downloaded separately for offline use.
-        if name.startswith('testing/') and not name.startswith(('testing/alpha-20261106-t3-t4/', 'testing/t4-20261106/')):
+        if name.startswith('testing/') and not name.startswith(('testing/alpha-20261108-t5-r1/', 'testing/t4-20261106/', 'testing/t5-20261108/')):
             continue
         if not full and not (name in TOOL_NAMES or name == 'offline-folder-guide.html' or name.startswith('assets/') or name in ['kit/' + n for n in PYTHON]):
             continue
         files[name] = offline_copy(name, p.read_bytes())
-    alpha = DOCS / 'testing/alpha-20261106-t3-t4/plebum-tools-alpha-20261106-t3-t4.zip'
+    alpha = DOCS / 'testing/alpha-20261108-t5-r1/plebum-tools-alpha-20261108-t5-r1.zip'
     with zipfile.ZipFile(alpha) as z:
         for name in z.namelist():
             if not name.endswith('/'):
@@ -178,7 +180,7 @@ def package(full):
     if not full:
         # Reference-only return link in the dice reference has no guide in this ZIP.
         files['dice-rolls.html'] = files['dice-rolls.html'].replace(b'href="handouts/dice.html"', b'href="START.html"')
-    files['README.txt'] = ('''PLEBUM DOMINIUM — OFFLINE PUBLIC TESTER — 2026-11-06
+    files['README.txt'] = ('''PLEBUM DOMINIUM — OFFLINE PUBLIC TESTER — 2026-11-08-r1
 PUBLIC TEST DATA ONLY. NOT APPROVED FOR REAL-WALLET USE.
 
 FIND THE RIGHT FOLDER
@@ -205,8 +207,10 @@ its fixtures folder is plebum-public-test/fixtures/.
 No installation, internet connection or local server is needed for HTML tools.
 The complete package includes both guide paths and embedded local search.
 Use the downloaded HTML files directly (file://) on a disconnected machine.
-If your browser still reports online or a tool blocks, record NOT TESTED/FAIL;
-do not bypass safeguards. An offline indicator alone does not prove isolation.
+The public-session candidate may show a true browser flag in isolated Tails.
+Complete OS checks before its acknowledgments. It cannot verify isolation or
+reliably detect reconnection. Keep networking disabled; Lock and clear before
+changing network settings. Automatic isolation acceptance remains unresolved.
 
 The Python helpers require Python 3. descriptor_obfuscator.py also needs GnuPG.
 Install those dependencies separately before disconnecting if testing Python.
@@ -220,8 +224,9 @@ public-tests contains the current focused alpha's matching tools and fixtures an
 Its instructions apply to that subfolder, not the complete package layout.
 Legacy PDFs, slides and spreadsheets are excluded pending reconciliation
 and print review. Use the current HTML guides for printable instructions.
-Browser/OS isolation, cross-platform operation and physical Tails tests remain
-incomplete. Successful file checks do not certify safety or recovery.
+Earlier candidate evidence is included in public-tests/TAILS-RETEST-RESULTS.txt.
+These rebuilt ZIPs require fresh Windows/Tails checks. The separate Diceware
+mapper and complete wallet rehearsals remain outstanding. Successful file checks do not certify safety or recovery.
 
 Check all extracted files: python3 verify_package.py (Windows: py verify_package.py).
 Checksums establish byte equality, not independent publisher authentication.

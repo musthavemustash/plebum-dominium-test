@@ -1,0 +1,25 @@
+PLEBUM DOMINIUM — TAILS CANDIDATE RETEST — 2026-11-08
+
+Physical Tails candidate retest · November 8, 2026
+The exercised dice, wallet-map, clearing and reboot checks passed. The candidate now works locally in the tested Tails environment. Automatic isolation/reconnection requirements remain unresolved, so this is not a complete T2/T5 or beta approval. Results are based on tester-supplied photographs and reports; the reviewer did not operate the physical computer.
+Tested candidate: plebum-t5-html-retest-20261108.zip (t5-html-20261108-c1). The retained archive matches recorded SHA-256 839bee50bebf7c7aebf48434c84f4ccd5995139fae7064a126668170499e55f4. The physical machine's verifier showed 18 files match before and after reboot; a fresh archive-hash check on its USB was not demonstrated.
+Environment: previously reported Dell Inspiron 14 2-in-1; Tails 7.16; Python 3.13.5; GnuPG 2.4.7 / libgcrypt 1.11.0; Tor Browser 16.0 / Firefox 153.6.0esr, security level Standard. Local file URLs were used.
+Later Tails retest — observed checks on the named candidateCheckObserved result
+Startup and dice buttonsPASS: both HTML tools initialized behind the public-test confirmation screen. Buttons 1–6 produced four accepted pairs and eight bits (00011011); 5 and 6 were skipped.
+Eight BIP39 referencesPASS: all eight entries in this candidate's reference file matched in HTML and Python, including the full 24-word order. These eight include the zero/one cases.
+Invalid inputsPASS: both tools rejected 255-bit and invalid-x input. The HTML tool removed the previous generated words.
+Manual lock, clear and reopenPASS for visible state: counters, pasted input, validation messages and generated words cleared; map inputs, passwords, previews and restored output cleared. Reopened tools showed fresh locked gates. This does not establish memory erasure.
+Saved HTML wallet-map recoveryPASS: the saved ciphertext was reopened, decrypted and downloaded. compare_files.py reported byte-for-byte equality with the public fixture, including café.
+Both cross-tool directionsPASS: HTML → Python and Python → HTML each recovered identical fixture bytes in separate comparisons.
+Rejected decryptionPASS for exercised cases: wrong-password and damaged pasted ciphertext attempts failed without restored plaintext or a download. The exact removed segment was not evidenced; a precise final-half truncation is not claimed.
+Reboot and saved filesPASS: all five recorded test-file hashes matched before and after reboot. Both HTML tools reopened locked. HTML and Python each recovered the saved HTML ciphertext after reboot with byte-for-byte matches; both zero-bit checks also passed.
+Evidence and shutdownRecorded: screenshots were copied to the transfer USB and a saved image was reopened. The tester confirmed Tails shutdown. The complete native screenshot inventory has not been independently reviewed.
+
+Isolation limit: offline boot was reported; after reboot, NetworkManager showed disconnected with connectivity unknown, missing Wi-Fi/WWAN hardware and enabled software switches. The browser flag remained true. These observations do not prove complete isolation. The candidate relies on OS checks and explicit public-test acknowledgments; it cannot reliably detect a masked reconnection. No reconnection test was performed in this session.
+Still open: automatic safeguard acceptance, separate Diceware mapper checks, a controlled precise-truncation retest, and the remaining final-package checks. Python negative cases and overwrite protections were not rerun here. Earlier results stay attached to their original runs.
+Read the Tails result record (TXT).
+Refreshed public tester package
+The complete offline tester has been rebuilt from the reviewed candidate tools and current guide, with matched source files, reference inputs, clearer test-folder instructions and new manifests. The rebuilt package's physical Windows/Tails checks are pending. The earlier candidate's passes do not automatically approve the new archive. Use the package filename and checksum on the downloads page when reporting results.
+Overall T5 acceptance remains incomplete; beta remains blocked. The previous HTML usability blocker was resolved for the tested candidate. Both full wallet setup, software-signing and recovery rehearsals, including checked metal backups, remain separate work. Hardware signers are optional after checked metal backups.
+
+Evidence: user-supplied photographs and reports. Native screenshots retained by tester. No real-wallet data used.

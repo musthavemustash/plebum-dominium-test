@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; connect-src 'none'; img-src data:; worker-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Dice converter · Plebum Dominium</title>
+<title>Dice converter · T5 candidate</title>
 <style>
 :root{
   --bg:#0e0d0b; --panel:#161310; --panel2:#1c1814; --ink:#ece5d8; --muted:#a89c88;
@@ -103,6 +104,15 @@ footer p{margin:6px 0}
   #barfill{transition:none}
   .diebtn{transition:none}
 }
+
+/* Keep the initial gate usable on short and narrow screens. */
+#netblock{overflow-y:auto;align-items:flex-start;box-sizing:border-box}
+.stopcard{margin:auto;box-sizing:border-box;width:100%;max-width:640px}
+.stopcard label{display:block;margin:14px 0;line-height:1.5;color:#e8e0d0}
+.stopcard input{width:auto;margin-right:8px}
+button:disabled{opacity:.5;cursor:default}
+.t5-notice{border:1px solid #c4a484;padding:12px;margin:12px 0;color:#e8e0d0}
+.online-pill{white-space:normal}
 </style>
 </head>
 <body>
@@ -112,7 +122,8 @@ footer p{margin:6px 0}
   <h1>Dice converter</h1>
   <p class="sub">Dice rolls become 24 words. Everything happens in this page, offline. Nothing you type leaves it.</p>
 </header>
-<main>
+<main id="tool-main" inert>
+<div class="t5-notice" role="note"><strong>T5 public-test candidate · not approved for real wallets.</strong> Network isolation is not verified by this page. Keep OS networking disabled. <button type="button" class="ghost" id="session-lock">Lock and clear</button></div>
   <section class="panel" aria-label="Record the rolls">
     <h2><span class="step">1</span>Record the rolls</h2>
     <p>Roll five dice. Enter each face left to right, the same way every shake. Faces 1 to 4 are kept as bits. Faces 5 and 6 are skipped, roll those dice again. Stop at 128 pairs.</p>
@@ -162,21 +173,24 @@ footer p{margin:6px 0}
     <ul class="results" id="results"></ul>
   </section>
 </main>
-<div id="netblock" hidden>
-  <div class="stopcard" role="alert">
-    <p class="prow"><span class="online-pill"><span class="online-dot"></span><span>Online</span></span></p>
-    <h2>Stop. This computer is online.</h2>
-    <p>Seed words are never typed on a computer that can reach the network. A connected machine can leak every keystroke to malware, a bad extension, or the network itself. One leak burns the words, and burned words mean new dice, new words, new plates.</p>
-    <p>Close this page. Boot Tails with networking set to Disabled, or disconnect this machine from the network, then open the file again. If this page still says Online on a machine you believe is offline, trust the page. Something is still connected.</p>
-    <div class="dl-guide">
-      <p><strong>Get this file onto your offline machine.</strong></p>
-      <p><a class="dl-btn" href="dice-converter.html" download="dice-converter.html">Download dice-converter.html</a></p>
-      <p>Then check its fingerprint on the verify page, copy it to your data USB, and open it on Tails with networking disabled.</p>
-    </div>
+<div id="netblock">
+  <div class="stopcard" role="region" aria-labelledby="session-title">
+    <h2 id="session-title">Before this public test</h2>
+    <p><strong>T5 candidate 2026.11.08 — public test data only.</strong></p>
+    <p>This page cannot establish whether the computer is offline. Tor Browser can report an online flag even with networking disabled. Keep Tor's privacy settings unchanged.</p>
+    <p>Disable networking in your operating system and disconnect network cables. On Tails, boot with <strong>Offline Mode → Disable all networking</strong>. Check the OS network status before continuing and keep networking disabled throughout the test.</p>
+    <p id="session-code" role="status">Code has not started. If this stays visible, leave the tool locked.</p>
+    <p id="browser-signal">Browser connection flag not checked.</p>
+    <label><input type="checkbox" id="confirm-offline" autocomplete="off"> I have disabled networking in the operating system and checked its network status.</label>
+    <label><input type="checkbox" id="confirm-public" autocomplete="off"> I will use only public fixtures and disposable test passwords. No real wallet data or entropy.</label>
+    <button type="button" class="ghost" id="session-start" disabled>Start public test</button>
+    <p>These confirmations are your checks, not automatic verification. Browser network events may be masked, so this page cannot reliably detect reconnection. Lock and clear before changing network settings.</p>
+    <noscript><p>JavaScript is disabled. The test remains locked. Record this browser restriction.</p></noscript>
+    <div class="dl-guide"><a class="dl-btn" data-dl href="dice-converter.html" download="dice-converter.html">Download local test file</a></div>
   </div>
 </div>
 <footer>
-  <p>Before trusting a copy of this file, check its fingerprint against VERIFY.md.</p>
+  <p>Check this candidate with verify_package.py before public testing. It is not approved for custody use.</p>
   <p>Use it offline. Tails with networking disabled is the way this guide does it.</p>
 </footer>
 <script>
@@ -319,7 +333,6 @@ if(typeof module!=='undefined') module.exports={sha256:sha256,bytesToBits:bytesT
   "use strict";
   var rolls=[]; // {face, bits|null}
   var pastedBits=null;
-  var netBlocked=true; // blocked until a local file and an explicit offline signal are observed
   function $(id){return document.getElementById(id);}
   function bits(){return rolls.filter(function(r){return r.bits;}).map(function(r){return r.bits;}).join('');}
   function pairs(){return rolls.filter(function(r){return r.bits;}).length;}
@@ -359,13 +372,64 @@ if(typeof module!=='undefined') module.exports={sha256:sha256,bytesToBits:bytesT
       ol.appendChild(li);
     });
   }
+/* T5 candidate: local public-data testing only; never attests network isolation.
+ * Embedded into each standalone controller. No storage or network requests.
+ * Tor's fingerprinting protection can mask onLine and its change events.
+ */
+function createPublicTestSession() {
+  var active = false, ready = false, observed = navigator.onLine;
+  var wipe = function () {};
+  function el(id) { return document.getElementById(id); }
+  function render() {
+    var local = location.protocol === 'file:';
+    el('netblock').hidden = active;
+    el('tool-main').inert = !active;
+    el('session-start').disabled = !ready || !local || !el('confirm-offline').checked || !el('confirm-public').checked;
+    el('session-title').textContent = local ? 'Before this public test' : 'Download and open the local file';
+    el('browser-signal').textContent = 'Browser connection flag: ' + String(navigator.onLine) + '. This does not verify network isolation.';
+    el('online-pill').hidden = false;
+    el('online-word').textContent = active ? 'Public test · isolation not verified' : 'Test session locked';
+  }
+  function revoke() {
+    active = false;
+    el('confirm-offline').checked = false;
+    el('confirm-public').checked = false;
+    observed = navigator.onLine;
+    wipe();
+    render();
+  }
+  function allowed() {
+    if (location.protocol !== 'file:' || navigator.onLine !== observed) { revoke(); }
+    return ready && active && location.protocol === 'file:';
+  }
+  el('confirm-offline').addEventListener('change', render);
+  el('confirm-public').addEventListener('change', render);
+  el('session-start').addEventListener('click', function () {
+    if (!ready || location.protocol !== 'file:' || !el('confirm-offline').checked || !el('confirm-public').checked) return;
+    wipe();
+    observed = navigator.onLine;
+    active = true;
+    render();
+  });
+  el('session-lock').addEventListener('click', revoke);
+  window.addEventListener('online', revoke);
+  window.addEventListener('offline', revoke);
+  window.addEventListener('pagehide', revoke);
+  window.addEventListener('pageshow', revoke);
+  setInterval(function () {
+    if (navigator.onLine !== observed) revoke();
+  }, 1000);
+  render();
+  return {
+    allowed: allowed,
+    revoke: revoke,
+    ready: function (clear) { wipe = clear; ready = true; el('session-code').textContent = 'Code ready. Public testing only.'; revoke(); }
+  };
+}
+
+  var testSession = createPublicTestSession();
   async function addDie(face){
-    if (location.protocol !== 'file:' || navigator.onLine !== false) { await renderNet(); return; }
-    if(netBlocked){
-      // Re-probe on tap: the offline event may not have fired.
-      await renderNet();
-      if(netBlocked || location.protocol !== 'file:' || navigator.onLine !== false) return;
-    }
+    if (!testSession.allowed()) return;
     if(bits().length>=256 && !pastedBits) return;
     if(pastedBits){ clearAll(); }
     rolls.push({face:face, bits:faceToBits(face)});
@@ -383,15 +447,15 @@ if(typeof module!=='undefined') module.exports={sha256:sha256,bytesToBits:bytesT
     })(diebtns[bi]);
   }
   document.addEventListener('keydown', function(e){
-    if(netBlocked || location.protocol !== 'file:' || navigator.onLine !== false) return;
+    if(!testSession.allowed()) return;
     if(/INPUT|TEXTAREA/.test(document.activeElement.tagName)) return;
     if(e.key>='1'&&e.key<='6') addDie(parseInt(e.key,10));
     else if(e.key==='Backspace'){ rolls.pop(); render(); e.preventDefault(); }
   });
-  $('undo').addEventListener('click', function(){ rolls.pop(); render(); });
+  $('undo').addEventListener('click', function(){ if (!testSession.allowed()) return; rolls.pop(); render(); });
   $('clear').addEventListener('click', clearAll);
   $('testfill').addEventListener('click', function(){
-    if (location.protocol !== 'file:' || navigator.onLine !== false) return;
+    if (!testSession.allowed()) return;
     clearAll();
     var seed=123456789;
     function rnd(){ seed=(seed*1103515245+12345)&0x7fffffff; return seed/0x7fffffff; }
@@ -405,7 +469,7 @@ if(typeof module!=='undefined') module.exports={sha256:sha256,bytesToBits:bytesT
   $('pastebits').addEventListener('input', function(){
     clearTimeout(pasteT);
     pasteT=setTimeout(function(){
-      if (location.protocol !== 'file:' || navigator.onLine !== false) { clearAll(); return; }
+      if (!testSession.allowed()) { clearAll(); return; }
       var raw=$('pastebits').value;
       var r=wordsFromBitsInput(raw);
       var note=$('paste-note');
@@ -416,7 +480,7 @@ if(typeof module!=='undefined') module.exports={sha256:sha256,bytesToBits:bytesT
     },350);
   });
   $('validate').addEventListener('click', function(){
-    if(netBlocked || location.protocol !== 'file:' || navigator.onLine !== false) return;
+    if(!testSession.allowed()) return;
     var raw=$('valwords').value.trim().split(/\s+/).filter(function(w){return w.length;});
     var ul=$('results'); ul.innerHTML='';
     function li(cls,text,delay){
@@ -437,34 +501,12 @@ if(typeof module!=='undefined') module.exports={sha256:sha256,bytesToBits:bytesT
       li('good','No words recorded above to compare against. This list stands on its own check.', .18);
     }
   });
-  async function renderNet(){
-    var pill=$('online-pill'), dot=$('online-dot'), word=$('online-word'), block=$('netblock');
-    if(pill){ pill.hidden=false; dot.classList.remove('safe'); word.textContent='Checking\u2026'; }
-    if(block){ block.hidden=false; }
-    // Conservative: we cannot prove air-gap status from the browser.
-    // file: means opened locally, not that networking is disabled.
-    // https: means served over network. User must disable and verify networking independently.
-    var servedOverNetwork = (location.protocol === 'https:' || location.protocol === 'http:');
-    var online = location.protocol !== 'file:' || navigator.onLine !== false;
-    var wasBlocked=netBlocked;
-    netBlocked=online;
-    if(pill){ dot.classList.toggle('safe', !online); word.textContent=online?'Network detected':'Local file'; }
-    if(block){
-      block.hidden=!online;
-      if(online && servedOverNetwork){
-        block.innerHTML='<strong>Warning:</strong> This tool was loaded over the network ('+location.protocol+'). For real keys, download this file, disconnect from the network, verify networking is disabled, then open the local copy. This page cannot verify air-gap status for you.';
-      }
-    }
-    if(online){
-      clearTimeout(pasteT);
-      clearAll();
-      $('valwords').value='';
-      $('results').innerHTML='';
-    }
-  }
-  window.addEventListener('online', renderNet);
-  window.addEventListener('offline', renderNet);
-  renderNet();
+  testSession.ready(function () {
+    clearTimeout(pasteT);
+    clearAll();
+    $('valwords').value='';
+    $('results').innerHTML='';
+  });
   render();
 })();
 </script>

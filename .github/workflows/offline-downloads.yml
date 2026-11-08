@@ -37,11 +37,12 @@ jobs:
       - name: Assemble and validate public test downloads
         run: |
           python3 scripts/prepare_public_test_release.py /tmp/plebum-current-alpha --source-commit "$(git rev-parse HEAD)"
-          mkdir -p docs/testing/alpha-20261106-t3-t4
-          cp /tmp/plebum-current-alpha/* docs/testing/alpha-20261106-t3-t4/
+          mkdir -p docs/testing/alpha-20261108-t5-r1
+          cp /tmp/plebum-current-alpha/* docs/testing/alpha-20261108-t5-r1/
           python3 scripts/page_test_modules.py --build "$(git rev-parse HEAD)"
           python3 scripts/publish_offline_downloads.py
           node scripts/test_download_verifier.cjs
+          node scripts/test_public_session_state.cjs
           python3 scripts/build.py
           python3 scripts/test_paths.py
           python3 scripts/test_page_test_modules.py
