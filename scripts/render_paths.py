@@ -115,7 +115,7 @@ def outputs():
   for step in info['steps']: out['paths/'+path+'/'+step[0]+'.html'] = render(path,step)
   # Route overview and finish destination; all stages remain revisitable.
   s=render(path,info['steps'][0])
-  article='<article><p class="kicker">Your guide</p><h1>'+escape(info['label'])+'</h1><p>Follow these '+str(len(info['steps']))+' steps in order. You can revisit any step. Completing the reading does not certify a wallet or replace a recovery rehearsal.</p><ol>'+''.join('<li><a href="'+href(path,t[0])+'">'+escape(t[1])+'</a></li>' for t in info['steps'])+'</ol><p><a href="'+BASE+'choose-path.html">Compare or switch paths</a></p></article>'
+  article='<article><p class="kicker">Your guide</p><h1>'+escape(info['label'])+'</h1><p>Follow these '+str(len(info['steps']))+' steps in order. You can revisit any step.</p><p>You can change paths in the sidebar. On mobile, tap the colored path indicator in the bottom-left corner of the screen.</p><p>Completing the reading does not certify a wallet or replace a recovery rehearsal.</p><ol>'+''.join('<li><a href="'+href(path,t[0])+'">'+escape(t[1])+'</a></li>' for t in info['steps'])+'</ol><p><a href="'+BASE+'choose-path.html">Compare or switch paths</a></p></article>'
   s=re.sub(r'<article[^>]*>.*?</article>',article,s,count=1,flags=re.S)
   s=re.sub(r'<aside class="toc-col".*?</aside>','',s,flags=re.S)
   s=s.replace('data-guide-slug="terms"','data-guide-slug="index"').replace('class="active" aria-current="page"','')
