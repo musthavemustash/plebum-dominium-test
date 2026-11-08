@@ -1,2 +1,2 @@
-f8f298c086bed25dcc5ab619dce3392af2ee8026d0e3f9ba7a8e88cbe0032103  plebum-tools-alpha-20261106-t3-t4.zip
-5ac4c7adbecdd1f76fc664354ead7b08ac6405b558d8b97c468202fb7b0d8699  manifest.json
+f047cc52740b2c432b9c1b0105aa7923ef4d96c1c4c164f8d31a00bab3090509  plebum-tools-alpha-20261106-t3-t4.zip
+52298e5ebb61efeb707734be226b5fce0f59cdcd12e5d1e0705baacd1fee8fee  manifest.json
