@@ -76,6 +76,7 @@ def update_guides():
 <div class="entry-actions">{link(DEST + '/' + FULL, 'Download complete offline tester ZIP →')}{link(DEST + '/' + TOOLS, 'Download website tools only ZIP →')}</div>
 <p><strong>Extract the entire ZIP, open the <code>plebum-offline</code> folder, then open <code>START.html</code>.</strong> For the T2–T5 tool checks, open <code>public-tests</code> inside that folder. Its <code>fixtures</code> folder holds the supplied test inputs: <code>plebum-offline/public-tests/fixtures/</code>. Use the matching HTML and Python tools beside that <code>fixtures</code> folder.</p>
 <p>For T1, run <code>verify_package.py</code> from <code>plebum-offline</code> to check the whole offline package. Commands and paths in <code>public-tests/TESTING.txt</code> start from <code>public-tests</code>; open your terminal there for those checks. The focused dice/map ZIP instead uses <code>plebum-public-test/fixtures/</code>.</p>
+<p><a href="{BASE}offline-folder-guide.html">Illustrated guide: find the test tools and fixtures →</a></p>
 <p>Disconnect before testing sensitive tools. They must run as local files; keep their existing safeguards in place. Python helpers require Python 3; the Python wallet-map tool also requires GnuPG, installed separately before disconnecting.</p>
 <p>The tools-only ZIP contains the site’s utilities, demos, Python helpers, wordlist and public fixtures, without the guides or legacy print documents. Neither ZIP includes Tails, Sparrow, Electrum or other external software. Feedback, external references, live prices and network transactions require internet access.</p>
 <p><strong>Public testing only. Do not use real wallet secrets, passwords, entropy or funds.</strong> Browser and physical Tails validation remain incomplete.</p>
@@ -89,7 +90,7 @@ def update_guides():
 
 
 def offline_copy(name, data):
-    if name in SENSITIVE or not name.endswith(('.html', '.js', '.json', '.css')):
+    if name in SENSITIVE or name == 'offline-folder-guide.html' or not name.endswith(('.html', '.js', '.json', '.css')):
         return data
     s = data.decode('utf-8')
     if name.endswith('.html'):
@@ -125,6 +126,7 @@ def start_page(full):
     links = ''.join(f'<li><a href="{p}">{label}</a></li>' for p, label in items)
     return ('''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Plebum · Offline public tester</title><style>body{font:18px/1.6 system-ui;max-width:850px;margin:3rem auto;padding:0 1.5rem;background:#faf8f2;color:#192b2a}a{color:#00685e}li{margin:.5rem 0}strong{color:#84351f}code{overflow-wrap:anywhere}summary{cursor:pointer;font-weight:600}</style></head><body><h1>Plebum offline public tester</h1><p><strong>Public test data only. Not approved for real-wallet use.</strong></p>
 <h2>Before you begin</h2>
+<p><a href="offline-folder-guide.html">Illustrated folder guide: from the ZIP to the fixtures →</a></p>
 <ol>
 <li>Extract the entire ZIP. Open the extracted <code>plebum-offline</code> folder, then open <code>START.html</code> (this page). Do not run files inside the compressed ZIP.</li>
 <li>For <strong>T1: check the whole package</strong>, open a terminal in <code>plebum-offline</code> and run <code>python3 verify_package.py</code> (Windows: <code>py verify_package.py</code>). Stop and report any mismatch before running tools.</li>
@@ -150,7 +152,7 @@ def package(full):
         name = p.relative_to(DOCS).as_posix()
         if name.startswith('testing/') and not name.startswith(('testing/alpha-20261106-t3-t4/', 'testing/t4-20261106/')):
             continue
-        if not full and not (name in TOOL_NAMES or name.startswith('assets/') or name in ['kit/' + n for n in PYTHON]):
+        if not full and not (name in TOOL_NAMES or name == 'offline-folder-guide.html' or name.startswith('assets/') or name in ['kit/' + n for n in PYTHON]):
             continue
         files[name] = offline_copy(name, p.read_bytes())
     alpha = DOCS / 'testing/alpha-20261106-t3-t4/plebum-tools-alpha-20261106-t3-t4.zip'
@@ -168,6 +170,7 @@ PUBLIC TEST DATA ONLY. NOT APPROVED FOR REAL-WALLET USE.
 FIND THE RIGHT FOLDER
 1. Extract the entire ZIP. Open the extracted plebum-offline folder.
 2. Open START.html in that folder for the offline starting page.
+   For illustrated steps, open offline-folder-guide.html beside START.html.
 3. For T1, open a terminal in plebum-offline and run its verify_package.py:
    python3 verify_package.py (Windows: py verify_package.py).
    This checks the whole offline package. Stop and report any mismatch.

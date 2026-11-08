@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark light">
+  <meta name="description" content="Find the testing tools and public fixtures inside your extracted Plebum Dominium offline ZIP.">
+  <title>Find your test files · Plebum Dominium</title>
+  <style>
+    :root{color-scheme:dark;--bg:#0e0d0b;--surface:#171510;--raised:#201c16;--ink:#eee8db;--muted:#b9ad99;--line:#393025;--gold:#cfaa7c;--gold-deep:#8c643a;--code:#e4c7a1;--soft:#242016;--ok:#9dc4ae}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;-webkit-text-size-adjust:100%}
+    main{width:min(100% - 40px,920px);margin:0 auto;padding:38px 0 52px}
+    .brand{display:flex;align-items:center;gap:12px;margin-bottom:38px;font-family:Georgia,"Times New Roman",serif;font-size:22px;font-weight:700}
+    .brand-mark{color:var(--gold);font:26px/1 Georgia,serif}
+    .eyebrow{margin:0 0 10px;color:var(--gold);font-size:12px;font-weight:750;letter-spacing:.14em;text-transform:uppercase}
+    h1,h2,h3{font-family:Georgia,"Times New Roman",serif;font-weight:600;line-height:1.17}
+    h1{margin:0 0 17px;font-size:clamp(36px,6vw,58px);letter-spacing:-.035em;max-width:750px}
+    h2{font-size:clamp(25px,3.6vw,31px);margin:0 0 13px;letter-spacing:-.018em}
+    h3{font-size:23px;margin:0 0 10px}
+    p{margin:0 0 14px}
+    .intro{max-width:700px;color:var(--muted);font-size:19px;line-height:1.6}
+    .intro strong{color:var(--ink);font-weight:650}
+    .public-note{margin:23px 0 31px;padding:13px 17px;background:var(--soft);border-left:3px solid var(--gold-deep);font-size:15px;color:var(--muted)}
+    .public-note strong{color:var(--ink)}
+    .steps{display:grid;gap:19px;margin-top:28px}
+    .step{position:relative;border:1px solid var(--line);border-radius:19px;background:var(--surface);padding:27px 28px 27px 82px}
+    .number{position:absolute;left:25px;top:27px;display:grid;place-items:center;width:35px;height:35px;border:1px solid var(--gold-deep);border-radius:50%;color:var(--gold);font:700 20px/1 Georgia,serif}
+    .step p:last-child{margin-bottom:0}
+    .split{display:grid;grid-template-columns:1fr 1fr;gap:17px;margin:18px 0 7px}
+    .platform{padding:15px 17px;border:1px solid var(--line);border-radius:11px}
+    .platform b{display:block;color:var(--gold);font-size:14px;margin-bottom:6px}
+    .platform p{font-size:15px;margin:0;color:var(--muted)}
+    code{font-family:ui-monospace,SFMono-Regular,Consolas,"Liberation Mono",monospace;color:var(--code);font-size:.88em;overflow-wrap:anywhere}
+    .crumbs{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;list-style:none;margin:17px 0;padding:15px 17px;border:1px solid var(--line);border-radius:11px;background:var(--raised)}
+    .crumbs li{display:flex;align-items:center;gap:10px;min-width:0}
+    .crumbs li:not(:last-child)::after{content:"";width:7px;height:7px;border-top:1.5px solid var(--muted);border-right:1.5px solid var(--muted);transform:rotate(45deg);margin-right:2px;flex:none}
+    .crumbs .target code{font-weight:700;color:var(--ink)}
+    .caption{font-size:14px;color:var(--muted)}
+    .terminal{background:var(--raised);border:1px solid var(--line);border-radius:11px;overflow:hidden;margin:17px 0}
+    .terminal-title{padding:10px 16px;border-bottom:1px solid var(--line);color:var(--muted);font-size:12px;font-weight:650;letter-spacing:.02em}
+    .commands{padding:13px 16px;display:grid;grid-template-columns:112px 1fr;gap:9px 14px;align-items:baseline;font-size:15px}
+    .commands span{font-size:13px;color:var(--muted)}
+    .commands code{font-size:14px}
+    .subtle{color:var(--muted);font-size:15px}
+    .good{color:var(--ok)}
+    .mapping{width:100%;border-collapse:collapse;margin:18px 0 0;text-align:left;font-size:15px}
+    .mapping th{color:var(--muted);font-weight:600;font-size:12px;letter-spacing:.035em;padding:0 10px 10px 0;border-bottom:1px solid var(--line)}
+    .mapping td{vertical-align:top;border-bottom:1px solid var(--line);padding:12px 15px 12px 0}
+    .mapping tr:last-child td{border-bottom:0;padding-bottom:0}
+    .mapping td:first-child{width:43%;color:var(--muted)}
+    .mapping td:last-child{padding-right:0}
+    details{margin-top:24px;border:1px solid var(--line);border-radius:16px;background:var(--surface)}
+    summary{cursor:pointer;padding:19px 23px;font-weight:650;font-size:16px}
+    summary:focus-visible{outline:2px solid var(--gold);outline-offset:4px;border-radius:12px}
+    .focused{padding:0 23px 23px}
+    .focused p:last-child{margin-bottom:0}
+    .focused .crumbs{margin-top:12px}
+    footer{margin:29px 0 0;padding-top:21px;border-top:1px solid var(--line);color:var(--muted);font-size:13px}
+    @media(prefers-color-scheme:light){:root{color-scheme:light;--bg:#f8f5ed;--surface:#fffdf8;--raised:#f2ebdf;--ink:#30271c;--muted:#70624f;--line:#ded2c0;--gold:#855b2d;--gold-deep:#ad8153;--code:#78532f;--soft:#eee4d4;--ok:#3a7055}}
+    @media(max-width:600px){main{width:calc(100% - 30px);padding:26px 0 35px}.brand{font-size:20px;margin-bottom:29px}.intro{font-size:17px}.step{padding:23px 19px}.number{position:static;margin-bottom:15px;width:32px;height:32px;font-size:18px}.split{grid-template-columns:1fr;gap:10px}.crumbs{padding:13px 12px;gap:7px 9px;font-size:15px}.crumbs li{gap:9px}.commands{grid-template-columns:1fr;gap:3px;padding:13px}.commands code{margin-bottom:8px;line-height:1.5}.commands code:last-child{margin-bottom:0}.mapping{font-size:14px}.mapping td{padding-right:10px}.mapping td:first-child{width:40%}.mapping code{font-size:12px}summary{padding:17px 19px}.focused{padding:0 19px 20px}}
+    @media print{body{background:white;color:black;font-size:11pt}main{width:100%;padding:0}.brand{margin-bottom:22px}h1{font-size:30pt}.steps{gap:14px}.step{break-inside:avoid;background:white;border-color:#aaa}.number{border-color:#777}.terminal,.crumbs,.platform{background:white;border-color:#bbb}.public-note{background:white}code,.caption,.subtle,.intro,.platform p,.commands span,.terminal-title,.mapping td:first-child,footer{color:#333}details{break-inside:avoid}details:not([open]) .focused{display:block}summary{list-style:none}.brand-mark,.eyebrow,.number,.platform b{color:#65451f}}
+  </style>
+</head>
+<body>
+  <main>
+    <div class="brand"><span class="brand-mark" aria-hidden="true">₿</span><span>Plebum Dominium</span></div>
+    <header>
+      <p class="eyebrow">Offline tester · Folder guide</p>
+      <h1>Find your test files.</h1>
+      <p class="intro">For the <strong>complete offline tester</strong> and <strong>website tools only</strong> ZIPs, your test tools and fixtures are inside <code>public-tests</code>. Follow these steps from the downloaded ZIP.</p>
+      <p class="public-note"><strong>Use the supplied public test inputs.</strong> Enter inputs only while disconnected. Follow T2’s instructions for connected-state checks, and leave the safeguards in place.</p>
+    </header>
+    <div class="steps">
+      <section class="step" aria-labelledby="extract-heading">
+        <span class="number" aria-hidden="true">1</span>
+        <h2 id="extract-heading">Extract, then open the inner folder</h2>
+        <p>Extract the <strong>whole ZIP</strong> before opening any tools. In the extracted destination, find and open <code>plebum-offline</code>.</p>
+        <div class="split">
+          <div class="platform"><b>Windows</b><p>Right-click the ZIP and choose <strong>Extract All…</strong>. Open the extracted destination, then open <code>plebum-offline</code>.</p></div>
+          <div class="platform"><b>Tails</b><p>Use Files or the archive manager to extract the entire ZIP into a chosen folder. When extraction finishes, open <code>plebum-offline</code>.</p></div>
+        </div>
+        <p class="caption">Your system may create an outer folder named after the ZIP. Open that first if needed. Stop when you see <code>START.html</code>, <code>README.txt</code> and <code>public-tests</code> together.</p>
+        <ol class="crumbs" aria-label="Path to the offline start page">
+          <li><span>Extracted destination</span></li><li><code>plebum-offline</code></li><li class="target"><code>START.html</code></li>
+        </ol>
+        <p>Open <code>START.html</code> in your browser. It is the starting page for the extracted package.</p>
+      </section>
+      <section class="step" aria-labelledby="integrity-heading">
+        <span class="number" aria-hidden="true">2</span>
+        <h2 id="integrity-heading">T1: check the whole package</h2>
+        <p>Open a terminal or PowerShell in <code>plebum-offline</code>—the folder containing <code>START.html</code>. Run its <code>verify_package.py</code>.</p>
+        <div class="terminal">
+          <div class="terminal-title">Current folder: plebum-offline</div>
+          <div class="commands"><span>Windows</span><code>py verify_package.py</code><span>Tails / Linux</span><code>python3 verify_package.py</code></div>
+        </div>
+        <p class="subtle">This is the checker for the complete extracted package. A matching checksum confirms that files match the supplied reference. Stop and report missing or mismatched files before running tools.</p>
+      </section>
+      <section class="step" aria-labelledby="tools-heading">
+        <span class="number" aria-hidden="true">3</span>
+        <h2 id="tools-heading">T2–T5: enter public-tests</h2>
+        <p>Return to your file manager. Inside <code>plebum-offline</code>, open <code>public-tests</code>. Use the matching test tools and instructions <strong>inside this folder</strong>.</p>
+        <ol class="crumbs" aria-label="Path to the test tools">
+          <li><code>plebum-offline</code></li><li class="target"><code>public-tests</code></li>
+        </ol>
+        <p>Here you will find <code>TESTING.txt</code>, <code>RETEST-WINDOWS.txt</code>, <code>dice-converter.html</code>, <code>descriptor-tool.html</code>, the Python tools and <code>fixtures</code>.</p>
+        <p class="subtle">For commands in these testing instructions, open your terminal in <code>public-tests</code>. The path <code>fixtures/public-map.txt</code> means “the fixtures folder inside public-tests.” This folder also has its own <code>verify_package.py</code>, which checks only the focused test files.</p>
+      </section>
+      <section class="step" aria-labelledby="fixtures-heading">
+        <span class="number" aria-hidden="true">4</span>
+        <h2 id="fixtures-heading">Open fixtures for the test inputs</h2>
+        <p>Inside <code>public-tests</code>, open <code>fixtures</code>. Choose the file named in your check.</p>
+        <ol class="crumbs" aria-label="Path to the public fixture files">
+          <li><code>plebum-offline</code></li><li><code>public-tests</code></li><li class="target"><code>fixtures</code></li>
+        </ol>
+        <table class="mapping">
+          <thead><tr><th scope="col">Check</th><th scope="col">File inside fixtures</th></tr></thead>
+          <tbody>
+            <tr><td>T3 · All-zero input</td><td><code>zeros-256.txt</code></td></tr>
+            <tr><td>T3 · All-one input</td><td><code>ones-256.txt</code></td></tr>
+            <tr><td>T3 · Reference vectors</td><td><code>bip39-vectors.json</code></td></tr>
+            <tr><td>T4 · Public wallet-map text</td><td><code>public-map.txt</code></td></tr>
+            <tr><td>T4 · Public test password</td><td><code>password.txt</code></td></tr>
+          </tbody>
+        </table>
+      </section>
+    </div>
+    <details>
+      <summary>Downloaded the focused dice/map ZIP instead?</summary>
+      <div class="focused">
+        <p>That smaller ZIP has a different layout. Extract it, then open <code>plebum-public-test</code>. The tools, <code>TESTING.txt</code>, <code>verify_package.py</code> and <code>fixtures</code> are directly inside it.</p>
+        <ol class="crumbs" aria-label="Path to fixtures in the focused test ZIP"><li><code>plebum-public-test</code></li><li class="target"><code>fixtures</code></li></ol>
+        <p class="subtle">Open your terminal in <code>plebum-public-test</code> for its testing commands. There is no extra <code>public-tests</code> folder in this ZIP.</p>
+      </div>
+    </details>
+    <footer>This is a companion folder guide for your downloaded package. Keep it nearby while following the included testing instructions.</footer>
+  </main>
+</body>
+</html>
