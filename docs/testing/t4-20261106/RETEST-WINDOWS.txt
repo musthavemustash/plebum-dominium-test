@@ -1,7 +1,16 @@
 PLEBUM DOMINIUM — T4 FIX CANDIDATE 2026.11.06-t4.1
 PUBLIC TEST ONLY. No real wallet secrets. Not a production release.
 
-Extract this ZIP into a NEW folder. Open PowerShell in that folder.
+Extract this ZIP into a NEW folder; do not run files inside the ZIP.
+Complete offline or website-tools ZIP: open plebum-offline, then public-tests.
+Focused dice/map ZIP: open the extracted plebum-public-test folder.
+Standalone T4 ZIP: use the extracted folder containing the test files below.
+In either case, the correct test folder contains descriptor-tool.html,
+descriptor_obfuscator.py and fixtures together. Open PowerShell THERE.
+All commands and fixtures/... paths below start from that test folder.
+Example for the complete ZIP: plebum-offline/public-tests/fixtures/public-map.txt.
+For T1 on the complete offline package, first run verify_package.py from
+plebum-offline; the checker in public-tests checks only the test subset.
 Keep your old test results as evidence; these are replacement candidates.
 Python and GnuPG must already be installed. No pip packages are required.
 Close the tool, disable Wi-Fi/Ethernet, then open the local HTML file.

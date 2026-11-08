@@ -74,7 +74,10 @@ def update_guides():
 <h2>Download the whole site for offline testing</h2>
 <p>Both guide paths, navigation, local search, diagrams, website tools, Python helpers, wordlist, public fixtures and testing instructions in one ZIP. No internet connection or local server is needed to browse the extracted site.</p>
 <div class="entry-actions">{link(DEST + '/' + FULL, 'Download complete offline tester ZIP →')}{link(DEST + '/' + TOOLS, 'Download website tools only ZIP →')}</div>
-<p><strong>Extract the entire ZIP, then open START.html.</strong> Disconnect before testing sensitive tools. They must run as local files; keep their existing safeguards in place. Python helpers require Python 3; the Python wallet-map tool also requires GnuPG, installed separately before disconnecting.</p>
+<p><strong>Extract the entire ZIP, open the <code>plebum-offline</code> folder, then open <code>START.html</code>.</strong> For the T2–T5 tool checks, open <code>public-tests</code> inside that folder. Its <code>fixtures</code> folder holds the supplied test inputs: <code>plebum-offline/public-tests/fixtures/</code>. Use the matching HTML and Python tools beside that <code>fixtures</code> folder.</p>
+<p>For T1, run <code>verify_package.py</code> from <code>plebum-offline</code> to check the whole offline package. Commands and paths in <code>public-tests/TESTING.txt</code> start from <code>public-tests</code>; open your terminal there for those checks. The focused dice/map ZIP instead uses <code>plebum-public-test/fixtures/</code>.</p>
+<p><a href="{BASE}offline-folder-guide.html">Illustrated guide: find the test tools and fixtures →</a></p>
+<p>Disconnect before testing sensitive tools. They must run as local files; keep their existing safeguards in place. Python helpers require Python 3; the Python wallet-map tool also requires GnuPG, installed separately before disconnecting.</p>
 <p>The tools-only ZIP contains the site’s utilities, demos, Python helpers, wordlist and public fixtures, without the guides or legacy print documents. Neither ZIP includes Tails, Sparrow, Electrum or other external software. Feedback, external references, live prices and network transactions require internet access.</p>
 <p><strong>Public testing only. Do not use real wallet secrets, passwords, entropy or funds.</strong> Browser and physical Tails validation remain incomplete.</p>
 <p><a href="{BASE}{DEST}/README.txt">Setup and contents</a> · <a href="{BASE}{DEST}/SHA256SUMS.txt">ZIP checksums</a> · <a href="{BASE}{DEST}/manifest.json">Package manifests</a> · <a href="{BASE}test-the-site.html#advanced">Testing tasks and feedback</a></p>
@@ -87,7 +90,7 @@ def update_guides():
 
 
 def offline_copy(name, data):
-    if name in SENSITIVE or not name.endswith(('.html', '.js', '.json', '.css')):
+    if name in SENSITIVE or name == 'offline-folder-guide.html' or not name.endswith(('.html', '.js', '.json', '.css')):
         return data
     s = data.decode('utf-8')
     if name.endswith('.html'):
@@ -121,7 +124,20 @@ def start_page(full):
     items += [('kit/' + n, n) for n in PYTHON]
     items += [('public-tests/TESTING.txt', 'Testing tasks and expected results'), ('public-tests/RESULTS.csv', 'Record results'), ('README.txt', 'Setup instructions')]
     links = ''.join(f'<li><a href="{p}">{label}</a></li>' for p, label in items)
-    return ('''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Plebum · Offline public tester</title><style>body{font:18px/1.6 system-ui;max-width:850px;margin:3rem auto;padding:0 1.5rem;background:#faf8f2;color:#192b2a}a{color:#00685e}li{margin:.5rem 0}strong{color:#84351f}</style></head><body><h1>Plebum offline public tester</h1><p><strong>Public test data only. Not approved for real-wallet use.</strong></p><p>Extract the entire ZIP before opening files. Disconnect before testing sensitive tools. If a tool blocks your environment, record the result without bypassing its controls.</p><ul>''' + links + f'</ul><p>Feedback requires reconnecting after the offline session: <a href="{FORM}">Submit non-sensitive results</a>.</p></body></html>').encode()
+    return ('''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Plebum · Offline public tester</title><style>body{font:18px/1.6 system-ui;max-width:850px;margin:3rem auto;padding:0 1.5rem;background:#faf8f2;color:#192b2a}a{color:#00685e}li{margin:.5rem 0}strong{color:#84351f}code{overflow-wrap:anywhere}summary{cursor:pointer;font-weight:600}</style></head><body><h1>Plebum offline public tester</h1><p><strong>Public test data only. Not approved for real-wallet use.</strong></p>
+<h2>Before you begin</h2>
+<p><a href="offline-folder-guide.html">Illustrated folder guide: from the ZIP to the fixtures →</a></p>
+<ol>
+<li>Extract the entire ZIP. Open the extracted <code>plebum-offline</code> folder, then open <code>START.html</code> (this page). Do not run files inside the compressed ZIP.</li>
+<li>For <strong>T1: check the whole package</strong>, open a terminal in <code>plebum-offline</code> and run <code>python3 verify_package.py</code> (Windows: <code>py verify_package.py</code>). Stop and report any mismatch before running tools.</li>
+<li>For <strong>T2–T5: find the test tools</strong>, return to your file manager and open <code>public-tests</code> inside <code>plebum-offline</code>. Use the HTML and Python tools in that folder.</li>
+<li>Inside <code>public-tests</code>, open <code>fixtures</code> for the supplied inputs. The full path from the extracted package is <code>plebum-offline/public-tests/fixtures/</code>. For example, the wallet-map fixture is <code>plebum-offline/public-tests/fixtures/public-map.txt</code>.</li>
+<li>Read <a href="public-tests/TESTING.txt">TESTING.txt</a>. Open a terminal in <code>public-tests</code> for its commands: paths such as <code>fixtures/public-map.txt</code> start there. Its separate <code>verify_package.py</code> checks only the focused test subset.</li>
+</ol>
+<p>Disconnect before testing sensitive tools. If a tool blocks your environment, record the result without bypassing its controls.</p>
+<h2>Open the matching test files</h2>
+<ul><li><a href="public-tests/dice-converter.html">Dice converter for T2/T3/T5</a></li><li><a href="public-tests/descriptor-tool.html">Wallet-map tool for T2/T4/T5</a></li><li><a href="public-tests/fixtures/README.md">Fixture guide</a> · <a href="public-tests/fixtures/public-map.txt">Public wallet-map text</a> · <a href="public-tests/fixtures/password.txt">Public test password</a></li></ul>
+<details><summary>Guide and additional utilities</summary><ul>''' + links + f'</ul></details><p>Feedback requires reconnecting after the offline session: <a href="{FORM}">Submit non-sensitive results</a>.</p></body></html>').encode()
 
 
 def manifest_files(files):
@@ -136,7 +152,7 @@ def package(full):
         name = p.relative_to(DOCS).as_posix()
         if name.startswith('testing/') and not name.startswith(('testing/alpha-20261106-t3-t4/', 'testing/t4-20261106/')):
             continue
-        if not full and not (name in TOOL_NAMES or name.startswith('assets/') or name in ['kit/' + n for n in PYTHON]):
+        if not full and not (name in TOOL_NAMES or name == 'offline-folder-guide.html' or name.startswith('assets/') or name in ['kit/' + n for n in PYTHON]):
             continue
         files[name] = offline_copy(name, p.read_bytes())
     alpha = DOCS / 'testing/alpha-20261106-t3-t4/plebum-tools-alpha-20261106-t3-t4.zip'
@@ -151,7 +167,27 @@ def package(full):
     files['README.txt'] = ('''PLEBUM DOMINIUM — OFFLINE PUBLIC TESTER — 2026-11-06
 PUBLIC TEST DATA ONLY. NOT APPROVED FOR REAL-WALLET USE.
 
-Extract the complete ZIP into one folder, then open START.html in a browser.
+FIND THE RIGHT FOLDER
+1. Extract the entire ZIP. Open the extracted plebum-offline folder.
+2. Open START.html in that folder for the offline starting page.
+   For illustrated steps, open offline-folder-guide.html beside START.html.
+3. For T1, open a terminal in plebum-offline and run its verify_package.py:
+   python3 verify_package.py (Windows: py verify_package.py).
+   This checks the whole offline package. Stop and report any mismatch.
+4. For T2-T5, open public-tests inside plebum-offline in your file manager.
+   Use the matching HTML and Python tools in that public-tests folder.
+5. Open fixtures inside public-tests for the supplied test inputs.
+   Full fixture path: plebum-offline/public-tests/fixtures/
+   Example: plebum-offline/public-tests/fixtures/public-map.txt
+6. Open a terminal in public-tests for the commands in TESTING.txt and
+   RETEST-WINDOWS.txt. Their paths such as fixtures/public-map.txt start
+   from public-tests. Save comparison/output files there when instructed.
+   Its separate verify_package.py checks only the focused test subset.
+
+These paths apply to both the complete offline ZIP and tools-only ZIP.
+The separate focused dice/map ZIP instead extracts to plebum-public-test;
+its fixtures folder is plebum-public-test/fixtures/.
+
 No installation, internet connection or local server is needed for HTML tools.
 The complete package includes both guide paths and embedded local search.
 Use the downloaded HTML files directly (file://) on a disconnected machine.

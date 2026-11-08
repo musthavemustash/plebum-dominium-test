@@ -52,8 +52,14 @@ Use the included public fixtures and disposable test data only. Never use real
 seed phrases, private keys, entropy, passwords, wallet backups or funds.
 This restriction also applies to any older custody instructions inside the tools.
 
-1. Extract the entire ZIP. Do not launch tools inside the compressed archive.
-2. Read TESTING.txt. Check the files with: python3 verify_package.py
+1. Extract the entire ZIP. Open the extracted plebum-public-test folder.
+   Tools, TESTING.txt and the fixtures folder are directly inside it.
+   If using the complete offline or website-tools ZIP, open plebum-offline,
+   then public-tests instead. Its fixtures are in public-tests/fixtures/.
+   Do not launch tools inside the compressed archive.
+2. Open a terminal in that test folder and read TESTING.txt. All commands
+   and paths such as fixtures/public-map.txt start from that folder.
+   Check this test subset with: python3 verify_package.py
    On Windows with Python installed, use: py verify_package.py
 3. Open the HTML tools as local files on a disconnected test machine.
    HTTP/HTTPS and localhost are deliberately blocked by the sensitive tools.
@@ -73,6 +79,16 @@ Hashes detect changed bytes; they do not independently authenticate the publishe
 or establish that a tool is safe. This alpha does not approve a stable release.
 '''.encode()
     files['TESTING.txt'] = f'''PUBLIC TESTS ONLY — {release}
+
+START IN THE TEST FOLDER
+Complete offline or website-tools ZIP: extract it, open plebum-offline,
+then open public-tests. Its fixtures are in public-tests/fixtures/.
+Focused dice/map ZIP: extract it, then open plebum-public-test.
+Its fixtures folder is directly inside plebum-public-test.
+Use the matching HTML/Python tools in that test folder. Open your terminal
+there: all commands and fixtures/... paths below are relative to it.
+For the complete offline package's full T1 check, run verify_package.py
+from plebum-offline first. The checker here verifies only this test subset.
 
 Before each test, record release ID, OS/browser versions, date and file hashes.
 Disconnect the test machine before opening HTML tools via file://. An offline
