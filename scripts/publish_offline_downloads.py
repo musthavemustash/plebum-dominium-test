@@ -132,7 +132,10 @@ def offline_copy(name, data):
 
 def start_page(full):
     items = ([('index.html', 'Open the complete offline guide'), ('paths/one/index.html', 'One key + passphrase'), ('paths/three/index.html', 'Three keys')] if full else [])
-    items += [(n, n.replace('.html', '').replace('-', ' ').capitalize()) for n in TOOL_NAMES]
+    labels = {'dice-converter.html': 'Dice converter', 'descriptor-tool.html': 'Wallet-map tool',
+              'diceware-mapper.html': 'Diceware mapper', 'fingerprint-checker.html': 'Fingerprint checker',
+              'descriptor-demo.html': 'Wallet-map tool demo', 'passphrase-demo.html': 'Diceware mapper demo'}
+    items += [(n, labels.get(n, n.replace('.html', '').replace('-', ' ').capitalize())) for n in TOOL_NAMES]
     items += [('kit/' + n, n) for n in PYTHON]
     items += [('public-tests/TESTING.txt', 'T1–T5: steps and screenshot checkpoints'), ('public-tests/EVIDENCE-CHECKLIST.txt', 'Save to USB before shutdown'), ('public-tests/FORM-REPORTING.txt', 'Google Form fields and shareable evidence links'), ('public-tests/SESSION-NOTES.txt', 'Copyable session notes'), ('public-tests/RESULTS.csv', 'Record results'), ('README.txt', 'Setup instructions')]
     links = ''.join(f'<li><a href="{p}">{label}</a></li>' for p, label in items)

@@ -3,6 +3,16 @@ Instructions refreshed November 8, 2026 from our Windows and physical Tails sess
 Package: alpha-20261108-t5-r4 / offline-20261108-r4
 PUBLIC FIXTURES ONLY. No real wallet data, private keys, passwords or funds.
 
+TOOL NAMES AND FILES
+Dice converter: dice-converter.html
+Wallet-map tool: descriptor-tool.html
+Diceware mapper: diceware-mapper.html (six-word passphrase tool)
+Fingerprint checker: fingerprint-checker.html
+Use these names in instructions, downloads, screenshots and Google Form notes.
+The current r4 checker calls the last two sensitive tools "Descriptor tool (this
+site)" and "Passphrase mapper (this site)". Select the corresponding filenames
+above. A later naming-only build will align these labels; keep r4 evidence intact.
+
 WHAT CHANGED
 r4 refreshes instructions and evidence collection. The HTML tools, Python tools
 and EFF wordlist are unchanged from r3. Keep earlier results with their original
