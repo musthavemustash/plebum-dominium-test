@@ -2,6 +2,12 @@
 
 Production releases will use Semantic Versioning and follow the staging-first release policy in [RELEASE_POLICY.md](RELEASE_POLICY.md).
 
+## November 9, 2026 — Physical Tails r4 results (staging only)
+
+- Record the observed short-retest passes on the exact complete r4 archive, including 215/34-file verification, mapper cases, saved-map equality, controlled truncation and the dice quick check.
+- Update testing/download status and live handoffs. Record the USB readability confirmation, missing-unzip workaround, mapper-link usability finding and evidence limits.
+- Preserve tested archives, manifests, hashes and tool code. T5 acceptance review, wallet rehearsals, beta designation and production approval remain open.
+
 ## November 9, 2026 — Windows r4 evidence closeout (staging only)
 
 - Record the completed November 8 Windows short retest with exact package identity, passed cases, evidence limits and remaining Tails work. Update downloads, testing status and live handoffs.
