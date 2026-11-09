@@ -20,5 +20,7 @@
 - [ ] Live website assets and download fingerprints checked
 - [ ] Production release tagged and recorded
 
+Latest evidence: [November 8 Windows r4 short retest](review/WINDOWS_R4_CLOSEOUT.md) is complete. This bounded public-fixture result does not check off the broader release criteria above; physical Tails follow-up and wallet rehearsals remain open.
+
 Approval record: ______
 Approved version and scope: ______

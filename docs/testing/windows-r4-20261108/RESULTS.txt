@@ -1,0 +1,84 @@
+PLEBUM DOMINIUM — WINDOWS r4 RUN CLOSED
+Test date: November 8, 2026. Closeout published November 9, 2026 (Eastern).
+Status: PASS for the planned guided Windows short functional retest.
+Public test fixtures only. This is not full T1–T5, beta or custody approval.
+
+EXACT TESTED PACKAGE
+plebum-tools-alpha-20261108-t5-r4.zip
+Bytes: 292617
+SHA-256: 6d5ab946970537b21249555507be65724061fd01d132cc02a1c8cb4b4938aec8
+Folder: D:\plebum-public-test
+This is the focused 34-file package. Its PASS does not verify either larger
+complete-offline or website-tools-only archive.
+
+OBSERVED RESULTS
+PASS — T1: ZIP matched its published hash; py verify_package.py reported:
+PASS: 34 files match package checksums. Public tests only; not custody approval.
+The three tool fingerprints matched. A deliberately different file mismatched;
+changing the expected tool/file cleared the old result.
+
+PASS — Manual public-session controls on Diceware mapper, wallet-map tool and
+dice converter: neither single acknowledgment opened a session; both did.
+Lock and clear reset visible inputs/results; close/reopen after clearing showed
+locked startup with unchecked confirmations and empty tools.
+
+PASS — Diceware mapper: 11111–11116 produced abacus abdomen abdominal abide
+abiding ability. Copied text matched. Invalid 7/x and malformed/oversized paste
+were rejected, stale words/copy state cleared, correction restored the result,
+and reset/reopen checks showed empty visible inputs and output.
+
+PASS — Wallet map: saved ciphertext reopened and decrypted; compare_files.py
+reported byte-for-byte equality with fixtures/public-map.txt, including café.
+The fixture is 49 characters / 50 UTF-8 bytes. Wrong password was rejected;
+an empty retry showed the current missing-passphrase message. Correct retries
+restored the fixture. Editing ciphertext cleared the prior result/download.
+The truncation helper preserved the 265-byte original and wrote its first
+132 bytes to a separate file; decryption rejected that copy. T4.1–T4.3 passed
+within the guided short-retest scope.
+
+PASS — Dice converter: 256 zero bits produced abandon 23 times, then art.
+Generated words, recorded bits, counters and pasted input visibly cleared.
+
+PASS — Evidence preservation/readability spot-check: USB evidence and restored
+public text reopened. The supplied Drive folder lists 62 files: 59 PNGs and
+r4-map.asc (265 bytes), r4-restored.txt (50 bytes), r4-truncated.asc (132 bytes).
+The restored text was also read through Drive. Folder listing and text checks
+are not a new independent audit of every screenshot or byte comparison.
+
+REPORTING
+The tester requested direct entry in the existing Google response spreadsheet,
+without another Form submission. Rows 11–14 retain T1, mapper, wallet-map and
+final checkpoint reports. Row 14 is the current combined status; earlier
+PARTIAL entries describe progress at their entry time. Original screenshots,
+public outputs and four photographic report archives are linked in the sheet.
+No personal screenshot/photo content is republished with this public summary.
+
+ENVIRONMENT AND LIMITS
+Physical Windows laptop; local tools in Microsoft Edge; PowerShell 5.1 observed.
+Online ZIP verification preceded offline functional testing. Exact Windows,
+Edge and Python versions were not newly captured for this r4 run. Earlier
+candidate version records are not relabeled as current measurements.
+Wi-Fi Off / manual re-enable was photographed; browser flag false was observed.
+All-interface isolation and Ethernet disconnection were not independently shown.
+The reviewer assessed tester-supplied evidence rather than operating the laptop.
+The wrong-password photo crops the lower output area; later edited-input,
+truncation, reset and reopen photos show absent results/downloads.
+Only visible clearing is established, not erasure of memory, clipboard or files.
+Reopening followed explicit clearing; no new Windows reboot/crash test occurred.
+Final file closure and USB safe ejection were not independently observed.
+
+NOT TESTED IN THIS r4 WINDOWS RUN
+- Legacy automatic connected-state/reconnection checks (T2.1/T2.3).
+- Python dice, other reference vectors and broader T3 checks beyond HTML zeros.
+- HTML/Python cross-decryption (T4.4/T4.5).
+- Physical Tails r4 short retest, complete wallet rehearsals or real custody.
+Earlier candidate results remain attached to their original package and date.
+
+NEXT SESSION
+Use TAILS-NEXT.txt in this directory and the existing short tool-finish retest.
+Keep the tested r4 ZIP, tools, manifests and earlier evidence unchanged. Save
+new Tails outputs separately. The Windows run needs no further screenshots.
+Physical Tails retest, public-session acceptance review, complete wallet-path
+setup/software-signing/recovery, checked metal backups, inheritance, printable
+material reconciliation and final release review remain separate beta work.
+Hardware signers remain optional only after checked metal backups.

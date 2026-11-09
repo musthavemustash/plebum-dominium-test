@@ -1,0 +1,37 @@
+PLEBUM DOMINIUM — RESUME WITH PHYSICAL TAILS
+Prepared November 9, 2026 (Eastern), after the November 8 Windows r4 run.
+The planned Windows short retest is complete. Do not repeat it tonight.
+
+BEFORE BOOTING
+Keep the same verified focused ZIP and its matching checksums on the data USB:
+plebum-tools-alpha-20261108-t5-r4.zip (292617 bytes)
+SHA-256: 6d5ab946970537b21249555507be65724061fd01d132cc02a1c8cb4b4938aec8
+Preserve the Windows evidence and results. Save this note separately; do not
+edit the original archive, manifest or packaged instructions.
+
+START HERE NEXT TIME
+1. Boot physical Tails using Offline Mode → Disable all networking. Check OS
+   controls and disconnect network cables. Keep Tor privacy settings unchanged.
+   Record hardware, Tails, Tor/security level, Python and GnuPG versions.
+2. Open the data USB, separate from the Tails boot USB. Recheck the exact ZIP
+   hash and extract a fresh copy into a separate Tails-r4 working directory.
+   Open plebum-public-test. Run: python3 verify_package.py
+   Expect PASS for 34 files; save output. Stop on any mismatch.
+3. Follow TOOL-FINISH-RETEST.txt beside the tools, starting at section 1.
+   Check fingerprints, then mapper, wallet-map message/truncation/clearing
+   behavior and the quick HTML zero-bit case. Use public-test-only as the
+   disposable map password. The script's r4 filenames are safe in this fresh
+   Tails results folder; never overwrite the saved Windows evidence.
+4. Save each result before clearing. Record restrictions as NOT TESTED; do not
+   lower browser protections or reconnect to force a pass. Photograph or save
+   actual OS state separately from the browser connection flag.
+5. Copy screenshots, notes and outputs to the data USB. Reopen a saved image
+   and text result from that USB. Lock/clear, close files, eject the data USB
+   and shut down through the system menu before removing the boot USB.
+
+Keep the earlier Tails eight-vector/interoperability/reboot evidence with its
+original candidate. This short changed-behavior run does not require repeating
+all those cases just to refresh evidence. An unexpected difference triggers a
+broader retest. Unperformed questions stay NOT TESTED; this is not full T5 or
+beta approval. Report Tails separately using the Form or a clearly identified
+maintainer-assisted spreadsheet entry; do not submit duplicate reports.

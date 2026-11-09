@@ -1,4 +1,5 @@
-# Fresh publication from current main; approved homepage source unchanged.
+# Publish reviewed source and committed immutable packages.
+# Build new package versions explicitly; never regenerate a tested release ID here.
 name: Publish offline tester downloads
 on:
   push:
@@ -25,7 +26,7 @@ on:
       - .github/workflows/offline-downloads.yml
   workflow_dispatch:
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
 concurrency:
@@ -39,13 +40,8 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
-      - name: Assemble and validate public test downloads
+      - name: Validate site and preserved public test downloads
         run: |
-          python3 scripts/prepare_public_test_release.py /tmp/plebum-current-alpha --source-commit "$(git rev-parse HEAD)"
-          mkdir -p docs/testing/alpha-20261108-t5-r4
-          cp /tmp/plebum-current-alpha/* docs/testing/alpha-20261108-t5-r4/
-          python3 scripts/page_test_modules.py --build "$(git rev-parse HEAD)"
-          python3 scripts/publish_offline_downloads.py
           node scripts/test_download_verifier.cjs
           node scripts/test_public_session_state.cjs
           node scripts/test_tool_network.cjs
@@ -56,13 +52,6 @@ jobs:
           python3 scripts/test_paths.py
           python3 scripts/test_page_test_modules.py
           python3 scripts/check_offline_downloads.py
-      - name: Preserve published source and packages
-        run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email 'github-actions[bot]@users.noreply.github.com'
-          git add docs
-          git diff --cached --quiet || git commit -m 'Publish complete offline tester and website tools downloads'
-          git push
       - uses: actions/upload-pages-artifact@v3
         with:
           path: docs
