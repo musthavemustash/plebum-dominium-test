@@ -17,10 +17,10 @@ import zipfile
 ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / 'docs'
 BASE = '/plebum-dominium-test/'
-DEST = 'testing/offline-20261108-r3'
+DEST = 'testing/offline-20261108-r4'
 OUT = DOCS / DEST
-FULL = 'plebum-complete-offline-tester-20261108-r3.zip'
-TOOLS = 'plebum-website-tools-only-20261108-r3.zip'
+FULL = 'plebum-complete-offline-tester-20261108-r4.zip'
+TOOLS = 'plebum-website-tools-only-20261108-r4.zip'
 SENSITIVE = {'dice-converter.html', 'descriptor-tool.html', 'diceware-mapper.html'}
 TOOL_NAMES = [
     'dice-converter.html', 'descriptor-tool.html', 'fingerprint-checker.html',
@@ -29,7 +29,7 @@ TOOL_NAMES = [
     'step1-demo.html', 'tails-demo.html', 'verify-bundle-demo.html',
 ]
 PYTHON = ['bip39_dice_converter.py', 'descriptor_obfuscator.py', 'eff_large_wordlist.txt']
-FORM = 'https://forms.gle/UPp7q1tdvtTMjsQL7'
+FORM = 'https://docs.google.com/forms/d/e/1FAIpQLSfOkY3FrZmZpIVro5oxWLy_YvU7U-1BOrL3KB9VCI3jXjad2Q/viewform'
 
 
 def digest(data):
@@ -82,7 +82,7 @@ def update_guides():
 {offline_verifier_notice()}
 <p><strong>Extract the entire ZIP, open the <code>plebum-offline</code> folder, then open <code>START.html</code>.</strong> For the T2–T5 tool checks, open <code>public-tests</code> inside that folder. Its <code>fixtures</code> folder holds the supplied test inputs: <code>plebum-offline/public-tests/fixtures/</code>. Use the matching HTML and Python tools beside that <code>fixtures</code> folder.</p>
 <p>For T1, run <code>verify_package.py</code> from <code>plebum-offline</code> to check the whole offline package. Commands and paths in <code>public-tests/TESTING.txt</code> start from <code>public-tests</code>; open your terminal there for those checks. The focused tool ZIP instead uses <code>plebum-public-test/fixtures/</code>.</p>
-<p><a href="{BASE}offline-folder-guide.html">Illustrated guide: find the test tools and fixtures →</a></p>
+<p><a href="{BASE}offline-folder-guide.html">Find the tools and fixtures</a> · <a href="{BASE}testing/session-guide/TESTING.txt">T1–T5 with screenshot checkpoints</a> · <a href="{BASE}testing/session-guide/EVIDENCE-CHECKLIST.txt">Save to USB before shutdown</a> · <a href="{BASE}testing/session-guide/FORM-REPORTING.txt">Submit screenshots and evidence links</a></p>
 <p>Disconnect before testing sensitive tools. They must run as local files; keep their existing safeguards in place. Python helpers require Python 3; the Python wallet-map tool also requires GnuPG, installed separately before disconnecting.</p>
 <p>The tools-only ZIP contains the site’s utilities, demos, Python helpers, wordlist and public fixtures, without the guides or legacy print documents. Neither ZIP includes Tails, Sparrow, Electrum or other external software. Feedback, external references, live prices and network transactions require internet access.</p>
 <p><strong>Public testing only. Do not use real wallet secrets, passwords, entropy or funds.</strong> The earlier focused candidate passed the exercised Tails checks. The r3 mapper and wallet-map fixes have passed automated checks. A short Windows/Tails retest is pending. Browser network isolation is never certified; see the public-session contract and focused retest in public-tests.</p>
@@ -134,7 +134,7 @@ def start_page(full):
     items = ([('index.html', 'Open the complete offline guide'), ('paths/one/index.html', 'One key + passphrase'), ('paths/three/index.html', 'Three keys')] if full else [])
     items += [(n, n.replace('.html', '').replace('-', ' ').capitalize()) for n in TOOL_NAMES]
     items += [('kit/' + n, n) for n in PYTHON]
-    items += [('public-tests/TESTING.txt', 'Testing tasks and expected results'), ('public-tests/RESULTS.csv', 'Record results'), ('README.txt', 'Setup instructions')]
+    items += [('public-tests/TESTING.txt', 'T1–T5: steps and screenshot checkpoints'), ('public-tests/EVIDENCE-CHECKLIST.txt', 'Save to USB before shutdown'), ('public-tests/FORM-REPORTING.txt', 'Google Form fields and shareable evidence links'), ('public-tests/SESSION-NOTES.txt', 'Copyable session notes'), ('public-tests/RESULTS.csv', 'Record results'), ('README.txt', 'Setup instructions')]
     links = ''.join(f'<li><a href="{p}">{label}</a></li>' for p, label in items)
     return ('''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Plebum · Offline public tester</title><style>body{font:18px/1.6 system-ui;max-width:850px;margin:3rem auto;padding:0 1.5rem;background:#faf8f2;color:#192b2a}a{color:#00685e}li{margin:.5rem 0}strong{color:#84351f}code{overflow-wrap:anywhere}summary{cursor:pointer;font-weight:600}</style></head><body><h1>Plebum offline public tester</h1><p><strong>Public test data only. Not approved for real-wallet use.</strong></p>
 <h2>Before you begin</h2>
@@ -147,7 +147,7 @@ def start_page(full):
 <li>Read <a href="public-tests/TESTING.txt">TESTING.txt</a>. Open a terminal in <code>public-tests</code> for its commands: paths such as <code>fixtures/public-map.txt</code> start there. Its separate <code>verify_package.py</code> checks only the focused test subset.</li>
 </ol>
 <p>Disconnect before testing sensitive tools. If a tool blocks your environment, record the result without bypassing its controls.</p>
-<h2>Open the matching test files</h2>
+<h2>Save as you go</h2><p>Take a screenshot after each result, before clearing or continuing. Copy it to your separate test/data USB. Before reboot or shutdown, follow <a href="public-tests/EVIDENCE-CHECKLIST.txt">Save and check your evidence</a>: wait for copying, reopen an actual image and text file from the USB, then safely eject it and shut down.</p><p>After the offline session, use <a href="public-tests/FORM-REPORTING.txt">the Google Form field guide</a>. Attach screenshots if your selected task offers an upload section; otherwise use an evidence link. This guide shows how to upload public evidence to Drive, make a Viewer link and test access before submitting.</p><h2>Open the matching test files</h2>
 <ul><li><a href="public-tests/dice-converter.html">Dice converter for T2/T3/T5</a></li><li><a href="public-tests/descriptor-tool.html">Wallet-map tool for T2/T4/T5</a></li><li><a href="public-tests/fixtures/README.md">Fixture guide</a> · <a href="public-tests/fixtures/public-map.txt">Public wallet-map text</a> · <a href="public-tests/fixtures/password.txt">Public test password</a></li></ul>
 <details><summary>Guide and additional utilities</summary><ul>''' + links + f'</ul></details><p>Feedback requires reconnecting after the offline session: <a href="{FORM}">Submit non-sensitive results</a>.</p></body></html>').encode()
 
@@ -166,12 +166,12 @@ def package(full):
         name = p.relative_to(DOCS).as_posix()
         if name == 'verify-download.html':
             continue  # Generated after ZIPs; downloaded separately for offline use.
-        if name.startswith('testing/') and not name.startswith(('testing/alpha-20261108-t5-r3/', 'testing/t4-20261106/', 'testing/t5-20261108/')):
+        if name.startswith('testing/') and not name.startswith(('testing/alpha-20261108-t5-r4/', 'testing/t4-20261106/', 'testing/t5-20261108/', 'testing/session-guide/')):
             continue
         if not full and not (name in TOOL_NAMES or name == 'offline-folder-guide.html' or name.startswith('assets/') or name in ['kit/' + n for n in PYTHON]):
             continue
         files[name] = offline_copy(name, p.read_bytes())
-    alpha = DOCS / 'testing/alpha-20261108-t5-r3/plebum-tools-alpha-20261108-t5-r3.zip'
+    alpha = DOCS / 'testing/alpha-20261108-t5-r4/plebum-tools-alpha-20261108-t5-r4.zip'
     with zipfile.ZipFile(alpha) as z:
         for name in z.namelist():
             if not name.endswith('/'):
@@ -218,15 +218,21 @@ Tails, Sparrow, Electrum, OS images and third-party installers are not bundled.
 External references, feedback, live prices, testnet and network transactions
 need a network connection and cannot be performed fully offline.
 
-Read public-tests/TESTING.txt; record results in public-tests/RESULTS.csv.
+Read public-tests/TESTING.txt. Copy RESULTS.csv and SESSION-NOTES.txt into a
+results folder before editing; keep packaged originals intact. Save each result
+screenshot before the next input. Follow public-tests/EVIDENCE-CHECKLIST.txt
+to transfer and reopen evidence on a separate data USB before Tails shuts down.
+Read public-tests/FORM-REPORTING.txt for exact Google Form fields and evidence
+sharing instructions. Upload only public-test evidence after the offline session.
 The source tools in the package root retain their original sensitive controls.
 public-tests contains the current focused alpha's matching tools and fixtures and its own README/manifest.
 Its instructions apply to that subfolder, not the complete package layout.
 Legacy PDFs, slides and spreadsheets are excluded pending reconciliation
 and print review. Use the current HTML guides for printable instructions.
 Earlier candidate evidence is included in public-tests/TAILS-RETEST-RESULTS.txt.
-These rebuilt ZIPs require fresh Windows/Tails checks. The separate Diceware
-mapper and complete wallet rehearsals remain outstanding. Successful file checks do not certify safety or recovery.
+r4 refreshes instructions; HTML/Python tools and the wordlist match r3. Run T1
+for the new ZIP. The short r3-behavior Windows/Tails retest and complete wallet
+rehearsals remain outstanding. Successful file checks do not certify safety or recovery.
 
 Check all extracted files: python3 verify_package.py (Windows: py verify_package.py).
 Checksums establish byte equality, not independent publisher authentication.

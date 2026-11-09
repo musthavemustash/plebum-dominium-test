@@ -11,6 +11,8 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCES = {
+    **{name: 'docs/testing/session-guide/' + name for name in (
+        'TESTING.txt', 'EVIDENCE-CHECKLIST.txt', 'SESSION-NOTES.txt', 'FORM-REPORTING.txt')},
     'fingerprint-checker.html': 'docs/fingerprint-checker.html',
     'diceware-mapper.html': 'docs/diceware-mapper.html',
     'TOOL-FINISH-RETEST.txt': 'docs/testing/t5-20261108/TOOL-FINISH-RETEST.txt',
@@ -41,7 +43,7 @@ def build(output, source_commit):
         raise ValueError('Supply the full reviewed source commit SHA')
     output = Path(output)
     output.mkdir(parents=True, exist_ok=False)
-    release = 'alpha-20261108-t5-r3'
+    release = 'alpha-20261108-t5-r4'
     archive = 'plebum-tools-' + release + '.zip'
     files = {name: (ROOT / source).read_bytes() for name, source in SOURCES.items()}
     source_files = {name: {'source_path': source, 'sha256': sha(files[name]), 'size': len(files[name])}
@@ -50,7 +52,7 @@ def build(output, source_commit):
         'release': release, 'status': 'PUBLIC_TEST_ONLY', 'custody_approved': False,
         'source_repository': 'https://github.com/musthavemustash/plebum-dominium-test',
         'source_commit': source_commit, 'source_files': source_files,
-        'outstanding': ['Target-environment evidence for the documented OS-managed public-test procedure', 'Fresh Windows/Tails checks of this rebuilt package',
+        'outstanding': ['Target-environment evidence for the documented OS-managed public-test procedure', 'T1 checks for this refreshed ZIP; short r3-behavior Windows/Tails retest remains pending',
                         'Recovery-workflow validation', 'Stable release reconciliation'],
     }, indent=2) + '\n').encode()
     files['README.txt'] = f'''PLEBUM DOMINIUM — PUBLIC ALPHA TEST RELEASE
@@ -76,8 +78,13 @@ This restriction also applies to any older custody instructions inside the tools
    Complete the OS checks before the public-test acknowledgments. A stable
    browser flag of true may occur in isolated Tails. It is not proof either way.
    Keep networking disabled; Lock and clear before changing network settings.
-4. Record PASS, FAIL or NOT TESTED in RESULTS.csv. Submit non-sensitive results
-   through the form after finishing the offline session: {FORM}
+4. Create a results folder. Copy RESULTS.csv and SESSION-NOTES.txt there before
+   editing them; keep packaged originals intact. Save screenshots after each
+   result, before clearing. Follow EVIDENCE-CHECKLIST.txt to copy and reopen
+   evidence on the separate data USB before reboot, shutdown or a pause.
+5. After the offline session is closed, read FORM-REPORTING.txt. It maps T1-T5
+   to the live Google Form and explains uploading a public-only evidence folder
+   and sharing a working viewer link. Submit your actual results: {FORM}
 
 Python dice conversion needs Python 3. The Python map tool also needs GnuPG.
 This package does not include Tails, a wallet application, or a full guide.
@@ -85,85 +92,14 @@ No installation or dependency download is performed by the package checker.
 
 The packaged tools and public fixtures are byte-for-byte copies of the source
 paths recorded in SOURCE.json. No cryptographic implementation was changed.
-Earlier candidate Tails results are in TAILS-RETEST-RESULTS.txt. This rebuilt
-package needs fresh Windows/Tails checks. Browser isolation is not certified by this package. See PUBLIC-SESSION-CONTRACT.txt
+Earlier candidate Tails results are in TAILS-RETEST-RESULTS.txt.
+r4 changes instructions only; tool bytes match r3. Check this ZIP with T1;
+the short r3-behavior Windows/Tails retest is still pending. Browser isolation is not certified by this package. See PUBLIC-SESSION-CONTRACT.txt
 for the public-test boundary and TOOL-FINISH-RETEST.txt for the remaining checks.
 Complete wallet recovery remains unresolved.
 Older ZIPs and kit/VERIFY.md do not describe this alpha. Use this package's hashes.
 Hashes detect changed bytes; they do not independently authenticate the publisher
 or establish that a tool is safe. This alpha does not approve a stable release.
-'''.encode()
-    files['TESTING.txt'] = f'''PUBLIC TESTS ONLY — {release}
-
-START IN THE TEST FOLDER
-Complete offline or website-tools ZIP: extract it, open plebum-offline,
-then open public-tests. Its fixtures are in public-tests/fixtures/.
-Focused tool ZIP: extract it, then open plebum-public-test.
-Its fixtures folder is directly inside plebum-public-test.
-Use the matching HTML/Python tools in that test folder. Open your terminal
-there: all commands and fixtures/... paths below are relative to it.
-For the complete offline package's full T1 check, run verify_package.py
-from plebum-offline first. The checker here verifies only this test subset.
-
-Before each test, record release ID, OS/browser versions, date and file hashes.
-Disconnect the test machine before opening HTML tools via file://. An offline
-indicator is only a browser signal, not proof of network isolation. Use the OS
-network controls too. Leave unsupported or unperformed checks as NOT TESTED.
-
-T1 — Package integrity
-Run python3 verify_package.py (Windows: py verify_package.py).
-Expected: PASS for every listed file. Stop on a mismatch and download again.
-The checker does not authenticate the download or run any custody tool.
-
-T2 — Local public-test session controls
-Read PUBLIC-SESSION-CONTRACT.txt. Open file:// copies with OS networking disabled
-and verified by the tester. Startup is locked; acknowledge both conditions only
-when true. Check manual Lock and clear and reopening. Expect blank visible
-inputs/output, with both confirmations unchecked after locking/reopening.
-HTTP/HTTPS copies remain blocked. Observed network events clear the session,
-but Tor may mask events and flags. Do not reconnect during this fixture test.
-This checks the public-test controls, not automatic network isolation.
-The legacy automatic-isolation requirement is not reported as passed.
-
-T3 — Dice converter known-answer output
-Paste fixtures/zeros-256.txt (256 zero bits) into the HTML binary-input box.
-Expected: 24 words: 'abandon' repeated 23 times, followed by 'art'.
-Repeat using python3 bip39_dice_converter.py; outputs must match.
-Then use fixtures/ones-256.txt: 'zoo' repeated 23 times, followed by 'vote'.
-Try 255 bits and a string containing x. Expected: rejection, no valid output.
-The eight reference entropy/mnemonic pairs are in fixtures/bip39-vectors.json;
-all eight include the zero/one cases. Use T5-dice-reference-inputs.txt for
-copyable 256-bit inputs and all expected words. Preserve leading zeros.
-These are publicly known examples. Never fund a wallet derived from them.
-
-T4 — Wallet-map encryption/decryption
-For exact file-based Windows commands, read RETEST-WINDOWS.txt. Its fixture
-uses password public-test-only; the fixture below uses password.txt instead.
-Use fixtures/public-map.txt and the disposable password in fixtures/password.txt.
-Encrypt, save the result, close/reopen, and decrypt. Expected: exact original
-text, including Unicode and line breaks. Ciphertext bytes may differ per run.
-Try a wrong password and a truncated COPY of the ciphertext. Expected: failure
-without plaintext. Preserve your original fixture and encrypted test file.
-Where GnuPG is available, cross-check HTML-encrypted text in the Python tool and
-Python-encrypted text in the HTML tool. Report each direction separately.
-
-Diceware mapper — new in r2
-Follow TOOL-FINISH-RETEST.txt for the separate six-word EFF mapper. Its words are
-not a BIP39 seed. Use only the supplied public roll examples.
-
-T5 — Physical Tails (experienced volunteers)
-Record Tails version and actual hardware. Boot with networking disabled, check
-OS network state, open the extracted local HTML files and repeat T2–T4.
-Record missing dependencies and browser restrictions. Close the tools and reboot;
-record what remains on the removable drive and whether tools restart correctly.
-Do not infer secure erasure or full recovery from a successful restart.
-
-REPORTING
-Use one response per task/failure. Include release, task ID, PASS/FAIL/NOT TESTED,
-environment, steps, expected/actual result and whether it repeats. The existing
-form accepts these details in its description; use general feedback if no tool
-task is listed. Never submit private wallet data or credentials.
-{FORM}
 '''.encode()
     files['fixtures/short-255.txt'] = ('0' * 255 + '\n').encode()
     files['fixtures/invalid-character.txt'] = ('0' * 255 + 'x\n').encode()
@@ -217,7 +153,7 @@ print(f'PASS: {len(rows)} files match package checksums. Public tests only; not 
     (output / 'manifest.json').write_text(json.dumps(manifest, indent=2) + '\n')
     (output / 'SHA256SUMS.txt').write_text(''.join(
         f'{sha((output / name).read_bytes())}  {name}\n' for name in (archive, 'manifest.json')))
-    for name in ('README.txt', 'TESTING.txt'):
+    for name in ('README.txt', 'TESTING.txt', 'EVIDENCE-CHECKLIST.txt', 'SESSION-NOTES.txt', 'FORM-REPORTING.txt'):
         (output / name).write_bytes(files[name])
     return manifest
 

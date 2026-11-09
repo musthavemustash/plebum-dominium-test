@@ -108,19 +108,19 @@
         "id": "P-DICE-01",
         "try": "Using only public practice rolls, enter 1, 2, 3, and 4, then try 5 and 6 in the linked converter. Check buttons, keyboard entry, counters, Undo, and Clear.",
         "expected": "The documented mapping is 00, 01, 10, 11; 5 and 6 add no bits. Counters and Undo/Clear stay consistent. Report actual results for each input method.",
-        "evidence": "Use a short recording or screenshots of public rolls; include browser and operating system."
+        "evidence": "Save the filled state before Undo/Clear, then the cleared state (or a short recording). Record browser/OS and filenames in T3.7 observations; copy evidence to your data USB before shutdown."
       },
       {
         "id": "P-DICE-02",
         "try": "For T3, paste a public 255-bit string. In a separate case, replace one bit of a public 256-bit string with x. Clear the converter before each case.",
         "expected": "Short and non-binary inputs are rejected without producing a valid mnemonic. Report stale output or unexpected acceptance.",
-        "evidence": "Show the public input length or invalid character and the displayed response."
+        "evidence": "Save separate short-input and invalid-character rejection screenshots before continuing. Map them to Google Form T3.4 and T3.5; name which converter was tested."
       },
       {
         "id": "P-DICE-03",
-        "try": "For T3, convert each supplied public hex fixture to exactly 256 binary digits, preserving leading zeros. Compare each generated mnemonic with the fixture.",
+        "try": "For T3, copy each of the eight 256-bit inputs from public-tests/T5-dice-reference-inputs.txt (focused ZIP: beside fixtures). Compare all words in HTML and Python, preserving leading zeros.",
         "expected": "Every completed fixture matches word for word. Report how many fixtures and which tools were checked; incomplete checks are not a pass.",
-        "evidence": "Record fixture IDs, tool versions, and expected versus actual results; use only public vectors."
+        "evidence": "Save HTML/Python screenshots for each numbered reference before the next case. Record T3.1–T3.6 outcomes in the form and the per-vector list in T3.7; see FORM-REPORTING.txt for sharing the evidence folder."
       }
     ]
   },
@@ -131,19 +131,19 @@
         "id": "P-DICE-EASY-01",
         "try": "Using only public practice rolls, enter 1, 2, 3, and 4, then try 5 and 6 in the linked converter. Check buttons, keyboard entry, counters, Undo, and Clear.",
         "expected": "The documented mapping is 00, 01, 10, 11; 5 and 6 add no bits. Counters and Undo/Clear stay consistent. Report actual results for each input method.",
-        "evidence": "Use a short recording or screenshots of public rolls; include browser and operating system."
+        "evidence": "Save the filled state before Undo/Clear, then the cleared state (or a short recording). Record browser/OS and filenames in T3.7 observations; copy evidence to your data USB before shutdown."
       },
       {
         "id": "P-DICE-EASY-02",
         "try": "For T3, paste a public 255-bit string. In a separate case, replace one bit of a public 256-bit string with x. Clear the converter before each case.",
         "expected": "Short and non-binary inputs are rejected without producing a valid mnemonic. Report stale output or unexpected acceptance.",
-        "evidence": "Show the public input length or invalid character and the displayed response."
+        "evidence": "Save separate short-input and invalid-character rejection screenshots before continuing. Map them to Google Form T3.4 and T3.5; name which converter was tested."
       },
       {
         "id": "P-DICE-EASY-03",
-        "try": "For T3, convert each supplied public hex fixture to exactly 256 binary digits, preserving leading zeros. Compare each generated mnemonic with the fixture.",
+        "try": "For T3, copy each of the eight 256-bit inputs from public-tests/T5-dice-reference-inputs.txt (focused ZIP: beside fixtures). Compare all words in HTML and Python, preserving leading zeros.",
         "expected": "Every completed fixture matches word for word. Report how many fixtures and which tools were checked; incomplete checks are not a pass.",
-        "evidence": "Record fixture IDs, tool versions, and expected versus actual results; use only public vectors."
+        "evidence": "Save HTML/Python screenshots for each numbered reference before the next case. Record T3.1–T3.6 outcomes in the form and the per-vector list in T3.7; see FORM-REPORTING.txt for sharing the evidence folder."
       }
     ]
   },
@@ -154,19 +154,19 @@
         "id": "P-DICE-ONE-01",
         "try": "Using only public practice rolls, enter 1, 2, 3, and 4, then try 5 and 6 in the linked converter. Check buttons, keyboard entry, counters, Undo, and Clear.",
         "expected": "The documented mapping is 00, 01, 10, 11; 5 and 6 add no bits. Counters and Undo/Clear stay consistent. Report actual results for each input method.",
-        "evidence": "Use a short recording or screenshots of public rolls; include browser and operating system."
+        "evidence": "Save the filled state before Undo/Clear, then the cleared state (or a short recording). Record browser/OS and filenames in T3.7 observations; copy evidence to your data USB before shutdown."
       },
       {
         "id": "P-DICE-ONE-02",
         "try": "For T3, paste a public 255-bit string. In a separate case, replace one bit of a public 256-bit string with x. Clear the converter before each case.",
         "expected": "Short and non-binary inputs are rejected without producing a valid mnemonic. Report stale output or unexpected acceptance.",
-        "evidence": "Show the public input length or invalid character and the displayed response."
+        "evidence": "Save separate short-input and invalid-character rejection screenshots before continuing. Map them to Google Form T3.4 and T3.5; name which converter was tested."
       },
       {
         "id": "P-DICE-ONE-03",
-        "try": "For T3, convert each supplied public hex fixture to exactly 256 binary digits, preserving leading zeros. Compare each generated mnemonic with the fixture.",
+        "try": "For T3, copy each of the eight 256-bit inputs from public-tests/T5-dice-reference-inputs.txt (focused ZIP: beside fixtures). Compare all words in HTML and Python, preserving leading zeros.",
         "expected": "Every completed fixture matches word for word. Report how many fixtures and which tools were checked; incomplete checks are not a pass.",
-        "evidence": "Record fixture IDs, tool versions, and expected versus actual results; use only public vectors."
+        "evidence": "Save HTML/Python screenshots for each numbered reference before the next case. Record T3.1–T3.6 outcomes in the form and the per-vector list in T3.7; see FORM-REPORTING.txt for sharing the evidence folder."
       }
     ]
   },
