@@ -1,0 +1,129 @@
+PLEBUM DOMINIUM — FROM YOUR SAVED EVIDENCE TO THE GOOGLE FORM
+Question mapping checked November 8, 2026; attachment/link guidance refreshed
+for the added T1 evidence-upload section.
+https://docs.google.com/forms/d/e/1FAIpQLSfOkY3FrZmZpIVro5oxWLy_YvU7U-1BOrL3KB9VCI3jXjad2Q/viewform
+
+Finish the offline session and save/check the USB copy first. Submit from an
+online computer afterward. Use only disposable public-test evidence.
+
+ATTACHMENTS OR A SHAREABLE LINK
+If your selected task shows an evidence-upload section, attach the original
+screenshots there and wait for every upload to finish before submitting. The
+T1 upload section was added after our field-mapping review; follow the file
+types, count and size limits displayed in the form. Google Forms uploads require
+Google sign-in. The form may require sign-in even if you choose a link instead.
+If your task has no upload section, an upload fails, or your evidence exceeds
+the limits, use the shareable-link method below. Do not switch a T2–T5 report
+to T1 just to reach its upload section. A folder link can include screenshots,
+logs and public test outputs together. Uploads and links are evidence; neither
+submits or supplies a test result automatically.
+
+MAKE A LINK THAT REVIEWERS CAN OPEN
+1. On the online computer, review the USB evidence folder. Make a separate
+   upload folder containing only this public test: screenshots, SESSION-NOTES.txt,
+   verifier/comparison output, and the public input/output files relevant to it.
+   Do not upload the entire USB, unrelated folders, account information or secrets.
+2. Open Google Drive. Choose New → New folder and name it for the task, date,
+   OS and package, for example T4-2026-11-08-Windows-r4. Upload the selected files
+   into it (drag and drop or New → File upload). Wait for every upload to finish.
+3. Right-click that evidence folder → Share. Under General access choose
+   Anyone with the link, with role Viewer. This lets anyone holding the link
+   read these public-test files. Use Viewer, not Editor. Click Copy link and Done.
+4. Test the copied link in a private/incognito window while signed out. Open an
+   actual screenshot and notes file. If it asks for access, fix the sharing
+   setting before submitting. A work/school account may forbid link sharing;
+   use another permitted file host or report the restriction. Do not submit a
+   link to a local USB path such as file:/// or /media/amnesia/.
+5. Paste the folder link into the form's "File hashes and additional evidence"
+   field. Include the exact filenames for each subcheck and the full ZIP SHA-256.
+   A ZIP of the evidence is optional; keep the screenshots readable individually.
+   Keep the originals and the working link available during review.
+
+CHOOSE THE MATCHING TASK
+Use one submission per task and environment; report a separate issue if needed.
+Do not combine Windows and Tails into one undifferentiated PASS.
+
+T1 — Package integrity
+  T1.1: did verify_package.py run? T1.2: did every listed file match?
+  T1.3: full output, file count, ZIP match and fingerprint checks/filenames.
+  T1-zip-match.png and T1-package-pass.png support different checks.
+
+T2 — Local/offline safeguards
+  The form still describes the older automatic connected/offline/reconnected
+  interlock. The current public-test procedure uses OS-managed isolation plus
+  manual acknowledgments, Lock and clear, and reopening. These are different.
+  Do not reconnect for this run. Mark unperformed connected/reconnected questions
+  T2.1/T2.3 NOT TESTED. Answer T2.2 against its actual signal-dependent wording;
+  manual acknowledgments alone do not establish that criterion. If not established,
+  select NOT TESTED and explain. Put the current manual results in T2.4:
+  "Current public-session procedure: OS checks [result]; startup locked [result];
+  both confirmations [result]; Lock and clear [result]; reopen blank [result].
+  Legacy automatic-isolation checks NOT TESTED; networking remained disabled."
+  Include a separate result and screenshot list for dice, map and mapper.
+
+T3 — Dice converter known-answer output
+  T3.1: HTML zeros. T3.2: Python zeros matches HTML. T3.3: ones (name each tool).
+  T3.4: 255 bits rejected. T3.5: x rejected. T3.6: other reference vectors.
+  T3.7: list references 01–08 for HTML/Python and button/Undo/Clear observations.
+  Match screenshots to these questions; do not use one zero-case image for all.
+  The six-word Diceware mapper is separate: choose General website feedback →
+  G1 Downloads / testing tools. In G4 list mapper valid, invalid, copy and clear
+  results with filenames. Use General feedback / Not applicable overall; the
+  current form has no dedicated mapper verification track.
+
+T4 — Wallet-map encryption/decryption
+  T4.1: HTML round-trip byte comparison. T4.2: wrong password rejection.
+  T4.3: controlled truncation rejection, including byte counts/hashes.
+  T4.4: HTML → Python byte comparison. T4.5: Python → HTML byte comparison.
+  T4.6: current/empty-password message, stale-output clearing, missing dependencies
+  and exact input/output filenames. These extra checks do not replace T4.1–T4.5.
+
+T5 — Physical Tails
+  T5.1: physical boot and OS network checks. T5.2: local HTML operation.
+  T5.3: T2 safeguards; explain the legacy/current distinction above. Do not mark
+  automatic isolation PASS from manual clearing. Record incomplete scope honestly.
+  T5.4: full T3 results. T5.5: full T4 results. T5.6: saved files and tool restart
+  after reboot. T5.7: version/hardware (no serial numbers). T5.8: restrictions,
+  per-check results, before/after hashes, file inventory and evidence filenames.
+  A short regression retest does not establish all T5 questions for a new package.
+  Reference earlier evidence by its original package/date; do not relabel it.
+
+THE FINAL FORM SECTION — USE THESE EXACT FIELDS
+Release ID or package filename:
+  Enter the actual filename/release tested. The example alpha-20261105-7240f0d
+  still printed in the form is old. For this refresh use your r4 ZIP's actual
+  name, not that example; for an earlier run, keep its earlier identifier.
+What was your overall test result?:
+  PASS only if every required check for the selected task passed. FAIL for an
+  observed failure. NOT TESTED for incomplete/blocked scope. For a short retest,
+  put its individual outcomes in the description and leave the broader task
+  NOT TESTED if its other required checks were not completed on this package.
+Describe your test results:
+  Paste the relevant task blocks from your copied SESSION-NOTES.txt: what you
+  did, expected/actual results, and checks not performed. Include verifier output.
+Testing environment:
+  Date/time zone, OS/browser versions, hardware, Tor security level, Python/GnuPG
+  if used, and how OS networking was disabled and checked.
+Did the result repeat?:
+  Select Yes/No only if you repeated it; otherwise Not rechecked or Not applicable.
+File hashes and additional evidence:
+  Paste the evidence folder link, full ZIP SHA-256, and file-to-question mapping.
+Contact email or Online handle:
+  Optional. Leave blank if you prefer.
+
+EXAMPLE EVIDENCE FIELD (replace placeholders; do not submit this as a result)
+Evidence folder: [working viewer link]
+ZIP: [exact filename]
+SHA-256: [all 64 hexadecimal characters]
+T4.1: T4-html-restored.png; T4-html-byte-match.png; T4-html-restored.txt
+T4.2: T4-wrong-password.png
+T4.3: T4-truncation-details.png; T4-truncated-rejected.png; T4-truncated.asc
+T4.4: T4-html-to-python-byte-match.png; T4-html-to-python.txt
+T4.5: T4-python-to-html-byte-match.png; T4-python-to-html.txt
+Notes and full terminal output: SESSION-NOTES.txt
+
+After submitting, save the confirmation or submission date in your notes.
+No results are submitted automatically by the website or these instructions.
+
+Google sharing help: https://support.google.com/drive/answer/7166529
+Google Forms upload help: https://support.google.com/docs/answer/15473134

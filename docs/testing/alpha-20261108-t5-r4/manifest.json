@@ -1,0 +1,153 @@
+{
+  "release": "alpha-20261108-t5-r4",
+  "status": "PUBLIC_TEST_ONLY",
+  "custody_approved": false,
+  "source_commit": "46f2b89d0eb81c812d955e69559a0523f687284f",
+  "archive": {
+    "name": "plebum-tools-alpha-20261108-t5-r4.zip",
+    "sha256": "6d5ab946970537b21249555507be65724061fd01d132cc02a1c8cb4b4938aec8",
+    "size": 292617
+  },
+  "files": {
+    "EVIDENCE-CHECKLIST.txt": {
+      "sha256": "d2b829a1ce733a468a54a20accf56d01f919fd2c0bd78fedf3f7660ce2904d20",
+      "size": 3566
+    },
+    "FORM-REPORTING.txt": {
+      "sha256": "a66f2aaa939f271babcf5825169b79fb03a4001cc8466815918f171b6af7a9bb",
+      "size": 7962
+    },
+    "PUBLIC-SESSION-CONTRACT.txt": {
+      "sha256": "ae251f882dd2689fa29e3848d73921c4481460ae87d7ececdead1a01c591c10b",
+      "size": 2416
+    },
+    "README.txt": {
+      "sha256": "c15133d6e181845f8977bcf6b9b2c56ff134d8973d2ae707f3161d9926b7b448",
+      "size": 3085
+    },
+    "RESULTS.csv": {
+      "sha256": "4ad0e3da23b486f2ebedd1c2bca98de1e2b66b676952c0342e0eac73a27561bd",
+      "size": 306
+    },
+    "RETEST-WINDOWS.txt": {
+      "sha256": "643921360e85396cff0417882ace09b305970d079acc5a29797002c54bd8219e",
+      "size": 4785
+    },
+    "SESSION-NOTES.txt": {
+      "sha256": "2a47c2387f8049f22bc8a7170ea61f99ac804e3683a55cbb68b04e6d82927c17",
+      "size": 1426
+    },
+    "SHA256SUMS.txt": {
+      "sha256": "acafd4fa397057eb61e065b699c7e7a93abbb0ffbd726568b362bcc6afb3fa2a",
+      "size": 2972
+    },
+    "SOURCE.json": {
+      "sha256": "182296955f42ca5d791e779829d2278d7df994716e30be642b34ead3fd4e16de",
+      "size": 5240
+    },
+    "T5-dice-reference-inputs.txt": {
+      "sha256": "f5e546ffc78a989707ed8d1e49507d3ef061564f32101d2cade6f7d73d619048",
+      "size": 9048
+    },
+    "TAILS-RETEST-RESULTS.txt": {
+      "sha256": "a17efb8a7358f16a768e6753f27b8769dc2b41ebb0733eb37dd1aaf997289c49",
+      "size": 4544
+    },
+    "TESTING.txt": {
+      "sha256": "3dae76171d1a20c127e3658041d63a158ce53679883999b62a3526cef11eed74",
+      "size": 15764
+    },
+    "TOOL-FINISH-RETEST.txt": {
+      "sha256": "fe8a4782a9e87351762dfa1a5f4d9134000144dd6285cc81a4f755a58d3df0d8",
+      "size": 7091
+    },
+    "VALIDATION.txt": {
+      "sha256": "0ec55496530ebd02e02b803b743525c36f380eb1052bcab57f2ea049420102b3",
+      "size": 1203
+    },
+    "VERIFY.md": {
+      "sha256": "b64c38fd8ab29d23f2696ad9f2b22885115610ac6477a1a2a5877448cf9fb6fd",
+      "size": 187
+    },
+    "bip39_dice_converter.py": {
+      "sha256": "177b4b3554d7f7b5357e0f5389a3adf3e3e47daf2e0bcd44a338e56e7c72dd8d",
+      "size": 38169
+    },
+    "compare_files.py": {
+      "sha256": "e4122dfb84e51e7924fa1146488211ba14ca23d0fd29a2db2440cba9e75e7a47",
+      "size": 373
+    },
+    "descriptor-tool.html": {
+      "sha256": "16efdc386a226849263529ca1660e32950bd95e87dfa2adb235162f653b6d0a0",
+      "size": 420868
+    },
+    "descriptor_obfuscator.py": {
+      "sha256": "deaf9a4277e775c961bbb577669ec99040d15e143c1f2838278d33c38ebbfa4a",
+      "size": 5396
+    },
+    "dice-converter.html": {
+      "sha256": "4f6949247291a95a37a1475b40f61e23de99f665fd0e3a5b9cd526b10e01e69c",
+      "size": 46387
+    },
+    "diceware-mapper.html": {
+      "sha256": "bbe8d349575e7f2d3ddd4caf0ffc7934d72b240c3b8858638a2ce4c198317aba",
+      "size": 93464
+    },
+    "eff_large_wordlist.txt": {
+      "sha256": "addd35536511597a02fa0a9ff1e5284677b8883b83e986e43f15a3db996b903e",
+      "size": 108800
+    },
+    "fingerprint-checker.html": {
+      "sha256": "ae9488685d64b89be7631c5ab3332b281e39dcaa23fe689c193bb70646e89f18",
+      "size": 9833
+    },
+    "fixtures/README.md": {
+      "sha256": "dcba53ac8586a848a4cc31b3b1bbc05c1217f673f5a281d651286da0b106220d",
+      "size": 871
+    },
+    "fixtures/bip39-english.txt": {
+      "sha256": "2f5eed53a4727b4bf8880d8f3f199efc90e58503646d9ff8eff3a2ed3b24dbda",
+      "size": 13116
+    },
+    "fixtures/bip39-vectors.json": {
+      "sha256": "039d01695f3ad359d622a93c0dcbf9c0e2c8c3796172c759350fc5fd834b9b0a",
+      "size": 1995
+    },
+    "fixtures/invalid-character.txt": {
+      "sha256": "a765a932b3a5e35d898f3e84dbde4be0b1614957baa9deb4982eb7ed0681289f",
+      "size": 257
+    },
+    "fixtures/ones-256.txt": {
+      "sha256": "cfe8dd49bb3d49755eac9c75fbb21a4144e12a3daa262799048fd480aa47d53f",
+      "size": 257
+    },
+    "fixtures/password.txt": {
+      "sha256": "21a064772b42abf505fd1f2a5d00e8c91c5d1107117384b1b955ff9308850af3",
+      "size": 17
+    },
+    "fixtures/public-map.txt": {
+      "sha256": "086af3ea787b1bb6cf9ef1049165399de6a7c41bd6d6e91b104cffa8808b4e84",
+      "size": 50
+    },
+    "fixtures/python-mnemonic-LICENSE": {
+      "sha256": "d5e3c7c62a84e80073201e2f6e5130e9e6804fa05f8ac4f8b26a13c7d3969697",
+      "size": 1084
+    },
+    "fixtures/short-255.txt": {
+      "sha256": "4df4bdf5e2e15f3e2d859aeea230df4f0f5b63b7439918219ae7180af57fe2a6",
+      "size": 256
+    },
+    "fixtures/zeros-256.txt": {
+      "sha256": "d4b23dd7605cc838226e095c3dd351fb515df1c5626b03bbce27e032e65c0f6e",
+      "size": 257
+    },
+    "make_truncated_fixture.py": {
+      "sha256": "f7148fa5fc3c84566b442d7ba3f20d5a3e061274dfd556284d45d365216d43d9",
+      "size": 820
+    },
+    "verify_package.py": {
+      "sha256": "57e897505eabff185bf775f9cc013a955b23d17f78d7d5e63cb89557ef2a98d1",
+      "size": 711
+    }
+  }
+}
