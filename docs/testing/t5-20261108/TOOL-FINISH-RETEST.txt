@@ -1,5 +1,5 @@
 PLEBUM DOMINIUM — SHORT TOOL-FINISH RETEST
-Release: alpha-20261108-t5-r3 / offline-20261108-r3
+Release: alpha-20261108-t5-r4 / offline-20261108-r4
 Public test data only. No real wallet seeds, passphrases or funds.
 
 Keep the earlier Tails evidence. This run checks the changed behavior; it does
@@ -8,23 +8,28 @@ Run the short checks on Windows first, then in an offline physical Tails session
 Record each environment separately. Leave anything not performed NOT TESTED.
 
 1. OPEN THE RIGHT FOLDER
-Extract the new r3 ZIP. Complete/tools-only ZIP: plebum-offline/public-tests.
+Extract the new r4 ZIP (instructions refreshed; tool bytes unchanged from r3). Complete/tools-only ZIP: plebum-offline/public-tests.
 Focused tool ZIP: plebum-public-test. All filenames below are in that folder.
 Record the ZIP filename/hash. Check the root package with verify_package.py;
 also check the public-tests subset if using the full ZIP.
 Windows command prefix: py. Tails prefix: python3.
+Create results beside fixtures. Copy SESSION-NOTES.txt and RESULTS.csv into
+results before editing them. Follow TESTING.txt for USB preparation and screenshot
+capture. Save after each result, before clearing or changing the input.
 Read PUBLIC-SESSION-CONTRACT.txt. Disable and check OS networking before testing.
 
 Open fingerprint-checker.html and choose each built-in tool in turn. Select its
 matching file from this same folder. Expected: MATCH for dice converter, wallet
 map and Diceware mapper. Select a different file: expected MISMATCH. Changing
 the file or expected hash must clear the old result. This checks matching bytes,
-not independent publisher identity or safety. The mapper download button also
+not independent publisher identity or safety. Save T1-package-pass.png and
+T1-fingerprint-TOOL.png for each tool, plus T1-fingerprint-mismatch.png. The mapper download button also
 saves the original blank file; its bytes should match the mapper fingerprint.
 
 2. DICEWARE MAPPER (the six-word passphrase mapper, not the BIP39 converter)
 Open diceware-mapper.html. Expect locked startup. Acknowledge the two checks.
-Expect exactly six word rows, with five boxes per row.
+Expect exactly six word rows, with five boxes per row. Save mapper-locked.png
+before starting, then mapper-open.png.
 For words 1-6 paste these examples into each row's FIRST box:
 11111 -> abacus
 11112 -> abdomen
@@ -33,50 +38,77 @@ For words 1-6 paste these examples into each row's FIRST box:
 11115 -> abiding
 11116 -> ability
 Expected complete text: abacus abdomen abdominal abide abiding ability
+SAVE: mapper-valid.png before editing or clearing.
 Try Copy and paste into a disposable blank text document; compare all six words.
-If the browser blocks copying, record the restriction and test manual selection.
+SAVE: mapper-copy-check.png. If the browser blocks copying, record the
+restriction and test manual selection; do not describe blocked copying as PASS.
 
 Replace one filled digit with 7, then x. Each must clear that row's word, clear
 its word in the full phrase, show an error, and disable Copy. Correct the digit;
 the matching word and Copy should return when all rows are complete.
 Try pasting 12x34 and 123456 into a row's first box. Expect rejection, not a
 silently corrected/clipped word. Try 12 in the last box; expect rejection.
+SAVE each response before the next case: mapper-invalid-7.png, mapper-invalid-x.png,
+mapper-paste-invalid.png, mapper-paste-long.png and mapper-last-box.png.
 Start over: all 30 boxes and all words clear. Lock and clear: session locks.
 Close/reopen: blank fields, locked startup, unchecked acknowledgments.
+SAVE: mapper-cleared.png, mapper-relocked.png and mapper-reopened-locked.png.
 Copying is optional; clearing the page does not clear your system clipboard.
 
 3. WALLET MAP — MESSAGES, CLEARING AND A CONTROLLED TRUNCATION
 Open descriptor-tool.html and start the public test after OS checks.
-Encrypt fixtures/public-map.txt using public-test-only. Save as r3-map.asc.
-Decrypt that saved file. Download as r3-restored.txt.
-  python3 compare_files.py fixtures/public-map.txt r3-restored.txt
+Encrypt fixtures/public-map.txt using public-test-only. Save as results/r4-map.asc.
+Decrypt that saved file. Download as results/r4-restored.txt.
+  python3 compare_files.py fixtures/public-map.txt results/r4-restored.txt
 Expected: PASS, byte-for-byte identical. Use py on Windows.
+SAVE: map-restored.png and map-byte-match.png before the negative cases.
 
 Enter a wrong password and try Decrypt. Expect one failure and no restored map.
+SAVE: map-wrong-password.png before clicking again.
 Click Decrypt again with the now-empty password field. Expect only the current
 "Enter a passphrase" prompt, without the old decryption-failure message.
+SAVE: map-current-empty-password.png.
 Enter the correct password; expect success. Edit the ciphertext afterward:
 the old restored output/download must disappear before another attempt.
+SAVE: map-edited-input-cleared.png.
 
 Create an exactly defined damaged COPY (preserves the original):
-  python3 make_truncated_fixture.py r3-map.asc r3-truncated.asc
+  python3 make_truncated_fixture.py results/r4-map.asc results/r4-truncated.asc
 The helper saves the first half of the source bytes and prints both sizes/hashes.
-Load r3-truncated.asc and enter the correct password. Expect failure with no
+Load results/r4-truncated.asc and enter the correct password. Expect failure with no
 restored output. Save the helper output and the rejection screenshot.
+SAVE: map-truncation-details.png and map-truncated-rejected.png.
 Lock and clear; close/reopen; expect blank fields and unchecked confirmations.
+SAVE: map-relocked.png and map-reopened-locked.png.
 
 4. QUICK PACKAGE CHECK
 Open dice-converter.html locally, start a public test, paste fixtures/zeros-256.txt.
-Expected: abandon 23 times, then art. Lock and clear and confirm the words vanish.
+Expected: abandon 23 times, then art. SAVE: dice-zeros.png.
+Lock and clear and confirm the words vanish; save dice-cleared.png.
 The unchanged Python tools and remaining seven vectors retain their earlier
 results. Report any unexpected difference; that triggers a broader retest.
 
 5. SAVE EVIDENCE AND FINISH
-Capture package verifier output, mapper valid/invalid/clear states, map byte
-comparison/current-error/truncation rejection, OS networking state and versions.
-Copy only public-test evidence to your removable drive, reopen a saved image to
-check it, close the tools, then shut down Tails. The earlier reboot recovery
-results remain attached to their original candidate; no fresh reboot is claimed.
+Follow EVIDENCE-CHECKLIST.txt before pausing or shutting down. Copy original PNGs
+from Home/Pictures/Screenshots, notes, terminal output and the results folder to
+the separate test/data USB. Wait for copying to finish; reopen an actual saved
+image and text file from that USB, and check every filename listed in your notes.
+Keep earlier evidence intact. Lock and clear, close apps using the data USB,
+safely eject it, and shut down Tails through the system menu. Remove the boot USB
+only after power off. Do not assume Home files or clipboard captures persist.
+
+6. REPORT THROUGH THE GOOGLE FORM AFTER THE OFFLINE SESSION
+Read FORM-REPORTING.txt for exact questions and Google Drive sharing steps.
+Attach screenshots if the selected task offers uploads; follow its displayed
+limits. Otherwise upload public-test evidence to a separate Drive folder, make
+a Viewer link and test it while signed out. Do not choose T1 only to reach uploads. Put the link,
+full ZIP hash and checkpoint filenames in "File hashes and additional evidence".
+Report Windows and Tails separately. Map checks: T4.1–T4.3 and extra observations
+in T4.6. Fingerprint checks: T1.3. Mapper: General website feedback → Downloads /
+testing tools; list individual outcomes in G4. This short retest does not repeat
+all T3/T4/T5 requirements: mark unperformed questions and broader incomplete tasks
+NOT TESTED. Do not translate manual clearing into a legacy automatic-isolation
+PASS. Keep the earlier reboot results attached to their original candidate.
 
 Passing this run closes these tool regressions for the tested package/environment.
 It does not complete the one-key, 2-of-3, backup or inheritance rehearsals for beta.
