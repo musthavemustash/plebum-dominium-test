@@ -2,6 +2,12 @@
 
 Production releases will use Semantic Versioning and follow the staging-first release policy in [RELEASE_POLICY.md](RELEASE_POLICY.md).
 
+## November 9, 2026 — Make T6 and T7 beta requirements visible (staging only)
+
+- Add always-visible T6 one-key and T7 2-of-3 rehearsal cards near the top of the testing page, with required status, steps, evidence guidance and direct route links.
+- Identify both as remaining full wallet tests required before beta in the homepage testing menu, testing navigation and Downloads status. Preserve T1–T5 evidence limits and final release review.
+- No tool, tested package, checksum, result or production change.
+
 ## November 9, 2026 — Physical Tails r4 results (staging only)
 
 - Record the observed short-retest passes on the exact complete r4 archive, including 215/34-file verification, mapper cases, saved-map equality, controlled truncation and the dice quick check.
