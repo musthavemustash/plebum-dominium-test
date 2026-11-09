@@ -127,3 +127,9 @@ No results are submitted automatically by the website or these instructions.
 
 Google sharing help: https://support.google.com/drive/answer/7166529
 Google Forms upload help: https://support.google.com/docs/answer/15473134
+
+MAINTAINER-ASSISTED REPORTS
+A guided run may be entered directly into the reporting sheet at the tester’s
+request. Label it MANUAL ENTRY, preserve the package, date, environment,
+per-check results and evidence links, and avoid a duplicate Form submission.
+The November 8 Windows r4 run uses rows 11–14; row 14 is its final checkpoint.

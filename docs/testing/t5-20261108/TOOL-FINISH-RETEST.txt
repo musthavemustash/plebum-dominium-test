@@ -1,4 +1,12 @@
 PLEBUM DOMINIUM — SHORT TOOL-FINISH RETEST
+
+LIVE STATUS ADDENDUM — November 9, 2026: the guided Windows r4 short run
+is complete. Physical Tails is next. Keep r4 ZIPs and packaged instructions
+unchanged; save the closeout and resume note separately:
+https://musthavemustash.github.io/plebum-dominium-test/testing/windows-r4-20261108/RESULTS.txt
+https://musthavemustash.github.io/plebum-dominium-test/testing/windows-r4-20261108/TAILS-NEXT.txt
+This does not mark all T1–T5 checks complete.
+
 Release: alpha-20261108-t5-r4 / offline-20261108-r4
 Public test data only. No real wallet seeds, passphrases or funds.
 
@@ -112,3 +120,9 @@ PASS. Keep the earlier reboot results attached to their original candidate.
 
 Passing this run closes these tool regressions for the tested package/environment.
 It does not complete the one-key, 2-of-3, backup or inheritance rehearsals for beta.
+
+MAINTAINER-ASSISTED REPORTS
+A guided run may be entered directly into the reporting sheet at the tester’s
+request. Label it MANUAL ENTRY, preserve the package, date, environment,
+per-check results and evidence links, and avoid a duplicate Form submission.
+The November 8 Windows r4 run uses rows 11–14; row 14 is its final checkpoint.

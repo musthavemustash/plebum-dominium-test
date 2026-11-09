@@ -28,6 +28,12 @@ Use the available browser preview workflow for `docs/` at the staging project ba
 
 Both routes preserve Terms → Before you begin (Threat Model) → Pick your path. The remaining sequence follows the existing guide order, omitting the other route's exclusive sheets. One-key variants are used for Checklist, Dice, Titanium, Inheritance, FAQ, and Recovery card. Two devices remains an optional reference, outside both numbered sequences. Per-route completion records intentionally do not import ambiguous historical checkmarks.
 
+## Tested download snapshots
+
+The November 8 r4 Windows short retest is closed; see [the closeout](review/WINDOWS_R4_CLOSEOUT.md). The focused r4 ZIP and both larger r4 archives remain immutable snapshots. Current status and Tails resume notes are separate live addenda. Do not rebuild or overwrite a tested release ID to publish status changes.
+
+The Pages workflow now validates and publishes committed site files and packages without invoking package builders or creating a bot commit. For a future package release, assign new versioned output paths in the builders, assemble and validate all archives/manifests/verifier references together, then commit them in the reviewed staging PR. New files do not inherit older physical-test passes. The unmerged naming cleanup remains separate.
+
 ## Content standard
 
 Plebum Dominium teaches self-custody without a hardware wallet. Create and verify keys with offline software, record the backups on metal, verify recovery, and sign with offline software. Hardware wallets are optional signing tools only after the metal backups are complete and checked. Use the existing backed-up keys. Neither path may require a hardware purchase for setup, signing or recovery. This rule applies to guides, equipment lists, diagrams, downloads, metadata, search, testing, news and future copy. See [the content review record](review/SOFTWARE_FIRST_CONTENT.md).

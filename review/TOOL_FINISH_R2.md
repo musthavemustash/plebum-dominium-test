@@ -1,5 +1,7 @@
 # Tool closure candidate — November 8, 2026, r2
 
+**Later evidence — November 9, 2026:** the planned focused r4 Windows short retest is complete. Physical Tails follow-up, broader unperformed checks and beta work remain open. See [Windows r4 closeout](WINDOWS_R4_CLOSEOUT.md). Earlier statements below retain their historical candidate scope.
+
 Public-fixture candidate only. Production and beta designation are unchanged.
 
 ## Changes

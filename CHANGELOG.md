@@ -2,6 +2,12 @@
 
 Production releases will use Semantic Versioning and follow the staging-first release policy in [RELEASE_POLICY.md](RELEASE_POLICY.md).
 
+## November 9, 2026 — Windows r4 evidence closeout (staging only)
+
+- Record the completed November 8 Windows short retest with exact package identity, passed cases, evidence limits and remaining Tails work. Update downloads, testing status and live handoffs.
+- Preserve tested r4 archives and hashes; publish status as separate live addenda. Pages now validates committed packages instead of silently rebuilding them on documentation changes.
+- No beta designation, production release, tool-code change or promotion of unperformed checks to PASS.
+
 ## Unreleased (staging only)
 
 - Add a public tester checklist with expected results, reporting instructions and feedback links; keep advanced offline testing separate.

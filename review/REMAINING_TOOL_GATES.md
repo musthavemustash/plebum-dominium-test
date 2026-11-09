@@ -1,5 +1,7 @@
 # Tool release status — November 4, 2026
 
+**Current status — November 9, 2026:** the planned focused r4 Windows short retest is complete. Physical Tails follow-up, broader unperformed checks and beta work remain open. See [Windows r4 closeout](WINDOWS_R4_CLOSEOUT.md). Earlier statements below retain their historical candidate scope.
+
 **November 5 update:** a separate [public testing alpha](PUBLIC_ALPHA_2026-11-05.md) is now available on staging. The blocked/withheld statements below describe the stable custody release and historical internal candidate; they do not prohibit the approved public-fixture alpha. Actual browser/Tails and recovery validation remain incomplete.
 
 Baseline: c0a8e5a0964962218b5360986d339c204c23e1b5 (PR #17); Pages run 41917775493 succeeded. No open PRs at this batch's start. This report supersedes earlier pending Ian Coleman/Tails provenance entries; it does not approve a custody release.
