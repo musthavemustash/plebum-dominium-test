@@ -1,3 +1,9 @@
+STATUS UPDATE — November 9, 2026
+The Tails short-run observations are now recorded for the complete r4 archive:
+https://musthavemustash.github.io/plebum-dominium-test/testing/tails-r4-20261109/RESULTS.txt
+The instructions below are the earlier handoff, not a request to repeat the
+completed run. Follow the result record for remaining work and evidence limits.
+
 PLEBUM DOMINIUM — RESUME WITH PHYSICAL TAILS
 Prepared November 9, 2026 (Eastern), after the November 8 Windows r4 run.
 The planned Windows short retest is complete. Do not repeat it tonight.

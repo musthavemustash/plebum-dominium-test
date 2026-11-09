@@ -219,3 +219,8 @@ Published a separate, versioned tool-test ZIP with public fixtures, expected out
 ## November 9 — Windows r4 run closed
 
 The November 8 guided Windows short run passed within its documented scope. See [WINDOWS_R4_CLOSEOUT.md](WINDOWS_R4_CLOSEOUT.md) and the linked public results/Tails handoff. Original evidence is linked in response-sheet rows 11–14; no duplicate Form submission is needed. Current downloads/testing pages distinguish the tested focused archive from larger packages and historical Tails results. Physical Tails is the next session. Tested r4 files stay unchanged, and publication no longer silently regenerates those release IDs. This update is staging only; the naming-cleanup PR and production remain separate.
+
+
+## November 9 — Physical Tails r4 short results
+
+The observed short-run checks passed using the complete r4 archive. See [TAILS_R4_RESULTS.md](TAILS_R4_RESULTS.md) for package identity, passed cases, evidence limits and remaining work. The tester confirmed saved-image/text readability on USB; shutdown and complete evidence reconciliation remain pending. Testing/download pages and live instruction addenda now reflect this run. Historical candidate records, all versioned package snapshots and tool bytes are preserved. T5 acceptance and both full wallet rehearsals remain open. This is a staging status update, not beta or production approval.

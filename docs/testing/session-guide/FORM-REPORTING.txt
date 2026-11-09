@@ -133,3 +133,13 @@ A guided run may be entered directly into the reporting sheet at the tester’s
 request. Label it MANUAL ENTRY, preserve the package, date, environment,
 per-check results and evidence links, and avoid a duplicate Form submission.
 The November 8 Windows r4 run uses rows 11–14; row 14 is its final checkpoint.
+
+TAILS r4 — NOVEMBER 9, 2026
+Keep this run separate from the focused-ZIP Windows entries. It used
+plebum-complete-offline-tester-20261108-r4.zip, SHA-256:
+2d5a45c0ead74fc033c83c9a173d8a7c06b6d5cc0129d862780dc39fbc40cad2
+Use the individual observed outcomes and limits in:
+https://musthavemustash.github.io/plebum-dominium-test/testing/tails-r4-20261109/RESULTS.txt
+The website records this run; no new Tails Form/sheet entry or Drive upload
+has been claimed. Reconcile the evidence before submitting; do not mark all
+T1–T5 rows PASS or carry earlier-candidate checks into this run.

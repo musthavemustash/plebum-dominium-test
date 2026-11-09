@@ -1,11 +1,19 @@
 PLEBUM DOMINIUM — T1–T5: TEST, SAVE, CHECK
 
-LIVE STATUS ADDENDUM — November 9, 2026: the guided Windows r4 short run
-is complete. Physical Tails is next. Keep r4 ZIPs and packaged instructions
-unchanged; save the closeout and resume note separately:
+LIVE STATUS ADDENDUM — November 9, 2026: the Windows r4 short run is complete.
+The physical Tails short run passed the observed checks using the complete r4
+archive. USB image/text readability was confirmed. Evidence reconciliation,
+some full-field states and shutdown confirmation remain pending.
+https://musthavemustash.github.io/plebum-dominium-test/testing/tails-r4-20261109/RESULTS.txt
 https://musthavemustash.github.io/plebum-dominium-test/testing/windows-r4-20261108/RESULTS.txt
-https://musthavemustash.github.io/plebum-dominium-test/testing/windows-r4-20261108/TAILS-NEXT.txt
-This does not mark all T1–T5 checks complete.
+Keep r4 ZIPs unchanged. This does not mark all T1–T5 checks complete.
+
+TAILS EXTRACTION NOTE: unzip was unavailable in this physical run. From the
+folder containing the ZIP, this Python command worked:
+python3 -m zipfile -e plebum-complete-offline-tester-20261108-r4.zip Tails-r4-2026-11-09
+Use a new/empty output folder; run the root and public-tests verifiers afterward.
+MAPPER DOWNLOAD: the link is at the bottom of Before this public test,
+below the confirmations explanation. Its saved copy matched the fingerprint.
 
 Instructions refreshed November 8, 2026 from our Windows and physical Tails sessions.
 Package: alpha-20261108-t5-r4 / offline-20261108-r4
