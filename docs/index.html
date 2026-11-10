@@ -43,6 +43,11 @@
   font: 600 0.875rem/1.5 system-ui, sans-serif;
 }
 .home-review-note > p { margin: 0 0 0.75rem; }
+.home-purpose-note > .home-purpose-title {
+  margin: 12px 0 20px;
+  font: 400 clamp(28px, 4.5vw, 36px)/1.2 Georgia, serif;
+  letter-spacing: -0.02em;
+}
 /* Approved hero 05: The Workshop. Styles stay inside this homepage hero. */
 .entry-page .home-workshop {
   --workshop-bg: #fff;
@@ -190,9 +195,10 @@ html[data-theme="dark"] .entry-page .home-workshop {
 
 <details class="entry-note home-review-note home-purpose-note" id="purpose">
   <summary><strong>A note from the author</strong></summary>
-  <p><strong>Why this guide exists</strong><br>The Ledger hacks were what pushed me to make this guide. I’ve been in Bitcoin since 2021. My first hardware wallet was a Ledger Nano X, and I held most of my stack in self-custody on it. When the hacks hit the news, I got tired of wondering if I would be next and checking every day that I still had my Bitcoin.</p>
-  <p>That fear pushed me to build my own self-custody setup and write down what I learned. I have always wanted to be a web developer, and I love to teach. Sharing what I figured out for myself was the natural next step.</p>
-  <p>I want this guide to help you understand your choices, check the tools you use, protect your backups, and practice recovery. The goal is a setup you understand and can take responsibility for.</p>
+  <h2 class="home-purpose-title"><em>Why This Guide Exists</em></h2>
+  <p>The Ledger hacks were what pushed me to build this guide. I’ve been in Bitcoin since 2021. My first hardware wallet was a Ledger Nano X, and I held most of my stack in self-custody on it. When the hacks hit the news, I got tired of wondering if I would be next and checking every day that I still had my Bitcoin.</p>
+  <p>That fear pushed me to build my own secure self-custody setup and write down what I learned. I have always wanted to be a web developer, and I love to teach. Sharing what I figured out for myself was the natural next step.</p>
+  <p>I want this guide to help you understand your choices, check the tools you use, protect your backups, and practice recovery. It is <em>absolutely free to use</em>. The goal is a setup you understand and can take responsibility for.</p>
   <p>Questions or feedback? Contact me at <a href="mailto:Muststackmoresats@gmail.com">Muststackmoresats@gmail.com</a> or on X at <a href="https://x.com/MustHaveMustash" target="_blank" rel="noopener noreferrer">@MustHaveMustash</a>.</p>
 </details>
 
