@@ -15,7 +15,7 @@ Update testing/download status, live instruction addenda and release tracking. P
 
 ## Remaining gates
 
-Reconcile the evidence and T5 acceptance against the public-session contract; leave unperformed checks open. Complete T6/T7 setup, software signing, recovery, checked metal and inheritance, then whole-guide/print/final-package review. Hardware wallets remain optional after checked metal. Production still requires release-specific approval.
+Reconcile the evidence and T5 acceptance against the public-session contract; leave unperformed checks open. Complete T6/T7 setup, software signing, recovery and inheritance using disposable paper records, then whole-guide/print/final-package review. Maintainer scope clarification (November 9): metal comes after testing and is not part of T6/T7 or their beta pass criteria. Hardware wallets remain optional. Production still requires release-specific approval.
 
 ## Validation
 

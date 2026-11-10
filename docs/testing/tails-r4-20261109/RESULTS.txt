@@ -111,9 +111,9 @@ WHAT REMAINS
 - Review the remaining T5 requirements against the documented OS-managed
   public-session procedure; do not mark legacy automatic isolation as passed.
 - Keep unperformed checks and separate utilities open for the proposed release.
-- Complete T6 one-key and T7 2-of-3 setup, offline-software signing and recovery,
-  checked metal backups and inheritance rehearsals. Hardware signers are optional
-  only after the metal backups are complete and checked.
+- Complete T6 one-key and T7 2-of-3 setup, offline-software signing, recovery
+  and inheritance rehearsals using disposable paper records. Scope clarified
+  November 9: metal comes after testing and is not part of these test criteria.
 - Reconcile printable materials, whole-guide usability and final packages,
   then review beta readiness. Production needs explicit release-specific approval.
 

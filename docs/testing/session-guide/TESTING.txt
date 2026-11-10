@@ -241,5 +241,6 @@ Report task/subcase, package filename/hash, environment, expected/actual result,
 PASS/FAIL/NOT TESTED and evidence filenames. Keep earlier reports intact.
 https://docs.google.com/forms/d/e/1FAIpQLSfOkY3FrZmZpIVro5oxWLy_YvU7U-1BOrL3KB9VCI3jXjad2Q/viewform
 
-These are tool tests. Full one-key and 2-of-3 setup, signing, metal-backup and
-recovery rehearsals remain separate beta requirements.
+These are tool tests. Full one-key (T6) and 2-of-3 (T7) setup, signing and
+recovery rehearsals use disposable paper records and remain separate beta
+requirements. Metal comes after testing and is not part of these tests.
