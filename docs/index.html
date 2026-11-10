@@ -47,7 +47,7 @@
   position: relative;
   container-type: inline-size;
   text-align: center;
-  padding: clamp(25px, 5vw, 58px) clamp(12px, 4vw, 44px);
+  padding: clamp(16px, 2.5vw, 28px) clamp(12px, 4vw, 44px);
   margin: 1rem 0 1.5rem;
   border: 2px solid #a86c45;
   border-inline-width: 9px;
@@ -65,9 +65,9 @@
 }
 .home-keyhole-mark {
   box-sizing: border-box;
-  width: clamp(60px, 12vw, 104px);
-  padding: 7px;
-  margin: 0 auto clamp(12px, 2.5vw, 23px);
+  width: clamp(44px, 7vw, 56px);
+  padding: 4px;
+  margin: 0 auto 8px;
   border: 1px solid #9c7857;
   border-radius: 50% 50% 4px 4px / 43% 43% 4px 4px;
   background: #18130e;
@@ -84,14 +84,14 @@
   display: block;
   margin: .19em 0 .24em;
   color: inherit;
-  font: italic 500 clamp(2.3rem, 11cqi, 7.25rem)/.96 Georgia, serif;
+  font: italic 500 clamp(2.2rem, 8cqi, 4.5rem)/1.02 Georgia, serif;
   letter-spacing: -.045em;
 }
 .entry-page .home-keyhole-subtitle {
   max-width: 36ch;
   margin: 0 auto;
   color: #ded1c0;
-  font: clamp(1.2rem, 3.3cqi, 1.85rem)/1.45 Georgia, serif;
+  font: clamp(1rem, 2.5cqi, 1.3rem)/1.4 Georgia, serif;
 }
 html[data-theme="dark"] .entry-page .home-keyhole,
 html[data-theme="dark"] .home-keyhole::before { border-color: var(--accent); }
@@ -114,7 +114,7 @@ html[data-theme="light"] .entry-page .home-keyhole-subtitle {
   font-weight: 400;
 }
 html[data-hero="b"] .entry-page .home-keyhole { padding-block: clamp(18px, 2.5vw, 28px); }
-html[data-hero="b"] .home-keyhole-mark { width: clamp(50px, 8vw, 70px); margin-bottom: 8px; }
+html[data-hero="b"] .home-keyhole-mark { width: clamp(44px, 7vw, 56px); margin-bottom: 8px; }
 
 .home-name { position: relative; }
 .home-name-trigger { padding: 0; border: 0; border-bottom: 1px dotted var(--accent); background: none; color: inherit; font: inherit; cursor: pointer; }
@@ -224,10 +224,9 @@ if (new URLSearchParams(location.search).get('hero') === 'b') {
 
 <header class="home-keyhole">
   <div class="home-keyhole-mark"><img src="/plebum-dominium-test/assets/img/logo-pleb-key.svg" alt="" width="104" height="104"></div>
-  <p class="home-keyhole-eyebrow">Independent at-home Bitcoin self-custody</p>
   <h1>Plebum Dominium</h1>
 
-  <p class="home-keyhole-subtitle">Bitcoin self-custody without a hardware wallet. Create and verify keys offline, back them up on metal, then sign with offline software.</p>
+  <p class="home-keyhole-subtitle">Self-custody without a hardware wallet.</p>
 </header>
 <p><span class="home-name"><button type="button" class="home-name-trigger" aria-expanded="false" aria-controls="home-name-popup">Plebum Dominium</button><span class="home-name-popup" id="home-name-popup" role="region" aria-label="About the name" hidden>
       <span><strong>Plebum Dominium</strong></span>
