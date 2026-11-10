@@ -7,6 +7,7 @@
 - [ ] Planned window: ______ (America/New_York)
 - [ ] Staging branch and preview URL: ______
 - [ ] Cosmetic changes batched; scope frozen
+- [ ] T6/T7 setup, software signing, recovery and handover evidence reviewed using disposable paper records; metal work is outside the tests
 - [ ] Custody/security guidance reviewed for accuracy
 - [ ] Staging pages, mobile layout, navigation, and links inspected
 - [ ] All changed downloadable tools and PDFs tested

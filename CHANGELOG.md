@@ -2,6 +2,11 @@
 
 Production releases will use Semantic Versioning and follow the staging-first release policy in [RELEASE_POLICY.md](RELEASE_POLICY.md).
 
+## November 9, 2026 — Correct T6/T7 rehearsal scope (staging only)
+
+- Follow the maintainer’s clarification: metal comes after testing. T6/T7 use disposable paper records for setup, offline-software signing, recovery and handover. Metal work is not a test or beta pass requirement.
+- Correct the testing page, homepage testing menu, Downloads status, live handoff text and review checklist. Preserve tested archives, hashes, tool code and observed results.
+
 ## November 9, 2026 — Make T6 and T7 beta requirements visible (staging only)
 
 - Add always-visible T6 one-key and T7 2-of-3 rehearsal cards near the top of the testing page, with required status, steps, evidence guidance and direct route links.
