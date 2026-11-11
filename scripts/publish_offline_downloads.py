@@ -109,6 +109,9 @@ def offline_copy(name, data):
         boot = '<script>window.PD_OFFLINE_ROOT=new URL(' + json.dumps(prefix or './') + ',location.href).href;</script>'
         s = s.replace('<head>', '<head>' + boot, 1)
         s = s.replace(BASE, prefix)
+        # The ZIP verifier is saved separately, never included in its own archive.
+        s = s.replace('href="' + prefix + 'verify-download.html"',
+                      'href="https://musthavemustash.github.io/plebum-dominium-test/verify-download.html"')
         s = s.replace('testing/offline-20261106/', DEST + '/')
         s = s.replace('plebum-complete-offline-tester-20261106.zip', FULL).replace('plebum-website-tools-only-20261106.zip', TOOLS)
         s = s.replace('href="' + prefix + '"', 'href="' + prefix + 'index.html"')
