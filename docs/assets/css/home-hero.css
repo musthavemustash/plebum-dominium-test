@@ -59,3 +59,16 @@
     @media(prefers-reduced-motion:reduce){#plebum-home-hero .pd-popout{animation:none}}
 #plebum-home-hero .pd-item:focus-visible { outline: 2px solid var(--pd-copper); outline-offset: -5px; }
 
+/* A single three-second invitation, independent of the selected/expanded state. */
+#plebum-home-hero .pd-item.pd-discover::before {
+  animation: pd-discover-glow 3s ease-in-out 1;
+  box-shadow: inset 0 0 24px light-dark(#bb7d3228, #e4ac5d26);
+}
+@keyframes pd-discover-glow {
+  0%, 100% { opacity: 0; }
+  45% { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #plebum-home-hero .pd-item.pd-discover::before { animation: none; }
+}
+

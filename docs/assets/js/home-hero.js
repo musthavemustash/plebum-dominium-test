@@ -24,6 +24,13 @@
       let leaveTimer = null, lastTrigger = null, suppressFocus = false;
       const clamp = (value, low, high) => Math.max(low, Math.min(high, value));
       const cancelLeave = () => { clearTimeout(leaveTimer); leaveTimer = null; };
+      const discoveryTile = tiles.find(tile => tile.dataset.pdTopic === 'bitcoin');
+      let discoveryObserver = null, discoveryUsed = false;
+      function stopDiscovery() {
+        discoveryUsed = true;
+        if (discoveryObserver) discoveryObserver.disconnect();
+        discoveryTile.classList.remove('pd-discover');
+      }
       function positionPopup() {
         if (!displayed || popup.hidden) return;
         const tile = tiles.find(item => item.dataset.pdTopic === displayed);
@@ -45,6 +52,7 @@
       }
       function render(announce = false) {
         const key = hovered || focused || pinned;
+        if (key) stopDiscovery();
         displayed = key;
         tiles.forEach(tile => {
           const active = tile.dataset.pdTopic === key;
@@ -120,5 +128,25 @@
       });
       new ResizeObserver(positionPopup).observe(hero);
       render();
+
+      // One gentle cue when the Bitcoin tile is visible; never opens a definition.
+      discoveryTile.addEventListener('animationend', event => {
+        if (event.animationName === 'pd-discover-glow') stopDiscovery();
+      });
+      discoveryTile.addEventListener('animationcancel', event => {
+        if (event.animationName === 'pd-discover-glow') stopDiscovery();
+      });
+      if ('IntersectionObserver' in window) {
+        discoveryObserver = new IntersectionObserver(entries => {
+          if (!entries.some(entry => entry.isIntersecting && entry.intersectionRatio >= 0.5)) return;
+          discoveryObserver.disconnect();
+          if (discoveryUsed) return;
+          discoveryUsed = true;
+          if (matchMedia('(prefers-reduced-motion: reduce)').matches ||
+              document.documentElement.dataset.motion === 'off') return;
+          discoveryTile.classList.add('pd-discover');
+        }, { threshold: 0.5 });
+        discoveryObserver.observe(discoveryTile);
+      }
 
     })();
