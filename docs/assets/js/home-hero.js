@@ -29,7 +29,7 @@
       function stopDiscovery() {
         discoveryUsed = true;
         if (discoveryObserver) discoveryObserver.disconnect();
-        discoveryTile.classList.remove('pd-discover');
+        discoveryTile.classList.remove('pd-discover', 'pd-discover-pulse');
       }
       function positionPopup() {
         if (!displayed || popup.hidden) return;
@@ -52,7 +52,6 @@
       }
       function render(announce = false) {
         const key = hovered || focused || pinned;
-        if (key) stopDiscovery();
         displayed = key;
         tiles.forEach(tile => {
           const active = tile.dataset.pdTopic === key;
@@ -101,6 +100,7 @@
           focused = null; render();
         });
         tile.addEventListener('click', () => {
+          stopDiscovery();
           cancelLeave(); pinned = pinned === key ? null : key;
           hovered = focused = null; render(true);
         });
@@ -129,12 +129,13 @@
       new ResizeObserver(positionPopup).observe(hero);
       render();
 
-      // One gentle cue when the Bitcoin tile is visible; never opens a definition.
+      // Pulse on first view, then keep the cue until a hero tile is activated.
+      // Hover/focus previews do not dismiss it, and the cue never opens a definition.
       discoveryTile.addEventListener('animationend', event => {
-        if (event.animationName === 'pd-discover-glow') stopDiscovery();
+        if (event.animationName === 'pd-discover-glow') discoveryTile.classList.remove('pd-discover-pulse');
       });
       discoveryTile.addEventListener('animationcancel', event => {
-        if (event.animationName === 'pd-discover-glow') stopDiscovery();
+        if (event.animationName === 'pd-discover-glow') discoveryTile.classList.remove('pd-discover-pulse');
       });
       if ('IntersectionObserver' in window) {
         discoveryObserver = new IntersectionObserver(entries => {
@@ -142,9 +143,11 @@
           discoveryObserver.disconnect();
           if (discoveryUsed) return;
           discoveryUsed = true;
-          if (matchMedia('(prefers-reduced-motion: reduce)').matches ||
-              document.documentElement.dataset.motion === 'off') return;
           discoveryTile.classList.add('pd-discover');
+          if (!matchMedia('(prefers-reduced-motion: reduce)').matches &&
+              document.documentElement.dataset.motion !== 'off') {
+            discoveryTile.classList.add('pd-discover-pulse');
+          }
         }, { threshold: 0.5 });
         discoveryObserver.observe(discoveryTile);
       }
