@@ -4,22 +4,22 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Plebum Dominium Test Site · Independent At-Home Bitcoin Self-Custody</title>
-<meta name="description" content="Plebum Dominium: build a DIY Bitcoin 2-of-3 multisig wallet from dice, verified software, and titanium. No company, no custodian.">
+<meta name="description" content="An interactive Bitcoin self-custody guide you can download and use offline. Generate entropy with dice, verify tools, make metal backups and practice recovery.">
 <link rel="canonical" href="https://musthavemustash.github.io/plebum-dominium-test/">
 <link rel="icon" href="/plebum-dominium-test/assets/img/favicon.svg" type="image/svg+xml">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://musthavemustash.github.io/plebum-dominium-test/">
 <meta property="og:site_name" content="Plebum Dominium">
 <meta property="og:title" content="Plebum Dominium Test Site · Independent At-Home Bitcoin Self-Custody">
-<meta property="og:description" content="Preview the Bitcoin self-custody guides and help test the site.">
+<meta property="og:description" content="An interactive Bitcoin self-custody guide you can download and use offline. Generate entropy with dice, verify tools, make metal backups and practice recovery.">
 <meta property="og:image" content="https://musthavemustash.github.io/plebum-dominium-test/assets/img/staging-review-card-v1.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Plebum Dominium Test Site · Independent At-Home Bitcoin Self-Custody">
-<meta name="twitter:description" content="Preview the Bitcoin self-custody guides and help test the site.">
+<meta name="twitter:description" content="An interactive Bitcoin self-custody guide you can download and use offline. Generate entropy with dice, verify tools, make metal backups and practice recovery.">
 <meta name="twitter:image" content="https://musthavemustash.github.io/plebum-dominium-test/assets/img/staging-review-card-v1.png">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "Plebum Dominium Test Site", "url": "https://plebumbtc.io/", "description": "Plebum Dominium: build a DIY Bitcoin 2-of-3 multisig wallet from dice, verified software, and titanium. No company, no custodian."}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "Plebum Dominium Test Site", "url": "https://plebumbtc.io/", "description": "An interactive Bitcoin self-custody guide you can download and use offline. Generate entropy with dice, verify tools, make metal backups and practice recovery."}</script>
 <link rel="stylesheet" href="/plebum-dominium-test/assets/css/main.css?v=newsticker1">
 <link rel="stylesheet" href="/plebum-dominium-test/assets/css/guide-steps.css?v=pagebuttons1">
 <link rel="stylesheet" href="/plebum-dominium-test/assets/css/print.css" media="print">
@@ -43,79 +43,11 @@
   font: 600 0.875rem/1.5 system-ui, sans-serif;
 }
 .home-review-note > p { margin: 0 0 0.75rem; }
-.entry-page .home-keyhole {
-  position: relative;
-  container-type: inline-size;
-  text-align: center;
-  padding: clamp(25px, 5vw, 58px) clamp(12px, 4vw, 44px);
-  margin: 1rem 0 1.5rem;
-  border: 2px solid #a86c45;
-  border-inline-width: 9px;
-  border-radius: 12px;
-  background: #201810;
-  color: #f4ede0;
+.home-purpose-note > .home-purpose-title {
+  margin: 12px 0 20px;
+  font: 400 clamp(28px, 4.5vw, 36px)/1.2 Georgia, serif;
+  letter-spacing: -0.02em;
 }
-.home-keyhole::before {
-  content: "";
-  position: absolute;
-  inset: 8px;
-  border: 1px solid #6a5039;
-  border-radius: 7px;
-  pointer-events: none;
-}
-.home-keyhole-mark {
-  box-sizing: border-box;
-  width: clamp(60px, 12vw, 104px);
-  padding: 7px;
-  margin: 0 auto clamp(12px, 2.5vw, 23px);
-  border: 1px solid #9c7857;
-  border-radius: 50% 50% 4px 4px / 43% 43% 4px 4px;
-  background: #18130e;
-}
-.home-keyhole-mark img { display: block; width: 100%; height: auto; }
-.entry-page .home-keyhole-eyebrow {
-  margin: 0;
-  color: #d3af8b;
-  font: 600 clamp(.7rem, 2cqi, .92rem)/1.5 ui-monospace, monospace;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-}
-.entry-page .home-keyhole h1 {
-  display: block;
-  margin: .19em 0 .24em;
-  color: inherit;
-  font: italic 500 clamp(2.3rem, 11cqi, 7.25rem)/.96 Georgia, serif;
-  letter-spacing: -.045em;
-}
-.entry-page .home-keyhole-subtitle {
-  max-width: 36ch;
-  margin: 0 auto;
-  color: #ded1c0;
-  font: clamp(1.2rem, 3.3cqi, 1.85rem)/1.45 Georgia, serif;
-}
-html[data-theme="dark"] .entry-page .home-keyhole,
-html[data-theme="dark"] .home-keyhole::before { border-color: var(--accent); }
-html[data-theme="light"] .entry-page .home-keyhole {
-  background: #fff;
-  color: #35281f;
-}
-.home-keyhole::before { border: 0; }
-html[data-theme="light"] .home-keyhole-mark {
-  background: #faf5ed;
-  border-color: #a86c45;
-}
-html[data-theme="light"] .entry-page .home-keyhole h1 { font-weight: 400; }
-html[data-theme="light"] .entry-page .home-keyhole-eyebrow {
-  color: #794724;
-  font-weight: 400;
-}
-html[data-theme="light"] .entry-page .home-keyhole-subtitle {
-  color: #594739;
-  font-weight: 400;
-}
-html[data-hero="b"] .entry-page .home-keyhole { padding-block: clamp(18px, 2.5vw, 28px); }
-html[data-hero="b"] .home-keyhole-mark { width: clamp(50px, 8vw, 70px); margin-bottom: 8px; }
-
 .home-name { position: relative; }
 .home-name-trigger { padding: 0; border: 0; border-bottom: 1px dotted var(--accent); background: none; color: inherit; font: inherit; cursor: pointer; }
 .home-name-trigger:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
@@ -125,13 +57,9 @@ html[data-hero="b"] .home-keyhole-mark { width: clamp(50px, 8vw, 70px); margin-b
 .home-name-popup > span:last-child { margin-bottom: 0; }
 .home-name-pron { color: var(--accent); }
 </style>
-<script>
-if (new URLSearchParams(location.search).get('hero') === 'b') {
-  document.documentElement.dataset.hero = 'b';
-}
-</script>
 <meta property="og:image:alt" content="Plebum Dominium. A practical guide to Bitcoin self-custody. Test Site · Public Review.">
 <meta name="twitter:image:alt" content="Plebum Dominium. A practical guide to Bitcoin self-custody. Test Site · Public Review.">
+<link rel="stylesheet" href="/plebum-dominium-test/assets/css/home-hero.css?v=glow5">
 </head>
 <body class="home" id="top">
 <div class="splash" id="pd-splash" hidden aria-hidden="true">
@@ -146,8 +74,8 @@ if (new URLSearchParams(location.search).get('hero') === 'b') {
   <a class="ticker-label" href="/plebum-dominium-test/news.html">News</a>
   <span class="ticker-price" id="ticker-price" hidden></span>
   <div class="ticker-viewport"><div class="ticker-track">
-    <span class="ticker-set"><a class="ticker-item ticker-action" href="/plebum-dominium-test/new-to-bitcoin.html">New to Bitcoin? Start here →</a><span class="ticker-sep" aria-hidden="true">·</span><a class="ticker-item" href="/plebum-dominium-test/news.html#chainalysis-incident">Chainalysis restores key services after credential exposure <span class="ticker-date">Nov 7, 2026</span></a><span class="ticker-sep" aria-hidden="true">·</span><a class="ticker-item" href="/plebum-dominium-test/news.html#binance-outflows">Binance confirms $6.34 billion theft and publishes initial findings <span class="ticker-date">Nov 3, 2026</span></a><span class="ticker-sep" aria-hidden="true">·</span><a class="ticker-item" href="/plebum-dominium-test/news.html#mercado-bitcoin">Mercado Bitcoin theft: investigators estimate $49 million stolen <span class="ticker-date">Nov 2, 2026</span></a><span class="ticker-sep" aria-hidden="true">·</span><a class="ticker-item" href="/plebum-dominium-test/news.html#coinbase-amplitude">Coinbase vendor breach exposes customer contact data <span class="ticker-date">Oct 2026</span></a><span class="ticker-sep" aria-hidden="true">·</span><a class="ticker-item" href="/plebum-dominium-test/news.html#keystone-breach">Keystone breach exposes customer shipping addresses <span class="ticker-date">Oct 2026</span></a><span class="ticker-sep" aria-hidden="true">·</span></span>
-    <span class="ticker-set" aria-hidden="true"><a tabindex="-1" class="ticker-item ticker-action" href="/plebum-dominium-test/new-to-bitcoin.html">New to Bitcoin? Start here →</a><span class="ticker-sep" aria-hidden="true">·</span><a tabindex="-1" class="ticker-item" href="/plebum-dominium-test/news.html#chainalysis-incident">Chainalysis restores key services after credential exposure <span class="ticker-date">Nov 7, 2026</span></a><span class="ticker-sep" aria-hidden="true">·</span><a tabindex="-1" class="ticker-item" href="/plebum-dominium-test/news.html#binance-outflows">Binance confirms $6.34 billion theft and publishes initial findings <span class="ticker-date">Nov 3, 2026</span></a><span class="ticker-sep" aria-hidden="true">·</span><a tabindex="-1" class="ticker-item" href="/plebum-dominium-test/news.html#mercado-bitcoin">Mercado Bitcoin theft: investigators estimate $49 million stolen <span class="ticker-date">Nov 2, 2026</span></a><span class="ticker-sep" aria-hidden="true">·</span><a tabindex="-1" class="ticker-item" href="/plebum-dominium-test/news.html#coinbase-amplitude">Coinbase vendor breach exposes customer contact data <span class="ticker-date">Oct 2026</span></a><span class="ticker-sep" aria-hidden="true">·</span><a tabindex="-1" class="ticker-item" href="/plebum-dominium-test/news.html#keystone-breach">Keystone breach exposes customer shipping addresses <span class="ticker-date">Oct 2026</span></a><span class="ticker-sep" aria-hidden="true">·</span></span>
+    <span class="ticker-set"><a class="ticker-item ticker-action" href="/plebum-dominium-test/new-to-bitcoin.html">New to Bitcoin? Start here →</a><span class="ticker-sep" aria-hidden="true">·</span><a class="ticker-item" href="/plebum-dominium-test/news.html#chainalysis-incident">Chainalysis restores key services after credential exposure <span class="ticker-date">Nov 10, 2026</span></a><span class="ticker-sep" aria-hidden="true">·</span><a class="ticker-item" href="/plebum-dominium-test/news.html#binance-outflows">Binance confirms $6.34 billion theft and publishes initial findings <span class="ticker-date">Nov 3, 2026</span></a><span class="ticker-sep" aria-hidden="true">·</span><a class="ticker-item" href="/plebum-dominium-test/news.html#mercado-bitcoin">Mercado Bitcoin theft: investigators estimate $49 million stolen <span class="ticker-date">Nov 2, 2026</span></a><span class="ticker-sep" aria-hidden="true">·</span><a class="ticker-item" href="/plebum-dominium-test/news.html#coinbase-amplitude">Coinbase vendor breach exposes customer contact data <span class="ticker-date">Oct 2026</span></a><span class="ticker-sep" aria-hidden="true">·</span><a class="ticker-item" href="/plebum-dominium-test/news.html#keystone-breach">Keystone breach exposes customer shipping addresses <span class="ticker-date">Oct 2026</span></a><span class="ticker-sep" aria-hidden="true">·</span></span>
+    <span class="ticker-set" aria-hidden="true"><a tabindex="-1" class="ticker-item ticker-action" href="/plebum-dominium-test/new-to-bitcoin.html">New to Bitcoin? Start here →</a><span class="ticker-sep" aria-hidden="true">·</span><a tabindex="-1" class="ticker-item" href="/plebum-dominium-test/news.html#chainalysis-incident">Chainalysis restores key services after credential exposure <span class="ticker-date">Nov 10, 2026</span></a><span class="ticker-sep" aria-hidden="true">·</span><a tabindex="-1" class="ticker-item" href="/plebum-dominium-test/news.html#binance-outflows">Binance confirms $6.34 billion theft and publishes initial findings <span class="ticker-date">Nov 3, 2026</span></a><span class="ticker-sep" aria-hidden="true">·</span><a tabindex="-1" class="ticker-item" href="/plebum-dominium-test/news.html#mercado-bitcoin">Mercado Bitcoin theft: investigators estimate $49 million stolen <span class="ticker-date">Nov 2, 2026</span></a><span class="ticker-sep" aria-hidden="true">·</span><a tabindex="-1" class="ticker-item" href="/plebum-dominium-test/news.html#coinbase-amplitude">Coinbase vendor breach exposes customer contact data <span class="ticker-date">Oct 2026</span></a><span class="ticker-sep" aria-hidden="true">·</span><a tabindex="-1" class="ticker-item" href="/plebum-dominium-test/news.html#keystone-breach">Keystone breach exposes customer shipping addresses <span class="ticker-date">Oct 2026</span></a><span class="ticker-sep" aria-hidden="true">·</span></span>
   </div></div>
 </nav>
 <!-- /news-ticker -->
@@ -206,28 +134,55 @@ if (new URLSearchParams(location.search).get('hero') === 'b') {
   <main id="content">
     <article class="entry-page">
 <details class="entry-note home-review-note">
-  <summary><strong>Test site · No real wallet use</strong></summary>
-  <p><a href="/plebum-dominium-test/test-the-site.html"><strong>Test the guide: T1–T5 instructions, progress and what remains before beta →</strong></a></p>
-  <p>Review the guides and navigation only. Custody tools are not approved for real use; browser and Tails testing is incomplete. Do not enter real wallet data or send funds for this review. <a href="/plebum-dominium-test/downloads.html">Read the testing and download limitations</a>.</p>
+  <summary><strong>Test the site · T6 and T7 required before beta</strong></summary>
+  <p><strong>Two full wallet tests remain before beta:</strong> <a href="/plebum-dominium-test/test-the-site.html#t6">T6 · One key + passphrase</a> and <a href="/plebum-dominium-test/test-the-site.html#t7">T7 · Three keys / 2-of-3</a>. Both must pass setup, offline-software signing and recovery using disposable paper records. Follow each test’s own finishing requirements. Metal comes after testing and is not a requirement for either test.</p>
+  <p><a href="/plebum-dominium-test/test-the-site.html#beta-tests"><strong>See T6/T7 steps, T1–T5 results and the beta checklist →</strong></a></p>
+  <p>Use disposable test data and the designated test network only. Custody tools are not approved for real use. Windows and Tails results are recorded; evidence review and final release checks remain. Do not enter real wallet data or send real funds. <a href="/plebum-dominium-test/downloads.html">Read the testing and download limitations</a>.</p>
   <p><a href="https://docs.google.com/forms/d/e/1FAIpQLSfOkY3FrZmZpIVro5oxWLy_YvU7U-1BOrL3KB9VCI3jXjad2Q/viewform" rel="noreferrer">Give feedback on the test site (Google Form)</a>. Include the page link and what you expected. Never submit wallet secrets.</p>
 </details>
 
 
 <details class="entry-note home-review-note home-purpose-note" id="purpose">
-  <summary><strong>Why this guide exists</strong></summary>
-  <p>The Ledger hacks were what pushed me to make this guide. I’ve been in Bitcoin since 2021. My first hardware wallet was a Ledger Nano X, and I held most of my stack in self-custody on it. When the hacks hit the news, I got tired of wondering if I would be next and checking every day that I still had my Bitcoin.</p>
-  <p>That fear pushed me to build my own self-custody setup and write down what I learned. I have always wanted to be a web developer, and I love to teach. Sharing what I figured out for myself was the natural next step.</p>
-  <p>I want this guide to help you understand your choices, check the tools you use, protect your backups, and practice recovery. The goal is a setup you understand and can take responsibility for.</p>
+  <summary><strong>A note from the author</strong></summary>
+  <h2 class="home-purpose-title"><em>Why This Guide Exists</em></h2>
+  <p>The Ledger hacks were what pushed me to build this guide. I’ve been in Bitcoin since 2021. My first hardware wallet was a Ledger Nano X, and I held most of my stack in self-custody on it. When the hacks hit the news, I got tired of wondering if I would be next and checking every day that I still had my Bitcoin.</p>
+  <p>That fear pushed me to build my own secure self-custody setup and write down what I learned. I have always wanted to be a web developer, and I love to teach. Sharing what I figured out for myself was the natural next step.</p>
+  <p>I want this guide to help you understand your choices, check the tools you use, protect your backups, and practice recovery. It is <em>absolutely free to use</em>. The goal is a setup you understand and can take responsibility for.</p>
   <p>Questions or feedback? Contact me at <a href="mailto:Muststackmoresats@gmail.com">Muststackmoresats@gmail.com</a> or on X at <a href="https://x.com/MustHaveMustash" target="_blank" rel="noopener noreferrer">@MustHaveMustash</a>.</p>
 </details>
 
-<header class="home-keyhole">
-  <div class="home-keyhole-mark"><img src="/plebum-dominium-test/assets/img/logo-pleb-key.svg" alt="" width="104" height="104"></div>
-  <p class="home-keyhole-eyebrow">Independent at-home Bitcoin self-custody</p>
-  <h1>Plebum Dominium</h1>
-
-  <p class="home-keyhole-subtitle">Bitcoin self-custody without a hardware wallet. Create and verify keys offline, back them up on metal, then sign with offline software.</p>
-</header>
+<div id="plebum-home-hero">
+  <section class="pd-hero" aria-labelledby="pd-leader-title">
+    <div class="pd-head">
+      <p class="pd-eyebrow">THE PLEB’S WORKBENCH<span class="pd-edition">A guide to self-custody</span></p>
+      <img class="pd-logo" src="data:image/svg+xml;base64,PHN2ZyBhcmlhLWhpZGRlbj0idHJ1ZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgMTIwIDEyMCI+CiAgCiAgPCEtLSBmaWd1cmUgLS0+CiAgPGNpcmNsZSBjeD0iNDQiIGN5PSIzNCIgcj0iMTEiIGZpbGw9IiNjNGE0ODQiLz4KICA8cGF0aCBkPSJNMjYsMTA2IEwzNCw1NiBRNDQsNDcgNTQsNTYgTDYwLDEwMCBMNTIsMTAyIEw0Nyw3MiBMNDIsNzIgTDM4LDEwMiBMMjgsMTA2IFoiIGZpbGw9IiM4YTVmMzYiLz4KICA8IS0tIGFybSByZWFjaGluZyB0byB0aGUga2V5IC0tPgogIDxsaW5lIHgxPSI1MiIgeTE9IjYyIiB4Mj0iNzIiIHkyPSI1MiIgc3Ryb2tlPSIjOGE1ZjM2IiBzdHJva2Utd2lkdGg9IjciIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDwhLS0ga2V5IGhlbGQgdXByaWdodCAtLT4KICA8ZyBzdHJva2U9IiNjNGE0ODQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgZmlsbD0ibm9uZSI+CiAgICA8Y2lyY2xlIGN4PSI4MiIgY3k9IjM0IiByPSI4IiBzdHJva2Utd2lkdGg9IjQuNSIvPgogICAgPGxpbmUgeDE9Ijc5IiB5MT0iNDEiIHgyPSI3MCIgeTI9IjY2IiBzdHJva2Utd2lkdGg9IjQuNSIvPgogICAgPGxpbmUgeDE9Ijc0IiB5MT0iNTYiIHgyPSI4MyIgeTI9IjYwIiBzdHJva2Utd2lkdGg9IjQuNSIvPgogICAgPGxpbmUgeDE9IjcwIiB5MT0iNjYiIHgyPSI3OSIgeTI9IjY5IiBzdHJva2Utd2lkdGg9IjQuNSIvPgogIDwvZz4KPC9zdmc+" width="76" height="76" alt="Plebum Dominium: a person holding a key">
+    </div>
+    <div class="pd-title-block">
+      <h1 id="pd-leader-title"><span>Plebum</span><span>Dominium</span></h1>
+      <p class="pd-subtitle">Independent at-home Bitcoin <span style="white-space:nowrap">self-custody</span></p>
+    </div>
+    <div class="pd-shelf" aria-label="Bitcoin, five dice, home, and three metal stamp plates">
+      <button type="button" class="pd-item" data-pd-topic="bitcoin" aria-expanded="false" aria-controls="pd-leader-definition"><span class="pd-item-number" aria-hidden="true">01</span><span class="pd-art" aria-hidden="true"><img class="pd-light" alt="" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGNsYXNzPSJoZXJvLWJpdGNvaW4iIHZpZXdCb3g9IjAgMCAxMDAgMTAwIiBhcmlhLWhpZGRlbj0idHJ1ZSI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJjb2luLWZhY2UtNSIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPjxzdG9wIHN0b3AtY29sb3I9IiM5MzY0M2YiIHN0b3Atb3BhY2l0eT0iLjEzIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjOTM2NDNmIiBzdG9wLW9wYWNpdHk9Ii4wMyIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxjaXJjbGUgY3g9IjUwIiBjeT0iNTAiIHI9IjQzIiBmaWxsPSJ1cmwoI2NvaW4tZmFjZS01KSIgc3Ryb2tlPSIjOTM2NDNmIiBzdHJva2Utd2lkdGg9IjIiLz48Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSIzNiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjOTM2NDNmIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9Ii4zIi8+PHRleHQgeD0iNTAiIHk9IjcwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjOTM2NDNmIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNjMiIHRyYW5zZm9ybT0icm90YXRlKDEyIDUwIDUwKSI+4oK/PC90ZXh0Pjwvc3ZnPg=="><img class="pd-dark" alt="" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGNsYXNzPSJoZXJvLWJpdGNvaW4iIHZpZXdCb3g9IjAgMCAxMDAgMTAwIiBhcmlhLWhpZGRlbj0idHJ1ZSI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJjb2luLWZhY2UtNSIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPjxzdG9wIHN0b3AtY29sb3I9IiNjNGE0ODQiIHN0b3Atb3BhY2l0eT0iLjEzIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjYzRhNDg0IiBzdG9wLW9wYWNpdHk9Ii4wMyIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxjaXJjbGUgY3g9IjUwIiBjeT0iNTAiIHI9IjQzIiBmaWxsPSJ1cmwoI2NvaW4tZmFjZS01KSIgc3Ryb2tlPSIjYzRhNDg0IiBzdHJva2Utd2lkdGg9IjIiLz48Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSIzNiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYzRhNDg0IiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9Ii4zIi8+PHRleHQgeD0iNTAiIHk9IjcwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYzRhNDg0IiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNjMiIHRyYW5zZm9ybT0icm90YXRlKDEyIDUwIDUwKSI+4oK/PC90ZXh0Pjwvc3ZnPg=="></span><span class="pd-item-hint" aria-hidden="true">+</span><span class="pd-item-label">BITCOIN</span></button>
+      <button type="button" class="pd-item" data-pd-topic="dice" aria-expanded="false" aria-controls="pd-leader-definition"><span class="pd-item-number" aria-hidden="true">02</span><span class="pd-art" aria-hidden="true"><img class="pd-light" alt="" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGNsYXNzPSJoZXJvLWZpdmUtZGljZSIgdmlld0JveD0iMCAwIDExMiAxMDgiIGFyaWEtaGlkZGVuPSJ0cnVlIj48ZyBjbGFzcz0iZGllIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxMSA1KSByb3RhdGUoLTEyIDE1IDE1KSI+PHJlY3QgeD0iMSIgeT0iMSIgd2lkdGg9IjI5IiBoZWlnaHQ9IjI5IiByeD0iNSIgZmlsbD0iI2ZmZmRmOSIgc3Ryb2tlPSIjOTM2NDNmIiBzdHJva2Utd2lkdGg9IjEuNiIvPjxjaXJjbGUgY3g9IjE1IiBjeT0iMTUiIHI9IjIuMSIgZmlsbD0iIzkzNjQzZiIvPjwvZz48ZyBjbGFzcz0iZGllIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg2MiA3KSByb3RhdGUoMTAgMTUgMTUpIj48cmVjdCB4PSIxIiB5PSIxIiB3aWR0aD0iMjkiIGhlaWdodD0iMjkiIHJ4PSI1IiBmaWxsPSIjZmZmZGY5IiBzdHJva2U9IiM5MzY0M2YiIHN0cm9rZS13aWR0aD0iMS42Ii8+PGNpcmNsZSBjeD0iOCIgY3k9IjgiIHI9IjIuMSIgZmlsbD0iIzkzNjQzZiIvPjxjaXJjbGUgY3g9IjIyIiBjeT0iMjIiIHI9IjIuMSIgZmlsbD0iIzkzNjQzZiIvPjwvZz48ZyBjbGFzcz0iZGllIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgzNiAzOSkgcm90YXRlKC0zIDE1IDE1KSI+PHJlY3QgeD0iMSIgeT0iMSIgd2lkdGg9IjI5IiBoZWlnaHQ9IjI5IiByeD0iNSIgZmlsbD0iI2ZmZmRmOSIgc3Ryb2tlPSIjOTM2NDNmIiBzdHJva2Utd2lkdGg9IjEuNiIvPjxjaXJjbGUgY3g9IjgiIGN5PSI4IiByPSIyLjEiIGZpbGw9IiM5MzY0M2YiLz48Y2lyY2xlIGN4PSIxNSIgY3k9IjE1IiByPSIyLjEiIGZpbGw9IiM5MzY0M2YiLz48Y2lyY2xlIGN4PSIyMiIgY3k9IjIyIiByPSIyLjEiIGZpbGw9IiM5MzY0M2YiLz48L2c+PGcgY2xhc3M9ImRpZSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNSA3Mykgcm90YXRlKC0xMCAxNSAxNSkiPjxyZWN0IHg9IjEiIHk9IjEiIHdpZHRoPSIyOSIgaGVpZ2h0PSIyOSIgcng9IjUiIGZpbGw9IiNmZmZkZjkiIHN0cm9rZT0iIzkzNjQzZiIgc3Ryb2tlLXdpZHRoPSIxLjYiLz48Y2lyY2xlIGN4PSI4IiBjeT0iOCIgcj0iMi4xIiBmaWxsPSIjOTM2NDNmIi8+PGNpcmNsZSBjeD0iMjIiIGN5PSI4IiByPSIyLjEiIGZpbGw9IiM5MzY0M2YiLz48Y2lyY2xlIGN4PSI4IiBjeT0iMjIiIHI9IjIuMSIgZmlsbD0iIzkzNjQzZiIvPjxjaXJjbGUgY3g9IjIyIiBjeT0iMjIiIHI9IjIuMSIgZmlsbD0iIzkzNjQzZiIvPjwvZz48ZyBjbGFzcz0iZGllIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg3NCA3Mikgcm90YXRlKDExIDE1IDE1KSI+PHJlY3QgeD0iMSIgeT0iMSIgd2lkdGg9IjI5IiBoZWlnaHQ9IjI5IiByeD0iNSIgZmlsbD0iI2ZmZmRmOSIgc3Ryb2tlPSIjOTM2NDNmIiBzdHJva2Utd2lkdGg9IjEuNiIvPjxjaXJjbGUgY3g9IjgiIGN5PSI4IiByPSIyLjEiIGZpbGw9IiM5MzY0M2YiLz48Y2lyY2xlIGN4PSIyMiIgY3k9IjgiIHI9IjIuMSIgZmlsbD0iIzkzNjQzZiIvPjxjaXJjbGUgY3g9IjE1IiBjeT0iMTUiIHI9IjIuMSIgZmlsbD0iIzkzNjQzZiIvPjxjaXJjbGUgY3g9IjgiIGN5PSIyMiIgcj0iMi4xIiBmaWxsPSIjOTM2NDNmIi8+PGNpcmNsZSBjeD0iMjIiIGN5PSIyMiIgcj0iMi4xIiBmaWxsPSIjOTM2NDNmIi8+PC9nPjwvc3ZnPg=="><img class="pd-dark" alt="" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGNsYXNzPSJoZXJvLWZpdmUtZGljZSIgdmlld0JveD0iMCAwIDExMiAxMDgiIGFyaWEtaGlkZGVuPSJ0cnVlIj48ZyBjbGFzcz0iZGllIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxMSA1KSByb3RhdGUoLTEyIDE1IDE1KSI+PHJlY3QgeD0iMSIgeT0iMSIgd2lkdGg9IjI5IiBoZWlnaHQ9IjI5IiByeD0iNSIgZmlsbD0iIzE5MTcxNCIgc3Ryb2tlPSIjYzRhNDg0IiBzdHJva2Utd2lkdGg9IjEuNiIvPjxjaXJjbGUgY3g9IjE1IiBjeT0iMTUiIHI9IjIuMSIgZmlsbD0iI2M0YTQ4NCIvPjwvZz48ZyBjbGFzcz0iZGllIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg2MiA3KSByb3RhdGUoMTAgMTUgMTUpIj48cmVjdCB4PSIxIiB5PSIxIiB3aWR0aD0iMjkiIGhlaWdodD0iMjkiIHJ4PSI1IiBmaWxsPSIjMTkxNzE0IiBzdHJva2U9IiNjNGE0ODQiIHN0cm9rZS13aWR0aD0iMS42Ii8+PGNpcmNsZSBjeD0iOCIgY3k9IjgiIHI9IjIuMSIgZmlsbD0iI2M0YTQ4NCIvPjxjaXJjbGUgY3g9IjIyIiBjeT0iMjIiIHI9IjIuMSIgZmlsbD0iI2M0YTQ4NCIvPjwvZz48ZyBjbGFzcz0iZGllIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgzNiAzOSkgcm90YXRlKC0zIDE1IDE1KSI+PHJlY3QgeD0iMSIgeT0iMSIgd2lkdGg9IjI5IiBoZWlnaHQ9IjI5IiByeD0iNSIgZmlsbD0iIzE5MTcxNCIgc3Ryb2tlPSIjYzRhNDg0IiBzdHJva2Utd2lkdGg9IjEuNiIvPjxjaXJjbGUgY3g9IjgiIGN5PSI4IiByPSIyLjEiIGZpbGw9IiNjNGE0ODQiLz48Y2lyY2xlIGN4PSIxNSIgY3k9IjE1IiByPSIyLjEiIGZpbGw9IiNjNGE0ODQiLz48Y2lyY2xlIGN4PSIyMiIgY3k9IjIyIiByPSIyLjEiIGZpbGw9IiNjNGE0ODQiLz48L2c+PGcgY2xhc3M9ImRpZSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNSA3Mykgcm90YXRlKC0xMCAxNSAxNSkiPjxyZWN0IHg9IjEiIHk9IjEiIHdpZHRoPSIyOSIgaGVpZ2h0PSIyOSIgcng9IjUiIGZpbGw9IiMxOTE3MTQiIHN0cm9rZT0iI2M0YTQ4NCIgc3Ryb2tlLXdpZHRoPSIxLjYiLz48Y2lyY2xlIGN4PSI4IiBjeT0iOCIgcj0iMi4xIiBmaWxsPSIjYzRhNDg0Ii8+PGNpcmNsZSBjeD0iMjIiIGN5PSI4IiByPSIyLjEiIGZpbGw9IiNjNGE0ODQiLz48Y2lyY2xlIGN4PSI4IiBjeT0iMjIiIHI9IjIuMSIgZmlsbD0iI2M0YTQ4NCIvPjxjaXJjbGUgY3g9IjIyIiBjeT0iMjIiIHI9IjIuMSIgZmlsbD0iI2M0YTQ4NCIvPjwvZz48ZyBjbGFzcz0iZGllIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg3NCA3Mikgcm90YXRlKDExIDE1IDE1KSI+PHJlY3QgeD0iMSIgeT0iMSIgd2lkdGg9IjI5IiBoZWlnaHQ9IjI5IiByeD0iNSIgZmlsbD0iIzE5MTcxNCIgc3Ryb2tlPSIjYzRhNDg0IiBzdHJva2Utd2lkdGg9IjEuNiIvPjxjaXJjbGUgY3g9IjgiIGN5PSI4IiByPSIyLjEiIGZpbGw9IiNjNGE0ODQiLz48Y2lyY2xlIGN4PSIyMiIgY3k9IjgiIHI9IjIuMSIgZmlsbD0iI2M0YTQ4NCIvPjxjaXJjbGUgY3g9IjE1IiBjeT0iMTUiIHI9IjIuMSIgZmlsbD0iI2M0YTQ4NCIvPjxjaXJjbGUgY3g9IjgiIGN5PSIyMiIgcj0iMi4xIiBmaWxsPSIjYzRhNDg0Ii8+PGNpcmNsZSBjeD0iMjIiIGN5PSIyMiIgcj0iMi4xIiBmaWxsPSIjYzRhNDg0Ii8+PC9nPjwvc3ZnPg=="></span><span class="pd-item-hint" aria-hidden="true">+</span><span class="pd-item-label">DICE</span></button>
+      <button type="button" class="pd-item" data-pd-topic="home" aria-expanded="false" aria-controls="pd-leader-definition"><span class="pd-item-number" aria-hidden="true">03</span><span class="pd-art" aria-hidden="true"><img class="pd-light" alt="" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGNsYXNzPSJoZXJvLWhvbWUiIHZpZXdCb3g9IjAgMCAxMDAgMTAwIiBhcmlhLWhpZGRlbj0idHJ1ZSI+PHBhdGggZD0iTTEwIDQ2IDUwIDEyIDkwIDQ2IiBmaWxsPSJub25lIiBzdHJva2U9IiM5MzY0M2YiIHN0cm9rZS13aWR0aD0iMyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PHBhdGggZD0iTTIwIDQwdjQ3aDYwVjQwTTQwIDg3VjYwaDIwdjI3IiBmaWxsPSJub25lIiBzdHJva2U9IiM5MzY0M2YiIHN0cm9rZS13aWR0aD0iMyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PHBhdGggZD0iTTcwIDI4VjE1aDEwdjIyIiBmaWxsPSJub25lIiBzdHJva2U9IiM5MzY0M2YiIHN0cm9rZS13aWR0aD0iMyIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjxyZWN0IHg9IjI4IiB5PSI0OCIgd2lkdGg9IjEwIiBoZWlnaHQ9IjEwIiByeD0iMSIgZmlsbD0iIzkzNjQzZiIgb3BhY2l0eT0iLjE4Ii8+PC9zdmc+"><img class="pd-dark" alt="" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGNsYXNzPSJoZXJvLWhvbWUiIHZpZXdCb3g9IjAgMCAxMDAgMTAwIiBhcmlhLWhpZGRlbj0idHJ1ZSI+PHBhdGggZD0iTTEwIDQ2IDUwIDEyIDkwIDQ2IiBmaWxsPSJub25lIiBzdHJva2U9IiNjNGE0ODQiIHN0cm9rZS13aWR0aD0iMyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PHBhdGggZD0iTTIwIDQwdjQ3aDYwVjQwTTQwIDg3VjYwaDIwdjI3IiBmaWxsPSJub25lIiBzdHJva2U9IiNjNGE0ODQiIHN0cm9rZS13aWR0aD0iMyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PHBhdGggZD0iTTcwIDI4VjE1aDEwdjIyIiBmaWxsPSJub25lIiBzdHJva2U9IiNjNGE0ODQiIHN0cm9rZS13aWR0aD0iMyIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjxyZWN0IHg9IjI4IiB5PSI0OCIgd2lkdGg9IjEwIiBoZWlnaHQ9IjEwIiByeD0iMSIgZmlsbD0iI2M0YTQ4NCIgb3BhY2l0eT0iLjE4Ii8+PC9zdmc+"></span><span class="pd-item-hint" aria-hidden="true">+</span><span class="pd-item-label">AT HOME</span></button>
+      <button type="button" class="pd-item" data-pd-topic="metal" aria-expanded="false" aria-controls="pd-leader-definition"><span class="pd-item-number" aria-hidden="true">04</span><span class="pd-art" aria-hidden="true"><img class="pd-light" alt="" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGNsYXNzPSJoZXJvLXBsYXRlcyIgdmlld0JveD0iMCAwIDExNiAxMDAiIGFyaWEtaGlkZGVuPSJ0cnVlIj48ZyBjbGFzcz0ic3RhbXAtcGxhdGUiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDM5IDUpIj48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iNjgiIGhlaWdodD0iNjAiIHJ4PSI1IiBmaWxsPSIjZmZmZGY5IiBzdHJva2U9IiM5MzY0M2YiIHN0cm9rZS13aWR0aD0iMiIvPjxjaXJjbGUgY3g9IjgiIGN5PSI4IiByPSIyLjQiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzkzNjQzZiIgc3Ryb2tlLXdpZHRoPSIxLjMiLz48Y2lyY2xlIGN4PSI2MCIgY3k9IjgiIHI9IjIuNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjOTM2NDNmIiBzdHJva2Utd2lkdGg9IjEuMyIvPjxwYXRoIGQ9Ik0xMiAyNWgxN204IDBoMTgiIHN0cm9rZT0iIzkzNjQzZiIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIG9wYWNpdHk9Ii42NSIvPjxwYXRoIGQ9Ik0xMiAzNWgxN204IDBoMTgiIHN0cm9rZT0iIzkzNjQzZiIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIG9wYWNpdHk9Ii42NSIvPjxwYXRoIGQ9Ik0xMiA0NWgxN204IDBoMTgiIHN0cm9rZT0iIzkzNjQzZiIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIG9wYWNpdHk9Ii42NSIvPjwvZz48ZyBjbGFzcz0ic3RhbXAtcGxhdGUiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDIzIDE4KSI+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjY4IiBoZWlnaHQ9IjYwIiByeD0iNSIgZmlsbD0iI2ZmZmRmOSIgc3Ryb2tlPSIjOTM2NDNmIiBzdHJva2Utd2lkdGg9IjIiLz48Y2lyY2xlIGN4PSI4IiBjeT0iOCIgcj0iMi40IiBmaWxsPSJub25lIiBzdHJva2U9IiM5MzY0M2YiIHN0cm9rZS13aWR0aD0iMS4zIi8+PGNpcmNsZSBjeD0iNjAiIGN5PSI4IiByPSIyLjQiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzkzNjQzZiIgc3Ryb2tlLXdpZHRoPSIxLjMiLz48cGF0aCBkPSJNMTIgMjVoMTdtOCAwaDE4IiBzdHJva2U9IiM5MzY0M2YiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBvcGFjaXR5PSIuNjUiLz48cGF0aCBkPSJNMTIgMzVoMTdtOCAwaDE4IiBzdHJva2U9IiM5MzY0M2YiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBvcGFjaXR5PSIuNjUiLz48cGF0aCBkPSJNMTIgNDVoMTdtOCAwaDE4IiBzdHJva2U9IiM5MzY0M2YiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBvcGFjaXR5PSIuNjUiLz48L2c+PGcgY2xhc3M9InN0YW1wLXBsYXRlIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg3IDMxKSI+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjY4IiBoZWlnaHQ9IjYwIiByeD0iNSIgZmlsbD0iI2ZmZmRmOSIgc3Ryb2tlPSIjOTM2NDNmIiBzdHJva2Utd2lkdGg9IjIiLz48Y2lyY2xlIGN4PSI4IiBjeT0iOCIgcj0iMi40IiBmaWxsPSJub25lIiBzdHJva2U9IiM5MzY0M2YiIHN0cm9rZS13aWR0aD0iMS4zIi8+PGNpcmNsZSBjeD0iNjAiIGN5PSI4IiByPSIyLjQiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzkzNjQzZiIgc3Ryb2tlLXdpZHRoPSIxLjMiLz48cGF0aCBkPSJNMTIgMjVoMTdtOCAwaDE4IiBzdHJva2U9IiM5MzY0M2YiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBvcGFjaXR5PSIuNjUiLz48cGF0aCBkPSJNMTIgMzVoMTdtOCAwaDE4IiBzdHJva2U9IiM5MzY0M2YiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBvcGFjaXR5PSIuNjUiLz48cGF0aCBkPSJNMTIgNDVoMTdtOCAwaDE4IiBzdHJva2U9IiM5MzY0M2YiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBvcGFjaXR5PSIuNjUiLz48L2c+PC9zdmc+"><img class="pd-dark" alt="" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGNsYXNzPSJoZXJvLXBsYXRlcyIgdmlld0JveD0iMCAwIDExNiAxMDAiIGFyaWEtaGlkZGVuPSJ0cnVlIj48ZyBjbGFzcz0ic3RhbXAtcGxhdGUiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDM5IDUpIj48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iNjgiIGhlaWdodD0iNjAiIHJ4PSI1IiBmaWxsPSIjMTkxNzE0IiBzdHJva2U9IiNjNGE0ODQiIHN0cm9rZS13aWR0aD0iMiIvPjxjaXJjbGUgY3g9IjgiIGN5PSI4IiByPSIyLjQiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2M0YTQ4NCIgc3Ryb2tlLXdpZHRoPSIxLjMiLz48Y2lyY2xlIGN4PSI2MCIgY3k9IjgiIHI9IjIuNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYzRhNDg0IiBzdHJva2Utd2lkdGg9IjEuMyIvPjxwYXRoIGQ9Ik0xMiAyNWgxN204IDBoMTgiIHN0cm9rZT0iI2M0YTQ4NCIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIG9wYWNpdHk9Ii42NSIvPjxwYXRoIGQ9Ik0xMiAzNWgxN204IDBoMTgiIHN0cm9rZT0iI2M0YTQ4NCIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIG9wYWNpdHk9Ii42NSIvPjxwYXRoIGQ9Ik0xMiA0NWgxN204IDBoMTgiIHN0cm9rZT0iI2M0YTQ4NCIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIG9wYWNpdHk9Ii42NSIvPjwvZz48ZyBjbGFzcz0ic3RhbXAtcGxhdGUiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDIzIDE4KSI+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjY4IiBoZWlnaHQ9IjYwIiByeD0iNSIgZmlsbD0iIzE5MTcxNCIgc3Ryb2tlPSIjYzRhNDg0IiBzdHJva2Utd2lkdGg9IjIiLz48Y2lyY2xlIGN4PSI4IiBjeT0iOCIgcj0iMi40IiBmaWxsPSJub25lIiBzdHJva2U9IiNjNGE0ODQiIHN0cm9rZS13aWR0aD0iMS4zIi8+PGNpcmNsZSBjeD0iNjAiIGN5PSI4IiByPSIyLjQiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2M0YTQ4NCIgc3Ryb2tlLXdpZHRoPSIxLjMiLz48cGF0aCBkPSJNMTIgMjVoMTdtOCAwaDE4IiBzdHJva2U9IiNjNGE0ODQiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBvcGFjaXR5PSIuNjUiLz48cGF0aCBkPSJNMTIgMzVoMTdtOCAwaDE4IiBzdHJva2U9IiNjNGE0ODQiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBvcGFjaXR5PSIuNjUiLz48cGF0aCBkPSJNMTIgNDVoMTdtOCAwaDE4IiBzdHJva2U9IiNjNGE0ODQiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBvcGFjaXR5PSIuNjUiLz48L2c+PGcgY2xhc3M9InN0YW1wLXBsYXRlIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg3IDMxKSI+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjY4IiBoZWlnaHQ9IjYwIiByeD0iNSIgZmlsbD0iIzE5MTcxNCIgc3Ryb2tlPSIjYzRhNDg0IiBzdHJva2Utd2lkdGg9IjIiLz48Y2lyY2xlIGN4PSI4IiBjeT0iOCIgcj0iMi40IiBmaWxsPSJub25lIiBzdHJva2U9IiNjNGE0ODQiIHN0cm9rZS13aWR0aD0iMS4zIi8+PGNpcmNsZSBjeD0iNjAiIGN5PSI4IiByPSIyLjQiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2M0YTQ4NCIgc3Ryb2tlLXdpZHRoPSIxLjMiLz48cGF0aCBkPSJNMTIgMjVoMTdtOCAwaDE4IiBzdHJva2U9IiNjNGE0ODQiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBvcGFjaXR5PSIuNjUiLz48cGF0aCBkPSJNMTIgMzVoMTdtOCAwaDE4IiBzdHJva2U9IiNjNGE0ODQiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBvcGFjaXR5PSIuNjUiLz48cGF0aCBkPSJNMTIgNDVoMTdtOCAwaDE4IiBzdHJva2U9IiNjNGE0ODQiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBvcGFjaXR5PSIuNjUiLz48L2c+PC9zdmc+"></span><span class="pd-item-hint" aria-hidden="true">+</span><span class="pd-item-label">ON METAL</span></button>
+    </div>
+    <svg class="pd-leader" aria-hidden="true" hidden xmlns="http://www.w3.org/2000/svg">
+      <polyline points=""></polyline><circle cx="0" cy="0" r="3"></circle>
+    </svg>
+    <aside class="pd-popout" id="pd-leader-definition" role="dialog" aria-modal="false" aria-labelledby="pd-pop-title" aria-describedby="pd-pop-text" hidden>
+      <div class="pd-pop-head">
+        <span class="pd-pop-index" aria-hidden="true"></span>
+        <h2 class="pd-pop-title" id="pd-pop-title"></h2>
+        <button class="pd-pop-close" type="button" aria-label="Close definition">×</button>
+      </div>
+      <p class="pd-pop-text" id="pd-pop-text"></p>
+    </aside>
+    <span class="pd-sr" data-pd-announcement aria-live="polite" aria-atomic="true"></span>
+    <p class="pd-foot"><strong>Hardware signers are optional.</strong></p>
+  </section>
+  <p class="pd-context">The complete interactive guide works offline.</p>
+</div>
 <p><span class="home-name"><button type="button" class="home-name-trigger" aria-expanded="false" aria-controls="home-name-popup">Plebum Dominium</button><span class="home-name-popup" id="home-name-popup" role="region" aria-label="About the name" hidden>
       <span><strong>Plebum Dominium</strong></span>
       <span class="home-name-pron">PLAY-boom doh-MIN-ee-oom</span>
@@ -235,8 +190,25 @@ if (new URLSearchParams(location.search).get('hero') === 'b') {
       <span>The name expresses <strong>“Ownership by the common people.”</strong> Here, that means holding your own Bitcoin and controlling the keys.</span>
     </span></span> teaches self-custody without a hardware wallet. Both paths use offline software. A hardware wallet is an optional signing tool only after the metal backups are complete and checked.</p>
 
-<section class="entry-section" id="what"><p class="entry-label">The work ahead</p><h2>Build confidence one step at a time</h2>
-<div class="entry-grid"><div class="entry-card"><h3>Understand</h3><p>Identify the failures you need to survive. Choose a setup you and your recovery helper can maintain.</p></div><div class="entry-card"><h3>Verify</h3><p>Check software sources, wallet details, and backup records. A second tool is useful only when the check is meaningfully independent.</p></div><div class="entry-card"><h3>Protect</h3><p>Keep signing secrets offline and plan separate backup locations. Record the public wallet configuration needed for recovery.</p></div><div class="entry-card"><h3>Rehearse</h3><p>Restore, receive, and spend with test funds. Write instructions that still make sense when the original device is gone.</p></div></div></section>
+<section class="entry-section" id="offline-guide">
+<p class="entry-label">Take the whole guide with you</p>
+<h2>The entire guide is an offline tool.</h2>
+<p>Download Plebum Dominium and use the complete working guide in its original interactive form without an internet connection. Both paths, navigation, instructions, diagrams and the included tools travel together.</p>
+<p>Extract the complete offline ZIP and open <code>START.html</code>. You can read, learn and test the included tools on a disconnected computer, following the same guide you see here.</p>
+<p><a href="/plebum-dominium-test/downloads.html#offline-tester">Download the complete offline guide →</a></p>
+<p class="entry-note">Install any required external software before disconnecting. External links, submitting feedback and broadcasting transactions need a connection. Use public test data while the project remains under review.</p>
+</section>
+<section class="entry-section" id="what">
+<p class="entry-label">You do the work</p>
+<h2>Self-custody takes proof of work.</h2>
+<p>Reading is the beginning. Like Bitcoin, this guide puts work and verification at the center. Here, your proof is hands-on practice: you generate the entropy, verify the tools, make the metal backups and practice recovery. Confidence comes from doing the work and checking the results.</p>
+<div class="entry-grid">
+<div class="entry-card"><h3>Roll your own entropy</h3><p>You roll the dice and use the offline converter to turn the results into seed words. Learn what the rolls contribute and check the output.</p></div>
+<div class="entry-card"><h3>Verify the tools</h3><p>You check downloads, software sources and wallet details. Follow the checks yourself and compare the results with what the guide says to expect.</p></div>
+<div class="entry-card"><h3>Practice getting it back</h3><p>You restore, receive and spend with test funds. Rehearse recovery and handover so the plan still works when the original setup is gone.</p></div>
+<div class="entry-card"><h3>Make the metal backups</h3><p>You put the recovery information on metal, check it and plan separate storage. A hardware wallet is optional for signing only after the metal backups are complete and checked.</p></div>
+</div>
+</section>
 <section class="entry-section" id="why"><p class="entry-label">Two approaches</p><h2>Choose the tradeoffs you can manage</h2><p>More components can distribute risk and also create more ways to make a mistake. Neither setup is automatically the safest for everyone.</p>
 <div class="entry-grid"><div class="entry-card"><h3>One key + a passphrase</h3><p>A simpler signing arrangement with an additional recovery secret. Both the seed backup and exact passphrase must remain available.</p><p><strong>Watch for:</strong> a forgotten passphrase, compromised signer, or backups that are stored together.</p></div><div class="entry-card"><h3>Three keys · 2-of-3</h3><p>Two signing keys authorize a spend. Proper separation can tolerate one unavailable key, but recovery also depends on the complete wallet configuration.</p><p><strong>Watch for:</strong> shared-device compromise, missing public-key records, and recovery complexity.</p></div></div>
 <p class="entry-note">Dice can supply seed entropy when used correctly. They do not make a compromised computer or signing implementation safe.</p>
@@ -263,7 +235,7 @@ if (new URLSearchParams(location.search).get('hero') === 'b') {
   <p><strong>Plebum Dominium</strong>: independent at-home Bitcoin self-custody.</p>
   <p>Educational material, not financial advice. Bitcoin self-custody is irreversible. A mistake can permanently lose funds. Verify every download from its original source.</p>
   <p><a href="/plebum-dominium-test/kit/VERIFY.md">File fingerprints</a> · <a href="/plebum-dominium-test/downloads.html">Downloads</a> · <a href="/plebum-dominium-test/downloads.html#legacy-document-status">Current printable guide and legacy document status</a> · <a href="/plebum-dominium-test/news.html">News</a> · <a href="/plebum-dominium-test/beyond.html">Beyond the kit</a></p>
-  <p class="footer-updated">Last updated November 2, 2026</p>
+  <p class="footer-updated">Last updated November 12, 2026 · Public alpha</p>
   <p class="footer-contact">Contact: <a href="mailto:Muststackmoresats@gmail.com">Muststackmoresats@gmail.com</a> · X: <a href="https://x.com/MustHaveMustash" rel="noopener">@MustHaveMustash</a></p>
   <p class="donate-row"><a class="btn-lightning" href="lightning:musthavemoresats@speed.app"><span aria-hidden="true">⚡</span> Donate with Lightning</a> <button type="button" class="btn-onchain" data-copy="bc1qcmvj7c79gyjrcg3zu5pxnp4mav54846epktyma4n6v8jsud2fhqsczmngw"><span aria-hidden="true">₿</span> Donate Bitcoin</button></p>
   <p class="donate-addr"><code>bc1qcmvj7c79gyjrcg3zu5pxnp4mav54846epktyma4n6v8jsud2fhqsczmngw</code></p>
@@ -307,5 +279,6 @@ if (new URLSearchParams(location.search).get('hero') === 'b') {
   });
 })();
 </script>
+<script src="/plebum-dominium-test/assets/js/home-hero.js?v=glow5" defer></script>
 </body>
 </html>

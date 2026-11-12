@@ -1,0 +1,121 @@
+PLEBUM DOMINIUM — PHYSICAL TAILS r4 SHORT RETEST
+Date: November 9, 2026
+Public-fixture results reviewed from guided testing, photographs and tester reports.
+
+RESULT
+The observed short-retest checks passed. A saved screenshot and comparison
+log reopened from the data USB, confirmed by the tester. Safe ejection and
+shutdown were not yet confirmed when this record was prepared.
+
+This is not a blanket T1–T5 PASS, a full new reboot/interoperability run,
+beta approval, or approval for real-wallet use. Unperformed checks remain
+NOT TESTED for this run. Earlier evidence retains its original candidate.
+
+EXACT PACKAGE
+plebum-complete-offline-tester-20261108-r4.zip
+Size: 2807760 bytes
+SHA-256: 2d5a45c0ead74fc033c83c9a173d8a7c06b6d5cc0129d862780dc39fbc40cad2
+Bundle: offline-20261108-r4
+Public-tests release: alpha-20261108-t5-r4
+Packaged public-tests/SOURCE.json commit:
+46f2b89d0eb81c812d955e69559a0523f687284f
+
+Test tools were opened from plebum-offline/public-tests. The complete ZIP
+is the tested archive, not the focused ZIP used in the Windows run.
+The reviewer compared all 35 public-tests files with the focused r4 archive:
+their bytes matched. This does not transfer every package-level test result.
+
+ENVIRONMENT
+Physical Dell laptop; exact model not recorded for this run.
+Tails 7.16; Tor Browser 16.0, Standard security level, unchanged.
+Python 3.13.5; GnuPG 2.4.7; libgcrypt 1.11.0.
+The photographed clock was labeled GMT; synchronization was not verified.
+NetworkManager reported disabled after nmcli networking off, and again
+alongside the map comparison. General state was asleep. Tor's connection
+flag remained true and was not treated as proof of connectivity or isolation.
+The welcome-screen Offline Mode setting was not photographed. No new reboot
+or reconnection test was performed. These checks do not certify isolation.
+
+PACKAGE AND FINGERPRINTS — PASS
+- ZIP SHA-256 matched the recorded expected value.
+- Complete package verifier: PASS: 215 files match. Public testing only.
+- Public-tests verifier: PASS: 34 files match package checksums.
+- dice-converter.html, descriptor-tool.html and diceware-mapper.html each
+  matched their expected fingerprint.
+- A deliberately wrong file/hash pairing produced MISMATCH.
+- Changing the selected file or expected hash cleared the old result.
+- Mapper Download local test file output, saved as T5-mapper-downloaded.html,
+  matched the mapper fingerprint. Hash equality does not authenticate a publisher.
+
+MAPPER — OBSERVED CHECKS PASSED
+11111 -> abacus
+11112 -> abdomen
+11113 -> abdominal
+11114 -> abide
+11115 -> abiding
+11116 -> ability
+The copied six-word output matched when pasted into a text editor.
+Invalid 7 and x were rejected; the affected word was removed.
+Pastes 12x34 and 123456 in the first box, and 12 in the last box, were rejected.
+The incomplete state showed five valid words and a word-6 placeholder; Copy
+was dimmed. Start over cleared the visible rows. Lock and clear, and then
+close/reopen, returned to unchecked startup gates.
+Limit: all 30 cleared boxes and all fields after restarting the reopened tool
+were not separately photographed. Clearing is not proof of memory erasure
+and does not clear the system clipboard.
+
+WALLET MAP — PASS FOR THE EXERCISED CASES
+fixtures/public-map.txt contained 49 characters / 50 UTF-8 bytes:
+PUBLIC TEST ONLY
+Unicode: café
+No wallet secrets
+
+The saved encrypted file results/r4-map.asc was reopened and decrypted.
+results/r4-restored.txt compared byte-for-byte with the original:
+PASS: files are byte-for-byte identical.
+The comparison output was saved in results/T5-map-byte-match.txt.
+
+- Wrong password: failed, cleared the password, no restored output/download.
+- Empty retry: only Enter a passphrase remained; the old failure disappeared.
+- Editing input after successful decryption removed old output/download.
+- Controlled truncation: original 265 bytes; copy 132 bytes. Sizes/hashes
+  recorded in results/T5-map-truncation-details.txt; original preserved.
+- Truncated input with the correct password: failed, no output/download.
+- Lock and clear, then close/reopen: unchecked startup gates.
+Limit: blank Encrypt/Decrypt fields after restarting the reopened tool were
+requested but not separately photographed. Cross-decryption was not repeated.
+
+DICE CONVERTER — SINGLE QUICK CASE PASSED
+fixtures/zeros-256.txt produced words 1–23 abandon, word 24 art.
+Lock and clear returned to the unchecked gate; words no longer displayed.
+Other vectors, Python dice and the full manual-entry suite were not repeated.
+
+EVIDENCE
+Photos were reviewed during the guided run. The tester confirmed reopening
+the actual saved T5-dice-zeros.png and results/T5-map-byte-match.txt from USB.
+This is a readability spot-check, not a reviewed complete file inventory.
+Original screenshots and output files are retained by the tester; they are
+not embedded here. No new Tails Form/response-sheet entry or Drive evidence
+upload is claimed by this publication. Copied broad RESULTS.csv template
+completion was not demonstrated; report these individual case results.
+
+USABILITY FINDINGS
+unzip was unavailable. This command successfully extracted the complete ZIP:
+python3 -m zipfile -e plebum-complete-offline-tester-20261108-r4.zip Tails-r4-2026-11-09
+The root and subset verifiers then passed. Do not require unzip for this path.
+The mapper download link was difficult to find. It is at the bottom of the
+Before this public test panel, below the confirmations explanation.
+
+WHAT REMAINS
+- Confirm physical-session shutdown and reconcile retained evidence/reporting.
+- Review the remaining T5 requirements against the documented OS-managed
+  public-session procedure; do not mark legacy automatic isolation as passed.
+- Keep unperformed checks and separate utilities open for the proposed release.
+- Complete T6 one-key and T7 2-of-3 setup, offline-software signing, recovery
+  and inheritance rehearsals using disposable paper records. Scope clarified
+  November 9: metal comes after testing and is not part of these test criteria.
+- Reconcile printable materials, whole-guide usability and final packages,
+  then review beta readiness. Production needs explicit release-specific approval.
+
+This is a live results addendum. Existing r4 ZIPs, tools, manifests and hashes
+remain unchanged and retain their original packaged instructions.

@@ -1,87 +1,60 @@
-# How to verify the tools bundle
+# Current public-test tool fingerprints
 
-Download the tools bundle from the downloads page. Check the hash, then
-extract it. One matching hash covers every file inside.
+Public test data only. These fingerprints identify files; they do not approve
+real-wallet use or independently authenticate the publisher.
 
-```
-File:     tools-bundle.zip
-Size:     212189 bytes
-SHA-256:  26223471d58a6f573fa25a3e189b9bc16f5c6b22a21e4b9fcaa58e5e22047945
-```
+Use verify-file.html to check an individual file. Use verify-download.html,
+saved separately before disconnecting, to check a complete or tools-only ZIP.
+After extraction, run verify_package.py from the plebum-offline folder.
+For the current test subset, use public-tests/TESTING.txt and its verifier.
 
-Linux / macOS / Tails:
+The HTML tools and verify-file.html are at the site or package root. Python
+tools, the wordlist, this file and hash_checker.html are in kit/.
+These tool copies have the same bytes online and in the current offline ZIPs.
 
-```bash
-sha256sum tools-bundle.zip
-```
-
-Or drop the zip on the verify-a-file page and pick "Tools bundle".
-
-# How to verify `bip39_dice_converter.py`
-
-Do not trust this file because it was emailed or downloaded. Check the hash, then read the logic, then test with dummy bits. Only then use it offline with real dice entropy.
-
-## File identity
-
-```
-File:     bip39_dice_converter.py
-Size:     37896 bytes
-SHA-256:  7a14a2044eb90c45114336329e91fcdd9d98362fabdbdeadbc190b4478800330
-```
-
-## Wallet map tool
-
-```
-File:     descriptor_obfuscator.py
-Size:     8456 bytes
-SHA-256:  35f8807c72241bcbe97318f7ffa4e4c6e211df180e67f85656e0429520466589
-```
-
-Linux / macOS / Tails:
-
-```bash
-sha256sum descriptor_obfuscator.py
-```
-
-The hash must match exactly:
-
-```
-35f8807c72241bcbe97318f7ffa4e4c6e211df180e67f85656e0429520466589
-```
-
-If it does not match, stop. Do not run that copy. The tool calls GPG with AES-256. It does not contain a cipher of its own.
-
-## HTML dice converter
+## File identities
 
 ```
 File:     dice-converter.html
-Size:     41353 bytes
-SHA-256:  8febaebc3d548527d7158d2df0200aba7b8eaee53379d5bf2e6dd84683d90010
+Size:     46527 bytes
+SHA-256:  f35fe817d19d67a599eb90c3ae271dd2363388efc66eaf77079fce5bd0a706dd
 ```
-
-The main tool for the dice sheet. Records the rolls in the page, counts the pairs, and prints the 24 words. Runs offline in Tor Browser on Tails. The page refuses to run while the computer is online. Check the fingerprint after downloading from the downloads page, before the computer goes offline.
-
-## HTML descriptor tool
 
 ```
 File:     descriptor-tool.html
-Size:     413818 bytes
-SHA-256:  9b391a911cb5ba3a74a108321c12c37dc82d7a25b3707927958ccc46e9e30e61
+Size:     421013 bytes
+SHA-256:  3682e91c37fba4f95293971acb8d7b697077f534e2e008419cda24ecc475a941
 ```
 
-The main tool for the wallet map sheet. Encrypts and decrypts the map in the page, nothing leaves it. Runs offline in Tor Browser on Tails. The page refuses to run while the computer is online. Check the fingerprint after downloading from the downloads page, before the computer goes offline.
-
-## Verify-a-file page
-
 ```
-File:     verify-file.html
-Size:     8749 bytes
-SHA-256:  c875b25e241c259fca9c8c9f1e256e6489f3f03a11271b18c3033ae5d5f21106
+File:     diceware-mapper.html
+Size:     93596 bytes
+SHA-256:  ae33ab800911ea26d512e4f92f1f1c9126fe995e6b07af4249d58945cf00d156
 ```
 
-The main check for the downloads. Pick the published file, drop the downloaded copy, get MATCH or NO MATCH. The expected fingerprints are embedded in the page. Check this page's own fingerprint here before relying on it.
+```
+File:     fingerprint-checker.html
+Size:     9986 bytes
+SHA-256:  9b4f8e54de58247cafcc5f7ee70c26b249183d1ef7712b9171921f139e95bd22
+```
 
-## Hash checker page
+```
+File:     bip39_dice_converter.py
+Size:     38169 bytes
+SHA-256:  177b4b3554d7f7b5357e0f5389a3adf3e3e47daf2e0bcd44a338e56e7c72dd8d
+```
+
+```
+File:     descriptor_obfuscator.py
+Size:     5396 bytes
+SHA-256:  deaf9a4277e775c961bbb577669ec99040d15e143c1f2838278d33c38ebbfa4a
+```
+
+```
+File:     eff_large_wordlist.txt
+Size:     108800 bytes
+SHA-256:  addd35536511597a02fa0a9ff1e5284677b8883b83e986e43f15a3db996b903e
+```
 
 ```
 File:     hash_checker.html
@@ -89,182 +62,32 @@ Size:     4747 bytes
 SHA-256:  0e32bb36a531b02072c9d982697210554455e5c4955486629ea332106f68a816
 ```
 
-A single page from this kit that works out a file's SHA-256 in the browser, for the check in section 1 without the command line. Its own fingerprint is the block above, so it can be checked the same way as the tools.
-
-## EFF Long Wordlist
-
 ```
-File:     eff_large_wordlist.txt
-Size:     108800 bytes
-SHA-256:  d5bf5d37df25b50fe6eabf519e59c6cfeb62db627e4d9cfcb275dd7b082e930b
+File:     verify-file.html
+Size:     8775 bytes
+SHA-256:  7c4c04e50b50f931860dabb638152438b6e4a0019e293ca200ec556dd3721e03
 ```
 
-The EFF Long Wordlist, 7,776 words, one per five digit dice number from 11111 to 66666. Source: eff.org. Roll five dice, read the faces left to right, look the number up, write down the word, repeat to at least six words.
+## Check on your computer
 
-## 1. Confirm you have the same bytes
-
-Linux / macOS / Tails:
+Linux / macOS / Tails, from the file's folder:
 
 ```bash
-sha256sum bip39_dice_converter.py
+sha256sum descriptor_obfuscator.py
 ```
 
-Windows PowerShell:
+Windows PowerShell, from the file's folder:
 
 ```powershell
-Get-FileHash .\bip39_dice_converter.py -Algorithm SHA256
+Get-FileHash .\descriptor_obfuscator.py -Algorithm SHA256
 ```
 
-The hash must match exactly:
+Compare every character. Stop if the file differs. The Python wallet-map
+tool also requires GnuPG, installed separately before disconnecting.
 
-```
-7a14a2044eb90c45114336329e91fcdd9d98362fabdbdeadbc190b4478800330
-```
+## Historical files
 
-If it does not match, stop. Do not run that copy.
-
-### The same check without the command line
-
-Open `hash_checker.html` from this kit in any browser and drop the file on it. The page works out the SHA-256 on your own machine and shows it. Paste the hash from this file next to it and the page tells you whether they match. Nothing is uploaded: the math runs in the browser tab, and the page works with the internet disconnected.
-
-## 2. Read the only code that matters
-
-The long middle of the file is the official BIP39 English wordlist (2048 words).  
-The conversion logic is at the bottom:
-
-- `clean_binary()`
-- `binary_to_bytes()`
-- `generate_mnemonic()`
-
-Confirm these behaviors:
-
-- Input is only `0` and `1`
-- Fewer than 256 bits is rejected
-- More than 256 bits is reduced with `SHA-256`
-- Checksum is the first 8 bits of `SHA-256(entropy)`
-- The 264 bits are split into 24 groups of 11 bits
-- `len(WORDLIST) == 2048`
-- Word 0 is `abandon`, word 2047 is `zoo`
-
-Official wordlist for comparison:
-
-https://github.com/bitcoin/bips/blob/master/bip-0039/english.txt
-
-## 3. Known test (no real seed)
-
-Run:
-
-```bash
-python3 bip39_dice_converter.py
-```
-
-Paste 256 zeros and press Enter:
-
-```
-0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-```
-
-A correct 24-word BIP39 result for all-zero entropy ends with **art**.
-
-Cross-check the same 256 bits in an **offline** copy of Ian Coleman BIP39:
-
-- Entropy type: Binary `[0-1]`
-- Mnemonic length: 24 words (or raw 256-bit entropy)
-
-The words must match.
-
-## 4. Check the other downloads
-
-`verify_downloads.py` is a separate file. It does not change this converter.
-
-```
-File:     verify_downloads.py
-Size:     356 bytes
-SHA-256:  8b819c8325cfb61e680de50cd04d37c04ad3c3d2bc3e46425ee732c54971cd45
-```
-
-```bash
-sha256sum verify_downloads.py
-python3 verify_downloads.py
-```
-
-It checks Tails, Sparrow, Electrum, and the Ian Coleman page in the current directory. A mismatch means delete that file.
-
-## 5. Extra bits note
-
-If you paste **more than 256 bits**, this script hashes the bit-string-as-bytes with SHA-256 and uses that 256-bit digest.
-
-Ian Coleman’s “24 Words” mode may hash extra entropy differently. For an apples-to-apples match with Ian Coleman, use **exactly 256 bits**.
-
-## 6. Real use
-
-- Hash the file first
-- Run it only on an offline machine (Tails recommended)
-- Never type a real seed or real dice bits into an online computer
-- Write the 24 words on paper or metal
-- Destroy scratch notes of the raw bits
-
-<!-- BEGIN GENERATED: PDF FINGERPRINTS (scripts/stamp-pdfs.py) -->
-
-## Handout PDF fingerprints
-
-Every downloadable handout is stamped in its footer with its version,
-build date, and a Content SHA-256: the hash of the handout's content
-before the footer was stamped on. Match the number printed on a paper
-copy to the Content SHA-256 below to confirm the copy is the handout as
-published. The File SHA-256 is the hash of the PDF file itself, exactly
-as served:
-
-| File | Version | File SHA-256 | Content SHA-256 |
-| --- | --- | --- | --- |
-| 00_Project_Overview.pdf | 2026.10.21 | `302559ce5fa92523d7c9741a9f6750bcebb63696d948480371748da7d3d5304a` | `bf8fac59b05e1186ac2d819fb4a9cf16d4f325a7b41e1e04a59950fec7a565c4` |
-| 02_Print_Packet.pdf | 2026.10.27 | `bab6a24ae54d06f804727a742ddd7f31afa68bd46e47dc3152d57d1264de39a8` | `84cb4efcc9d6cc1f8524c1b1e930d64e96fbce12e359b8791a8190da22a315b5` |
-| 03_Checklist.pdf | 2026.10.21 | `dbc4a4c9f13e9f85e3a010d8d7e864b044c7d4e02710f92bb85dc2c76c849674` | `8a3bf59d0431bad69fd2d5b7412db9eaa6d8ca6f185d46068ae0e9d1dc096eb0` |
-| 04_Airgap.pdf | 2026.10.21 | `fe0e1abb9d94b3250bf0ac34a1d2ecd38ada62b086b3dd49c3352184ad00d710` | `f3a0611b1d209b37709fde8f90fbe0bb78f1f4a3c5023064c1efa40326de5e74` |
-| 05_Verify.pdf | 2026.10.21 | `2a92f82ec475090cd895e55a4428993f0f367ceb9cf1dc90eac2f4415045632b` | `6f95f6ac9efeefc1ae40c7066e561fda11de1e26928ae160fa7563c6298eef36` |
-| 06_Dice.pdf | 2026.10.27 | `fb742dc0c79c007981096eb7b101ae76e47c532c14b85faaf6cf86687ba1e05e` | `f5886c372356b029aac98aadaa44cc388a89c2bb9f7873fd7e6b47e472e83222` |
-| 07_Sparrow.pdf | 2026.10.21 | `458849618cd31e65b287a023e0ce2f51993197542adab0c5ac49ee20112ece04` | `3195ede4fd9dd1018b0bf6c7c33cc837fb8afabe3e2129d3a0e1e3f2d9f36b99` |
-| 08_Signing.pdf | 2026.10.21 | `3d913660f02997fab1c4e1b15119f3c3af8dcbdbdaa6d2ce64dcfbcea9d94aab` | `ccff78d819eec20407abcb1b1b79132a371af848745fb94dfbd95a76d7eda22e` |
-| 09_Titanium.pdf | 2026.10.21 | `fa0e9f1f9e4385d21979ab6257ab39f1d95412ef23eb9d652434e60e7bd7412c` | `3756e087a22f915f33b4a46953ae0227316c35df7311dcdf59741e1d6563f2ba` |
-| 11_Encryption.pdf | 2026.10.25 | `a2d4a42c65e3c9dbf558669ff9b2beff720b711733de37ebaf9c7b17fb9a5f1e` | `1ca733cf74ddc3f3f308579dcd2d7a9a97c64be5b7c3132728f434e4a5789985` |
-| 12_Inheritance.pdf | 2026.10.21 | `bc6b6f093401aa61bf72c879816f4895a60ba100cd8f5178e0810ce2d94a55ea` | `620da36df5d5c9d50a1ca62fd2d2abc7e79df405d8edb4da549880eff0cd8af5` |
-| 13_FAQ.pdf | 2026.10.21 | `d7ea94053b706f6ed68adbb4dc7ce529f5b49d7497a9d290eaa4abf9280d8493` | `fc5ba25be0c80a0624408103437ed86348c6cbc487f4084e1323ac13119da59d` |
-| 14_Speaker.pdf | 2026.10.21 | `1fe1670e66b87a43f109230a894cbfc8c7424ff2431d9f2f8ca29da5076a21fd` | `1b2cabb828b26d58cbb7e89a3ffd4a2784cddce6c5bcae842dc8be8adb72a62d` |
-| 15_Fire_Card.pdf | 2026.10.22 | `c7a148b74ee1d399c9f53d44ca8c26e450ad04383817230ee4b64dac55bc3673` | `6733a4881aa932acb01cd5a5b49fc86997b56f83a15c8f36be1d32d31445ab29` |
-| Handouts_No_Cover.pdf | 2026.10.27 | `47cc4ffa23a3c89010304cd24690f6b1efe71f3b2a00db4e60bdcbdb828bbb57` | `658321f1e3b3598dd8ed7d2075733f364b7266d01cbf38426ed8435011106d61` |
-| Presentation_Handouts.pdf | 2026.10.21 | `88107caaf87744f8915be38e9421075a51fc9e1533ed1537905721b6a4381659` | `65183c56fd85b2e15e20cdb655c037dfbefdca1727cdead8277f4992184f7bcd` |
-| Terms.pdf | 2026.10.21 | `a49eb0ac1c8cd59a71fe79e172afa18160a6b28f4019c99667a50a8136a7a2f8` | `054f08a39adce730c61c38c6a253f24a7660e9d71c4dff03d942837ff6058cba` |
-
-<!-- END GENERATED: PDF FINGERPRINTS -->
-
-<!-- BEGIN GENERATED: PAGE FINGERPRINTS (scripts/build.py) -->
-
-## Sheet page fingerprints
-
-Each sheet page on plebumbtc.io is rendered from a fixed source. The
-fingerprint below is the SHA-256 of that sheet's rendered content: the
-overview card and the article body, without the site header and footer.
-If a copy of a sheet does not hash to the value printed here, it is not
-the sheet as published.
-
-| Sheet | Page | SHA-256 |
-| --- | --- | --- |
-| T · Terms | handouts/terms.html | `dbdde47e00ed845c27674b7f120f4586faea48e10855050b64ce3fec9258e04b` |
-| 02 · Before you begin | handouts/threat-model.html | `7786b7ce32fc6fa1252e8a5c49543e5447b9ed08337b6b011f3eeb0f957babb8` |
-| 03 · Checklist | handouts/checklist.html | `d46cb4c2d44be5e48316e7048d7bae700e7e665eb56bc68112a7437fbf56948a` |
-| 05 · Check the files | handouts/verify.html | `5ce72bcd26cb8b5b3c85c80b4680ae2e76294cf7ab09a54a7d0fe36ca0db93b4` |
-| 04 · Two boots | handouts/airgap.html | `9e748aac53756718e338888de7e88d31c5ed85124f450680560ced492084590c` |
-| 06 · Make the three keys | handouts/dice.html | `117a77b46e6393543ba8d9feb155f5b2a32224156dd56000dd5e63a631e57255` |
-| 07 · Build the 2-of-3 | handouts/sparrow.html | `619fb80956e2023e05a5025871e12d8f36a1400d248717bacd2215bd492cb7b1` |
-| 10 · Rehearse on testnet | handouts/testnet.html | `ce0817906db9de576876e59c728b0b1142052182113007437456b1a3c43c9df9` |
-| 08 · Practice spend | handouts/signing.html | `26b98d6df93993f252569831f5066829f78cc6d1849a7bc53ed6766d5324ed4a` |
-| 09 · Metal and the map | handouts/titanium.html | `1f3d1c0ece506cafb5afbfa69b655d3b0256f050ea433eaccb5f84fce6511736` |
-| 11 · Hide the wallet map | handouts/encryption.html | `2d1f464923b4a781e168ae72596a94376369b9d9dd8df1bfa01fb8fc05194a85` |
-| 12 · If I am gone | handouts/inheritance.html | `f6f40aca13381bbcf0b87009067568ac632b1a8580724f302aaad8bcc0c2beeb` |
-| 13 · If you get stuck | handouts/faq.html | `505722e16d0dae57ce215bb21d43d056716d3008079288fe166826461ddbe9a7` |
-| 14 · Tough questions | handouts/briefing.html | `b543f80e025167342dce45f5f44b46f652d8bb71b37d01634484a1cb0079085a` |
-| 15 · Recovery card | handouts/fire-card.html | `d4230f3ed58045c168be869cb0b8b6113c20f0caf55f3fb7269506e8c0db3b25` |
-| 16 · One key, done right | handouts/single-sig.html | `df117f0958c9834ba4b8cfe1de04ac1a9d9abe4bd04a63b0b54e61d2c466a923` |
-| 17 · Two devices and one dice key | handouts/two-devices.html | `604e75db763e51a6f4148fe65d75b3bb9212e6c6933cd9aee67f06a3e7f1184f` |
-
-<!-- END GENERATED: PAGE FINGERPRINTS -->
+tools-bundle.zip, older PDFs, slides and the recovery worksheet are legacy
+assets. They are excluded from the current offline ZIPs and this manifest.
+Use the current HTML guide; PDF reconciliation and print review remain open.
+Historical versioned ZIPs retain their own checksums and test results.

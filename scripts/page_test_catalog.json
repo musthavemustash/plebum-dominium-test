@@ -55,15 +55,9 @@
     "tasks": [
       {
         "id": "P-CHECKLIST-EASY-01",
-        "try": "Compare this older single-key checklist with the current One key + passphrase route from Choose your path.",
-        "expected": "The current route is reachable; differences in passphrase requirements, backup advice, or versions can be identified before following the older instructions.",
-        "evidence": "Record conflicting passages and current page links; do not remove or destroy backups."
-      },
-      {
-        "id": "P-CHECKLIST-EASY-02",
-        "try": "Read the materials list as a first-time visitor and identify any item whose purpose you cannot explain.",
-        "expected": "Each item has enough explanation or a useful working reference; unclear or outdated items are reported.",
-        "evidence": "Name the item and missing explanation using a fictional setup."
+        "try": "Follow the link from this retired page to the current guide, then compare or switch paths.",
+        "expected": "The current guide opens with the correct path and working navigation. This retired page is not presented as a separate active route.",
+        "evidence": "Record the destination URL and any broken link or confusing path label."
       }
     ]
   },
@@ -129,21 +123,9 @@
     "tasks": [
       {
         "id": "P-DICE-EASY-01",
-        "try": "Using only public practice rolls, enter 1, 2, 3, and 4, then try 5 and 6 in the linked converter. Check buttons, keyboard entry, counters, Undo, and Clear.",
-        "expected": "The documented mapping is 00, 01, 10, 11; 5 and 6 add no bits. Counters and Undo/Clear stay consistent. Report actual results for each input method.",
-        "evidence": "Save the filled state before Undo/Clear, then the cleared state (or a short recording). Record browser/OS and filenames in T3.7 observations; copy evidence to your data USB before shutdown."
-      },
-      {
-        "id": "P-DICE-EASY-02",
-        "try": "For T3, paste a public 255-bit string. In a separate case, replace one bit of a public 256-bit string with x. Clear the converter before each case.",
-        "expected": "Short and non-binary inputs are rejected without producing a valid mnemonic. Report stale output or unexpected acceptance.",
-        "evidence": "Save separate short-input and invalid-character rejection screenshots before continuing. Map them to Google Form T3.4 and T3.5; name which converter was tested."
-      },
-      {
-        "id": "P-DICE-EASY-03",
-        "try": "For T3, copy each of the eight 256-bit inputs from public-tests/T5-dice-reference-inputs.txt (focused ZIP: beside fixtures). Compare all words in HTML and Python, preserving leading zeros.",
-        "expected": "Every completed fixture matches word for word. Report how many fixtures and which tools were checked; incomplete checks are not a pass.",
-        "evidence": "Save HTML/Python screenshots for each numbered reference before the next case. Record T3.1–T3.6 outcomes in the form and the per-vector list in T3.7; see FORM-REPORTING.txt for sharing the evidence folder."
+        "try": "Follow the link from this retired page to the current guide, then compare or switch paths.",
+        "expected": "The current guide opens with the correct path and working navigation. This retired page is not presented as a separate active route.",
+        "evidence": "Record the destination URL and any broken link or confusing path label."
       }
     ]
   },
@@ -215,15 +197,9 @@
     "tasks": [
       {
         "id": "P-FAQ-EASY-01",
-        "try": "Compare this legacy single-key FAQ with the current One key + passphrase route.",
-        "expected": "A reader can distinguish the older no-passphrase reference from the current path and report conflicting requirements before following instructions.",
-        "evidence": "Record the page links and confusing or conflicting wording."
-      },
-      {
-        "id": "P-FAQ-EASY-02",
-        "try": "Find the answer for a fictional download mismatch or converter disagreement.",
-        "expected": "The page gives a clear stop-and-investigate instruction and working next reference.",
-        "evidence": "Report the scenario and missing explanation or broken link; use public examples only."
+        "try": "Follow the link from this retired page to the current guide, then compare or switch paths.",
+        "expected": "The current guide opens with the correct path and working navigation. This retired page is not presented as a separate active route.",
+        "evidence": "Record the destination URL and any broken link or confusing path label."
       }
     ]
   },
@@ -300,15 +276,9 @@
     "tasks": [
       {
         "id": "P-INHERITANCE-EASY-01",
-        "try": "Compare this older no-passphrase recovery sheet with the current One key + passphrase inheritance page.",
-        "expected": "The current path is reachable and different recovery requirements are visible; any implication that the older sheet fits every one-key wallet is reported.",
-        "evidence": "Record conflicting wording and links; do not enter seeds or change backups."
-      },
-      {
-        "id": "P-INHERITANCE-EASY-02",
-        "try": "Read the instructions as fictional Helper A without touching equipment. Identify assumptions about records and compatible devices.",
-        "expected": "Unexplained assumptions and missing stop points can be reported before a real recovery.",
-        "evidence": "List unclear assumptions using fictional equipment and location labels."
+        "try": "Follow the link from this retired page to the current guide, then compare or switch paths.",
+        "expected": "The current guide opens with the correct path and working navigation. This retired page is not presented as a separate active route.",
+        "evidence": "Record the destination URL and any broken link or confusing path label."
       }
     ]
   },
@@ -459,15 +429,9 @@
     "tasks": [
       {
         "id": "P-THREAT-MODEL-EASY-01",
-        "try": "Compare this older risk sheet with the current Threat model and relevant current numbered path.",
-        "expected": "Current guidance is reachable and conflicting claims about seeds, passphrases, devices, or backup copies can be flagged before relying on this reference.",
-        "evidence": "Record links and the short conflicting passage; do not describe actual holdings or security arrangements."
-      },
-      {
-        "id": "P-THREAT-MODEL-EASY-02",
-        "try": "Use fictional risks to try the checkboxes and references with a keyboard or narrow screen.",
-        "expected": "Control state and advice are readable, and linked destinations are clear.",
-        "evidence": "Record the fictional choice, input method, and ambiguous or inaccessible behavior."
+        "try": "Follow the link from this retired page to the current guide, then compare or switch paths.",
+        "expected": "The current guide opens with the correct path and working navigation. This retired page is not presented as a separate active route.",
+        "evidence": "Record the destination URL and any broken link or confusing path label."
       }
     ]
   },
@@ -476,15 +440,9 @@
     "tasks": [
       {
         "id": "P-THREAT-MODEL-ONE-01",
-        "try": "Compare this older risk sheet with the current Threat model and relevant current numbered path.",
-        "expected": "Current guidance is reachable and conflicting claims about seeds, passphrases, devices, or backup copies can be flagged before relying on this reference.",
-        "evidence": "Record links and the short conflicting passage; do not describe actual holdings or security arrangements."
-      },
-      {
-        "id": "P-THREAT-MODEL-ONE-02",
-        "try": "Use fictional risks to try the checkboxes and references with a keyboard or narrow screen.",
-        "expected": "Control state and advice are readable, and linked destinations are clear.",
-        "evidence": "Record the fictional choice, input method, and ambiguous or inaccessible behavior."
+        "try": "Follow the link from this retired page to the current guide, then compare or switch paths.",
+        "expected": "The current guide opens with the correct path and working navigation. This retired page is not presented as a separate active route.",
+        "evidence": "Record the destination URL and any broken link or confusing path label."
       }
     ]
   },
@@ -510,15 +468,9 @@
     "tasks": [
       {
         "id": "P-TITANIUM-EASY-01",
-        "try": "Compare this older backup sheet with the current One key + passphrase backup page.",
-        "expected": "Differences about passphrase records and backup copies are identifiable before acting. The older page is not treated as authority to destroy existing records.",
-        "evidence": "Record conflicting passages and links; do not change or destroy real backups."
-      },
-      {
-        "id": "P-TITANIUM-EASY-02",
-        "try": "Use only a published public mnemonic fixture on paper to review word-order and marking instructions.",
-        "expected": "Every public word is traceable to its position and unclear abbreviations or recovery assumptions can be reported.",
-        "evidence": "Identify the public fixture and unclear instruction; include no real seeds or locations."
+        "try": "Follow the link from this retired page to the current guide, then compare or switch paths.",
+        "expected": "The current guide opens with the correct path and working navigation. This retired page is not presented as a separate active route.",
+        "evidence": "Record the destination URL and any broken link or confusing path label."
       }
     ]
   },

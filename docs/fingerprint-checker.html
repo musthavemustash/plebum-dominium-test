@@ -67,6 +67,7 @@
 
 <div class="kicker">T · PLEBUM DOMINIUM</div>
 <h1>Fingerprint checker</h1>
+<p>File: <code>fingerprint-checker.html</code></p>
 <p class="sub">Compare a downloaded file against its published SHA-256 fingerprint. Every character must match.</p>
 
 <div class="warn-box">
@@ -82,8 +83,8 @@
   <option value="sparrow">Sparrow 2.5.5</option>
   <option value="electrum">Electrum 4.8.3</option>
   <option value="coleman">Ian Coleman BIP39 page</option>
-  <option value="converter">Dice converter — dice-converter.html</option>
-  <option value="descriptor">Wallet-map tool — descriptor-tool.html</option>
+  <option value="converter">Dice converter · dice-converter.html</option>
+  <option value="descriptor">Wallet-map tool · descriptor-tool.html</option>
   <option value="mapper">Diceware mapper — diceware-mapper.html</option>
   <option value="custom">Other file (paste fingerprint below)</option>
 </select>
@@ -115,9 +116,9 @@
 // Pre-filled fingerprints for this site's own tools
 // Computed from the live files. Update when the tools change.
 const KNOWN = {
-  'converter': '00415d536c383f21a09c2271897659ac8c52e6fdf5c2677bbbd76ea2b0ca01cc',
-  'descriptor': '3f2f52f7d1504d81e4aa0163140134ce51c8f70526e2160ce9886753f25f541c',
-  'mapper': '1533dc62a0b25db82ddcc31ec25297ee03121dba3f96899320a8646384902f4b',
+  'converter': 'f35fe817d19d67a599eb90c3ae271dd2363388efc66eaf77079fce5bd0a706dd',
+  'descriptor': '3682e91c37fba4f95293971acb8d7b697077f534e2e008419cda24ecc475a941',
+  'mapper': 'ae33ab800911ea26d512e4f92f1f1c9126fe995e6b07af4249d58945cf00d156',
 };
 
 const fileSelect = document.getElementById('file-select');

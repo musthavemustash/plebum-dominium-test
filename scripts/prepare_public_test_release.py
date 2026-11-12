@@ -10,6 +10,7 @@ import re
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
+RELEASE = 'alpha-20261112-r1'
 SOURCES = {
     **{name: 'docs/testing/session-guide/' + name for name in (
         'TESTING.txt', 'EVIDENCE-CHECKLIST.txt', 'SESSION-NOTES.txt', 'FORM-REPORTING.txt')},
@@ -43,7 +44,7 @@ def build(output, source_commit):
         raise ValueError('Supply the full reviewed source commit SHA')
     output = Path(output)
     output.mkdir(parents=True, exist_ok=False)
-    release = 'alpha-20261108-t5-r4'
+    release = RELEASE
     archive = 'plebum-tools-' + release + '.zip'
     files = {name: (ROOT / source).read_bytes() for name, source in SOURCES.items()}
     source_files = {name: {'source_path': source, 'sha256': sha(files[name]), 'size': len(files[name])}
@@ -52,7 +53,7 @@ def build(output, source_commit):
         'release': release, 'status': 'PUBLIC_TEST_ONLY', 'custody_approved': False,
         'source_repository': 'https://github.com/musthavemustash/plebum-dominium-test',
         'source_commit': source_commit, 'source_files': source_files,
-        'outstanding': ['Target-environment evidence for the documented OS-managed public-test procedure', 'T1 checks for this refreshed ZIP; short r3-behavior Windows/Tails retest remains pending',
+        'outstanding': ['Target-environment evidence for the documented OS-managed public-test procedure', 'T1 and tool-name/fingerprint checks for this new ZIP on Windows and Tails',
                         'Recovery-workflow validation', 'Stable release reconciliation'],
     }, indent=2) + '\n').encode()
     files['README.txt'] = f'''PLEBUM DOMINIUM — PUBLIC ALPHA TEST RELEASE
@@ -93,11 +94,15 @@ No installation or dependency download is performed by the package checker.
 The packaged tools and public fixtures are byte-for-byte copies of the source
 paths recorded in SOURCE.json. No cryptographic implementation was changed.
 Earlier candidate Tails results are in TAILS-RETEST-RESULTS.txt.
-r4 changes instructions only; tool bytes match r3. Check this ZIP with T1;
-the short r3-behavior Windows/Tails retest is still pending. Browser isolation is not certified by this package. See PUBLIC-SESSION-CONTRACT.txt
+This naming revision updates headings, tabs, filenames and checker choices.
+Sensitive-tool executable code, Python helpers, wordlist and fixtures match R4;
+the Fingerprint checker has new expected hashes for the renamed HTML files.
+Historical Windows/Tails results retain their original scope. Check this ZIP
+with T1 and repeat the name/fingerprint checks; no new physical pass is claimed.
+Browser isolation is not certified by this package. See PUBLIC-SESSION-CONTRACT.txt
 for the public-test boundary and TOOL-FINISH-RETEST.txt for the remaining checks.
 Complete wallet recovery remains unresolved.
-Older ZIPs and kit/VERIFY.md do not describe this alpha. Use this package's hashes.
+Older ZIPs do not describe this alpha. Use this package's hashes.
 Hashes detect changed bytes; they do not independently authenticate the publisher
 or establish that a tool is safe. This alpha does not approve a stable release.
 '''.encode()
@@ -140,7 +145,7 @@ print(f'PASS: {len(rows)} files match package checksums. Public tests only; not 
     files['SHA256SUMS.txt'] = ''.join(f'{sha(data)}  {name}\n' for name, data in sorted(files.items())).encode()
     with zipfile.ZipFile(output / archive, 'w') as bundle:
         for name, data in sorted(files.items()):
-            info = zipfile.ZipInfo('plebum-public-test/' + name, (2026, 11, 5, 0, 0, 0))
+            info = zipfile.ZipInfo('plebum-public-test/' + name, (2026, 11, 12, 0, 0, 0))
             info.create_system = 3
             info.external_attr = 0o100644 << 16
             info.compress_type = zipfile.ZIP_DEFLATED

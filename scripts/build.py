@@ -18,9 +18,14 @@ class References(HTMLParser):
     def __init__(self):
         super().__init__(convert_charrefs=True)
         self.references = []
+        self.identifiers = set()
 
     def handle_starttag(self, tag, attrs):
         attrs = dict(attrs)
+        if attrs.get('id'):
+            self.identifiers.add(attrs['id'])
+        if tag == 'a' and attrs.get('name'):
+            self.identifiers.add(attrs['name'])
         key = 'src' if tag in ('script', 'img', 'iframe', 'source') else 'href'
         if tag in ('script', 'img', 'iframe', 'source', 'a', 'link') and attrs.get(key):
             self.references.append((self.getpos()[0], attrs[key]))
@@ -36,6 +41,11 @@ def validate(site_dir):
     if (site_dir / 'CNAME').exists():
         errors.append('Staging must not contain a CNAME file that redirects to a custom domain.')
     pages = sorted(site_dir.rglob('*.html'))
+    identifiers = {}
+    for page in pages:
+        parser = References()
+        parser.feed(page.read_text(encoding='utf-8'))
+        identifiers[page.resolve()] = parser.identifiers
     for page in pages:
         parser = References()
         try:
@@ -45,10 +55,12 @@ def validate(site_dir):
             continue
         for line, ref in parser.references:
             url = urlsplit(ref)
-            if url.scheme or url.netloc or not url.path:
-                continue  # External URLs and fragment-only links are separate review checks.
+            if url.scheme or url.netloc or (not url.path and not url.fragment):
+                continue  # External URLs require a separate source review.
             path = unquote(url.path)
-            if path.startswith(STAGING_BASE):
+            if not path:
+                target = page
+            elif path.startswith(STAGING_BASE):
                 target = site_dir / path[len(STAGING_BASE):]
             elif path.startswith('/'):
                 errors.append(f'{page.relative_to(site_dir)}:{line}: outside staging base: {ref}')
@@ -60,6 +72,11 @@ def validate(site_dir):
                 errors.append(f'{page.relative_to(site_dir)}:{line}: escapes site directory: {ref}')
             elif not target.exists():
                 errors.append(f'{page.relative_to(site_dir)}:{line}: missing local target: {ref}')
+            elif url.fragment:
+                if target.is_dir():
+                    target = target / 'index.html'
+                if target in identifiers and unquote(url.fragment) not in identifiers[target]:
+                    errors.append(f'{page.relative_to(site_dir)}:{line}: missing section: {ref}')
     if (site_dir / 'paths').exists():
         import render_paths
         original_docs = render_paths.DOCS

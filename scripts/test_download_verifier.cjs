@@ -17,15 +17,24 @@ const nextTurn = () => new Promise(resolve => setImmediate(resolve));
 const inputs = [];
 
 function loadPublishedPackages() {
-  const offlineDir = 'testing/offline-20261108-r4/';
-  const focusedDir = 'testing/alpha-20261108-t5-r4/';
+  const downloads = fs.readFileSync(path.join(rootDir, 'docs/downloads.html'), 'utf8');
+  function currentDirectory(prefix) {
+    const links = [...downloads.matchAll(/<a\b[^>]*href="\/plebum-dominium-test\/(testing\/[^"#?]+\.zip)"/g)]
+      .map(match => match[1]).filter(name => path.basename(name).startsWith(prefix));
+    const unique = [...new Set(links)];
+    assert.equal(unique.length, 1, 'Exactly one current download for ' + prefix);
+    return path.posix.dirname(unique[0]) + '/';
+  }
+  const offlineDir = currentDirectory('plebum-complete-offline-tester-');
+  assert.equal(currentDirectory('plebum-website-tools-only-'), offlineDir);
+  const focusedDir = currentDirectory('plebum-tools-alpha-');
   const offline = JSON.parse(fs.readFileSync(path.join(rootDir, 'docs', offlineDir, 'manifest.json'), 'utf8'));
   const focused = JSON.parse(fs.readFileSync(path.join(rootDir, 'docs', focusedDir, 'manifest.json'), 'utf8'));
   const definitions = [
     ...offline.packages.map((p, index) => ({
       item: p, dir: offlineDir, id: index === 0 ? 'complete' : 'website-tools',
       label: index === 0 ? 'Complete offline tester' : 'Website tools only',
-      release: 'offline-20261108-r4'
+      release: offlineDir.split('/')[1]
     })),
     { item: focused.archive, dir: focusedDir, id: 'focused', label: 'Focused public tests', release: focused.release }
   ];
