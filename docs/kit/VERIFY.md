@@ -25,16 +25,16 @@ Do not trust this file because it was emailed or downloaded. Check the hash, the
 
 ```
 File:     bip39_dice_converter.py
-Size:     37896 bytes
-SHA-256:  7a14a2044eb90c45114336329e91fcdd9d98362fabdbdeadbc190b4478800330
+Size:     38169 bytes
+SHA-256:  177b4b3554d7f7b5357e0f5389a3adf3e3e47daf2e0bcd44a338e56e7c72dd8d
 ```
 
 ## Wallet map tool
 
 ```
 File:     descriptor_obfuscator.py
-Size:     8456 bytes
-SHA-256:  35f8807c72241bcbe97318f7ffa4e4c6e211df180e67f85656e0429520466589
+Size:     5396 bytes
+SHA-256:  deaf9a4277e775c961bbb577669ec99040d15e143c1f2838278d33c38ebbfa4a
 ```
 
 Linux / macOS / Tails:
@@ -46,7 +46,7 @@ sha256sum descriptor_obfuscator.py
 The hash must match exactly:
 
 ```
-35f8807c72241bcbe97318f7ffa4e4c6e211df180e67f85656e0429520466589
+deaf9a4277e775c961bbb577669ec99040d15e143c1f2838278d33c38ebbfa4a
 ```
 
 If it does not match, stop. Do not run that copy. The tool calls GPG with AES-256. It does not contain a cipher of its own.
@@ -55,8 +55,8 @@ If it does not match, stop. Do not run that copy. The tool calls GPG with AES-25
 
 ```
 File:     dice-converter.html
-Size:     41353 bytes
-SHA-256:  8febaebc3d548527d7158d2df0200aba7b8eaee53379d5bf2e6dd84683d90010
+Size:     46387 bytes
+SHA-256:  4f6949247291a95a37a1475b40f61e23de99f665fd0e3a5b9cd526b10e01e69c
 ```
 
 The main tool for the dice sheet. Records the rolls in the page, counts the pairs, and prints the 24 words. Runs offline in Tor Browser on Tails. The page refuses to run while the computer is online. Check the fingerprint after downloading from the downloads page, before the computer goes offline.
@@ -65,11 +65,31 @@ The main tool for the dice sheet. Records the rolls in the page, counts the pair
 
 ```
 File:     descriptor-tool.html
-Size:     413818 bytes
-SHA-256:  9b391a911cb5ba3a74a108321c12c37dc82d7a25b3707927958ccc46e9e30e61
+Size:     420868 bytes
+SHA-256:  16efdc386a226849263529ca1660e32950bd95e87dfa2adb235162f653b6d0a0
 ```
 
 The main tool for the wallet map sheet. Encrypts and decrypts the map in the page, nothing leaves it. Runs offline in Tor Browser on Tails. The page refuses to run while the computer is online. Check the fingerprint after downloading from the downloads page, before the computer goes offline.
+
+## HTML diceware mapper
+
+```
+File:     diceware-mapper.html
+Size:     93464 bytes
+SHA-256:  bbe8d349575e7f2d3ddd4caf0ffc7934d72b240c3b8858638a2ce4c198317aba
+```
+
+The main tool for the passphrase sheet. Maps five-dice rolls to EFF words. Runs offline in Tor Browser on Tails. Check the fingerprint after downloading from the downloads page, before the computer goes offline.
+
+## Fingerprint checker
+
+```
+File:     fingerprint-checker.html
+Size:     9833 bytes
+SHA-256:  ae9488685d64b89be7631c5ab3332b281e39dcaa23fe689c193bb70646e89f18
+```
+
+Checks a downloaded file against its expected SHA-256 fingerprint. Pick a file, paste the expected hash, get MATCH or MISMATCH. Runs offline in the browser.
 
 ## Verify-a-file page
 
@@ -96,7 +116,7 @@ A single page from this kit that works out a file's SHA-256 in the browser, for 
 ```
 File:     eff_large_wordlist.txt
 Size:     108800 bytes
-SHA-256:  d5bf5d37df25b50fe6eabf519e59c6cfeb62db627e4d9cfcb275dd7b082e930b
+SHA-256:  addd35536511597a02fa0a9ff1e5284677b8883b83e986e43f15a3db996b903e
 ```
 
 The EFF Long Wordlist, 7,776 words, one per five digit dice number from 11111 to 66666. Source: eff.org. Roll five dice, read the faces left to right, look the number up, write down the word, repeat to at least six words.
@@ -118,7 +138,7 @@ Get-FileHash .\bip39_dice_converter.py -Algorithm SHA256
 The hash must match exactly:
 
 ```
-7a14a2044eb90c45114336329e91fcdd9d98362fabdbdeadbc190b4478800330
+177b4b3554d7f7b5357e0f5389a3adf3e3e47daf2e0bcd44a338e56e7c72dd8d
 ```
 
 If it does not match, stop. Do not run that copy.

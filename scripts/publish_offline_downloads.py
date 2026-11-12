@@ -17,10 +17,10 @@ import zipfile
 ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / 'docs'
 BASE = '/plebum-dominium-test/'
-DEST = 'testing/offline-20261108-r4'
+DEST = 'testing/offline-20261111'
 OUT = DOCS / DEST
-FULL = 'plebum-complete-offline-tester-20261108-r4.zip'
-TOOLS = 'plebum-website-tools-only-20261108-r4.zip'
+FULL = 'plebum-complete-offline-tester-20261111.zip'
+TOOLS = 'plebum-website-tools-only-20261111.zip'
 SENSITIVE = {'dice-converter.html', 'descriptor-tool.html', 'diceware-mapper.html'}
 TOOL_NAMES = [
     'dice-converter.html', 'descriptor-tool.html', 'fingerprint-checker.html',
@@ -85,7 +85,7 @@ def update_guides():
 <p><a href="{BASE}offline-folder-guide.html">Find the tools and fixtures</a> · <a href="{BASE}testing/session-guide/TESTING.txt">T1–T5 with screenshot checkpoints</a> · <a href="{BASE}testing/session-guide/EVIDENCE-CHECKLIST.txt">Save to USB before shutdown</a> · <a href="{BASE}testing/session-guide/FORM-REPORTING.txt">Submit screenshots and evidence links</a></p>
 <p>Disconnect before testing sensitive tools. They must run as local files; keep their existing safeguards in place. Python helpers require Python 3; the Python wallet-map tool also requires GnuPG, installed separately before disconnecting.</p>
 <p>The tools-only ZIP contains the site’s utilities, demos, Python helpers, wordlist and public fixtures, without the guides or legacy print documents. Neither ZIP includes Tails, Sparrow, Electrum or other external software. Feedback, external references, live prices and network transactions require internet access.</p>
-<p><strong>Public testing only. Do not use real wallet secrets, passwords, entropy or funds.</strong> The focused r4 package passed the Windows short retest on November 8. The complete r4 archive passed the observed physical Tails short checks on November 9. Each result applies to its exact package and tested cases; the tools-only archive has no new physical-test result. Keep the existing ZIPs and hashes. Browser network isolation is not certified. See the results below; packaged r4 instructions remain unchanged.</p>
+<p><strong>Public testing only. Do not use real wallet secrets, passwords, entropy or funds.</strong> This package refreshes the guide content from November 11, 2026. The tools in public-tests/ are the exact R4 files: the focused R4 package passed the Windows short retest on November 8, and the complete R4 archive passed the observed physical Tails short checks on November 9. Each result applies to its exact package and tested cases; the tools-only archive has no new physical-test result. Historical R4 ZIPs and hashes are preserved. Browser network isolation is not certified.</p>
 <p><a href="{BASE}{DEST}/README.txt">Setup and contents</a> · <a href="{BASE}{DEST}/SHA256SUMS.txt">ZIP checksums</a> · <a href="{BASE}{DEST}/manifest.json">Package manifests</a> · <a href="{BASE}test-the-site.html#tasks">Testing tasks and feedback</a></p>
 </section><!-- /offline-downloads -->'''
     s = s.replace('<h1>Downloads</h1>', '<h1>Downloads</h1>' + section, 1)
@@ -169,7 +169,7 @@ def package(full):
         name = p.relative_to(DOCS).as_posix()
         if name == 'verify-download.html':
             continue  # Generated after ZIPs; downloaded separately for offline use.
-        if name.startswith('testing/') and not name.startswith(('testing/alpha-20261108-t5-r4/', 'testing/t4-20261106/', 'testing/t5-20261108/', 'testing/session-guide/')):
+        if name.startswith('testing/') and not name.startswith(('testing/alpha-20261108-t5-r4/', 'testing/t4-20261106/', 'testing/t5-20261108/', 'testing/session-guide/', 'testing/tails-r4-20261109/', 'testing/windows-r4-20261108/')):
             continue
         if not full and not (name in TOOL_NAMES or name == 'offline-folder-guide.html' or name.startswith('assets/') or name in ['kit/' + n for n in PYTHON]):
             continue
@@ -183,7 +183,7 @@ def package(full):
     if not full:
         # Reference-only return link in the dice reference has no guide in this ZIP.
         files['dice-rolls.html'] = files['dice-rolls.html'].replace(b'href="handouts/dice.html"', b'href="START.html"')
-    files['README.txt'] = ('''PLEBUM DOMINIUM — OFFLINE PUBLIC TESTER — 2026-11-08-r3
+    files['README.txt'] = ('''PLEBUM DOMINIUM — OFFLINE PUBLIC TESTER — 2026-11-11
 PUBLIC TEST DATA ONLY. NOT APPROVED FOR REAL-WALLET USE.
 
 FIND THE RIGHT FOLDER
@@ -233,9 +233,14 @@ Its instructions apply to that subfolder, not the complete package layout.
 Legacy PDFs, slides and spreadsheets are excluded pending reconciliation
 and print review. Use the current HTML guides for printable instructions.
 Earlier candidate evidence is included in public-tests/TAILS-RETEST-RESULTS.txt.
-r4 refreshes instructions; HTML/Python tools and the wordlist match r3. Run T1
-for the new ZIP. The short r3-behavior Windows/Tails retest and complete wallet
-rehearsals remain outstanding. Successful file checks do not certify safety or recovery.
+This package refreshes the guide content from November 11, 2026. The HTML/Python
+tools and wordlist in public-tests/ are the exact R4 files tested on Windows
+(November 8) and physical Tails (November 9). Run T1 for the new ZIP. The
+complete wallet rehearsals remain outstanding. Successful file checks do not
+certify safety or recovery.
+
+Tails extraction note: Tails 7.16 does not include unzip. Extract with Python:
+python3 -m zipfile -e plebum-complete-offline-tester-20261111.zip .
 
 Check all extracted files: python3 verify_package.py (Windows: py verify_package.py).
 Checksums establish byte equality, not independent publisher authentication.
@@ -274,7 +279,7 @@ sys.exit(bool(bad))
     archive = FULL if full else TOOLS
     with zipfile.ZipFile(OUT / archive, 'w') as z:
         for name, data in sorted(files.items()):
-            info = zipfile.ZipInfo('plebum-offline/' + name, (2026, 11, 5, 0, 0, 0))
+            info = zipfile.ZipInfo('plebum-offline/' + name, (2026, 11, 11, 0, 0, 0))
             info.compress_type = zipfile.ZIP_DEFLATED
             info.external_attr = 0o100644 << 16
             z.writestr(info, data)
