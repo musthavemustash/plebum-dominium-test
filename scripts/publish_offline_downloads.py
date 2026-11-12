@@ -17,10 +17,10 @@ import zipfile
 ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / 'docs'
 BASE = '/plebum-dominium-test/'
-DEST = 'testing/offline-20261111-r1'
+DEST = 'testing/offline-20261112-r1'
 OUT = DOCS / DEST
-FULL = 'plebum-complete-offline-tester-20261111-r1.zip'
-TOOLS = 'plebum-website-tools-only-20261111-r1.zip'
+FULL = 'plebum-complete-offline-tester-20261112-r1.zip'
+TOOLS = 'plebum-website-tools-only-20261112-r1.zip'
 SENSITIVE = {'dice-converter.html', 'descriptor-tool.html', 'diceware-mapper.html'}
 EXACT = SENSITIVE | {'fingerprint-checker.html', 'verify-file.html', 'kit/hash_checker.html'}
 TOOL_NAMES = [
@@ -87,7 +87,7 @@ def update_guides():
 <p><a href="{BASE}offline-folder-guide.html">Find the tools and fixtures</a> · <a href="{BASE}testing/session-guide/TESTING.txt">T1–T5 with screenshot checkpoints</a> · <a href="{BASE}testing/session-guide/EVIDENCE-CHECKLIST.txt">Save to USB before shutdown</a> · <a href="{BASE}testing/session-guide/FORM-REPORTING.txt">Submit screenshots and evidence links</a></p>
 <p>Disconnect before testing sensitive tools. They must run as local files; keep their existing safeguards in place. Python helpers require Python 3; the Python wallet-map tool also requires GnuPG, installed separately before disconnecting.</p>
 <p>The tools-only ZIP contains the site’s utilities, demos, Python helpers, wordlist and public fixtures, without the guides or legacy print documents. Neither ZIP includes Tails, Sparrow, Electrum or other external software. Feedback, external references, live prices and network transactions require internet access.</p>
-<p><strong>Public testing only. Do not use real wallet secrets, passwords, entropy or funds.</strong> This package refreshes the guide content from November 11, 2026. The tools in public-tests/ are the exact R4 files: the focused R4 package passed the Windows short retest on November 8, and the complete R4 archive passed the observed physical Tails short checks on November 9. Each result applies to its exact package and tested cases; the tools-only archive has no new physical-test result. Historical R4 ZIPs and hashes are preserved. Browser network isolation is not certified.</p>
+<p><strong>Public testing only. Do not use real wallet secrets, passwords, entropy or funds.</strong> This package refreshes the guide content from November 12, 2026. The tools in public-tests/ are the exact R4 files: the focused R4 package passed the Windows short retest on November 8, and the complete R4 archive passed the observed physical Tails short checks on November 9. Each result applies to its exact package and tested cases; the tools-only archive has no new physical-test result. Historical R4 ZIPs and hashes are preserved. Browser network isolation is not certified.</p>
 <p><a href="{BASE}{DEST}/README.txt">Setup and contents</a> · <a href="{BASE}{DEST}/SHA256SUMS.txt">ZIP checksums</a> · <a href="{BASE}{DEST}/manifest.json">Package manifests</a> · <a href="{BASE}test-the-site.html#tasks">Testing tasks and feedback</a></p>
 </section><!-- /offline-downloads -->'''
     s = s.replace('<h1>Downloads</h1>', '<h1>Downloads</h1>' + section, 1)
@@ -237,14 +237,16 @@ Its instructions apply to that subfolder, not the complete package layout.
 Legacy PDFs, slides and spreadsheets are excluded pending reconciliation
 and print review. Use the current HTML guides for printable instructions.
 Earlier candidate evidence is included in public-tests/TAILS-RETEST-RESULTS.txt.
-This package refreshes the guide content from November 11, 2026. The HTML/Python
+This package refreshes the guide content from November 12, 2026. The HTML/Python
 tools and wordlist in public-tests/ are the exact R4 files tested on Windows
-(November 8) and physical Tails (November 9). Run T1 for the new ZIP. The
+(November 8) and physical Tails (November 9). Record this ZIP filename and full SHA-256 in a new evidence folder. Keep earlier
+ZIPs and results unchanged. Run T1 for the new ZIP. The
 complete wallet rehearsals remain outstanding. Successful file checks do not
 certify safety or recovery.
 
-Tails extraction note: Tails 7.16 does not include unzip. Extract with Python:
-python3 -m zipfile -e plebum-complete-offline-tester-20261111-r1.zip .
+Tails extraction note: unzip was unavailable in the recorded Tails 7.16 run.
+If it is unavailable in your environment, extract with Python:
+python3 -m zipfile -e plebum-complete-offline-tester-20261112-r1.zip .
 For the tools-only ZIP, substitute its filename in that command.
 
 Check all extracted files: python3 verify_package.py (Windows: py verify_package.py).
@@ -284,7 +286,7 @@ sys.exit(bool(bad))
     archive = FULL if full else TOOLS
     with zipfile.ZipFile(OUT / archive, 'w') as z:
         for name, data in sorted(files.items()):
-            info = zipfile.ZipInfo('plebum-offline/' + name, (2026, 11, 11, 0, 0, 0))
+            info = zipfile.ZipInfo('plebum-offline/' + name, (2026, 11, 12, 0, 0, 0))
             info.compress_type = zipfile.ZIP_DEFLATED
             info.external_attr = 0o100644 << 16
             z.writestr(info, data)
@@ -292,6 +294,8 @@ sys.exit(bool(bad))
 
 
 def main():
+    if any((OUT / name).exists() for name in (FULL, TOOLS)):
+        raise SystemExit("Release files already exist. Choose a new release ID; never overwrite a published package.")
     from build_tool_fingerprints import build as update_fingerprints
     update_fingerprints()
     from reconcile_tool_downloads import build as reconcile
