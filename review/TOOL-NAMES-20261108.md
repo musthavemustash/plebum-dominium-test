@@ -19,6 +19,14 @@ The four HTML files have new fingerprints. Their executable scripts match R4 exa
 
 ## Validation and remaining scope
 
-Run existing package, fingerprint, tool-state, mapper, core interoperability, link, route and page-test checks. Preview titles, headings, startup dialogs, checker labels and hash matches at desktop and mobile widths. A new package needs its own T1 and name/fingerprint checks on Windows and Tails. Historical passes keep their original scope; this change does not complete T5, T6/T7 or beta approval.
+Passed: current three-package SHA-256 catalogs (21/21 verifier checks), both root/subset verifiers, deterministic rebuilds, stale-copy rejection, independent R4 executable-code comparison and a negative case that tries to change code while updating its reviewed hash; all tool-state/network, 7,776 Diceware mapping, fingerprint, eight BIP39 vector and GPG/HTML interoperability checks; 112-page links, routes and page-test provenance. Static checks confirm titles, headings, startup dialogs, filenames, START links and identical root/public-tests copies. All pre-existing testing artifacts except the live session guide remain byte-identical.
+
+Visual browser preview could not be completed: local Chromium execution failed on an environment socket restriction, and the cloud browser disallows file:// previews. No mobile/desktop visual certification or physical Windows/Tails result is claimed. A new package needs its own T1 and name/fingerprint checks on Windows and Tails. Historical passes keep their original scope; this change does not complete T5, T6/T7 or beta approval.
 
 External Google Form wording/upload changes remain under issue #26. This PR updates the site's reporting instructions, not the external form. Production remains outside this change.
+
+## Published candidate identities
+
+- `plebum-tools-alpha-20261112-r1.zip`: 294285 bytes; SHA-256 `837bc3a6ea1d301049c3c56c537538021f24a028043d6361f8405341b689d799`.
+- `plebum-complete-offline-tester-20261112-r2.zip`: 2934366 bytes; SHA-256 `49584d3df98b791af5452a9f7b11b54aa71376f289aede18b9db7c942fedebe5`.
+- `plebum-website-tools-only-20261112-r2.zip`: 1568695 bytes; SHA-256 `7f1f0f9ae8c3b6f31e1c9f325e625c88d8b94e0cefee7259cf3d260a76190f47`.

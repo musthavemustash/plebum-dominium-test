@@ -3,6 +3,8 @@
 import base64
 import contextlib
 import io
+import json
+import hashlib
 from pathlib import Path
 import shutil
 import tempfile
@@ -59,6 +61,18 @@ with tempfile.TemporaryDirectory() as temp:
         shutil.copyfile(ROOT / path, dest)
     with contextlib.redirect_stdout(io.StringIO()):
         build(root, check=True)
+    # Updating a reviewed hash cannot silently turn a label-only release into
+    # a code change. The independent comparison against R4 must still reject it.
+    tool = root / 'docs/dice-converter.html'
+    review = root / NAMING_REVIEW
+    good_tool, good_review = tool.read_bytes(), review.read_bytes()
+    tool.write_bytes(good_tool.replace(b'<script>', b'<script>/* changed script */', 1))
+    identities = json.loads(good_review)
+    identities['sha256']['dice-converter.html'] = hashlib.sha256(tool.read_bytes()).hexdigest()
+    review.write_text(json.dumps(identities))
+    rejected(lambda: build(root, check=True), 'Logic change accepted as naming-only')
+    tool.write_bytes(good_tool)
+    review.write_bytes(good_review)
     # Use the actual obsolete implementation that caused the Windows regression.
     with zipfile.ZipFile(ROOT / 'docs/kit/tools-bundle.zip') as legacy:
         obsolete = legacy.read('descriptor_obfuscator.py')
