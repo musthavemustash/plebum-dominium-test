@@ -36,7 +36,7 @@ When both programs print the same result, the keys can be treated as correct. Th
 
 ### 04 // Geographic Dispersion
 
-The three keys are stamped into titanium and kept in three separate places. One plate by itself is not enough to spend the long-term fund.🏰🏰🏰‹PLAY SEQUENCE›[Why this guide](#why)[Start the presentation](/deck?n=1)[Presentation handouts](/kit/Presentation_Handouts.pdf)[Download the guide](/kit/02_Print_Packet.pdf)
+The three keys are stamped into titanium and kept in three separate places. One plate by itself is not enough to spend the long-term fund.🏰🏰🏰‹PLAY SEQUENCE›[Why this guide](#why)[Start the presentation](/deck?n=1)[Download the guide](/kit/02_Print_Packet.pdf)
 
 Why this guide
 
@@ -220,14 +220,13 @@ A signature is the project confirming the file. If the signature fails, the file
 
 Zero-trust means a company’s word is not accepted for a download or for a key. Two tools have to agree.
 
-## Downloads[Download the guide](/kit/02_Print_Packet.pdf)[Presentation handouts](/kit/Presentation_Handouts.pdf)[Download the whole kit](/kit/Plebum_Dominium_kit.zip)[Download the source](/Plebum_Dominium_source.zip)
+## Downloads[Download the guide](/kit/02_Print_Packet.pdf)[Download the whole kit](/kit/Plebum_Dominium_kit.zip)[Download the source](/Plebum_Dominium_source.zip)
 
 [verify_kit.sh](/kit/verify_kit.sh)checks the pinned SHA-256 fingerprints of the files in the kit. It does not check signatures, so that check still has to be done separately.Individual files
 
 - [00_Project_Overview.pdfThis is the one-page overview, and the QR code opens the live site.](/kit/00_Project_Overview.pdf)
 - [01_Slides.pptxThis is the original Plebum Dominium presentation.](/kit/01_Slides.pptx)
 - [02_Print_Packet.pdfFor the person doing the work. Checklist, files, keys, spend, plates, and inheritance.](/kit/02_Print_Packet.pdf)
-- [Presentation_Handouts.pdfPresentation handouts. These sheets follow the slides.](/kit/Presentation_Handouts.pdf)
 - [Handouts_No_Cover.pdfThe same working sheets, without the cover page.](/kit/Handouts_No_Cover.pdf)
 - [Terms.pdfThese are the words used in this guide, and what they mean.](/kit/Terms.pdf)
 - [03_Checklist.pdfMaterials, the work in order, and the house rules.](/kit/03_Checklist.pdf)
