@@ -4,8 +4,8 @@
   "packages": [
     {
       "name": "plebum-complete-offline-tester-20261111.zip",
-      "sha256": "b80bd742db01d0255cd92cb267bbdbd77dc9b1bd9c24f2785fa3f3e3fc11fe40",
-      "size": 2842355,
+      "sha256": "36d2ce5aad31a632ba7af678efbe514ed4dcb8df8df8488c6879b3a21d0808e9",
+      "size": 2630133,
       "files": {
         ".nojekyll": {
           "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -16,8 +16,8 @@
           "size": 3914
         },
         "SHA256SUMS.txt": {
-          "sha256": "1d92e7e39879f1ea287ab63c76aff2a40ea0fd14e58666f4c379585aab9e1703",
-          "size": 20704
+          "sha256": "f82c2d2e6c1a48f6bc2c4cb8d7251cefa894a68aac5c9f37a134cad873d0b2be",
+          "size": 20617
         },
         "START.html": {
           "sha256": "f4907cd2e89dece5cd557e0f591b64b7dfe5578b192f6a9f78c0dc80615fe514",
@@ -340,11 +340,11 @@
           "size": 41903
         },
         "kit/README.md": {
-          "sha256": "0a46dcc6a4a713792cb56ce85f6416434169b7b4f970cbecac35c5625a75a552",
-          "size": 8490
+          "sha256": "188e46bc0cb3b46d8e51a63e82a86e673bb884aace000303745708435f38d9d2",
+          "size": 8183
         },
         "kit/VERIFY.md": {
-          "sha256": "d048d53e8bd9bc9ff0f469856509d2f665cbb2db571ecc9deec786787a9f8998",
+          "sha256": "68ea23c8d6183ae5ea41a3ba6ec560447dae264e6e0b1631c9e03aa4f4f573b1",
           "size": 13044
         },
         "kit/bip39_dice_converter.py": {
@@ -362,10 +362,6 @@
         "kit/hash_checker.html": {
           "sha256": "5b0c1428189278d01520dc3606fe280c4a80dd8f53bb5134106d6fe4979fea37",
           "size": 4821
-        },
-        "kit/tools-bundle.zip": {
-          "sha256": "26223471d58a6f573fa25a3e189b9bc16f5c6b22a21e4b9fcaa58e5e22047945",
-          "size": 212189
         },
         "kit/verify_downloads.py": {
           "sha256": "8b819c8325cfb61e680de50cd04d37c04ad3c3d2bc3e46425ee732c54971cd45",
@@ -444,8 +440,8 @@
           "size": 12505
         },
         "package-manifest.json": {
-          "sha256": "c01968d7434febeba61d73973ffe565b7c763f2dc18bcd9fae543958998461c3",
-          "size": 32408
+          "sha256": "42cae6922b28951b1d86479b29e40ba4e6bcedcbfc003eb40bdacf9acdd24500",
+          "size": 32266
         },
         "passphrase-demo.html": {
           "sha256": "f2ba396574320a9d8d5e9fec36b69b4b356259f8fde499933e45ae53411440b1",

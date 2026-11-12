@@ -167,6 +167,8 @@ def package(full):
         if not p.is_file() or p.is_relative_to(OUT) or '__pycache__' in p.parts:
             continue
         name = p.relative_to(DOCS).as_posix()
+        if name == 'kit/tools-bundle.zip':
+            continue  # Legacy bundle contains pre-R4 tools; R4 tools are in public-tests/
         if name == 'verify-download.html':
             continue  # Generated after ZIPs; downloaded separately for offline use.
         if name.startswith('testing/') and not name.startswith(('testing/alpha-20261108-t5-r4/', 'testing/t4-20261106/', 'testing/t5-20261108/', 'testing/session-guide/', 'testing/tails-r4-20261109/', 'testing/windows-r4-20261108/')):

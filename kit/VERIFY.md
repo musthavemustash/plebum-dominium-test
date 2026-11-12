@@ -95,8 +95,8 @@ Checks a downloaded file against its expected SHA-256 fingerprint. Pick a file, 
 
 ```
 File:     verify-file.html
-Size:     8749 bytes
-SHA-256:  c875b25e241c259fca9c8c9f1e256e6489f3f03a11271b18c3033ae5d5f21106
+Size:     9159 bytes
+SHA-256:  7a26ebe85c98b01a202571b2852d4af6b22584864eb365a012716846e05378a0
 ```
 
 The main check for the downloads. Pick the published file, drop the downloaded copy, get MATCH or NO MATCH. The expected fingerprints are embedded in the page. Check this page's own fingerprint here before relying on it.
