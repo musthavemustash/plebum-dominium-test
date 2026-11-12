@@ -16,6 +16,8 @@ on:
       - scripts/test_tool_network.cjs
       - scripts/test_diceware_mapper.cjs
       - scripts/build_tool_fingerprints.py
+      - scripts/reconcile_tool_verification.py
+      - scripts/download_release.json
       - scripts/test_fingerprint_checker.cjs
       - templates/download-verifier.html
       - scripts/reviewed_route_overrides.json
@@ -42,6 +44,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Validate site and preserved public test downloads
         run: |
+          python3 scripts/reconcile_tool_verification.py --check
           node scripts/test_download_verifier.cjs
           node scripts/test_public_session_state.cjs
           node scripts/test_tool_network.cjs

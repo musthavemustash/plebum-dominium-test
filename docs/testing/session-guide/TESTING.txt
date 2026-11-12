@@ -15,13 +15,13 @@ Use a new/empty output folder; run the root and public-tests verifiers afterward
 MAPPER DOWNLOAD: the link is at the bottom of Before this public test,
 below the confirmations explanation. Its saved copy matched the fingerprint.
 
-Instructions refreshed November 8, 2026 from our Windows and physical Tails sessions.
-Package: alpha-20261108-t5-r4 / offline-20261108-r4
+Instructions refreshed November 11, 2026. Historical r4 results above retain their original identity.
+Package: alpha-20261111-r1 / offline-20261111-r1
 PUBLIC FIXTURES ONLY. No real wallet data, private keys, passwords or funds.
 
 WHAT CHANGED
-r4 refreshes instructions and evidence collection. The HTML tools, Python tools
-and EFF wordlist are unchanged from r3. Keep earlier results with their original
+The November 11 refresh includes the current guide and reconciled verification
+references. All seven tested HTML/Python/wordlist files are unchanged from r4. Keep earlier results with their original
 package, date and environment. Do not rename old evidence as a new run.
 Already completed the earlier Tails run? Use TOOL-FINISH-RETEST.txt for the
 remaining changed-behavior checks. It does not require another full eight-vector

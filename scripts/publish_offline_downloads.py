@@ -17,11 +17,14 @@ import zipfile
 ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / 'docs'
 BASE = '/plebum-dominium-test/'
-DEST = 'testing/offline-20261108-r4'
+RELEASES = json.loads((ROOT / 'scripts/download_release.json').read_text())
+DEST = 'testing/' + RELEASES['offline']
+FOCUSED = RELEASES['focused']
 OUT = DOCS / DEST
-FULL = 'plebum-complete-offline-tester-20261108-r4.zip'
-TOOLS = 'plebum-website-tools-only-20261108-r4.zip'
+FULL = 'plebum-complete-offline-tester-' + RELEASES['offline'].removeprefix('offline-') + '.zip'
+TOOLS = 'plebum-website-tools-only-' + RELEASES['offline'].removeprefix('offline-') + '.zip'
 SENSITIVE = {'dice-converter.html', 'descriptor-tool.html', 'diceware-mapper.html'}
+EXACT = SENSITIVE | {'fingerprint-checker.html', 'verify-file.html', 'kit/hash_checker.html'}
 TOOL_NAMES = [
     'dice-converter.html', 'descriptor-tool.html', 'fingerprint-checker.html',
     'diceware-mapper.html', 'diceware.html', 'dice-rolls.html', 'quorum-demo.html',
@@ -85,7 +88,7 @@ def update_guides():
 <p><a href="{BASE}offline-folder-guide.html">Find the tools and fixtures</a> · <a href="{BASE}testing/session-guide/TESTING.txt">T1–T5 with screenshot checkpoints</a> · <a href="{BASE}testing/session-guide/EVIDENCE-CHECKLIST.txt">Save to USB before shutdown</a> · <a href="{BASE}testing/session-guide/FORM-REPORTING.txt">Submit screenshots and evidence links</a></p>
 <p>Disconnect before testing sensitive tools. They must run as local files; keep their existing safeguards in place. Python helpers require Python 3; the Python wallet-map tool also requires GnuPG, installed separately before disconnecting.</p>
 <p>The tools-only ZIP contains the site’s utilities, demos, Python helpers, wordlist and public fixtures, without the guides or legacy print documents. Neither ZIP includes Tails, Sparrow, Electrum or other external software. Feedback, external references, live prices and network transactions require internet access.</p>
-<p><strong>Public testing only. Do not use real wallet secrets, passwords, entropy or funds.</strong> The focused r4 package passed the Windows short retest on November 8. The complete r4 archive passed the observed physical Tails short checks on November 9. Each result applies to its exact package and tested cases; the tools-only archive has no new physical-test result. Keep the existing ZIPs and hashes. Browser network isolation is not certified. See the results below; packaged r4 instructions remain unchanged.</p>
+<p><strong>Public testing only. Do not use real wallet secrets, passwords, entropy or funds.</strong> This November 11 refresh packages the current guide and verification references. All seven tested tool/wordlist files match r4. Run T1 for these new ZIPs; no new physical Windows/Tails result is claimed. The focused r4 package passed the Windows short retest on November 8. The complete r4 archive passed the observed physical Tails short checks on November 9. Each result applies to its exact package and tested cases; the tools-only archive has no new physical-test result. Keep the existing ZIPs and hashes. Browser network isolation is not certified. See the results below; packaged r4 instructions remain unchanged.</p>
 <p><a href="{BASE}{DEST}/README.txt">Setup and contents</a> · <a href="{BASE}{DEST}/SHA256SUMS.txt">ZIP checksums</a> · <a href="{BASE}{DEST}/manifest.json">Package manifests</a> · <a href="{BASE}test-the-site.html#tasks">Testing tasks and feedback</a></p>
 </section><!-- /offline-downloads -->'''
     s = s.replace('<h1>Downloads</h1>', '<h1>Downloads</h1>' + section, 1)
@@ -96,7 +99,7 @@ def update_guides():
 
 
 def offline_copy(name, data):
-    if name in SENSITIVE or name == 'offline-folder-guide.html' or not name.endswith(('.html', '.js', '.json', '.css')):
+    if name in EXACT or name == 'offline-folder-guide.html' or not name.endswith(('.html', '.js', '.json', '.css')):
         return data
     s = data.decode('utf-8')
     if name.endswith('.html'):
@@ -167,14 +170,14 @@ def package(full):
         if not p.is_file() or p.is_relative_to(OUT) or '__pycache__' in p.parts:
             continue
         name = p.relative_to(DOCS).as_posix()
-        if name == 'verify-download.html':
+        if name in {'verify-download.html', 'kit/tools-bundle.zip'}:
             continue  # Generated after ZIPs; downloaded separately for offline use.
-        if name.startswith('testing/') and not name.startswith(('testing/alpha-20261108-t5-r4/', 'testing/t4-20261106/', 'testing/t5-20261108/', 'testing/session-guide/')):
+        if name.startswith('testing/') and not name.startswith(('testing/' + FOCUSED + '/', 'testing/t4-20261106/', 'testing/t5-20261108/', 'testing/session-guide/', 'testing/tails-r4-20261109/', 'testing/windows-r4-20261108/')):
             continue
-        if not full and not (name in TOOL_NAMES or name == 'offline-folder-guide.html' or name.startswith('assets/') or name in ['kit/' + n for n in PYTHON]):
+        if not full and not (name in TOOL_NAMES or name in {'offline-folder-guide.html', 'verify-file.html', 'kit/VERIFY.md', 'kit/hash_checker.html'} or name.startswith('assets/') or name in ['kit/' + n for n in PYTHON]):
             continue
         files[name] = offline_copy(name, p.read_bytes())
-    alpha = DOCS / 'testing/alpha-20261108-t5-r4/plebum-tools-alpha-20261108-t5-r4.zip'
+    alpha = DOCS / 'testing' / FOCUSED / ('plebum-tools-' + FOCUSED + '.zip')
     with zipfile.ZipFile(alpha) as z:
         for name in z.namelist():
             if not name.endswith('/'):
@@ -183,7 +186,7 @@ def package(full):
     if not full:
         # Reference-only return link in the dice reference has no guide in this ZIP.
         files['dice-rolls.html'] = files['dice-rolls.html'].replace(b'href="handouts/dice.html"', b'href="START.html"')
-    files['README.txt'] = ('''PLEBUM DOMINIUM — OFFLINE PUBLIC TESTER — 2026-11-08-r3
+    files['README.txt'] = (f'''PLEBUM DOMINIUM — OFFLINE PUBLIC TESTER — {RELEASES['offline']}
 PUBLIC TEST DATA ONLY. NOT APPROVED FOR REAL-WALLET USE.
 
 FIND THE RIGHT FOLDER
@@ -233,9 +236,11 @@ Its instructions apply to that subfolder, not the complete package layout.
 Legacy PDFs, slides and spreadsheets are excluded pending reconciliation
 and print review. Use the current HTML guides for printable instructions.
 Earlier candidate evidence is included in public-tests/TAILS-RETEST-RESULTS.txt.
-r4 refreshes instructions; HTML/Python tools and the wordlist match r3. Run T1
-for the new ZIP. The short r3-behavior Windows/Tails retest and complete wallet
-rehearsals remain outstanding. Successful file checks do not certify safety or recovery.
+This November 11 refresh includes the current guide and reconciled verification
+references. All seven tested HTML/Python/wordlist files match the original r4
+bytes. The November 8 Windows and November 9 Tails short-run evidence retains
+its original r4 package identity. Run T1 for this new ZIP; it has no new physical
+Windows/Tails result. T5 acceptance and T6/T7 rehearsals remain open.
 
 Check all extracted files: python3 verify_package.py (Windows: py verify_package.py).
 Checksums establish byte equality, not independent publisher authentication.
@@ -267,8 +272,8 @@ sys.exit(bool(bad))
                     prefix = '' if prefix == '.' else prefix + '/'
                     s = s.replace('</head>', '<script src="' + prefix + 'assets/js/offline-indexes.js"></script></head>', 1)
                     files[name] = s.encode()
-    for name in SENSITIVE:
-        assert files[name] == (DOCS / name).read_bytes(), 'Sensitive tool changed: ' + name
+    for name in EXACT:
+        assert files[name] == (DOCS / name).read_bytes(), 'Verified tool changed: ' + name
     files['package-manifest.json'] = (json.dumps({'status': 'PUBLIC_TEST_ONLY', 'custody_approved': False, 'files': manifest_files(files)}, indent=2) + '\n').encode()
     files['SHA256SUMS.txt'] = ''.join(f'{digest(data)}  {name}\n' for name, data in sorted(files.items())).encode()
     archive = FULL if full else TOOLS
@@ -284,7 +289,7 @@ sys.exit(bool(bad))
 def main():
     from build_tool_fingerprints import build as update_fingerprints
     update_fingerprints()
-    OUT.mkdir(parents=True, exist_ok=True)
+    OUT.mkdir(parents=True, exist_ok=False)
     update_guides()
     packages = [package(True), package(False)]
     (OUT / 'manifest.json').write_text(json.dumps({'status': 'PUBLIC_TEST_ONLY', 'custody_approved': False, 'packages': packages}, indent=2) + '\n')

@@ -43,7 +43,7 @@ def build(output, source_commit):
         raise ValueError('Supply the full reviewed source commit SHA')
     output = Path(output)
     output.mkdir(parents=True, exist_ok=False)
-    release = 'alpha-20261108-t5-r4'
+    release = json.loads((ROOT / 'scripts/download_release.json').read_text())['focused']
     archive = 'plebum-tools-' + release + '.zip'
     files = {name: (ROOT / source).read_bytes() for name, source in SOURCES.items()}
     source_files = {name: {'source_path': source, 'sha256': sha(files[name]), 'size': len(files[name])}
@@ -52,7 +52,7 @@ def build(output, source_commit):
         'release': release, 'status': 'PUBLIC_TEST_ONLY', 'custody_approved': False,
         'source_repository': 'https://github.com/musthavemustash/plebum-dominium-test',
         'source_commit': source_commit, 'source_files': source_files,
-        'outstanding': ['Target-environment evidence for the documented OS-managed public-test procedure', 'T1 checks for this refreshed ZIP; short r3-behavior Windows/Tails retest remains pending',
+        'outstanding': ['Target-environment evidence for the documented OS-managed public-test procedure', 'T1 checks for this refreshed ZIP; prior Windows/Tails evidence retains its r4 identity',
                         'Recovery-workflow validation', 'Stable release reconciliation'],
     }, indent=2) + '\n').encode()
     files['README.txt'] = f'''PLEBUM DOMINIUM — PUBLIC ALPHA TEST RELEASE
@@ -93,11 +93,14 @@ No installation or dependency download is performed by the package checker.
 The packaged tools and public fixtures are byte-for-byte copies of the source
 paths recorded in SOURCE.json. No cryptographic implementation was changed.
 Earlier candidate Tails results are in TAILS-RETEST-RESULTS.txt.
-r4 changes instructions only; tool bytes match r3. Check this ZIP with T1;
-the short r3-behavior Windows/Tails retest is still pending. Browser isolation is not certified by this package. See PUBLIC-SESSION-CONTRACT.txt
+This November 11 refresh reconciles instructions and verification references.
+All seven tested HTML/Python/wordlist files match r4. Windows November 8 and
+Tails November 9 short-run results remain associated with their original r4
+packages. Check this new ZIP with T1; no new physical test result is claimed.
+Browser isolation is not certified by this package. See PUBLIC-SESSION-CONTRACT.txt
 for the public-test boundary and TOOL-FINISH-RETEST.txt for the remaining checks.
 Complete wallet recovery remains unresolved.
-Older ZIPs and kit/VERIFY.md do not describe this alpha. Use this package's hashes.
+Older ZIPs retain their original hashes. Use this package's SHA256SUMS.txt.
 Hashes detect changed bytes; they do not independently authenticate the publisher
 or establish that a tool is safe. This alpha does not approve a stable release.
 '''.encode()

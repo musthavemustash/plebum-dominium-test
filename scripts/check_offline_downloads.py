@@ -9,7 +9,7 @@ import sys
 import tempfile
 from urllib.parse import unquote, urlsplit
 import zipfile
-from publish_offline_downloads import DOCS, OUT, FULL, TOOLS, SENSITIVE
+from publish_offline_downloads import DOCS, OUT, FULL, TOOLS, EXACT, PYTHON, FOCUSED
 
 
 class References(HTMLParser):
@@ -41,8 +41,15 @@ def check():
                 assert 'pd-verify-catalog' not in offline_downloads, 'Circular archive hash reference'
                 assert 'href="https://musthavemustash.github.io/plebum-dominium-test/verify-download.html"' in offline_downloads, 'Broken online verifier link'
             subprocess.run([sys.executable, str(root / 'verify_package.py')], check=True)
-            for name in SENSITIVE:
+            for name in EXACT | {'kit/' + name for name in PYTHON}:
                 assert (root / name).read_bytes() == (DOCS / name).read_bytes()
+            assert not (root / 'kit/tools-bundle.zip').exists(), 'Legacy tools bundle included'
+            assert not list(root.rglob('*.pdf')), 'Unreconciled PDF included'
+            with zipfile.ZipFile(DOCS / 'testing' / FOCUSED / ('plebum-tools-' + FOCUSED + '.zip')) as focused:
+                for name in focused.namelist():
+                    if not name.endswith('/'):
+                        assert (root / 'public-tests' / name.split('/', 1)[1]).read_bytes() == focused.read(name), name
+            subprocess.run([sys.executable, str(root / 'public-tests/verify_package.py')], check=True)
             for page in root.rglob('*.html'):
                 parser = References()
                 parser.feed(page.read_text())
