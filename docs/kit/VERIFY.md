@@ -279,12 +279,12 @@ the sheet as published.
 | 10 · Rehearse on testnet | handouts/testnet.html | `ce0817906db9de576876e59c728b0b1142052182113007437456b1a3c43c9df9` |
 | 08 · Practice spend | handouts/signing.html | `26b98d6df93993f252569831f5066829f78cc6d1849a7bc53ed6766d5324ed4a` |
 | 09 · Metal and the map | handouts/titanium.html | `1f3d1c0ece506cafb5afbfa69b655d3b0256f050ea433eaccb5f84fce6511736` |
-| 11 · Hide the wallet map | handouts/encryption.html | `09e102e45415591085a14ce265b84fe9cab3c34c08df5b95666ff65f4c73b503` |
+| 11 · Hide the wallet map | handouts/encryption.html | `2d1f464923b4a781e168ae72596a94376369b9d9dd8df1bfa01fb8fc05194a85` |
 | 12 · If I am gone | handouts/inheritance.html | `f6f40aca13381bbcf0b87009067568ac632b1a8580724f302aaad8bcc0c2beeb` |
 | 13 · If you get stuck | handouts/faq.html | `505722e16d0dae57ce215bb21d43d056716d3008079288fe166826461ddbe9a7` |
 | 14 · Tough questions | handouts/briefing.html | `b543f80e025167342dce45f5f44b46f652d8bb71b37d01634484a1cb0079085a` |
 | 15 · Recovery card | handouts/fire-card.html | `d4230f3ed58045c168be869cb0b8b6113c20f0caf55f3fb7269506e8c0db3b25` |
-| 16 · One key, done right | handouts/single-sig.html | `0f5d272c7890d4201ec379001f90bfe41c8e0f847cf2348996661a29ce930837` |
+| 16 · One key, done right | handouts/single-sig.html | `df117f0958c9834ba4b8cfe1de04ac1a9d9abe4bd04a63b0b54e61d2c466a923` |
 | 17 · Two devices and one dice key | handouts/two-devices.html | `604e75db763e51a6f4148fe65d75b3bb9212e6c6933cd9aee67f06a3e7f1184f` |
 
 <!-- END GENERATED: PAGE FINGERPRINTS -->

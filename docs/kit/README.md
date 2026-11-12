@@ -4,13 +4,13 @@
 
 This folder is the complete Plebum Dominium kit: hold your own Bitcoin keys without buying a company-made hardware signer. The live site is [plebumbtc.io](https://plebumbtc.io).
 
-The biggest threat in Bitcoin custody is a **single point of failure**: one vendor, one device, one tool, one house. A key generated with sufficient entropy in an airgapped environment is the foundation. After the key has been recorded on metal and its backup and recovery checks pass, you may use a compatible hardware wallet as an optional signing tool. Use the existing backed-up key. Offline software remains the default for signing and recovery. Different vendors do not prove independent trust.
+The biggest threat in Bitcoin custody is a **single point of failure**: one vendor, one device, one tool, one house. A key generated with sufficient entropy in an airgapped environment is the foundation. After that key exists, you *may* export it onto a trusted hardware wallet for signing. If you put more than one key on hardware, use **different vendors**.
 
 You generate entropy with casino dice, convert it on **offline Tails**, build a **2-of-3 native SegWit (P2WSH)** wallet in Sparrow, check the same math in Electrum and Ian Coleman BIP39, then stamp the three seeds on titanium and store them in three places.
 
 The presentation teaches the *why*. The print packet and scripts are what you take to a closed-door table.
 
-The biggest threat in Bitcoin custody is a **single point of failure**: one vendor, one device, one tool, one house. A key generated with sufficient entropy in an airgapped environment is the foundation. After the key has been recorded on metal and its backup and recovery checks pass, you may use a compatible hardware wallet as an optional signing tool. Use the existing backed-up key. Offline software remains the default for signing and recovery. Different vendors do not prove independent trust.
+The biggest threat in Bitcoin custody is a **single point of failure**: one vendor, one device, one tool, one house. A key generated with sufficient entropy in an airgapped environment is the foundation. After that key exists, you *may* export it onto a trusted hardware wallet for signing. If you put more than one key on hardware, use **different vendors**.
 
 You generate entropy with casino dice, convert it on **offline Tails**, build a **2-of-3 native SegWit (P2WSH)** wallet in Sparrow, check the same math in Electrum and Ian Coleman BIP39, then stamp the three seeds on titanium and store them in three places.
 
@@ -27,7 +27,7 @@ The presentation teaches the *why*. The print packet and scripts are what you ta
 | Wallet | 2-of-3 P2WSH, path `m/48'/0'/0'/2'` |
 | Backup | Three titanium stamp plates, one seed each |
 | Split | Three distant locations; descriptor is not a third seed |
-| Optional later | Use an existing key for optional hardware signing only after checked metal backups; retain software recovery |
+| Optional later | Export a finished seed onto hardware for signing; multi-vendor if more than one key |
 
 ## How to use these files at home
 
