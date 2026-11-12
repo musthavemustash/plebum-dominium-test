@@ -1,0 +1,101 @@
+PLEBUM DOMINIUM: T6 WITH THE R3 COMPLETE OFFLINE TESTER
+Prepared November 12, 2026. Public testing only.
+
+PACKAGE
+Download from the test website's Downloads page, just as any tester would:
+https://musthavemustash.github.io/plebum-dominium-test/downloads.html#offline-tester
+Choose: plebum-complete-offline-tester-20261112-r3.zip
+The tools-only and focused ZIPs do not contain the complete T6 guide.
+
+BEFORE DISCONNECTING
+1. Save the ZIP and its matching published SHA256SUMS.txt. Use the website's
+   ZIP verifier; save that verifier separately if you will need it offline.
+2. Extract the entire ZIP. Its folder is plebum-offline. Keep earlier downloads
+   and evidence unchanged. Do not mix R3 files into an older extracted folder.
+3. Prepare and verify Tails and the wallet software separately. They are not
+   bundled in this ZIP. Record the actual versions, browser and test device.
+4. Select and record the exact test network supported by your verified wallet
+   software. The offline signer, online watch-only wallet, server, faucet and
+   explorer must use the same network. Stop if that network is unclear.
+5. Prepare disposable paper records, a pen and a separate data USB. Metal
+   and hardware signers are not required for T6. Do not use an existing wallet.
+
+START THE OFFLINE SESSION
+Disable OS networking. Keep the signing session offline. Open START.html in
+plebum-offline, then follow its T1 instructions to verify the extracted files.
+Stop on a mismatch. Open the T6 checklist and the one-key guide from START.html.
+Use only disposable test keys/passphrases and test-network coins throughout.
+The connected wallet stays watch-only. Never copy signing secrets to it.
+
+RECORD THE R3 TOOL CHECKS SEPARATELY
+Use the matching tools and supplied fixtures in public-tests. Follow that
+folder's TESTING.txt for the exact cases and expected results. Check the tool
+names/tabs and download filenames, fingerprint matches and a deliberate
+mismatch, offline controls, public-fixture results, and clearing/reopening.
+Record each check actually performed and its operating system. Mark skipped
+checks NOT TESTED. A T6 pass does not pass all of T1-T5 or another platform.
+
+T6 WALLET REHEARSAL
+Follow test-the-site.html#t6 and paths/one/single-sig.html in the extracted guide.
+
+Set it up:
+Create the disposable one-key wallet with the exact test passphrase. Record
+the network, script type, account, derivation path and expected receiving
+addresses in your test records. Check the intended wallet settings.
+
+Check the paper records:
+Write and read back every word of the disposable seed. Record the exact test
+passphrase separately. Label the records TEST ONLY. Metal is outside T6.
+
+Practice spending:
+Use the guide's online watch-only / offline software-signing flow. Review the
+destination, amount, fee and change before signing. Complete and confirm the
+test-network transaction. Keep the original working test wallet intact.
+
+Recover it:
+Restore from the paper records and saved settings without relying on the
+original wallet file. Confirm the same receiving addresses. Demonstrate a
+spend after restoration using the exact test passphrase.
+
+Check missing and incorrect passphrases:
+Record what the wallet shows for each case. A missing or different BIP39
+passphrase can open a different wallet without an error. Return to the exact
+passphrase and confirm the intended test wallet again. Keep originals intact.
+
+Finish:
+Save the actual outcomes and anything confusing, failed or unfinished.
+Copy the evidence to the data USB and reopen the saved files to check them.
+Close the offline session and shut down fully. T6 does not require another
+person, metal work, or an extra finishing screenshot.
+
+EVIDENCE
+Use a separate evidence folder for this package and OS. Copy this run sheet
+before filling it in; keep the packaged original unchanged so T1 can rerun.
+For seed/passphrase handling, record a written observation. Keep seed words,
+passphrases, private keys and unrelated wallet details out of images/reports.
+Screenshots of non-sensitive results or a short recording can support other
+checks. Submit public-test evidence only after the offline session has ended.
+
+SESSION RECORD (complete a copy)
+Date / device / OS:
+ZIP filename:
+Full ZIP SHA-256:
+ZIP check / T1 result:
+Tails / wallet / browser / other software versions:
+Exact test network:
+R3 tool checks performed and evidence filenames:
+R3 tool checks skipped or blocked:
+T6 setup result and evidence:
+T6 paper-record read-back observation (no seed/passphrase):
+T6 initial spend result and evidence:
+T6 restored addresses match / spend after recovery:
+T6 missing-passphrase observation:
+T6 incorrect-passphrase observation:
+Saved evidence checked / offline session closed:
+Failures, confusing instructions or unfinished checks:
+
+Use PASS only for an observed successful check, FAIL for an observed mismatch,
+and NOT TESTED for a check not completed. T6 passes only when its setup, checked
+paper records, signing and recovery checks have passing evidence and the
+results are saved. R3 physical results, T7, remaining T1-T5 evidence and final
+release review remain separate. This package does not approve a beta release.

@@ -10,7 +10,7 @@ import re
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
-RELEASE = 'alpha-20261112-r1'
+RELEASE = 'alpha-20261112-r3'
 SOURCES = {
     **{name: 'docs/testing/session-guide/' + name for name in (
         'TESTING.txt', 'EVIDENCE-CHECKLIST.txt', 'SESSION-NOTES.txt', 'FORM-REPORTING.txt')},
@@ -94,9 +94,9 @@ No installation or dependency download is performed by the package checker.
 The packaged tools and public fixtures are byte-for-byte copies of the source
 paths recorded in SOURCE.json. No cryptographic implementation was changed.
 Earlier candidate Tails results are in TAILS-RETEST-RESULTS.txt.
-This naming revision updates headings, tabs, filenames and checker choices.
-Sensitive-tool executable code, Python helpers, wordlist and fixtures match R4;
-the Fingerprint checker has new expected hashes for the renamed HTML files.
+This r3 revision updates punctuation in the four HTML tools. The Fingerprint
+checker has new expected hashes for the revised HTML files. Sensitive-tool
+executable code, Python helpers, wordlist and fixtures match R4.
 Historical Windows/Tails results retain their original scope. Check this ZIP
 with T1 and repeat the name/fingerprint checks; no new physical pass is claimed.
 Browser isolation is not certified by this package. See PUBLIC-SESSION-CONTRACT.txt
