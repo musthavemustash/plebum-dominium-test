@@ -64,6 +64,15 @@ def update_guides():
     for slug, items in links.items():
         path = DOCS / 'handouts' / (slug + '.html')
         s = path.read_text()
+        existing = re.search(r'<!-- offline-downloads -->.*?<!-- /offline-downloads -->', s, re.S)
+        if existing:
+            # Preserve the reviewed inline-tool controls and wording. Only
+            # advance versioned archive references in an existing download block.
+            block = re.sub(r'testing/offline-\d{8}(?:-r\d+)?', DEST, existing[0])
+            block = re.sub(r'plebum-complete-offline-tester-\d{8}(?:-r\d+)?\.zip', FULL, block)
+            block = re.sub(r'plebum-website-tools-only-\d{8}(?:-r\d+)?\.zip', TOOLS, block)
+            path.write_text(s[:existing.start()] + block + s[existing.end():])
+            continue
         s = re.sub(r'\n?<!-- offline-downloads -->.*?<!-- /offline-downloads -->', '', s, flags=re.S)
         block = '<!-- offline-downloads --><section class="entry-card" aria-label="Offline testing downloads"><p class="guide-needs"><strong>You will need for offline testing:</strong> '
         block += ' · '.join(link(p, label) for p, label in items)

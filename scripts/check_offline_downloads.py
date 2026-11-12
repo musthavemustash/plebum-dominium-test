@@ -55,6 +55,8 @@ def check():
                 parser.feed(page.read_text())
                 for tag, ref in parser.refs:
                     url = urlsplit(ref)
+                    if tag in ('img', 'source') and url.scheme == 'data':
+                        continue  # Embedded image bytes do not make a network request.
                     if url.scheme or url.netloc:
                         assert tag not in ('script', 'img', 'iframe', 'source'), (page, 'network resource', ref)
                         continue
