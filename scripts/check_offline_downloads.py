@@ -9,7 +9,8 @@ import sys
 import tempfile
 from urllib.parse import unquote, urlsplit
 import zipfile
-from publish_offline_downloads import DOCS, OUT, FULL, TOOLS, SENSITIVE
+from publish_offline_downloads import DOCS, OUT, FULL, TOOLS, EXACT, KIT_FILES
+from reconcile_tool_downloads import TOOLS as R4_TOOLS, r4_files, tool_path, check_fingerprints, build as check_sources
 
 
 class References(HTMLParser):
@@ -26,6 +27,8 @@ class References(HTMLParser):
 
 
 def check():
+    check_sources(check=True)
+    baseline = r4_files(DOCS)
     manifest = json.loads((OUT / 'manifest.json').read_text())
     for item in manifest['packages']:
         archive = OUT / item['name']
@@ -41,8 +44,14 @@ def check():
                 assert 'pd-verify-catalog' not in offline_downloads, 'Circular archive hash reference'
                 assert 'href="https://musthavemustash.github.io/plebum-dominium-test/verify-download.html"' in offline_downloads, 'Broken online verifier link'
             subprocess.run([sys.executable, str(root / 'verify_package.py')], check=True)
-            for name in SENSITIVE:
+            for name in EXACT:
                 assert (root / name).read_bytes() == (DOCS / name).read_bytes()
+            assert {p.relative_to(root).as_posix() for p in (root / 'kit').rglob('*') if p.is_file()} == KIT_FILES
+            for name, data in baseline.items():
+                assert (root / 'public-tests' / name).read_bytes() == data, f'R4 subset changed: {name}'
+            for name in R4_TOOLS:
+                assert (root / tool_path(name)).read_bytes() == baseline[name], f'R4 root tool changed: {name}'
+            check_fingerprints(root)
             for page in root.rglob('*.html'):
                 parser = References()
                 parser.feed(page.read_text())
