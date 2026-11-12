@@ -48,6 +48,8 @@ def check():
                 parser.feed(page.read_text())
                 for tag, ref in parser.refs:
                     url = urlsplit(ref)
+                    if url.scheme == 'data':
+                        continue  # Inline data URI, not a network resource.
                     if url.scheme or url.netloc:
                         assert tag not in ('script', 'img', 'iframe', 'source'), (page, 'network resource', ref)
                         continue
