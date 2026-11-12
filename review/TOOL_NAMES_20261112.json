@@ -1,0 +1,9 @@
+{
+  "scope": "PR #46 naming-only revision; executable tool code checked against immutable R4, checker hashes normalized for comparison",
+  "sha256": {
+    "dice-converter.html": "f35fe817d19d67a599eb90c3ae271dd2363388efc66eaf77079fce5bd0a706dd",
+    "descriptor-tool.html": "3682e91c37fba4f95293971acb8d7b697077f534e2e008419cda24ecc475a941",
+    "diceware-mapper.html": "ae33ab800911ea26d512e4f92f1f1c9126fe995e6b07af4249d58945cf00d156",
+    "fingerprint-checker.html": "9b4f8e54de58247cafcc5f7ee70c26b249183d1ef7712b9171921f139e95bd22"
+  }
+}

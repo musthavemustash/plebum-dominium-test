@@ -13,14 +13,15 @@ import re
 import subprocess
 import sys
 import zipfile
+from reconcile_tool_downloads import CURRENT
 
 ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / 'docs'
 BASE = '/plebum-dominium-test/'
-DEST = 'testing/offline-20261112-r1'
+DEST = 'testing/offline-20261112-r2'
 OUT = DOCS / DEST
-FULL = 'plebum-complete-offline-tester-20261112-r1.zip'
-TOOLS = 'plebum-website-tools-only-20261112-r1.zip'
+FULL = 'plebum-complete-offline-tester-20261112-r2.zip'
+TOOLS = 'plebum-website-tools-only-20261112-r2.zip'
 SENSITIVE = {'dice-converter.html', 'descriptor-tool.html', 'diceware-mapper.html'}
 EXACT = SENSITIVE | {'fingerprint-checker.html', 'verify-file.html', 'kit/hash_checker.html'}
 TOOL_NAMES = [
@@ -87,7 +88,7 @@ def update_guides():
 <p><a href="{BASE}offline-folder-guide.html">Find the tools and fixtures</a> · <a href="{BASE}testing/session-guide/TESTING.txt">T1–T5 with screenshot checkpoints</a> · <a href="{BASE}testing/session-guide/EVIDENCE-CHECKLIST.txt">Save to USB before shutdown</a> · <a href="{BASE}testing/session-guide/FORM-REPORTING.txt">Submit screenshots and evidence links</a></p>
 <p>Disconnect before testing sensitive tools. They must run as local files; keep their existing safeguards in place. Python helpers require Python 3; the Python wallet-map tool also requires GnuPG, installed separately before disconnecting.</p>
 <p>The tools-only ZIP contains the site’s utilities, demos, Python helpers, wordlist and public fixtures, without the guides or legacy print documents. Neither ZIP includes Tails, Sparrow, Electrum or other external software. Feedback, external references, live prices and network transactions require internet access.</p>
-<p><strong>Public testing only. Do not use real wallet secrets, passwords, entropy or funds.</strong> This package refreshes the guide content from November 12, 2026. The tools in public-tests/ are the exact R4 files: the focused R4 package passed the Windows short retest on November 8, and the complete R4 archive passed the observed physical Tails short checks on November 9. Each result applies to its exact package and tested cases; the tools-only archive has no new physical-test result. Historical R4 ZIPs and hashes are preserved. Browser network isolation is not certified.</p>
+<p><strong>Public testing only. Do not use real wallet secrets, passwords, entropy or funds.</strong> This naming revision aligns tool headings, browser tabs, checker choices and filenames. The sensitive tools’ executable code, Python helpers, wordlist and fixtures remain unchanged from R4. HTML labels and checker fingerprints have changed together. Historical Windows/Tails results keep their original package and scope; these new archives need T1 and name/fingerprint checks on your test device. Earlier ZIPs and evidence are preserved. Browser network isolation is not certified.</p>
 <p><a href="{BASE}{DEST}/README.txt">Setup and contents</a> · <a href="{BASE}{DEST}/SHA256SUMS.txt">ZIP checksums</a> · <a href="{BASE}{DEST}/manifest.json">Package manifests</a> · <a href="{BASE}test-the-site.html#tasks">Testing tasks and feedback</a></p>
 </section><!-- /offline-downloads -->'''
     s = s.replace('<h1>Downloads</h1>', '<h1>Downloads</h1>' + section, 1)
@@ -137,7 +138,11 @@ def offline_copy(name, data):
 
 def start_page(full):
     items = ([('index.html', 'Open the complete offline guide'), ('paths/one/index.html', 'One key + passphrase'), ('paths/three/index.html', 'Three keys')] if full else [])
-    items += [(n, n.replace('.html', '').replace('-', ' ').capitalize()) for n in TOOL_NAMES]
+    labels = {'dice-converter.html': 'Dice converter', 'descriptor-tool.html': 'Wallet-map tool',
+              'diceware-mapper.html': 'Diceware mapper', 'fingerprint-checker.html': 'Fingerprint checker',
+              'descriptor-demo.html': 'Wallet-map tool demo', 'passphrase-demo.html': 'Diceware mapper demo',
+              'diceware.html': 'Diceware mapper demo', 'dice-converter-demo.html': 'Dice converter demo'}
+    items += [(n, labels.get(n, n.replace('.html', '').replace('-', ' ').capitalize()) + ' (' + n + ')') for n in TOOL_NAMES]
     items += [('kit/' + n, n) for n in PYTHON]
     items += [('public-tests/TESTING.txt', 'T1–T5: steps and screenshot checkpoints'), ('public-tests/EVIDENCE-CHECKLIST.txt', 'Save to USB before shutdown'), ('public-tests/FORM-REPORTING.txt', 'Google Form fields and shareable evidence links'), ('public-tests/SESSION-NOTES.txt', 'Copyable session notes'), ('public-tests/RESULTS.csv', 'Record results'), ('README.txt', 'Setup instructions')]
     links = ''.join(f'<li><a href="{p}">{label}</a></li>' for p, label in items)
@@ -153,7 +158,7 @@ def start_page(full):
 </ol>
 <p>Disconnect before testing sensitive tools. If a tool blocks your environment, record the result without bypassing its controls.</p>
 <h2>Save as you go</h2><p>Take a screenshot after each result, before clearing or continuing. Copy it to your separate test/data USB. Before reboot or shutdown, follow <a href="public-tests/EVIDENCE-CHECKLIST.txt">Save and check your evidence</a>: wait for copying, reopen an actual image and text file from the USB, then safely eject it and shut down.</p><p>After the offline session, use <a href="public-tests/FORM-REPORTING.txt">the Google Form field guide</a>. Attach screenshots if your selected task offers an upload section; otherwise use an evidence link. This guide shows how to upload public evidence to Drive, make a Viewer link and test access before submitting.</p><h2>Open the matching test files</h2>
-<ul><li><a href="public-tests/dice-converter.html">Dice converter for T2/T3/T5</a></li><li><a href="public-tests/descriptor-tool.html">Wallet-map tool for T2/T4/T5</a></li><li><a href="public-tests/fixtures/README.md">Fixture guide</a> · <a href="public-tests/fixtures/public-map.txt">Public wallet-map text</a> · <a href="public-tests/fixtures/password.txt">Public test password</a></li></ul>
+<ul><li><a href="public-tests/dice-converter.html">Dice converter (dice-converter.html) for T2/T3/T5</a></li><li><a href="public-tests/descriptor-tool.html">Wallet-map tool (descriptor-tool.html) for T2/T4/T5</a></li><li><a href="public-tests/diceware-mapper.html">Diceware mapper (diceware-mapper.html)</a></li><li><a href="public-tests/fingerprint-checker.html">Fingerprint checker (fingerprint-checker.html)</a></li><li><a href="public-tests/fixtures/README.md">Fixture guide</a> · <a href="public-tests/fixtures/public-map.txt">Public wallet-map text</a> · <a href="public-tests/fixtures/password.txt">Public test password</a></li></ul>
 <details><summary>Guide and additional utilities</summary><ul>''' + links + f'</ul></details><p>Feedback requires reconnecting after the offline session: <a href="{FORM}">Submit non-sensitive results</a>.</p></body></html>').encode()
 
 
@@ -173,12 +178,12 @@ def package(full):
             continue  # Do not reintroduce legacy bundles, instructions or pinned helpers.
         if name == 'verify-download.html':
             continue  # Generated after ZIPs; downloaded separately for offline use.
-        if name.startswith('testing/') and not name.startswith(('testing/alpha-20261108-t5-r4/', 'testing/t4-20261106/', 'testing/t5-20261108/', 'testing/session-guide/', 'testing/tails-r4-20261109/', 'testing/windows-r4-20261108/')):
+        if name.startswith('testing/') and not name.startswith((CURRENT.rsplit('/', 1)[0] + '/', 'testing/alpha-20261108-t5-r4/', 'testing/t4-20261106/', 'testing/t5-20261108/', 'testing/session-guide/', 'testing/tails-r4-20261109/', 'testing/windows-r4-20261108/')):
             continue
         if not full and not (name in TOOL_NAMES or name == 'offline-folder-guide.html' or name.startswith('assets/') or name in KIT_FILES):
             continue
         files[name] = offline_copy(name, p.read_bytes())
-    alpha = DOCS / 'testing/alpha-20261108-t5-r4/plebum-tools-alpha-20261108-t5-r4.zip'
+    alpha = DOCS / CURRENT
     with zipfile.ZipFile(alpha) as z:
         for name in z.namelist():
             if not name.endswith('/'):
@@ -187,7 +192,7 @@ def package(full):
     if not full:
         # Reference-only return link in the dice reference has no guide in this ZIP.
         files['dice-rolls.html'] = files['dice-rolls.html'].replace(b'href="handouts/dice.html"', b'href="START.html"')
-    files['README.txt'] = ('''PLEBUM DOMINIUM — OFFLINE PUBLIC TESTER — 2026-11-11 r1
+    files['README.txt'] = ('''PLEBUM DOMINIUM — OFFLINE PUBLIC TESTER — 2026-11-12 r2
 PUBLIC TEST DATA ONLY. NOT APPROVED FOR REAL-WALLET USE.
 
 FIND THE RIGHT FOLDER
@@ -233,20 +238,25 @@ Read public-tests/FORM-REPORTING.txt for exact Google Form fields and evidence
 sharing instructions. Upload only public-test evidence after the offline session.
 The source tools in the package root retain their original sensitive controls.
 public-tests contains the current focused alpha's matching tools and fixtures and its own README/manifest.
+Tool names: Dice converter (dice-converter.html); Wallet-map tool
+(descriptor-tool.html); Diceware mapper (diceware-mapper.html);
+Fingerprint checker (fingerprint-checker.html).
 Its instructions apply to that subfolder, not the complete package layout.
 Legacy PDFs, slides and spreadsheets are excluded pending reconciliation
 and print review. Use the current HTML guides for printable instructions.
 Earlier candidate evidence is included in public-tests/TAILS-RETEST-RESULTS.txt.
-This package refreshes the guide content from November 12, 2026. The HTML/Python
-tools and wordlist in public-tests/ are the exact R4 files tested on Windows
-(November 8) and physical Tails (November 9). Record this ZIP filename and full SHA-256 in a new evidence folder. Keep earlier
+This revision aligns tool names and filenames across the guide and tools.
+The sensitive tools' executable code, Python helpers, wordlist and fixtures
+are unchanged from R4. HTML labels and the checker's expected hashes changed.
+No new physical Windows/Tails pass is claimed. Check T1 and tool names/hashes.
+Record this ZIP filename and full SHA-256 in a new evidence folder. Keep earlier
 ZIPs and results unchanged. Run T1 for the new ZIP. The
 complete wallet rehearsals remain outstanding. Successful file checks do not
 certify safety or recovery.
 
 Tails extraction note: unzip was unavailable in the recorded Tails 7.16 run.
 If it is unavailable in your environment, extract with Python:
-python3 -m zipfile -e plebum-complete-offline-tester-20261112-r1.zip .
+python3 -m zipfile -e plebum-complete-offline-tester-20261112-r2.zip .
 For the tools-only ZIP, substitute its filename in that command.
 
 Check all extracted files: python3 verify_package.py (Windows: py verify_package.py).

@@ -11,11 +11,13 @@ import zipfile
 ROOT = Path(__file__).resolve().parents[1]
 R4 = 'testing/alpha-20261108-t5-r4/plebum-tools-alpha-20261108-t5-r4.zip'
 R4_SHA256 = '6d5ab946970537b21249555507be65724061fd01d132cc02a1c8cb4b4938aec8'
+CURRENT = 'testing/alpha-20261112-r1/plebum-tools-alpha-20261112-r1.zip'
+NAMING_REVIEW = 'review/TOOL_NAMES_20261112.json'
 TOOLS = {
     'dice-converter.html': 'Dice converter page.',
-    'descriptor-tool.html': 'Wallet-map encryption and recovery page.',
-    'diceware-mapper.html': 'Maps five-dice rolls to EFF words.',
-    'fingerprint-checker.html': 'Checks the three HTML tools or a supplied fingerprint.',
+    'descriptor-tool.html': 'Wallet-map tool. Encrypt and restore a wallet map.',
+    'diceware-mapper.html': 'Diceware mapper. Six-word passphrase from five-dice rolls.',
+    'fingerprint-checker.html': 'Fingerprint checker. Compare file fingerprints.',
     'bip39_dice_converter.py': 'Python dice converter.',
     'descriptor_obfuscator.py': 'Python wallet-map tool. Requires GnuPG.',
     'eff_large_wordlist.txt': 'EFF Large Wordlist. 7,776 words.',
@@ -41,9 +43,22 @@ def r4_files(docs):
 def check_tools(root):
     docs = root / 'docs'
     baseline = r4_files(docs)
+    reviewed = json.loads((root / NAMING_REVIEW).read_text())['sha256']
     for name in TOOLS:
         path = tool_path(name)
-        assert (docs / path).read_bytes() == baseline[name], f'R4 tool changed: docs/{path}'
+        data = (docs / path).read_bytes()
+        if name in reviewed:
+            assert digest(data) == reviewed[name], f'Unreviewed tool bytes: docs/{path}'
+            # This release permits labels and checker fingerprints only. Its
+            # executable code must still match the physically tested R4 tools.
+            def scripts(value):
+                text = value.decode()
+                if name == 'fingerprint-checker.html':
+                    text = re.sub(r"('(converter|descriptor|mapper)': ')[a-f0-9]{64}", r'\1HASH', text)
+                return re.findall(r'<script\b[^>]*>(.*?)</script>', text, re.S)
+            assert scripts(data) == scripts(baseline[name]), f'Tool logic changed: {name}'
+        else:
+            assert data == baseline[name], f'R4 tool changed: docs/{path}'
         if path.startswith('kit/'):
             assert (root / path).read_bytes() == baseline[name], f'R4 tool changed: {path}'
             snapshot = root / 'kit-b64' / (path + '.b64')
@@ -68,7 +83,7 @@ real-wallet use or independently authenticate the publisher.
 Use verify-file.html to check an individual file. Use verify-download.html,
 saved separately before disconnecting, to check a complete or tools-only ZIP.
 After extraction, run verify_package.py from the plebum-offline folder.
-For the preserved R4 test subset, use public-tests/TESTING.txt and its verifier.
+For the current test subset, use public-tests/TESTING.txt and its verifier.
 
 The HTML tools and verify-file.html are at the site or package root. Python
 tools, the wordlist, this file and hash_checker.html are in kit/.
@@ -139,7 +154,7 @@ def build(root=ROOT, check=False):
         else:
             target.write_bytes(data)
     check_fingerprints(root / 'docs')
-    print('PASS: R4 source tools, snapshots and all current individual-file fingerprints')
+    print('PASS: reviewed naming revision, unchanged R4 tool logic, snapshots and file fingerprints')
 
 
 if __name__ == '__main__':

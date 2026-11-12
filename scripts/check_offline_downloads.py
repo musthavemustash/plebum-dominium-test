@@ -10,7 +10,7 @@ import tempfile
 from urllib.parse import unquote, urlsplit
 import zipfile
 from publish_offline_downloads import DOCS, OUT, FULL, TOOLS, EXACT, KIT_FILES
-from reconcile_tool_downloads import TOOLS as R4_TOOLS, r4_files, tool_path, check_fingerprints, build as check_sources
+from reconcile_tool_downloads import TOOLS as REVIEWED_TOOLS, CURRENT, r4_files, tool_path, check_fingerprints, build as check_sources
 
 
 class References(HTMLParser):
@@ -28,7 +28,9 @@ class References(HTMLParser):
 
 def check():
     check_sources(check=True)
-    baseline = r4_files(DOCS)
+    r4_files(DOCS)  # Historical archive remains immutable.
+    with zipfile.ZipFile(DOCS / CURRENT) as z:
+        baseline = {n.split('/', 1)[1]: z.read(n) for n in z.namelist() if not n.endswith('/')}
     manifest = json.loads((OUT / 'manifest.json').read_text())
     for item in manifest['packages']:
         archive = OUT / item['name']
@@ -48,9 +50,10 @@ def check():
                 assert (root / name).read_bytes() == (DOCS / name).read_bytes()
             assert {p.relative_to(root).as_posix() for p in (root / 'kit').rglob('*') if p.is_file()} == KIT_FILES
             for name, data in baseline.items():
-                assert (root / 'public-tests' / name).read_bytes() == data, f'R4 subset changed: {name}'
-            for name in R4_TOOLS:
-                assert (root / tool_path(name)).read_bytes() == baseline[name], f'R4 root tool changed: {name}'
+                assert (root / 'public-tests' / name).read_bytes() == data, f'Current subset changed: {name}'
+            subprocess.run([sys.executable, str(root / 'public-tests/verify_package.py')], check=True)
+            for name in REVIEWED_TOOLS:
+                assert (root / tool_path(name)).read_bytes() == baseline[name], f'Root/subset tools disagree: {name}'
             check_fingerprints(root)
             for page in root.rglob('*.html'):
                 parser = References()

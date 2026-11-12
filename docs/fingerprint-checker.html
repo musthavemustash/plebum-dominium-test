@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Fingerprint Checker · Plebum Dominium</title>
+<title>Fingerprint checker · Plebum Dominium</title>
 <meta name="description" content="Compare a downloaded file's SHA-256 fingerprint against the expected value.">
 <style>
   :root[data-theme="dark"] {
@@ -66,13 +66,14 @@
 <body>
 
 <div class="kicker">T · PLEBUM DOMINIUM</div>
-<h1>Fingerprint Checker</h1>
+<h1>Fingerprint checker</h1>
+<p>File: <code>fingerprint-checker.html</code></p>
 <p class="sub">Compare a downloaded file against its published SHA-256 fingerprint. Every character must match.</p>
 
 <div class="warn-box">
   <p><strong>Use this on a fresh Tails boot only.</strong></p>
   <p>Download this page to a clean USB stick (not your Tails USB, that holds Tails only). Boot Tails with networking disabled, open the file from the clean USB, then check your downloads.</p>
-  <p>Get the expected fingerprint from the project's own site, never from a link someone sent you. For this site's own tools, the fingerprints are pre-filled below from VERIFY.md.</p>
+  <p>Get the expected fingerprint from the project's own site, never from a link someone sent you. For this package’s own tools, the fingerprints are pre-filled from the matching files. Select the tool name and the HTML filename shown beside it.</p>
 </div>
 
 <label for="file-select">Which file are you checking?</label>
@@ -82,9 +83,9 @@
   <option value="sparrow">Sparrow 2.5.5</option>
   <option value="electrum">Electrum 4.8.3</option>
   <option value="coleman">Ian Coleman BIP39 page</option>
-  <option value="converter">Dice converter (this site)</option>
-  <option value="descriptor">Descriptor tool (this site)</option>
-  <option value="mapper">Passphrase mapper (this site)</option>
+  <option value="converter">Dice converter · dice-converter.html</option>
+  <option value="descriptor">Wallet-map tool · descriptor-tool.html</option>
+  <option value="mapper">Diceware mapper — diceware-mapper.html</option>
   <option value="custom">Other file (paste fingerprint below)</option>
 </select>
 
@@ -115,9 +116,9 @@
 // Pre-filled fingerprints for this site's own tools
 // Computed from the live files. Update when the tools change.
 const KNOWN = {
-  'converter': '4f6949247291a95a37a1475b40f61e23de99f665fd0e3a5b9cd526b10e01e69c',
-  'descriptor': '16efdc386a226849263529ca1660e32950bd95e87dfa2adb235162f653b6d0a0',
-  'mapper': 'bbe8d349575e7f2d3ddd4caf0ffc7934d72b240c3b8858638a2ce4c198317aba',
+  'converter': 'f35fe817d19d67a599eb90c3ae271dd2363388efc66eaf77079fce5bd0a706dd',
+  'descriptor': '3682e91c37fba4f95293971acb8d7b697077f534e2e008419cda24ecc475a941',
+  'mapper': 'ae33ab800911ea26d512e4f92f1f1c9126fe995e6b07af4249d58945cf00d156',
 };
 
 const fileSelect = document.getElementById('file-select');

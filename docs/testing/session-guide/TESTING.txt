@@ -1,31 +1,33 @@
 PLEBUM DOMINIUM — T1–T5: TEST, SAVE, CHECK
-
-LIVE STATUS ADDENDUM — November 9, 2026: the Windows r4 short run is complete.
-The physical Tails short run passed the observed checks using the complete r4
-archive. USB image/text readability was confirmed. Evidence reconciliation,
-some full-field states and shutdown confirmation remain pending.
-https://musthavemustash.github.io/plebum-dominium-test/testing/tails-r4-20261109/RESULTS.txt
-https://musthavemustash.github.io/plebum-dominium-test/testing/windows-r4-20261108/RESULTS.txt
-Keep r4 ZIPs unchanged. This does not mark all T1–T5 checks complete.
-
-TAILS EXTRACTION NOTE: unzip was unavailable in this physical run. From the
-folder containing the ZIP, this Python command worked:
-python3 -m zipfile -e plebum-complete-offline-tester-20261108-r4.zip Tails-r4-2026-11-09
-Use a new/empty output folder; run the root and public-tests verifiers afterward.
-MAPPER DOWNLOAD: the link is at the bottom of Before this public test,
-below the confirmations explanation. Its saved copy matched the fingerprint.
-
-Instructions refreshed November 8, 2026 from our Windows and physical Tails sessions.
-Package: alpha-20261108-t5-r4 / offline-20261108-r4
+Instructions refreshed November 12, 2026.
+Current packages: alpha-20261112-r1 / offline-20261112-r2
 PUBLIC FIXTURES ONLY. No real wallet data, private keys, passwords or funds.
 
+TOOL NAMES AND FILES
+Dice converter: dice-converter.html (24-word seed)
+Wallet-map tool: descriptor-tool.html (encrypt and restore the wallet map)
+Diceware mapper: diceware-mapper.html (six-word passphrase)
+Fingerprint checker: fingerprint-checker.html (compare file fingerprints)
+These names match browser tabs, headings, checker choices and START.html.
+Keep the filenames shown here. The Diceware mapper and Dice converter do
+separate jobs; choose the matching name and filename in the checker.
+
 WHAT CHANGED
-r4 refreshes instructions and evidence collection. The HTML tools, Python tools
-and EFF wordlist are unchanged from r3. Keep earlier results with their original
-package, date and environment. Do not rename old evidence as a new run.
-Already completed the earlier Tails run? Use TOOL-FINISH-RETEST.txt for the
-remaining changed-behavior checks. It does not require another full eight-vector
-run or reboot. A new ZIP still needs its own T1 package check.
+This revision aligns visible names and filenames and refreshes fingerprints.
+The sensitive tools' executable code, Python helpers, wordlist and fixtures
+are unchanged from R4. The checker changes only its labels and expected hashes.
+Earlier Windows and Tails results keep their original package, date and scope;
+these new archives do not inherit a physical-test pass. Start a fresh evidence
+folder, run T1, check the three HTML tools in the Fingerprint checker, and
+confirm names match when opening each tool. Then complete outstanding checks.
+No full retest of unchanged logic is implied by the naming change alone.
+
+TAILS EXTRACTION NOTE
+If unzip is unavailable, use Python from the ZIP's folder:
+python3 -m zipfile -e plebum-complete-offline-tester-20261112-r2.zip Tails-20261112-r2
+Use a new/empty output folder; run the root and public-tests verifiers afterward.
+MAPPER DOWNLOAD: the link is at the bottom of Before this public test,
+below the confirmations explanation. Its saved copy must match its fingerprint.
 
 BEFORE YOU GO OFFLINE
 1. Download the complete offline tester, website-tools ZIP or focused tool ZIP,
@@ -128,7 +130,7 @@ T3 — CHECK THE DICE CONVERTER'S ANSWERS
    EXPECT: four accepted pairs, eight bits 00011011; 5 and 6 add no bits.
    SAVE: T3-dice-buttons.png. Check keyboard entry, Undo and Clear separately;
    save the before/after state or a short recording and describe the sequence.
-The separate six-word Diceware passphrase mapper has its own examples and
+The separate six-word Diceware mapper has its own examples and
 invalid-input/copy/clear checks in TOOL-FINISH-RETEST.txt, section 2. Record it
 separately; passing BIP39 conversion does not pass the Diceware mapper.
 

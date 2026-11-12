@@ -6,7 +6,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap">
-<title>Descriptor tool demo · Plebum Dominium</title>
+<title>Wallet-map tool demo · Plebum Dominium</title>
 <style>
 :root {
   --paper: #f6f3ec;
@@ -147,34 +147,34 @@ body.large-text #demo-explain { font-size: 18px; line-height: 1.5; }
   var ARMOR = ['-----BEGIN PGP MESSAGE-----', '', 'wV4DTESTDATA00000000000000000000000000000000', 'wV4DTESTDATA11111111111111111111111111111111', '=T3sT', '-----END PGP MESSAGE-----'].join('\n');
 
   var screens = {
-    e1: '<h3>Descriptor tool</h3><p class="tsub">The wallet map, encrypted in this page. Nothing leaves it.</p>'
+    e1: '<h3>Wallet-map tool</h3><p class="tsub">The wallet map, encrypted in this page. Nothing leaves it.</p>'
       + '<p><span class="pill"><span class="dot"></span>Offline</span></p>'
       + '<div class="mode-row"><button class="mode-btn on" data-k="encbtn">Encrypt a map</button><button class="mode-btn" data-k="decbtn">Decrypt a map</button></div>',
-    e2: '<h3>Descriptor tool</h3><p class="tsub">Step 1 of 3: the map.</p>'
+    e2: '<h3>Wallet-map tool</h3><p class="tsub">Step 1 of 3: the map.</p>'
       + '<p><span class="pill"><span class="dot"></span>Offline</span></p>'
       + '<div class="drop" data-k="drop">Drop the map file anywhere on this page, or click here to choose a file.<br><span class="filechip" data-k="chip" hidden>map.txt</span></div>'
       + '<textarea class="ta" data-k="mapta" readonly></textarea>',
-    e3: '<h3>Descriptor tool</h3><p class="tsub">Step 2 of 3: the passphrase.</p>'
+    e3: '<h3>Wallet-map tool</h3><p class="tsub">Step 2 of 3: the passphrase.</p>'
       + '<div class="fld"><label>Passphrase (one dot per character, words never appear)</label><div class="pw" data-k="pw1"></div></div>'
       + '<div class="fld"><label>Passphrase again</label><div class="pw" data-k="pw2"></div></div>'
       + '<p class="tsub">Six or more diceware words. Never a seed.</p>',
-    e4: '<h3>Descriptor tool</h3><p class="tsub">Step 3 of 3: review.</p>'
+    e4: '<h3>Wallet-map tool</h3><p class="tsub">Step 3 of 3: review.</p>'
       + '<div class="review" data-k="review">Map to encrypt:\nTEST-DESCRIPTOR-ONLY-NOT-REAL</div>'
       + '<button class="bigbtn" data-k="encgo">Encrypt</button>'
       + '<div data-k="armorout" hidden><textarea class="ta" data-k="armorta" readonly></textarea>'
       + '<button class="bigbtn" data-k="dl">Download map.txt.asc</button>'
       + '<ul class="checklist"><li>Save the download.</li><li>Delete the plain map.</li><li>Close the page.</li></ul></div>',
-    d1: '<h3>Descriptor tool</h3><p class="tsub">The wallet map, encrypted in this page. Nothing leaves it.</p>'
+    d1: '<h3>Wallet-map tool</h3><p class="tsub">The wallet map, encrypted in this page. Nothing leaves it.</p>'
       + '<p><span class="pill"><span class="dot"></span>Offline</span></p>'
       + '<div class="mode-row"><button class="mode-btn" data-k="encbtn">Encrypt a map</button><button class="mode-btn on" data-k="decbtn">Decrypt a map</button></div>',
-    d2: '<h3>Descriptor tool</h3><p class="tsub">Step 1 of 3: the locked file.</p>'
+    d2: '<h3>Wallet-map tool</h3><p class="tsub">Step 1 of 3: the locked file.</p>'
       + '<label style="font-size:11px;color:var(--toolmuted)">Paste the armored text, through the END PGP MESSAGE line</label>'
       + '<textarea class="ta" data-k="armorta2" readonly style="min-height:110px"></textarea>',
-    d3: '<h3>Descriptor tool</h3><p class="tsub">Step 2 of 3: the passphrase.</p>'
+    d3: '<h3>Wallet-map tool</h3><p class="tsub">Step 2 of 3: the passphrase.</p>'
       + '<div class="fld"><label>Passphrase</label><div class="pw" data-k="pw3"></div></div>'
       + '<button class="bigbtn" data-k="decgo">Decrypt</button>'
       + '<div data-k="mapout" hidden><div class="review" data-k="restored"></div></div>',
-    d4: '<h3>Descriptor tool</h3><p class="tsub">Step 3 of 3: check.</p>'
+    d4: '<h3>Wallet-map tool</h3><p class="tsub">Step 3 of 3: check.</p>'
       + '<div class="review">Restored map matches the original.</div>'
       + '<div class="addr-hl" data-k="addr">First address: ' + DUMMY_ADDR + ' &#10003; matches</div>'
       + '<p class="tsub">Close the page. The plain map never touches the disk.</p>'

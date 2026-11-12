@@ -6,7 +6,7 @@ real-wallet use or independently authenticate the publisher.
 Use verify-file.html to check an individual file. Use verify-download.html,
 saved separately before disconnecting, to check a complete or tools-only ZIP.
 After extraction, run verify_package.py from the plebum-offline folder.
-For the preserved R4 test subset, use public-tests/TESTING.txt and its verifier.
+For the current test subset, use public-tests/TESTING.txt and its verifier.
 
 The HTML tools and verify-file.html are at the site or package root. Python
 tools, the wordlist, this file and hash_checker.html are in kit/.
@@ -16,26 +16,26 @@ These tool copies have the same bytes online and in the current offline ZIPs.
 
 ```
 File:     dice-converter.html
-Size:     46387 bytes
-SHA-256:  4f6949247291a95a37a1475b40f61e23de99f665fd0e3a5b9cd526b10e01e69c
+Size:     46527 bytes
+SHA-256:  f35fe817d19d67a599eb90c3ae271dd2363388efc66eaf77079fce5bd0a706dd
 ```
 
 ```
 File:     descriptor-tool.html
-Size:     420868 bytes
-SHA-256:  16efdc386a226849263529ca1660e32950bd95e87dfa2adb235162f653b6d0a0
+Size:     421013 bytes
+SHA-256:  3682e91c37fba4f95293971acb8d7b697077f534e2e008419cda24ecc475a941
 ```
 
 ```
 File:     diceware-mapper.html
-Size:     93464 bytes
-SHA-256:  bbe8d349575e7f2d3ddd4caf0ffc7934d72b240c3b8858638a2ce4c198317aba
+Size:     93596 bytes
+SHA-256:  ae33ab800911ea26d512e4f92f1f1c9126fe995e6b07af4249d58945cf00d156
 ```
 
 ```
 File:     fingerprint-checker.html
-Size:     9833 bytes
-SHA-256:  ae9488685d64b89be7631c5ab3332b281e39dcaa23fe689c193bb70646e89f18
+Size:     9986 bytes
+SHA-256:  9b4f8e54de58247cafcc5f7ee70c26b249183d1ef7712b9171921f139e95bd22
 ```
 
 ```
@@ -64,8 +64,8 @@ SHA-256:  0e32bb36a531b02072c9d982697210554455e5c4955486629ea332106f68a816
 
 ```
 File:     verify-file.html
-Size:     8748 bytes
-SHA-256:  7bd3db64d114a7e1dffd902ba535111cb60c81d9bdb9db22eb454b36a287de2f
+Size:     8775 bytes
+SHA-256:  7c4c04e50b50f931860dabb638152438b6e4a0019e293ca200ec556dd3721e03
 ```
 
 ## Check on your computer
