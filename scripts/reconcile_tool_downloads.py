@@ -11,8 +11,8 @@ import zipfile
 ROOT = Path(__file__).resolve().parents[1]
 R4 = 'testing/alpha-20261108-t5-r4/plebum-tools-alpha-20261108-t5-r4.zip'
 R4_SHA256 = '6d5ab946970537b21249555507be65724061fd01d132cc02a1c8cb4b4938aec8'
-CURRENT = 'testing/alpha-20261112-r1/plebum-tools-alpha-20261112-r1.zip'
-NAMING_REVIEW = 'review/TOOL_NAMES_20261112.json'
+CURRENT = 'testing/alpha-20261112-r3/plebum-tools-alpha-20261112-r3.zip'
+NAMING_REVIEW = 'review/TOOL_NAMES_20261112_R3.json'
 TOOLS = {
     'dice-converter.html': 'Dice converter page.',
     'descriptor-tool.html': 'Wallet-map tool. Encrypt and restore a wallet map.',

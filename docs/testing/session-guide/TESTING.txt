@@ -1,6 +1,6 @@
 PLEBUM DOMINIUM — T1–T5: TEST, SAVE, CHECK
 Instructions refreshed November 12, 2026.
-Current packages: alpha-20261112-r1 / offline-20261112-r2
+Current packages: alpha-20261112-r3 / offline-20261112-r3
 PUBLIC FIXTURES ONLY. No real wallet data, private keys, passwords or funds.
 
 TOOL NAMES AND FILES
@@ -24,7 +24,7 @@ No full retest of unchanged logic is implied by the naming change alone.
 
 TAILS EXTRACTION NOTE
 If unzip is unavailable, use Python from the ZIP's folder:
-python3 -m zipfile -e plebum-complete-offline-tester-20261112-r2.zip Tails-20261112-r2
+python3 -m zipfile -e plebum-complete-offline-tester-20261112-r3.zip Tails-20261112-r3
 Use a new/empty output folder; run the root and public-tests verifiers afterward.
 MAPPER DOWNLOAD: the link is at the bottom of Before this public test,
 below the confirmations explanation. Its saved copy must match its fingerprint.

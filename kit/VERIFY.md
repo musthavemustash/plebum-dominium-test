@@ -16,26 +16,26 @@ These tool copies have the same bytes online and in the current offline ZIPs.
 
 ```
 File:     dice-converter.html
-Size:     46527 bytes
-SHA-256:  f35fe817d19d67a599eb90c3ae271dd2363388efc66eaf77079fce5bd0a706dd
+Size:     46524 bytes
+SHA-256:  5d0045fc62bc5cd486797a41352553f808a6264477c7f09376a268de52568303
 ```
 
 ```
 File:     descriptor-tool.html
-Size:     421013 bytes
-SHA-256:  3682e91c37fba4f95293971acb8d7b697077f534e2e008419cda24ecc475a941
+Size:     421010 bytes
+SHA-256:  fce1a0e202a6c64562c6722068e58e223d812b420b7adb9e4b0b40a2fe2deb86
 ```
 
 ```
 File:     diceware-mapper.html
-Size:     93596 bytes
-SHA-256:  ae33ab800911ea26d512e4f92f1f1c9126fe995e6b07af4249d58945cf00d156
+Size:     93593 bytes
+SHA-256:  8c6fc5262314b98907ef505b205e05198bca5d21042ab39dcd38a1f27fcea41e
 ```
 
 ```
 File:     fingerprint-checker.html
-Size:     9986 bytes
-SHA-256:  9b4f8e54de58247cafcc5f7ee70c26b249183d1ef7712b9171921f139e95bd22
+Size:     9985 bytes
+SHA-256:  35f4ac05cfaf5611bd1ab3595f43c9ad0e9bf7032c696a0942534a6526ab0a7f
 ```
 
 ```
@@ -65,7 +65,7 @@ SHA-256:  0e32bb36a531b02072c9d982697210554455e5c4955486629ea332106f68a816
 ```
 File:     verify-file.html
 Size:     8775 bytes
-SHA-256:  7c4c04e50b50f931860dabb638152438b6e4a0019e293ca200ec556dd3721e03
+SHA-256:  d5fbea29955796ae640a43c2fd4b199cc9a12f720b86ba03224c6c3786180e38
 ```
 
 ## Check on your computer

@@ -100,6 +100,7 @@ try:
         for full, name in ((True, publisher.FULL), (False, publisher.TOOLS)):
             publisher.package(full)
             first = (publisher.OUT / name).read_bytes()
+            assert first == (original_out / name).read_bytes(), 'Published ZIP is stale against current source: ' + name
             publisher.package(full)
             assert (publisher.OUT / name).read_bytes() == first, 'Nondeterministic package: ' + name
 finally:

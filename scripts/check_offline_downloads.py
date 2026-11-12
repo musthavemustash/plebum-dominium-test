@@ -71,6 +71,14 @@ def check():
                     assert not url.path.startswith('/'), (page, ref)
                     assert target.is_relative_to(root) and target.exists(), (str(page.relative_to(root)), ref)
             if item['name'] == FULL:
+                run_sheet = 'testing/session-guide/T6-RUN.txt'
+                assert (root / 'T6-RUN.txt').read_bytes() == (DOCS / run_sheet).read_bytes(), 'Stale T6 run sheet'
+                start = (root / 'START.html').read_text()
+                assert 'href="test-the-site.html#t6"' in start and 'href="T6-RUN.txt"' in start
+                assert 'href="paths/one/single-sig.html"' in start
+                one_key = (root / 'paths/one/single-sig.html').read_text()
+                assert 'For T6:' in one_key and 'Metal transfer is a later stage and is outside T6.' in one_key
+                assert 'These tool files match the r4 files' not in one_key
                 js = (root / 'assets/js/main.js').read_text()
                 assert 'window.PD_OFFLINE_INDEXES[searchPath]' in js
                 assert 'window.PD_OFFLINE_ROOT' in js

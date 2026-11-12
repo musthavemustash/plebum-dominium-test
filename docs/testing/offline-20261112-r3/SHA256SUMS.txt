@@ -1,0 +1,3 @@
+99237d48a93979cc4e5190e8a1583bda5f31503873fe8d1ec4d937dec42cbf3f  plebum-complete-offline-tester-20261112-r3.zip
+353ee12544cba53f6e1279beb9dade251cc80e3795bdaceae63a5bc749a260d1  plebum-website-tools-only-20261112-r3.zip
+0ed200f6ac937575dec7105668a112e6039e109231fc2696db9d03edf135f57d  manifest.json

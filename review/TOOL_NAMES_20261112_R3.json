@@ -1,0 +1,9 @@
+{
+  "scope": "r3 punctuation edits to the four r2 HTML tools. Executable tool code checked against immutable R4, with expected checker hashes normalized.",
+  "sha256": {
+    "dice-converter.html": "5d0045fc62bc5cd486797a41352553f808a6264477c7f09376a268de52568303",
+    "descriptor-tool.html": "fce1a0e202a6c64562c6722068e58e223d812b420b7adb9e4b0b40a2fe2deb86",
+    "diceware-mapper.html": "8c6fc5262314b98907ef505b205e05198bca5d21042ab39dcd38a1f27fcea41e",
+    "fingerprint-checker.html": "35f4ac05cfaf5611bd1ab3595f43c9ad0e9bf7032c696a0942534a6526ab0a7f"
+  }
+}
