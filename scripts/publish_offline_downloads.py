@@ -17,18 +17,20 @@ import zipfile
 ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / 'docs'
 BASE = '/plebum-dominium-test/'
-DEST = 'testing/offline-20261111'
+DEST = 'testing/offline-20261111-r1'
 OUT = DOCS / DEST
-FULL = 'plebum-complete-offline-tester-20261111.zip'
-TOOLS = 'plebum-website-tools-only-20261111.zip'
+FULL = 'plebum-complete-offline-tester-20261111-r1.zip'
+TOOLS = 'plebum-website-tools-only-20261111-r1.zip'
 SENSITIVE = {'dice-converter.html', 'descriptor-tool.html', 'diceware-mapper.html'}
+EXACT = SENSITIVE | {'fingerprint-checker.html', 'verify-file.html', 'kit/hash_checker.html'}
 TOOL_NAMES = [
     'dice-converter.html', 'descriptor-tool.html', 'fingerprint-checker.html',
     'diceware-mapper.html', 'diceware.html', 'dice-rolls.html', 'quorum-demo.html',
     'descriptor-demo.html', 'dice-converter-demo.html', 'passphrase-demo.html',
-    'step1-demo.html', 'tails-demo.html', 'verify-bundle-demo.html',
+    'step1-demo.html', 'tails-demo.html', 'verify-bundle-demo.html', 'verify-file.html',
 ]
 PYTHON = ['bip39_dice_converter.py', 'descriptor_obfuscator.py', 'eff_large_wordlist.txt']
+KIT_FILES = {'kit/' + n for n in PYTHON + ['VERIFY.md', 'hash_checker.html']}
 FORM = 'https://docs.google.com/forms/d/e/1FAIpQLSfOkY3FrZmZpIVro5oxWLy_YvU7U-1BOrL3KB9VCI3jXjad2Q/viewform'
 
 
@@ -96,7 +98,7 @@ def update_guides():
 
 
 def offline_copy(name, data):
-    if name in SENSITIVE or name == 'offline-folder-guide.html' or not name.endswith(('.html', '.js', '.json', '.css')):
+    if name in EXACT or name == 'offline-folder-guide.html' or not name.endswith(('.html', '.js', '.json', '.css')):
         return data
     s = data.decode('utf-8')
     if name.endswith('.html'):
@@ -167,11 +169,13 @@ def package(full):
         if not p.is_file() or p.is_relative_to(OUT) or '__pycache__' in p.parts:
             continue
         name = p.relative_to(DOCS).as_posix()
+        if name.startswith('kit/') and name not in KIT_FILES:
+            continue  # Do not reintroduce legacy bundles, instructions or pinned helpers.
         if name == 'verify-download.html':
             continue  # Generated after ZIPs; downloaded separately for offline use.
         if name.startswith('testing/') and not name.startswith(('testing/alpha-20261108-t5-r4/', 'testing/t4-20261106/', 'testing/t5-20261108/', 'testing/session-guide/', 'testing/tails-r4-20261109/', 'testing/windows-r4-20261108/')):
             continue
-        if not full and not (name in TOOL_NAMES or name == 'offline-folder-guide.html' or name.startswith('assets/') or name in ['kit/' + n for n in PYTHON]):
+        if not full and not (name in TOOL_NAMES or name == 'offline-folder-guide.html' or name.startswith('assets/') or name in KIT_FILES):
             continue
         files[name] = offline_copy(name, p.read_bytes())
     alpha = DOCS / 'testing/alpha-20261108-t5-r4/plebum-tools-alpha-20261108-t5-r4.zip'
@@ -183,7 +187,7 @@ def package(full):
     if not full:
         # Reference-only return link in the dice reference has no guide in this ZIP.
         files['dice-rolls.html'] = files['dice-rolls.html'].replace(b'href="handouts/dice.html"', b'href="START.html"')
-    files['README.txt'] = ('''PLEBUM DOMINIUM — OFFLINE PUBLIC TESTER — 2026-11-11
+    files['README.txt'] = ('''PLEBUM DOMINIUM — OFFLINE PUBLIC TESTER — 2026-11-11 r1
 PUBLIC TEST DATA ONLY. NOT APPROVED FOR REAL-WALLET USE.
 
 FIND THE RIGHT FOLDER
@@ -240,7 +244,8 @@ complete wallet rehearsals remain outstanding. Successful file checks do not
 certify safety or recovery.
 
 Tails extraction note: Tails 7.16 does not include unzip. Extract with Python:
-python3 -m zipfile -e plebum-complete-offline-tester-20261111.zip .
+python3 -m zipfile -e plebum-complete-offline-tester-20261111-r1.zip .
+For the tools-only ZIP, substitute its filename in that command.
 
 Check all extracted files: python3 verify_package.py (Windows: py verify_package.py).
 Checksums establish byte equality, not independent publisher authentication.
@@ -265,14 +270,14 @@ sys.exit(bool(bad))
         payload += 'Object.values(window.PD_OFFLINE_INDEXES).forEach(function(rows){rows.forEach(function(e){e.url=new URL(e.url,window.PD_OFFLINE_ROOT).href;});});\n'
         files['assets/js/offline-indexes.js'] = payload.encode()
         for name in list(files):
-            if name.endswith('.html') and name not in SENSITIVE:
+            if name.endswith('.html') and name not in EXACT:
                 s = files[name].decode()
                 if 'assets/js/main.js' in s:
                     prefix = os.path.relpath('.', str(Path(name).parent)).replace(os.sep, '/')
                     prefix = '' if prefix == '.' else prefix + '/'
                     s = s.replace('</head>', '<script src="' + prefix + 'assets/js/offline-indexes.js"></script></head>', 1)
                     files[name] = s.encode()
-    for name in SENSITIVE:
+    for name in EXACT:
         assert files[name] == (DOCS / name).read_bytes(), 'Sensitive tool changed: ' + name
     files['package-manifest.json'] = (json.dumps({'status': 'PUBLIC_TEST_ONLY', 'custody_approved': False, 'files': manifest_files(files)}, indent=2) + '\n').encode()
     files['SHA256SUMS.txt'] = ''.join(f'{digest(data)}  {name}\n' for name, data in sorted(files.items())).encode()
@@ -289,6 +294,8 @@ sys.exit(bool(bad))
 def main():
     from build_tool_fingerprints import build as update_fingerprints
     update_fingerprints()
+    from reconcile_tool_downloads import build as reconcile
+    reconcile()
     OUT.mkdir(parents=True, exist_ok=True)
     update_guides()
     packages = [package(True), package(False)]

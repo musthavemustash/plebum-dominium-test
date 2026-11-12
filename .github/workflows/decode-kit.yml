@@ -9,6 +9,7 @@ on:
     paths:
       - 'kit-b64/**'
       - '.github/workflows/decode-kit.yml'
+      - 'scripts/decode_kit_binaries.py'
 permissions:
   contents: write
 jobs:
@@ -17,17 +18,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Decode binaries
-        run: |
-          set -e
-          for f in kit-b64/kit/*; do
-            base64 -d "$f" > "kit/$(basename "$f" .b64)"
-          done
-          for f in kit-b64/assets/img/*; do
-            base64 -d "$f" > "assets/img/$(basename "$f" .b64)"
-          done
-          mkdir -p docs/kit docs/assets/img
-          cp kit/* docs/kit/ 2>/dev/null || true
-          cp assets/img/*.png docs/assets/img/ 2>/dev/null || true
+        run: python3 scripts/decode_kit_binaries.py
+      - name: Check preserved tools and fingerprints
+        run: python3 scripts/reconcile_tool_downloads.py --check
       - name: Commit decoded binaries
         run: |
           git config user.name "github-actions[bot]"
