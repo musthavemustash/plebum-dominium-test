@@ -1,17 +1,32 @@
 {
-  "reason": "Reviewed live correction: current T6 package identity, Windows browser uncertainty, release status link and withdrawal of direct legacy document URLs. Existing r2 ZIPs are immutable; save STATUS.txt separately.",
+  "reason": "Cumulative reviewed live addendum: audit-4 corrections plus release-signing status, accurate online/offline privacy wording, computer roles and test-secret non-reuse. r2 ZIPs remain immutable; save updated notes/run sheets beside the extracted folder.",
   "base_commit": "52ca8288bd034faed5e88f033fa44f52800638eb",
   "packages": {
     "plebum-complete-offline-tester-20261113-r2.zip": {
       "published_sha256": "1fbd6c9d92fdcfdf615db9a5b542b0294814b232775b9e2ce66bf52c785fa706",
-      "live_rebuild_sha256": "bc9792b8fca02267f5dfc5a3db5d267f6769eeab0d0ceb26aad9a641b0fe99d4",
+      "live_rebuild_sha256": "02dc2f947814080f8192153d30557e75828ec452dbbbaebabba657b6873136da",
       "changed_members": [
         "plebum-offline/SHA256SUMS.txt",
+        "plebum-offline/T6-RUN.txt",
+        "plebum-offline/T7-RUN.txt",
+        "plebum-offline/assets/js/offline-indexes.js",
         "plebum-offline/downloads.html",
+        "plebum-offline/handouts/signing.html",
+        "plebum-offline/handouts/single-sig.html",
+        "plebum-offline/handouts/testnet.html",
         "plebum-offline/package-manifest.json",
+        "plebum-offline/paths/one/search-index.json",
+        "plebum-offline/paths/one/single-sig.html",
+        "plebum-offline/paths/three/search-index.json",
+        "plebum-offline/paths/three/signing.html",
+        "plebum-offline/paths/three/testnet.html",
         "plebum-offline/test-the-site.html",
-        "plebum-offline/testing/release-review-20261113/STATUS.txt"
+        "plebum-offline/testing/release-review-20261113/STATUS.txt",
+        "plebum-offline/testing/session-guide/RELEASE-SIGNING.txt",
+        "plebum-offline/testing/session-guide/T6-RUN.txt",
+        "plebum-offline/testing/session-guide/T7-RUN.txt"
       ]
     }
-  }
+  },
+  "followup_base_commit": "1d0b3311267ccd78719224ef35117082cb7b2314"
 }

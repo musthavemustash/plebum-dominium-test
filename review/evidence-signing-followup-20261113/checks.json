@@ -1,0 +1,68 @@
+[
+  {
+    "command": "python3 scripts/reconcile_tool_downloads.py --check",
+    "exit_code": 0
+  },
+  {
+    "command": "python3 scripts/test_download_consistency.py",
+    "exit_code": 0
+  },
+  {
+    "command": "node scripts/test_download_verifier.cjs",
+    "exit_code": 0
+  },
+  {
+    "command": "node scripts/test_public_session_state.cjs",
+    "exit_code": 0
+  },
+  {
+    "command": "node scripts/test_tool_network.cjs",
+    "exit_code": 0
+  },
+  {
+    "command": "node scripts/test_dice_validation.cjs",
+    "exit_code": 0
+  },
+  {
+    "command": "node scripts/test_search_focus.cjs",
+    "exit_code": 0
+  },
+  {
+    "command": "node scripts/test_diceware_mapper.cjs",
+    "exit_code": 0
+  },
+  {
+    "command": "node scripts/test_fingerprint_checker.cjs",
+    "exit_code": 0
+  },
+  {
+    "command": "python3 scripts/build.py",
+    "exit_code": 0
+  },
+  {
+    "command": "python3 scripts/test_paths.py",
+    "exit_code": 0
+  },
+  {
+    "command": "python3 scripts/test_page_test_modules.py",
+    "exit_code": 0
+  },
+  {
+    "command": "python3 scripts/check_offline_downloads.py",
+    "exit_code": 0
+  },
+  {
+    "command": "python3 scripts/test_tool_core.py",
+    "exit_code": 0,
+    "note": "Executed before the other staging checks; output recorded in supplemental-checks.log"
+  },
+  {
+    "command": "python3 scripts/release_checksums.py check",
+    "exit_code": 0,
+    "files": 22
+  },
+  {
+    "command": "python3 scripts/test_release_checksums.py",
+    "exit_code": 0
+  }
+]
