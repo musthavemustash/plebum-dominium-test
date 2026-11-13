@@ -1,4 +1,4 @@
-LIVE ADDENDUM: NOVEMBER 13, 2026
+PACKAGED REPORTING GUIDE: NOVEMBER 13, 2026, 20261113-r2
 Keep tested ZIP originals unchanged. Use PHOTO-REVIEW-FLOW.txt while testing:
 photo, review and filename, then save in one Evidence folder before continuing.
 This file describes bulk submission after the offline session. A live public
@@ -34,7 +34,7 @@ MAKE A LINK THAT REVIEWERS CAN OPEN
    verifier/comparison output, and the public input/output files relevant to it.
    Do not upload the entire USB, unrelated folders, account information or secrets.
 2. Open Google Drive. Choose New → New folder and name it for the task, date,
-   OS and exact package identifier, for example T4-2026-11-13-Windows-20261113-r1. Upload the selected files
+   OS and exact package identifier, for example T4-2026-11-13-Windows-20261113-r2. Upload the selected files
    into it (drag and drop or New → File upload). Wait for every upload to finish.
 3. Right-click that evidence folder → Share. Under General access choose
    Anyone with the link, with role Viewer. This lets anyone holding the link

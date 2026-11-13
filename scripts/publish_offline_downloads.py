@@ -18,10 +18,10 @@ from reconcile_tool_downloads import CURRENT
 ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / 'docs'
 BASE = '/plebum-dominium-test/'
-DEST = 'testing/offline-20261113-r1'
+DEST = 'testing/offline-20261113-r2'
 OUT = DOCS / DEST
-FULL = 'plebum-complete-offline-tester-20261113-r1.zip'
-TOOLS = 'plebum-website-tools-only-20261113-r1.zip'
+FULL = 'plebum-complete-offline-tester-20261113-r2.zip'
+TOOLS = 'plebum-website-tools-only-20261113-r2.zip'
 SENSITIVE = {'dice-converter.html', 'descriptor-tool.html', 'diceware-mapper.html'}
 EXACT = SENSITIVE | {'fingerprint-checker.html', 'verify-file.html', 'kit/hash_checker.html'}
 TOOL_NAMES = [
@@ -82,8 +82,8 @@ def update_guides():
 <h2>Download the whole site for offline testing</h2>
 <p>Both guide paths, navigation, local search, diagrams, website tools, Python helpers, wordlist, public fixtures and testing instructions in one ZIP. Legacy PDFs, slides and the recovery worksheet are excluded pending reconciliation. No internet connection or local server is needed to browse the extracted site.</p>
 <div class="entry-actions"><a href="{BASE}{DEST}/{FULL}" download>Download complete offline tester ZIP →</a><a href="{BASE}{DEST}/{TOOLS}" download>Download website tools only ZIP →</a></div>
-<p id="live-directions-addendum"><strong>November 13 direction update:</strong> the online guide now puts one-key setup before recovery and the three-key spending rehearsal before metal backups. The reporting guide has separate manual-session and Diceware mapper cases. Existing ZIPs retain their earlier directions; a new package is the next audit task. Before going offline, save the <a href="/plebum-dominium-test/testing/session-guide/TESTING.txt" download>updated testing directions</a> and <a href="/plebum-dominium-test/testing/session-guide/FORM-REPORTING.txt" download>reporting guide</a> separately. Keep packaged files unchanged.</p>
-<p><strong>Current package: <code>offline-20261113-r1</code>.</strong> For T6, choose the <strong>complete offline tester</strong> above: <code>plebum-complete-offline-tester-20261113-r1.zip</code>. It includes the one-key guide and the T6 run sheet. The tools-only and focused ZIPs do not include the complete guide.</p>
+<p id="live-directions-addendum"><strong>Included in 20261113-r2:</strong> the corrected guide order, current T2 manual-session checks, separate Diceware mapper reporting, and the photo, review, filename and save flow are now in the downloads. The complete ZIP includes both guide paths and T6/T7 run sheets; all three ZIPs include the current tool-testing directions. Keep older packages and their evidence unchanged.</p>
+<p><strong>Current package: <code>offline-20261113-r2</code>.</strong> For T6, choose the <strong>complete offline tester</strong> above: <code>plebum-complete-offline-tester-20261113-r2.zip</code>. It includes the one-key guide and the T6 run sheet. The tools-only and focused ZIPs do not include the complete guide.</p>
 <p><strong>Testing this candidate during T6:</strong> verify the ZIP, run T1 on the extracted files, then record the revised tool checks separately from the wallet rehearsal. Open <a href="{BASE}test-the-site.html#t6">T6: one key + passphrase</a> and save the <a href="{BASE}testing/session-guide/T6-RUN.txt" download>T6 run sheet</a>. Use disposable paper records; metal is outside this test.</p>
 {offline_verifier_notice()}
 <p><strong>Extract the entire ZIP, open the <code>plebum-offline</code> folder, then open <code>START.html</code>.</strong> For the T2–T5 tool checks, open <code>public-tests</code> inside that folder. Its <code>fixtures</code> folder holds the supplied test inputs: <code>plebum-offline/public-tests/fixtures/</code>. Use the matching HTML and Python tools beside that <code>fixtures</code> folder.</p>
@@ -92,7 +92,7 @@ def update_guides():
 <p>Disconnect before testing sensitive tools. They must run as local files; keep their existing safeguards in place. Python helpers require Python 3; the Python wallet-map tool also requires GnuPG, installed separately before disconnecting.</p>
 <p>The tools-only ZIP contains the site’s utilities, demos, Python helpers, wordlist and public fixtures, without the guides or legacy print documents. Neither ZIP includes Tails, Sparrow, Electrum or other external software. Feedback, external references, live prices and network transactions require internet access.</p>
 <p><strong>Public testing only. Do not use real wallet secrets, passwords, entropy or funds.</strong></p>
-<p><strong>New candidate: November 13, 2026.</strong> Fixes stale dice-validation results and search keyboard focus. Automated regression checks do not replace a fresh Windows or physical Tails retest. November 12 results remain scoped to R3; T6/T7 remain outstanding.</p>
+<p><strong>New candidate: November 13, 2026.</strong> Packages the corrected route order and reporting instructions alongside the dice-validation and search-focus fixes. Tool bytes match 20261113-r1; this new ZIP still needs T1 and the outstanding target-environment checks. November 12 results remain scoped to R3; T6/T7 remain outstanding.</p>
 <p>Run T1 on this exact ZIP, then repeat the affected public-fixture and keyboard checks. The <a href="{BASE}test-the-site.html#r3-20261112-results">November 12 R3 results</a> are historical evidence, not approval of this candidate or a complete T1–T5 rerun.</p>
 <p><a href="{BASE}{DEST}/README.txt">Setup and contents</a> · <a href="{BASE}{DEST}/SHA256SUMS.txt">ZIP checksums</a> · <a href="{BASE}{DEST}/manifest.json">Package manifests</a> · <a href="{BASE}test-the-site.html#tasks">Testing tasks and feedback</a></p>
 </section><!-- /offline-downloads -->'''
@@ -151,7 +151,7 @@ def start_page(full):
     items += [('kit/' + n, n) for n in PYTHON]
     items += [('public-tests/TESTING.txt', 'T1–T5: steps and screenshot checkpoints'), ('public-tests/EVIDENCE-CHECKLIST.txt', 'Save to USB before shutdown'), ('public-tests/FORM-REPORTING.txt', 'Google Form fields and shareable evidence links'), ('public-tests/SESSION-NOTES.txt', 'Copyable session notes'), ('public-tests/RESULTS.csv', 'Record results'), ('README.txt', 'Setup instructions')]
     links = ''.join(f'<li><a href="{p}">{label}</a></li>' for p, label in items)
-    t6 = ('<section><h2>T6: one key + passphrase</h2><p>This is the complete offline tester, <strong>20261113-r1</strong>. After T1 passes, open <a href="test-the-site.html#t6">the T6 checklist</a>, <a href="T6-RUN.txt">the T6 run sheet</a> and <a href="paths/one/single-sig.html">the one-key guide</a>. Keep new-candidate tool checks separate from wallet setup, signing and recovery results. Use disposable paper records; metal is outside T6.</p></section>' if full else '<p><strong>Tools-only package: 20261113-r1.</strong> For T6 with the full guide, download the complete offline tester from <a href="https://musthavemustash.github.io/plebum-dominium-test/downloads.html#offline-tester">Downloads</a> before disconnecting.</p>')
+    t6 = ('<section><h2>T6: one key + passphrase</h2><p>This is the complete offline tester, <strong>20261113-r2</strong>. After T1 passes, open <a href="test-the-site.html#t6">the T6 checklist</a>, <a href="T6-RUN.txt">the T6 run sheet</a> and <a href="paths/one/single-sig.html">the one-key guide</a>. Keep new-candidate tool checks separate from wallet setup, signing and recovery results. Use disposable paper records; metal is outside T6.</p><p>For the three-key rehearsal, open <a href="T7-RUN.txt">the T7 run sheet</a> and <a href="test-the-site.html#t7">the T7 checklist</a>. Both run sheets use <a href="PHOTO-REVIEW-FLOW.txt">the photo-review flow</a> beside this page.</p></section>' if full else '<p><strong>Tools-only package: 20261113-r2.</strong> For T6 with the full guide, download the complete offline tester from <a href="https://musthavemustash.github.io/plebum-dominium-test/downloads.html#offline-tester">Downloads</a> before disconnecting.</p>')
     return ('''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Plebum · Offline public tester</title><style>body{font:18px/1.6 system-ui;max-width:850px;margin:3rem auto;padding:0 1.5rem;background:#faf8f2;color:#192b2a}a{color:#00685e}li{margin:.5rem 0}strong{color:#84351f}code{overflow-wrap:anywhere}summary{cursor:pointer;font-weight:600}</style></head><body><h1>Plebum offline public tester</h1><p><strong>Public test data only. Not approved for real-wallet use.</strong></p>
 ''' + t6 + '''<h2>Before you begin</h2>
 <p><a href="offline-folder-guide.html">Illustrated folder guide: from the ZIP to the fixtures →</a></p>
@@ -196,11 +196,12 @@ def package(full):
                 files['public-tests/' + name.split('/', 1)[1]] = z.read(name)
     files['START.html'] = start_page(full)
     if full:
-        files['T6-RUN.txt'] = (DOCS / 'testing/session-guide/T6-RUN.txt').read_bytes()
+        for name in ('T6-RUN.txt', 'T7-RUN.txt', 'PHOTO-REVIEW-FLOW.txt'):
+            files[name] = (DOCS / 'testing/session-guide' / name).read_bytes()
     if not full:
         # Reference-only return link in the dice reference has no guide in this ZIP.
         files['dice-rolls.html'] = files['dice-rolls.html'].replace(b'href="handouts/dice.html"', b'href="START.html"')
-    files['README.txt'] = ('''PLEBUM DOMINIUM — OFFLINE PUBLIC TESTER — 2026-11-13 r1
+    files['README.txt'] = ('''PLEBUM DOMINIUM — OFFLINE PUBLIC TESTER — 2026-11-13 r2
 PUBLIC TEST DATA ONLY. NOT APPROVED FOR REAL-WALLET USE.
 
 FIND THE RIGHT FOLDER
@@ -263,8 +264,10 @@ Its instructions apply to that subfolder, not the complete package layout.
 Legacy PDFs, slides and spreadsheets are excluded pending reconciliation
 and print review. Use the current HTML guides for printable instructions.
 Earlier candidate evidence is included in public-tests/TAILS-RETEST-RESULTS.txt.
-This new candidate fixes stale Dice converter validation and search keyboard
-focus. Its fingerprints identify revised files, not the November 12 R3 run.
+This candidate packages the corrected guide order and reporting instructions
+with the reviewed Dice converter validation and search keyboard-focus fixes.
+Tool bytes and fingerprints are unchanged from 20261113-r1. They do not identify
+the November 12 R3 files or transfer that run’s results to this package.
 The dice checksum/word derivation code and other sensitive tools are unchanged.
 The Python helpers, wordlist and fixtures retain the earlier reviewed bytes.
 No new physical Windows/Tails pass is claimed. Check T1 and tool names/hashes.
@@ -275,7 +278,7 @@ certify safety or recovery.
 
 Tails extraction note: unzip was unavailable in the recorded Tails 7.16 run.
 If it is unavailable in your environment, extract with Python:
-python3 -m zipfile -e plebum-complete-offline-tester-20261113-r1.zip .
+python3 -m zipfile -e plebum-complete-offline-tester-20261113-r2.zip .
 For the tools-only ZIP, substitute its filename in that command.
 
 Check all extracted files: python3 verify_package.py (Windows: py verify_package.py).

@@ -75,8 +75,11 @@ def check():
                 # The tested ZIP retains its original sheet. Live instruction
                 # addenda are downloaded separately, without changing that ZIP.
                 assert (root / 'T6-RUN.txt').read_bytes() == (root / run_sheet).read_bytes(), 'Packaged T6 sheets disagree'
+                for name in ('T7-RUN.txt', 'PHOTO-REVIEW-FLOW.txt'):
+                    assert (root / name).read_bytes() == (root / 'testing/session-guide' / name).read_bytes(), 'Packaged run-sheet dependency differs: ' + name
                 start = (root / 'START.html').read_text()
                 assert 'href="test-the-site.html#t6"' in start and 'href="T6-RUN.txt"' in start
+                assert 'href="T7-RUN.txt"' in start and 'href="PHOTO-REVIEW-FLOW.txt"' in start
                 assert 'href="paths/one/single-sig.html"' in start
                 one_key = (root / 'paths/one/single-sig.html').read_text()
                 assert 'For T6:' in one_key and 'Metal transfer is a later stage and is outside T6.' in one_key

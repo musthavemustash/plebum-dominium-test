@@ -435,6 +435,27 @@ if (fs.existsSync(generatedPath)) {
     const env = setup(data);
     assert.equal(env.state, 'ready');
   });
+  test('all retained historical references identify actual archived bytes and releases', async () => {
+    const html = fs.readFileSync(generatedPath, 'utf8');
+    const embedded = [...html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script\s*>/gi)]
+      .find(match => /\bclass\s*=\s*["'][^"']*\bpd-verify-catalog\b/.test(match[1]));
+    const data = JSON.parse(embedded[2]);
+    for (const entry of data.packages.filter(p => p.current === false)) {
+      assert.ok(entry.downloadUrl.startsWith(baseUrl));
+      const relative = entry.downloadUrl.slice(baseUrl.length);
+      assert.ok(!relative.includes('..'));
+      assert.equal(path.posix.basename(relative), entry.name);
+      const local = path.join(rootDir, 'docs', relative);
+      const bytes = fs.readFileSync(local);
+      assert.equal(bytes.length, entry.bytes);
+      assert.equal(Buffer.from(await webcrypto.subtle.digest('SHA-256', bytes)).toString('hex'), entry.sha256);
+      const manifest = JSON.parse(fs.readFileSync(path.join(path.dirname(local), 'manifest.json'), 'utf8'));
+      assert.equal(entry.release, manifest.release || path.basename(path.dirname(local)));
+      const row = (manifest.packages || [manifest.archive]).find(p => p.name === entry.name);
+      assert.equal(row.sha256, entry.sha256);
+      assert.equal(row.size, entry.bytes);
+    }
+  });
 } else if (process.argv.includes('--require-generated')) {
   test('generated standalone catalog exists', () => assert.fail('Run the verifier generator before --require-generated'));
 }
