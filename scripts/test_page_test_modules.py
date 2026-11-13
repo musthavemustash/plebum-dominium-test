@@ -69,8 +69,10 @@ def main():
     archive = OUT / FULL
     with ZipFile(archive) as zipped:
         assert 'plebum-offline/assets/css/page-test-modules.css' in zipped.namelist()
+        # A tested archive keeps its recorded build when live guides advance.
+        archive_build = json.loads(zipped.read('plebum-offline/' + STAMP))['source_commit']
         for name, tasks in expected.items():
-            check_page(name, BASE + name, tasks, build,
+            check_page(name, BASE + name, tasks, archive_build,
                        zipped.read('plebum-offline/' + name).decode())
     print(f'PASS: {len(pages)} canonical panels, {count} route panels + 2 overviews, {len(expected)} offline panels; correct public URLs/build/task IDs; outcomes unselected; no local paths; idempotent rendering')
 

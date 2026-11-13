@@ -1,0 +1,92 @@
+PLEBUM DOMINIUM: ONE STEP, PHOTO, REVIEW, SAVE
+Live instruction addendum, November 12, 2026. Applies to T1-T7 and page checks.
+Save alongside your package before going offline. Published ZIPs keep their
+original instructions and checksums; do not replace their checked files.
+
+THE GUIDED FLOW
+1. Choose one small check. Read the action and its expected result first.
+2. Do that action and stop on its result screen. Keep the result visible.
+3. Send a readable, non-sensitive photo to your reviewer using a phone or
+   another device. Keep the Tails test computer offline. No reviewer is
+   required: when testing alone, compare against the written expected result
+   and record your observation before choosing the filename.
+4. The reviewer states exactly what the photo shows, asks about anything not
+   visible, and gives a descriptive filename AFTER reviewing the result.
+   A current screen cannot prove an earlier click, a saved file, or a reboot.
+   For each single-checkbox attempt, report whether Start stayed blocked.
+5. Save the native screenshot with that filename in ONE Evidence folder on
+   the data USB. On Tails, check Home -> Pictures -> Screenshots and copy the
+   image to the USB. A photo sent to chat is not a saved screenshot on the USB.
+6. Confirm the file is saved, then take the next action. Save a failure before
+   retrying; keep both attempts with different names. If part of a form is
+   below the screen, scroll and capture that part separately.
+
+WHAT TO RECORD
+Use PASS only for the individual check supported by the observation, FAIL for
+an observed mismatch, and NOT TESTED for an unperformed or blocked check.
+Distinguish photo evidence, tester confirmation and an independent file check.
+Do not mark a whole track passed from one screenshot. Package verification,
+visible clearing, network isolation and wallet recovery are different claims.
+
+ONE EVIDENCE FOLDER
+Create a session folder on the separate data USB, for example:
+  R3-Tails-20261112/Evidence/
+Keep all screenshots for that session there. Separate Windows/Tails in the
+filenames and notes, without requiring separate screenshot subfolders.
+Keep earlier sessions unchanged. Never overwrite an earlier result.
+
+Example reviewed screenshot name: R3-T4-html-byte-match-Tails.png
+Windows equivalent: R3-T4-html-byte-match-Windows.png
+Use .png for a native PNG; use .jpg for an actual JPEG phone photo. Changing
+the extension does not convert the image. Preserve the real file type.
+Generic SAVE names in the run sheets are examples; add OS and case/attempt
+details after review. Record the exact name you actually saved.
+
+RESULT FILES HAVE THEIR OWN LOCATION
+In the complete R3 extraction:
+  Tails-20261112-r3/plebum-offline/public-tests/results/
+This holds public .asc/.txt outputs and comparison logs. Evidence holds images
+and notes; it does not replace results. Commands such as compare_files.py run
+from public-tests, one folder ABOVE results. The focused ZIP uses its own
+plebum-public-test folder instead.
+
+In Tails 7.16 Files: right-click empty space -> Open in Console. Other versions
+may say Open in Terminal. Record your actual folder, USB label and mount path;
+do not copy somebody else's /media/amnesia/... identifier. The Files location
+bar can show the full path. Use a full path when a relative one is unclear.
+
+CHECKPOINTS FOR EACH TRACK
+T1: ZIP result; whole-package verifier and count; subset verifier separately;
+    each fingerprint MATCH; deliberate wrong-file MISMATCH; stale-result reset.
+T2: locked startup; first box only blocked; second box only blocked; both open;
+    public filled state; Lock and clear; new session with empty fields/output;
+    close/reopen locked. Check each tool separately, and both map views.
+T3: one public reference at a time, HTML and Python separately; then each
+    rejection/control case. Name each vector and tool. Zero-only is partial.
+    Diceware has its own public rolls and expected words; it is not BIP39.
+T4: loaded public fixture; encrypted output; saved ciphertext reopened;
+    restored text; downloaded .txt; byte comparison. Then wrong-password,
+    damaged-file and each interoperability direction as separate checks.
+T5: actual versions/security level and OS Offline Mode; scoped T2-T4 results;
+    saved hashes before reboot; same hashes and saved-file checks after reboot.
+    Closing a browser tab is not a reboot test.
+T6: public setup/settings; paper read-back observation; initial spend;
+    restored address/spend checks; missing/wrong-passphrase observations;
+    saved results. See T6-RUN.txt. No extra finishing photo or other reader.
+T7: public policy/settings; paper/map records; A+B, A+C and B+C separately;
+    one-key refusal; unavailable-key recovery/spend; handover. See T7-RUN.txt.
+Page checks: one task ID, one expected result and an observation at a time.
+
+PRIVATE WALLET STEPS
+Public, published fixtures can be shown. Never photograph or send a newly
+created wallet seed, passphrase, private key, secret QR or paper seed record,
+even for a disposable testnet wallet. Stop capture for those steps and use a
+written observation with no secret values. Resume on non-sensitive results.
+Hardware signers are optional; T6/T7 use disposable paper, with no metal work.
+
+PAUSING
+Record the last completed step and exact next step. Check saved images and
+public result files open from the data USB. Close apps using it, safely eject
+the data USB, and shut down Tails fully. Never reconnect the secret-bearing
+session to upload evidence. Bulk reports/uploads happen afterward from an
+online computer. Live review photos use a separate device and public screens.

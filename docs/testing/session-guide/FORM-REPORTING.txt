@@ -1,3 +1,10 @@
+LIVE ADDENDUM: NOVEMBER 12, 2026
+Keep tested ZIP originals unchanged. Use PHOTO-REVIEW-FLOW.txt while testing:
+photo, review and filename, then save in one Evidence folder before continuing.
+This file describes bulk submission after the offline session. A live public
+photo may be reviewed from a separate device while the test computer stays offline.
+Use actual saved filenames with OS/case, and keep incomplete checks NOT TESTED.
+
 PLEBUM DOMINIUM — FROM YOUR SAVED EVIDENCE TO THE GOOGLE FORM
 Question mapping checked November 8, 2026; attachment/link guidance refreshed
 for the added T1 evidence-upload section.

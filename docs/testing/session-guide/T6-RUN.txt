@@ -1,5 +1,18 @@
 PLEBUM DOMINIUM: T6 WITH THE R3 COMPLETE OFFLINE TESTER
 Prepared November 12, 2026. Public testing only.
+Live addendum refreshed after the November 12 session. Save alongside the
+package; the original run sheet inside the tested R3 ZIP stays unchanged.
+
+OUR STEP-BY-STEP FLOW
+Use PHOTO-REVIEW-FLOW.txt. Read one action and expected result, do it, then
+send a non-sensitive photo using a separate device while Tails stays offline.
+The reviewer checks what it proves and gives a filename; save the native
+screenshot in ONE Evidence folder on the data USB before the next action.
+If testing alone, compare against the expected result and record it yourself.
+Stop capture during seed/passphrase entry or paper-record handling, even for
+test wallets. Use a written observation without secret values for those steps.
+For public settings, transaction, address and recovery results, use separate
+checkpoints. Never infer a completed spend from an address screenshot alone.
 
 PACKAGE
 Download from the test website's Downloads page, just as any tester would:
@@ -69,12 +82,14 @@ Close the offline session and shut down fully. T6 does not require another
 person, metal work, or an extra finishing screenshot.
 
 EVIDENCE
-Use a separate evidence folder for this package and OS. Copy this run sheet
+Use one Evidence folder per session, with package/OS/case in filenames/notes.
+Keep earlier sessions unchanged. Copy this run sheet
 before filling it in; keep the packaged original unchanged so T1 can rerun.
 For seed/passphrase handling, record a written observation. Keep seed words,
 passphrases, private keys and unrelated wallet details out of images/reports.
 Screenshots of non-sensitive results or a short recording can support other
-checks. Submit public-test evidence only after the offline session has ended.
+checks. Live public-photo review uses a separate phone/device; never reconnect
+Tails to send it. Bulk submissions happen after the offline session has ended.
 
 SESSION RECORD (complete a copy)
 Date / device / OS:
@@ -85,6 +100,7 @@ Tails / wallet / browser / other software versions:
 Exact test network:
 R3 tool checks performed and evidence filenames:
 R3 tool checks skipped or blocked:
+Evidence folder / results folder / last reviewed filename:
 T6 setup result and evidence:
 T6 paper-record read-back observation (no seed/passphrase):
 T6 initial spend result and evidence:
@@ -93,6 +109,7 @@ T6 missing-passphrase observation:
 T6 incorrect-passphrase observation:
 Saved evidence checked / offline session closed:
 Failures, confusing instructions or unfinished checks:
+Last completed step / exact next step to resume:
 
 Use PASS only for an observed successful check, FAIL for an observed mismatch,
 and NOT TESTED for a check not completed. T6 passes only when its setup, checked

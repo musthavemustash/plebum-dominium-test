@@ -89,7 +89,7 @@
       <section class="step" aria-labelledby="integrity-heading">
         <span class="number" aria-hidden="true">2</span>
         <h2 id="integrity-heading">T1: check the whole package</h2>
-        <p>Open a terminal or PowerShell in <code>plebum-offline</code>—the folder containing <code>START.html</code>. Run its <code>verify_package.py</code>.</p>
+        <p>Open a console or PowerShell in <code>plebum-offline</code>, the folder containing <code>START.html</code>. In Tails 7.16 Files, right-click empty space and choose <strong>Open in Console</strong>. Run its <code>verify_package.py</code>.</p>
         <div class="terminal">
           <div class="terminal-title">Current folder: plebum-offline</div>
           <div class="commands"><span>Windows</span><code>py verify_package.py</code><span>Tails / Linux</span><code>python3 verify_package.py</code></div>
@@ -104,7 +104,9 @@
           <li><code>plebum-offline</code></li><li class="target"><code>public-tests</code></li>
         </ol>
         <p>Here you will find <code>TESTING.txt</code>, <code>RETEST-WINDOWS.txt</code>, <code>dice-converter.html</code>, <code>descriptor-tool.html</code>, the Python tools and <code>fixtures</code>.</p>
-        <p class="subtle">For commands in these testing instructions, open your terminal in <code>public-tests</code>. The path <code>fixtures/public-map.txt</code> means “the fixtures folder inside public-tests.” This folder also has its own <code>verify_package.py</code>, which checks only the focused test files.</p>
+        <p class="subtle">For commands in these testing instructions, open your console in <code>public-tests</code>. The path <code>fixtures/public-map.txt</code> means “the fixtures folder inside public-tests.” This folder also has its own <code>verify_package.py</code>, which checks only the focused test files.</p>
+        <p>Keep public output files in <code>plebum-offline/public-tests/results/</code>. Run comparison commands from <code>public-tests</code>, one folder above <code>results</code>. In Files, use the location bar to see your full path; your USB mount name may differ from another tester’s.</p>
+        <p>Keep screenshots together in one <strong>Evidence</strong> folder in your session folder on the data USB. Follow one action, photo, reviewer’s filename, then save before continuing. Use a written observation for private wallet steps. See the <a href="https://musthavemustash.github.io/plebum-dominium-test/testing/session-guide/PHOTO-REVIEW-FLOW.txt">live photo-review directions</a>; save them separately before going offline. Published ZIPs retain their original instructions.</p>
       </section>
       <section class="step" aria-labelledby="fixtures-heading">
         <span class="number" aria-hidden="true">4</span>

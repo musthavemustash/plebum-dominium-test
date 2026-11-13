@@ -72,7 +72,9 @@ def check():
                     assert target.is_relative_to(root) and target.exists(), (str(page.relative_to(root)), ref)
             if item['name'] == FULL:
                 run_sheet = 'testing/session-guide/T6-RUN.txt'
-                assert (root / 'T6-RUN.txt').read_bytes() == (DOCS / run_sheet).read_bytes(), 'Stale T6 run sheet'
+                # The tested ZIP retains its original sheet. Live instruction
+                # addenda are downloaded separately, without changing that ZIP.
+                assert (root / 'T6-RUN.txt').read_bytes() == (root / run_sheet).read_bytes(), 'Packaged T6 sheets disagree'
                 start = (root / 'START.html').read_text()
                 assert 'href="test-the-site.html#t6"' in start and 'href="T6-RUN.txt"' in start
                 assert 'href="paths/one/single-sig.html"' in start

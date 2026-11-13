@@ -1,14 +1,20 @@
 PLEBUM DOMINIUM — SAVE BEFORE YOU REBOOT, SHUT DOWN OR PAUSE
 Public test files only. Tick a COPY of this checklist in your evidence folder.
+Live addendum updated November 12, 2026; keep the tested ZIP unchanged.
+Use PHOTO-REVIEW-FLOW.txt for the one-step guided or self-guided flow.
 
 [ ] Each completed subcheck has PASS/FAIL; unfinished checks say NOT TESTED.
 [ ] Notes include date, package filename/full SHA-256, OS/browser versions,
     Tor security level if used, tool/case, expected result and actual result.
 [ ] Screenshots were saved after each result, before clearing or moving on.
     Include verifier output, comparison PASS or errors, and cleared/locked states.
+[ ] In a guided session: sent a public photo, received the review and filename,
+    then saved the native screenshot before the next action. Offscreen states
+    and earlier actions have their own photo or explicit tester observation.
 [ ] Copy original PNGs from Home/Pictures/Screenshots (or their actual location)
-    to the screenshots folder on the separate test/data USB. A phone photo may
-    supplement them. Do not leave the only copy in Tails Home or the clipboard.
+    to ONE Evidence folder on the separate test/data USB. Put the OS and case
+    in filenames. Keep .png for PNGs and .jpg for JPEG photos; preserve actual
+    file types. Do not leave the only copy in Tails Home, chat or the clipboard.
 [ ] Copy session notes, copied RESULTS.csv and full terminal result text into
     the evidence folder. Include any short recordings you chose to make.
 [ ] Preserve the extracted package and results folder on the test/data USB:

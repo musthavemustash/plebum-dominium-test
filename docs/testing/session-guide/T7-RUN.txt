@@ -1,0 +1,88 @@
+PLEBUM DOMINIUM: T7 THREE KEYS / 2-OF-3 REHEARSAL
+Live run sheet, November 12, 2026. Disposable testnet wallet only.
+Save beside the extracted package; do not replace files in a tested ZIP.
+
+PREPARE
+Use the complete identified package, verify its ZIP and extracted files, and
+prepare verified Tails/wallet software before disconnecting. Record the exact
+test network across signer, watch-only wallet, server, faucet and explorer.
+Follow test-the-site.html#t7 and the three-key Sparrow, signing, testnet and
+inheritance guides. Use offline software and TEST ONLY paper records. Hardware
+signers are optional; metal work is outside T7. Preserve original working
+records while practicing recovery. T1-T5 results remain separate.
+
+REVIEW AND SAVE AFTER EACH PUBLIC CHECK
+Use PHOTO-REVIEW-FLOW.txt: action and expected result -> tester photo ->
+reviewer checks it and gives a filename -> tester saves the native screenshot
+in one Evidence folder on the data USB -> next action. Self-guided testers
+compare with the expected result and record their observation themselves.
+Keep OS and test case in filenames. Record PASS / FAIL / NOT TESTED per case.
+Stop capture for seeds, passphrases, private keys and secret QR codes. Use a
+written observation without secret values for those steps, even on testnet.
+
+1. SET UP THE PUBLIC POLICY
+   Create the disposable wallet through the three-key guide. Check 2-of-3,
+   all three distinct public keys, script type, key order/derivation and the
+   receiving addresses. Save the complete wallet map.
+   EXPECT: the complete intended configuration and matching receiving
+   addresses on the independently checked wallet views. Stop on disagreement.
+   REVIEW: public settings/address result; no secret import screen.
+
+2. CHECK THE TEST RECORDS
+   Write each disposable seed on a separate TEST ONLY paper record and check
+   it locally. Check the saved wallet map can be reopened/restored.
+   EXPECT: three checked records and a usable complete map.
+   REVIEW: written seed-read-back observation only; public map result may be
+   shown after checking it contains no private keys or unrelated wallet data.
+
+3. TRY EACH SIGNING PAIR
+   Use the guide's separate online watch-only/offline software-signing flow.
+   Review destination, amount, fee and change before each signature. Exercise
+   A+B, A+C and B+C separately, keeping one result for each pair.
+   EXPECT: each distinct pair can complete the intended testnet spend.
+   REVIEW: public transaction/signature and confirmation results per pair.
+
+4. TRY ONE KEY ALONE
+   Exercise a transaction with only one of the required two signatures.
+   EXPECT: one key alone cannot complete the spend. Record the actual message
+   or incomplete-signature state. Do not count an unperformed attempt as PASS.
+
+5. RECOVER WITH ONE KEY UNAVAILABLE
+   Set one key aside. In a separate recovery attempt, reconstruct using the
+   other two paper records and complete wallet map, without the original
+   wallet file. Keep the working original intact.
+   EXPECT: the same receiving addresses and a completed testnet spend after
+   recovery. A matching address alone does not prove spend capability.
+   REVIEW: address comparison and restored-wallet spend as separate results.
+
+6. TRY THE HANDOVER
+   Have another reader follow the disposable records and inheritance guide.
+   EXPECT: a result for each required recovery step, with unclear/missing
+   instructions recorded. Keep all secrets out of shared evidence.
+
+7. SAVE AND CLOSE
+   Save evidence and any failed/unfinished cases; open a saved image and public
+   text result from the data USB to check them. Clear/close apps, safely eject
+   the data USB and shut down Tails fully. Submit public evidence afterward.
+
+SESSION RECORD (fill in a separate copy)
+Date / package / full ZIP SHA-256 / T1 result:
+OS / Tails / wallet / browser / security level:
+Exact test network / OS offline check:
+Evidence folder / results folder:
+Public policy and receiving-address check:
+Three paper read-backs (observations only, no secrets):
+Saved wallet-map restore:
+A+B result / evidence filename:
+A+C result / evidence filename:
+B+C result / evidence filename:
+One-key refusal / evidence filename:
+Unavailable-key recovery addresses / evidence filename:
+Spend after recovery / evidence filename:
+Handover outcomes / confusing instructions:
+Last completed step / next step:
+Saved files checked / offline session closed:
+
+T7 remains incomplete until every required setup, record, pair, refusal,
+recovery and handover check has evidence. T6, T1-T5 reconciliation and final
+release review remain separate; this run sheet is not beta approval.

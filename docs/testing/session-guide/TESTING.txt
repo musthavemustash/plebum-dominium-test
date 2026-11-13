@@ -1,5 +1,10 @@
 PLEBUM DOMINIUM — T1–T5: TEST, SAVE, CHECK
-Instructions refreshed November 12, 2026.
+Live instructions refreshed after the November 12, 2026 session.
+Save alongside your package. Tested ZIPs retain their original instructions.
+Read PHOTO-REVIEW-FLOW.txt: one action/expected result, tester photo, reviewer
+checks and names it, then save the native screenshot in one Evidence folder
+before continuing. Self-guided testers compare and record the result themselves.
+SAVE names below are examples; add OS/case/attempt details after review.
 Current packages: alpha-20261112-r3 / offline-20261112-r3
 PUBLIC FIXTURES ONLY. No real wallet data, private keys, passwords or funds.
 
@@ -17,8 +22,9 @@ This revision aligns visible names and filenames and refreshes fingerprints.
 The sensitive tools' executable code, Python helpers, wordlist and fixtures
 are unchanged from R4. The checker changes only its labels and expected hashes.
 Earlier Windows and Tails results keep their original package, date and scope;
-these new archives do not inherit a physical-test pass. Start a fresh evidence
-folder, run T1, check the three HTML tools in the Fingerprint checker, and
+the complete R3 archive now has scoped November 12 Windows/Tails results,
+not a full T1-T5 pass. The other archives do not inherit those results. Start
+one Evidence folder for your new session, run T1, check the three tools, and
 confirm names match when opening each tool. Then complete outstanding checks.
 No full retest of unchanged logic is implied by the naming change alone.
 
@@ -43,29 +49,35 @@ BEFORE YOU GO OFFLINE
    For T2–T5, open plebum-offline/public-tests. Fixtures are in its fixtures folder.
    Focused ZIP: open plebum-public-test; tools and fixtures are directly inside.
    Use the matching tools beside fixtures. Do not run them inside the ZIP.
-4. Open a terminal in that test folder. Commands below start there. Create a
+4. In Tails 7.16 Files, right-click empty space -> Open in Console. Other
+   versions may say Open in Terminal. Open it in the test folder above; commands
+   below start there, not inside results. Record the full folder path. Create a
    folder named results there, using Files/File Explorer. Save test outputs in
    results. Copy SESSION-NOTES.txt and RESULTS.csv into results before editing
    them. Leave the packaged originals unchanged so their checksums still match.
-5. On the data USB, create an evidence folder such as
-   Plebum-test-evidence/2026-11-08-Tails-r4/ with screenshots and notes folders.
-   Use a separate folder for each date, OS and package. Copy EVIDENCE-CHECKLIST.txt
-   into notes and tick off your copy. Keep this guide available offline.
+5. On the data USB, create ONE Evidence folder for the session, for example
+   R3-Tails-20261112/Evidence/. Keep all screenshots there, with OS and case in
+   filenames. Keep earlier sessions unchanged. Copy EVIDENCE-CHECKLIST.txt into
+   Evidence and tick off your copy. Keep this guide and PHOTO-REVIEW-FLOW.txt offline.
 6. Disconnect the test machine. For Tails, choose Offline Mode → Disable all
    networking at startup. Check OS network controls and disconnect network
    cables. A browser flag, or the word "disconnected" alone, does not prove
    networking is disabled. Keep OS networking disabled throughout these tests.
 
 HOW AND WHEN TO SAVE A SCREENSHOT
-Save immediately after each result, BEFORE clearing, closing or trying the next
-input. Show the tool/terminal, input filename or case number, and the full result.
+After each public result, stop for review BEFORE clearing, closing or trying
+the next input. In a guided session, send the photo from a separate phone/device
+while Tails stays offline; the reviewer checks it and gives the filename. Then
+save the native screenshot in Evidence before proceeding. If testing alone,
+compare the written expectation and record your observation, then name/save it. Show the tool/terminal, input filename or case number, and the full result.
 If it does not fit, take two images. Keep original PNGs and readable error text.
-Windows: Win+Shift+S, capture, open the capture and Save as into screenshots.
+Windows: Win+Shift+S, capture, open the capture and Save as into Evidence.
 Tails: Print/PrtSc (Fn may be needed), select the window/area and capture.
 Look in Home → Pictures → Screenshots and open the saved image to confirm it.
 Copy it to your data USB now; a clipboard image is not a saved evidence file.
-Give it the suggested name, retaining .png. A readable phone photo of public
-tests is acceptable; a short screen recording is useful for button/clear issues.
+Use the reviewed filename, keeping .png for a PNG screenshot or .jpg for a JPEG
+phone photo; changing extensions does not convert files. A readable public photo
+is acceptable; a short screen recording is useful for button/clear issues.
 Recordings are optional. Never capture real secrets or unrelated private windows.
 On failure: save the error before retrying; record the input, steps and package.
 Stop that check, preserve its files, and mark it FAIL. Unperformed checks are
@@ -98,12 +110,16 @@ Repeat for dice-converter.html, descriptor-tool.html and diceware-mapper.html.
    networking was disabled. Read PUBLIC-SESSION-CONTRACT.txt.
 2. Open the local file. EXPECT: locked startup with both confirmations unchecked.
    SAVE: T2-TOOL-locked.png (replace TOOL with dice, map or mapper).
-   Check only one confirmation: it must not start. Check both only when true,
-   then Start public test. SAVE: T2-TOOL-open.png.
+   Check the FIRST confirmation alone and try Start: it must stay locked.
+   Uncheck it, check only the SECOND and try Start: it must stay locked.
+   Explicitly report both attempts. Check both only when true, then Start public test. SAVE: T2-TOOL-open.png.
 3. Load public example data from T3/T4 below. Save T2-TOOL-filled.png.
    Choose Lock and clear. EXPECT: locked, both confirmations unchecked.
    SAVE: T2-TOOL-relocked.png. Start a new acknowledged public session and inspect
    all inputs and outputs: they must be blank, with no old plaintext/download.
+   For the map, inspect Encrypt and Decrypt separately. Scroll to show each
+   passphrase, input and Review/output area. For Diceware check all 30 boxes,
+   0 of 6 words and phrase placeholders; one lower-row photo does not show all rows.
    SAVE: T2-TOOL-cleared-inputs.png and T2-TOOL-cleared-outputs.png as needed.
 4. Lock, close and reopen the local file. EXPECT: locked and blank again.
    SAVE: T2-TOOL-reopened-locked.png. Record each tool separately.
@@ -130,6 +146,15 @@ T3 — CHECK THE DICE CONVERTER'S ANSWERS
    EXPECT: four accepted pairs, eight bits 00011011; 5 and 6 add no bits.
    SAVE: T3-dice-buttons.png. Check keyboard entry, Undo and Clear separately;
    save the before/after state or a short recording and describe the sequence.
+For the separate Diceware public example, enter one group per row:
+  11111 -> abacus
+  11112 -> abdomen
+  11113 -> abdominal
+  11114 -> abide
+  11115 -> abiding
+  11116 -> ability
+EXPECT: all six words in order. Review the photo, name and save it, then do T2
+clearing/reopening. This positive example does not pass the other mapper cases.
 The separate six-word Diceware mapper has its own examples and
 invalid-input/copy/clear checks in TOOL-FINISH-RETEST.txt, section 2. Record it
 separately; passing BIP39 conversion does not pass the Diceware mapper.
@@ -141,7 +166,7 @@ All output names below are inside the results folder you created. In Windows,
 replace python3 with py. Use a new name for each repeat; do not overwrite evidence.
 1. HTML round trip: load the public map, encrypt and download to
    results/T4-html-map.asc. SAVE: T4-html-encrypted.png and T4-ciphertext-saved.png.
-   Confirm the saved .asc file exists, then close/reopen the tool, acknowledge the
+   Confirm the saved .asc file exists, then Lock and clear, close/reopen the tool, acknowledge the
    checks, and load that saved .asc file. Decrypt with the same test password.
    EXPECT: restored public text including café. SAVE: T4-html-restored.png.
    Download the restored map to results/T4-html-restored.txt. Compare:
@@ -186,10 +211,11 @@ T5 — PHYSICAL TAILS, INCLUDING A SAVED-FILE REBOOT CHECK
 Use real Tails hardware; a phone, browser simulation or virtual test is not T5.
 1. Complete preparation above, then boot Tails with networking disabled.
    Record hardware and Tails/browser versions plus Tor's security level.
-   In Terminal, run these separately:
+   In Console, run these separately:
      cat /etc/os-release
      python3 --version
-     gpg --version Save T5-versions.png, T5-browser-version.png,
+     gpg --version
+   Save T5-versions.png, T5-browser-version.png,
    T5-browser-security.png and T5-os-network.png. OS controls are the primary
    network check; nmcli general status is additional evidence, not isolation proof.
 2. Verify the copied package again and save T5-package-pass.png. Open local
