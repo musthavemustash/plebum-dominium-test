@@ -1,0 +1,12 @@
+{
+  "scope": "20261113-r1: dice comparison invalidation and pending-input handling only. Other sensitive tool code matches R4. No physical Windows/Tails retest claimed.",
+  "sha256": {
+    "dice-converter.html": "c6073aef64967fbcee9f008336d641ca2f25b58d184442cb1292de97c43ea168",
+    "descriptor-tool.html": "fce1a0e202a6c64562c6722068e58e223d812b420b7adb9e4b0b40a2fe2deb86",
+    "diceware-mapper.html": "8c6fc5262314b98907ef505b205e05198bca5d21042ab39dcd38a1f27fcea41e",
+    "fingerprint-checker.html": "e615f9f5e3705c81b5344340fcd45f3d06d09503801e2804516e60eab4c369fb"
+  },
+  "script_sha256": {
+    "dice-converter.html": "0e5ddd10ef406ef6637c0e23407b0ce27701a278ceeb5526f808e582477dda7b"
+  }
+}

@@ -61,8 +61,8 @@ with tempfile.TemporaryDirectory() as temp:
         shutil.copyfile(ROOT / path, dest)
     with contextlib.redirect_stdout(io.StringIO()):
         build(root, check=True)
-    # Updating a reviewed hash cannot silently turn a label-only release into
-    # a code change. The independent comparison against R4 must still reject it.
+    # Updating a whole-file hash cannot authorize a new code change. The
+    # separate script pin and immutable crypto baseline must still reject it.
     tool = root / 'docs/dice-converter.html'
     review = root / NAMING_REVIEW
     good_tool, good_review = tool.read_bytes(), review.read_bytes()
@@ -70,7 +70,7 @@ with tempfile.TemporaryDirectory() as temp:
     identities = json.loads(good_review)
     identities['sha256']['dice-converter.html'] = hashlib.sha256(tool.read_bytes()).hexdigest()
     review.write_text(json.dumps(identities))
-    rejected(lambda: build(root, check=True), 'Logic change accepted as naming-only')
+    rejected(lambda: build(root, check=True), 'Unreviewed logic change accepted')
     tool.write_bytes(good_tool)
     review.write_bytes(good_review)
     # Use the actual obsolete implementation that caused the Windows regression.

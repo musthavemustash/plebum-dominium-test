@@ -11,8 +11,8 @@ import zipfile
 ROOT = Path(__file__).resolve().parents[1]
 R4 = 'testing/alpha-20261108-t5-r4/plebum-tools-alpha-20261108-t5-r4.zip'
 R4_SHA256 = '6d5ab946970537b21249555507be65724061fd01d132cc02a1c8cb4b4938aec8'
-CURRENT = 'testing/alpha-20261112-r3/plebum-tools-alpha-20261112-r3.zip'
-NAMING_REVIEW = 'review/TOOL_NAMES_20261112_R3.json'
+CURRENT = 'testing/alpha-20261113-r1/plebum-tools-alpha-20261113-r1.zip'
+NAMING_REVIEW = 'review/TOOL_REPAIR_20261113_R1.json'
 TOOLS = {
     'dice-converter.html': 'Dice converter page.',
     'descriptor-tool.html': 'Wallet-map tool. Encrypt and restore a wallet map.',
@@ -43,20 +43,27 @@ def r4_files(docs):
 def check_tools(root):
     docs = root / 'docs'
     baseline = r4_files(docs)
-    reviewed = json.loads((root / NAMING_REVIEW).read_text())['sha256']
+    review = json.loads((root / NAMING_REVIEW).read_text())
+    reviewed = review['sha256']
     for name in TOOLS:
         path = tool_path(name)
         data = (docs / path).read_bytes()
         if name in reviewed:
             assert digest(data) == reviewed[name], f'Unreviewed tool bytes: docs/{path}'
-            # This release permits labels and checker fingerprints only. Its
-            # executable code must still match the physically tested R4 tools.
+            # Unchanged tools retain the R4 executable baseline. An explicit
+            # separate script pin permits the reviewed dice UI repair only;
+            # updating a whole-file fingerprint alone cannot authorize code.
             def scripts(value):
                 text = value.decode()
                 if name == 'fingerprint-checker.html':
                     text = re.sub(r"('(converter|descriptor|mapper)': ')[a-f0-9]{64}", r'\1HASH', text)
                 return re.findall(r'<script\b[^>]*>(.*?)</script>', text, re.S)
-            assert scripts(data) == scripts(baseline[name]), f'Tool logic changed: {name}'
+            if name in review.get('script_sha256', {}):
+                assert scripts(data)[0] == scripts(baseline[name])[0], f'Crypto implementation changed: {name}'
+                code = json.dumps(scripts(data), ensure_ascii=False).encode()
+                assert digest(code) == review['script_sha256'][name], f'Unreviewed tool logic: {name}'
+            else:
+                assert scripts(data) == scripts(baseline[name]), f'Tool logic changed: {name}'
         else:
             assert data == baseline[name], f'R4 tool changed: docs/{path}'
         if path.startswith('kit/'):
@@ -154,7 +161,7 @@ def build(root=ROOT, check=False):
         else:
             target.write_bytes(data)
     check_fingerprints(root / 'docs')
-    print('PASS: reviewed naming revision, unchanged R4 tool logic, snapshots and file fingerprints')
+    print('PASS: reviewed tool bytes/script pins, preserved crypto baseline, snapshots and file fingerprints')
 
 
 if __name__ == '__main__':

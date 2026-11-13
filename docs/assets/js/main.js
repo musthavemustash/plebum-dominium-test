@@ -393,9 +393,39 @@ document.querySelectorAll(".btn-onchain").forEach(function (btn) {
       });
   }
 
+  // Save each sibling's prior state, including an already inert navigation panel.
+  var background = [];
+  function isolateDialog() {
+    var node = backdrop;
+    while (node.parentElement && node !== document.body) {
+      Array.from(node.parentElement.children).forEach(function (sibling) {
+        if (sibling === node) return;
+        background.push({ node: sibling, inert: sibling.inert });
+        sibling.inert = true;
+      });
+      node = node.parentElement;
+    }
+  }
+  function containTab(e) {
+    var focusable = Array.from(backdrop.querySelectorAll(
+      'a[href], button, input, textarea, select, [tabindex]'
+    )).filter(function (node) {
+      return !node.disabled && node.tabIndex >= 0 && !node.closest('[inert]') && node.getClientRects().length;
+    });
+    var first = focusable[0] || input;
+    var last = focusable[focusable.length - 1] || input;
+    var active = document.activeElement;
+    if (focusable.indexOf(active) === -1 || (e.shiftKey ? active === first : active === last)) {
+      e.preventDefault();
+      (e.shiftKey ? last : first).focus();
+    }
+  }
+
   function open() {
+    if (!backdrop.hidden) return;
     lastFocus = document.activeElement;
     backdrop.hidden = false;
+    isolateDialog();
     input.focus();
     if (index) renderStart();
     else if (indexFailed) results.innerHTML = '<p class="ask-empty">Search is not available right now.</p>';
@@ -406,7 +436,10 @@ document.querySelectorAll(".btn-onchain").forEach(function (btn) {
   }
 
   function close() {
+    if (backdrop.hidden) return;
     backdrop.hidden = true;
+    background.forEach(function (item) { item.node.inert = item.inert; });
+    background = [];
     if (lastFocus && lastFocus.focus) lastFocus.focus();
   }
 
@@ -432,6 +465,7 @@ document.querySelectorAll(".btn-onchain").forEach(function (btn) {
   });
   document.addEventListener("keydown", function (e) {
     if (e.key === "Escape" && !backdrop.hidden) { close(); return; }
+    if (e.key === "Tab" && !backdrop.hidden) { containTab(e); return; }
     if (e.key !== "/") return;
     if (!backdrop.hidden) return;
     var t = document.activeElement;

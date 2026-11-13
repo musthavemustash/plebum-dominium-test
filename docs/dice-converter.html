@@ -334,12 +334,14 @@ if(typeof module!=='undefined') module.exports={sha256:sha256,bytesToBits:bytesT
 (function(){
   "use strict";
   var rolls=[]; // {face, bits|null}
-  var pastedBits=null;
+  var pastedBits=null, currentWords=[];
   function $(id){return document.getElementById(id);}
   function bits(){return rolls.filter(function(r){return r.bits;}).map(function(r){return r.bits;}).join('');}
   function pairs(){return rolls.filter(function(r){return r.bits;}).length;}
 
+  function invalidateValidation(){ $('results').innerHTML=''; }
   function render(){
+    invalidateValidation();
     var b=bits(), p=pairs();
     $('m-pairs').textContent=p;
     $('m-bits').textContent=b.length;
@@ -359,10 +361,11 @@ if(typeof module!=='undefined') module.exports={sha256:sha256,bytesToBits:bytesT
     $('done256').hidden=!done;
     if(!pastedBits){
       if(done) showWords(bitsToWords(b));
-      else $('words').innerHTML='';
+      else showWords([]);
     }
   }
   function showWords(words){
+    currentWords=words.slice();
     var ol=$('words'); ol.innerHTML='';
     words.forEach(function(w,i){
       var li=document.createElement('li');
@@ -433,13 +436,14 @@ function createPublicTestSession() {
   async function addDie(face){
     if (!testSession.allowed()) return;
     if(bits().length>=256 && !pastedBits) return;
-    if(pastedBits){ clearAll(); }
+    if(pastedBits || pasteT!==null){ clearAll(); }
     rolls.push({face:face, bits:faceToBits(face)});
     render();
   }
   function clearAll(){
+    clearTimeout(pasteT); pasteT=null;
     rolls=[]; pastedBits=null;
-    $('words').innerHTML=''; $('pastebits').value=''; $('paste-note').textContent='';
+    showWords([]); $('pastebits').value=''; $('paste-note').textContent='';
     render();
   }
   var diebtns=document.querySelectorAll('.diebtn');
@@ -468,14 +472,18 @@ function createPublicTestSession() {
     render();
   });
   var pasteT=null;
+  $('valwords').addEventListener('input', invalidateValidation);
   $('pastebits').addEventListener('input', function(){
+    invalidateValidation();
+    pastedBits=null; showWords([]);
     clearTimeout(pasteT);
     pasteT=setTimeout(function(){
+      pasteT=null;
       if (!testSession.allowed()) { clearAll(); return; }
       var raw=$('pastebits').value;
       var r=wordsFromBitsInput(raw);
       var note=$('paste-note');
-      if(!r.words){ pastedBits=null; $('words').innerHTML=''; note.textContent=r.note; return; }
+      if(!r.words){ pastedBits=null; showWords([]); note.textContent=r.note; return; }
       pastedBits=r.bits;
       note.textContent=r.note||('256 bits. Words generated.');
       showWords(r.words);
@@ -489,13 +497,12 @@ function createPublicTestSession() {
       var el=document.createElement('li'); el.className=cls; el.textContent=text;
       el.style.animationDelay=delay+'s'; ul.appendChild(el);
     }
+    if(pasteT!==null){ li('bad','Wait for the binary input to finish updating, then check again.',0); return; }
     if(raw.length!==24){ li('bad','Need 24 words. Found '+raw.length+'.',0); return; }
     var v=validateWords(raw);
     li(v.ok?'good':'bad', v.ok?'Check passes. All 24 words are in the list and word 24 matches the other 23.':'Check fails. '+v.reason, 0);
     if(!v.ok) return;
-    var mine=null;
-    if(pastedBits) mine=bitsToWords(pastedBits);
-    else if(bits().length>=256) mine=bitsToWords(bits());
+    var mine=currentWords.length===24 ? currentWords : null;
     if(mine){
       var c=compareLists(mine, raw);
       li(c.ok?'good':'bad', c.ok?'24 of 24 match the words above. The two tools agree.':'The lists differ at positions: '+c.mismatches.join(', ')+'. Stop here.', .18);
