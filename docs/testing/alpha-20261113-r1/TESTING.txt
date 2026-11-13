@@ -1,0 +1,274 @@
+PLEBUM DOMINIUM — T1–T5: TEST, SAVE, CHECK
+Live instructions refreshed after the November 12, 2026 session.
+Save alongside your package. Tested ZIPs retain their original instructions.
+Read PHOTO-REVIEW-FLOW.txt: one action/expected result, tester photo, reviewer
+checks and names it, then save the native screenshot in one Evidence folder
+before continuing. Self-guided testers compare and record the result themselves.
+SAVE names below are examples; add OS/case/attempt details after review.
+Current packages: alpha-20261113-r1 / offline-20261113-r1
+PUBLIC FIXTURES ONLY. No real wallet data, private keys, passwords or funds.
+
+TOOL NAMES AND FILES
+Dice converter: dice-converter.html (24-word seed)
+Wallet-map tool: descriptor-tool.html (encrypt and restore the wallet map)
+Diceware mapper: diceware-mapper.html (six-word passphrase)
+Fingerprint checker: fingerprint-checker.html (compare file fingerprints)
+These names match browser tabs, headings, checker choices and START.html.
+Keep the filenames shown here. The Diceware mapper and Dice converter do
+separate jobs; choose the matching name and filename in the checker.
+
+WHAT CHANGED
+This revision aligns visible names and filenames and refreshes fingerprints.
+The sensitive tools' executable code, Python helpers, wordlist and fixtures
+are unchanged from R4. The checker changes only its labels and expected hashes.
+Earlier Windows and Tails results keep their original package, date and scope;
+the complete R3 archive now has scoped November 12 Windows/Tails results,
+not a full T1-T5 pass. The other archives do not inherit those results. Start
+one Evidence folder for your new session, run T1, check the three tools, and
+confirm names match when opening each tool. Then complete outstanding checks.
+No full retest of unchanged logic is implied by the naming change alone.
+
+TAILS EXTRACTION NOTE
+If unzip is unavailable, use Python from the ZIP's folder:
+python3 -m zipfile -e plebum-complete-offline-tester-20261113-r1.zip Tails-20261112-r3
+Use a new/empty output folder; run the root and public-tests verifiers afterward.
+MAPPER DOWNLOAD: the link is at the bottom of Before this public test,
+below the confirmations explanation. Its saved copy must match its fingerprint.
+
+BEFORE YOU GO OFFLINE
+1. Download the complete offline tester, website-tools ZIP or focused tool ZIP,
+   its matching SHA256SUMS.txt, and the download verifier if needed offline.
+   Read README.txt. Install/check Python 3 and GnuPG before disconnecting if you
+   will test the Python map tool. External software is not included in the ZIP.
+2. Use a separate test/data USB, distinct from the USB that boots Tails.
+   Copy the ZIP, checksums, saved verifier and the entire extracted package to
+   it. Do not format a drive or overwrite your Tails boot stick for this step.
+   Open the files from the USB to check the copy before leaving the online PC.
+3. Complete/tools-only ZIP: open plebum-offline, then START.html.
+   T1's whole-package checker is in plebum-offline.
+   For T2–T5, open plebum-offline/public-tests. Fixtures are in its fixtures folder.
+   Focused ZIP: open plebum-public-test; tools and fixtures are directly inside.
+   Use the matching tools beside fixtures. Do not run them inside the ZIP.
+4. In Tails 7.16 Files, right-click empty space -> Open in Console. Other
+   versions may say Open in Terminal. Open it in the test folder above; commands
+   below start there, not inside results. Record the full folder path. Create a
+   folder named results there, using Files/File Explorer. Save test outputs in
+   results. Copy SESSION-NOTES.txt and RESULTS.csv into results before editing
+   them. Leave the packaged originals unchanged so their checksums still match.
+5. On the data USB, create ONE Evidence folder for the session, for example
+   R3-Tails-20261112/Evidence/. Keep all screenshots there, with OS and case in
+   filenames. Keep earlier sessions unchanged. Copy EVIDENCE-CHECKLIST.txt into
+   Evidence and tick off your copy. Keep this guide and PHOTO-REVIEW-FLOW.txt offline.
+6. Disconnect the test machine. For Tails, choose Offline Mode → Disable all
+   networking at startup. Check OS network controls and disconnect network
+   cables. A browser flag, or the word "disconnected" alone, does not prove
+   networking is disabled. Keep OS networking disabled throughout these tests.
+
+HOW AND WHEN TO SAVE A SCREENSHOT
+After each public result, stop for review BEFORE clearing, closing or trying
+the next input. In a guided session, send the photo from a separate phone/device
+while Tails stays offline; the reviewer checks it and gives the filename. Then
+save the native screenshot in Evidence before proceeding. If testing alone,
+compare the written expectation and record your observation, then name/save it. Show the tool/terminal, input filename or case number, and the full result.
+If it does not fit, take two images. Keep original PNGs and readable error text.
+Windows: Win+Shift+S, capture, open the capture and Save as into Evidence.
+Tails: Print/PrtSc (Fn may be needed), select the window/area and capture.
+Look in Home → Pictures → Screenshots and open the saved image to confirm it.
+Copy it to your data USB now; a clipboard image is not a saved evidence file.
+Use the reviewed filename, keeping .png for a PNG screenshot or .jpg for a JPEG
+phone photo; changing extensions does not convert files. A readable public photo
+is acceptable; a short screen recording is useful for button/clear issues.
+Recordings are optional. Never capture real secrets or unrelated private windows.
+On failure: save the error before retrying; record the input, steps and package.
+Stop that check, preserve its files, and mark it FAIL. Unperformed checks are
+NOT TESTED. Do not mark a whole track PASS from one successful example.
+
+T1 — CHECK THE DOWNLOAD AND EXTRACTED FILES
+1. Before extraction, select the downloaded ZIP in the download verifier and
+   compare with the published checksum for that exact filename/release.
+   SAVE: T1-zip-match.png (or T1-zip-failure.png). Copy the full hash to your notes.
+2. In plebum-offline, run: python3 verify_package.py
+   Windows uses: py verify_package.py
+   Focused ZIP: run this in plebum-public-test instead.
+   EXPECT: PASS, with every listed file matching. SAVE: T1-package-pass.png;
+   copy the full output, file count, filename and hash to SESSION-NOTES.txt.
+   If using the whole package, also run the checker in public-tests and save
+   T1-subset-pass.png. Its result alone does not verify the whole package.
+   Stop on missing/mismatched files. Record missing Python as NOT TESTED.
+3. Open fingerprint-checker.html in the test folder. For each built-in tool,
+   select its matching local HTML file. EXPECT: MATCH for dice converter,
+   wallet-map tool and Diceware mapper. Save T1-fingerprint-dice.png,
+   T1-fingerprint-map.png and T1-fingerprint-mapper.png. Select a different file:
+   EXPECT: MISMATCH. Save T1-fingerprint-mismatch.png. Changing the selection or
+   expected hash must clear an old result. Checksums establish matching bytes,
+   not independent publisher identity or approval for real-wallet use.
+Before pausing: copy screenshots and notes to the USB and reopen a saved image.
+
+T2 — OPEN, LOCK AND CLEAR THE LOCAL TOOLS
+Repeat for dice-converter.html, descriptor-tool.html and diceware-mapper.html.
+1. Save T2-os-network.png showing the OS networking controls/state. Record how
+   networking was disabled. Read PUBLIC-SESSION-CONTRACT.txt.
+2. Open the local file. EXPECT: locked startup with both confirmations unchecked.
+   SAVE: T2-TOOL-locked.png (replace TOOL with dice, map or mapper).
+   Check the FIRST confirmation alone and try Start: it must stay locked.
+   Uncheck it, check only the SECOND and try Start: it must stay locked.
+   Explicitly report both attempts. Check both only when true, then Start public test. SAVE: T2-TOOL-open.png.
+3. Load public example data from T3/T4 below. Save T2-TOOL-filled.png.
+   Choose Lock and clear. EXPECT: locked, both confirmations unchecked.
+   SAVE: T2-TOOL-relocked.png. Start a new acknowledged public session and inspect
+   all inputs and outputs: they must be blank, with no old plaintext/download.
+   For the map, inspect Encrypt and Decrypt separately. Scroll to show each
+   passphrase, input and Review/output area. For Diceware check all 30 boxes,
+   0 of 6 words and phrase placeholders; one lower-row photo does not show all rows.
+   SAVE: T2-TOOL-cleared-inputs.png and T2-TOOL-cleared-outputs.png as needed.
+4. Lock, close and reopen the local file. EXPECT: locked and blank again.
+   SAVE: T2-TOOL-reopened-locked.png. Record each tool separately.
+Do not reconnect to trigger an event during this test. Tor can mask flags/events;
+this exercise checks visible session controls, not automatic isolation or memory
+erasure. Page clearing does not erase saved files or the system clipboard.
+
+T3 — CHECK THE DICE CONVERTER'S ANSWERS
+1. Open T5-dice-reference-inputs.txt. It supplies all eight copyable 256-bit lines
+   and expected words; there is no need to convert hex yourself. Copy only the
+   chosen binary line, preserving leading zeros. Reference 01 is all zeros;
+   reference 04 is all ones. Use the case numbers printed in the file.
+2. Paste each line into the HTML converter's binary box. Compare all 24 words
+   in order with the reference. Run python3 bip39_dice_converter.py (Windows:
+   py bip39_dice_converter.py), paste the same line when prompted and compare.
+   EXPECT: every word matches in both tools. Zeros: abandon 23 times, then art.
+   Ones: zoo 23 times, then vote. These are public examples, never real wallets.
+   SAVE each result before the next case: T3-html-vector-NN.png and
+   T3-python-vector-NN.png, using 01–08. Record all eight separately in notes.
+3. Clear before each negative case. Try fixtures/short-255.txt, then
+   fixtures/invalid-character.txt, in both tools. EXPECT: rejection, no valid
+   output. SAVE: T3-TOOL-short-rejected.png and T3-TOOL-invalid-rejected.png.
+4. Clear the HTML converter. Enter 1, 2, 3, 4, 5, 6 with the dice buttons.
+   EXPECT: four accepted pairs, eight bits 00011011; 5 and 6 add no bits.
+   SAVE: T3-dice-buttons.png. Check keyboard entry, Undo and Clear separately;
+   save the before/after state or a short recording and describe the sequence.
+For the separate Diceware public example, enter one group per row:
+  11111 -> abacus
+  11112 -> abdomen
+  11113 -> abdominal
+  11114 -> abide
+  11115 -> abiding
+  11116 -> ability
+EXPECT: all six words in order. Review the photo, name and save it, then do T2
+clearing/reopening. This positive example does not pass the other mapper cases.
+The separate six-word Diceware mapper has its own examples and
+invalid-input/copy/clear checks in TOOL-FINISH-RETEST.txt, section 2. Record it
+separately; passing BIP39 conversion does not pass the Diceware mapper.
+
+T4 — SAVE AND RESTORE A PUBLIC WALLET MAP
+Use fixtures/public-map.txt and password public-test-only (also in
+fixtures/password.txt). Use the file picker so Unicode and line endings survive.
+All output names below are inside the results folder you created. In Windows,
+replace python3 with py. Use a new name for each repeat; do not overwrite evidence.
+1. HTML round trip: load the public map, encrypt and download to
+   results/T4-html-map.asc. SAVE: T4-html-encrypted.png and T4-ciphertext-saved.png.
+   Confirm the saved .asc file exists, then Lock and clear, close/reopen the tool, acknowledge the
+   checks, and load that saved .asc file. Decrypt with the same test password.
+   EXPECT: restored public text including café. SAVE: T4-html-restored.png.
+   Download the restored map to results/T4-html-restored.txt. Compare:
+     python3 compare_files.py fixtures/public-map.txt results/T4-html-restored.txt
+   EXPECT: PASS, byte-for-byte identical. SAVE: T4-html-byte-match.png.
+   If downloads go to Downloads automatically, move them into results and use
+   the exact names above. Visual similarity alone does not pass this comparison.
+2. Wrong password: load the good .asc, enter a wrong disposable password and
+   decrypt. EXPECT: failure, no restored map/download. SAVE: T4-wrong-password.png.
+   Click Decrypt again with the now-empty password. EXPECT: only the current
+   enter-passphrase prompt, not the previous failure. SAVE: T4-empty-password.png.
+   Restore with the correct password, then edit the ciphertext. The previous
+   restored output/download must disappear. SAVE: T4-edited-input-cleared.png.
+3. Damaged copy: keep the good ciphertext. Run:
+     python3 make_truncated_fixture.py results/T4-html-map.asc results/T4-truncated.asc
+   This saves exactly the first half and prints both byte counts and hashes.
+   SAVE: T4-truncation-details.png and copy the output to notes. Load the truncated
+   copy into HTML and use the correct test password. EXPECT: failure, no restored
+   plaintext/download. SAVE: T4-truncated-rejected.png.
+4. HTML → Python: run python3 descriptor_obfuscator.py, choose d.
+   Input: results/T4-html-map.asc
+   New output: results/T4-html-to-python.txt
+   Password: public-test-only (typing is hidden).
+   SAVE: T4-html-to-python-written.png. Compare:
+     python3 compare_files.py fixtures/public-map.txt results/T4-html-to-python.txt
+   EXPECT: PASS. SAVE: T4-html-to-python-byte-match.png.
+5. Python → HTML: run python3 descriptor_obfuscator.py, choose e.
+   Input: fixtures/public-map.txt
+   New output: results/T4-python-map.asc
+   Enter public-test-only twice. SAVE: T4-python-encrypted.png.
+   Load that .asc in HTML, decrypt, save T4-python-to-html-restored.png and
+   download to results/T4-python-to-html.txt. Compare:
+     python3 compare_files.py fixtures/public-map.txt results/T4-python-to-html.txt
+   EXPECT: PASS. SAVE: T4-python-to-html-byte-match.png.
+6. Lock and clear, then close/reopen; record the T2 checks. Do not reconnect.
+Use the encrypted .asc as the decryption INPUT. The new .txt is the OUTPUT; it
+does not exist yet. Match spelling/case exactly. If GnuPG is missing, record the
+Python directions NOT TESTED. Ciphertexts need not match each other byte for byte;
+the recovered files must match the original. Record each direction separately.
+
+T5 — PHYSICAL TAILS, INCLUDING A SAVED-FILE REBOOT CHECK
+Use real Tails hardware; a phone, browser simulation or virtual test is not T5.
+1. Complete preparation above, then boot Tails with networking disabled.
+   Record hardware and Tails/browser versions plus Tor's security level.
+   In Console, run these separately:
+     cat /etc/os-release
+     python3 --version
+     gpg --version
+   Save T5-versions.png, T5-browser-version.png,
+   T5-browser-security.png and T5-os-network.png. OS controls are the primary
+   network check; nmcli general status is additional evidence, not isolation proof.
+2. Verify the copied package again and save T5-package-pass.png. Open local
+   tools and do T2–T4, recording Tails results separately. You may use T5-T2,
+   T5-T3 and T5-T4 screenshot prefixes. Record any restrictions or missing tools;
+   do not lower browser protections to force a pass.
+3. BEFORE REBOOT: with all T4 outputs saved, run from the test folder:
+     sha256sum results/T4-*.asc results/T4-*.txt > results/T5-before-reboot.sha256
+     sha256sum -c results/T5-before-reboot.sha256
+   EXPECT: every listed file OK. SAVE: T5-hashes-before-reboot.png.
+   If a T4 file is missing, record the incomplete check before continuing.
+   Keep this manifest; do not regenerate it after reboot to hide a mismatch.
+4. STOP AND SAVE: follow EVIDENCE-CHECKLIST.txt now, before power off.
+   Copy screenshots, notes, results and the checksum file to the data USB.
+   Preserve the extracted package and its results subfolder on the USB so the
+   relative paths in the checksum file still work. If already working from that
+   USB, still copy screenshots from Home/Pictures and verify every saved file.
+   Reopen an actual saved PNG and text file from the USB, check the file list,
+   close tools/viewers/terminals using it, and safely eject the data USB. Use the
+   system Power Off menu and confirm shutdown. Leave the boot USB until off.
+5. Boot Tails again with networking disabled. Mount/open the data USB and return
+   to the same test folder. Run the root package verifier, then from the test
+   folder run: sha256sum -c results/T5-before-reboot.sha256
+   EXPECT: all saved files unchanged. SAVE: T5-after-reboot-checks.png.
+   Reopen both the map and dice tools: EXPECT locked startup. Save
+   T5-map-reopened-locked.png and T5-dice-reopened-locked.png.
+6. In HTML, decrypt results/T4-html-map.asc using the test password. Download to
+   results/T5-html-restored-after-reboot.txt, then compare:
+     python3 compare_files.py fixtures/public-map.txt results/T5-html-restored-after-reboot.txt
+   SAVE the restored text and PASS: T5-html-restored-after-reboot.png and
+   T5-html-byte-match-after-reboot.png.
+   In Python choose d, input results/T4-html-map.asc and new output
+   results/T5-python-restored-after-reboot.txt. Compare:
+     python3 compare_files.py fixtures/public-map.txt results/T5-python-restored-after-reboot.txt
+   SAVE: T5-python-byte-match-after-reboot.png. Both must be byte-identical.
+7. Repeat the zero-bit fixture in HTML and Python after reboot. Save
+   T5-html-zeros-after-reboot.png and T5-python-zeros-after-reboot.png.
+   EXPECT: abandon 23 times, then art. Preserve results under their actual build.
+8. Follow EVIDENCE-CHECKLIST.txt AGAIN for all after-reboot files before final
+   shutdown. Reboot success does not establish secure erasure or wallet recovery.
+
+FINISH, PAUSE OR HAND OVER
+Use EVIDENCE-CHECKLIST.txt whenever you stop, even halfway through a track.
+Keep screenshots plus the actual public test files, notes and comparison output.
+After shutting down the offline session, use an online computer to submit only
+the reviewed public evidence. Never bring a real secret-work USB online.
+Read FORM-REPORTING.txt for the exact Google Form question mapping and how to
+attach screenshots when offered or make a shareable evidence link when upload
+is unavailable. Keep the task selection matched to the test you actually did.
+Report task/subcase, package filename/hash, environment, expected/actual result,
+PASS/FAIL/NOT TESTED and evidence filenames. Keep earlier reports intact.
+https://docs.google.com/forms/d/e/1FAIpQLSfOkY3FrZmZpIVro5oxWLy_YvU7U-1BOrL3KB9VCI3jXjad2Q/viewform
+
+These are tool tests. Full one-key (T6) and 2-of-3 (T7) setup, signing and
+recovery rehearsals use disposable paper records and remain separate beta
+requirements. Metal comes after testing and is not part of these tests.
