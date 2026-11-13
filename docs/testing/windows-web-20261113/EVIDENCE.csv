@@ -1,0 +1,27 @@
+session_id,evidence_filename,result,scope_and_observation
+WEB-01,WEB-01-Windows-Chrome-home-three.png,PASS,"Homepage loaded in Chrome, dark mode, Three keys / 16 steps."
+WEB-02,WEB-02-Windows-Chrome-switch-one.png,PASS,One-key selection opens Terms with 12 steps.
+WEB-03,WEB-03-Windows-Chrome-switch-three.png,PASS,Three-key selection retains Terms with 16 steps.
+WEB-04,WEB-04-Windows-Chrome-versions.png,RECORDED,Chrome and Windows versions captured.
+WEB-05,WEB-05-Windows-Chrome-search-results.png,PASS,passphrase query shows relevant results.
+WEB-06,WEB-06-Windows-Chrome-search-shift-tab.png,PASS,Shift+Tab from input focuses Email this question in panel.
+WEB-07,WEB-07-Windows-Chrome-search-tab-wrap.png,PASS,Tab returns to input with query preserved.
+WEB-08,WEB-08-Windows-Chrome-search-escape.png,PASS,Escape closes panel and focuses Search.
+WEB-09,WEB-09-Windows-Chrome-next-page.png,PASS,Next opens Before you begin at step 2 of 16.
+WEB-10,WEB-10-Windows-Chrome-path-keeps-page.png,PASS,"Switch to one key preserves Before you begin, step 2 of 12."
+WEB-11,WEB-11-Windows-Chrome-light-mode.png,PASS,Inspected viewport readable in light mode; same route retained.
+WEB-12,WEB-12-Windows-Chrome-print-page1-blank.png,FAIL,Print page 1 mostly blank; path label only below browser header.
+WEB-13,WEB-13-Windows-Chrome-print-page2.png,OBSERVED,Heading and main content begin on page 2.
+WEB-14,WEB-14-Windows-Chrome-print-page3.png,OBSERVED,Visible page 3 content ends without obvious clipping.
+WEB-15,WEB-15-Windows-Chrome-print-settings.png,RECORDED,Letter; 1 page/sheet; Default margins and scale; 300 dpi.
+WEB-16,WEB-16-Windows-Chrome-print-pdf-blank.png,FAIL,Save as PDF also produces nearly blank first page; 3 pages.
+WEB-17,WEB-17-Windows-Chrome-downloads-page.png,PASS,Downloads link works; light mode persists; complete tester CTA visible.
+WEB-18,WEB-18-Windows-Chrome-package-details.png,PASS,Current complete package correctly identified as 20261113-r2.
+WEB-19,WEB-19-Windows-Chrome-download-complete.png,PASS,Complete r2 ZIP download marked Done with correct filename.
+WEB-20,WEB-20-Windows-Chrome-verifier-open.png,PASS,Separately saved verifier loads locally in Chrome; not isolation proof.
+WEB-21,WEB-21-Windows-Chrome-zip-match.png,PASS,Local verifier reports exact r2 SHA-256 and 2995499-byte match; partial T1 only.
+WEB-22,WEB-22-Windows-Chrome-verifier-reset.png,PASS,Reset clears filename/hash/match and restores Ready to check.
+WEB-23,WEB-23-Windows-Chrome-live-verifier-pdf-mismatch.png,PASS,Live Downloads verifier reports no matching checksum for public PDF.
+WEB-24,WEB-24-Windows-Chrome-local-verifier-pdf-mismatch.png,PASS,Saved local verifier reports no matching checksum for public PDF.
+WEB-25,WEB-25-Windows-Chrome-verifier-mismatch-to-match.png,PASS,Selecting original ZIP without Reset replaces mismatch with correct match.
+WEB-16,WEB-16-Windows-Chrome-print-failure.pdf,FAIL,Actual 3-page PDF received and rendered; first-page pagination defect confirmed.
