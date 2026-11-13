@@ -588,8 +588,8 @@ document.querySelectorAll(".btn-onchain").forEach(function (btn) {
   'use strict';
   var BASE = '/plebum-dominium-test/';
   var PATHS = {
-    one: { label: 'One key + passphrase', steps: ['terms','threat-model','choose-path','checklist','airgap','verify','dice','titanium','inheritance','faq','fire-card','single-sig'] },
-    three: { label: 'Three keys', steps: ['terms','threat-model','choose-path','checklist','airgap','verify','dice','sparrow','testnet','titanium','signing','encryption','inheritance','faq','briefing','fire-card'] }
+    one: { label: 'One key + passphrase', steps: ['terms','threat-model','choose-path','checklist','airgap','verify','dice','single-sig','titanium','inheritance','faq','fire-card'] },
+    three: { label: 'Three keys', steps: ['terms','threat-model','choose-path','checklist','airgap','verify','dice','sparrow','testnet','signing','titanium','encryption','inheritance','faq','briefing','fire-card'] }
   };
   var titles = {'choose-path':'Pick your path','threat-model':'Before you begin', terms:'Terms', checklist:'Checklist',verify:'Check the files',airgap:'Two boots',dice:'Make three keys','single-sig':'One key + passphrase',titanium:'Back up your keys and wallet map',inheritance:'If I am gone',faq:'If you get stuck','fire-card':'Recovery card',sparrow:'Build the 2-of-3',signing:'Practice spending and recovery',testnet:'Set up a test wallet',encryption:'Protect the wallet map',briefing:'Tough questions'};
   function link(path,slug) { return BASE+'paths/'+path+'/'+slug+'.html'; }

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-"""Render navigation-only path copies from canonical docs/handouts; --check rejects drift.
-Never regenerates or overwrites the reviewed handouts themselves.
+"""Render path copies and synchronize canonical navigation; --check rejects drift.
+Keep reviewed handout article content intact when updating navigation.
 """
 import json, re, sys
 from pathlib import Path
@@ -15,15 +15,16 @@ PATHS = {
  ('terms','Terms','terms'), ('threat-model','Before you begin','threat-model'), ('choose-path','Pick your path','../choose-path'),
  ('checklist','Checklist','checklist-one'), ('airgap','Two boots','airgap'),
  ('verify','Check the files','verify'), ('dice','Make one key','dice-one'),
+ ('single-sig','One key + passphrase','single-sig'),
  ('titanium','Back up your key','titanium-one'),
  ('inheritance','If I am gone','inheritance-one'), ('faq','If you get stuck','faq-one'),
- ('fire-card','Recovery card','fire-card-one'), ('single-sig','One key + passphrase','single-sig')]},
+ ('fire-card','Recovery card','fire-card-one')]},
  'three': {'label': 'Three keys', 'steps': [
  ('terms','Terms','terms'), ('threat-model','Before you begin','threat-model'), ('choose-path','Pick your path','../choose-path'),
  ('checklist','Checklist','checklist'), ('airgap','Two boots','airgap'),
  ('verify','Check the files','verify'), ('dice','Make three keys','dice'),
  ('sparrow','Build the 2-of-3','sparrow'), ('testnet','Set up a test wallet','testnet'),
- ('titanium','Back up your keys and wallet map','titanium'), ('signing','Practice spending and recovery','signing'),
+ ('signing','Practice spending and recovery','signing'), ('titanium','Back up your keys and wallet map','titanium'),
  ('encryption','Protect the wallet map','encryption'), ('inheritance','If I am gone','inheritance'),
  ('faq','If you get stuck','faq'), ('briefing','Tough questions','briefing'),
  ('fire-card','Recovery card','fire-card')]}}
@@ -135,8 +136,41 @@ def outputs():
 
  return out
 
+def canonical_navigation():
+ # Shared handouts use the three-key fallback without JS. One-only handouts
+ # use their own route. Article copy, tools and reviewed overrides stay intact.
+ selected={}
+ for path,info in PATHS.items():
+  for step in info['steps']:
+   selected[step[2]]=(path,step)
+ result={}
+ patterns=[r'<span class="header-sheet">.*?</span>',
+           r'<span class="mobilebar-pos">.*?</span>',
+           r'<p class="kicker">.*?</p>',
+           r'<nav class="step-banner".*?</nav>',
+           r'<nav class="prevnext-row".*?</nav>',
+           r'<p class="sidebar-path-note" id="path-count">.*?</p>']
+ for source,(path,step) in selected.items():
+  file=(DOCS/'handouts'/(source+'.html')).resolve()
+  original=file.read_text(); rendered=render(path,step)
+  for pattern in patterns:
+   expected=re.search(pattern,rendered,re.S)
+   if expected:
+    original=re.sub(pattern,lambda _:expected[0],original,flags=re.S)
+  sidebar=re.search(r'<nav class="sidebar".*?(<ul>.*?</ul>)',rendered,re.S)
+  if sidebar:
+   original=re.sub(r'(<nav class="sidebar".*?)(<ul>.*?</ul>)',
+                   lambda m:m[1]+sidebar[1],original,count=1,flags=re.S)
+  result[file]=original
+ return result
+
 def main():
  bad=[]
+ for p,content in canonical_navigation().items():
+  if '--check' in sys.argv:
+   if p.read_text()!=content: bad.append(str(p.relative_to(DOCS)))
+  else:
+   p.write_text(content)
  for rel,content in outputs().items():
   p=DOCS/rel
   if '--check' in sys.argv:

@@ -1,6 +1,6 @@
 PLEBUM DOMINIUM — PUBLIC TEST SESSION NOTES
 Copy this template into results/ before editing. Keep packaged originals intact.
-Live addendum updated November 12, 2026. Use PHOTO-REVIEW-FLOW.txt.
+Live addendum updated November 13, 2026. Use PHOTO-REVIEW-FLOW.txt.
 Keep screenshots in one Evidence folder, with OS/case in each filename.
 
 Date/time/time zone:
@@ -17,7 +17,7 @@ Data USB label / evidence folder:
 Earlier evidence reused (original package/date/case; no new pass implied):
 
 COPY THIS BLOCK FOR EACH SUBCHECK
-Task and case (example: T4 HTML-to-Python):
+Task and case (example: T4 HTML-to-Python, T2-ONE, or MAP-04):
 Tool and public input filename/reference number:
 Steps actually performed:
 Expected result:
@@ -41,7 +41,8 @@ After-reboot manifest check / comparisons (if applicable):
 Copied all listed files to data USB:
 Reopened saved image and text from USB (filenames):
 Tools cleared / data USB safely ejected / Tails shut down:
-Google Form task / question IDs:
+Google Form task / displayed wording / question IDs (if matched):
+Unmatched cases recorded in the results description:
 Evidence Viewer link (checked while signed out):
 File-to-question mapping:
 Feedback submission date / confirmation:
