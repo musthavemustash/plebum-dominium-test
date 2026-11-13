@@ -1,0 +1,98 @@
+$ python3 scripts/reconcile_tool_downloads.py --check
+PASS: reviewed tool bytes/script pins, preserved crypto baseline, snapshots and file fingerprints
+
+$ python3 scripts/test_download_consistency.py
+PASS: stale text snapshots cannot roll back tools, manifests or instructions
+PASS: withdrawn print documents are absent and stale snapshots cannot restore them
+PASS: current T6 entry point names the complete package offered by Downloads
+PASS: obsolete standalone tools, stale snapshots and altered checker fingerprints rejected
+PASS: deterministic builds; tested ZIPs unchanged; exact live addendum pinned; unrecorded drift rejected
+
+$ node scripts/test_download_verifier.cjs
+ok 1 - current manifest entries agree with their published SHA256SUMS files
+ok 2 - known SHA-256 abc vector matches by bytes regardless of filename
+ok 3 - second known SHA-256 hello vector is computed correctly
+ok 4 - same digest with a different published byte count does not match
+ok 5 - one changed byte fails despite having the published filename and size
+ok 6 - oversized file is rejected before arrayBuffer reads any bytes
+ok 7 - file read errors cannot retain a previous match
+ok 8 - SHA-256 failures display an error rather than a comparison result
+ok 9 - reset invalidates a pending read and clears its result
+ok 10 - a slower old selection cannot overwrite a newer result
+ok 11 - canceling the chooser invalidates a pending comparison
+ok 12 - HTML in a local filename is displayed only as text
+ok 13 - a prior package snapshot is clearly reported as earlier
+ok 14 - current entry wins if history has the identical digest and size
+ok 15 - missing WebCrypto disables verification before any file read
+ok 16 - missing File.arrayBuffer support disables verification
+ok 17 - invalid catalog checksum fails closed before file selection
+ok 18 - generated standalone catalog current entries match current manifests
+ok 19 - all retained historical references identify actual archived bytes and releases
+ok 20 - actual published ZIP bytes: plebum-complete-offline-tester-20261113-r2.zip
+ok 21 - actual published ZIP bytes: plebum-website-tools-only-20261113-r2.zip
+ok 22 - actual published ZIP bytes: plebum-tools-alpha-20261113-r2.zip
+22/22 verifier checks passed
+
+$ node scripts/test_public_session_state.cjs
+PASS: public-session startup and acknowledgement;  failed/empty decryption clears stale output; reconnect wipes passwords/results; late crypto/file results discarded; revoked-session operation rejected
+
+$ node scripts/test_tool_network.cjs
+PASS: dice-converter public-session protocol/acknowledgment matrix (20 cases), explicit isolation limit, observed-event clearing, manual lock
+PASS: descriptor-tool public-session protocol/acknowledgment matrix (20 cases), explicit isolation limit, observed-event clearing, manual lock
+PASS: diceware-mapper public-session protocol/acknowledgment matrix (20 cases), explicit isolation limit, observed-event clearing, manual lock
+
+$ node scripts/test_dice_validation.cjs
+PASS: dice validation invalidated on edits, undo, clear, refill and lock; pending/invalid pasted bits cannot compare stale words; fresh comparisons still pass
+
+$ node scripts/test_search_focus.cjs
+PASS: search focus wraps in both directions, covers dynamic/fallback links, restores inert state and trigger focus, and preserves shortcuts
+
+$ node scripts/test_diceware_mapper.cjs
+PASS: all 7,776 EFF mappings; six rows; invalid typing/paste/overflow; incomplete copy blocked; stale clipboard callback; clear and lock
+
+$ node scripts/test_fingerprint_checker.cjs
+PASS: three exact shipped fingerprints; mismatch; invalid hex; stale read/error/selection cancellation; read failure
+
+$ python3 scripts/test_tool_core.py
+PASS: 8 published 256-bit BIP39 vectors in Python/JS; wordlists; face mapping; checksum rejection; 3 excess-input cases; 4 invalid inputs
+PASS: Python/GPG and embedded OpenPGP.js cross-decryption, Unicode text, wrong-password, truncated-message and corrupted-payload rejection
+
+$ python3 scripts/build.py
+Validated 112 static HTML pages. No files rewritten. Staging base: /plebum-dominium-test/
+
+$ python3 scripts/test_paths.py
+PASS: 28 step pages, 2 overviews, both navigation directions, route sidebars, consecutive numbers, variant rendering, unique IDs, runtime/static parity, separate progress keys.
+
+$ python3 scripts/test_page_test_modules.py
+PASS: 31 canonical panels, 28 route panels + 2 overviews, 61 offline panels; correct public URLs/build/task IDs; outcomes unselected; no local paths; idempotent rendering
+
+$ python3 scripts/check_offline_downloads.py
+PASS: 233 files match. Public testing only.
+PASS: 35 files match package checksums. Public tests only; not custody approval.
+PASS: 96 files match. Public testing only.
+PASS: 35 files match package checksums. Public tests only; not custody approval.
+PASS: reviewed tool bytes/script pins, preserved crypto baseline, snapshots and file fingerprints
+PASS: plebum-complete-offline-tester-20261113-r2.zip integrity, local links, network subresources and preserved tools
+PASS: plebum-website-tools-only-20261113-r2.zip integrity, local links, network subresources and preserved tools
+
+
+Final follow-up after adding the Downloads correction link:
+$ python3 scripts/test_download_consistency.py
+PASS: stale text snapshots cannot roll back tools, manifests or instructions
+PASS: withdrawn print documents are absent and stale snapshots cannot restore them
+PASS: current T6 entry point names the complete package offered by Downloads
+PASS: obsolete standalone tools, stale snapshots and altered checker fingerprints rejected
+PASS: deterministic builds; tested ZIPs unchanged; exact live addendum pinned; unrecorded drift rejected
+
+$ python3 scripts/build.py
+Validated 112 static HTML pages. No files rewritten. Staging base: /plebum-dominium-test/
+
+$ python3 scripts/check_offline_downloads.py
+PASS: 233 files match. Public testing only.
+PASS: 35 files match package checksums. Public tests only; not custody approval.
+PASS: 96 files match. Public testing only.
+PASS: 35 files match package checksums. Public tests only; not custody approval.
+PASS: reviewed tool bytes/script pins, preserved crypto baseline, snapshots and file fingerprints
+PASS: plebum-complete-offline-tester-20261113-r2.zip integrity, local links, network subresources and preserved tools
+PASS: plebum-website-tools-only-20261113-r2.zip integrity, local links, network subresources and preserved tools
+
