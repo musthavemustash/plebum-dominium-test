@@ -4,8 +4,8 @@ Windows and physical Tails. Public fixtures only.
 STATUS
 The observed checks in the focused R3 runs passed. This is not a complete
 rerun of T1-T5, an approval for real wallets, or beta/production approval.
-T6 preparation progressed; T6 wallet creation and T7 have not started in this
-session. Earlier results stay with their original packages and dates.
+T6 preparation is still pending verification; T6 wallet creation and T7 have
+not been demonstrated in this session. Earlier results stay with their original packages and dates.
 
 PACKAGE
 plebum-complete-offline-tester-20261112-r3.zip
@@ -26,8 +26,13 @@ Private photos are not published with this text. Suggested filenames below
 identify checkpoints; their presence on the USB was not independently audited.
 
 WINDOWS
-Environment: Windows desktop, Microsoft Edge, PowerShell 5.1. Exact Windows
-build, Edge and Python versions were not newly recorded for this R3 run.
+Evidence basis: the earlier November 12 guided-session closeout reported the
+Windows checks below as passed. Retrieved Windows images support the 226/34
+verifier counts and map fingerprint; the complete original image set was not
+independently re-audited for this update. Browser identification needs
+reconciliation (the session closeout says Edge; a retrieved image was described
+as Chrome). PowerShell 5.1 was recorded; exact OS/browser/Python versions remain
+unconfirmed. These reported results stay distinct from the Tails photos below.
 - PASS: ZIP matching check; root verifier 226 and subset verifier 34.
 - PASS: all three local tool fingerprint MATCH results, deliberate wrong-file
   MISMATCH, stale-result clearing on changed selection and correct-file retry.
@@ -93,18 +98,16 @@ decryption; saved hashes and recovery after an OS reboot. Tab reopening after
 clearing is not a reboot. Automatic isolation/reconnection and secure memory
 erasure were not established. These remain separate from earlier evidence.
 
-T6 PREPARATION ONLY
-Windows Sparrow verified the 2.5.6 Windows MSI and Linux x86_64 tar.gz against
-the signed manifest; both dialogs showed Craig Raw, matched hash, ready to
-install. Windows updated from 2.5.5 to 2.5.6 (tester confirmation).
-Windows Testnet4 public-server test connected successfully to blackie.c3-soft.com;
-the result identified Fulcrum 2.1.4, protocol 1.4.2 and a TestNet 4 server.
-This does not test signing, recovery or the Linux binary running in Tails.
-No T6 wallet, seed, passphrase, receiving address or transaction was created.
-Next session: boot Tails offline; locate the verified Sparrow-2.5.6 Linux
-package on the data USB and begin T6 preparation. T7 remains outstanding.
+T6 PREPARATION REMAINS OPEN
+Sparrow 2.5.5 was previously reported installed. Preparation directions for
+2.5.6 were discussed, but signed-download verification, installation and
+Testnet4 connectivity are not established by the evidence reviewed here.
+Do not turn a preparation instruction into a completed check. No T6 wallet,
+seed, passphrase, receiving-address or spend/recovery result is recorded here.
+Resume by checking the exact wallet software, verified downloads and selected
+test network, then follow T6-RUN.txt. T7 remains outstanding.
 
-SELECTED TAILS EVIDENCE NAMES GIVEN AFTER PHOTO REVIEW
+SUGGESTED TAILS CHECKPOINT FILENAMES FOR THE EVIDENCE INVENTORY
 R3-fingerprint-dice-Tails
 R3-fingerprint-map-Tails
 R3-fingerprint-diceware-Tails

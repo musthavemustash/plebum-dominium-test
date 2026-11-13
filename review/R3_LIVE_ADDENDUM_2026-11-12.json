@@ -5,7 +5,7 @@
   "packages": {
     "plebum-complete-offline-tester-20261112-r3.zip": {
       "published_sha256": "99237d48a93979cc4e5190e8a1583bda5f31503873fe8d1ec4d937dec42cbf3f",
-      "live_rebuild_sha256": "b8ae2dfcb775e23cccc32c3625aee97dd867140db43b9be5bf51a238fd820845",
+      "live_rebuild_sha256": "a162fea2099d3db4e178d47dec30583e487c686fb2806dcfc7843513b276a123",
       "changed_members": [
         "plebum-offline/SHA256SUMS.txt",
         "plebum-offline/T6-RUN.txt",
@@ -42,6 +42,7 @@
         "plebum-offline/handouts/titanium.html",
         "plebum-offline/handouts/two-devices.html",
         "plebum-offline/handouts/verify.html",
+        "plebum-offline/offline-folder-guide.html",
         "plebum-offline/package-manifest.json",
         "plebum-offline/paths/one/airgap.html",
         "plebum-offline/paths/one/checklist.html",
@@ -86,10 +87,11 @@
     },
     "plebum-website-tools-only-20261112-r3.zip": {
       "published_sha256": "353ee12544cba53f6e1279beb9dade251cc80e3795bdaceae63a5bc749a260d1",
-      "live_rebuild_sha256": "200cfd3968c84f5219f3add9ffac1b09d9a6ec16bdf2e5654b4d749c33a79ad7",
+      "live_rebuild_sha256": "a5f2d30ab9ed4990e9395fe9022451586d077a72d60a44c9155688b65c969eb8",
       "changed_members": [
         "plebum-offline/SHA256SUMS.txt",
         "plebum-offline/assets/data/page-tests-build.json",
+        "plebum-offline/offline-folder-guide.html",
         "plebum-offline/package-manifest.json"
       ]
     }
