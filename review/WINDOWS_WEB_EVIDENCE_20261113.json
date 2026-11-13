@@ -1,0 +1,14 @@
+{
+  "source_baseline_commit": "6a36a219025a234ea9e9839fa6c1565f46b2bcaf",
+  "date": "2026-11-13",
+  "timezone": "America/New_York",
+  "pdf": {
+    "filename": "WEB-16-Windows-Chrome-print-failure.pdf",
+    "bytes": 281756,
+    "sha256": "7c47bb0d32b6b6346ebe3a9aff55a956e9d91e21147acfb1224bfc2c42f7c202",
+    "pages": 3,
+    "size": "Letter",
+    "origin": "Tester-provided Chrome print output; original is retained in the conversation and by tester, not published here."
+  },
+  "screenshots": "25 assigned PNG filenames confirmed saved by tester; photos reviewed; original PNG bytes not retrieved."
+}

@@ -1,14 +1,15 @@
 {
-  "reason": "Cumulative reviewed live addendum: audit-4 corrections plus release-signing status, accurate online/offline privacy wording, computer roles and test-secret non-reuse. r2 ZIPs remain immutable; save updated notes/run sheets beside the extracted folder.",
+  "reason": "Cumulative reviewed live addendum: audit-4 and release-signing followup, plus the November 13 Windows browser results and first-page print correction. Published r2 ZIPs remain immutable and retain their original print styles. These source changes enter only a future separately versioned package.",
   "base_commit": "52ca8288bd034faed5e88f033fa44f52800638eb",
   "packages": {
     "plebum-complete-offline-tester-20261113-r2.zip": {
       "published_sha256": "1fbd6c9d92fdcfdf615db9a5b542b0294814b232775b9e2ce66bf52c785fa706",
-      "live_rebuild_sha256": "02dc2f947814080f8192153d30557e75828ec452dbbbaebabba657b6873136da",
+      "live_rebuild_sha256": "29fed033da45416e161fc5c2d5b9893442abecc007e13a8a1480c0f3911e4ac4",
       "changed_members": [
         "plebum-offline/SHA256SUMS.txt",
         "plebum-offline/T6-RUN.txt",
         "plebum-offline/T7-RUN.txt",
+        "plebum-offline/assets/css/print.css",
         "plebum-offline/assets/js/offline-indexes.js",
         "plebum-offline/downloads.html",
         "plebum-offline/handouts/signing.html",
@@ -24,9 +25,21 @@
         "plebum-offline/testing/release-review-20261113/STATUS.txt",
         "plebum-offline/testing/session-guide/RELEASE-SIGNING.txt",
         "plebum-offline/testing/session-guide/T6-RUN.txt",
-        "plebum-offline/testing/session-guide/T7-RUN.txt"
+        "plebum-offline/testing/session-guide/T7-RUN.txt",
+        "plebum-offline/testing/windows-web-20261113/EVIDENCE.csv",
+        "plebum-offline/testing/windows-web-20261113/RESULTS.md"
+      ]
+    },
+    "plebum-website-tools-only-20261113-r2.zip": {
+      "published_sha256": "66a7f107794bf6824b7037bb05965d15f4e18efe398951a520702716bab432a5",
+      "live_rebuild_sha256": "9a282c3b108e7e6b73d574bd928c1d3bd57e288eea8a9cf8a9a932eff7ac3de5",
+      "changed_members": [
+        "plebum-offline/SHA256SUMS.txt",
+        "plebum-offline/assets/css/print.css",
+        "plebum-offline/package-manifest.json"
       ]
     }
   },
-  "followup_base_commit": "1d0b3311267ccd78719224ef35117082cb7b2314"
+  "followup_base_commit": "1d0b3311267ccd78719224ef35117082cb7b2314",
+  "windows_print_base_commit": "6a36a219025a234ea9e9839fa6c1565f46b2bcaf"
 }

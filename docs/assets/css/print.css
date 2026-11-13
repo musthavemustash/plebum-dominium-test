@@ -16,8 +16,10 @@ html, body { background: #fff !important; color: #000 !important; font-size: 11p
 main { padding: 0; }
 article { max-width: none; }
 
-h1 { font-size: 20pt; line-height: 1.2; break-before: page; margin: 0 0 12pt; }
-h1:first-child { break-before: auto; }
+/* A path label can precede a guide heading, so
+   :first-child does not identify the first heading and leaves a blank page. */
+.kicker { break-after: avoid; }
+h1 { font-size: 20pt; line-height: 1.2; break-before: auto; break-after: avoid; margin: 0 0 12pt; }
 h2 { font-size: 15pt; break-after: avoid; margin: 18pt 0 6pt; }
 h3 { font-size: 12pt; break-after: avoid; }
 
