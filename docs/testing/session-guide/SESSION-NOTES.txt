@@ -1,5 +1,7 @@
 PLEBUM DOMINIUM — PUBLIC TEST SESSION NOTES
 Copy this template into results/ before editing. Keep packaged originals intact.
+Live addendum updated November 12, 2026. Use PHOTO-REVIEW-FLOW.txt.
+Keep screenshots in one Evidence folder, with OS/case in each filename.
 
 Date/time/time zone:
 Tester (optional):
@@ -20,9 +22,13 @@ Tool and public input filename/reference number:
 Steps actually performed:
 Expected result:
 Actual result:
+Evidence basis: photo / tester confirmation / saved-file comparison:
+What remains offscreen or unverified:
 Result: NOT TESTED / PASS / FAIL
 Full verifier/comparison/error output (paste here):
 Screenshot or recording filenames:
+Reviewer-assigned filename after photo review (if guided):
+Native screenshot saved in Evidence before next action:
 Actual public input/output filenames:
 Restrictions / missing dependencies / whether a failure repeats:
 

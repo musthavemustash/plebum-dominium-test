@@ -92,7 +92,25 @@ with tempfile.TemporaryDirectory() as temp:
     rejected(lambda: check_fingerprints(root / 'docs'), 'Changed packaged checker accepted')
 print('PASS: obsolete standalone tools, stale snapshots and altered checker fingerprints rejected')
 
-# Rebuild only into scratch; immutable published files are never overwritten.
+def check_reviewed_rebuild(name, published, rebuilt, review):
+    """Permit only an explicitly pinned live instruction addendum to a ZIP."""
+    if rebuilt == published:
+        return
+    item = review['packages'][name]
+    assert hashlib.sha256(published).hexdigest() == item['published_sha256'], 'Tested ZIP changed: ' + name
+    assert hashlib.sha256(rebuilt).hexdigest() == item['live_rebuild_sha256'], 'Unreviewed source drift: ' + name
+    with zipfile.ZipFile(io.BytesIO(published)) as old, zipfile.ZipFile(io.BytesIO(rebuilt)) as new:
+        differences = sorted(n for n in set(old.namelist()) | set(new.namelist())
+                             if (old.read(n) if n in old.namelist() else None) !=
+                                (new.read(n) if n in new.namelist() else None))
+    assert differences == item['changed_members'], 'Addendum inventory differs: ' + name
+
+
+# Rebuild only into scratch. Tested ZIPs are immutable; a separately reviewed
+# live-guide addendum pins the precise intentional difference, not a wildcard
+# exemption. Every unrecorded change still fails the stale-source guard.
+review_path = ROOT / 'review/R3_LIVE_ADDENDUM_2026-11-12.json'
+addendum = json.loads(review_path.read_text()) if review_path.exists() else {'packages': {}}
 original_out = publisher.OUT
 try:
     with tempfile.TemporaryDirectory() as temp:
@@ -100,9 +118,15 @@ try:
         for full, name in ((True, publisher.FULL), (False, publisher.TOOLS)):
             publisher.package(full)
             first = (publisher.OUT / name).read_bytes()
-            assert first == (original_out / name).read_bytes(), 'Published ZIP is stale against current source: ' + name
+            published = (original_out / name).read_bytes()
+            check_reviewed_rebuild(name, published, first, addendum)
+            if first != published:
+                rejected(lambda: check_reviewed_rebuild(name, published, first + b'changed', addendum),
+                         'Unrecorded source drift accepted')
+                rejected(lambda: check_reviewed_rebuild(name, published + b'changed', first, addendum),
+                         'Changed tested ZIP accepted')
             publisher.package(full)
             assert (publisher.OUT / name).read_bytes() == first, 'Nondeterministic package: ' + name
 finally:
     publisher.OUT = original_out
-print('PASS: both package builds are deterministic without overwriting any published package')
+print('PASS: deterministic builds; tested ZIPs unchanged; exact live addendum pinned; unrecorded drift rejected')

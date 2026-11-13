@@ -1,0 +1,138 @@
+PLEBUM DOMINIUM: NOVEMBER 12, 2026 FOCUSED R3 RESULTS
+Windows and physical Tails. Public fixtures only.
+
+STATUS
+The observed checks in the focused R3 runs passed. This is not a complete
+rerun of T1-T5, an approval for real wallets, or beta/production approval.
+T6 preparation progressed; T6 wallet creation and T7 have not started in this
+session. Earlier results stay with their original packages and dates.
+
+PACKAGE
+plebum-complete-offline-tester-20261112-r3.zip
+SHA-256: 99237d48a93979cc4e5190e8a1583bda5f31503873fe8d1ec4d937dec42cbf3f
+Published size: 2,941,973 bytes
+R3 source recorded for the package: 127797f584378e7c3eb845150f77323d34a10a21
+Whole-package verifier: 226 files. public-tests subset verifier: 34 files.
+These results do not pass the separately downloadable tools-only/focused ZIPs.
+
+EVIDENCE BASIS
+Tester-supplied photos and explicit confirmations from a guided session.
+The reviewer did not operate the physical machine. Screenshots were assigned
+filenames after review, for the tester to save in one Evidence folder on the
+data USB. Public .asc/.txt outputs were kept in public-tests/results.
+No new public evidence upload, Form submission, spreadsheet update, complete
+USB inventory review or final Tails shutdown confirmation is claimed here.
+Private photos are not published with this text. Suggested filenames below
+identify checkpoints; their presence on the USB was not independently audited.
+
+WINDOWS
+Environment: Windows desktop, Microsoft Edge, PowerShell 5.1. Exact Windows
+build, Edge and Python versions were not newly recorded for this R3 run.
+- PASS: ZIP matching check; root verifier 226 and subset verifier 34.
+- PASS: all three local tool fingerprint MATCH results, deliberate wrong-file
+  MISMATCH, stale-result clearing on changed selection and correct-file retry.
+- PASS: each tool's startup gate, first-only and second-only confirmations
+  blocked, both acknowledged allowed opening; visible Lock and clear states
+  and locked close/reopen. Single-box outcomes include tester confirmations.
+- PASS: HTML 256-zero-bit fixture produced 23 abandon words followed by art.
+- PASS: Diceware rolls 11111-11116 produced abacus, abdomen, abdominal, abide,
+  abiding, ability; subsequent visible reset/clearing was confirmed.
+- PASS: HTML encrypted public-map.txt with public-test-only, downloaded
+  T4-html-map.asc, reopened/decrypted it, and saved T4-html-restored.txt.
+  compare_files.py reported: PASS: files are byte-for-byte identical.
+- PASS for observed visible clearing: both map views' inputs, passphrases,
+  review/output and old downloads cleared; close/reopen returned to the gate.
+- Network: Wi-Fi Off shown; browser flag false. No independent isolation proof.
+- Tester reported Windows evidence/results copied to the data USB and an
+  actual saved screenshot/restored file opened successfully.
+
+TAILS
+Environment: Dell Inspiron 14 2-in-1; Tails 7.16 shown in About Tails.
+Tester reported Tor Browser 16, Standard security level; exact 16.x patch and
+Python/GnuPG versions were not captured in this focused run.
+- OS Offline Mode -> Disable all networking shown at startup; Tor Connection
+  dialog later confirmed Offline Mode active. Browser flag true was displayed
+  as diagnostic information, not proof of connectivity or isolation. Privacy
+  settings were kept unchanged. Persistent Storage creation was off at startup.
+- PASS: fresh extraction; root verifier 226 and subset verifier 34.
+- PASS: matching fingerprints for dice-converter.html, descriptor-tool.html
+  and diceware-mapper.html; deliberate wrong-file MISMATCH. Tester confirmed
+  stale MATCH/MISMATCH cleared when selection changed and correct MATCH returned.
+- PASS: all three tools opened locally through Tor Browser's file chooser.
+  Each started locked; tester confirmed BOTH individual-checkbox attempts
+  stayed blocked, and both confirmations allowed entry.
+- PASS: HTML public zero-bit fixture gave 23 abandon words then art. After
+  Lock and clear/new session, counters, pasted input, words and validation
+  input were visibly empty/reset; close/reopen returned to the unchecked gate.
+- PASS: the six Diceware mappings above matched. After Lock and clear/new
+  session, visible digit boxes and phrase cleared and count returned to 0 of 6;
+  close/reopen returned to the unchecked gate. The photos do not independently
+  show all 30 cleared digit boxes in one frame.
+- PASS: HTML map encryption/decryption of the saved public file; restored
+  Unicode café appeared correctly. The downloaded restored file compared
+  byte-for-byte equal using:
+  python3 compare_files.py fixtures/public-map.txt results/T4-html-restored.txt
+- PASS for visible state: Lock and clear returned to the unchecked gate.
+  New-session encrypt and decrypt inputs, passphrase fields, review fields,
+  previous output and download controls were shown cleared in separate photos.
+  Final close/reopen returned to the unchecked gate.
+
+TOOL FINGERPRINTS OBSERVED MATCHING
+dice-converter.html
+5d0045fc62bc5cd486797a41352553f808a6264477c7f09376a268de52568303
+descriptor-tool.html
+fce1a0e202a6c64562c6722068e58e223d812b420b7adb9e4b0b40a2fe2deb86
+diceware-mapper.html
+8c6fc5262314b98907ef505b205e05198bca5d21042ab39dcd38a1f27fcea41e
+
+NOT REPEATED IN THESE FOCUSED R3 RUNS
+Full eight-vector HTML/Python suite; manual dice buttons/keyboard/Undo;
+short/invalid input rejection; mapper invalid/copy/download-fingerprint cases;
+wrong/empty-password and controlled truncation cases; HTML/Python cross-
+decryption; saved hashes and recovery after an OS reboot. Tab reopening after
+clearing is not a reboot. Automatic isolation/reconnection and secure memory
+erasure were not established. These remain separate from earlier evidence.
+
+T6 PREPARATION ONLY
+Windows Sparrow verified the 2.5.6 Windows MSI and Linux x86_64 tar.gz against
+the signed manifest; both dialogs showed Craig Raw, matched hash, ready to
+install. Windows updated from 2.5.5 to 2.5.6 (tester confirmation).
+Windows Testnet4 public-server test connected successfully to blackie.c3-soft.com;
+the result identified Fulcrum 2.1.4, protocol 1.4.2 and a TestNet 4 server.
+This does not test signing, recovery or the Linux binary running in Tails.
+No T6 wallet, seed, passphrase, receiving address or transaction was created.
+Next session: boot Tails offline; locate the verified Sparrow-2.5.6 Linux
+package on the data USB and begin T6 preparation. T7 remains outstanding.
+
+SELECTED TAILS EVIDENCE NAMES GIVEN AFTER PHOTO REVIEW
+R3-fingerprint-dice-Tails
+R3-fingerprint-map-Tails
+R3-fingerprint-diceware-Tails
+R3-fingerprint-deliberate-mismatch-Tails
+R3-T3-dice-zeros-Tails
+R3-T2-dice-cleared-Tails
+R3-T2-dice-reopened-Tails
+R3-diceware-valid-Tails
+R3-T2-diceware-cleared-Tails
+R3-T2-diceware-reopened-Tails
+R3-T2-map-open-Tails
+R3-T4-html-encrypted-Tails
+R3-T4-html-restored-Tails
+R3-T4-html-byte-match-Tails
+R3-T2-map-relocked-Tails
+R3-T2-map-encrypt-input-cleared-Tails
+R3-T2-map-encrypt-fields-cleared-Tails
+R3-T2-map-decrypt-cleared-Tails
+R3-T2-map-reopened-Tails
+Keep actual extensions: .png for native screenshots; .jpg for JPEG photos.
+Use actual saved filenames in the final evidence inventory.
+
+LESSONS FOR THE DIRECTIONS
+One action and expected result at a time. Photo first, reviewer interpretation
+and filename next, then save the native screenshot in the single Evidence
+folder before continuing. On Tails 7.16 use Open in Console. Give the working
+folder and result-file paths explicitly. Check lower/offscreen form fields
+separately. Keep browser flags distinct from the OS offline check.
+The tools still show T5 candidate 2026.11.08; record that visible label with
+the actual R3 package/hash rather than treating the banner as its ZIP version.
+Keep tested archives immutable; current directions are live addenda.

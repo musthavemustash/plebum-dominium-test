@@ -30,9 +30,27 @@ Both routes preserve Terms → Before you begin (Threat Model) → Pick your pat
 
 ## Tested download snapshots
 
+The November 12 focused R3 Windows and physical Tails checks are recorded in
+[the R3 session review](review/R3_RESULTS_2026-11-12.md). They do not complete
+the full T1–T5 suites or T6/T7. T6 stopped at preparation, before wallet creation.
+Current instructions are live addenda; keep every tested ZIP and manifest intact.
+
 The November 8 r4 Windows short retest is closed; see [the closeout](review/WINDOWS_R4_CLOSEOUT.md). The November 9 physical Tails short run passed the observed checks on the complete r4 archive; see [its results and limits](review/TAILS_R4_RESULTS.md). The focused r4 ZIP and both larger r4 archives remain immutable snapshots. Current status and result notes are separate live addenda. Do not rebuild or overwrite a tested release ID to publish status changes.
 
 The Pages workflow now validates and publishes committed site files and packages without invoking package builders or creating a bot commit. For a future package release, assign new versioned output paths in the builders, assemble and validate all archives/manifests/verifier references together, then commit them in the reviewed staging PR. New files do not inherit older physical-test passes. The naming cleanup is reconciled in PR #46: alpha-20261112-r1 and offline-20261112-r2 use consistent tool names and matching fingerprints. The r3 packages refresh punctuation and fingerprints for the four HTML tools. Record physical-test results against the exact r3 archive and checksum.
+
+### Guided testing convention
+
+Use one action and expected result at a time. The tester sends a non-sensitive
+photo; the reviewer states what it proves and assigns a filename; the tester
+saves the native screenshot in one `Evidence` folder on the data USB before
+continuing. Keep OS/case in filenames and preserve actual `.png`/`.jpg` types.
+Ask for offscreen fields or confirmation of an earlier action instead of
+assuming a pass. On Tails 7.16 use the observed **Open in Console** menu label.
+Keep result files in `public-tests/results`, separate from screenshots. Apply
+this convention to T1–T7 and page-test panels; self-guided testing remains valid.
+Never capture wallet seeds/passphrases, even disposable testnet ones. The full
+convention is in `docs/testing/session-guide/PHOTO-REVIEW-FLOW.txt`.
 
 ## Content standard
 
