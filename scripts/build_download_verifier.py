@@ -73,6 +73,16 @@ def retain_previous_packages(catalog, previous_page):
     if previous.get('schema') != 1 or not isinstance(previous.get('packages'), list):
         raise ValueError('Existing verifier has an invalid reference catalog')
     known = {(p['sha256'], p['bytes']) for p in catalog['packages']}
+    # Old generated pages can contain labels from an intervening build. Keep
+    # history only when a saved manifest and the actual archive agree, and get
+    # its name/release from that manifest rather than copying stale labels.
+    docs = previous_page.parent
+    archived = {}
+    for manifest_path in sorted((docs / 'testing').glob('*/manifest.json')):
+        manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
+        for row in manifest.get('packages', [manifest.get('archive', {})]):
+            if row.get('name') and row.get('sha256') and type(row.get('size')) is int:
+                archived[(row['sha256'], row['size'])] = (manifest_path, manifest, row)
     counts = {package_id: 0 for _, package_id, _ in KINDS}
     for candidate in previous['packages']:
         package_id = candidate.get('id')
@@ -82,11 +92,25 @@ def retain_previous_packages(catalog, previous_page):
             raise ValueError('Existing verifier contains an invalid package reference')
         if (digest, size) in known or counts[package_id] >= 3:
             continue
-        item = dict(candidate)
-        item['current'] = False
-        checksum = urlsplit(item['checksumUrl'])
-        if checksum.netloc == 'musthavemustash.github.io' and checksum.path.startswith(BASE):
-            item['checksumUrl'] = 'https://github.com/musthavemustash/plebum-dominium-test/commits/main/docs/' + checksum.path[len(BASE):]
+        saved = archived.get((digest, size))
+        if saved is None:
+            continue  # No saved published package supports this old reference.
+        manifest_path, manifest, row = saved
+        archive = manifest_path.parent / row['name']
+        prefix, actual_id, label = next((kind for kind in KINDS if row['name'].startswith(kind[0])), (None, None, None))
+        if actual_id != package_id or archive.parent != manifest_path.parent:
+            raise ValueError('Invalid historical package identity')
+        sums = read_sums(manifest_path.parent / 'SHA256SUMS.txt')
+        if (sums.get('manifest.json') != sha256_file(manifest_path) or
+                sums.get(row['name']) != digest or archive.stat().st_size != size or
+                sha256_file(archive) != digest):
+            raise ValueError('Historical archive disagrees with its published references: ' + str(archive))
+        relative = manifest_path.parent.relative_to(docs).as_posix() + '/'
+        item = dict(id=actual_id, label=label, name=row['name'],
+                    release=manifest.get('release', manifest_path.parent.name),
+                    sha256=digest, bytes=size, current=False,
+                    checksumUrl='https://github.com/musthavemustash/plebum-dominium-test/commits/main/docs/' + relative + 'SHA256SUMS.txt',
+                    downloadUrl=ORIGIN + BASE + relative + row['name'])
         catalog['packages'].append(item)
         known.add((digest, size))
         counts[package_id] += 1

@@ -1,0 +1,56 @@
+PLEBUM DOMINIUM — SAVE BEFORE YOU REBOOT, SHUT DOWN OR PAUSE
+Public test files only. Tick a COPY of this checklist in your evidence folder.
+Live addendum updated November 12, 2026; keep the tested ZIP unchanged.
+Use PHOTO-REVIEW-FLOW.txt for the one-step guided or self-guided flow.
+
+[ ] Each completed subcheck has PASS/FAIL; unfinished checks say NOT TESTED.
+[ ] Notes include date, package filename/full SHA-256, OS/browser versions,
+    Tor security level if used, tool/case, expected result and actual result.
+[ ] Screenshots were saved after each result, before clearing or moving on.
+    Include verifier output, comparison PASS or errors, and cleared/locked states.
+[ ] In a guided session: sent a public photo, received the review and filename,
+    then saved the native screenshot before the next action. Offscreen states
+    and earlier actions have their own photo or explicit tester observation.
+[ ] Copy original PNGs from Home/Pictures/Screenshots (or their actual location)
+    to ONE Evidence folder on the separate test/data USB. Put the OS and case
+    in filenames. Keep .png for PNGs and .jpg for JPEG photos; preserve actual
+    file types. Do not leave the only copy in Tails Home, chat or the clipboard.
+[ ] Copy session notes, copied RESULTS.csv and full terminal result text into
+    the evidence folder. Include any short recordings you chose to make.
+[ ] Preserve the extracted package and results folder on the test/data USB:
+    public .asc inputs, damaged copy, restored .txt outputs, truncation sizes/
+    hashes, and T5-before-reboot.sha256 if doing the reboot check. Include both
+    before- and after-reboot evidence when finished. Keep original filenames.
+[ ] Wait until copying finishes. Open the data USB again in Files/File Explorer;
+    check its drive label/path, not just a similarly named folder under Home.
+    Check that every file named in SESSION-NOTES.txt is present. Open at least
+    one actual saved screenshot and one text result from the USB and read them.
+    A folder screenshot alone does not establish that the files open correctly.
+[ ] Keep the original files until the USB copy is checked. Do not overwrite
+    old evidence or change a failed result to PASS without a separate retest.
+[ ] Save this checklist and the last completed/next step in SESSION-NOTES.txt.
+    If pausing, record which public input/password is needed to resume.
+[ ] Lock and clear every tool; close tools, text editors, image viewers and
+    terminals using the data USB. Page clearing does not erase saved files or
+    the clipboard. Eject the DATA USB in Files and wait for safe removal.
+    If it is busy, close the app using it and retry; do not force unplug it.
+[ ] Shut down Tails through the system Power Off menu and confirm. Wait until
+    the computer is fully off before removing the Tails BOOT USB.
+
+At the next session: boot with networking disabled, open the same USB/package,
+check the package again, and read the saved next step. For a T5 reboot check,
+verify the existing before-reboot manifest; do not create a replacement first.
+
+For feedback: read FORM-REPORTING.txt for the live form fields and Google Drive
+Viewer-link steps. Attach screenshots if your task offers an upload section;
+otherwise use a working Viewer link in File hashes and additional evidence.
+After the offline session is closed, review public-only evidence
+on an online computer and submit it with package/case details. These transfers
+are for disposable PUBLIC TESTS, not a procedure for transferring real secrets.
+Home files in Tails should not be assumed to survive shutdown. This procedure
+uses a separate data USB and does not require configuring Persistent Storage.
+
+Screenshot help: https://help.gnome.org/gnome-help/screen-shot-record.html
+Windows capture: https://support.microsoft.com/en-us/windows/apps/use-snipping-tool-to-capture-screenshots
+Tails storage: https://tails.net/doc/persistent_storage/index.en.html
+Tails shutdown: https://tails.net/doc/first_steps/shutdown/index.en.html

@@ -10,7 +10,7 @@ import re
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
-RELEASE = 'alpha-20261113-r1'
+RELEASE = 'alpha-20261113-r2'
 SOURCES = {
     **{name: 'docs/testing/session-guide/' + name for name in (
         'TESTING.txt', 'EVIDENCE-CHECKLIST.txt', 'SESSION-NOTES.txt', 'FORM-REPORTING.txt', 'PHOTO-REVIEW-FLOW.txt')},
@@ -94,7 +94,9 @@ No installation or dependency download is performed by the package checker.
 The packaged tools and public fixtures are byte-for-byte copies of the source
 paths recorded in SOURCE.json. No cryptographic implementation was changed.
 Earlier candidate Tails results are in TAILS-RETEST-RESULTS.txt.
-This revision fixes stale Dice converter validation after an input change.
+This revision packages the current manual-session and mapper reporting
+directions with the reviewed Dice converter validation fix. Tool bytes and
+fingerprints are unchanged from 20261113-r1.
 The checksum/word derivation algorithm is unchanged. Browser-controller
 regressions use public fixtures and DOM doubles; they are not physical Tails
 or Windows evidence. Repeat the affected checks on this exact new candidate.
