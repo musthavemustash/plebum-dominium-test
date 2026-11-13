@@ -5,7 +5,7 @@ Read PHOTO-REVIEW-FLOW.txt: one action/expected result, tester photo, reviewer
 checks and names it, then save the native screenshot in one Evidence folder
 before continuing. Self-guided testers compare and record the result themselves.
 SAVE names below are examples; add OS/case/attempt details after review.
-Current packages: alpha-20261112-r3 / offline-20261112-r3
+Current packages: alpha-20261113-r1 / offline-20261113-r1
 PUBLIC FIXTURES ONLY. No real wallet data, private keys, passwords or funds.
 
 TOOL NAMES AND FILES
@@ -30,7 +30,7 @@ No full retest of unchanged logic is implied by the naming change alone.
 
 TAILS EXTRACTION NOTE
 If unzip is unavailable, use Python from the ZIP's folder:
-python3 -m zipfile -e plebum-complete-offline-tester-20261112-r3.zip Tails-20261112-r3
+python3 -m zipfile -e plebum-complete-offline-tester-20261113-r1.zip Tails-20261112-r3
 Use a new/empty output folder; run the root and public-tests verifiers afterward.
 MAPPER DOWNLOAD: the link is at the bottom of Before this public test,
 below the confirmations explanation. Its saved copy must match its fingerprint.

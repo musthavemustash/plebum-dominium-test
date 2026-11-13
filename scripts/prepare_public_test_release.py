@@ -10,10 +10,10 @@ import re
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
-RELEASE = 'alpha-20261112-r3'
+RELEASE = 'alpha-20261113-r1'
 SOURCES = {
     **{name: 'docs/testing/session-guide/' + name for name in (
-        'TESTING.txt', 'EVIDENCE-CHECKLIST.txt', 'SESSION-NOTES.txt', 'FORM-REPORTING.txt')},
+        'TESTING.txt', 'EVIDENCE-CHECKLIST.txt', 'SESSION-NOTES.txt', 'FORM-REPORTING.txt', 'PHOTO-REVIEW-FLOW.txt')},
     'fingerprint-checker.html': 'docs/fingerprint-checker.html',
     'diceware-mapper.html': 'docs/diceware-mapper.html',
     'TOOL-FINISH-RETEST.txt': 'docs/testing/t5-20261108/TOOL-FINISH-RETEST.txt',
@@ -94,9 +94,11 @@ No installation or dependency download is performed by the package checker.
 The packaged tools and public fixtures are byte-for-byte copies of the source
 paths recorded in SOURCE.json. No cryptographic implementation was changed.
 Earlier candidate Tails results are in TAILS-RETEST-RESULTS.txt.
-This r3 revision updates punctuation in the four HTML tools. The Fingerprint
-checker has new expected hashes for the revised HTML files. Sensitive-tool
-executable code, Python helpers, wordlist and fixtures match R4.
+This revision fixes stale Dice converter validation after an input change.
+The checksum/word derivation algorithm is unchanged. Browser-controller
+regressions use public fixtures and DOM doubles; they are not physical Tails
+or Windows evidence. Repeat the affected checks on this exact new candidate.
+The other sensitive tools, Python helpers, wordlist and fixtures are unchanged.
 Historical Windows/Tails results retain their original scope. Check this ZIP
 with T1 and repeat the name/fingerprint checks; no new physical pass is claimed.
 Browser isolation is not certified by this package. See PUBLIC-SESSION-CONTRACT.txt
@@ -145,7 +147,7 @@ print(f'PASS: {len(rows)} files match package checksums. Public tests only; not 
     files['SHA256SUMS.txt'] = ''.join(f'{sha(data)}  {name}\n' for name, data in sorted(files.items())).encode()
     with zipfile.ZipFile(output / archive, 'w') as bundle:
         for name, data in sorted(files.items()):
-            info = zipfile.ZipInfo('plebum-public-test/' + name, (2026, 11, 12, 0, 0, 0))
+            info = zipfile.ZipInfo('plebum-public-test/' + name, (2026, 11, 13, 0, 0, 0))
             info.create_system = 3
             info.external_attr = 0o100644 << 16
             info.compress_type = zipfile.ZIP_DEFLATED
@@ -158,7 +160,7 @@ print(f'PASS: {len(rows)} files match package checksums. Public tests only; not 
     (output / 'manifest.json').write_text(json.dumps(manifest, indent=2) + '\n')
     (output / 'SHA256SUMS.txt').write_text(''.join(
         f'{sha((output / name).read_bytes())}  {name}\n' for name in (archive, 'manifest.json')))
-    for name in ('README.txt', 'TESTING.txt', 'EVIDENCE-CHECKLIST.txt', 'SESSION-NOTES.txt', 'FORM-REPORTING.txt'):
+    for name in ('README.txt', 'TESTING.txt', 'EVIDENCE-CHECKLIST.txt', 'SESSION-NOTES.txt', 'FORM-REPORTING.txt', 'PHOTO-REVIEW-FLOW.txt'):
         (output / name).write_bytes(files[name])
     return manifest
 

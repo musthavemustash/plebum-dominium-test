@@ -21,6 +21,8 @@ on:
       - scripts/test_download_verifier.cjs
       - scripts/test_public_session_state.cjs
       - scripts/test_tool_network.cjs
+      - scripts/test_dice_validation.cjs
+      - scripts/test_search_focus.cjs
       - scripts/test_diceware_mapper.cjs
       - scripts/build_tool_fingerprints.py
       - scripts/test_fingerprint_checker.cjs
@@ -51,6 +53,8 @@ jobs:
           node scripts/test_download_verifier.cjs
           node scripts/test_public_session_state.cjs
           node scripts/test_tool_network.cjs
+          node scripts/test_dice_validation.cjs
+          node scripts/test_search_focus.cjs
           node scripts/test_diceware_mapper.cjs
           node scripts/test_fingerprint_checker.cjs
           python3 scripts/test_tool_core.py

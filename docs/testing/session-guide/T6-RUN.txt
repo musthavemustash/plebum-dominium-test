@@ -17,7 +17,7 @@ checkpoints. Never infer a completed spend from an address screenshot alone.
 PACKAGE
 Download from the test website's Downloads page, just as any tester would:
 https://musthavemustash.github.io/plebum-dominium-test/downloads.html#offline-tester
-Choose: plebum-complete-offline-tester-20261112-r3.zip
+Choose: plebum-complete-offline-tester-20261113-r1.zip
 The tools-only and focused ZIPs do not contain the complete T6 guide.
 
 BEFORE DISCONNECTING
