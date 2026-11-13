@@ -1,0 +1,2 @@
+d6e7463499ef7c2b64fb99f2b8a77d489631e0f68d78e7309edb51300a18165b  plebum-tools-alpha-20261113-r2.zip
+68caefdca2f0ac82bdfbbc50eed9d04bee35c3bbb2fc1777ae94d6c5d22fefbe  manifest.json

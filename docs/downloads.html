@@ -117,7 +117,173 @@
 <p id="live-directions-addendum"><strong>Included in 20261113-r2:</strong> the corrected guide order, current T2 manual-session checks, separate Diceware mapper reporting, and the photo, review, filename and save flow are now in the downloads. The complete ZIP includes both guide paths and T6/T7 run sheets; all three ZIPs include the current tool-testing directions. Keep older packages and their evidence unchanged.</p>
 <p><strong>Current package: <code>offline-20261113-r2</code>.</strong> For T6, choose the <strong>complete offline tester</strong> above: <code>plebum-complete-offline-tester-20261113-r2.zip</code>. It includes the one-key guide and the T6 run sheet. The tools-only and focused ZIPs do not include the complete guide.</p>
 <p><strong>Testing this candidate during T6:</strong> verify the ZIP, run T1 on the extracted files, then record the revised tool checks separately from the wallet rehearsal. Open <a href="/plebum-dominium-test/test-the-site.html#t6">T6: one key + passphrase</a> and save the <a href="/plebum-dominium-test/testing/session-guide/T6-RUN.txt" download>T6 run sheet</a>. Use disposable paper records; metal is outside this test.</p>
-<!-- download-verifier --><section id="verify-download" class="entry-card"><h3>Verify the ZIP before extracting</h3><p>Use the <a href="https://musthavemustash.github.io/plebum-dominium-test/verify-download.html">download verifier</a> to select your ZIP and compare it on your device. Save that verifier separately before disconnecting if you want to check offline. Then run the included <code>verify_package.py</code> for T1 after extraction.</p></section><!-- /download-verifier -->
+<!-- download-verifier -->
+<link rel="stylesheet" href="/plebum-dominium-test/assets/css/download-verifier.css?v=912ab84755f0">
+<section id="verify-download" class="pd-verify" data-zip-verifier data-state="ready" data-enabled="false" aria-label="Verify a Plebum Dominium ZIP">
+  <script type="application/json" class="pd-verify-catalog">{
+  "schema": 1,
+  "packages": [
+    {
+      "id": "complete",
+      "label": "Complete offline tester",
+      "name": "plebum-complete-offline-tester-20261113-r2.zip",
+      "release": "offline-20261113-r2",
+      "sha256": "1fbd6c9d92fdcfdf615db9a5b542b0294814b232775b9e2ce66bf52c785fa706",
+      "bytes": 2995499,
+      "checksumUrl": "https://musthavemustash.github.io/plebum-dominium-test/testing/offline-20261113-r2/SHA256SUMS.txt",
+      "downloadUrl": "https://musthavemustash.github.io/plebum-dominium-test/testing/offline-20261113-r2/plebum-complete-offline-tester-20261113-r2.zip",
+      "current": true
+    },
+    {
+      "id": "tools",
+      "label": "Website tools only",
+      "name": "plebum-website-tools-only-20261113-r2.zip",
+      "release": "offline-20261113-r2",
+      "sha256": "66a7f107794bf6824b7037bb05965d15f4e18efe398951a520702716bab432a5",
+      "bytes": 1575770,
+      "checksumUrl": "https://musthavemustash.github.io/plebum-dominium-test/testing/offline-20261113-r2/SHA256SUMS.txt",
+      "downloadUrl": "https://musthavemustash.github.io/plebum-dominium-test/testing/offline-20261113-r2/plebum-website-tools-only-20261113-r2.zip",
+      "current": true
+    },
+    {
+      "id": "focused",
+      "label": "Focused dice and wallet-map tests",
+      "name": "plebum-tools-alpha-20261113-r2.zip",
+      "release": "alpha-20261113-r2",
+      "sha256": "d6e7463499ef7c2b64fb99f2b8a77d489631e0f68d78e7309edb51300a18165b",
+      "bytes": 299856,
+      "checksumUrl": "https://musthavemustash.github.io/plebum-dominium-test/testing/alpha-20261113-r2/SHA256SUMS.txt",
+      "downloadUrl": "https://musthavemustash.github.io/plebum-dominium-test/testing/alpha-20261113-r2/plebum-tools-alpha-20261113-r2.zip",
+      "current": true
+    },
+    {
+      "id": "complete",
+      "label": "Complete offline tester",
+      "name": "plebum-complete-offline-tester-20261113-r1.zip",
+      "release": "offline-20261113-r1",
+      "sha256": "f3653bc0d579e8930286f41b0c2a733664e6da998195ace7f3155a3365fdf491",
+      "bytes": 2984800,
+      "current": false,
+      "checksumUrl": "https://github.com/musthavemustash/plebum-dominium-test/commits/main/docs/testing/offline-20261113-r1/SHA256SUMS.txt",
+      "downloadUrl": "https://musthavemustash.github.io/plebum-dominium-test/testing/offline-20261113-r1/plebum-complete-offline-tester-20261113-r1.zip"
+    },
+    {
+      "id": "tools",
+      "label": "Website tools only",
+      "name": "plebum-website-tools-only-20261113-r1.zip",
+      "release": "offline-20261113-r1",
+      "sha256": "c0d83b072936035f76cab60274b614c734cc657022f10f893f69427ee3bedba7",
+      "bytes": 1574541,
+      "current": false,
+      "checksumUrl": "https://github.com/musthavemustash/plebum-dominium-test/commits/main/docs/testing/offline-20261113-r1/SHA256SUMS.txt",
+      "downloadUrl": "https://musthavemustash.github.io/plebum-dominium-test/testing/offline-20261113-r1/plebum-website-tools-only-20261113-r1.zip"
+    },
+    {
+      "id": "focused",
+      "label": "Focused dice and wallet-map tests",
+      "name": "plebum-tools-alpha-20261113-r1.zip",
+      "release": "alpha-20261113-r1",
+      "sha256": "7b7e0eef8900c04248224fc88ceb9a2d37f74a7c4cf80d98516c0ec7425beb87",
+      "bytes": 298699,
+      "current": false,
+      "checksumUrl": "https://github.com/musthavemustash/plebum-dominium-test/commits/main/docs/testing/alpha-20261113-r1/SHA256SUMS.txt",
+      "downloadUrl": "https://musthavemustash.github.io/plebum-dominium-test/testing/alpha-20261113-r1/plebum-tools-alpha-20261113-r1.zip"
+    },
+    {
+      "id": "complete",
+      "label": "Complete offline tester",
+      "name": "plebum-complete-offline-tester-20261112-r3.zip",
+      "release": "offline-20261112-r3",
+      "sha256": "99237d48a93979cc4e5190e8a1583bda5f31503873fe8d1ec4d937dec42cbf3f",
+      "bytes": 2941973,
+      "current": false,
+      "checksumUrl": "https://github.com/musthavemustash/plebum-dominium-test/commits/main/docs/testing/offline-20261112-r3/SHA256SUMS.txt",
+      "downloadUrl": "https://musthavemustash.github.io/plebum-dominium-test/testing/offline-20261112-r3/plebum-complete-offline-tester-20261112-r3.zip"
+    },
+    {
+      "id": "tools",
+      "label": "Website tools only",
+      "name": "plebum-website-tools-only-20261112-r3.zip",
+      "release": "offline-20261112-r3",
+      "sha256": "353ee12544cba53f6e1279beb9dade251cc80e3795bdaceae63a5bc749a260d1",
+      "bytes": 1569015,
+      "current": false,
+      "checksumUrl": "https://github.com/musthavemustash/plebum-dominium-test/commits/main/docs/testing/offline-20261112-r3/SHA256SUMS.txt",
+      "downloadUrl": "https://musthavemustash.github.io/plebum-dominium-test/testing/offline-20261112-r3/plebum-website-tools-only-20261112-r3.zip"
+    },
+    {
+      "id": "focused",
+      "label": "Focused dice and wallet-map tests",
+      "name": "plebum-tools-alpha-20261112-r3.zip",
+      "release": "alpha-20261112-r3",
+      "sha256": "a91a62617ca35a6c3811ae35bfb47a2513920b34b5637630221378d66d6b0885",
+      "bytes": 294241,
+      "current": false,
+      "checksumUrl": "https://github.com/musthavemustash/plebum-dominium-test/commits/main/docs/testing/alpha-20261112-r3/SHA256SUMS.txt",
+      "downloadUrl": "https://musthavemustash.github.io/plebum-dominium-test/testing/alpha-20261112-r3/plebum-tools-alpha-20261112-r3.zip"
+    }
+  ]
+}</script>
+  <header class="pd-verify-heading">
+    <div>
+      <p class="pd-verify-eyebrow">After downloading</p>
+      <h2>Select ZIP to verify</h2>
+    </div>
+    <span class="pd-verify-local"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="2.5" y="3" width="15" height="10.5" rx="1.5"/><path d="M6 17h8M10 13.5V17m-4-9 2.5 2.5L14 6"/></svg>On your device</span>
+  </header>
+  <p class="pd-verify-intro">Choose the ZIP you downloaded. Your browser compares it with the published package fingerprints. <strong>Your file is not uploaded.</strong></p>
+
+  <div class="pd-verify-dropzone" data-verify-dropzone>
+    <div class="pd-verify-actions">
+      <label class="pd-verify-picker">
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 2.5h6l4 4v11H5zM11 2.5v4h4M7.5 11l2 2 3-3"/></svg>
+        <span>Select ZIP to verify</span>
+        <input type="file" accept=".zip,application/zip,application/x-zip-compressed" data-verify-file disabled aria-label="Select a downloaded ZIP to verify">
+      </label>
+      <button type="button" class="pd-verify-reset" data-verify-reset disabled>Reset</button>
+    </div>
+    <p class="pd-verify-drop-hint">Or drop a ZIP here · Maximum 32 MiB</p>
+  </div>
+
+  <p class="pd-verify-file-info" data-verify-file-info hidden><span data-verify-filename></span><span data-verify-filesize></span></p>
+  <progress class="pd-verify-progress" data-verify-progress aria-label="Checking ZIP on this device" hidden></progress>
+  <div class="pd-verify-status" data-verify-status role="status" aria-live="polite" aria-atomic="true">
+    <h3 data-verify-status-title>Verification has not run</h3>
+    <p data-verify-status-text>The checker will become available when JavaScript and browser support are ready.</p>
+  </div>
+  <noscript><p class="pd-verify-noscript">JavaScript is disabled, so this checker cannot run. Use the published <a href="https://musthavemustash.github.io/plebum-dominium-test/downloads.html">checksum lists on the downloads page</a> to compare your ZIP with a local SHA-256 tool.</p></noscript>
+
+  <details class="pd-verify-details" data-verify-hash-details hidden>
+    <summary>Show this file’s SHA-256</summary>
+    <dl>
+      <dt>Calculated SHA-256</dt>
+      <dd><code data-verify-hash></code></dd>
+      <dt>Published reference</dt>
+      <dd data-verify-reference></dd>
+    </dl>
+  </details>
+
+  <div class="pd-verify-next" data-verify-next hidden>
+    <h3>Next: check the extracted files (T1)</h3>
+    <p>Extract the ZIP and open a terminal in <code>plebum-offline</code> for the complete or tools-only package, or <code>plebum-public-test</code> for the focused dice/map package.</p>
+    <div class="pd-verify-commands">
+      <div><span>Windows</span><code>py verify_package.py</code></div>
+      <div><span>Tails / Linux</span><code>python3 verify_package.py</code></div>
+    </div>
+    <p>Continue with the tool tests only when every listed file passes. A ZIP checksum match does not replace this per-file check.</p>
+  </div>
+
+  <details class="pd-verify-details pd-verify-package-details">
+    <summary>Published packages and saved references</summary>
+    <p class="pd-verify-catalog-note">This copy recognizes the references listed below, including any marked earlier. An offline copy does not fetch newer releases. <a href="https://musthavemustash.github.io/plebum-dominium-test/verify-download.html">Open the current verifier</a> when online.</p>
+    <ul class="pd-verify-packages" data-verify-packages></ul>
+  </details>
+
+  <p class="pd-verify-scope">A match confirms the published checksum and file size. It does not independently verify the publisher or certify the tools for real-wallet use.</p>
+  <p class="pd-verify-download"><a href="https://musthavemustash.github.io/plebum-dominium-test/verify-download.html" download="plebum-download-verifier.html">Download this verifier for offline use <span aria-hidden="true">↓</span></a></p>
+</section>
+<script src="/plebum-dominium-test/assets/js/download-verifier.js?v=367c39e8d2be" defer></script>
+<!-- /download-verifier -->
 <p><strong>Extract the entire ZIP, open the <code>plebum-offline</code> folder, then open <code>START.html</code>.</strong> For the T2–T5 tool checks, open <code>public-tests</code> inside that folder. Its <code>fixtures</code> folder holds the supplied test inputs: <code>plebum-offline/public-tests/fixtures/</code>. Use the matching HTML and Python tools beside that <code>fixtures</code> folder.</p>
 <p>For T1, run <code>verify_package.py</code> from <code>plebum-offline</code> to check the whole offline package. Commands and paths in <code>public-tests/TESTING.txt</code> start from <code>public-tests</code>; open your terminal there for those checks. The focused tool ZIP instead uses <code>plebum-public-test/fixtures/</code>.</p>
 <p><strong>Photo-review directions:</strong> the complete ZIP includes the photo-review flow and T6/T7 run sheets. Save one native screenshot in your session’s Evidence folder before the next action. Historical R3 ZIPs remain unchanged.</p><p><a href="/plebum-dominium-test/offline-folder-guide.html">Find the tools and fixtures</a> · <a href="/plebum-dominium-test/testing/session-guide/TESTING.txt">T1–T5 with screenshot checkpoints</a> · <a href="/plebum-dominium-test/testing/session-guide/EVIDENCE-CHECKLIST.txt">Save to USB before shutdown</a> · <a href="/plebum-dominium-test/testing/session-guide/FORM-REPORTING.txt">Submit screenshots and evidence links</a></p>

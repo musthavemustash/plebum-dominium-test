@@ -1,0 +1,48 @@
+PLEBUM DOMINIUM — PUBLIC TEST SESSION NOTES
+Copy this template into results/ before editing. Keep packaged originals intact.
+Packaged in 20261113-r2; directions updated November 13, 2026. Use PHOTO-REVIEW-FLOW.txt.
+Keep screenshots in one Evidence folder, with OS/case in each filename.
+
+Date/time/time zone:
+Tester (optional):
+Package ZIP filename:
+Full ZIP SHA-256:
+Release / source commit from SOURCE.json:
+OS / hardware:
+Browser version / Tor security level:
+Python / GnuPG versions (if used):
+How OS networking was disabled and checked:
+Test folder path:
+Data USB label / evidence folder:
+Earlier evidence reused (original package/date/case; no new pass implied):
+
+COPY THIS BLOCK FOR EACH SUBCHECK
+Task and case (example: T4 HTML-to-Python, T2-ONE, or MAP-04):
+Tool and public input filename/reference number:
+Steps actually performed:
+Expected result:
+Actual result:
+Evidence basis: photo / tester confirmation / saved-file comparison:
+What remains offscreen or unverified:
+Result: NOT TESTED / PASS / FAIL
+Full verifier/comparison/error output (paste here):
+Screenshot or recording filenames:
+Reviewer-assigned filename after photo review (if guided):
+Native screenshot saved in Evidence before next action:
+Actual public input/output filenames:
+Restrictions / missing dependencies / whether a failure repeats:
+
+END OF SESSION
+Last completed step:
+Next step to resume:
+Remaining checks marked NOT TESTED:
+Before-reboot manifest saved and checked (if applicable):
+After-reboot manifest check / comparisons (if applicable):
+Copied all listed files to data USB:
+Reopened saved image and text from USB (filenames):
+Tools cleared / data USB safely ejected / Tails shut down:
+Google Form task / displayed wording / question IDs (if matched):
+Unmatched cases recorded in the results description:
+Evidence Viewer link (checked while signed out):
+File-to-question mapping:
+Feedback submission date / confirmation:
