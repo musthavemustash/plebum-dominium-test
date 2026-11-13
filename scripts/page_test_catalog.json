@@ -345,7 +345,7 @@
       {
         "id": "P-SINGLE-SIG-01",
         "try": "Use a fictional existing wallet to follow the preparation and recovery steps without changing a wallet.",
-        "expected": "The guide uses offline software without a hardware wallet, preserves existing wallets and backups, checks metal backups and recovery before funding, and requires the exact passphrase. Optional hardware signing comes afterward.",
+        "expected": "The guide explains the exact passphrase before wallet setup, records the intended wallet details before recovery, and rehearses with disposable paper records and offline software. Metal work is outside T6; optional hardware signing comes after checked metal backups.",
         "evidence": "Report unclear or risky instructions without including actual wallet details."
       },
       {
@@ -402,7 +402,7 @@
       {
         "id": "P-TESTNET-02",
         "try": "Use fictional TEST ONLY records to check what must be saved before leaving this setup page. Follow the link to Practice spending and recovery.",
-        "expected": "Separate temporary seed records, all three cosigners’ public details, the complete wallet configuration, and the selected test network are recorded; the backup check comes before spending and recovery. Paper rehearsal does not pass metal checks.",
+        "expected": "Separate temporary seed records, all three cosigners’ public details, the complete wallet configuration, and the selected test network are checked before spending and recovery. The next page is the software rehearsal; metal work is outside T7.",
         "evidence": "Report missing records, an unclear readiness check, or a wrong destination. A paper walkthrough is sufficient."
       }
     ]

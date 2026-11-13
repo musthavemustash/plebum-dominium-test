@@ -109,8 +109,13 @@ def check_reviewed_rebuild(name, published, rebuilt, review):
 # Rebuild only into scratch. Tested ZIPs are immutable; a separately reviewed
 # live-guide addendum pins the precise intentional difference, not a wildcard
 # exemption. Every unrecorded change still fails the stale-source guard.
-review_path = ROOT / 'review/R3_LIVE_ADDENDUM_2026-11-12.json'
-addendum = json.loads(review_path.read_text()) if review_path.exists() else {'packages': {}}
+addendum = {'packages': {}}
+for review_name in ('R3_LIVE_ADDENDUM_2026-11-12.json', 'AUDIT_2_LIVE_ADDENDUM_20261113.json'):
+    review_path = ROOT / 'review' / review_name
+    if review_path.exists():
+        entries = json.loads(review_path.read_text())['packages']
+        assert not (entries.keys() & addendum['packages'].keys()), 'Duplicate package addendum'
+        addendum['packages'].update(entries)
 original_out = publisher.OUT
 try:
     with tempfile.TemporaryDirectory() as temp:

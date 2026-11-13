@@ -3,7 +3,7 @@
 from html.parser import HTMLParser
 from pathlib import Path
 import re
-from render_paths import PATHS, DOCS, BASE, href, outputs
+from render_paths import PATHS, DOCS, BASE, href, outputs, canonical_navigation
 
 class Page(HTMLParser):
  def __init__(self, text):
@@ -22,6 +22,17 @@ class Page(HTMLParser):
   if self.number:self.numbers.append(data.strip())
 
 expected=outputs()
+for page,content in canonical_navigation().items():
+ assert page.read_text()==content, f'Stale canonical navigation: {page}'
+# These are learning dependencies, independent of the rendering tables. A
+# renderer can be internally consistent while putting recovery before setup.
+for path,prerequisites in {
+ 'one': [('dice','single-sig'),('single-sig','titanium')],
+ 'three': [('sparrow','testnet'),('testnet','signing'),('signing','titanium')]
+}.items():
+ order=[step[0] for step in PATHS[path]['steps']]
+ for earlier,later in prerequisites:
+  assert order.index(earlier)<order.index(later), f'{path}: {earlier} must precede {later}'
 for name,content in expected.items():
  assert (DOCS/name).read_text()==content, f'Drift: {name}'
  if not name.endswith('.html'): continue

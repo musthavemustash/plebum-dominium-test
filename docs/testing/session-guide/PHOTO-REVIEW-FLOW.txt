@@ -43,7 +43,7 @@ Generic SAVE names in the run sheets are examples; add OS and case/attempt
 details after review. Record the exact name you actually saved.
 
 RESULT FILES HAVE THEIR OWN LOCATION
-In the complete R3 extraction:
+Example from the recorded R3 extraction (use your actual extraction folder):
   Tails-20261112-r3/plebum-offline/public-tests/results/
 This holds public .asc/.txt outputs and comparison logs. Evidence holds images
 and notes; it does not replace results. Commands such as compare_files.py run

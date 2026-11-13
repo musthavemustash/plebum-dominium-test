@@ -1,13 +1,16 @@
-LIVE ADDENDUM: NOVEMBER 12, 2026
+LIVE ADDENDUM: NOVEMBER 13, 2026
 Keep tested ZIP originals unchanged. Use PHOTO-REVIEW-FLOW.txt while testing:
 photo, review and filename, then save in one Evidence folder before continuing.
 This file describes bulk submission after the offline session. A live public
 photo may be reviewed from a separate device while the test computer stays offline.
 Use actual saved filenames with OS/case, and keep incomplete checks NOT TESTED.
 
-PLEBUM DOMINIUM — FROM YOUR SAVED EVIDENCE TO THE GOOGLE FORM
-Question mapping checked November 8, 2026; attachment/link guidance refreshed
-for the added T1 evidence-upload section.
+PLEBUM DOMINIUM: FROM YOUR SAVED EVIDENCE TO THE GOOGLE FORM
+Reporting directions updated November 13, 2026. Form question IDs below were
+last checked November 8; the current form could not be read for this update.
+Match both the task and the displayed question wording. If a field differs or
+is missing, preserve the complete case notes in the results description or
+General website feedback; do not force a result into an unrelated question.
 https://docs.google.com/forms/d/e/1FAIpQLSfOkY3FrZmZpIVro5oxWLy_YvU7U-1BOrL3KB9VCI3jXjad2Q/viewform
 
 Finish the offline session and save/check the USB copy first. Submit from an
@@ -31,7 +34,7 @@ MAKE A LINK THAT REVIEWERS CAN OPEN
    verifier/comparison output, and the public input/output files relevant to it.
    Do not upload the entire USB, unrelated folders, account information or secrets.
 2. Open Google Drive. Choose New → New folder and name it for the task, date,
-   OS and package, for example T4-2026-11-08-Windows-r4. Upload the selected files
+   OS and exact package identifier, for example T4-2026-11-13-Windows-20261113-r1. Upload the selected files
    into it (drag and drop or New → File upload). Wait for every upload to finish.
 3. Right-click that evidence folder → Share. Under General access choose
    Anyone with the link, with role Viewer. This lets anyone holding the link
@@ -42,7 +45,7 @@ MAKE A LINK THAT REVIEWERS CAN OPEN
    use another permitted file host or report the restriction. Do not submit a
    link to a local USB path such as file:/// or /media/amnesia/.
 5. Paste the folder link into the form's "File hashes and additional evidence"
-   field. Include the exact filenames for each subcheck and the full ZIP SHA-256.
+   field, if present, or the matching evidence/description field. Include the exact filenames for each subcheck and the full ZIP SHA-256.
    A ZIP of the evidence is optional; keep the screenshots readable individually.
    Keep the originals and the working link available during review.
 
@@ -55,28 +58,59 @@ T1 — Package integrity
   T1.3: full output, file count, ZIP match and fingerprint checks/filenames.
   T1-zip-match.png and T1-package-pass.png support different checks.
 
-T2 — Local/offline safeguards
-  The form still describes the older automatic connected/offline/reconnected
-  interlock. The current public-test procedure uses OS-managed isolation plus
-  manual acknowledgments, Lock and clear, and reopening. These are different.
-  Do not reconnect for this run. Mark unperformed connected/reconnected questions
-  T2.1/T2.3 NOT TESTED. Answer T2.2 against its actual signal-dependent wording;
-  manual acknowledgments alone do not establish that criterion. If not established,
-  select NOT TESTED and explain. Put the current manual results in T2.4:
-  "Current public-session procedure: OS checks [result]; startup locked [result];
-  both confirmations [result]; Lock and clear [result]; reopen blank [result].
-  Legacy automatic-isolation checks NOT TESTED; networking remained disabled."
-  Include a separate result and screenshot list for dice, map and mapper.
+T2: Current local/offline session checks
+  Record each case separately for dice-converter.html, descriptor-tool.html and
+  diceware-mapper.html. These case IDs label your notes, not new Form questions:
+  T2-OS: OS networking disabled and checked; cables disconnected.
+  T2-LOCKED: tool opens locked as a local file.
+  T2-ONE: either confirmation alone leaves the tool locked.
+  T2-BOTH: both confirmations allow the public-fixture session.
+  T2-CLEAR: Lock and clear removes visible inputs and outputs and relocks.
+  T2-REOPEN: closing and reopening starts blank and locked.
+  Follow TESTING.txt and PHOTO-REVIEW-FLOW.txt one action at a time. Record an
+  outcome, observation and evidence filename for each tool/case. Keep networking
+  disabled throughout. These checks do not prove automatic network isolation
+  or complete memory/clipboard erasure.
+
+  If the Form still asks the legacy connected/offline/reconnected questions:
+  leave unperformed T2.1/T2.3 NOT TESTED. Answer T2.2 only if its displayed
+  signal-dependent criterion was actually established; manual confirmations
+  alone do not establish it. Otherwise use NOT TESTED. Put the current cases
+  above in T2.4 if it is the additional-results field, or in Describe your test
+  results. Label them CURRENT MANUAL SESSION CHECKS. Do not reconnect to satisfy
+  an old question and do not convert a manual-session pass into an automatic-
+  isolation pass. If none of the fields fit, use General website feedback and
+  attach the complete notes with the tool, package and case IDs.
 
 T3 — Dice converter known-answer output
   T3.1: HTML zeros. T3.2: Python zeros matches HTML. T3.3: ones (name each tool).
   T3.4: 255 bits rejected. T3.5: x rejected. T3.6: other reference vectors.
   T3.7: list references 01–08 for HTML/Python and button/Undo/Clear observations.
   Match screenshots to these questions; do not use one zero-case image for all.
-  The six-word Diceware mapper is separate: choose General website feedback →
-  G1 Downloads / testing tools. In G4 list mapper valid, invalid, copy and clear
-  results with filenames. Use General feedback / Not applicable overall; the
-  current form has no dedicated mapper verification track.
+
+MAPPER: Diceware passphrase mapper (separate from T3 seed conversion)
+  Use diceware-mapper.html and the supplied public six-group fixture in
+  public-tests/TOOL-FINISH-RETEST.txt in a complete/tools-only extraction,
+  or TOOL-FINISH-RETEST.txt at the root of a focused extraction. Section 2
+  gives the public inputs. Keep each case separate:
+  MAP-01: all six valid groups match the saved EFF wordlist.
+  MAP-02: invalid digits, letters and overlong input are rejected.
+  MAP-03: an incomplete phrase cannot be copied as a complete result.
+  MAP-04: copied complete text matches all six words, spelling and spaces.
+  MAP-05: editing or clearing a row cannot leave an old complete result.
+  MAP-06: Lock and clear, then reopen blank and locked (cross-reference T2).
+  These are reporting labels, not renamed T3 questions or new Google Form IDs.
+  For each case record expected/actual output, PASS/FAIL/NOT TESTED, OS/browser,
+  exact package and filenames. A photo alone does not prove clipboard behavior.
+  In a guided session: send the public result photo, receive its interpretation
+  and filename, then save the native screenshot in Evidence before continuing.
+  If the Form offers a dedicated Diceware mapper task, select it and map by its
+  displayed wording. Otherwise choose General website feedback, then Downloads
+  / testing tools (G1 in the last reviewed Form). Put the MAP cases in the issue
+  description (G4 in that snapshot) and Describe your test results. Select a
+  neutral overall option such as Not applicable when available; preserve the
+  individual outcomes in the notes. Do not report a T3 seed-converter PASS for
+  mapper-only work. If the choices differ, explain the missing mapping.
 
 T4 — Wallet-map encryption/decryption
   T4.1: HTML round-trip byte comparison. T4.2: wrong password rejection.
@@ -95,11 +129,12 @@ T5 — Physical Tails
   A short regression retest does not establish all T5 questions for a new package.
   Reference earlier evidence by its original package/date; do not relabel it.
 
-THE FINAL FORM SECTION — USE THESE EXACT FIELDS
+THE FINAL FORM SECTION: MATCH THE DISPLAYED FIELD LABELS
 Release ID or package filename:
   Enter the actual filename/release tested. The example alpha-20261105-7240f0d
-  still printed in the form is old. For this refresh use your r4 ZIP's actual
-  name, not that example; for an earlier run, keep its earlier identifier.
+  is a historical example if still shown. Enter the exact ZIP you actually
+  tested and its full SHA-256; never copy an example or the current download
+  label over an older run. Keep each run with its original identifier.
 What was your overall test result?:
   PASS only if every required check for the selected task passed. FAIL for an
   observed failure. NOT TESTED for incomplete/blocked scope. For a short retest,
