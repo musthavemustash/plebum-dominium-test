@@ -1,6 +1,17 @@
 PLEBUM DOMINIUM: T7 THREE KEYS / 2-OF-3 REHEARSAL
-Live run sheet, November 12, 2026. Disposable testnet wallet only.
+Live addendum, November 13, 2026. Disposable testnet wallet only.
 Save beside the extracted package; do not replace files in a tested ZIP.
+
+TEST WALLET ONLY
+Never reuse these test seeds, passphrases or dice rolls for your real wallet. Generate fresh, independent secrets after the rehearsal.
+
+COMPUTER LABELS
+OFFLINE SIGNING COMPUTER: create test keys, restore and sign. Disable OS
+networking before secret handling and keep it off until full shutdown.
+ONLINE WATCH-ONLY COMPUTER: receive, prepare transactions and broadcast.
+Never import signing secrets. Transfer only reviewed public wallet information
+or the intended transaction file. Labels do not prove network isolation.
+
 
 PREPARE
 Use the complete identified package, verify its ZIP and extracted files, and

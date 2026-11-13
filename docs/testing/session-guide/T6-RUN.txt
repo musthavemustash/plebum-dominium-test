@@ -1,7 +1,18 @@
 PLEBUM DOMINIUM: T6 WITH THE COMPLETE OFFLINE TESTER
-Packaged November 13, 2026 in 20261113-r2. Public testing only.
-Includes the reviewed photo flow and guide-order corrections. The original
-run sheets inside earlier ZIPs remain unchanged.
+Live addendum, November 13, 2026, for the complete 20261113-r2 tester.
+Save this updated sheet BESIDE the extracted folder. Do not replace the
+original files in the verified package. Public testing only.
+
+TEST WALLET ONLY
+Never reuse these test seeds, passphrases or dice rolls for your real wallet. Generate fresh, independent secrets after the rehearsal.
+
+COMPUTER LABELS
+OFFLINE SIGNING COMPUTER: create test keys, restore and sign. Disable OS
+networking before secret handling and keep it off until full shutdown.
+ONLINE WATCH-ONLY COMPUTER: receive, prepare transactions and broadcast.
+Never import signing secrets. Transfer only reviewed public wallet information
+or the intended transaction file. Labels do not prove network isolation.
+
 
 OUR STEP-BY-STEP FLOW
 Use PHOTO-REVIEW-FLOW.txt. Read one action and expected result, do it, then

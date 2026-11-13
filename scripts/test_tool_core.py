@@ -44,6 +44,22 @@ def main():
      else:raise AssertionError('GPG accepted wrong password/truncation')
      assert node('decrypt',text=candidate,password=secret).returncode!=0
    print('PASS: Python/GPG and embedded OpenPGP.js cross-decryption, Unicode text, wrong-password, truncated-message and corrupted-payload rejection')
+   checksum=module('descriptor_checksum','review/fixtures/descriptor_checksum_reference.py')
+   assert checksum.descsum_check('raw(deadbeef)#89f8spxm')  # BIP 380 known answer
+   fixtures=json.loads((ROOT/'review/fixtures/public-descriptors.json').read_text())
+   for fixture in fixtures['descriptors']:
+    descriptor=fixture['descriptor'];assert checksum.descsum_check(descriptor)
+    # A checksummed descriptor alone, plus exact CRLF export form.
+    for sample in [descriptor.encode(),(descriptor+'\r\n').encode()]:
+     ciphertext=enc.encrypt_descriptor(sample,pw)
+     assert enc.decrypt_descriptor(ciphertext,pw)==sample
+     result=node('decrypt',text=ciphertext.decode(),password=password)
+     assert result.returncode==0,result.stderr
+     assert result.stdout.encode()==sample,fixture['name']
+     result=node('encrypt',text=sample.decode(),password=password)
+     assert result.returncode==0,result.stderr
+     assert enc.decrypt_descriptor(result.stdout.encode(),pw)==sample,fixture['name']
+   print('PASS: public wsh(2-of-3) and tr() fixtures retain exact descriptor/checksum bytes and CRLF across Python/OpenPGP.js; wallet import/signing not tested')
   finally:
    subprocess.run(['gpgconf','--homedir',home,'--kill','gpg-agent'],capture_output=True)
    if old is None:os.environ.pop('GNUPGHOME',None)

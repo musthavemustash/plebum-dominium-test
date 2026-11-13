@@ -1,0 +1,15 @@
+{
+  "source": "https://github.com/bitcoin/bitcoin/blob/9183edd25e60aa410bc3e4728989a1d75c309a09/doc/descriptors.md",
+  "checksum_source": "https://github.com/bitcoin/bitcoin/blob/9183edd25e60aa410bc3e4728989a1d75c309a09/test/functional/test_framework/descriptors.py",
+  "purpose": "Public recovery fixtures only; never fund. Checksums are added with the pinned Bitcoin Core helper. These tests do not establish wallet import or signing compatibility.",
+  "descriptors": [
+    {
+      "name": "wsh-2-of-3",
+      "descriptor": "wsh(multi(2,03a0434d9e47f3c86235477c7b1ae6ae5d3442d49b1943c2b752a68e2a47e247c7,03774ae7f858a9411e5ef4246b70c65aac5649980be5c17891bbec17895da008cb,03d01115d548e7561b15c38f004d734633687cf4419620095bc5b0f47070afe85a))#en3tu306"
+    },
+    {
+      "name": "tr-two-script-paths",
+      "descriptor": "tr(c6047f9441ed7d6d3045406e95c07cd85c778e4b8cef3ca7abac09b95c709ee5,{pk(fff97bd5755eeea420453a14355235d382f6472f8568a18b2f057a1460297556),pk(e493dbf1c10d80f3581e4904930b1404cc6c13900ee0758474fa94abe8c4cd13)})#2rqrdjrh"
+    }
+  ]
+}

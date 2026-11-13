@@ -1,0 +1,46 @@
+PLEBUM DOMINIUM: RELEASE SIGNATURES
+Prepared November 13, 2026. Signing is pending.
+
+The current 20261113-r2 downloads have published SHA-256 checksums. They do
+not yet have a Plebum release signature. A matching checksum detects a
+changed download; it does not authenticate a checksum obtained from the
+same compromised website. Public testing remains separate from beta approval.
+
+THE NEXT SIGNED RELEASE
+The author will sign one SHA256SUMS list covering the identified ZIPs and
+standalone tools. The download page will provide that exact list, its
+detached SHA256SUMS.asc signature and the author's public key. Those files
+will be published only after the owner has signed and verification passes.
+
+Before trusting that key, compare its FULL primary fingerprint with one
+obtained through an independent, previously trusted channel. A fingerprint
+and key downloaded together from this website are not independent evidence.
+Upstream Tails/Electrum keys do not authenticate a Plebum release.
+
+WHEN SIGNATURES ARE AVAILABLE
+1. Obtain and independently check the author's public key fingerprint.
+2. Import that public key into GnuPG and verify SHA256SUMS.asc against the
+   exact SHA256SUMS file. Check the signing key belongs to that primary key.
+   Stop for an unexpected key, bad, expired or revoked signature, or missing
+   signature. A 'Good signature' message alone does not establish identity.
+3. Compare your download's SHA-256 with its exact filename in the now
+   authenticated list. Stop on a mismatch. Then run T1 after extraction.
+4. Retain the ZIP, signed list, signature, public key, full fingerprint and
+   verification output with the identified release. Test results still apply
+   only to the package and environment actually tested.
+
+GnuPG verification command (from the folder containing both files):
+  gpg --verify SHA256SUMS.asc SHA256SUMS
+
+Full public-key fingerprint inspection before importing:
+  gpg --show-keys --with-fingerprint plebum-release-key.asc
+
+Follow the release-specific instructions for the checksum step. On Windows,
+Get-FileHash -Algorithm SHA256 can hash the exact downloaded ZIP. On Tails,
+sha256sum can do so. Compare all 64 hexadecimal characters and the filename.
+
+A signature authenticates the publisher and signed bytes. It does not prove
+the software is safe, the computer is isolated, or the wallet rehearsal passed.
+Never send a private signing key or its passphrase to a website or reviewer.
+
+Reference: https://bitcoincore.org/en/download/

@@ -9,6 +9,9 @@ on:
     paths:
       - docs/**
       - review/fixtures/**
+      - review/release-signing-*/**
+      - scripts/release_checksums.py
+      - scripts/test_release_checksums.py
       - scripts/prepare_public_test_release.py
       - scripts/publish_offline_downloads.py
       - scripts/check_offline_downloads.py
@@ -58,6 +61,8 @@ jobs:
           node scripts/test_diceware_mapper.cjs
           node scripts/test_fingerprint_checker.cjs
           python3 scripts/test_tool_core.py
+          python3 scripts/release_checksums.py check
+          python3 scripts/test_release_checksums.py
           python3 scripts/build.py
           python3 scripts/test_paths.py
           python3 scripts/test_page_test_modules.py

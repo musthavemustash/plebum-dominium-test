@@ -1,0 +1,14 @@
+Observed command outputs from this review session:
+
+$ python3 scripts/test_tool_core.py
+PASS: 8 published 256-bit BIP39 vectors in Python/JS; wordlists; face mapping; checksum rejection; 3 excess-input cases; 4 invalid inputs
+PASS: Python/GPG and embedded OpenPGP.js cross-decryption, Unicode text, wrong-password, truncated-message and corrupted-payload rejection
+PASS: public wsh(2-of-3) and tr() fixtures retain exact descriptor/checksum bytes and CRLF across Python/OpenPGP.js; wallet import/signing not tested
+
+$ python3 scripts/release_checksums.py check
+PASS: 22 release files match. Signature NOT checked.
+
+$ python3 scripts/test_release_checksums.py
+PASS: release checks reject tampering, omission, duplicates, missing files, symlinks and traversal
+
+Preservation comparison against base: 142 versioned package/evidence files unchanged.

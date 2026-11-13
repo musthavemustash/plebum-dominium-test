@@ -1,0 +1,28 @@
+{
+  "release": "20261113-r2",
+  "status": "unsigned preparation; not release approval",
+  "files": [
+    "descriptor-demo.html",
+    "descriptor-tool.html",
+    "dice-converter-demo.html",
+    "dice-converter.html",
+    "dice-rolls.html",
+    "diceware-mapper.html",
+    "diceware.html",
+    "fingerprint-checker.html",
+    "kit/bip39_dice_converter.py",
+    "kit/descriptor_obfuscator.py",
+    "kit/eff_large_wordlist.txt",
+    "kit/hash_checker.html",
+    "passphrase-demo.html",
+    "quorum-demo.html",
+    "step1-demo.html",
+    "tails-demo.html",
+    "testing/alpha-20261113-r2/plebum-tools-alpha-20261113-r2.zip",
+    "testing/offline-20261113-r2/plebum-complete-offline-tester-20261113-r2.zip",
+    "testing/offline-20261113-r2/plebum-website-tools-only-20261113-r2.zip",
+    "verify-bundle-demo.html",
+    "verify-download.html",
+    "verify-file.html"
+  ]
+}
