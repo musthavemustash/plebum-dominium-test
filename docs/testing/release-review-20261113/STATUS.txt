@@ -1,0 +1,53 @@
+PLEBUM DOMINIUM: RELEASE REVIEW, NOVEMBER 13, 2026
+STATUS: PUBLIC ALPHA. BETA REMAINS ON HOLD.
+
+CURRENT CANDIDATE
+Complete: plebum-complete-offline-tester-20261113-r2.zip
+SHA-256: 1fbd6c9d92fdcfdf615db9a5b542b0294814b232775b9e2ce66bf52c785fa706
+Size: 2,995,499 bytes
+
+R2 INSTRUCTION CORRECTION
+The T6 paragraph in r2's test-the-site.html still names the November 12 R3 ZIP.
+For a NEW run, use the current complete r2 ZIP identified above and the
+T6-RUN.txt supplied at its root. Do not switch back to R3 because of that
+paragraph. Record your actual ZIP name/hash and run T1 before continuing.
+Keep an existing R3 session and its results under their original identity.
+
+The November 12 Windows browser identity is also unresolved: the closeout
+says Edge, while a retrieved image was described as Chrome. Do not treat the
+page's older definite Edge wording as a verified browser/version record.
+
+Save this correction BESIDE the extracted folder; do not replace files inside
+it. Its package verifier must continue to check the original r2 files.
+This correction is a separate download and is not embedded in the r2 ZIP.
+
+WHAT HAS PASSED
+The 14 automated staging checks pass on the reviewed r2 source. The deployed
+three ZIPs match the reviewed files and published hashes. These checks do not
+pass the physical Windows/Tails work or the wallet rehearsals.
+
+WHAT STILL NEEDS TO BE FINISHED
+1. Verify r2 on the actual Windows/Tails environments and review the affected
+   dice-validation and search-focus cases. Reconcile remaining T1-T5 cases
+   with the exact package, environment and saved evidence. Older R3/R4 results
+   remain useful but must keep their own names and hashes.
+2. Resolve the T5/public-session acceptance question. OS networking checks and
+   manual acknowledgments do not prove automatic isolation or reconnection
+   detection. Record a reviewed requirement decision; do not mark these PASS.
+3. Complete T6: one key plus exact passphrase, software signing and recovery.
+4. Complete T7: complete 2-of-3 configuration, signing pairs and recovery.
+   Use disposable paper records; metal work is outside these rehearsals.
+5. Complete print and whole-guide review, including supported real desktop
+   and mobile environments. The old standalone PDFs, slides and recovery
+   worksheet are withdrawn pending reconciliation. Historical ZIPs can still
+   contain old material; do not treat those documents as current guidance.
+6. Assemble the final evidence and a new immutable release candidate with
+   all approved corrections, verify it, then seek release-specific approval.
+
+NEXT GUIDED SESSION
+Confirm the exact wallet software, verified download and selected test network
+before resuming T6. Use the same flow: one action, public result photo, review
+and filename, save the native screenshot in Evidence, then the next action.
+Keep secret values out of photos and reports. Hardware signers remain optional.
+
+This review does not approve a beta or change production.

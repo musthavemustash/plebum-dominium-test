@@ -5,6 +5,7 @@ import contextlib
 import io
 import json
 import hashlib
+import re
 from pathlib import Path
 import shutil
 import tempfile
@@ -43,6 +44,32 @@ with tempfile.TemporaryDirectory() as temp:
     assert (root / 'docs/kit/example.zip').read_bytes() == b'PK\x03\x04binary fixture'
     assert decode(root) == [], 'A second decode must be a no-op'
 print('PASS: stale text snapshots cannot roll back tools, manifests or instructions')
+
+retirement_path = 'review/RETIRED_PRINT_ARTIFACTS_20261113.json'
+retirement = json.loads((ROOT / retirement_path).read_text())
+with tempfile.TemporaryDirectory() as temp:
+    root = Path(temp)
+    (root / 'review').mkdir()
+    shutil.copyfile(ROOT / retirement_path, root / retirement_path)
+    for item in retirement['artifacts']:
+        relative = item['path'].removeprefix('docs/')
+        assert not (ROOT / item['path']).exists(), 'Withdrawn document still served: ' + relative
+        assert not (ROOT / relative).exists(), 'Withdrawn root copy remains: ' + relative
+        snapshot = 'kit-b64/' + relative + '.b64'
+        assert not (ROOT / snapshot).exists(), 'Withdrawn snapshot remains: ' + relative
+        target = root / snapshot
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_bytes(base64.encodebytes(b'stale withdrawn guidance'))
+    assert decode(root) == [], 'Stale snapshots restored withdrawn guidance'
+    assert not (root / 'docs/kit').exists(), 'Withdrawn documents were republished'
+print('PASS: withdrawn print documents are absent and stale snapshots cannot restore them')
+
+testing_page = (ROOT / 'docs/test-the-site.html').read_text()
+t6 = re.search(r'<section\b[^>]*id="t6"[^>]*>(.*?)</section>', testing_page, re.S)
+assert t6, 'T6 rehearsal instructions missing'
+t6_packages = re.findall(r'plebum-complete-offline-tester-[\w-]+\.zip', t6.group(1))
+assert t6_packages == [publisher.FULL], 'T6 names a different package from Downloads'
+print('PASS: current T6 entry point names the complete package offered by Downloads')
 
 with tempfile.TemporaryDirectory() as temp:
     root = Path(temp)
@@ -110,7 +137,8 @@ def check_reviewed_rebuild(name, published, rebuilt, review):
 # live-guide addendum pins the precise intentional difference, not a wildcard
 # exemption. Every unrecorded change still fails the stale-source guard.
 addendum = {'packages': {}}
-for review_name in ('R3_LIVE_ADDENDUM_2026-11-12.json', 'AUDIT_2_LIVE_ADDENDUM_20261113.json'):
+for review_name in ('R3_LIVE_ADDENDUM_2026-11-12.json', 'AUDIT_2_LIVE_ADDENDUM_20261113.json',
+                    'AUDIT_4_LIVE_ADDENDUM_20261113.json'):
     review_path = ROOT / 'review' / review_name
     if review_path.exists():
         entries = json.loads(review_path.read_text())['packages']

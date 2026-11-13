@@ -1,0 +1,274 @@
+[
+  {
+    "path": "docs/kit/00_Project_Overview.pdf",
+    "sha256": "302559ce5fa92523d7c9741a9f6750bcebb63696d948480371748da7d3d5304a",
+    "duplicate_of": null,
+    "flags": [
+      "wallet into titanium. Hardware wallets are completely optional.",
+      "The wallet needs any two of the three keys to spend. One key alone cannot move the long-term fund.",
+      "\u2022 Hardware later: Optional signer. Different vendors if more than one."
+    ]
+  },
+  {
+    "path": "docs/kit/00_Project_Overview.pdf.pdf",
+    "sha256": "dd5ce7a8cb35fd043e4bed744374736412a9ce57374d8b21eb321a02e36ba801",
+    "duplicate_of": null,
+    "flags": [
+      "The wallet needs any two of the three keys to spend. One key alone cannot move the long-term fund.",
+      "\u2022 Hardware later \u2014 optional signer, different vendors if more than one."
+    ]
+  },
+  {
+    "path": "docs/kit/02_Print_Packet.pdf",
+    "sha256": "bab6a24ae54d06f804727a742ddd7f31afa68bd46e47dc3152d57d1264de39a8",
+    "duplicate_of": null,
+    "flags": [
+      "\u2022 Hardware wallets are optional. They never create the keys.",
+      "A wallet that needs any two of three keys before it can spend.",
+      "descriptor / xpub",
+      "The descriptor is the wallet map; an xpub is a public watch",
+      "\u2022 Tails 7.13. On its own USB. Networking Disabled. No persistent storage.",
+      "\u2022 Electrum 4.8.2. The second tool that must agree.",
+      "\u2022 Tails borrows the hardware and forgets everything at shutdown.",
+      "ANY TWO KEYS OPEN IT. ONE ALONE CANNOT",
+      "\u2022 Export the output descriptor, the wallet map. This is the watch-only file.",
+      "HEIR NEEDS ANY TWO PLATES + THE MAP",
+      "\u2022 The output descriptor is encrypted with the site's tool (real AES-256).",
+      "\u2022 The heir needs any two plates plus the map."
+    ]
+  },
+  {
+    "path": "docs/kit/03_Checklist.pdf",
+    "sha256": "dbc4a4c9f13e9f85e3a010d8d7e864b044c7d4e02710f92bb85dc2c76c849674",
+    "duplicate_of": null,
+    "flags": [
+      "Tails 7.13 \u00b7 Sparrow 2.5.5 (exact) \u00b7 Electrum 4.8.2"
+    ]
+  },
+  {
+    "path": "docs/kit/03_Checklist.pdf.pdf",
+    "sha256": "3e337a19b422f5b4a8ef72984a92d5d447717f360cc7c1186df6c28ff23f9476",
+    "duplicate_of": null,
+    "flags": [
+      "\u2022 Tails 7.13 \u00b7 Sparrow 2.5.5 (exact) \u00b7 Electrum 4.8.2"
+    ]
+  },
+  {
+    "path": "docs/kit/04_Airgap.pdf",
+    "sha256": "fe0e1abb9d94b3250bf0ac34a1d2ecd38ada62b086b3dd49c3352184ad00d710",
+    "duplicate_of": null,
+    "flags": [
+      "This stick is the offline computer. It borrows the hardware, then forgets.",
+      "\u2022 Two seeds in one session: never."
+    ]
+  },
+  {
+    "path": "docs/kit/04_Airgap.pdf.pdf",
+    "sha256": "db1d8b60897111788b394c97d5546c5f29247dce6ca693c5e87211d5eb35dbf1",
+    "duplicate_of": null,
+    "flags": [
+      "Tails 7.13 \u00b7 networking off",
+      "STOP. Two seeds in one session \u2014 never. If networking turns on while a seed is in memory, that session is"
+    ]
+  },
+  {
+    "path": "docs/kit/05_Verify.pdf",
+    "sha256": "2a92f82ec475090cd895e55a4428993f0f367ceb9cf1dc90eac2f4415045632b",
+    "duplicate_of": null,
+    "flags": [
+      "\u2022 The downloads from the checklist: Tails 7.13, Sparrow 2.5.5, Electrum 4.8.2, the Ian Coleman page, and the dice",
+      "tails-amd64-7.13.img \u2026 PASS"
+    ]
+  },
+  {
+    "path": "docs/kit/05_Verify.pdf.pdf",
+    "sha256": "515eda09f3864a7a76b8e72505e9b903a41bd963928bfc06e093448e9c453c0f",
+    "duplicate_of": null,
+    "flags": [
+      "\u2022 The downloads from the checklist: Tails 7.13, Sparrow 2.5.5, Electrum 4.8.2, the Ian Coleman page, and the dice"
+    ]
+  },
+  {
+    "path": "docs/kit/06_Dice.pdf",
+    "sha256": "fb742dc0c79c007981096eb7b101ae76e47c532c14b85faaf6cf86687ba1e05e",
+    "duplicate_of": null,
+    "flags": [
+      "hardware wallet itself.\", \"Done. The device holds the wallet.\"], risk: \"Risk: one device, one maker. If either fails you,"
+    ]
+  },
+  {
+    "path": "docs/kit/06_Dice.pdf.pdf",
+    "sha256": "3dcaf9a41ca27ba120cdd1cfda2704f2bd4d9f0845d206898215212a3ce4753c",
+    "duplicate_of": null,
+    "flags": []
+  },
+  {
+    "path": "docs/kit/07_Sparrow.pdf",
+    "sha256": "458849618cd31e65b287a023e0ce2f51993197542adab0c5ac49ee20112ece04",
+    "duplicate_of": null,
+    "flags": [
+      "MAP: descriptor",
+      "xpub files. Confirm the path. Export the output descriptor to the data USB. That file is the wallet map.",
+      "3 \u00b7 NEW: Display it on a second device. Load the wallet as watch-only (xpubs / wallet descriptor only, never"
+    ]
+  },
+  {
+    "path": "docs/kit/07_Sparrow.pdf.pdf",
+    "sha256": "2a8976377e422396bb092d81eceaf9d2172a1db29db9f6fac8dec63a879b93da",
+    "duplicate_of": null,
+    "flags": [
+      "three xpub files. Confirm the path. Export the output descriptor to the data USB. That file is the wallet map."
+    ]
+  },
+  {
+    "path": "docs/kit/08_Signing.pdf",
+    "sha256": "3d913660f02997fab1c4e1b15119f3c3af8dcbdbdaa6d2ce64dcfbcea9d94aab",
+    "duplicate_of": null,
+    "flags": [
+      "Two seeds \u00b7 Tails USB \u00b7 A small test amount",
+      "Keys on hardware later? Generate the seed on airgapped Tails first, then import the finished 24 words. Never let the"
+    ]
+  },
+  {
+    "path": "docs/kit/08_Signing.pdf.pdf",
+    "sha256": "ae7db4ca3b0cb0462c9367ab116b86c30863c3edd9b849009e72e77608c7c57e",
+    "duplicate_of": null,
+    "flags": [
+      "Keys on hardware later? Generate the seed on airgapped Tails first, then import the finished 24 words \u2014 never"
+    ]
+  },
+  {
+    "path": "docs/kit/09_Titanium.pdf",
+    "sha256": "fa0e9f1f9e4385d21979ab6257ab39f1d95412ef23eb9d652434e60e7bd7412c",
+    "duplicate_of": null,
+    "flags": [
+      "Print the output descriptor and keep it with Plate A, plus one copy off-site, never beside all three seeds. Hardware"
+    ]
+  },
+  {
+    "path": "docs/kit/09_Titanium.pdf.pdf",
+    "sha256": "4278d8b7447be5e5c97dc4635502e33707ba22857aa2e5f8cb72b377cce2d623",
+    "duplicate_of": null,
+    "flags": [
+      "HEIR NEEDS ANY TWO PLATES + THE MAP",
+      "Print the output descriptor and keep it with Plate A, plus one copy off-site \u2014 never beside all three seeds. Hardware"
+    ]
+  },
+  {
+    "path": "docs/kit/11_Encryption.pdf",
+    "sha256": "a2d4a42c65e3c9dbf558669ff9b2beff720b711733de37ebaf9c7b17fb9a5f1e",
+    "duplicate_of": null,
+    "flags": [
+      "descriptor_obfuscator.py (verified) \u00b7 A dice passphrase",
+      "\u2022 descriptor_obfuscator.py from the kit. Checked before it's copied.",
+      "$ python3 descriptor_obfuscator.py",
+      "$ python3 descriptor_obfuscator.py",
+      "Step 3 \u00b7 Copy the locked file. Delete the plain one.",
+      "plain copy was ever made, encrypt it again, then delete the plain one.",
+      "If the passphrase is lost, the coins aren't gone, as long as all three plates still exist. Three seeds rebuild the map",
+      "exactly. Two seeds cannot. Write the path m/48'/0'/0'/2' on the inheritance sheet. It is not a secret."
+    ]
+  },
+  {
+    "path": "docs/kit/12_Inheritance.pdf",
+    "sha256": "bc6b6f093401aa61bf72c879816f4895a60ba100cd8f5178e0810ce2d94a55ea",
+    "duplicate_of": null,
+    "flags": [
+      "move the long-term fund. It needs any two plates plus the wallet map."
+    ]
+  },
+  {
+    "path": "docs/kit/12_Inheritance.pdf.pdf",
+    "sha256": "ac5ba1385da7a26c373874e0c05338e67c139df8df0ed9c65c4919c75a1cbc45",
+    "duplicate_of": null,
+    "flags": [
+      "long-term fund \u2014 it needs any two plates plus the wallet map.",
+      "HEIR NEEDS ANY TWO PLATES + THE MAP"
+    ]
+  },
+  {
+    "path": "docs/kit/13_FAQ.pdf",
+    "sha256": "d7ea94053b706f6ed68adbb4dc7ce529f5b49d7497a9d290eaa4abf9280d8493",
+    "duplicate_of": null,
+    "flags": [
+      "Three keys, made at home with dice, on a computer with no internet. Any two can spend; one cannot. The keys",
+      "are stamped into titanium and kept in three places. A hardware wallet is optional, and it never creates the keys.",
+      "Q: I already own a hardware wallet. Do I start there?",
+      "second key goes on a different maker\u2019s device. All three never go on hardware. The plates are the backup.",
+      "Stop. This kit checks Tails 7.13, Sparrow 2.5.5, Electrum 4.8.2. A newer file will not match. That is a stop, not an"
+    ]
+  },
+  {
+    "path": "docs/kit/14_Speaker.pdf",
+    "sha256": "1fe1670e66b87a43f109230a894cbfc8c7424ff2431d9f2f8ca29da5076a21fd",
+    "duplicate_of": null,
+    "flags": [
+      "Typed on Tails, networking off, one seed per boot, then a full shutdown. Tails forgets the session. A hardware",
+      "keylogger is still possible. But one captured seed still can\u2019t spend: the fund needs two. Never type two seeds on",
+      "Q: Why not start with a hardware wallet?",
+      "Q: Is dice randomness weaker than a hardware RNG?"
+    ]
+  },
+  {
+    "path": "docs/kit/15_Fire_Card.pdf",
+    "sha256": "c7a148b74ee1d399c9f53d44ca8c26e450ad04383817230ee4b64dac55bc3673",
+    "duplicate_of": null,
+    "flags": []
+  },
+  {
+    "path": "docs/kit/Handouts_No_Cover.pdf",
+    "sha256": "47cc4ffa23a3c89010304cd24690f6b1efe71f3b2a00db4e60bdcbdb828bbb57",
+    "duplicate_of": null,
+    "flags": [
+      "Any two of three keys can spend. One alone cannot.",
+      "descriptor / xpub",
+      "Tails 7.13 \u00b7 Sparrow 2.5.5 (exact) \u00b7 Electrum 4.8.2",
+      "\u2022 The downloads from the checklist: Tails 7.13, Sparrow 2.5.5, Electrum 4.8.2, the Ian Coleman page, and the dice",
+      "tails-amd64-7.13.img \u2026 PASS",
+      "This stick is the offline computer. It borrows the hardware, then forgets.",
+      "\u2022 Two seeds in one session: never.",
+      "hardware wallet itself.\", \"Done. The device holds the wallet.\"], risk: \"Risk: one device, one maker. If either fails you,",
+      "MAP: descriptor",
+      "xpub files. Confirm the path. Export the output descriptor to the data USB. That file is the wallet map.",
+      "3 \u00b7 NEW: Display it on a second device. Load the wallet as watch-only (xpubs / wallet descriptor only, never",
+      "Two seeds \u00b7 Tails USB \u00b7 A small test amount"
+    ]
+  },
+  {
+    "path": "docs/kit/Handouts_No_Cover.pdf.pdf",
+    "sha256": "c98415655fc7fb0dbf180cb22457ef2214fff8bfb080cb41ee116a1b934d61a8",
+    "duplicate_of": null,
+    "flags": [
+      "Any two of three keys can spend. One alone cannot.",
+      "descriptor / xpub",
+      "\u2022 Tails 7.13 \u00b7 Sparrow 2.5.5 (exact) \u00b7 Electrum 4.8.2",
+      "\u2022 The downloads from the checklist: Tails 7.13, Sparrow 2.5.5, Electrum 4.8.2, the Ian Coleman page, and the dice",
+      "Tails 7.13 \u00b7 networking off",
+      "STOP. Two seeds in one session \u2014 never. If networking turns on while a seed is in memory, that session is",
+      "three xpub files. Confirm the path. Export the output descriptor to the data USB. That file is the wallet map.",
+      "Keys on hardware later? Generate the seed on airgapped Tails first, then import the finished 24 words \u2014 never",
+      "HEIR NEEDS ANY TWO PLATES + THE MAP",
+      "Print the output descriptor and keep it with Plate A, plus one copy off-site \u2014 never beside all three seeds. Hardware",
+      "\u2022 descriptor_obfuscator.py. This tool calls GPG with AES-256. It does not invent a cipher. Its",
+      "python3 descriptor_obfuscator.py"
+    ]
+  },
+  {
+    "path": "docs/kit/Terms.pdf",
+    "sha256": "a49eb0ac1c8cd59a71fe79e172afa18160a6b28f4019c99667a50a8136a7a2f8",
+    "duplicate_of": null,
+    "flags": [
+      "Any two of three keys can spend. One alone cannot.",
+      "descriptor / xpub"
+    ]
+  },
+  {
+    "path": "docs/kit/Terms.pdf.pdf",
+    "sha256": "dc4b1c9237ea3cbbd847640e1b21e213df7f857447faba039e2fb7a185befdb7",
+    "duplicate_of": null,
+    "flags": [
+      "Any two of three keys can spend. One alone cannot.",
+      "descriptor / xpub"
+    ]
+  }
+]

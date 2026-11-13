@@ -88,6 +88,7 @@ def update_guides():
 {offline_verifier_notice()}
 <p><strong>Extract the entire ZIP, open the <code>plebum-offline</code> folder, then open <code>START.html</code>.</strong> For the T2–T5 tool checks, open <code>public-tests</code> inside that folder. Its <code>fixtures</code> folder holds the supplied test inputs: <code>plebum-offline/public-tests/fixtures/</code>. Use the matching HTML and Python tools beside that <code>fixtures</code> folder.</p>
 <p>For T1, run <code>verify_package.py</code> from <code>plebum-offline</code> to check the whole offline package. Commands and paths in <code>public-tests/TESTING.txt</code> start from <code>public-tests</code>; open your terminal there for those checks. The focused tool ZIP instead uses <code>plebum-public-test/fixtures/</code>.</p>
+<p><strong>Before starting T6:</strong> <a href="{BASE}testing/release-review-20261113/STATUS.txt" download>save the November 13 instruction correction</a> beside your extracted folder. The r2 testing page still names an older R3 ZIP; use the r2 package and its supplied T6 run sheet. Keep all verified files unchanged.</p>
 <p><strong>Photo-review directions:</strong> the complete ZIP includes the photo-review flow and T6/T7 run sheets. Save one native screenshot in your session’s Evidence folder before the next action. Historical R3 ZIPs remain unchanged.</p><p><a href="{BASE}offline-folder-guide.html">Find the tools and fixtures</a> · <a href="{BASE}testing/session-guide/TESTING.txt">T1–T5 with screenshot checkpoints</a> · <a href="{BASE}testing/session-guide/EVIDENCE-CHECKLIST.txt">Save to USB before shutdown</a> · <a href="{BASE}testing/session-guide/FORM-REPORTING.txt">Submit screenshots and evidence links</a></p>
 <p>Disconnect before testing sensitive tools. They must run as local files; keep their existing safeguards in place. Python helpers require Python 3; the Python wallet-map tool also requires GnuPG, installed separately before disconnecting.</p>
 <p>The tools-only ZIP contains the site’s utilities, demos, Python helpers, wordlist and public fixtures, without the guides or legacy print documents. Neither ZIP includes Tails, Sparrow, Electrum or other external software. Feedback, external references, live prices and network transactions require internet access.</p>
@@ -184,7 +185,7 @@ def package(full):
             continue  # Do not reintroduce legacy bundles, instructions or pinned helpers.
         if name == 'verify-download.html':
             continue  # Generated after ZIPs; downloaded separately for offline use.
-        if name.startswith('testing/') and not name.startswith((CURRENT.rsplit('/', 1)[0] + '/', 'testing/alpha-20261108-t5-r4/', 'testing/t4-20261106/', 'testing/t5-20261108/', 'testing/session-guide/', 'testing/tails-r4-20261109/', 'testing/windows-r4-20261108/', 'testing/r3-20261112/')):
+        if name.startswith('testing/') and not name.startswith((CURRENT.rsplit('/', 1)[0] + '/', 'testing/alpha-20261108-t5-r4/', 'testing/t4-20261106/', 'testing/t5-20261108/', 'testing/session-guide/', 'testing/tails-r4-20261109/', 'testing/windows-r4-20261108/', 'testing/r3-20261112/', 'testing/release-review-20261113/')):
             continue
         if not full and not (name in TOOL_NAMES or name == 'offline-folder-guide.html' or name.startswith('assets/') or name in KIT_FILES):
             continue

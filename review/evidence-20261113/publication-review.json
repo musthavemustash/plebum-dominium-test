@@ -1,0 +1,36 @@
+{
+  "date": "2026-11-13",
+  "base_commit": "52ca8288bd034faed5e88f033fa44f52800638eb",
+  "historical_files_checked": 141,
+  "historical_files_unchanged": true,
+  "live_before_PR": [
+    {
+      "url": "https://musthavemustash.github.io/plebum-dominium-test/testing/offline-20261113-r2/plebum-complete-offline-tester-20261113-r2.zip",
+      "status": 200,
+      "bytes": 2995499,
+      "sha256": "1fbd6c9d92fdcfdf615db9a5b542b0294814b232775b9e2ce66bf52c785fa706",
+      "matches_reviewed_base": true
+    },
+    {
+      "url": "https://musthavemustash.github.io/plebum-dominium-test/testing/offline-20261113-r2/plebum-website-tools-only-20261113-r2.zip",
+      "status": 200,
+      "bytes": 1575770,
+      "sha256": "66a7f107794bf6824b7037bb05965d15f4e18efe398951a520702716bab432a5",
+      "matches_reviewed_base": true
+    },
+    {
+      "url": "https://musthavemustash.github.io/plebum-dominium-test/testing/alpha-20261113-r2/plebum-tools-alpha-20261113-r2.zip",
+      "status": 200,
+      "bytes": 299856,
+      "sha256": "d6e7463499ef7c2b64fb99f2b8a77d489631e0f68d78e7309edb51300a18165b",
+      "matches_reviewed_base": true
+    },
+    {
+      "url": "https://musthavemustash.github.io/plebum-dominium-test/kit/11_Encryption.pdf",
+      "status": 200,
+      "bytes": 9879,
+      "sha256": "a2d4a42c65e3c9dbf558669ff9b2beff720b711733de37ebaf9c7b17fb9a5f1e",
+      "matches_reviewed_base": true
+    }
+  ]
+}
