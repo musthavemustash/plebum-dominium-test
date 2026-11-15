@@ -76,3 +76,24 @@
   #plebum-home-hero .pd-item.pd-discover-pulse::before { animation: none; }
 }
 
+
+
+/* A stable shared area below all of the existing hero content. */
+#plebum-home-hero .pd-information { display:grid; grid-template-columns:minmax(0,1fr); min-height:210px; padding:26px 6.5% 30px; border-top:1px solid var(--pd-rule); }
+#plebum-home-hero .pd-introduction, #plebum-home-hero .pd-information .pd-popout { grid-area:1 / 1; min-width:0; }
+#plebum-home-hero .pd-introduction { align-self:start; }
+#plebum-home-hero .pd-introduction.is-hidden { visibility:hidden; pointer-events:none; }
+#plebum-home-hero .pd-introduction p { margin:0; max-width:none; font:15px/1.75 Arial,Helvetica,sans-serif; color:var(--pd-ink); }
+#plebum-home-hero .pd-information .pd-popout { position:relative; align-self:start; width:100%; inset:auto; padding:0 18px 20px; box-shadow:0 5px 20px light-dark(#4c311b0d,#0002); animation:pd-definition-in 160ms ease-out; }
+#plebum-home-hero .pd-information .pd-sizing-card { visibility:hidden; pointer-events:none; animation:none; }
+#plebum-home-hero .pd-pop-head { margin-bottom:15px; }
+#plebum-home-hero .pd-pop-text { font-size:15px; line-height:1.75; }
+#plebum-home-hero .pd-item[data-active="true"]:after { inset:auto 22% 0; }
+#plebum-home-hero .home-name-trigger { font:inherit; padding:0; border:0; border-bottom:1px dotted var(--pd-copper); border-radius:0; min-height:0; background:none; color:inherit; }
+#plebum-home-hero .home-name-popup { color:var(--pd-ink); background:var(--pd-paper); border-color:var(--pd-copper); font-family:Arial,Helvetica,sans-serif; }
+#plebum-home-hero .home-name-pron { color:var(--pd-copper); }
+#plebum-home-hero .pd-pop-close:focus-visible { outline:2px solid var(--pd-copper); outline-offset:2px; }
+@keyframes pd-definition-in { from {opacity:0} to {opacity:1} }
+@media(prefers-reduced-motion:reduce) { #plebum-home-hero .pd-information .pd-popout { animation:none; } }
+html[data-motion="off"] #plebum-home-hero .pd-information .pd-popout { animation:none; }
+@media print { #plebum-home-hero .pd-introduction.is-hidden {visibility:visible} #plebum-home-hero .pd-information .pd-popout,#plebum-home-hero .pd-leader {display:none!important} }
