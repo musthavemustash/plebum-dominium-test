@@ -16,6 +16,7 @@ ROOT = Path(__file__).resolve().parents[1]
 BASE = '/plebum-dominium-test/'
 ORIGIN = 'https://musthavemustash.github.io'
 MAX_BYTES = 32 * 1024 * 1024
+SIGNED_RELEASE = '20261113-r2'
 START = '<!-- download-verifier -->'
 END = '<!-- /download-verifier -->'
 KINDS = (
@@ -70,7 +71,7 @@ def retain_previous_packages(catalog, previous_page):
     if not parser.parts:
         raise ValueError('Existing verifier has no reference catalog')
     previous = json.loads(''.join(parser.parts))
-    if previous.get('schema') != 1 or not isinstance(previous.get('packages'), list):
+    if previous.get('schema') not in (1, 2) or not isinstance(previous.get('packages'), list):
         raise ValueError('Existing verifier has an invalid reference catalog')
     known = {(p['sha256'], p['bytes']) for p in catalog['packages']}
     # Old generated pages can contain labels from an intervening build. Keep
@@ -176,41 +177,73 @@ def read_catalog(docs, require_archives=True):
             'downloadUrl': ORIGIN + BASE + relative,
             'current': True,
         })
-    return {'schema': 1, 'packages': packages}
+    release_dir = docs / 'releases' / SIGNED_RELEASE
+    signed_manifest = (release_dir / 'manifest.txt').read_bytes()
+    sums = read_sums(release_dir / 'manifest.txt')
+    if sums != {p['name']: p['sha256'] for p in packages}:
+        raise ValueError('Signed manifest must cover exactly the current packages; obtain a new offline signature for a new release.')
+    return {'schema': 2, 'packages': packages, 'signedRelease': {
+        'release': SIGNED_RELEASE,
+        'publicKey': (release_dir / 'plebum-public.asc').read_bytes().decode('ascii'),
+        'manifest': signed_manifest.decode('ascii'),
+        'signature': (release_dir / 'manifest.txt.asc').read_bytes().decode('ascii'),
+    }}
 
 
 def build(root=ROOT, require_archives=True):
     docs = root / 'docs'
     catalog = read_catalog(docs, require_archives)
     catalog = retain_previous_packages(catalog, docs / 'verify-download.html')
-    template = (root / 'templates/download-verifier.html').read_text(encoding='utf-8')
+    # The reviewed docs page owns the markup. Never regenerate it from the
+    # historical templates directory; only refresh its embedded assets/data.
+    template = (docs / 'verify-download.html').read_text(encoding='utf-8')
     css = (docs / 'assets/css/download-verifier.css').read_text(encoding='utf-8')
-    javascript = (docs / 'assets/js/download-verifier.js').read_text(encoding='utf-8')
+    scripts = {
+        'verifier-openpgp': 'assets/vendor/openpgp-6.3.2/openpgp.min.js',
+        'verifier-signature': 'assets/js/download-signature.js',
+        'verifier-ui': 'assets/js/download-verifier.js',
+    }
     # JSON is data inside an HTML script element, never executable source.
     data = json.dumps(catalog, ensure_ascii=False, indent=2).replace('&', '\\u0026').replace('<', '\\u003c').replace('>', '\\u003e')
-    if '</script' in javascript.lower() or '</style' in css.lower():
+    if '</style' in css.lower():
         raise ValueError('Unexpected HTML closing tag in inline source')
-    page = template.replace('{{VERIFIER_CSS}}', css).replace('{{VERIFIER_JS}}', javascript).replace('{{CATALOG_JSON}}', data)
+    def replace_one(pattern, replacement, page):
+        result, count = re.subn(pattern, lambda _: replacement, page, flags=re.S)
+        if count != 1:
+            raise ValueError('Expected exactly one embedded block: ' + pattern)
+        return result
+    page = replace_one(r'<style id="verifier-css">.*?</style>', '<style id="verifier-css">' + css + '</style>', template)
+    page = replace_one(r'<script type="application/json" class="pd-verify-catalog">.*?</script>',
+                       '<script type="application/json" class="pd-verify-catalog">' + data + '</script>', page)
+    script_tags = []
+    for element_id, relative in scripts.items():
+        javascript = (docs / relative).read_text(encoding='utf-8')
+        if '</script' in javascript.lower():
+            raise ValueError('Unexpected HTML closing tag in inline source')
+        page = replace_one(r'<script id="' + element_id + r'">.*?</script>',
+                           '<script id="' + element_id + '">' + javascript + '</script>', page)
+        version = hashlib.sha256(javascript.encode()).hexdigest()[:12]
+        script_tags.append(f'<script src="{BASE}{relative}?v={version}" defer></script>')
     if re.search(r'\{\{[A-Z_]+\}\}', page):
         raise ValueError('Unresolved verifier template token')
     match = re.search(r'<!-- verifier-widget:start -->(.*?)<!-- verifier-widget:end -->', page, re.S)
     if not match:
         raise ValueError('Missing reusable widget markers')
     css_version = hashlib.sha256(css.encode()).hexdigest()[:12]
-    js_version = hashlib.sha256(javascript.encode()).hexdigest()[:12]
     widget = (START + '\n'
               f'<link rel="stylesheet" href="{BASE}assets/css/download-verifier.css?v={css_version}">\n'
               + match[1].strip() + '\n'
-              f'<script src="{BASE}assets/js/download-verifier.js?v={js_version}" defer></script>\n'
+              + '\n'.join(script_tags) + '\n'
               + END)
-    downloads_path = docs / 'downloads.html'
-    downloads = downloads_path.read_text(encoding='utf-8')
-    if downloads.count(START) != 1 or downloads.count(END) != 1:
-        raise ValueError('Downloads must contain exactly one verifier placeholder')
-    downloads = re.sub(re.escape(START) + '.*?' + re.escape(END), lambda _: widget, downloads, count=1, flags=re.S)
+    for name in ('downloads.html', 'index.html'):
+        target = docs / name
+        html = target.read_text(encoding='utf-8')
+        if html.count(START) != 1 or html.count(END) != 1:
+            raise ValueError(name + ' must contain exactly one verifier placeholder')
+        html = re.sub(re.escape(START) + '.*?' + re.escape(END), lambda _: widget, html, count=1, flags=re.S)
+        target.write_text(html, encoding='utf-8')
     (docs / 'verify-download.html').write_text(page, encoding='utf-8')
-    downloads_path.write_text(downloads, encoding='utf-8')
-    print(f'Built local SHA-256 verifier for {len(catalog["packages"])} published ZIP packages.')
+    print(f'Updated shared signature + SHA-256 verifier for {len(catalog["packages"])} ZIP references.')
     return catalog
 
 

@@ -22,6 +22,7 @@ on:
       - kit-b64/**
       - scripts/build_download_verifier.py
       - scripts/test_download_verifier.cjs
+      - scripts/test_release_signature.py
       - scripts/test_public_session_state.cjs
       - scripts/test_tool_network.cjs
       - scripts/test_dice_validation.cjs
@@ -49,11 +50,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
       - name: Validate site and preserved public test downloads
         run: |
           python3 scripts/reconcile_tool_downloads.py --check
           python3 scripts/test_download_consistency.py
           node scripts/test_download_verifier.cjs
+          python3 scripts/test_release_signature.py
           node scripts/test_public_session_state.cjs
           node scripts/test_tool_network.cjs
           node scripts/test_dice_validation.cjs

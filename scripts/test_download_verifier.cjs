@@ -12,6 +12,16 @@ const { webcrypto } = require('node:crypto');
 const rootDir = path.resolve(__dirname, '..');
 const sourcePath = path.join(rootDir, 'docs/assets/js/download-verifier.js');
 const source = fs.readFileSync(sourcePath, 'utf8');
+const signaturePath = path.join(rootDir, 'docs/assets/js/download-signature.js');
+const signatureSource = fs.readFileSync(signaturePath, 'utf8');
+const cryptoContext = { crypto: webcrypto, atob, btoa, TextEncoder, TextDecoder, Uint8Array, ArrayBuffer,
+  ReadableStream, WritableStream, TransformStream, Date, Map, Set, console, setTimeout, clearTimeout };
+cryptoContext.window = cryptoContext;
+vm.runInNewContext(fs.readFileSync(path.join(rootDir, 'docs/assets/vendor/openpgp-6.3.2/openpgp.min.js'), 'utf8'), cryptoContext);
+vm.runInNewContext(signatureSource, cryptoContext);
+const signedRelease = Object.fromEntries(Object.entries({
+  manifest: 'manifest.txt', signature: 'manifest.txt.asc', publicKey: 'plebum-public.asc'
+}).map(([key, file]) => [key, fs.readFileSync(path.join(rootDir, 'docs/releases/20261113-r2', file), 'utf8')]));
 const baseUrl = 'https://musthavemustash.github.io/plebum-dominium-test/';
 const nextTurn = () => new Promise(resolve => setImmediate(resolve));
 const inputs = [];
@@ -50,7 +60,7 @@ function loadPublishedPackages() {
       }
     });
   }
-  return { schema: 1, packages: inputs.map(input => input.entry) };
+  return { schema: 2, signedRelease, packages: inputs.map(input => input.entry) };
 }
 
 const currentCatalog = loadPublishedPackages();
@@ -62,14 +72,14 @@ const helloHash = '2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9
 function vectorEntry(overrides = {}) {
   return {
     id: 'known-vector', label: 'Known byte vector', name: 'known-vector.zip',
-    release: 'node-fixture', sha256: abcHash, bytes: abc.length, current: true,
+    release: 'node-fixture', sha256: abcHash, bytes: abc.length, current: false,
     checksumUrl: 'https://example.test/SHA256SUMS.txt',
     downloadUrl: 'https://example.test/known-vector.zip', ...overrides
   };
 }
 
 function catalogWith(...entries) {
-  return { schema: 1, packages: [...currentCatalog.packages, ...entries] };
+  return { ...currentCatalog, packages: [...currentCatalog.packages, ...entries] };
 }
 
 class ElementMock {
@@ -181,7 +191,7 @@ function setup(catalog = catalogWith(vectorEntry()), options = {}) {
   const nodes = {};
   const names = ['file', 'reset', 'status', 'status-title', 'status-text', 'progress',
     'file-info', 'filename', 'filesize', 'hash-details', 'hash', 'reference',
-    'packages', 'next', 'dropzone'];
+    'packages', 'next', 'dropzone', 'signature-result', 'checksum-result'];
   for (const name of names) {
     const node = new ElementMock(name === 'file' ? 'input' : name === 'reset' ? 'button' : 'div');
     nodes[name] = node;
@@ -214,7 +224,8 @@ function setup(catalog = catalogWith(vectorEntry()), options = {}) {
   } } };
   const context = {
     document, crypto, File: FileMock, Blob, URL, URLSearchParams, Uint8Array, ArrayBuffer,
-    TextEncoder, TextDecoder, console, setTimeout, clearTimeout, queueMicrotask,
+    TextEncoder, TextDecoder, Date, Map, console, setTimeout, clearTimeout, queueMicrotask,
+    openpgp: options.noSignatureLibrary ? undefined : cryptoContext.openpgp,
     requestAnimationFrame: callback => setImmediate(callback), cancelAnimationFrame: clearImmediate,
     fetch: rejectNetwork, XMLHttpRequest: rejectNetwork, WebSocket: rejectNetwork,
     navigator: { sendBeacon: rejectNetwork },
@@ -224,6 +235,8 @@ function setup(catalog = catalogWith(vectorEntry()), options = {}) {
   };
   context.window = context;
   context.self = context;
+  vm.runInNewContext(signatureSource, context, { filename: signaturePath });
+  if (options.signatureVerifier) context.PlebumReleaseSignatures = { verify: options.signatureVerifier };
   vm.runInNewContext(source, context, { filename: sourcePath });
   const environment = {
     widget, nodes, networkCalls, digests,
@@ -275,9 +288,9 @@ test('known SHA-256 abc vector matches by bytes regardless of filename', async (
   const env = setup();
   const file = makeFile(abc, 'renamed-by-my-browser (7).bin');
   env.choose(file);
-  await env.waitForState('match');
+  await env.waitForState('earlier');
   assert.equal(file.reads, 1);
-  assert.equal(env.nodes['status-title'].textContent, 'Matches published package');
+  assert.equal(env.nodes['status-title'].textContent, 'Earlier checksum matches; signature not verified');
   assert.equal(env.nodes.filename.textContent, file.name);
   assert.equal(env.nodes.hash.textContent, abcHash);
 });
@@ -285,7 +298,7 @@ test('known SHA-256 abc vector matches by bytes regardless of filename', async (
 test('second known SHA-256 hello vector is computed correctly', async () => {
   const env = setup(catalogWith(vectorEntry({ id: 'hello', sha256: helloHash, bytes: hello.length })));
   env.choose(makeFile(hello, 'any-name.zip'));
-  await env.waitForState('match');
+  await env.waitForState('earlier');
   assert.equal(env.nodes.hash.textContent, helloHash);
 });
 
@@ -315,17 +328,17 @@ test('oversized file is rejected before arrayBuffer reads any bytes', async () =
 test('file read errors cannot retain a previous match', async () => {
   const env = setup();
   env.choose(makeFile(abc));
-  await env.waitForState('match');
+  await env.waitForState('earlier');
   env.choose(makeFile(abc, 'unreadable.zip', { error: new Error('Fixture read failure') }));
   await env.waitForState('error');
-  assert.notEqual(env.nodes['status-title'].textContent, 'Matches published package');
+  assert.notEqual(env.nodes['status-title'].textContent, 'Earlier checksum matches; signature not verified');
 });
 
 test('SHA-256 failures display an error rather than a comparison result', async () => {
   const env = setup(undefined, { digestError: new Error('Fixture digest failure') });
   env.choose(makeFile(abc));
   await env.waitForState('error');
-  assert.notEqual(env.nodes['status-title'].textContent, 'Matches published package');
+  assert.notEqual(env.nodes['status-title'].textContent, 'Earlier checksum matches; signature not verified');
 });
 
 test('reset invalidates a pending read and clears its result', async () => {
@@ -350,10 +363,10 @@ test('a slower old selection cannot overwrite a newer result', async () => {
   env.choose(makeFile(abc, 'old.zip', { deferred: pending }));
   assert.equal(env.state, 'checking');
   env.choose(makeFile(hello, 'new.zip'));
-  await env.waitForState('match');
+  await env.waitForState('earlier');
   pending.resolve(Uint8Array.from(abc).buffer);
   await env.settle();
-  assert.equal(env.state, 'match');
+  assert.equal(env.state, 'earlier');
   assert.equal(env.nodes.filename.textContent, 'new.zip');
   assert.equal(env.nodes.hash.textContent, helloHash);
 });
@@ -374,7 +387,7 @@ test('HTML in a local filename is displayed only as text', async () => {
   const env = setup();
   const hostileName = '<img src=x onerror=alert(1)> & "download".zip';
   env.choose(makeFile(abc, hostileName));
-  await env.waitForState('match');
+  await env.waitForState('earlier');
   assert.equal(env.nodes.filename.textContent, hostileName);
   assert.equal(env.nodes.filename.children.length, 0);
 });
@@ -386,15 +399,16 @@ test('a prior package snapshot is clearly reported as earlier', async () => {
   ));
   env.choose(makeFile(abc, 'known-vector.zip'));
   await env.waitForState('earlier');
-  assert.equal(env.nodes['status-title'].textContent, 'Matches an earlier published package');
-  assert.notEqual(env.nodes['status-title'].textContent, 'Matches published package');
+  assert.equal(env.nodes['status-title'].textContent, 'Earlier checksum matches; signature not verified');
+  assert.notEqual(env.state, 'match');
 });
 
-test('current entry wins if history has the identical digest and size', async () => {
-  const env = setup(catalogWith(vectorEntry({ current: false }), vectorEntry()));
-  env.choose(makeFile(abc));
+test('current signed entry wins if history has identical digest and size', async () => {
+  const entry = inputs[0].entry;
+  const env = setup({ ...currentCatalog, packages: [{ ...entry, current: false }, ...currentCatalog.packages] });
+  env.choose(makeFile(fs.readFileSync(inputs[0].localPath)));
   await env.waitForState('match');
-  assert.equal(env.nodes['status-title'].textContent, 'Matches published package');
+  assert.equal(env.nodes['status-title'].textContent, 'Signature and ZIP verified');
 });
 
 test('missing WebCrypto disables verification before any file read', async () => {
@@ -415,7 +429,7 @@ test('missing File.arrayBuffer support disables verification', () => {
 });
 
 test('invalid catalog checksum fails closed before file selection', () => {
-  const env = setup({ schema: 1, packages: [vectorEntry({ sha256: 'not-a-sha256' })] });
+  const env = setup({ schema: 2, packages: [vectorEntry({ sha256: 'not-a-sha256' })] });
   assert.equal(env.state, 'error');
   assert.equal(env.nodes.file.disabled, true);
 });
@@ -466,10 +480,74 @@ for (const input of inputs.filter(item => fs.existsSync(item.localPath))) {
     const file = makeFile(fs.readFileSync(input.localPath), 'renamed-local-copy.zip');
     env.choose(file);
     await env.waitForState('match');
+    assert.equal(env.nodes['signature-result'].textContent, 'Passed: Plebum Dominium release key');
     assert.equal(env.nodes.hash.textContent, input.entry.sha256);
     assert.equal(file.size, input.entry.bytes);
   });
 }
+
+
+test('modified signed manifest is rejected cryptographically', async () => {
+  await assert.rejects(cryptoContext.PlebumReleaseSignatures.verify({ ...signedRelease,
+    manifest: signedRelease.manifest.replace('1fbd', '0fbd') }));
+});
+test('manifest whitespace changes do not get normalized before verification', async () => {
+  await assert.rejects(cryptoContext.PlebumReleaseSignatures.verify({ ...signedRelease,
+    manifest: signedRelease.manifest.replaceAll('\n', '\r\n') }));
+});
+test('a one-byte change to the detached signature is rejected', async () => {
+  const signature = await cryptoContext.openpgp.readSignature({ armoredSignature: signedRelease.signature });
+  const bytes = signature.write(); bytes[bytes.length - 1] ^= 1;
+  const altered = await cryptoContext.openpgp.readSignature({ binarySignature: bytes });
+  await assert.rejects(cryptoContext.PlebumReleaseSignatures.verify({ ...signedRelease, signature: altered.armor() }));
+});
+test('missing detached signature fails closed even when ZIP hash matches', async () => {
+  const env = setup({ ...currentCatalog, signedRelease: { ...signedRelease, signature: '' } });
+  env.choose(makeFile(fs.readFileSync(inputs[0].localPath)));
+  await env.waitForState('error');
+  assert.equal(env.nodes.next.hidden, true);
+  assert.equal(env.nodes['signature-result'].textContent, 'Not verified');
+});
+test('changed catalog and ZIP cannot bypass the signed manifest', async () => {
+  const env = setup({ ...currentCatalog, packages: [vectorEntry({ current: true, name: inputs[0].entry.name })] });
+  env.choose(makeFile(abc));
+  await env.waitForState('error');
+  assert.equal(env.nodes.next.hidden, true);
+});
+test('a different public key cannot replace the pinned signing identity', async () => {
+  const fixture = await cryptoContext.openpgp.generateKey({ type: 'ecc', curve: 'curve25519Legacy', userIDs: [{ name: 'Test fixture only' }] });
+  await assert.rejects(cryptoContext.PlebumReleaseSignatures.verify({ ...signedRelease, publicKey: fixture.publicKey }), /does not match/);
+});
+test('expired key and clock before key creation fail closed', async () => {
+  await assert.rejects(cryptoContext.PlebumReleaseSignatures.verify(signedRelease, new Date('2028-01-01T00:00:00Z')));
+  await assert.rejects(cryptoContext.PlebumReleaseSignatures.verify(signedRelease, new Date('2025-01-01T00:00:00Z')));
+});
+test('missing signature library disables the picker', () => {
+  const env = setup(currentCatalog, { noSignatureLibrary: true });
+  assert.equal(env.state, 'unsupported');
+  assert.equal(env.nodes.file.disabled, true);
+});
+test('reset while signature verification is pending cannot restore a pass', async () => {
+  const pending = deferred(); let started = false;
+  const env = setup(currentCatalog, { signatureVerifier: () => { started = true; return pending.promise; } });
+  env.choose(makeFile(fs.readFileSync(inputs[0].localPath)));
+  while (!started) await nextTurn();
+  env.reset();
+  pending.resolve({ hashes: new Map([[inputs[0].entry.name, inputs[0].entry.sha256]]) });
+  await env.settle();
+  assert.equal(env.state, 'ready');
+  assert.equal(env.nodes['signature-result'].textContent, 'Not checked');
+  assert.equal(env.nodes.next.hidden, true);
+});
+test('homepage, downloads and offline verifier embed the same signed release', () => {
+  const catalogs = ['index.html', 'downloads.html', 'verify-download.html'].map(name => {
+    const html = fs.readFileSync(path.join(rootDir, 'docs', name), 'utf8');
+    assert.equal((html.match(/data-zip-verifier /g) || []).length, 1);
+    return JSON.parse(html.match(/class="pd-verify-catalog">([\s\S]*?)<\/script>/)[1]);
+  });
+  assert.deepEqual(catalogs[0], catalogs[1]); assert.deepEqual(catalogs[1], catalogs[2]);
+  for (const [key, value] of Object.entries(signedRelease)) assert.equal(catalogs[0].signedRelease[key], value);
+});
 
 (async () => {
   let failed = 0;

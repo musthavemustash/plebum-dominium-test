@@ -55,3 +55,18 @@ convention is in `docs/testing/session-guide/PHOTO-REVIEW-FLOW.txt`.
 ## Content standard
 
 Plebum Dominium teaches self-custody without a hardware wallet. Create and verify keys with offline software, record the backups on metal, verify recovery, and sign with offline software. Hardware wallets are optional signing tools only after the metal backups are complete and checked. Use the existing backed-up keys. Neither path may require a hardware purchase for setup, signing or recovery. This rule applies to guides, equipment lists, diagrams, downloads, metadata, search, news and future copy. **Testing scope clarified by the maintainer on November 9, 2026:** T6/T7 test setup, offline-software signing and recovery with disposable paper records. The accepted T6.7 finish step is to review and save results and close the offline session; T6 does not require another person or an extra finishing screenshot. T7 retains its separately listed handover check. Metal comes after testing; metal fabrication/read-back is not part of these tests or their beta pass criteria. Do not reintroduce a metal prerequisite into test instructions. The permanent-backup stage of the custody guide is separate from this public test. See [the content review record](review/SOFTWARE_FIRST_CONTENT.md).
+
+### Signed download verifier
+
+`docs/verify-download.html` owns the shared verifier markup. After editing its
+widget or `docs/assets/{css,js}/download-*`, run
+`python3 scripts/build_download_verifier.py` to refresh the homepage, Downloads
+and standalone page. The historical `templates/download-verifier.html` is no
+longer a source. The builder requires an exact signed manifest for the current
+ZIPs; run `node scripts/test_download_verifier.cjs` and
+`python3 scripts/test_release_signature.py` before publication.
+
+The self-contained verifier is saved separately from the ZIPs it authenticates.
+Archive assembly removes its widget from both homepage and Downloads to avoid
+a self-referential hash. A new ZIP release needs a new manifest and offline
+signature; preserve the existing versioned ZIPs and public signature files.
