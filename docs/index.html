@@ -59,7 +59,7 @@
 </style>
 <meta property="og:image:alt" content="Plebum Dominium. A practical guide to Bitcoin self-custody. Test Site · Public Review.">
 <meta name="twitter:image:alt" content="Plebum Dominium. A practical guide to Bitcoin self-custody. Test Site · Public Review.">
-<link rel="stylesheet" href="/plebum-dominium-test/assets/css/home-hero.css?v=glow5">
+<link rel="stylesheet" href="/plebum-dominium-test/assets/css/home-hero.css?v=intro-r2">
 </head>
 <body class="home" id="top">
 <div class="splash" id="pd-splash" hidden aria-hidden="true">
@@ -170,25 +170,29 @@
     <svg class="pd-leader" aria-hidden="true" hidden xmlns="http://www.w3.org/2000/svg">
       <polyline points=""></polyline><circle cx="0" cy="0" r="3"></circle>
     </svg>
-    <aside class="pd-popout" id="pd-leader-definition" role="dialog" aria-modal="false" aria-labelledby="pd-pop-title" aria-describedby="pd-pop-text" hidden>
-      <div class="pd-pop-head">
-        <span class="pd-pop-index" aria-hidden="true"></span>
-        <h2 class="pd-pop-title" id="pd-pop-title"></h2>
-        <button class="pd-pop-close" type="button" aria-label="Close definition">×</button>
-      </div>
-      <p class="pd-pop-text" id="pd-pop-text"></p>
-    </aside>
+
     <span class="pd-sr" data-pd-announcement aria-live="polite" aria-atomic="true"></span>
     <p class="pd-foot"><strong>Hardware signers are optional.</strong></p>
-  </section>
-  <p class="pd-context">The complete interactive guide works offline.</p>
-</div>
-<p><span class="home-name"><button type="button" class="home-name-trigger" aria-expanded="false" aria-controls="home-name-popup">Plebum Dominium</button><span class="home-name-popup" id="home-name-popup" role="region" aria-label="About the name" hidden>
+    <div class="pd-information">
+      <div class="pd-introduction"><p><span class="home-name"><button type="button" class="home-name-trigger" aria-expanded="false" aria-controls="home-name-popup">Plebum Dominium</button><span class="home-name-popup" id="home-name-popup" role="region" aria-label="About the name" hidden>
       <span><strong>Plebum Dominium</strong></span>
       <span class="home-name-pron">PLAY-boom doh-MIN-ee-oom</span>
       <span>A Latin-inspired name. “Pleb” refers to an everyday Bitcoiner and draws on Latin <em>plebs</em>, the common people. <em>Dominium</em> means ownership or dominion.</span>
       <span>The name expresses <strong>“Ownership by the common people.”</strong> Here, that means holding your own Bitcoin and controlling the keys.</span>
-    </span></span> teaches self-custody without a hardware wallet. Both paths use offline software. A hardware wallet is an optional signing tool only after the metal backups are complete and checked.</p>
+    </span></span> is a step-by-step guide to securing your own Bitcoin without a hardware wallet. You’ll learn to create a wallet using offline software, protect your backups, and practice recovery. The guide explains two ways to build your setup: one key with a passphrase, or three keys with any two required to spend. A hardware wallet can be added later as an optional signing tool, after your metal backups are complete and checked.</p></div>
+    <aside class="pd-popout" id="pd-leader-definition" role="region" aria-labelledby="pd-pop-title" aria-describedby="pd-pop-text" hidden>
+      <div class="pd-pop-head">
+        <span class="pd-pop-index" aria-hidden="true"></span>
+        <h2 class="pd-pop-title" id="pd-pop-title"></h2>
+        <button class="pd-pop-close" type="button" aria-label="Close definition and show introduction">×</button>
+      </div>
+      <p class="pd-pop-text" id="pd-pop-text"></p>
+    </aside><div class="pd-popout pd-sizing-card" aria-hidden="true" inert><div class="pd-pop-head"><span class="pd-pop-index">01</span><h2 class="pd-pop-title">Bitcoin</h2><span class="pd-pop-close">×</span></div><p class="pd-pop-text">Bitcoin is digital money you can hold and send without a bank holding it for you. In self-custody, you control the keys that authorize spending. This guide helps you understand those keys, check your setup, and practice recovery so you can take responsibility for your own Bitcoin.</p></div><div class="pd-popout pd-sizing-card" aria-hidden="true" inert><div class="pd-pop-head"><span class="pd-pop-index">02</span><h2 class="pd-pop-title">Dice</h2><span class="pd-pop-close">×</span></div><p class="pd-pop-text">Dice rolls provide randomness you can create and record yourself. You turn those rolls into wallet seed words with offline software, then check the result. The guide walks you through the rolling, recording, and verification. Dice supply the randomness; careful software checks and recovery practice still matter.</p></div><div class="pd-popout pd-sizing-card" aria-hidden="true" inert><div class="pd-pop-head"><span class="pd-pop-index">03</span><h2 class="pd-pop-title">At home</h2><span class="pd-pop-close">×</span></div><p class="pd-pop-text">Build your self-custody setup at home, at your own pace. Use an offline computer for the steps that handle secret information, and practice spending and recovery with test funds. You can download the complete interactive guide, so the instructions and included tools are available while you work offline.</p></div><div class="pd-popout pd-sizing-card" aria-hidden="true" inert><div class="pd-pop-head"><span class="pd-pop-index">04</span><h2 class="pd-pop-title">On metal</h2><span class="pd-pop-close">×</span></div><p class="pd-pop-text">Metal backups preserve the information you need to recover your wallet if a device is lost or stops working. Practice recovery first, then make and check your metal backups. Store them separately so one incident cannot destroy every copy. A hardware signer is optional after those backups are complete and checked.</p></div>
+    </div>
+  </section>
+  <p class="pd-context">The complete interactive guide works offline.</p>
+</div>
+
 
 <section class="entry-section" id="offline-guide">
 <p class="entry-label">Take the whole guide with you</p>
@@ -478,6 +482,7 @@ sha256sum -c manifest.txt</code></pre>
   });
 })();
 </script>
-<script src="/plebum-dominium-test/assets/js/home-hero.js?v=glow5" defer></script>
+<script src="/plebum-dominium-test/assets/js/home-hero.js?v=intro-r2" defer></script>
 </body>
 </html>
+
