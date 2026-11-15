@@ -1,4 +1,6 @@
-PACKAGED REPORTING GUIDE: NOVEMBER 13, 2026, 20261113-r2
+REPORTING GUIDE: UPDATED NOVEMBER 15, 2026
+Record the exact ZIP tested. The new 20261115-r1 candidate awaits its own
+signature and physical acceptance; it does not inherit r2 archive results.
 Keep tested ZIP originals unchanged. Use PHOTO-REVIEW-FLOW.txt while testing:
 photo, review and filename, then save in one Evidence folder before continuing.
 This file describes bulk submission after the offline session. A live public

@@ -1,7 +1,20 @@
 PLEBUM DOMINIUM: T6 WITH THE COMPLETE OFFLINE TESTER
-Live addendum, November 13, 2026, for the complete 20261113-r2 tester.
+Live addendum, November 15, 2026, for the signed complete 20261115-r1 tester.
 Save this updated sheet BESIDE the extracted folder. Do not replace the
 original files in the verified package. Public testing only.
+
+
+TAILS SESSION RESUME
+The November 15 r2 preflight closed after saved-file reopening and full
+shutdown. T6 wallet setup/signing/recovery and T7 are still unstarted.
+Keep that evidence scoped to its r2 package. The signed 20261115-r1 complete
+ZIP has separate helper/navigation and fresh-boot reopening results. T6/T7
+wallet rehearsals remain outstanding. Copy the helper URL and paste it into
+Tor Browser; clicking the terminal hyperlink produced a different address.
+On a new Tails boot, recreate the guide folder grant using TAILS-OFFLINE.txt.
+Re-extract any verified wallet software previously held only in Home. Confirm
+the exact software version and test network before starting the rehearsal.
+Do not treat a disconnected wallet label as proof of OS network isolation.
 
 TEST WALLET ONLY
 Never reuse these test seeds, passphrases or dice rolls for your real wallet. Generate fresh, independent secrets after the rehearsal.
@@ -28,7 +41,7 @@ checkpoints. Never infer a completed spend from an address screenshot alone.
 PACKAGE
 Download from the test website's Downloads page, just as any tester would:
 https://musthavemustash.github.io/plebum-dominium-test/downloads.html#offline-tester
-Choose: plebum-complete-offline-tester-20261113-r2.zip
+Choose: plebum-complete-offline-tester-20261115-r1.zip
 The tools-only and focused ZIPs do not contain the complete T6 guide.
 
 BEFORE DISCONNECTING
@@ -45,8 +58,8 @@ BEFORE DISCONNECTING
    and hardware signers are not required for T6. Do not use an existing wallet.
 
 START THE OFFLINE SESSION
-Disable OS networking. Keep the signing session offline. Open START.html in
-plebum-offline, then follow its T1 instructions to verify the extracted files.
+Disable OS networking. Keep the signing session offline. Run verify_package.py in
+plebum-offline, then use TAILS-OFFLINE.txt to open START through the folder grant.
 Stop on a mismatch. Open the T6 checklist and the one-key guide from START.html.
 Use only disposable test keys/passphrases and test-network coins throughout.
 The connected wallet stays watch-only. Never copy signing secrets to it.

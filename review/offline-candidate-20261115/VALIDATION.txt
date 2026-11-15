@@ -1,0 +1,54 @@
+NOVEMBER 15, 2026: VALIDATION OF THE STAGING PR AND UNSIGNED CANDIDATE
+
+PASS: source fingerprint/script-pin reconciliation; reviewed wallet-tool
+bytes, historical archives and signed r2 release files are unchanged.
+PASS: signed r2 manifest verified independently with GnuPG; all three archive
+hashes and vendored signature-library hashes match their pinned references.
+PASS: 32 signed browser-verifier regressions (including tampered signatures,
+expired keys, changed manifests, reset races and shared widget/catalog parity).
+PASS: site validator, 113 static HTML pages, relative targets and anchors.
+PASS: route checks, 28 steps / two overviews / both navigation directions,
+sidebars, runtime/static parity and separate progress keys.
+PASS: page testing modules, canonical/route/offline coverage and idempotence.
+PASS: manual public-session state matrices, network-event clearing, stale
+async result rejection and current/empty-password state handling.
+PASS: Dice validation edits/undo/clear/lock and pending input guards.
+PASS: search focus/keyboard regressions.
+PASS: all 7,776 mapper mappings, invalid input/paste/overflow, incomplete copy,
+stale clipboard callbacks, clearing and lock.
+PASS: fingerprint match/mismatch and stale-selection/read cancellation.
+PASS: Python core driver and its Node harness: eight public BIP39 vectors,
+excess/invalid input, Python/GnuPG/OpenPGP.js cross-decryption, Unicode,
+wrong-password/truncated/corrupted data and exact public descriptor bytes.
+PASS: tool packaging determinism and tamper/repository-write rejection.
+PASS: existing 34-file release checksum inventory and negative cases.
+PASS: immutable r2 archive verifiers and local-link/network-resource checks.
+PASS: new helper tests: scoped transient grant, paths with spaces/#/shell
+characters, focused layout, malformed response and command failure handling.
+PASS: new complete archive verifier (231 files), tools-only verifier (102),
+and matching focused subsets (38 files). These are new-package counts.
+PASS: all new local HTML link targets, embedded search URLs and JavaScript
+syntax; no external page subresources; matching reviewed tools/fingerprints.
+PASS: separate unsigned-candidate links cannot become the current signed
+verifier catalog. The signed selector still covers exactly the r2 archives.
+PASS: clean second build from source commit
+a33096b9b0919260af8701bf13c542d0b05c9f6c reproduced all three ZIPs byte-for-byte.
+PASS: exact live-addendum rebuild hashes/member inventories are pinned;
+unrecorded source drift and changes to historical archives remain rejected.
+PASS: git diff --check.
+
+ENVIRONMENT LIMITS
+Graphical Chromium file:// preview was attempted but could not start: the
+execution environment denied the browser process's socket creation. No page
+was rendered and no visual/browser pass is claimed. Static link closure and
+Node regressions are not substitutes for that test or physical Tails.
+The Node core harness was also initially invoked directly without its JSON
+stdin and rejected the empty input; it is correctly driven by the successful
+Python core test. This was an invocation error, not a tool result.
+
+OPEN RELEASE WORK
+The new helper and guide changes have NOT been exercised on physical Tails.
+The manual folder-export workaround has the separate November 15 r2 evidence.
+The new manifest is UNSIGNED; offline author signing is still required.
+T6/T7 wallet rehearsals, unperformed tool cases, final print review and beta
+approval remain outside this change. No production deployment is performed.

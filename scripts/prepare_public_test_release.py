@@ -13,10 +13,11 @@ ROOT = Path(__file__).resolve().parents[1]
 RELEASE = 'alpha-20261113-r2'
 SOURCES = {
     **{name: 'docs/testing/session-guide/' + name for name in (
-        'TESTING.txt', 'EVIDENCE-CHECKLIST.txt', 'SESSION-NOTES.txt', 'FORM-REPORTING.txt', 'PHOTO-REVIEW-FLOW.txt')},
+        'TESTING.txt', 'EVIDENCE-CHECKLIST.txt', 'SESSION-NOTES.txt', 'FORM-REPORTING.txt', 'PHOTO-REVIEW-FLOW.txt', 'TAILS-OFFLINE.txt', 'OPEN-IN-TAILS.py')},
     'fingerprint-checker.html': 'docs/fingerprint-checker.html',
     'diceware-mapper.html': 'docs/diceware-mapper.html',
-    'TOOL-FINISH-RETEST.txt': 'docs/testing/t5-20261108/TOOL-FINISH-RETEST.txt',
+    'TOOL-FINISH-RETEST.txt': 'docs/testing/session-guide/TOOL-FINISH-RETEST.txt',
+    'PRE-T6-20261115-RESULTS.txt': 'docs/testing/tails-pre-t6-20261115/RESULTS.txt',
     'PUBLIC-SESSION-CONTRACT.txt': 'docs/testing/t5-20261108/PUBLIC-SESSION-CONTRACT.txt',
     'make_truncated_fixture.py': 'review/fixtures/make_truncated_fixture.py',
     'compare_files.py': 'review/fixtures/compare_files.py',
@@ -37,14 +38,15 @@ FORM = 'https://docs.google.com/forms/d/e/1FAIpQLSfOkY3FrZmZpIVro5oxWLy_YvU7U-1B
 def sha(data):
     return hashlib.sha256(data).hexdigest()
 
-def build(output, source_commit):
+def build(output, source_commit, release=RELEASE):
     from build_tool_fingerprints import build as update_fingerprints
     update_fingerprints()
     if not re.fullmatch(r'[0-9a-f]{40}', source_commit):
         raise ValueError('Supply the full reviewed source commit SHA')
     output = Path(output)
     output.mkdir(parents=True, exist_ok=False)
-    release = RELEASE
+    if not re.fullmatch(r'alpha-[0-9]{8}-r[0-9]+', release):
+        raise ValueError('Invalid release ID')
     archive = 'plebum-tools-' + release + '.zip'
     files = {name: (ROOT / source).read_bytes() for name, source in SOURCES.items()}
     source_files = {name: {'source_path': source, 'sha256': sha(files[name]), 'size': len(files[name])}
@@ -93,10 +95,13 @@ No installation or dependency download is performed by the package checker.
 
 The packaged tools and public fixtures are byte-for-byte copies of the source
 paths recorded in SOURCE.json. No cryptographic implementation was changed.
-Earlier candidate Tails results are in TAILS-RETEST-RESULTS.txt.
-This revision packages the current manual-session and mapper reporting
-directions with the reviewed Dice converter validation fix. Tool bytes and
-fingerprints are unchanged from 20261113-r1.
+Historical Tails results are in TAILS-RETEST-RESULTS.txt.
+The focused November 15 r2 preflight is in PRE-T6-20261115-RESULTS.txt.
+This revision adds current directions and a Tails folder helper. Wallet-tool
+bytes and fingerprints are unchanged from 20261113-r2. The new helper requires
+physical acceptance. See TAILS-OFFLINE.txt; repeat the opening checks on Tails.
+The 20261115-r1 candidate awaits its own offline signature. The r2 signature
+does not cover it; the current homepage verifier still authenticates r2 only.
 The checksum/word derivation algorithm is unchanged. Browser-controller
 regressions use public fixtures and DOM doubles; they are not physical Tails
 or Windows evidence. Repeat the affected checks on this exact new candidate.
@@ -149,7 +154,7 @@ print(f'PASS: {len(rows)} files match package checksums. Public tests only; not 
     files['SHA256SUMS.txt'] = ''.join(f'{sha(data)}  {name}\n' for name, data in sorted(files.items())).encode()
     with zipfile.ZipFile(output / archive, 'w') as bundle:
         for name, data in sorted(files.items()):
-            info = zipfile.ZipInfo('plebum-public-test/' + name, (2026, 11, 13, 0, 0, 0))
+            info = zipfile.ZipInfo('plebum-public-test/' + name, (int(release[6:10]), int(release[10:12]), int(release[12:14]), 0, 0, 0))
             info.create_system = 3
             info.external_attr = 0o100644 << 16
             info.compress_type = zipfile.ZIP_DEFLATED
@@ -162,7 +167,7 @@ print(f'PASS: {len(rows)} files match package checksums. Public tests only; not 
     (output / 'manifest.json').write_text(json.dumps(manifest, indent=2) + '\n')
     (output / 'SHA256SUMS.txt').write_text(''.join(
         f'{sha((output / name).read_bytes())}  {name}\n' for name in (archive, 'manifest.json')))
-    for name in ('README.txt', 'TESTING.txt', 'EVIDENCE-CHECKLIST.txt', 'SESSION-NOTES.txt', 'FORM-REPORTING.txt', 'PHOTO-REVIEW-FLOW.txt'):
+    for name in ('README.txt', 'TESTING.txt', 'EVIDENCE-CHECKLIST.txt', 'SESSION-NOTES.txt', 'FORM-REPORTING.txt', 'PHOTO-REVIEW-FLOW.txt', 'TAILS-OFFLINE.txt', 'OPEN-IN-TAILS.py'):
         (output / name).write_bytes(files[name])
     return manifest
 

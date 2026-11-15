@@ -1,0 +1,61 @@
+PLEBUM DOMINIUM: OPEN THE OFFLINE GUIDE IN TAILS / TOR BROWSER
+Updated November 15, 2026. Public testing only.
+
+WHY A PAGE MAY LOSE ITS STYLES OR LINKS
+In the recorded Tails run, opening an individual HTML file granted Tor Browser
+access to that file but not its neighboring pages, styles and scripts. Opening
+the entire extracted folder through the document portal repaired navigation.
+A web page cannot grant itself this permission.
+
+NEW 20261115-r1 CANDIDATE: ONE COMMAND
+1. Keep OS networking disabled. Extract the whole ZIP into a new folder.
+2. In Files, open plebum-offline. Right-click empty space -> Open in Console.
+3. Check the files first: python3 verify_package.py
+   Stop on any failure. The helper does not replace signature or file checks.
+4. Run: python3 OPEN-IN-TAILS.py
+5. Copy the WHOLE file:/// address it prints into Tor Browser's address bar.
+   Press Enter. Use START's links to browse the guide and public-tests tools.
+   Close any earlier broken or unstyled tabs.
+6. Check that the one-key guide has styles, its next/back links work, the
+   three-key path opens, search finds a local guide page, and a public-test
+   tool opens locked. Save those observations for this exact new package.
+
+The helper grants temporary read access to this folder for Tor Browser. It
+does not change browser privacy settings, enable networking, start a server,
+or install software. It is new packaging code and still needs physical Tails
+acceptance; the manual command below was successful in the November 15 run.
+The focused ZIP uses plebum-public-test and opens the Dice converter instead.
+
+EXISTING VERIFIED r2 PACKAGE: MANUAL METHOD
+Keep the verified files unchanged. In Files, open the PARENT folder containing
+plebum-offline. Right-click empty space -> Open in Console. Run:
+
+flatpak document-export --unique --transient --app=org.boum.tails.TorBrowser plebum-offline
+
+The output is a folder path beginning /run/user/.../doc/.../plebum-offline.
+Use YOUR returned path: add file:// before it and /START.html after it, then
+paste that address into Tor Browser. The portal identifier changes; do not
+copy an identifier or USB mount name from another tester's screenshot.
+If the path contains spaces, the new helper handles URL encoding for you;
+for manual entry, replace each space in the address with %20.
+
+AFTER A NEW BOOT
+Repeat the folder grant after booting Tails again or moving/re-extracting the
+folder. Files placed only in the previous session's Home folder also need to
+be restored from the verified downloads. Do not assume a saved browser URL
+or an earlier Sparrow extraction survives a fresh Tails session.
+
+IF IT FAILS
+Stop and save the command, error, package name and Tails/Tor versions. Do not
+disable the sandbox, grant access to the whole USB/home directory, change Tor
+privacy settings or serve sensitive tools over localhost to work around it.
+An Offline label or navigator.onLine value is not evidence of OS isolation.
+
+FIND THE REFERENCE INPUTS
+Complete/tools-only ZIP: plebum-offline/public-tests/T5-dice-reference-inputs.txt
+Focused ZIP: plebum-public-test/T5-dice-reference-inputs.txt
+That reference file is beside the tools, NOT inside fixtures. Files such as
+zeros-256.txt and public-map.txt are inside the fixtures subfolder.
+
+Source for command options:
+https://docs.flatpak.org/en/latest/flatpak-command-reference.html#flatpak-document-export

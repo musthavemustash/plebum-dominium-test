@@ -1,0 +1,42 @@
+{
+  "reason": "Signed 20261115-r1 promotion: physical helper results and copy/paste observation, current signed links/catalog and later live instructions. Signed ZIP bytes and all earlier packages remain unchanged. This exact member inventory records the live source differences; it does not authorize repackaging.",
+  "base_commit": "fa1d4a1c40fcedbb0878d1c298ec6f8d2a5baa53",
+  "packages": {
+    "plebum-complete-offline-tester-20261115-r1.zip": {
+      "published_sha256": "4533b49dbd5f3bc4776f654c622bff09f9bc2111e75693ed6eb5099924b49c63",
+      "live_rebuild_sha256": "f4e620f44471940bf29a44dc7332ddf403c6b45d75f79c0ce8026cee87663948",
+      "changed_members": [
+        "plebum-offline/SHA256SUMS.txt",
+        "plebum-offline/T6-RUN.txt",
+        "plebum-offline/T7-RUN.txt",
+        "plebum-offline/downloads.html",
+        "plebum-offline/handouts/airgap.html",
+        "plebum-offline/handouts/checklist-one.html",
+        "plebum-offline/handouts/checklist.html",
+        "plebum-offline/handouts/verify.html",
+        "plebum-offline/offline-candidate.html",
+        "plebum-offline/offline-folder-guide.html",
+        "plebum-offline/package-manifest.json",
+        "plebum-offline/paths/one/airgap.html",
+        "plebum-offline/paths/one/checklist.html",
+        "plebum-offline/paths/one/verify.html",
+        "plebum-offline/paths/three/airgap.html",
+        "plebum-offline/paths/three/checklist.html",
+        "plebum-offline/paths/three/verify.html",
+        "plebum-offline/test-the-site.html",
+        "plebum-offline/testing/session-guide/RELEASE-SIGNING.txt",
+        "plebum-offline/testing/session-guide/T6-RUN.txt",
+        "plebum-offline/testing/session-guide/T7-RUN.txt"
+      ]
+    },
+    "plebum-website-tools-only-20261115-r1.zip": {
+      "published_sha256": "6ef478793c6c002945401600abe434576bf4153f1b7bcfd272167346ef27116b",
+      "live_rebuild_sha256": "e137dffc90fcaa3a7d16c15947e1b3ed17316427f5e90134ba44821998fc245b",
+      "changed_members": [
+        "plebum-offline/SHA256SUMS.txt",
+        "plebum-offline/offline-folder-guide.html",
+        "plebum-offline/package-manifest.json"
+      ]
+    }
+  }
+}

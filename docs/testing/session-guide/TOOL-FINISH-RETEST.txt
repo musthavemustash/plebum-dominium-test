@@ -1,0 +1,27 @@
+PLEBUM DOMINIUM: REMAINING TOOL CHECKS
+Updated November 15, 2026. Public fixtures only.
+
+Use TESTING.txt and FORM-REPORTING.txt for case instructions. Record PASS,
+FAIL or NOT TESTED per case, OS and exact ZIP. Do not reset earlier results.
+
+The November 15 focused Tails preflight on the COMPLETE 20261113-r2 archive
+closed with saved-file reopening and full shutdown confirmed. Its record is
+PRE-T6-20261115-RESULTS.txt in newer focused packages, or the testing page's
+November 15 results link. It is not a full T1-T5 pass or a T6 wallet rehearsal.
+
+New 20261115-r1 ZIPs: signature and exact-package T1 come first. Repeat the
+new Tails folder helper and guide acceptance checks in TAILS-OFFLINE.txt.
+Existing tool bytes are unchanged; compare fingerprints and identify which
+earlier tool observations apply to those bytes. Do not call a new ZIP tested
+merely because its tools match an older tested copy.
+
+Keep outstanding work explicit: remaining dice reference/negative cases,
+mapper rejection/correction/incomplete-copy cases, wallet-map cross-tool
+interoperability and platform checks, any required repeat session, and the
+complete T6/T7 wallet rehearsals. Use the case lists instead of interpreting
+one successful example as a whole-track pass.
+
+Tor's browser connection flag does not verify OS isolation. Keep OS networking
+disabled during public inputs. Test observed Lock and clear behavior; do not
+reconnect with data in the tools or change privacy settings to force a flag.
+Save and reopen public evidence on the data USB before shutting down.

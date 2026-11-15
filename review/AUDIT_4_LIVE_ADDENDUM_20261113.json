@@ -1,14 +1,18 @@
 {
-  "reason": "Cumulative reviewed live addendum: audit-4 and release-signing followup, plus the November 13 Windows browser results and first-page print correction. Published r2 ZIPs remain immutable and retain their original print styles. These source changes enter only a future separately versioned package. November 14 signature-verifier followup: homepage and Downloads share the signed ZIP checker; the separate public signing note and verifier assets are updated. Homepage widgets are excluded from future archive assembly to avoid a self-referential checksum. No published ZIP bytes changed. November 14 approved hero R2: move the revised opening paragraph inside the unchanged hero and show expanded tile definitions in the same stable area. Exact hero CSS/JS differences and the revised homepage are recorded for the next package; the existing signed ZIPs are unchanged.",
+  "reason": "Cumulative reviewed live addendum: audit-4 and release-signing followup, plus the November 13 Windows browser results and first-page print correction. Published r2 ZIPs remain immutable and retain their original print styles. These source changes enter only a future separately versioned package. November 14 signature-verifier followup: homepage and Downloads share the signed ZIP checker; the separate public signing note and verifier assets are updated. Homepage widgets are excluded from future archive assembly to avoid a self-referential checksum. No published ZIP bytes changed. November 14 approved hero R2: move the revised opening paragraph inside the unchanged hero and show expanded tile definitions in the same stable area. Exact hero CSS/JS differences and the revised homepage are recorded for the next package; the existing signed ZIPs are unchanged. November 15 Tails preflight: current status/directions, temporary folder helper, fresh-boot/reference paths, separate unsigned candidate status and scoped closeout. Existing r2 archives/signatures stay immutable; this inventory pins the intentional live rebuild difference, not new physical approval.",
   "base_commit": "52ca8288bd034faed5e88f033fa44f52800638eb",
   "packages": {
     "plebum-complete-offline-tester-20261113-r2.zip": {
       "published_sha256": "1fbd6c9d92fdcfdf615db9a5b542b0294814b232775b9e2ce66bf52c785fa706",
-      "live_rebuild_sha256": "31cec9dcbd470d91bc5b00718c8b57eeb1b67addcf59a0bd7e7149b29ce23699",
+      "live_rebuild_sha256": "723f0077100ca7b8ca7ca2d483bc477e1b38fc4540375e77615cd439ab6ebb1e",
       "changed_members": [
+        "plebum-offline/OPEN-IN-TAILS.py",
+        "plebum-offline/README.txt",
         "plebum-offline/SHA256SUMS.txt",
+        "plebum-offline/START.html",
         "plebum-offline/T6-RUN.txt",
         "plebum-offline/T7-RUN.txt",
+        "plebum-offline/TAILS-OFFLINE.txt",
         "plebum-offline/assets/css/download-verifier.css",
         "plebum-offline/assets/css/home-hero.css",
         "plebum-offline/assets/css/print.css",
@@ -20,31 +24,46 @@
         "plebum-offline/handouts/single-sig.html",
         "plebum-offline/handouts/testnet.html",
         "plebum-offline/index.html",
+        "plebum-offline/offline-candidate.html",
+        "plebum-offline/offline-folder-guide.html",
         "plebum-offline/package-manifest.json",
         "plebum-offline/paths/one/search-index.json",
         "plebum-offline/paths/one/single-sig.html",
         "plebum-offline/paths/three/search-index.json",
         "plebum-offline/paths/three/signing.html",
         "plebum-offline/paths/three/testnet.html",
+        "plebum-offline/test-notes.html",
         "plebum-offline/test-the-site.html",
         "plebum-offline/testing/release-review-20261113/STATUS.txt",
+        "plebum-offline/testing/session-guide/FORM-REPORTING.txt",
+        "plebum-offline/testing/session-guide/OPEN-IN-TAILS.py",
         "plebum-offline/testing/session-guide/RELEASE-SIGNING.txt",
+        "plebum-offline/testing/session-guide/SESSION-NOTES.txt",
         "plebum-offline/testing/session-guide/T6-RUN.txt",
         "plebum-offline/testing/session-guide/T7-RUN.txt",
+        "plebum-offline/testing/session-guide/TAILS-OFFLINE.txt",
+        "plebum-offline/testing/session-guide/TESTING.txt",
+        "plebum-offline/testing/session-guide/TOOL-FINISH-RETEST.txt",
+        "plebum-offline/testing/tails-pre-t6-20261115/RESULTS.txt",
         "plebum-offline/testing/windows-web-20261113/EVIDENCE.csv",
         "plebum-offline/testing/windows-web-20261113/RESULTS.md"
       ]
     },
     "plebum-website-tools-only-20261113-r2.zip": {
       "published_sha256": "66a7f107794bf6824b7037bb05965d15f4e18efe398951a520702716bab432a5",
-      "live_rebuild_sha256": "f53c190a92aa76909705a70f980669554e81da262512dc52cbbb342ccaaf775b",
+      "live_rebuild_sha256": "03c16a5d8031420ff16177763cea76124382e1b6572d99b3978af4252c37f0f1",
       "changed_members": [
+        "plebum-offline/OPEN-IN-TAILS.py",
+        "plebum-offline/README.txt",
         "plebum-offline/SHA256SUMS.txt",
+        "plebum-offline/START.html",
+        "plebum-offline/TAILS-OFFLINE.txt",
         "plebum-offline/assets/css/download-verifier.css",
         "plebum-offline/assets/css/home-hero.css",
         "plebum-offline/assets/css/print.css",
         "plebum-offline/assets/js/download-verifier.js",
         "plebum-offline/assets/js/home-hero.js",
+        "plebum-offline/offline-folder-guide.html",
         "plebum-offline/package-manifest.json"
       ]
     }
@@ -52,5 +71,6 @@
   "followup_base_commit": "1d0b3311267ccd78719224ef35117082cb7b2314",
   "windows_print_base_commit": "6a36a219025a234ea9e9839fa6c1565f46b2bcaf",
   "signature_verifier_base_commit": "4d646f35fd93df98a23057f99967dfe59c7a011e",
-  "hero_base_commit": "d427027de43aa60b6412fc7a10149abc2e46f214"
+  "hero_base_commit": "d427027de43aa60b6412fc7a10149abc2e46f214",
+  "tails_preflight_base_commit": "c83c8478e7f604c0b1ee0038a6804819e018799c"
 }
