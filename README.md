@@ -81,9 +81,11 @@ The guide opening failure was repaired manually by exporting the extracted
 folder through Tails' Flatpak document portal. The new `OPEN-IN-TAILS.py` helper
 packages that action without changing Tor privacy settings or starting HTTP.
 
-The new 20261115-r1 archives are **unsigned candidates**, separate from the
-current r2 signed downloads and verifier. Their acceptance/signing handoff is
-`review/offline-candidate-20261115/README.md`. Do not promote them or claim a
-physical pass until the exact new files are signed and the affected guide
-checks are observed. `python3 scripts/test_tails_offline.py` checks the helper
-and candidate package behavior; it does not run physical Tails.
+The exact 20261115-r1 archives now have an independently verified owner signature
+in `docs/releases/20261115-r1/`; current download links and the shared verifier
+authenticate them. The ZIPs and their pre-signing status labels remain immutable.
+The complete archive has scoped physical helper/navigation and fresh-boot results
+in `docs/testing/tails-helper-20261115/RESULTS.txt`; T6/T7 remain outstanding.
+Copy the helper address into Tor Browser rather than activating its terminal link.
+`python3 scripts/test_tails_offline.py` checks packaging; physical claims come
+only from the recorded observations. Production and beta approval are separate.

@@ -1,3 +1,16 @@
+# November 15 signing and physical follow-up
+
+The original handoff below is retained as preparation history. The unchanged
+candidate ZIPs now have a verified detached signature in
+`docs/releases/20261115-r1/`. Current Downloads and the shared verifier select
+that release. The complete ZIP has scoped physical results in
+`docs/testing/tails-helper-20261115/RESULTS.txt`; the other packages do not
+inherit them. BUILD.json retains its pre-signing status and source identity.
+No ZIP, historical evidence or wallet-tool bytes were changed. No merge or
+production/beta approval is performed by this follow-up.
+
+---
+
 # November 15 offline candidate and signing handoff
 
 The physical Tails run tested the complete **20261113-r2** archive. Its focused

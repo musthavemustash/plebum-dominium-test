@@ -20,13 +20,13 @@ from reconcile_tool_downloads import CURRENT
 ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / 'docs'
 BASE = '/plebum-dominium-test/'
-DEST = 'testing/offline-20261113-r2'
+DEST = 'testing/offline-20261115-r1'
 OUT = DOCS / DEST
-RELEASE = '20261113-r2'
+RELEASE = '20261115-r1'
 SOURCE_COMMIT = None
 FOCUSED_ARCHIVE = None
-FULL = 'plebum-complete-offline-tester-20261113-r2.zip'
-TOOLS = 'plebum-website-tools-only-20261113-r2.zip'
+FULL = 'plebum-complete-offline-tester-20261115-r1.zip'
+TOOLS = 'plebum-website-tools-only-20261115-r1.zip'
 SENSITIVE = {'dice-converter.html', 'descriptor-tool.html', 'diceware-mapper.html'}
 EXACT = SENSITIVE | {'fingerprint-checker.html', 'verify-file.html', 'kit/hash_checker.html'}
 TOOL_NAMES = [

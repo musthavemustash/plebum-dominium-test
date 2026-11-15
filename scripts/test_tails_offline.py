@@ -81,12 +81,14 @@ def candidate_checks():
             assert 'python3 OPEN-IN-TAILS.py' in start
             assert b'20261115-r1' in archive.read('plebum-offline/README.txt')
             assert json.loads(archive.read('plebum-offline/SOURCE.json'))['source_commit'] == metadata['source_commit']
-    # The signed download selector must still cover exactly r2, not an unsigned candidate.
+    # The candidate snapshot stays immutable; the independently signed release now covers it.
     from build_download_verifier import read_catalog
     catalog = read_catalog(ROOT / 'docs')
     assert len(catalog['packages']) == 3
-    assert all('20261113-r2' in p['name'] for p in catalog['packages'])
-    print('PASS: new helper packaged consistently; unsigned candidate cannot replace signed selector')
+    assert all('20261115-r1' in p['name'] for p in catalog['packages'])
+    assert catalog['signedRelease']['release'] == '20261115-r1'
+    assert catalog['signedRelease']['signature'].startswith('-----BEGIN PGP SIGNATURE-----')
+    print('PASS: new helper packaged consistently; signed selector covers the exact released candidate')
 
 
 if __name__ == '__main__':

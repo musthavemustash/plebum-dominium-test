@@ -21,7 +21,7 @@ vm.runInNewContext(fs.readFileSync(path.join(rootDir, 'docs/assets/vendor/openpg
 vm.runInNewContext(signatureSource, cryptoContext);
 const signedRelease = Object.fromEntries(Object.entries({
   manifest: 'manifest.txt', signature: 'manifest.txt.asc', publicKey: 'plebum-public.asc'
-}).map(([key, file]) => [key, fs.readFileSync(path.join(rootDir, 'docs/releases/20261113-r2', file), 'utf8')]));
+}).map(([key, file]) => [key, fs.readFileSync(path.join(rootDir, 'docs/releases/20261115-r1', file), 'utf8')]));
 const baseUrl = 'https://musthavemustash.github.io/plebum-dominium-test/';
 const nextTurn = () => new Promise(resolve => setImmediate(resolve));
 const inputs = [];
@@ -489,7 +489,7 @@ for (const input of inputs.filter(item => fs.existsSync(item.localPath))) {
 
 test('modified signed manifest is rejected cryptographically', async () => {
   await assert.rejects(cryptoContext.PlebumReleaseSignatures.verify({ ...signedRelease,
-    manifest: signedRelease.manifest.replace('1fbd', '0fbd') }));
+    manifest: (signedRelease.manifest[0] === '0' ? '1' : '0') + signedRelease.manifest.slice(1) }));
 });
 test('manifest whitespace changes do not get normalized before verification', async () => {
   await assert.rejects(cryptoContext.PlebumReleaseSignatures.verify({ ...signedRelease,

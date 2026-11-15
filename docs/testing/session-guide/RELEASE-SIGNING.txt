@@ -1,7 +1,7 @@
 PLEBUM DOMINIUM: VERIFY A SIGNED RELEASE
-Updated November 14, 2026 (US Eastern; signing completed November 15 UTC).
+Updated November 15, 2026.
 
-The three 20261113-r2 ZIPs now have one signed manifest. Their original bytes
+The three 20261115-r1 ZIPs now have one signed manifest. Their original bytes
 are unchanged. This signature covers those ZIPs only, not standalone tools
 or later changes to the website. Public testing remains separate from beta.
 
@@ -15,9 +15,9 @@ Save the downloadable verifier separately before disconnecting for offline use.
 
 VERIFY WITH SPARROW
 Download all three public verification files from:
-https://musthavemustash.github.io/plebum-dominium-test/releases/20261113-r2/manifest.txt
-https://musthavemustash.github.io/plebum-dominium-test/releases/20261113-r2/manifest.txt.asc
-https://musthavemustash.github.io/plebum-dominium-test/releases/20261113-r2/plebum-public.asc
+https://musthavemustash.github.io/plebum-dominium-test/releases/20261115-r1/manifest.txt
+https://musthavemustash.github.io/plebum-dominium-test/releases/20261115-r1/manifest.txt.asc
+https://musthavemustash.github.io/plebum-dominium-test/releases/20261115-r1/plebum-public.asc
 
 1. Open Tools > Verify Download in Sparrow.
 2. Signature: manifest.txt.asc
