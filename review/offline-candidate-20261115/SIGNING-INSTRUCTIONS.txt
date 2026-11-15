@@ -1,0 +1,25 @@
+PLEBUM DOMINIUM: 20261115-r1 CANDIDATE SIGNING
+
+The three ZIPs in this folder are UNSIGNED candidates. This handoff does not
+approve a beta release or establish a physical Tails pass. The signed r2
+downloads remain current until the new signature is verified and promoted.
+
+1. Extract this handoff into a NEW folder. Keep all three ZIP filenames intact.
+2. Before signing, check every ZIP against the exact supplied manifest:
+   sha256sum -c manifest.txt
+   Expect OK for all three. Stop on any mismatch.
+3. Use the existing OFFLINE release-signing setup and key. Run:
+   gpg --armor --detach-sign --local-user B9286C4A7CFF722E191D2D7566FB7D9AB51E417E --output manifest.txt.asc manifest.txt
+4. Check the new signature:
+   gpg --verify manifest.txt.asc manifest.txt
+5. Return ONLY manifest.txt.asc. Never send the private key, passphrase or
+   revocation certificate. Do not edit the manifest or rebuild these ZIPs.
+
+Pinned public fingerprint:
+B928 6C4A 7CFF 722E 191D 2D75 66FB 7D9A B51E 417E
+Compare against your independently retained fingerprint before trusting it.
+
+The next release step is to independently verify the returned signature,
+publish its exact manifest and public key, update all three current download
+links and regenerate the signed verifier. The new helper/navigation still
+needs a physical Tails acceptance run. See README.md for scope and steps.

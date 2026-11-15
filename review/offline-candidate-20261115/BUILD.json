@@ -1,0 +1,26 @@
+{
+  "release": "20261115-r1",
+  "source_commit": "a33096b9b0919260af8701bf13c542d0b05c9f6c",
+  "signature_status": "AWAITING_OFFLINE_SIGNATURE",
+  "physical_acceptance": "NOT_TESTED",
+  "archives": [
+    {
+      "name": "plebum-tools-alpha-20261115-r1.zip",
+      "sha256": "8bf9de1a5fce0b760ee8fac92af60fdbcf10d640019cbf656925f5129c9d071b",
+      "size": 303958
+    },
+    {
+      "name": "plebum-complete-offline-tester-20261115-r1.zip",
+      "sha256": "4533b49dbd5f3bc4776f654c622bff09f9bc2111e75693ed6eb5099924b49c63",
+      "size": 2399740
+    },
+    {
+      "name": "plebum-website-tools-only-20261115-r1.zip",
+      "sha256": "6ef478793c6c002945401600abe434576bf4153f1b7bcfd272167346ef27116b",
+      "size": 1586165
+    }
+  ],
+  "unsigned_manifest_sha256": "a194d81afa3be6667a5e00c28d82ba189a1b7323565bbaf81682dd42f6b50f0f",
+  "reviewed_tool_bytes": "unchanged from 20261113-r2",
+  "signed_default": "20261113-r2"
+}
