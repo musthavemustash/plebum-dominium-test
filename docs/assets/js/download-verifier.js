@@ -1,4 +1,4 @@
-/* Plebum Dominium ZIP checksum comparison. No network, storage, or uploads. */
+/* Plebum Dominium signed ZIP verification. No network, storage, or uploads. */
 (function () {
   'use strict';
 
@@ -22,11 +22,11 @@
   function parseCatalog(node) {
     if (!node) throw new Error('Missing package reference.');
     var data = JSON.parse(node.textContent);
-    if (!data || data.schema !== 1 || !Array.isArray(data.packages) ||
+    if (!data || data.schema !== 2 || !Array.isArray(data.packages) ||
         !data.packages.length || data.packages.length > 32) {
       throw new Error('Invalid package reference.');
     }
-    return data.packages.map(function (entry) {
+    data.packages = data.packages.map(function (entry) {
       if (!entry || !text(entry.id, 160) || !text(entry.label, 200) ||
           !text(entry.name, 255) || !text(entry.release, 160) ||
           typeof entry.sha256 !== 'string' || !CHECKSUM.test(entry.sha256) ||
@@ -44,6 +44,7 @@
     }).sort(function (a, b) {
       return Number(b.current) - Number(a.current);
     });
+    return data;
   }
 
   function byteLabel(bytes) {
@@ -80,8 +81,11 @@
     var packageList = find('packages');
     var next = find('next');
     var dropzone = find('dropzone');
+    var signatureResult = find('signature-result');
+    var checksumResult = find('checksum-result');
     var requestToken = 0;
     var packages;
+    var signedRelease;
     var available = false;
     var cryptoProvider = window.crypto;
 
@@ -104,6 +108,8 @@
       hashOutput.textContent = '';
       reference.textContent = '';
       next.hidden = true;
+      signatureResult.textContent = 'Not checked';
+      checksumResult.textContent = 'Not checked';
       resetButton.disabled = true;
       root.setAttribute('aria-busy', 'false');
       if (dropzone) dropzone.classList.remove('is-dragover');
@@ -111,7 +117,7 @@
     }
 
     function ready() {
-      show('ready', 'Ready to check', 'Choose a ZIP to compare it with the saved published references. Renamed copies are recognized by their contents.');
+      show('ready', 'Ready to check', 'Select your ZIP. The signed manifest and public key are already included. Both checks run on your device.');
     }
 
     function reset(focus) {
@@ -131,7 +137,7 @@
 
     if (!input || !resetButton || !status || !statusTitle || !statusText || !progress ||
         !fileInfo || !filename || !filesize || !hashDetails || !hashOutput || !reference ||
-        !packageList || !next) {
+        !packageList || !next || !signatureResult || !checksumResult) {
       if (input) input.disabled = true;
       if (resetButton) resetButton.disabled = true;
       root.dataset.enabled = 'false';
@@ -143,7 +149,9 @@
 
     clearResult();
     try {
-      packages = parseCatalog(root.querySelector('.pd-verify-catalog'));
+      var catalog = parseCatalog(root.querySelector('.pd-verify-catalog'));
+      packages = catalog.packages;
+      signedRelease = catalog.signedRelease;
     } catch (error) {
       lock('error', 'Package references unavailable', 'This copy has no valid package references. Open the current verifier or use the published checksum lists. No verification has run.');
       return;
@@ -177,6 +185,10 @@
       lock('unsupported', 'Browser verification unavailable', 'This browser does not provide the required local SHA-256 tools here. Open the HTTPS verifier in a supported browser, or compare the published SHA-256 with a local file-hashing tool. No verification has run.');
       return;
     }
+    if (!window.openpgp || !window.PlebumReleaseSignatures) {
+      lock('unsupported', 'Signature checker unavailable', 'Reload this page, download the offline verifier, or use the Sparrow instructions below. No verification has run.');
+      return;
+    }
 
     available = true;
     root.dataset.enabled = 'true';
@@ -201,6 +213,7 @@
         return;
       }
       if (file.size === 0) {
+        checksumResult.textContent = 'Failed: empty file';
         show('mismatch', 'No matching published checksum', 'The selected file is empty. Choose the completed ZIP download, or download the package again.');
         return;
       }
@@ -236,17 +249,35 @@
         return entry.sha256 === hash && entry.bytes === file.size;
       });
       if (!match) {
+        checksumResult.textContent = 'Failed: ZIP does not match';
         reference.textContent = 'No saved reference matches both this SHA-256 and this file size.';
         show('mismatch', 'No matching published checksum', 'This file does not match the packages listed in this verifier. Check the selected ZIP and release, or download a fresh copy. An older offline verifier may not recognize a newer package.');
         return;
       }
 
       reference.textContent = match.name + ' · ' + match.release + ' · ' + byteLabel(match.bytes) + (match.current ? ' · Current reference in this copy' : ' · Earlier published reference');
-      next.hidden = false;
       if (match.current) {
-        show('match', 'Matches published package', match.label + ' · ' + match.release + '. The SHA-256 and file size match this copy’s published reference. Continue with the extracted-file check below.');
+        checksumResult.textContent = 'Checksum matches; checking signature';
+        signatureResult.textContent = 'Checking release signature…';
+        show('checking', 'Checking the release signature', 'Confirming the manifest was signed by the Plebum Dominium release key.');
+        try {
+          var authenticated = await window.PlebumReleaseSignatures.verify(signedRelease);
+          if (token !== requestToken) return;
+          if (authenticated.hashes.get(match.name) !== hash) throw new Error('ZIP is not in the signed manifest.');
+          signatureResult.textContent = 'Passed: Plebum Dominium release key';
+          checksumResult.textContent = 'Passed: ZIP matches the signed manifest';
+          next.hidden = false;
+          show('match', 'Signature and ZIP verified', match.label + ' · ' + match.release + '. The signature is valid for the pinned release key, and your ZIP matches its signed checksum. Public testing only.');
+        } catch (error) {
+          if (token !== requestToken) return;
+          signatureResult.textContent = 'Not verified';
+          checksumResult.textContent = 'Saved checksum matches; signed checksum not confirmed';
+          show('error', 'Signature verification failed', 'The signature, signing key or signed checksum could not be confirmed. Check your device date and use the Sparrow instructions below. Do not use this download until both checks pass.');
+        }
       } else {
-        show('earlier', 'Matches an earlier published package', match.label + ' · ' + match.release + '. This is a recognized older ZIP. Keep its hash with an existing test run; download the current package if you are beginning new tests.');
+        signatureResult.textContent = 'No signature supplied for this earlier ZIP';
+        checksumResult.textContent = 'Matches an earlier published checksum';
+        show('earlier', 'Earlier checksum matches; signature not verified', match.label + ' · ' + match.release + '. This older reference has no release signature in this checker. Download the current package for new tests.');
       }
     }
 

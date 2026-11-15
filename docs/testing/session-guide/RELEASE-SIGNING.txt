@@ -1,46 +1,58 @@
-PLEBUM DOMINIUM: RELEASE SIGNATURES
-Prepared November 13, 2026. Signing is pending.
+PLEBUM DOMINIUM: VERIFY A SIGNED RELEASE
+Updated November 14, 2026 (US Eastern; signing completed November 15 UTC).
 
-The current 20261113-r2 downloads have published SHA-256 checksums. They do
-not yet have a Plebum release signature. A matching checksum detects a
-changed download; it does not authenticate a checksum obtained from the
-same compromised website. Public testing remains separate from beta approval.
+The three 20261113-r2 ZIPs now have one signed manifest. Their original bytes
+are unchanged. This signature covers those ZIPs only, not standalone tools
+or later changes to the website. Public testing remains separate from beta.
 
-THE NEXT SIGNED RELEASE
-The author will sign one SHA256SUMS list covering the identified ZIPs and
-standalone tools. The download page will provide that exact list, its
-detached SHA256SUMS.asc signature and the author's public key. Those files
-will be published only after the owner has signed and verification passes.
+EASIEST: SELECT YOUR ZIP
+Open the homepage and choose "Select ZIP to verify":
+https://musthavemustash.github.io/plebum-dominium-test/#verify-download
+The public key, manifest and detached signature are already included.
+Expect "Signature and ZIP verified" and both checks marked Passed.
+The selected file is checked locally; it is not uploaded.
+Save the downloadable verifier separately before disconnecting for offline use.
 
-Before trusting that key, compare its FULL primary fingerprint with one
-obtained through an independent, previously trusted channel. A fingerprint
-and key downloaded together from this website are not independent evidence.
-Upstream Tails/Electrum keys do not authenticate a Plebum release.
+VERIFY WITH SPARROW
+Download all three public verification files from:
+https://musthavemustash.github.io/plebum-dominium-test/releases/20261113-r2/manifest.txt
+https://musthavemustash.github.io/plebum-dominium-test/releases/20261113-r2/manifest.txt.asc
+https://musthavemustash.github.io/plebum-dominium-test/releases/20261113-r2/plebum-public.asc
 
-WHEN SIGNATURES ARE AVAILABLE
-1. Obtain and independently check the author's public key fingerprint.
-2. Import that public key into GnuPG and verify SHA256SUMS.asc against the
-   exact SHA256SUMS file. Check the signing key belongs to that primary key.
-   Stop for an unexpected key, bad, expired or revoked signature, or missing
-   signature. A 'Good signature' message alone does not establish identity.
-3. Compare your download's SHA-256 with its exact filename in the now
-   authenticated list. Stop on a mismatch. Then run T1 after extraction.
-4. Retain the ZIP, signed list, signature, public key, full fingerprint and
-   verification output with the identified release. Test results still apply
-   only to the package and environment actually tested.
+1. Open Tools > Verify Download in Sparrow.
+2. Signature: manifest.txt.asc
+   Manifest: manifest.txt
+   Public Key: plebum-public.asc
+   Release File: your downloaded ZIP
+3. Expect Plebum Dominium Release Signing and a matched manifest hash.
+   Repeat for each ZIP you use. Stop if either check fails.
 
-GnuPG verification command (from the folder containing both files):
-  gpg --verify SHA256SUMS.asc SHA256SUMS
+FULL RELEASE KEY FINGERPRINT
+B928 6C4A 7CFF 722E 191D 2D75 66FB 7D9A B51E 417E
 
-Full public-key fingerprint inspection before importing:
-  gpg --show-keys --with-fingerprint plebum-release-key.asc
+Compare all 40 hexadecimal characters against a copy saved earlier or obtained
+through an independently trusted channel. A key and fingerprint from this same
+website do not provide independent identity evidence. The signer name alone
+is insufficient. The key in this copy expires on November 14, 2027.
 
-Follow the release-specific instructions for the checksum step. On Windows,
-Get-FileHash -Algorithm SHA256 can hash the exact downloaded ZIP. On Tails,
-sha256sum can do so. Compare all 64 hexadecimal characters and the filename.
+GNUPG (from the folder containing the public files and ZIPs)
+gpg --show-keys --with-fingerprint plebum-public.asc
+# Compare the fingerprint before importing.
+gpg --import plebum-public.asc
+gpg --verify manifest.txt.asc manifest.txt
+sha256sum -c manifest.txt
 
-A signature authenticates the publisher and signed bytes. It does not prove
-the software is safe, the computer is isolated, or the wallet rehearsal passed.
-Never send a private signing key or its passphrase to a website or reviewer.
+Expect Good signature from the expected key and OK for each downloaded ZIP.
+A newly imported key may have an ownertrust warning; compare its fingerprint.
+On Windows, Get-FileHash -Algorithm SHA256 can calculate a ZIP's checksum;
+compare all 64 characters against that exact filename in the verified manifest.
+Missing ZIPs are reported separately when checking the whole list.
 
-Reference: https://bitcoincore.org/en/download/
+Keep an accurate clock. Stop on a bad or missing signature, unexpected key,
+expired/revoked key or mismatched checksum. Offline copies cannot learn about
+subsequent revocations or new releases. Then extract and run T1's per-file check.
+Keep the ZIP, signed manifest, signature, public key and result with your evidence.
+
+A valid signature and matching hash do not prove software safety, computer
+isolation or successful wallet recovery. These packages remain public alpha.
+No private signing key, passphrase or revocation certificate belongs on this site.

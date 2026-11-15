@@ -243,6 +243,15 @@
 .pd-verify[data-state="error"] .pd-verify-status h3,
 .pd-verify[data-state="unsupported"] .pd-verify-status h3 { color: var(--stop, #b91c1c); }
 .pd-verify .pd-verify-noscript { margin: 12px 0; color: var(--stop, #b91c1c); font-size: 13px; }
+.pd-verify .pd-verify-checks { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 18px 0; }
+.pd-verify-checks > div { border: 1px solid var(--rule, #d8d1c5); border-radius: 8px; padding: 12px; }
+.pd-verify-checks dt { font-size: 12px; font-weight: 700; }
+.pd-verify-checks dd { margin: 5px 0 0; font-size: 13px; overflow-wrap: anywhere; }
+.pd-verify[data-state="match"] .pd-verify-checks > div { border-color: var(--tip, #166534); }
+.pd-verify .pd-verify-fingerprint { display: block; padding: 10px; white-space: normal; overflow-wrap: anywhere; }
+.pd-verify-signing-details p, .pd-verify-signing-details li { font-size: 13px; }
+.pd-verify-signing-details pre { max-width: 100%; overflow-x: auto; padding: 10px; }
+@media (max-width: 520px) { .pd-verify .pd-verify-checks { grid-template-columns: 1fr; } }
 .pd-verify-details {
   margin-top: 16px;
   padding: 0;

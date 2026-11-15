@@ -1,20 +1,23 @@
 {
-  "reason": "Cumulative reviewed live addendum: audit-4 and release-signing followup, plus the November 13 Windows browser results and first-page print correction. Published r2 ZIPs remain immutable and retain their original print styles. These source changes enter only a future separately versioned package.",
+  "reason": "Cumulative reviewed live addendum: audit-4 and release-signing followup, plus the November 13 Windows browser results and first-page print correction. Published r2 ZIPs remain immutable and retain their original print styles. These source changes enter only a future separately versioned package. November 14 signature-verifier followup: homepage and Downloads share the signed ZIP checker; the separate public signing note and verifier assets are updated. Homepage widgets are excluded from future archive assembly to avoid a self-referential checksum. No published ZIP bytes changed.",
   "base_commit": "52ca8288bd034faed5e88f033fa44f52800638eb",
   "packages": {
     "plebum-complete-offline-tester-20261113-r2.zip": {
       "published_sha256": "1fbd6c9d92fdcfdf615db9a5b542b0294814b232775b9e2ce66bf52c785fa706",
-      "live_rebuild_sha256": "29fed033da45416e161fc5c2d5b9893442abecc007e13a8a1480c0f3911e4ac4",
+      "live_rebuild_sha256": "a879866d12703fd262cef3329f065389846a5e2185600e385ae91e3b117c8b29",
       "changed_members": [
         "plebum-offline/SHA256SUMS.txt",
         "plebum-offline/T6-RUN.txt",
         "plebum-offline/T7-RUN.txt",
+        "plebum-offline/assets/css/download-verifier.css",
         "plebum-offline/assets/css/print.css",
+        "plebum-offline/assets/js/download-verifier.js",
         "plebum-offline/assets/js/offline-indexes.js",
         "plebum-offline/downloads.html",
         "plebum-offline/handouts/signing.html",
         "plebum-offline/handouts/single-sig.html",
         "plebum-offline/handouts/testnet.html",
+        "plebum-offline/index.html",
         "plebum-offline/package-manifest.json",
         "plebum-offline/paths/one/search-index.json",
         "plebum-offline/paths/one/single-sig.html",
@@ -32,14 +35,17 @@
     },
     "plebum-website-tools-only-20261113-r2.zip": {
       "published_sha256": "66a7f107794bf6824b7037bb05965d15f4e18efe398951a520702716bab432a5",
-      "live_rebuild_sha256": "9a282c3b108e7e6b73d574bd928c1d3bd57e288eea8a9cf8a9a932eff7ac3de5",
+      "live_rebuild_sha256": "68e6c2f65eae7d8def777e0875530dcbebc93b14df6d654eeb9444e6651f466e",
       "changed_members": [
         "plebum-offline/SHA256SUMS.txt",
+        "plebum-offline/assets/css/download-verifier.css",
         "plebum-offline/assets/css/print.css",
+        "plebum-offline/assets/js/download-verifier.js",
         "plebum-offline/package-manifest.json"
       ]
     }
   },
   "followup_base_commit": "1d0b3311267ccd78719224ef35117082cb7b2314",
-  "windows_print_base_commit": "6a36a219025a234ea9e9839fa6c1565f46b2bcaf"
+  "windows_print_base_commit": "6a36a219025a234ea9e9839fa6c1565f46b2bcaf",
+  "signature_verifier_base_commit": "4d646f35fd93df98a23057f99967dfe59c7a011e"
 }

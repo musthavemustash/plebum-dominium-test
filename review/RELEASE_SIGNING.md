@@ -1,11 +1,17 @@
 # Release signing preparation
 
-Status: **unsigned**. No author key or signature has been created or claimed.
-The prepared manifest covers the three immutable 20261113-r2 ZIPs and nineteen
-standalone tool/helper files. It does not sign this PR's live guide edits.
-Those edits will be incorporated into a separately identified future package.
-Signing r2 would authenticate its existing bytes, including its documented
-instruction correction; it would not retroactively fix the archive or approve beta.
+Status: the owner signed a **separate manifest covering the three immutable
+20261113-r2 ZIPs** on 2026-11-15 at 01:49:38 UTC (November 14 US Eastern).
+Public artifacts are in `docs/releases/20261113-r2/`; see
+`review/release-signing-20261114/RESULTS.md` for verification and scope.
+
+The earlier prepared `review/release-signing-20261113/SHA256SUMS` inventory
+also covers nineteen standalone files. That broader list remains **unsigned**;
+it is not the newly signed manifest. Neither signature nor physical-test passes
+are claimed for later live-site edits. Signing r2 does not fix its documented
+instruction/print differences or approve beta.
+
+The workflow below applies to future, separately versioned releases.
 
 ## Prepare the exact release
 
@@ -20,7 +26,8 @@ instruction correction; it would not retroactively fix the archive or approve be
    python3 scripts/release_checksums.py check --plan review/NEW-RELEASE/files.json --manifest review/NEW-RELEASE/SHA256SUMS
    ```
 
-For the prepared r2 inventory, run `python3 scripts/release_checksums.py check`.
+For the current unsigned site/verifier inventory, run `python3 scripts/release_checksums.py check`.
+The November 13 preparation is preserved as a historical unsigned snapshot.
 This verifies coverage and file bytes, **not an OpenPGP signature**. Review the
 inventory itself: an omitted intended artifact cannot be authenticated by it.
 Recalculate the hashes on the owner's trusted signing computer from the actual

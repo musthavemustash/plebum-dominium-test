@@ -92,7 +92,7 @@ def update_guides():
 <p><strong>Photo-review directions:</strong> the complete ZIP includes the photo-review flow and T6/T7 run sheets. Save one native screenshot in your session’s Evidence folder before the next action. Historical R3 ZIPs remain unchanged.</p><p><a href="{BASE}offline-folder-guide.html">Find the tools and fixtures</a> · <a href="{BASE}testing/session-guide/TESTING.txt">T1–T5 with screenshot checkpoints</a> · <a href="{BASE}testing/session-guide/EVIDENCE-CHECKLIST.txt">Save to USB before shutdown</a> · <a href="{BASE}testing/session-guide/FORM-REPORTING.txt">Submit screenshots and evidence links</a></p>
 <p>Disconnect before testing sensitive tools. They must run as local files; keep their existing safeguards in place. Python helpers require Python 3; the Python wallet-map tool also requires GnuPG, installed separately before disconnecting.</p>
 <p>The tools-only ZIP contains the site’s utilities, demos, Python helpers, wordlist and public fixtures, without the guides or legacy print documents. Neither ZIP includes Tails, Sparrow, Electrum or other external software. Feedback, external references, live prices and network transactions require internet access.</p>
-<p><strong>Release signatures: pending.</strong> The current r2 ZIPs have checksums but no Plebum release signature yet. <a href="/plebum-dominium-test/testing/session-guide/RELEASE-SIGNING.txt">How signed release verification will work</a>.</p>
+<p><strong>Release signatures available:</strong> the three 20261113-r2 ZIPs are covered by the author’s signed manifest. <a href="/plebum-dominium-test/#verify-download">Select your ZIP in the homepage verifier</a>, or use <a href="/plebum-dominium-test/testing/session-guide/RELEASE-SIGNING.txt">the Sparrow and GnuPG instructions</a>. Signing does not change these archives or approve them for real-wallet use.</p>
 <p><strong>Online and offline privacy:</strong> the live guide loads GoatCounter analytics, Google Fonts and a mempool.space price request. The complete offline guide removes those external page resources and disables the price request. External links and feedback forms still require an online computer; a page label does not prove OS network isolation.</p>
 <p><strong>Updated rehearsal notes:</strong> the live T6/T7 run sheets now label the two computer roles and explicitly prohibit reusing test seeds or dice rolls. Save updated sheets beside your verified r2 folder; the r2 ZIPs remain unchanged.</p>
 <p><strong>Public testing only. Do not use real wallet secrets, passwords, entropy or funds.</strong></p>
@@ -131,6 +131,7 @@ def offline_copy(name, data):
         s = s.replace(DEST + '/README.txt', 'README.txt').replace(DEST + '/SHA256SUMS.txt', 'SHA256SUMS.txt').replace(DEST + '/manifest.json', 'package-manifest.json')
         if name == 'downloads.html':
             s = s.replace('Download complete offline tester ZIP →', 'Open offline start page →').replace('Download website tools only ZIP →', 'Open offline tools list →')
+        if name in ('downloads.html', 'index.html'):
             # Replace after local-path rewriting so the absolute online link
             # stays intact. Never embed an archive's own checksum in itself.
             s = re.sub(r'<!-- download-verifier -->.*?<!-- /download-verifier -->',
@@ -179,6 +180,8 @@ def manifest_files(files):
 def package(full):
     files = {}
     for p in sorted(DOCS.rglob('*')):
+        if p.relative_to(DOCS).as_posix().startswith(('assets/vendor/openpgp-', 'releases/')) or p.relative_to(DOCS).as_posix() == 'assets/js/download-signature.js':
+            continue
         if p.suffix.lower() in {'.pdf', '.pptx', '.xlsx', '.pyc'}:
             continue  # Legacy documents await content reconciliation and print review.
         if not p.is_file() or p.is_relative_to(OUT) or '__pycache__' in p.parts:
