@@ -70,3 +70,20 @@ The self-contained verifier is saved separately from the ZIPs it authenticates.
 Archive assembly removes its widget from both homepage and Downloads to avoid
 a self-referential hash. A new ZIP release needs a new manifest and offline
 signature; preserve the existing versioned ZIPs and public signature files.
+
+
+## November 15 Tails closeout and offline candidate
+
+The complete signed 20261113-r2 archive has focused physical Tails preflight
+results in `docs/testing/tails-pre-t6-20261115/RESULTS.txt`. T6 and T7 wallet
+rehearsals have not started. Older results and signed archives stay immutable.
+The guide opening failure was repaired manually by exporting the extracted
+folder through Tails' Flatpak document portal. The new `OPEN-IN-TAILS.py` helper
+packages that action without changing Tor privacy settings or starting HTTP.
+
+The new 20261115-r1 archives are **unsigned candidates**, separate from the
+current r2 signed downloads and verifier. Their acceptance/signing handoff is
+`review/offline-candidate-20261115/README.md`. Do not promote them or claim a
+physical pass until the exact new files are signed and the affected guide
+checks are observed. `python3 scripts/test_tails_offline.py` checks the helper
+and candidate package behavior; it does not run physical Tails.

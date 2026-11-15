@@ -1,0 +1,107 @@
+PLEBUM DOMINIUM: PHYSICAL TAILS PRE-T6 CLOSEOUT
+Session closed November 15, 2026. Public test inputs only.
+
+SCOPE
+Focused preparation and tool checks on the complete 20261113-r2 archive.
+Reviewed through tester-supplied photos and explicit confirmations; the
+reviewer did not operate the physical laptop or inventory the USB directly.
+This closes the recorded preflight session, NOT T6, T7 or all of T1-T5.
+No beta or real-wallet approval. Results do not transfer to a rebuilt ZIP.
+
+IDENTITY
+ZIP: plebum-complete-offline-tester-20261113-r2.zip
+Bytes: 2995499
+SHA-256: 1fbd6c9d92fdcfdf615db9a5b542b0294814b232775b9e2ce66bf52c785fa706
+Device: Dell Inspiron 14 2-in-1.
+Environment: Tails 7.16; Tor Browser 16 / Standard as recorded for this run.
+Do not infer a browser patch version from this record.
+OS networking was kept disabled during the signing-computer preparation.
+The browser flag remained true; that flag is not an isolation test.
+
+OBSERVED RESULTS
+PASS: whole extracted package verifier, 233 files; public-tests verifier,
+35 files. These counts identify the tested r2 snapshot, not future archives.
+PASS: Dice converter, Wallet-map tool and Diceware mapper fingerprint matches,
+deliberate wrong-file mismatch, and clearing the previous selection result.
+
+Sparrow preparation: Linux archive and Windows installer matched the previously
+signature-verified 2.5.6 manifest. The Linux application was extracted to a
+temporary Home folder, launched, and shown disconnected. Testnet4 selection
+was checked using the Restart In menu behavior. This is software preparation;
+no test wallet, receiving addresses, spend or recovery was created in this run.
+
+OFFLINE GUIDE: INITIAL FAILURE, WORKAROUND PASS
+Opening START alone through the document portal left relative guide links
+unavailable. Opening a guide page individually left it unstyled. A raw USB
+folder drag did not repair this. Exporting the entire plebum-offline folder
+with the following command, then opening START through the returned path,
+restored the one-key guide's styling and navigation:
+flatpak document-export --unique --transient --app=org.boum.tails.TorBrowser plebum-offline
+The grant was scoped to the extracted folder and transient. No privacy-setting
+change or local HTTP server was used. See TAILS-OFFLINE.txt for reproducible
+instructions. The new packaged helper still needs a physical acceptance run.
+
+DICE CONVERTER: FOCUSED PASS
+- Each acknowledgment alone remained locked (tester explicitly confirmed);
+  both allowed opening. Locked reopening and empty input were checked.
+- Buttons 1,2,3,4,5,6 produced 4 accepted pairs / 8 bits / 00011011;
+  faces 5 and 6 were skipped.
+- Reference 01: 256 zero bits produced 23 abandon words followed by art in
+  both HTML and Python. Comparison reported a valid checksum and 24/24 match.
+- Editing comparison words removed prior validation immediately.
+- Removing one binary bit produced the 255-bit warning and immediately
+  removed generated words and prior validation.
+- Checking the valid reference words with incomplete binary input reported
+  their own checksum, but explicitly no generated words to compare against.
+- Roll-entry completion matched the reference. Undo removed generated words
+  and prior validation when the accepted roll count dropped below completion.
+- Changing the final binary bit detected a mismatch at word 24.
+- Clear all and Lock and clear during a pending update left empty state;
+  the tester confirmed no delayed result appeared, including after reopening.
+- Immediate validation during a binary update displayed:
+  "Wait for the binary input to finish updating, then check again."
+  It did not preserve or reissue a stale successful comparison.
+
+DICEWARE MAPPER: FOCUSED PASS
+- Each acknowledgment alone remained locked (tester confirmed); both opened
+  the empty mapper.
+- 11111,11112,11113,11114,11115,11116 mapped to:
+  abacus abdomen abdominal abide abiding ability
+- Copy and paste into a blank text document showed those six words in order.
+  This was a visible text check, not a byte-level whitespace comparison.
+- Start over reset all 30 boxes (tester confirmed), the word output and count.
+- Lock and clear returned to unchecked acknowledgments. Reopening was locked;
+  unlocking showed empty fields, placeholders and 0 of 6 words mapped.
+- Invalid characters, overlong paste, correction and incomplete-copy rejection
+  were NOT repeated in this session. Do not mark the whole MAP suite passed.
+
+EVIDENCE / CLOSEOUT
+Native PNG filenames were supplied after each photo review, through
+PRE-T6-101-Tails-mapper-reopened-locked-PASS.png. Earlier failed attempts are
+retained as troubleshooting evidence. Key checkpoints:
+43 root verifier; 44 subset verifier; 69 guide workaround; 75 dice buttons;
+80 HTML reference; 81 Python reference; 82 comparison; 83-85 edit/incomplete;
+86 clearing; 87-88 rolls/undo; 89 mismatch; 90-92 pending update checks;
+94 mapper single-box attempts; 96 mapping; 97 copy; 98-101 clearing/reopening.
+Public copied text: PRE-T6-mapper-copy.txt.
+The tester confirmed the final saved PNG and text file reopened from the USB,
+the mapper was blank before closing, and Tails fully powered off.
+These confirmations do not establish that every proposed evidence filename
+was saved or that a complete USB evidence inventory was independently reviewed.
+Cleared page state does not establish clipboard or memory erasure.
+
+STILL OPEN
+T6 wallet setup, paper-record read-back, initial spend, restoration, recovered
+spend and missing/incorrect passphrase checks: NOT STARTED.
+T7: NOT STARTED. Full T1-T5 completion, remaining vectors/negative cases,
+cross-tool map interoperability, repeat sessions and print review stay separate.
+No new Windows result is claimed. Older R3/R4 results keep their own scope.
+The 20261115-r1 rebuilt candidate requires its own signature, T1 checks and
+physical acceptance of the new Tails helper and offline guide changes.
+
+RESUME
+Boot Tails with OS networking disabled. Recreate transient folder access and
+any Home-only Sparrow extraction from the verified downloads. Confirm the
+exact wallet version and test network. Continue with T6 setup using disposable
+test secrets and paper records. Do not rerun completed focused r2 checks merely
+to rename them; record new-package checks separately when changing packages.

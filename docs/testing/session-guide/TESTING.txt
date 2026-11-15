@@ -1,17 +1,15 @@
-PACKAGE DIRECTIONS: NOVEMBER 13, 2026, 20261113-r2
-These directions and FORM-REPORTING.txt are included in this release. Copy
-notes into results before editing; keep packaged originals intact. The reporting
-guide has separate T2 manual-session cases and MAP-01 through MAP-06 Diceware
-cases. Record the exact ZIP tested; earlier packages keep their own evidence.
+PACKAGE DIRECTIONS: NOVEMBER 15, 2026
+Live instructions; keep older verified package files unchanged.
+Signed downloads remain 20261113-r2. The 20261115-r1 rebuild awaits its own
+signature and physical acceptance. Read your package README for its identity.
 
 PLEBUM DOMINIUM — T1–T5: TEST, SAVE, CHECK
-Directions include the reviewed November 12 photo-review flow and November 13
-audit corrections. Earlier ZIPs retain their original instructions.
+Directions include the photo-review flow and November 15 Tails opening repair. Earlier ZIPs retain their original instructions.
 Read PHOTO-REVIEW-FLOW.txt: one action/expected result, tester photo, reviewer
 checks and names it, then save the native screenshot in one Evidence folder
 before continuing. Self-guided testers compare and record the result themselves.
 SAVE names below are examples; add OS/case/attempt details after review.
-Current packages: alpha-20261113-r2 / offline-20261113-r2
+Identify the exact package filename and hash in each result.
 PUBLIC FIXTURES ONLY. No real wallet data, private keys, passwords or funds.
 
 TOOL NAMES AND FILES
@@ -24,14 +22,20 @@ Keep the filenames shown here. The Diceware mapper and Dice converter do
 separate jobs; choose the matching name and filename in the checker.
 
 WHAT CHANGED
-The 20261113-r2 release packages the corrected guide order and reporting with
-the dice-validation and search-focus fixes. Tool bytes are identical to
-20261113-r1. Run T1 on this exact ZIP and complete the outstanding affected
-Windows/Tails checks; no physical pass is implied by packaging.
-Earlier Windows and Tails results keep their original package, date and scope.
-The complete R3 archive has focused November 12 results, not a full T1-T5 pass.
-Do not carry those results over to the new candidate. Start one Evidence folder
-for each new session and identify skipped or blocked checks as NOT TESTED.
+The complete r2 archive has a focused November 15 physical Tails preflight
+record, not a full T1-T5 pass or a T6/T7 wallet rehearsal. The new 20261115-r1
+candidate adds opening instructions and a helper; its sensitive tools keep
+r2 bytes. Do not transfer r2 archive results to it. Run its own T1 checks and
+record the new helper and guide acceptance separately. Older evidence keeps
+its package, date and scope. Mark skipped checks NOT TESTED.
+
+TAILS / TOR OPENING
+Read TAILS-OFFLINE.txt. Open the WHOLE extracted folder through Tor's document
+portal so relative pages, styles and scripts remain available. The new helper
+prints the correct file:/// address without changing network/privacy settings.
+In older verified packages, use the documented manual command without changing
+files. After a fresh boot, recreate folder access and any Home-only software.
+T5-dice-reference-inputs.txt is beside the tools, not inside fixtures.
 
 TAILS EXTRACTION NOTE
 If unzip is unavailable, use Python from the ZIP's folder:
@@ -49,7 +53,8 @@ BEFORE YOU GO OFFLINE
    Copy the ZIP, checksums, saved verifier and the entire extracted package to
    it. Do not format a drive or overwrite your Tails boot stick for this step.
    Open the files from the USB to check the copy before leaving the online PC.
-3. Complete/tools-only ZIP: open plebum-offline, then START.html.
+3. Complete/tools-only ZIP: open plebum-offline. In Tails, follow
+   TAILS-OFFLINE.txt before opening START.html; elsewhere open START directly.
    T1's whole-package checker is in plebum-offline.
    For T2–T5, open plebum-offline/public-tests. Fixtures are in its fixtures folder.
    Focused ZIP: open plebum-public-test; tools and fixtures are directly inside.

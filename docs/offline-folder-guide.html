@@ -84,7 +84,14 @@
         <ol class="crumbs" aria-label="Path to the offline start page">
           <li><span>Extracted destination</span></li><li><code>plebum-offline</code></li><li class="target"><code>START.html</code></li>
         </ol>
-        <p>Open <code>START.html</code> in your browser. It is the starting page for the extracted package.</p>
+        <p>On Windows, open <code>START.html</code> in your browser. In Tails, use the folder-access steps below so the browser can read its neighboring files.</p>
+      </section>
+      <section class="step" id="tails-tor" aria-labelledby="tails-heading">
+        <h2 id="tails-heading">Tails: open the whole folder in Tor Browser</h2>
+        <p>A file opened on its own can appear without styles or fail to open neighboring pages. The November 15 session repaired this by granting temporary read access to the extracted folder.</p>
+        <p><strong>In the new 20261115-r1 candidate:</strong> in Files, open <code>plebum-offline</code>, right-click empty space and choose <strong>Open in Console</strong>. Run <code>python3 verify_package.py</code>; stop on failure. Then run <code>python3 OPEN-IN-TAILS.py</code>. Copy its whole <code>file:///</code> address into Tor Browser and press Enter. The helper still needs physical acceptance on this candidate.</p>
+        <details><summary>Using the already-tested r2 ZIP?</summary><div class="focused"><p>Keep its verified files unchanged. Open a console in the parent folder that contains <code>plebum-offline</code>, then run:</p><p><code>flatpak document-export --unique --transient --app=org.boum.tails.TorBrowser plebum-offline</code></p><p>Add <code>file://</code> before the returned folder path and <code>/START.html</code> after it. Paste that address into Tor Browser. Use your own returned path; portal identifiers change.</p></div></details>
+        <p>Keep OS networking disabled. Repeat this after a new Tails boot or moving the extracted folder. Do not change Tor privacy settings or run a local web server. Close earlier broken tabs and navigate from the newly opened START page.</p>
       </section>
       <section class="step" aria-labelledby="integrity-heading">
         <span class="number" aria-hidden="true">2</span>
@@ -103,6 +110,7 @@
         <ol class="crumbs" aria-label="Path to the test tools">
           <li><code>plebum-offline</code></li><li class="target"><code>public-tests</code></li>
         </ol>
+        <p><code>T5-dice-reference-inputs.txt</code> is directly inside <code>public-tests</code>, beside the tools, not inside <code>fixtures</code>.</p>
         <p>Here you will find <code>TESTING.txt</code>, <code>RETEST-WINDOWS.txt</code>, <code>dice-converter.html</code>, <code>descriptor-tool.html</code>, the Python tools and <code>fixtures</code>.</p>
         <p class="subtle">For commands in these testing instructions, open your console in <code>public-tests</code>. The path <code>fixtures/public-map.txt</code> means “the fixtures folder inside public-tests.” This folder also has its own <code>verify_package.py</code>, which checks only the focused test files.</p>
         <p>Keep public output files in <code>plebum-offline/public-tests/results/</code>. Run comparison commands from <code>public-tests</code>, one folder above <code>results</code>. In Files, use the location bar to see your full path; your USB mount name may differ from another tester’s.</p>

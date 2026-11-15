@@ -8,6 +8,8 @@ and offline controls stay identical to their published source files.
 import hashlib
 import json
 import os
+import posixpath
+from urllib.parse import unquote, urlsplit
 from pathlib import Path
 import re
 import subprocess
@@ -20,6 +22,9 @@ DOCS = ROOT / 'docs'
 BASE = '/plebum-dominium-test/'
 DEST = 'testing/offline-20261113-r2'
 OUT = DOCS / DEST
+RELEASE = '20261113-r2'
+SOURCE_COMMIT = None
+FOCUSED_ARCHIVE = None
 FULL = 'plebum-complete-offline-tester-20261113-r2.zip'
 TOOLS = 'plebum-website-tools-only-20261113-r2.zip'
 SENSITIVE = {'dice-converter.html', 'descriptor-tool.html', 'diceware-mapper.html'}
@@ -74,40 +79,14 @@ def update_guides():
         else:
             s = re.sub(r'(</h1>)', lambda m: m[0] + '\n' + block, s, count=1)
         path.write_text(s)
-    path = DOCS / 'downloads.html'
-    s = path.read_text()
-    s = re.sub(r'<!-- offline-downloads -->.*?<!-- /offline-downloads -->', '', s, flags=re.S)
-    section = f'''<!-- offline-downloads --><section class="entry-card" id="offline-tester">
-<p class="entry-label">Start here · Complete offline public tester</p>
-<h2>Download the whole site for offline testing</h2>
-<p>Both guide paths, navigation, local search, diagrams, website tools, Python helpers, wordlist, public fixtures and testing instructions in one ZIP. Legacy PDFs, slides and the recovery worksheet are excluded pending reconciliation. No internet connection or local server is needed to browse the extracted site.</p>
-<div class="entry-actions"><a href="{BASE}{DEST}/{FULL}" download>Download complete offline tester ZIP →</a><a href="{BASE}{DEST}/{TOOLS}" download>Download website tools only ZIP →</a></div>
-<p id="live-directions-addendum"><strong>Included in 20261113-r2:</strong> the corrected guide order, current T2 manual-session checks, separate Diceware mapper reporting, and the photo, review, filename and save flow are now in the downloads. The complete ZIP includes both guide paths and T6/T7 run sheets; all three ZIPs include the current tool-testing directions. Keep older packages and their evidence unchanged.</p>
-<p><strong>Current package: <code>offline-20261113-r2</code>.</strong> For T6, choose the <strong>complete offline tester</strong> above: <code>plebum-complete-offline-tester-20261113-r2.zip</code>. It includes the one-key guide and the T6 run sheet. The tools-only and focused ZIPs do not include the complete guide.</p>
-<p><strong>Testing this candidate during T6:</strong> verify the ZIP, run T1 on the extracted files, then record the revised tool checks separately from the wallet rehearsal. Open <a href="{BASE}test-the-site.html#t6">T6: one key + passphrase</a> and save the <a href="{BASE}testing/session-guide/T6-RUN.txt" download>T6 run sheet</a>. Use disposable paper records; metal is outside this test.</p>
-{offline_verifier_notice()}
-<p><strong>Extract the entire ZIP, open the <code>plebum-offline</code> folder, then open <code>START.html</code>.</strong> For the T2–T5 tool checks, open <code>public-tests</code> inside that folder. Its <code>fixtures</code> folder holds the supplied test inputs: <code>plebum-offline/public-tests/fixtures/</code>. Use the matching HTML and Python tools beside that <code>fixtures</code> folder.</p>
-<p>For T1, run <code>verify_package.py</code> from <code>plebum-offline</code> to check the whole offline package. Commands and paths in <code>public-tests/TESTING.txt</code> start from <code>public-tests</code>; open your terminal there for those checks. The focused tool ZIP instead uses <code>plebum-public-test/fixtures/</code>.</p>
-<p><strong>Before starting T6:</strong> <a href="{BASE}testing/release-review-20261113/STATUS.txt" download>save the November 13 instruction correction</a> beside your extracted folder. The r2 testing page still names an older R3 ZIP; use the r2 package and its supplied T6 run sheet. Keep all verified files unchanged.</p>
-<p><strong>Photo-review directions:</strong> the complete ZIP includes the photo-review flow and T6/T7 run sheets. Save one native screenshot in your session’s Evidence folder before the next action. Historical R3 ZIPs remain unchanged.</p><p><a href="{BASE}offline-folder-guide.html">Find the tools and fixtures</a> · <a href="{BASE}testing/session-guide/TESTING.txt">T1–T5 with screenshot checkpoints</a> · <a href="{BASE}testing/session-guide/EVIDENCE-CHECKLIST.txt">Save to USB before shutdown</a> · <a href="{BASE}testing/session-guide/FORM-REPORTING.txt">Submit screenshots and evidence links</a></p>
-<p>Disconnect before testing sensitive tools. They must run as local files; keep their existing safeguards in place. Python helpers require Python 3; the Python wallet-map tool also requires GnuPG, installed separately before disconnecting.</p>
-<p>The tools-only ZIP contains the site’s utilities, demos, Python helpers, wordlist and public fixtures, without the guides or legacy print documents. Neither ZIP includes Tails, Sparrow, Electrum or other external software. Feedback, external references, live prices and network transactions require internet access.</p>
-<p><strong>Release signatures available:</strong> the three 20261113-r2 ZIPs are covered by the author’s signed manifest. <a href="/plebum-dominium-test/#verify-download">Select your ZIP in the homepage verifier</a>, or use <a href="/plebum-dominium-test/testing/session-guide/RELEASE-SIGNING.txt">the Sparrow and GnuPG instructions</a>. Signing does not change these archives or approve them for real-wallet use.</p>
-<p><strong>Online and offline privacy:</strong> the live guide loads GoatCounter analytics, Google Fonts and a mempool.space price request. The complete offline guide removes those external page resources and disables the price request. External links and feedback forms still require an online computer; a page label does not prove OS network isolation.</p>
-<p><strong>Updated rehearsal notes:</strong> the live T6/T7 run sheets now label the two computer roles and explicitly prohibit reusing test seeds or dice rolls. Save updated sheets beside your verified r2 folder; the r2 ZIPs remain unchanged.</p>
-<p><strong>Public testing only. Do not use real wallet secrets, passwords, entropy or funds.</strong></p>
-<p><strong>New candidate: November 13, 2026.</strong> Packages the corrected route order and reporting instructions alongside the dice-validation and search-focus fixes. Tool bytes match 20261113-r1; this new ZIP still needs T1 and the outstanding target-environment checks. November 12 results remain scoped to R3; T6/T7 remain outstanding.</p>
-<p>Run T1 on this exact ZIP, then repeat the affected public-fixture and keyboard checks. The <a href="{BASE}test-the-site.html#r3-20261112-results">November 12 R3 results</a> are historical evidence, not approval of this candidate or a complete T1–T5 rerun.</p>
-<p><a href="{BASE}{DEST}/README.txt">Setup and contents</a> · <a href="{BASE}{DEST}/SHA256SUMS.txt">ZIP checksums</a> · <a href="{BASE}{DEST}/manifest.json">Package manifests</a> · <a href="{BASE}test-the-site.html#tasks">Testing tasks and feedback</a></p>
-</section><!-- /offline-downloads -->'''
-    s = s.replace('<h1>Downloads</h1>', '<h1>Downloads</h1>' + section, 1)
-    s = s.replace('The tools are open for public testing. Download the alpha, try the supplied test cases, and help us check the results.', 'Choose the complete offline tester, the website tools only, or individual files below. All downloads are for public testing.')
-    s = s.replace('Download public test ZIP →', 'Download focused tool test ZIP →')
-    path.write_text(s)
+    # downloads.html is authoritative reviewed copy. A packager must not
+    # overwrite its testing status or promote an unsigned release.
     subprocess.run([sys.executable, str(ROOT / 'scripts/render_paths.py')], check=True)
 
 
 def offline_copy(name, data):
+    if name == 'offline-folder-guide.html':
+        return data.replace(b'https://musthavemustash.github.io/plebum-dominium-test/testing/session-guide/PHOTO-REVIEW-FLOW.txt', b'public-tests/PHOTO-REVIEW-FLOW.txt').replace(b'live photo-review directions', b'packaged photo-review directions')
     if name in EXACT or name == 'offline-folder-guide.html' or not name.endswith(('.html', '.js', '.json', '.css')):
         return data
     s = data.decode('utf-8')
@@ -157,9 +136,10 @@ def start_page(full):
     items += [('public-tests/TESTING.txt', 'T1–T5: steps and screenshot checkpoints'), ('public-tests/EVIDENCE-CHECKLIST.txt', 'Save to USB before shutdown'), ('public-tests/FORM-REPORTING.txt', 'Google Form fields and shareable evidence links'), ('public-tests/SESSION-NOTES.txt', 'Copyable session notes'), ('public-tests/RESULTS.csv', 'Record results'), ('README.txt', 'Setup instructions')]
     links = ''.join(f'<li><a href="{p}">{label}</a></li>' for p, label in items)
     t6 = ('<section><h2>T6: one key + passphrase</h2><p>This is the complete offline tester, <strong>20261113-r2</strong>. After T1 passes, open <a href="test-the-site.html#t6">the T6 checklist</a>, <a href="T6-RUN.txt">the T6 run sheet</a> and <a href="paths/one/single-sig.html">the one-key guide</a>. Keep new-candidate tool checks separate from wallet setup, signing and recovery results. Use disposable paper records; metal is outside T6.</p><p>For the three-key rehearsal, open <a href="T7-RUN.txt">the T7 run sheet</a> and <a href="test-the-site.html#t7">the T7 checklist</a>. Both run sheets use <a href="PHOTO-REVIEW-FLOW.txt">the photo-review flow</a> beside this page.</p></section>' if full else '<p><strong>Tools-only package: 20261113-r2.</strong> For T6 with the full guide, download the complete offline tester from <a href="https://musthavemustash.github.io/plebum-dominium-test/downloads.html#offline-tester">Downloads</a> before disconnecting.</p>')
+    t6 = t6.replace('20261113-r2', RELEASE)
     return ('''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Plebum · Offline public tester</title><style>body{font:18px/1.6 system-ui;max-width:850px;margin:3rem auto;padding:0 1.5rem;background:#faf8f2;color:#192b2a}a{color:#00685e}li{margin:.5rem 0}strong{color:#84351f}code{overflow-wrap:anywhere}summary{cursor:pointer;font-weight:600}</style></head><body><h1>Plebum offline public tester</h1><p><strong>Public test data only. Not approved for real-wallet use.</strong></p>
 ''' + t6 + '''<h2>Before you begin</h2>
-<p><a href="offline-folder-guide.html">Illustrated folder guide: from the ZIP to the fixtures →</a></p>
+<section id="tails-tor"><h3>Opening this in Tails / Tor Browser</h3><p>If links fail or a guide opens without styles, give Tor Browser access to the entire extracted folder. In Files, open <code>plebum-offline</code>, right-click empty space → <strong>Open in Console</strong>. First run <code>python3 verify_package.py</code> and stop on a failure. Then run <code>python3 OPEN-IN-TAILS.py</code> and paste the whole address it prints into Tor Browser. Navigate from that START page and close older broken tabs.</p><p>Keep OS networking disabled. Repeat after a new Tails boot or moving this folder. No browser privacy change or web server is needed. Read <code>TAILS-OFFLINE.txt</code> in a text editor if browser links are unavailable. The helper is new and requires physical acceptance.</p></section><p><a href="offline-folder-guide.html">Illustrated folder guide: from the ZIP to the fixtures →</a></p>
 <ol>
 <li>Extract the entire ZIP. Open the extracted <code>plebum-offline</code> folder, then open <code>START.html</code> (this page). Do not run files inside the compressed ZIP.</li>
 <li>For <strong>T1: check the whole package</strong>, open a terminal in <code>plebum-offline</code> and run <code>python3 verify_package.py</code> (Windows: <code>py verify_package.py</code>). Stop and report any mismatch before running tools.</li>
@@ -171,6 +151,27 @@ def start_page(full):
 <h2>Save as you go</h2><p>For public-fixture tool checks, take a screenshot after each result, before clearing or continuing. For T6, keep seed words and passphrases out of images and reports; use a written observation for those steps. Copy it to your separate test/data USB. Before reboot or shutdown, follow <a href="public-tests/EVIDENCE-CHECKLIST.txt">Save and check your evidence</a>: wait for copying, reopen an actual image and text file from the USB, then safely eject it and shut down.</p><p>After the offline session, use <a href="public-tests/FORM-REPORTING.txt">the Google Form field guide</a>. Attach screenshots if your selected task offers an upload section; otherwise use an evidence link. This guide shows how to upload public evidence to Drive, make a Viewer link and test access before submitting.</p><h2>Open the matching test files</h2>
 <ul><li><a href="public-tests/dice-converter.html">Dice converter (dice-converter.html) for T2/T3/T5</a></li><li><a href="public-tests/descriptor-tool.html">Wallet-map tool (descriptor-tool.html) for T2/T4/T5</a></li><li><a href="public-tests/diceware-mapper.html">Diceware mapper (diceware-mapper.html)</a></li><li><a href="public-tests/fingerprint-checker.html">Fingerprint checker (fingerprint-checker.html)</a></li><li><a href="public-tests/fixtures/README.md">Fixture guide</a> · <a href="public-tests/fixtures/public-map.txt">Public wallet-map text</a> · <a href="public-tests/fixtures/password.txt">Public test password</a></li></ul>
 <details><summary>Guide and additional utilities</summary><ul>''' + links + f'</ul></details><p>Feedback requires reconnecting after the offline session: <a href="{FORM}">Submit non-sensitive results</a>.</p></body></html>').encode()
+
+
+def externalize_unbundled_downloads(files):
+    """Retain omitted release/history references as explicit online links.
+
+    Missing guide/tool targets are NOT repaired here: link-closure tests must
+    reject them. This handles only intentionally unbundled testing/releases.
+    """
+    for name in list(files):
+        if not name.endswith('.html') or name in EXACT or name.startswith('public-tests/'):
+            continue
+        def replace(match):
+            ref = match[2]
+            url = urlsplit(ref)
+            if url.scheme or url.netloc or not url.path or url.path.startswith('/'):
+                return match[0]
+            target = posixpath.normpath(posixpath.join(posixpath.dirname(name), unquote(url.path)))
+            if target not in files and target.startswith(('testing/', 'releases/')):
+                return 'href=' + match[1] + 'https://musthavemustash.github.io' + BASE + target + ('#' + url.fragment if url.fragment else '') + match[1]
+            return match[0]
+        files[name] = re.sub(r"href=([\"'])(.*?)\1", replace, files[name].decode()).encode()
 
 
 def manifest_files(files):
@@ -187,33 +188,42 @@ def package(full):
         if not p.is_file() or p.is_relative_to(OUT) or '__pycache__' in p.parts:
             continue
         name = p.relative_to(DOCS).as_posix()
+        if SOURCE_COMMIT and name.startswith('testing/alpha-'):
+            continue  # Embed only the matching public-tests subset, not nested old ZIPs.
         if name.startswith('kit/') and name not in KIT_FILES:
             continue  # Do not reintroduce legacy bundles, instructions or pinned helpers.
         if name == 'verify-download.html':
             continue  # Generated after ZIPs; downloaded separately for offline use.
-        if name.startswith('testing/') and not name.startswith((CURRENT.rsplit('/', 1)[0] + '/', 'testing/alpha-20261108-t5-r4/', 'testing/t4-20261106/', 'testing/t5-20261108/', 'testing/session-guide/', 'testing/tails-r4-20261109/', 'testing/windows-r4-20261108/', 'testing/r3-20261112/', 'testing/release-review-20261113/', 'testing/windows-web-20261113/')):
+        if name.startswith('testing/') and not name.startswith((CURRENT.rsplit('/', 1)[0] + '/', 'testing/alpha-20261108-t5-r4/', 'testing/t4-20261106/', 'testing/t5-20261108/', 'testing/session-guide/', 'testing/tails-r4-20261109/', 'testing/windows-r4-20261108/', 'testing/r3-20261112/', 'testing/release-review-20261113/', 'testing/windows-web-20261113/', 'testing/tails-pre-t6-20261115/')):
             continue
         if not full and not (name in TOOL_NAMES or name == 'offline-folder-guide.html' or name.startswith('assets/') or name in KIT_FILES):
             continue
         files[name] = offline_copy(name, p.read_bytes())
-    alpha = DOCS / CURRENT
+    alpha = FOCUSED_ARCHIVE or DOCS / CURRENT
     with zipfile.ZipFile(alpha) as z:
         for name in z.namelist():
             if not name.endswith('/'):
                 files['public-tests/' + name.split('/', 1)[1]] = z.read(name)
     files['START.html'] = start_page(full)
+    for name in ('OPEN-IN-TAILS.py', 'TAILS-OFFLINE.txt'):
+        files[name] = (DOCS / 'testing/session-guide' / name).read_bytes()
+    if SOURCE_COMMIT:
+        files['SOURCE.json'] = (json.dumps({'source_commit': SOURCE_COMMIT, 'release': RELEASE,
+            'status': 'UNSIGNED_CANDIDATE', 'custody_approved': False,
+            'note': 'Guide files receive offline adaptations; reviewed wallet tools are byte-identical.'}, indent=2) + '\n').encode()
     if full:
         for name in ('T6-RUN.txt', 'T7-RUN.txt', 'PHOTO-REVIEW-FLOW.txt'):
             files[name] = (DOCS / 'testing/session-guide' / name).read_bytes()
     if not full:
         # Reference-only return link in the dice reference has no guide in this ZIP.
         files['dice-rolls.html'] = files['dice-rolls.html'].replace(b'href="handouts/dice.html"', b'href="START.html"')
-    files['README.txt'] = ('''PLEBUM DOMINIUM — OFFLINE PUBLIC TESTER — 2026-11-13 r2
+    files['README.txt'] = (f'''PLEBUM DOMINIUM — OFFLINE PUBLIC TESTER — {RELEASE}
 PUBLIC TEST DATA ONLY. NOT APPROVED FOR REAL-WALLET USE.
 
 FIND THE RIGHT FOLDER
 1. Extract the entire ZIP. Open the extracted plebum-offline folder.
-2. Open START.html in that folder for the offline starting page.
+2. In Tails, read TAILS-OFFLINE.txt and use python3 OPEN-IN-TAILS.py after
+   verification to open START through the folder grant. Elsewhere open START.html.
    For illustrated steps, open offline-folder-guide.html beside START.html.
 3. For T1, open a terminal in plebum-offline and run its verify_package.py:
    python3 verify_package.py (Windows: py verify_package.py).
@@ -271,9 +281,10 @@ Its instructions apply to that subfolder, not the complete package layout.
 Legacy PDFs, slides and spreadsheets are excluded pending reconciliation
 and print review. Use the current HTML guides for printable instructions.
 Earlier candidate evidence is included in public-tests/TAILS-RETEST-RESULTS.txt.
-This candidate packages the corrected guide order and reporting instructions
-with the reviewed Dice converter validation and search keyboard-focus fixes.
-Tool bytes and fingerprints are unchanged from 20261113-r1. They do not identify
+This snapshot adds the November 15 focused Tails record, folder-access
+instructions and helper. Tool bytes and fingerprints are unchanged from r2.
+The helper and new offline guide need physical acceptance. The 20261115-r1
+candidate awaits a new offline signature; the r2 signature does not cover it. They do not identify
 the November 12 R3 files or transfer that run’s results to this package.
 The dice checksum/word derivation code and other sensitive tools are unchanged.
 The Python helpers, wordlist and fixtures retain the earlier reviewed bytes.
@@ -285,12 +296,13 @@ certify safety or recovery.
 
 Tails extraction note: unzip was unavailable in the recorded Tails 7.16 run.
 If it is unavailable in your environment, extract with Python:
-python3 -m zipfile -e plebum-complete-offline-tester-20261113-r2.zip .
+python3 -m zipfile -e {FULL} NEW-EMPTY-DESTINATION
 For the tools-only ZIP, substitute its filename in that command.
 
 Check all extracted files: python3 verify_package.py (Windows: py verify_package.py).
 Checksums establish byte equality, not independent publisher authentication.
 ''').encode()
+    files['README.txt'] += b'\nRead TAILS-OFFLINE.txt for the tested manual workaround and reference-input paths.\n'
     files['verify_package.py'] = b'''from pathlib import Path
 import hashlib, sys
 root = Path(__file__).resolve().parent
@@ -320,12 +332,27 @@ sys.exit(bool(bad))
                     files[name] = s.encode()
     for name in EXACT:
         assert files[name] == (DOCS / name).read_bytes(), 'Sensitive tool changed: ' + name
+    if SOURCE_COMMIT:
+        banner = '<p><strong>Unsigned candidate ' + RELEASE + '.</strong> Await its own offline signature before acceptance testing. The signed r2 verifier does not authenticate this ZIP.</p>'
+        files['START.html'] = files['START.html'].replace(b'<h2>Before you begin</h2>', banner.encode() + b'<h2>Before you begin</h2>')
+        for name in ('T6-RUN.txt', 'T7-RUN.txt', 'testing/session-guide/T6-RUN.txt', 'testing/session-guide/T7-RUN.txt'):
+            if name in files:
+                text = files[name].decode().replace('for the complete 20261113-r2 tester.', 'for the complete ' + RELEASE + ' candidate.').replace('Choose: plebum-complete-offline-tester-20261113-r2.zip', 'This candidate: ' + FULL + '; await its own signature before acceptance.')
+                files[name] = text.encode()
+        if 'test-the-site.html' in files:
+            text = files['test-the-site.html'].decode()
+            match = re.search(r'<section\b[^>]*id="t6"[^>]*>.*?</section>', text, re.S)
+            assert match, 'Missing T6 checklist'
+            section = match[0].replace('For a new test run, use the current complete ZIP from', 'For this unsigned candidate, await its own signature; release status is on')
+            section = section.replace('plebum-complete-offline-tester-20261113-r2.zip', FULL)
+            files['test-the-site.html'] = (text[:match.start()] + section + text[match.end():]).encode()
+    externalize_unbundled_downloads(files)
     files['package-manifest.json'] = (json.dumps({'status': 'PUBLIC_TEST_ONLY', 'custody_approved': False, 'files': manifest_files(files)}, indent=2) + '\n').encode()
     files['SHA256SUMS.txt'] = ''.join(f'{digest(data)}  {name}\n' for name, data in sorted(files.items())).encode()
     archive = FULL if full else TOOLS
     with zipfile.ZipFile(OUT / archive, 'w') as z:
         for name, data in sorted(files.items()):
-            info = zipfile.ZipInfo('plebum-offline/' + name, (2026, 11, 13, 0, 0, 0))
+            info = zipfile.ZipInfo('plebum-offline/' + name, (int(RELEASE[:4]), int(RELEASE[4:6]), int(RELEASE[6:8]), 0, 0, 0))
             info.compress_type = zipfile.ZIP_DEFLATED
             info.external_attr = 0o100644 << 16
             z.writestr(info, data)

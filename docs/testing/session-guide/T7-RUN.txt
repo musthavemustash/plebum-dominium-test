@@ -1,6 +1,17 @@
 PLEBUM DOMINIUM: T7 THREE KEYS / 2-OF-3 REHEARSAL
-Live addendum, November 13, 2026. Disposable testnet wallet only.
+Live addendum, November 15, 2026. Disposable testnet wallet only.
 Save beside the extracted package; do not replace files in a tested ZIP.
+
+
+TAILS SESSION RESUME
+The November 15 r2 preflight closed after saved-file reopening and full
+shutdown. T6 wallet setup/signing/recovery and T7 are still unstarted.
+Keep that evidence scoped to its r2 package. The new 20261115-r1 candidate
+awaits its own signature and physical helper/guide acceptance.
+On a new Tails boot, recreate the guide folder grant using TAILS-OFFLINE.txt.
+Re-extract any verified wallet software previously held only in Home. Confirm
+the exact software version and test network before starting the rehearsal.
+Do not treat a disconnected wallet label as proof of OS network isolation.
 
 TEST WALLET ONLY
 Never reuse these test seeds, passphrases or dice rolls for your real wallet. Generate fresh, independent secrets after the rehearsal.
