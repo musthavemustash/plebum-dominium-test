@@ -2,9 +2,11 @@ PLEBUM DOMINIUM: TAILS HELPER AND RELEASE SIGNING, NOVEMBER 15, 2026
 Scope: physical complete 20261115-r1 ZIP; same Dell/Tails setup reported by Jake.
 Tails/Tor exact versions were not freshly captured in this session. Earlier
 setup records must not be substituted for a fresh version observation.
-Source: live photo review in chat, explicit tester confirmations and independent
-verification of the returned public detached signature. Native evidence PNGs
-were named for saving by the tester; those PNG files were not uploaded here.
+Source: live photo review in chat, explicit tester confirmations, independent
+verification of the returned public detached signature, and later review of
+the saved evidence in Drive. All 20 numbered items are present and visually
+reviewed: 18 distinct PNG screenshots and two JPEG boot photos. The folder has
+22 files because items 05 and 15 each have one byte-identical duplicate.
 No private key or passphrase contents were received or included in this report.
 
 PACKAGE IDENTITY
@@ -65,7 +67,7 @@ All three repository archives matched that signed manifest independently.
 The signature timestamp is from the offline computer clock; do not infer
 accurate wall-clock timing from the captured local/UTC labels.
 
-EVIDENCE INDEX (tester-assigned filenames)
+EVIDENCE INDEX (saved files reviewed in Drive)
 01 Windows-Signing-Bundle-Hash-PASS.png
 02 Windows-Signing-Bundle-Contents.png
 03 Tails-Offline-Boot.jpg (phone photo)
@@ -81,15 +83,21 @@ EVIDENCE INDEX (tester-assigned filenames)
 13 Tails-Fresh-Offline-Boot.jpg (phone photo)
 14 Tails-Reboot-Verify-and-Helper.png
 15 Tails-Reboot-START-Different-Address.png
-16 Tails-Reboot-START-Correct-Address.png
+16 Tails-Reboot-Start-Correct-Address.png
 17 Tails-Reboot-One-Key-Styled-PASS.png
 18 Tails-Signing-Key-Not-Loaded.png
 19 Tails-Release-Key-Fingerprint-Match.png
 20 Tails-Manifest-Signature-PASS.png
 Each name is prefixed TAILS-20261115- and its two-digit number plus a hyphen.
-PNG existence beyond the explicit reopen confirmations is tester-reported,
-not an independently audited 20-file inventory. Public phone photos were
-reviewed in chat; raw personal/background photos are not republished here.
+Saved evidence folder:
+https://drive.google.com/drive/folders/12uw3FHopJZF9uLRGOsj15pa5nwghOfhD
+EVIDENCE.json alongside this report records the exact 22 filenames, Drive links,
+byte sizes, SHA-256 hashes and review notes. All numbered items 01-20 were
+reviewed. Duplicate copies of 05 and 15 match byte for byte and remain in place.
+The saved screenshots corroborate the observations above. Chat confirmations
+remain the evidence for actions not pictured, including next/back navigation
+and reopening the saved files from USB. No image bytes were republished in
+the repository and no Drive sharing or organization was changed.
 
 LIMITS AND NEXT WORK
 This is not a full T1-T5 acceptance run, a wallet rehearsal or beta approval.
