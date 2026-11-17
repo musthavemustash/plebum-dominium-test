@@ -4,7 +4,7 @@
   "packages": {
     "plebum-complete-offline-tester-20261115-r1.zip": {
       "published_sha256": "4533b49dbd5f3bc4776f654c622bff09f9bc2111e75693ed6eb5099924b49c63",
-      "live_rebuild_sha256": "ece7f24ba29c1d16d8af823fe0aaa8d73403c69a65e0667db782018fb89ec721",
+      "live_rebuild_sha256": "a75ade77e2b33f8e72d13a99c9244cba8cafb5acf50a18d307e2d76adb42c946",
       "changed_members": [
         "plebum-offline/SHA256SUMS.txt",
         "plebum-offline/T6-RUN.txt",
@@ -120,5 +120,6 @@
     }
   },
   "source_review": "review/SITE_AUDIT_20261117.md",
-  "instruction_source_commit": "3ca27cae2e7edf7bc580616a3e5c4bb7bdb0f4bf"
+  "instruction_source_commit": "3ca27cae2e7edf7bc580616a3e5c4bb7bdb0f4bf",
+  "evidence_followup": "November 17 review of 20 selected uploaded images, 5 byte-matched archives, copied signed manifest/signature and 2 earlier print PDFs. Current testing/downloads/test-notes status updated; original results, notes ZIP and signed archives unchanged."
 }

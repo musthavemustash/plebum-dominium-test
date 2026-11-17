@@ -37,7 +37,7 @@ The original refused-proof observation remains in the record. A different same-n
 
 Current HTML handouts are the maintained printable source. Previously withdrawn PDFs, presentations and worksheet documents remain withdrawn; their removal inventory and anti-resurrection test remain enforced. No old PDF was republished or relabeled as current. The changed instructions appear in both generated guide paths.
 
-An automated source/layout check is not a physical print test. The repository's unresolved Windows print acceptance stays open pending review of the relevant print evidence. Similarly, tests against earlier R3/R4 archives retain their original package identity. Historical result files and signed archives were not rewritten to imply they contain these new instructions.
+An automated source/layout check is not a physical print test. The November 17 follow-up below resolves the specific first-page pagination defect from both saved-PDF retests. Wider handout and final-release print acceptance remain open. Similarly, tests against earlier R3/R4 archives retain their original package identity. Historical result files and signed archives were not rewritten to imply they contain these new instructions.
 
 ## Validation
 
@@ -65,3 +65,17 @@ This is a site-wide content, consistency and regression audit. It is not an inde
 - [Chainalysis incident updates](https://www.chainalysis.com/blog/security-incident-october-30/)
 
 Version-specific Sparrow menu wording and the T6 outcomes come from the user's observed rehearsal, not an inference that all upstream documentation or software versions match it.
+
+
+## Follow-up: uploaded evidence reviewed November 17
+
+After the audit draft, the tester supplied an updated Drive folder. The clean T6 folder lists 93 files; 11 selected images were downloaded, hashed and visually reviewed. They support the existing T6 pass, including package verification, public address matching, missing/wrong-passphrase address differences and both final transaction statuses. Screenshot 01 identifies the complete signed 20261115-r1 ZIP and its published SHA-256; screenshot 03 displays the 231-file check. This resolves the earlier lack of direct package association in the closeout, without certifying all tool cases.
+
+See `docs/testing/t6-20261116/EVIDENCE-REVIEW-20261117.md` for individual image links, observed scope, image hashes and archive notes. The second signed transaction file was not found in the clean T6 folder or focused filename search, although its reopened state and final confirmation are pictured. The related Windows folder contains the original print failure evidence. Both later retest PDFs were recovered from the earlier conversation and visually inspected: the first-page defect passes for both routes. T7 and wider print acceptance remain open. Original closeout and downloadable notes are retained unchanged; this is a separate evidence addendum.
+
+
+The two further supplied folders add earlier Windows/Tails evidence and a data USB backup. This follow-up reviewed 20 selected images in total and both pages of each of two earlier print PDFs, not every uploaded file. Five downloaded ZIPs (two older complete packages and all three signed 20261115-r1 packages) match their archived repository files byte for byte. The USB backup's manifest and detached signature also match the published copies; the pinned-key signature check passed again. The helper/signing screenshots corroborate the existing November 15 record, rather than constituting a new test run. Wallet/key backup contents were not opened or republished; backup inventory was scoped and one large folder response was partial. The additional evidence does not pass T7 or all T1–T5 cases.
+
+The testing page, Downloads and test notes now reflect the two saved-PDF retest passes. The original failure record and all signed archives remain unchanged. See the evidence addendum for package/image/PDF hashes, individual reviewed-image references and exact limits.
+
+Follow-up validation: static build validates 113 HTML pages; download consistency, immutable release signatures/ZIPs and rehearsal-notes reproducibility pass; `git diff --check` is clean. The original 24-command report above describes the full audit before this evidence-only follow-up. No fresh physical run or release rebuild was performed.
