@@ -41,7 +41,7 @@ An automated source/layout check is not a physical print test. The repository's 
 
 ## Validation
 
-Final command results are recorded in `SITE_AUDIT_20261117_CHECKS.json`. The workflow validates source/download consistency, signed manifests, tool behavior, generated paths, page-test modules, package structure, Tails helpers, the new notes ZIP and entry interactions. Additional ticker, UI-state and packaging checks supplement the workflow. Current signed ZIP hashes remain pinned, and deliberately altered bytes or unrecorded source drift are still rejected.
+All 24 final command checks passed; results are recorded in `SITE_AUDIT_20261117_CHECKS.json`. The final static scan also passed for all 113 HTML pages and 136 inline scripts. The workflow validates source/download consistency, signed manifests, tool behavior, generated paths, page-test modules, package structure, Tails helpers, the new notes ZIP and entry interactions. Additional ticker, UI-state and packaging checks supplement the workflow. Current signed ZIP hashes remain pinned, and deliberately altered bytes or unrecorded source drift are still rejected.
 
 Baseline static checks found no duplicate IDs, missing image `alt` attributes or inline JavaScript syntax failures. Local references are checked by the repository build. Browser review covered the homepage test disclosure, the T6 closeout, T7 steps, the downloads addendum and the changed one-key/three-key handouts. No horizontal overflow appeared on the reviewed desktop signing page. Browser-extension metadata errors were observed; they were not attributed to the site's code. This was not a fresh mobile-device, screen-reader, Windows/Tails or physical-print session.
 
