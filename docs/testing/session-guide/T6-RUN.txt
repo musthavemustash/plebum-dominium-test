@@ -1,142 +1,158 @@
-PLEBUM DOMINIUM: T6 WITH THE COMPLETE OFFLINE TESTER
-Live addendum, November 15, 2026, for the signed complete 20261115-r1 tester.
-Save this updated sheet BESIDE the extracted folder. Do not replace the
-original files in the verified package. Public testing only.
+PLEBUM DOMINIUM: T6 ONE KEY + PASSPHRASE
+Live instructions updated November 17, 2026.
 
+STATUS
+The supervised November 15-16 clean rehearsal passed. Both offline-signed
+Testnet4 payments confirmed; the final balance was zero. Final USB screenshot
+reopening and no further server-verification warning were confirmed at closeout.
+See test-the-site.html#t6-results for the evidence and limits. A new tester
+records their own results; this pass does not pass T7 or all T1-T5 checks.
 
-TAILS SESSION RESUME
-The November 15 r2 preflight closed after saved-file reopening and full
-shutdown. T6 wallet setup/signing/recovery and T7 are still unstarted.
-Keep that evidence scoped to its r2 package. The signed 20261115-r1 complete
-ZIP has separate helper/navigation and fresh-boot reopening results. T6/T7
-wallet rehearsals remain outstanding. Copy the helper URL and paste it into
-Tor Browser; clicking the terminal hyperlink produced a different address.
-On a new Tails boot, recreate the guide folder grant using TAILS-OFFLINE.txt.
-Re-extract any verified wallet software previously held only in Home. Confirm
-the exact software version and test network before starting the rehearsal.
-Do not treat a disconnected wallet label as proof of OS network isolation.
+SAVE BEFORE DISCONNECTING
+Use the signed complete 20261115-r1 ZIP from Downloads, its verification files,
+and these CURRENT instructions. The tools-only/focused ZIPs lack the full guide.
+Save this sheet and WALLET-TRANSFER-CHECKS.txt BESIDE the extracted package.
+Do not overwrite files covered by its manifest. The separately downloadable
+November 17 rehearsal notes are instructions only, not a signed tool release.
+Verify the ZIP signature and checksum, extract the entire plebum-offline folder,
+and run its verify_package.py. Prepare verified Tails and Sparrow separately.
+Record the exact ZIP/hash and actual software versions; do not infer a package
+pass from a wallet transaction. Record package tool checks separately under T1-T5.
 
-TEST WALLET ONLY
-Never reuse these test seeds, passphrases or dice rolls for your real wallet. Generate fresh, independent secrets after the rehearsal.
+TEST ONLY
+Use new disposable keys, independently generated test passphrase, paper records
+and Testnet4 coins. Never reuse these seeds, passphrases or dice rolls for real
+funds. Metal and hardware signers are outside this rehearsal. Preserve originals.
+Never photograph seeds, passphrases, secret QR codes or paper seed records.
+For private steps, write an observation without the secret values.
 
-COMPUTER LABELS
-OFFLINE SIGNING COMPUTER: create test keys, restore and sign. Disable OS
-networking before secret handling and keep it off until full shutdown.
-ONLINE WATCH-ONLY COMPUTER: receive, prepare transactions and broadcast.
-Never import signing secrets. Transfer only reviewed public wallet information
-or the intended transaction file. Labels do not prove network isolation.
+ONE ACTION, PHOTO, REVIEW, SAVE
+Use PHOTO-REVIEW-FLOW.txt. Do one action and stop. The reviewer checks the
+non-sensitive photo, assigns the filename, and you save the native screenshot
+in one Evidence folder on the data USB. Self-guided testing is also valid.
+Keep OS, case and attempt in names; preserve actual PNG/JPEG types. Use a phone
+for live review while Tails stays offline. A photo in chat is not a saved USB file.
 
+COMPUTER ROLES
+Offline Tails: create/restore keys, compare addresses, review and sign.
+Online Windows: public watch-only wallet, funding, unsigned PSBTs and broadcast.
+The same laptop can use these roles in separate boots. Shut Tails down fully
+before returning online. Never copy a secret-bearing wallet file to Windows or
+the transfer USB. Keep such wallets in temporary Tails Home, persistence off.
 
-OUR STEP-BY-STEP FLOW
-Use PHOTO-REVIEW-FLOW.txt. Read one action and expected result, do it, then
-send a non-sensitive photo using a separate device while Tails stays offline.
-The reviewer checks what it proves and gives a filename; save the native
-screenshot in ONE Evidence folder on the data USB before the next action.
-If testing alone, compare against the expected result and record it yourself.
-Stop capture during seed/passphrase entry or paper-record handling, even for
-test wallets. Use a written observation without secret values for those steps.
-For public settings, transaction, address and recovery results, use separate
-checkpoints. Never infer a completed spend from an address screenshot alone.
+ON EVERY TAILS BOOT
+1. Choose Offline Mode -> Disable all networking. Leave Persistent Storage off.
+   EXPECT: those choices are visible before Start Tails. Save the boot photo.
+2. Start Tails and check the OS network controls. In Terminal run:
+   nmcli -f DEVICE,TYPE,STATE device status
+   EXPECT: no connected physical network adapter. Record the actual result.
+   Loopback/virtual interfaces are not internet connections; this command alone
+   does not prove complete isolation. Keep networking disabled throughout.
+3. Copy the previously verified Sparrow archive to Home, extract and launch it.
+   The recorded T6 version was 2.5.6, not a requirement to download unverified
+   software with that name. Select offline mode and keep its connection off.
+4. Confirm Testnet4 explicitly in Sparrow. If needed use Tools -> Restart In ->
+   Testnet4. A missing entry in that menu is not sufficient proof by itself.
+5. To read the guide in Tor Browser, use TAILS-OFFLINE.txt. Recreate its folder
+   grant after each boot, and COPY/PASTE the whole helper URL into Tor Browser.
+   Do not reconnect Tails to open a guide or send evidence.
 
-PACKAGE
-Download from the test website's Downloads page, just as any tester would:
-https://musthavemustash.github.io/plebum-dominium-test/downloads.html#offline-tester
-Choose: plebum-complete-offline-tester-20261115-r1.zip
-The tools-only and focused ZIPs do not contain the complete T6 guide.
+T6.1 SET UP AND RECORD THE BASELINE
+Create a named TEST ONLY Single Signature HD wallet, Native Segwit (P2WPKH).
+Import the checked 24-word BIP39 test seed through New or Imported Software
+Wallet. Enable Use passphrase and enter the exact separately recorded value.
+For the recorded Testnet4 account the derivation was m/84'/1'/0'. Confirm your
+network, script type and account before accepting a derivation.
+EXPECT: valid mnemonic checksum and the intended configuration.
+Apply; any wallet-file encryption password is separate from the BIP39 passphrase.
+Capture Settings with View Seed CLOSED: fingerprint, derivation, script, network.
+Record three full receive addresses AND the first change address from Addresses.
+New keys have their own fingerprint/addresses; do not copy the completed run's.
 
-BEFORE DISCONNECTING
-1. Save the ZIP and its matching published SHA256SUMS.txt. Use the website's
-   ZIP verifier; save that verifier separately if you will need it offline.
-2. Extract the entire ZIP. Its folder is plebum-offline. Keep earlier downloads
-   and evidence unchanged. Do not mix files from different packages in one extracted folder.
-3. Prepare and verify Tails and the wallet software separately. They are not
-   bundled in this ZIP. Record the actual versions, browser and test device.
-4. Select and record the exact test network supported by your verified wallet
-   software. The offline signer, online watch-only wallet, server, faucet and
-   explorer must use the same network. Stop if that network is unclear.
-5. Prepare disposable paper records, a pen and a separate data USB. Metal
-   and hardware signers are not required for T6. Do not use an existing wallet.
+T6.2 CHECK THE PAPER AND PASSPHRASE
+Read back every seed word and the exact passphrase locally. Label TEST ONLY,
+keep seed and passphrase records separate, and record success without secrets.
+In separate temporary recovery attempts, try no passphrase and an incorrect one.
+EXPECT: different wallet identity/addresses, possibly no error. An empty balance
+alone is not the comparison. Return to the exact original passphrase and verify
+the baseline fingerprint and full addresses again. Preserve original records.
 
-START THE OFFLINE SESSION
-Disable OS networking. Keep the signing session offline. Run verify_package.py in
-plebum-offline, then use TAILS-OFFLINE.txt to open START through the folder grant.
-Stop on a mismatch. Open the T6 checklist and the one-key guide from START.html.
-Use only disposable test keys/passphrases and test-network coins throughout.
-The connected wallet stays watch-only. Never copy signing secrets to it.
+T6.3 RESTORE AND FUND THE WATCH-ONLY WALLET
+Fully shut down and restore from paper in a fresh offline Tails session without
+the original wallet file. Match settings, three receive addresses and first
+change address against your baseline. Export ONLY the public watch-only details.
+On Windows, confirm Testnet4 and import those public details into a clearly
+named watch-only wallet. Compare its full receive address with the offline
+baseline. Obtain Testnet4 coins from a matching faucet, supplying only that
+public address. Record the receipt and explicit confirmation before spending.
 
-RECORD THE PACKAGE TOOL CHECKS SEPARATELY
-Use the matching tools and supplied fixtures in public-tests. Follow that
-folder's TESTING.txt for the exact cases and expected results. Check the tool
-names/tabs and download filenames, fingerprint matches and a deliberate
-mismatch, offline controls, public-fixture results, and clearing/reopening.
-Record each check actually performed and its operating system. Mark skipped
-checks NOT TESTED. A T6 pass does not pass all of T1-T5 or another platform.
+T6.4 FIRST SPEND WITH CHANGE
+On Windows, prepare a small payment to a destination checked independently
+(for example, the faucet's current return address). Leave enough change for
+recovery spending. Keep exactly the intended recipient entries; remove an
+accidental empty second entry. Use sats and review the TOTAL fee.
+Open Create Transaction, review the recipient output and every change output.
+Match change to the independently recorded wallet addresses. Account for:
+  input total = payment + change + total fee
+Follow WALLET-TRANSFER-CHECKS.txt. Finalize for signing, save the unsigned PSBT
+on the data USB (example: T6-Testnet4-spend-01-unsigned.psbt), close its tab and
+reopen that USB copy with File -> Open Transaction -> File. Verify it is unsigned.
 
-T6 WALLET REHEARSAL
-Follow test-the-site.html#t6 and paths/one/single-sig.html in the extracted guide.
+Boot fresh offline Tails, restore from the original paper records and compare
+the public baseline again. Open the saved PSBT inside Sparrow. Review full
+recipient, amount, change ownership/address, total fee and All (Recommended)
+sighash before Finalize Transaction for Signing -> Sign. Handle passwords
+privately. EXPECT: the required signature and Save Final Transaction appear.
+Save T6-Testnet4-spend-01-signed.txn to USB and reopen that saved copy. Verify
+the same transaction and amounts. Check saved evidence, eject USB and shut down.
 
-Set it up:
-Create the disposable one-key wallet with the exact test passphrase. Record
-the network, script type, account, derivation path and expected receiving
-addresses in your test records. Check the intended wallet settings.
+On Windows, first open Sparrow in Testnet4 and the intended watch-only wallet.
+Open the signed file FROM INSIDE SPARROW, not by double-clicking the .txn file.
+Check the network, full recipient, all outputs, total fee and transaction ID
+against the offline copy, then broadcast once. Capture explicit confirmation
+in Detail (Status and Block Height), and the resulting wallet balance.
+A transaction-verification warning suspends this result: follow the shared
+checks and resolve it before preparing the next payment.
 
-Check the paper records:
-Write and read back every word of the disposable seed. Record the exact test
-passphrase separately. Label the records TEST ONLY. Metal is outside T6.
+T6.5 FRESH RECOVERY SPEND
+Prepare a second PSBT from the remaining change on Windows. You may return the
+remaining test coins using Max once all other planned wallet checks are done.
+EXPECT: for Max, one intended payment, no change, input = payment + fee.
+Check the total fee and reopen the saved unsigned USB copy before rebooting.
 
-Practice spending:
-Use the guide's online watch-only / offline software-signing flow. Review the
-destination, amount, fee and change before signing. Complete and confirm the
-test-network transaction. Keep the original working test wallet intact.
+Use ANOTHER fresh offline Tails boot. Restore from the paper seed and exact
+passphrase, without the earlier wallet file. Match the baseline addresses.
+Review and sign spend 02, save and reopen its signed .txn from USB, then check
+evidence, eject and shut Tails down fully. Return to Windows in Testnet4, reopen
+inside the watch-only Sparrow window, review and broadcast. Wait for explicit
+confirmation without a verification warning. Record final balance; Max should
+leave zero. A different planned amount has a different expected balance.
 
-Recover it:
-Restore from the paper records and saved settings without relying on the
-original wallet file. Confirm the same receiving addresses. Demonstrate a
-spend after restoration using the exact test passphrase.
+T6.6 REVIEW THE RESULTS
+Record each actual PASS / FAIL / NOT TESTED and its evidence. Setup, paper
+read-back, missing/wrong-passphrase results, the first confirmed spend and the
+fresh-recovery confirmed spend must all be covered. Keep warning/failure
+screenshots and the later successful retry; do not silently replace either.
 
-Check missing and incorrect passphrases:
-Record what the wallet shows for each case. A missing or different BIP39
-passphrase can open a different wallet without an error. Return to the exact
-passphrase and confirm the intended test wallet again. Keep originals intact.
+T6.7 SAVE AND CLOSE
+Reopen saved evidence from USB, confirm all offline sessions are fully shut
+down, and save the outcome and any issues. No other reader, metal work or extra
+ceremonial finishing screenshot is required. Do not repeat successful checks
+solely to fill a new filename template.
 
-Finish:
-Save the actual outcomes and anything confusing, failed or unfinished.
-Copy the evidence to the data USB and reopen the saved files to check them.
-Close the offline session and shut down fully. T6 does not require another
-person, metal work, or an extra finishing screenshot.
+SESSION RECORD (copy before filling in)
+Date / device / OS / software versions:
+Exact ZIP filename / full SHA-256 / signature and T1 results:
+Testnet4 / watch-only wallet name / offline wallet names:
+Evidence folder / transaction folder:
+Baseline settings and address filenames:
+Paper read-back / missing-passphrase / incorrect-passphrase observations:
+First spend: input / payment / change / total fee / txid / confirmed block:
+Recovery spend: input / payment / change / total fee / txid / confirmed block:
+Server before / after any switch; warning returned YES/NO:
+Final balance / saved evidence reopened / all offline sessions closed:
+Package tool checks actually performed; skipped or blocked checks:
+Last completed step / next step if paused:
 
-EVIDENCE
-Use one Evidence folder per session, with package/OS/case in filenames/notes.
-Keep earlier sessions unchanged. Copy this run sheet
-before filling it in; keep the packaged original unchanged so T1 can rerun.
-For seed/passphrase handling, record a written observation. Keep seed words,
-passphrases, private keys and unrelated wallet details out of images/reports.
-Screenshots of non-sensitive results or a short recording can support other
-checks. Live public-photo review uses a separate phone/device; never reconnect
-Tails to send it. Bulk submissions happen after the offline session has ended.
-
-SESSION RECORD (complete a copy)
-Date / device / OS:
-ZIP filename:
-Full ZIP SHA-256:
-ZIP check / T1 result:
-Tails / wallet / browser / other software versions:
-Exact test network:
-Package tool checks performed and evidence filenames:
-Package tool checks skipped or blocked:
-Evidence folder / results folder / last reviewed filename:
-T6 setup result and evidence:
-T6 paper-record read-back observation (no seed/passphrase):
-T6 initial spend result and evidence:
-T6 restored addresses match / spend after recovery:
-T6 missing-passphrase observation:
-T6 incorrect-passphrase observation:
-Saved evidence checked / offline session closed:
-Failures, confusing instructions or unfinished checks:
-Last completed step / exact next step to resume:
-
-Use PASS only for an observed successful check, FAIL for an observed mismatch,
-and NOT TESTED for a check not completed. T6 passes only when its setup, checked
-paper records, signing and recovery checks have passing evidence and the
-results are saved. Physical results for the exact package, T7, remaining T1-T5 evidence and final
-release review remain separate. This package does not approve a beta release.
+T6 passes only for the evidenced rehearsal. T7, unperformed tool checks,
+print/evidence reconciliation and final release approval remain separate.

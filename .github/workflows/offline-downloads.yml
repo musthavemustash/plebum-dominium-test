@@ -38,6 +38,8 @@ on:
       - scripts/page_test_modules.py
       - scripts/page_test_catalog.json
       - scripts/test_page_test_modules.py
+      - scripts/build_rehearsal_notes.py
+      - scripts/test_entry_interactions.js
       - .github/workflows/offline-downloads.yml
   workflow_dispatch:
 permissions:
@@ -73,6 +75,8 @@ jobs:
           python3 scripts/build.py
           python3 scripts/test_paths.py
           python3 scripts/test_page_test_modules.py
+          python3 scripts/build_rehearsal_notes.py --check
+          node scripts/test_entry_interactions.js
           python3 scripts/check_offline_downloads.py
           python3 scripts/test_tails_offline.py
       - uses: actions/upload-pages-artifact@v3
