@@ -1,112 +1,151 @@
 PLEBUM DOMINIUM: T7 THREE KEYS / 2-OF-3 REHEARSAL
-Live addendum, November 15, 2026. Disposable testnet wallet only.
-Save beside the extracted package; do not replace files in a tested ZIP.
+Live instructions updated November 17, 2026. T7 remains NOT TESTED.
+T6 passed; its results improve these directions but do not pass multisig checks.
 
+PREPARE BEFORE GOING OFFLINE
+Use the signed complete 20261115-r1 ZIP and its verification files from Downloads.
+Verify the signature/checksum, extract fully and run verify_package.py. Prepare
+verified Tails and Sparrow separately; record actual versions and exact ZIP hash.
+Save this sheet, WALLET-TRANSFER-CHECKS.txt, PHOTO-REVIEW-FLOW.txt and
+TAILS-OFFLINE.txt BESIDE the verified extraction. Do not replace package files.
+The November 17 notes download contains instructions only, not a signed tool release.
 
-TAILS SESSION RESUME
-The November 15 r2 preflight closed after saved-file reopening and full
-shutdown. T6 wallet setup/signing/recovery and T7 are still unstarted.
-Keep that evidence scoped to its r2 package. The signed 20261115-r1 complete
-ZIP has separate helper/navigation and fresh-boot reopening results. T6/T7
-wallet rehearsals remain outstanding. Copy the helper URL and paste it into
-Tor Browser; clicking the terminal hyperlink produced a different address.
-On a new Tails boot, recreate the guide folder grant using TAILS-OFFLINE.txt.
-Re-extract any verified wallet software previously held only in Home. Confirm
-the exact software version and test network before starting the rehearsal.
-Do not treat a disconnected wallet label as proof of OS network isolation.
+Use Testnet4 explicitly on every wallet, server, faucet and explorer. The T6
+walkthrough used Sparrow 2.5.6; T7 compatibility still needs its own evidence.
+Create fresh disposable keys A, B and C; do not reuse the T6 key. No BIP39
+passphrases are used for this guide's three-key path. A wallet-file password is
+separate and does not change that rule. Use TEST ONLY paper records; metal and
+hardware signers are outside T7. Never reuse test seeds or dice rolls for real funds.
 
-TEST WALLET ONLY
-Never reuse these test seeds, passphrases or dice rolls for your real wallet. Generate fresh, independent secrets after the rehearsal.
+Keep ONE secret key per offline boot. Keep the online coordinator watch-only.
+Never transfer seed words, private keys or a secret-bearing wallet file on the
+data USB. Wallets containing secrets stay in temporary Tails Home, persistence off.
+On each boot choose Disable all networking, check OS controls and record:
+  nmcli -f DEVICE,TYPE,STATE device status
+Keep networking off through full shutdown. A Sparrow toggle/browser flag does
+not establish OS isolation. Re-extract verified Sparrow into Home as needed;
+confirm Testnet4 before importing secrets or opening a transaction. Use a fresh
+folder grant to read the guide in Tor Browser; copy/paste the whole helper URL.
 
-COMPUTER LABELS
-OFFLINE SIGNING COMPUTER: create test keys, restore and sign. Disable OS
-networking before secret handling and keep it off until full shutdown.
-ONLINE WATCH-ONLY COMPUTER: receive, prepare transactions and broadcast.
-Never import signing secrets. Transfer only reviewed public wallet information
-or the intended transaction file. Labels do not prove network isolation.
+ONE ACTION, PHOTO, REVIEW, SAVE
+Use PHOTO-REVIEW-FLOW.txt. Review each public result and save the native image
+in one Evidence folder before continuing. A separate phone can send review
+photos while Tails stays offline. Self-guided testing is valid. Record PASS /
+FAIL / NOT TESTED for EACH case; keep warnings and successful retries separately.
+Never capture seeds, paper seed records, passphrases or secret QR codes. Record
+private steps in writing without secret values. File names are chosen after review.
 
+T7.1 BUILD AND CHECK THE PUBLIC POLICY
+Follow the three-key build guide, selecting the test network before key setup.
+Use separate offline boots for A, B and C. For each, retain the complete public
+origin information: fingerprint, exact account derivation and extended public key.
+For the native Segwit multisig Testnet4 account, confirm m/48'/1'/0'/2' against
+Sparrow's selected configuration. Do not copy T6's single-key m/84' path or the
+mainnet m/48'/0' example. Stop if a setting or software support is unclear.
 
-PREPARE
-Use the complete identified package, verify its ZIP and extracted files, and
-prepare verified Tails/wallet software before disconnecting. Record the exact
-test network across signer, watch-only wallet, server, faucet and explorer.
-Follow test-the-site.html#t7 and the three-key Sparrow, signing, testnet and
-inheritance guides. Use offline software and TEST ONLY paper records. Hardware
-signers are optional; metal work is outside T7. Preserve original working
-records while practicing recovery. T1-T5 results remain separate.
+In a fresh seed-free session, construct the public-only 2-of-3 Native Segwit
+(P2WSH) wallet from ALL THREE public records. Check threshold, script, key
+origins/order and descriptor checksum against independently obtained signer
+records, not merely two windows displaying the same imported descriptor.
+Record the first three full receive addresses and first change address.
+EXPECT: the complete intended public policy and matching independent records.
+Export the complete wallet map with all three public keys and origins, receive
+and change information. A single xpub or two seeds alone is not the complete map.
 
-REVIEW AND SAVE AFTER EACH PUBLIC CHECK
-Use PHOTO-REVIEW-FLOW.txt: action and expected result -> tester photo ->
-reviewer checks it and gives a filename -> tester saves the native screenshot
-in one Evidence folder on the data USB -> next action. Self-guided testers
-compare with the expected result and record their observation themselves.
-Keep OS and test case in filenames. Record PASS / FAIL / NOT TESTED per case.
-Stop capture for seeds, passphrases, private keys and secret QR codes. Use a
-written observation without secret values for those steps, even on testnet.
+T7.2 CHECK PAPER AND SAVED MAP
+Read back each separate TEST ONLY paper seed locally; record three observations.
+Reopen the saved public map from the data USB and reconstruct a watch-only wallet.
+Compare the complete policy and baseline addresses. Keep original records intact.
+On Windows, confirm Testnet4 before opening the watch-only wallet. Match its full
+receive address against the offline baseline, obtain matching test coins and
+capture explicit confirmation before spending.
 
-1. SET UP THE PUBLIC POLICY
-   Create the disposable wallet through the three-key guide. Check 2-of-3,
-   all three distinct public keys, script type, key order/derivation and the
-   receiving addresses. Save the complete wallet map.
-   EXPECT: the complete intended configuration and matching receiving
-   addresses on the independently checked wallet views. Stop on disagreement.
-   REVIEW: public settings/address result; no secret import screen.
+T7.3 TRY ALL THREE SIGNING PAIRS
+Make a plan for A+B, A+C and B+C, leaving enough funds for later recovery spends.
+Use a separate transaction for each pair; wait for verified confirmation before
+spending its change. Do not sign three conflicting versions of the same input.
+Use WALLET-TRANSFER-CHECKS.txt for output/fee review, files and warning handling.
 
-2. CHECK THE TEST RECORDS
-   Write each disposable seed on a separate TEST ONLY paper record and check
-   it locally. Check the saved wallet map can be reopened/restored.
-   EXPECT: three checked records and a usable complete map.
-   REVIEW: written seed-read-back observation only; public map result may be
-   shown after checking it contains no private keys or unrelated wallet data.
+For EACH pair:
+a. Windows: prepare an unsigned PSBT; verify recipient, amount, fee and change.
+   Save and reopen its USB copy (example: T7-Testnet4-AB-unsigned.psbt).
+b. Fresh offline Tails, first key: load only that seed with the full public map
+   (the other two keystores stay public-only). Compare policy and addresses.
+   Review every output and total fee, then sign. Save a partially signed PSBT.
+   Reopen that USB file and record which key signed and the incomplete state.
+c. On the FIRST pair, record T7.4's one-key check NOW, before adding a second key.
+d. Save evidence, eject and fully shut down. Fresh offline Tails, second key:
+   restore that distinct seed plus the complete public map. Recheck policy,
+   addresses and the same transaction; add the second signature.
+e. EXPECT: two distinct required signatures for EVERY input. Save Final
+   Transaction as .txn only when complete. Reopen its USB copy and recheck.
+f. After full shutdown, Windows: select Testnet4 first, reopen the signed file
+   inside Sparrow, review and broadcast once. Record explicit confirmation,
+   block height and expected remaining balance without verification warnings.
 
-3. TRY EACH SIGNING PAIR
-   Use the guide's separate online watch-only/offline software-signing flow.
-   Review destination, amount, fee and change before each signature. Exercise
-   A+B, A+C and B+C separately, keeping one result for each pair.
-   EXPECT: each distinct pair can complete the intended testnet spend.
-   REVIEW: public transaction/signature and confirmation results per pair.
+Keep a separate result and evidence for AB, AC and BC. One successful pair or
+an address match does not pass the other pairs. The total fee depends on the
+actual multisig transaction; do not use the 110-sat T6 example as a T7 fee.
 
-4. TRY ONE KEY ALONE
-   Exercise a transaction with only one of the required two signatures.
-   EXPECT: one key alone cannot complete the spend. Record the actual message
-   or incomplete-signature state. Do not count an unperformed attempt as PASS.
+T7.4 ONE KEY CANNOT COMPLETE THE SPEND
+Use the first pair's saved partial PSBT before the second signature. Check that
+only one distinct required key has signed and the spend is incomplete. Capture
+the incomplete-signature state or refusal message without broadcasting an
+incomplete transaction. Record the actual behavior; a planned check is not PASS.
+Then continue that same transaction with the second key. Do not add a redundant
+spend just to repeat this checkpoint.
 
-5. RECOVER WITH ONE KEY UNAVAILABLE
-   Set one key aside. In a separate recovery attempt, reconstruct using the
-   other two paper records and complete wallet map, without the original
-   wallet file. Keep the working original intact.
-   EXPECT: the same receiving addresses and a completed testnet spend after
-   recovery. A matching address alone does not prove spend capability.
-   REVIEW: address comparison and restored-wallet spend as separate results.
+T7.5 RECOVER WITH ONE SEED UNAVAILABLE
+Set C's paper seed aside; preserve it. Prepare a new recovery transaction online.
+In fresh offline sessions, rebuild with the complete saved public map and paper
+records A and B, one secret per boot, without the original signing wallet files.
+Check all three public cosigners, policy, receive addresses and change. Sign with
+A then B using the same saved/reopened partial-file flow. Broadcast online and
+record verified confirmation. EXPECT: same wallet and a completed recovery spend.
 
-6. TRY THE HANDOVER
-   Have another reader follow the disposable records and inheritance guide.
-   EXPECT: a result for each required recovery step, with unclear/missing
-   instructions recorded. Keep all secrets out of shared evidence.
+T7.6 RECOVER WITH THE WORKING MAP COPY UNAVAILABLE
+Preserve the original map for later comparison; withhold it during reconstruction.
+Use all three paper seeds in THREE separate offline boots, one secret at a time,
+and the recorded original script/account/derivation settings to recreate all
+three public records. Never import all seeds into a combined saved wallet.
+In a fresh seed-free session, rebuild the public configuration. EXPECT: the
+same policy, all three origins/public keys, receive and change addresses as the
+baseline. Record the reconstructed-map result separately from seed-loss recovery.
+Use that reconstructed map with two paper-restored keys in separate sessions to
+complete and confirm a new test spend. Keep enough balance for remaining work;
+use Max only for the final planned spend after the handover plan is settled.
+All three seeds help reconstruct public data; only two signatures are needed.
+They do not guarantee recovery without the correct original setup information.
 
-7. SAVE AND CLOSE
-   Save evidence and any failed/unfinished cases; open a saved image and public
-   text result from the data USB to check them. Clear/close apps, safely eject
-   the data USB and shut down Tails fully. Submit public evidence afterward.
+T7.7 HANDOVER, RESULTS AND CLOSEOUT
+Have another reader follow the disposable records and inheritance instructions.
+Record their result for each required recovery step and any missing or confusing
+instruction. This remains a T7 requirement; T6's removal of another-reader work
+does not remove it here. Keep secrets out of shared evidence.
 
-SESSION RECORD (fill in a separate copy)
-Date / package / full ZIP SHA-256 / T1 result:
-OS / Tails / wallet / browser / security level:
-Exact test network / OS offline check:
-Evidence folder / results folder:
-Public policy and receiving-address check:
-Three paper read-backs (observations only, no secrets):
-Saved wallet-map restore:
-A+B result / evidence filename:
-A+C result / evidence filename:
-B+C result / evidence filename:
-One-key refusal / evidence filename:
-Unavailable-key recovery addresses / evidence filename:
-Spend after recovery / evidence filename:
-Handover outcomes / confusing instructions:
-Last completed step / next step:
-Saved files checked / offline session closed:
+Review the pair, single-key, both recovery and handover outcomes. Record the
+expected final balance (zero only if the final payment used Max). Reopen saved
+images and public result files from USB. Close/eject and shut down Tails fully.
+Submit public evidence later from an online session. Preserve original test
+records until review closes; never reuse them for real custody.
 
-T7 remains incomplete until every required setup, record, pair, refusal,
-recovery and handover check has evidence. T6, T1-T5 reconciliation and final
-release review remain separate; this run sheet is not beta approval.
+SESSION RECORD (complete a separate copy)
+Date / exact package filename / full SHA-256 / signature and T1 results:
+Device / OS / Tails / wallet / browser versions:
+Testnet4 / OS offline observations / public policy and address evidence:
+A, B and C paper read-backs (observations only):
+Saved complete map reopen/restore result:
+AB transaction / two signer identities / total fee / confirmed block / evidence:
+AC transaction / two signer identities / total fee / confirmed block / evidence:
+BC transaction / two signer identities / total fee / confirmed block / evidence:
+One-key incomplete/refused result / evidence:
+Unavailable-seed recovery addresses / spend / confirmed block / evidence:
+Unavailable-map reconstruction addresses / spend / confirmed block / evidence:
+Handover results per step / unclear or missing instructions:
+Any warning / server switch / explicit warning recurrence YES/NO:
+Final balance / saved files reopened / all offline sessions shut down:
+Unperformed or blocked checks / last completed step / next step:
+
+T7 passes only after all required cases have evidence. T1-T5 reconciliation,
+print checks, final package verification and explicit beta/release approval
+remain separate. Nothing in this sheet claims a completed T7 run.

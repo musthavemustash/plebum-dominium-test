@@ -1,0 +1,67 @@
+PLEBUM DOMINIUM: TRANSACTION TRANSFER AND CONFIRMATION CHECKS
+Updated November 17, 2026. Shared by T6 and T7; test coins only.
+Save beside the verified extraction. Do not replace manifest-covered files.
+
+1. CHECK THE NETWORK BEFORE OPENING A FILE
+The T6 run used Testnet4. On EVERY Windows/Tails return, confirm Testnet4 in
+Sparrow before File -> Open Transaction -> File. If needed restart via Tools ->
+Restart In -> Testnet4, then open the intended wallet and file inside Sparrow.
+A .txn opened directly from the file manager may launch a different network.
+In T6 this displayed bc1 addresses instead of the intended tb1 addresses twice.
+Stop before signing/broadcasting on a mismatch. The tb1 prefix alone does NOT
+distinguish Testnet4 from other test networks; check Sparrow's explicit label.
+Never change the transaction's destination to compensate for a network mismatch.
+
+2. ACCOUNT FOR EVERY OUTPUT AND THE TOTAL FEE
+Compare the complete recipient address with the independently checked source.
+Check units and amount. Any change must belong to the verified wallet and match
+its recorded change addresses. Add up payment + change + fee = input total.
+Remove unintended extra recipient entries. For a Max payment, check the revised
+amount and the absence of a change output after any fee adjustment.
+A draft's non-final sats/vB rate can change when signatures add transaction size.
+Check the TOTAL fee before signing and the final rate afterward. Do not copy
+T6's 110-sat final fee into a differently sized transaction or T7 multisig.
+Choose a suitable fee using the online wallet for the selected test network.
+Keep All (Recommended) sighash unless a separately reviewed test requires another.
+
+3. SAVE THE RIGHT FILE AND TEST THE USB COPY
+Unsigned: save a .psbt. T7 after only one signature: save a PARTIALLY SIGNED
+.psbt, preserving that signature for the next signer. A final signed .txn is
+for broadcast only after all required signatures for every input are present.
+Use names identifying track, network, spend and unsigned/partial/signed state.
+Do not just rename an extension to change a file's contents.
+Close the transaction tab and reopen the saved file directly from the data USB.
+Check transaction identity, output amounts, total fee and expected signatures.
+Keep the original unsigned file. Never transfer secret-bearing wallet files.
+A filename or filled bar alone does not prove the intended transaction was signed.
+
+4. CONFIRM FROM THE ONLINE WATCH-ONLY WALLET
+Reopen the signed file in the correct network, compare against the offline
+review, then broadcast once. Unconfirmed means wait. In Detail, capture Status,
+confirmation count and Block Height; also check the expected wallet balance.
+A 20-minute wait is not, by itself, evidence of failure. On the online computer,
+check the full transaction ID on an explorer for the EXACT same test network.
+If it is not found, check the connection and broadcast result before retrying.
+Do not create a conflicting replacement merely because time has elapsed.
+
+5. IF SPARROW SAYS "TRANSACTION VERIFICATION REFUSED"
+Pause further spending. Save the warning. Treat the claimed confirmation as
+unverified until Sparrow can verify it. A connection test passing, or an explorer
+showing the transaction, does not by itself resolve the wallet's proof warning.
+On the ONLINE computer use File -> Settings -> Server. Record the current
+server, select an alternate built-in server for the SAME network if available,
+and test the connection. Keep TLS/certificate/transaction verification enabled.
+Close settings, reconnect, let loading finish, then reopen the transaction's
+Detail. Save the new status/block and explicitly record whether the warning
+returned. If it persists, record a blocked check and investigate; do not bypass it.
+
+Observed T6 incident: blackie.c3-soft.com initially claimed block 161805, then
+Sparrow refused verification. After switching to its mempool.space Testnet4
+entry, the first payment showed 11 confirmations at block 161806. The tester
+confirmed no warning recurred through final closeout. The root cause was not
+established. This is a recorded workaround, not a promise about server availability.
+
+6. KEEP OFFLINE SESSIONS OFFLINE
+Use a separate phone for public review photos. Save native screenshots on the
+data USB, reopen a saved copy, close apps, eject and fully shut down Tails before
+returning online. Never reconnect a secret-handling session to submit evidence.

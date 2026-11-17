@@ -32,7 +32,7 @@ Both routes preserve Terms → Before you begin (Threat Model) → Pick your pat
 
 The November 12 focused R3 Windows and physical Tails checks are recorded in
 [the R3 session review](review/R3_RESULTS_2026-11-12.md). They do not complete
-the full T1–T5 suites or T6/T7. T6 stopped at preparation, before wallet creation.
+the full T1–T5 suites or T6/T7. T6 was still preparation-only at that earlier closeout. The November 15–16 clean T6 rehearsal is now complete; see [its record](docs/testing/t6-20261116/RESULTS.md).
 Current instructions are live addenda; keep every tested ZIP and manifest intact.
 
 The November 8 r4 Windows short retest is closed; see [the closeout](review/WINDOWS_R4_CLOSEOUT.md). The November 9 physical Tails short run passed the observed checks on the complete r4 archive; see [its results and limits](review/TAILS_R4_RESULTS.md). The focused r4 ZIP and both larger r4 archives remain immutable snapshots. Current status and result notes are separate live addenda. Do not rebuild or overwrite a tested release ID to publish status changes.
@@ -75,8 +75,7 @@ signature; preserve the existing versioned ZIPs and public signature files.
 ## November 15 Tails closeout and offline candidate
 
 The complete signed 20261113-r2 archive has focused physical Tails preflight
-results in `docs/testing/tails-pre-t6-20261115/RESULTS.txt`. T6 and T7 wallet
-rehearsals have not started. Older results and signed archives stay immutable.
+results in `docs/testing/tails-pre-t6-20261115/RESULTS.txt`. T6 and T7 had not started at that preflight closeout. The later T6 run passed; T7 remains untested. Older results and signed archives stay immutable.
 The guide opening failure was repaired manually by exporting the extracted
 folder through Tails' Flatpak document portal. The new `OPEN-IN-TAILS.py` helper
 packages that action without changing Tor privacy settings or starting HTTP.
@@ -85,7 +84,16 @@ The exact 20261115-r1 archives now have an independently verified owner signatur
 in `docs/releases/20261115-r1/`; current download links and the shared verifier
 authenticate them. The ZIPs and their pre-signing status labels remain immutable.
 The complete archive has scoped physical helper/navigation and fresh-boot results
-in `docs/testing/tails-helper-20261115/RESULTS.txt`; T6/T7 remain outstanding.
+in `docs/testing/tails-helper-20261115/RESULTS.txt`; T6 later passed; T7 remains outstanding.
 Copy the helper address into Tor Browser rather than activating its terminal link.
 `python3 scripts/test_tails_offline.py` checks packaging; physical claims come
 only from the recorded observations. Production and beta approval are separate.
+
+## November 17 rehearsal update
+
+The supervised T6 clean run passed, including two confirmed offline-signed
+Testnet4 payments and fresh paper restoration. T7 is next. Current run sheets
+and shared transfer checks are under `docs/testing/session-guide/`; a separate
+instruction-only notes ZIP is linked on Downloads. Preserve the signed
+20261115-r1 archives and all prior evidence. New instructions do not inherit
+physical passes. See `review/SITE_AUDIT_20261117.md` for this audit and limits.
