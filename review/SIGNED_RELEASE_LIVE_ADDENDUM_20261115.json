@@ -4,7 +4,7 @@
   "packages": {
     "plebum-complete-offline-tester-20261115-r1.zip": {
       "published_sha256": "4533b49dbd5f3bc4776f654c622bff09f9bc2111e75693ed6eb5099924b49c63",
-      "live_rebuild_sha256": "a75ade77e2b33f8e72d13a99c9244cba8cafb5acf50a18d307e2d76adb42c946",
+      "live_rebuild_sha256": "b73bf49d0f5c405555240421ed6f426d22eb1f86b62b8aa11c75ecab534065cd",
       "changed_members": [
         "plebum-offline/SHA256SUMS.txt",
         "plebum-offline/T6-RUN.txt",
@@ -104,6 +104,7 @@
         "plebum-offline/testing/session-guide/SESSION-NOTES.txt",
         "plebum-offline/testing/session-guide/T6-RUN.txt",
         "plebum-offline/testing/session-guide/T7-RUN.txt",
+        "plebum-offline/testing/session-guide/TESTING.txt",
         "plebum-offline/testing/session-guide/WALLET-TRANSFER-CHECKS.txt"
       ]
     },
@@ -121,5 +122,6 @@
   },
   "source_review": "review/SITE_AUDIT_20261117.md",
   "instruction_source_commit": "3ca27cae2e7edf7bc580616a3e5c4bb7bdb0f4bf",
-  "evidence_followup": "November 17 review of 20 selected uploaded images, 5 byte-matched archives, copied signed manifest/signature and 2 earlier print PDFs. Current testing/downloads/test-notes status updated; original results, notes ZIP and signed archives unchanged."
+  "evidence_followup": "November 17 review of 20 selected uploaded images, 5 byte-matched archives, copied signed manifest/signature and 2 earlier print PDFs. Current testing/downloads/test-notes status updated; original results, notes ZIP and signed archives unchanged.",
+  "focused_retest_20261118": "Windows and physical Tails results and the keyboard evidence instructions are published as a live addendum. The November 18 offline-readable results file is at docs/testing/focused-retest-20261118/RESULTS.html."
 }
