@@ -290,6 +290,10 @@
 }
 .pd-verify-details dd code { display: block; padding: 8px 10px; font-size: 11px; }
 .pd-verify-next { margin-top: 17px; padding: 16px; border: 1px solid var(--line, #e3d9cc); border-radius: 8px; }
+.pd-verify-next [data-verify-reader] { margin-bottom: 1rem; }
+.pd-verify-next [data-verify-reader] ol { padding-inline-start: 1.5rem; }
+.pd-verify-next [data-verify-reader] p,
+.pd-verify-next [data-verify-reader] li { margin: .5rem 0; font-size: 1rem; }
 .pd-verify-next > p { margin-top: 7px; color: var(--muted, #5c564c); font-size: 12px; }
 .pd-verify-commands { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; margin: 12px 0; }
 .pd-verify-commands > div { padding: 9px 10px; border-radius: 6px; background: var(--paper, #f6f3ec); }
@@ -561,7 +565,17 @@ html[data-motion="off"] .pd-verify * { animation: none !important; transition: n
   </details>
 
   <div class="pd-verify-next" data-verify-next hidden>
-    <h3>Next: check the extracted files (T1)</h3>
+    <div data-verify-reader hidden>
+      <h3>Read the guide offline</h3>
+      <ol>
+        <li>On Windows, right-click the ZIP and choose <strong>Extract All</strong>.</li>
+        <li>In the extracted <code>plebum-offline</code> folder, open <code>index.html</code> in your browser.</li>
+        <li>Choose <strong>Before you begin</strong>. You can now read the guide with the internet disconnected.</li>
+      </ol>
+      <p>On Tails, follow <code>TAILS-OFFLINE.txt</code> in the extracted folder. Use the helper’s start page to choose <strong>Open the complete offline guide</strong>. In release 20261115-r1, expand <strong>Guide and additional utilities</strong> to find it.</p>
+      <p data-verify-legacy-notice="offline-20261115-r1" hidden>The testing checklist in <code>START.html</code> says “Unsigned candidate.” It was written before release 20261115-r1 was signed. Both checks above passed for this exact ZIP.</p>
+    </div>
+    <h3>Before running the test tools</h3>
     <p>Extract the ZIP and open a terminal in <code>plebum-offline</code> for the complete or tools-only package, or <code>plebum-public-test</code> for the focused dice/map package.</p>
     <div class="pd-verify-commands">
       <div><span>Windows</span><code>py verify_package.py</code></div>
@@ -760,6 +774,8 @@ const Uh=BigInt(0),Ph=BigInt(1),xh=BigInt(2);function Qh(e){const t=(rc(r=e,{adj
     var reference = find('reference');
     var packageList = find('packages');
     var next = find('next');
+    var reader = find('reader');
+    var legacyNotice = find('legacy-notice');
     var dropzone = find('dropzone');
     var signatureResult = find('signature-result');
     var checksumResult = find('checksum-result');
@@ -788,6 +804,8 @@ const Uh=BigInt(0),Ph=BigInt(1),xh=BigInt(2);function Qh(e){const t=(rc(r=e,{adj
       hashOutput.textContent = '';
       reference.textContent = '';
       next.hidden = true;
+      if (reader) reader.hidden = true;
+      if (legacyNotice) legacyNotice.hidden = true;
       signatureResult.textContent = 'Not checked';
       checksumResult.textContent = 'Not checked';
       resetButton.disabled = true;
@@ -946,6 +964,8 @@ const Uh=BigInt(0),Ph=BigInt(1),xh=BigInt(2);function Qh(e){const t=(rc(r=e,{adj
           if (authenticated.hashes.get(match.name) !== hash) throw new Error('ZIP is not in the signed manifest.');
           signatureResult.textContent = 'Passed: Plebum Dominium release key';
           checksumResult.textContent = 'Passed: ZIP matches the signed manifest';
+          if (reader) reader.hidden = match.id !== 'complete';
+          if (legacyNotice) legacyNotice.hidden = match.id !== 'complete' || match.release !== legacyNotice.dataset.verifyLegacyNotice;
           next.hidden = false;
           show('match', 'Signature and ZIP verified', match.label + ' · ' + match.release + '. The signature is valid for the pinned release key, and your ZIP matches its signed checksum. Public testing only.');
         } catch (error) {

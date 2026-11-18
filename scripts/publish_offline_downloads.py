@@ -126,7 +126,7 @@ def offline_copy(name, data):
 
 
 def start_page(full):
-    items = ([('index.html', 'Open the complete offline guide'), ('paths/one/index.html', 'One key + passphrase'), ('paths/three/index.html', 'Three keys')] if full else [])
+    items = ([('paths/one/index.html', 'One key + passphrase'), ('paths/three/index.html', 'Three keys')] if full else [])
     labels = {'dice-converter.html': 'Dice converter', 'descriptor-tool.html': 'Wallet-map tool',
               'diceware-mapper.html': 'Diceware mapper', 'fingerprint-checker.html': 'Fingerprint checker',
               'descriptor-demo.html': 'Wallet-map tool demo', 'passphrase-demo.html': 'Diceware mapper demo',
@@ -137,8 +137,11 @@ def start_page(full):
     links = ''.join(f'<li><a href="{p}">{label}</a></li>' for p, label in items)
     t6 = ('<section><h2>T6: one key + passphrase</h2><p>This is the complete offline tester, <strong>20261113-r2</strong>. After T1 passes, open <a href="test-the-site.html#t6">the T6 checklist</a>, <a href="T6-RUN.txt">the T6 run sheet</a> and <a href="paths/one/single-sig.html">the one-key guide</a>. Keep new-candidate tool checks separate from wallet setup, signing and recovery results. Use disposable paper records; metal is outside T6.</p><p>For the three-key rehearsal, open <a href="T7-RUN.txt">the T7 run sheet</a> and <a href="test-the-site.html#t7">the T7 checklist</a>. Both run sheets use <a href="PHOTO-REVIEW-FLOW.txt">the photo-review flow</a> beside this page.</p></section>' if full else '<p><strong>Tools-only package: 20261113-r2.</strong> For T6 with the full guide, download the complete offline tester from <a href="https://musthavemustash.github.io/plebum-dominium-test/downloads.html#offline-tester">Downloads</a> before disconnecting.</p>')
     t6 = t6.replace('20261113-r2', RELEASE)
+    reading = ('<section><h2>Read the guide offline</h2><p><a href="index.html">Open the complete offline guide</a> and choose <strong>Before you begin</strong>.</p></section>' if full else '')
+    verification = (f'<p>Release <strong>{RELEASE}</strong>. Before opening the guide or running tools, verify the original ZIP against the signed manifest for this release. '
+                    'If the signature or the ZIP checksum is missing or fails, stop here.</p>')
     return ('''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Plebum · Offline public tester</title><style>body{font:18px/1.6 system-ui;max-width:850px;margin:3rem auto;padding:0 1.5rem;background:#faf8f2;color:#192b2a}a{color:#00685e}li{margin:.5rem 0}strong{color:#84351f}code{overflow-wrap:anywhere}summary{cursor:pointer;font-weight:600}</style></head><body><h1>Plebum offline public tester</h1><p><strong>Public test data only. Not approved for real-wallet use.</strong></p>
-''' + t6 + '''<h2>Before you begin</h2>
+''' + verification + reading + t6 + '''<h2>Prepare for tool testing</h2>
 <section id="tails-tor"><h3>Opening this in Tails / Tor Browser</h3><p>If links fail or a guide opens without styles, give Tor Browser access to the entire extracted folder. In Files, open <code>plebum-offline</code>, right-click empty space → <strong>Open in Console</strong>. First run <code>python3 verify_package.py</code> and stop on a failure. Then run <code>python3 OPEN-IN-TAILS.py</code> and paste the whole address it prints into Tor Browser. Navigate from that START page and close older broken tabs.</p><p>Keep OS networking disabled. Repeat after a new Tails boot or moving this folder. No browser privacy change or web server is needed. Read <code>TAILS-OFFLINE.txt</code> in a text editor if browser links are unavailable. The helper is new and requires physical acceptance.</p></section><p><a href="offline-folder-guide.html">Illustrated folder guide: from the ZIP to the fixtures →</a></p>
 <ol>
 <li>Extract the entire ZIP. Open the extracted <code>plebum-offline</code> folder, then open <code>START.html</code> (this page). Do not run files inside the compressed ZIP.</li>
@@ -222,6 +225,7 @@ PUBLIC TEST DATA ONLY. NOT APPROVED FOR REAL-WALLET USE.
 
 FIND THE RIGHT FOLDER
 1. Extract the entire ZIP. Open the extracted plebum-offline folder.
+   {('To read the complete guide on Windows, open index.html and choose Before you begin.' if full else 'The tools-only ZIP contains the testing checklist and tools.')}
 2. In Tails, read TAILS-OFFLINE.txt and use python3 OPEN-IN-TAILS.py after
    verification to open START through the folder grant. Elsewhere open START.html.
    For illustrated steps, open offline-folder-guide.html beside START.html.
@@ -281,11 +285,9 @@ Its instructions apply to that subfolder, not the complete package layout.
 Legacy PDFs, slides and spreadsheets are excluded pending reconciliation
 and print review. Use the current HTML guides for printable instructions.
 Earlier candidate evidence is included in public-tests/TAILS-RETEST-RESULTS.txt.
-This snapshot adds the November 15 focused Tails record, folder-access
-instructions and helper. Tool bytes and fingerprints are unchanged from r2.
-The helper and new offline guide need physical acceptance. The 20261115-r1
-candidate awaits a new offline signature; the r2 signature does not cover it. They do not identify
-the November 12 R3 files or transfer that run’s results to this package.
+Check the signature and ZIP checksum for release {RELEASE} before using this
+package. If either check fails or the signature is unavailable, stop.
+Earlier test records identify the builds used in those sessions.
 The dice checksum/word derivation code and other sensitive tools are unchanged.
 The Python helpers, wordlist and fixtures retain the earlier reviewed bytes.
 No new physical Windows/Tails pass is claimed. Check T1 and tool names/hashes.
@@ -333,17 +335,15 @@ sys.exit(bool(bad))
     for name in EXACT:
         assert files[name] == (DOCS / name).read_bytes(), 'Sensitive tool changed: ' + name
     if SOURCE_COMMIT:
-        banner = '<p><strong>Unsigned candidate ' + RELEASE + '.</strong> Await its own offline signature before acceptance testing. The signed r2 verifier does not authenticate this ZIP.</p>'
-        files['START.html'] = files['START.html'].replace(b'<h2>Before you begin</h2>', banner.encode() + b'<h2>Before you begin</h2>')
         for name in ('T6-RUN.txt', 'T7-RUN.txt', 'testing/session-guide/T6-RUN.txt', 'testing/session-guide/T7-RUN.txt'):
             if name in files:
-                text = files[name].decode().replace('for the complete 20261113-r2 tester.', 'for the complete ' + RELEASE + ' candidate.').replace('Choose: plebum-complete-offline-tester-20261113-r2.zip', 'This candidate: ' + FULL + '; await its own signature before acceptance.')
+                text = files[name].decode().replace('for the complete 20261113-r2 tester.', 'for the complete ' + RELEASE + ' candidate.').replace('Choose: plebum-complete-offline-tester-20261113-r2.zip', 'This candidate: ' + FULL + '. Verify its release signature and ZIP checksum before acceptance.')
                 files[name] = text.encode()
         if 'test-the-site.html' in files:
             text = files['test-the-site.html'].decode()
             match = re.search(r'<section\b[^>]*id="t6"[^>]*>.*?</section>', text, re.S)
             assert match, 'Missing T6 checklist'
-            section = match[0].replace('For a new test run, use the current complete ZIP from', 'For this unsigned candidate, await its own signature; release status is on')
+            section = match[0].replace('For a new test run, use the current complete ZIP from', 'For this release, verify the signature and ZIP checksum before testing. Get the release details from')
             section = section.replace('plebum-complete-offline-tester-20261113-r2.zip', FULL)
             files['test-the-site.html'] = (text[:match.start()] + section + text[match.end():]).encode()
     externalize_unbundled_downloads(files)

@@ -198,12 +198,12 @@
 <p class="entry-label">Take the whole guide with you</p>
 <h2>The entire guide is an offline tool.</h2>
 <p>Download Plebum Dominium and use the complete working guide in its original interactive form without an internet connection. Both paths, navigation, instructions, diagrams and the included tools travel together.</p>
-<p>Verify the ZIP below, then extract it and open <code>START.html</code>. You can read, learn and test the included tools on a disconnected computer, following the same guide you see here.</p>
+<p>Check the complete ZIP in the verifier below. When it shows <strong>Signature and ZIP verified</strong>, extract the ZIP. On Windows, open <code>index.html</code> in the extracted <code>plebum-offline</code> folder and choose <strong>Before you begin</strong>. You can read both paths offline.</p>
 <p><a href="/plebum-dominium-test/downloads.html#offline-tester">Download the complete offline guide →</a> · <a href="#verify-download">Verify your download ↓</a></p>
 <p class="entry-note">Install any required external software before disconnecting. External links, submitting feedback and broadcasting transactions need a connection. Use public test data while the project remains under review.</p>
 </section>
 <!-- download-verifier -->
-<link rel="stylesheet" href="/plebum-dominium-test/assets/css/download-verifier.css?v=5a6b1730f41d">
+<link rel="stylesheet" href="/plebum-dominium-test/assets/css/download-verifier.css?v=888804ffadfb">
 <section id="verify-download" class="pd-verify" data-zip-verifier data-state="ready" data-enabled="false" aria-label="Verify a Plebum Dominium ZIP">
   <script type="application/json" class="pd-verify-catalog">{
   "schema": 2,
@@ -389,7 +389,17 @@
   </details>
 
   <div class="pd-verify-next" data-verify-next hidden>
-    <h3>Next: check the extracted files (T1)</h3>
+    <div data-verify-reader hidden>
+      <h3>Read the guide offline</h3>
+      <ol>
+        <li>On Windows, right-click the ZIP and choose <strong>Extract All</strong>.</li>
+        <li>In the extracted <code>plebum-offline</code> folder, open <code>index.html</code> in your browser.</li>
+        <li>Choose <strong>Before you begin</strong>. You can now read the guide with the internet disconnected.</li>
+      </ol>
+      <p>On Tails, follow <code>TAILS-OFFLINE.txt</code> in the extracted folder. Use the helper’s start page to choose <strong>Open the complete offline guide</strong>. In release 20261115-r1, expand <strong>Guide and additional utilities</strong> to find it.</p>
+      <p data-verify-legacy-notice="offline-20261115-r1" hidden>The testing checklist in <code>START.html</code> says “Unsigned candidate.” It was written before release 20261115-r1 was signed. Both checks above passed for this exact ZIP.</p>
+    </div>
+    <h3>Before running the test tools</h3>
     <p>Extract the ZIP and open a terminal in <code>plebum-offline</code> for the complete or tools-only package, or <code>plebum-public-test</code> for the focused dice/map package.</p>
     <div class="pd-verify-commands">
       <div><span>Windows</span><code>py verify_package.py</code></div>
@@ -432,7 +442,7 @@ sha256sum -c manifest.txt</code></pre>
 </section>
 <script src="/plebum-dominium-test/assets/vendor/openpgp-6.3.2/openpgp.min.js?v=e19bf4f04f34" defer></script>
 <script src="/plebum-dominium-test/assets/js/download-signature.js?v=84cd6aad6258" defer></script>
-<script src="/plebum-dominium-test/assets/js/download-verifier.js?v=4f391b8e3d2d" defer></script>
+<script src="/plebum-dominium-test/assets/js/download-verifier.js?v=c789901ba0b8" defer></script>
 <!-- /download-verifier -->
 <section class="entry-section" id="what">
 <p class="entry-label">You do the work</p>

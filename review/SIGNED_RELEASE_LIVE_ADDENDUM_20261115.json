@@ -4,12 +4,16 @@
   "packages": {
     "plebum-complete-offline-tester-20261115-r1.zip": {
       "published_sha256": "4533b49dbd5f3bc4776f654c622bff09f9bc2111e75693ed6eb5099924b49c63",
-      "live_rebuild_sha256": "b73bf49d0f5c405555240421ed6f426d22eb1f86b62b8aa11c75ecab534065cd",
+      "live_rebuild_sha256": "654f8b8602e047a3a1c8d3cbbcf4db49ac54db5413ba68c2201193d551442879",
       "changed_members": [
+        "plebum-offline/README.txt",
         "plebum-offline/SHA256SUMS.txt",
+        "plebum-offline/START.html",
         "plebum-offline/T6-RUN.txt",
         "plebum-offline/T7-RUN.txt",
+        "plebum-offline/assets/css/download-verifier.css",
         "plebum-offline/assets/data/page-tests-build.json",
+        "plebum-offline/assets/js/download-verifier.js",
         "plebum-offline/assets/js/offline-indexes.js",
         "plebum-offline/assets/search-index.json",
         "plebum-offline/beyond.html",
@@ -110,10 +114,14 @@
     },
     "plebum-website-tools-only-20261115-r1.zip": {
       "published_sha256": "6ef478793c6c002945401600abe434576bf4153f1b7bcfd272167346ef27116b",
-      "live_rebuild_sha256": "e9c487587d01d3d30b87b50e949cce926ae0f64ec8404ef53f1db1dadb5a1046",
+      "live_rebuild_sha256": "500070690c81d19f02b5219b66da6f64751d268a3ea2090668bd358c6a0ceab4",
       "changed_members": [
+        "plebum-offline/README.txt",
         "plebum-offline/SHA256SUMS.txt",
+        "plebum-offline/START.html",
+        "plebum-offline/assets/css/download-verifier.css",
         "plebum-offline/assets/data/page-tests-build.json",
+        "plebum-offline/assets/js/download-verifier.js",
         "plebum-offline/assets/search-index.json",
         "plebum-offline/offline-folder-guide.html",
         "plebum-offline/package-manifest.json"
@@ -123,5 +131,6 @@
   "source_review": "review/SITE_AUDIT_20261117.md",
   "instruction_source_commit": "3ca27cae2e7edf7bc580616a3e5c4bb7bdb0f4bf",
   "evidence_followup": "November 17 review of 20 selected uploaded images, 5 byte-matched archives, copied signed manifest/signature and 2 earlier print PDFs. Current testing/downloads/test-notes status updated; original results, notes ZIP and signed archives unchanged.",
-  "focused_retest_20261118": "Windows and physical Tails results and the keyboard evidence instructions are published as a live addendum. The November 18 offline-readable results file is at docs/testing/focused-retest-20261118/RESULTS.html."
+  "focused_retest_20261118": "Windows and physical Tails results and the keyboard evidence instructions are published as a live addendum. The November 18 offline-readable results file is at docs/testing/focused-retest-20261118/RESULTS.html.",
+  "offline_reader_20261118": "The complete signed ZIP already opens the reader guide at plebum-offline/index.html. The live download and verifier explain that route. Scratch rebuilds put the guide link first on START and refer to the separately verified signature for the exact release."
 }

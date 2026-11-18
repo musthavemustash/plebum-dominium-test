@@ -155,6 +155,16 @@ try:
         for full, name in ((True, publisher.FULL), (False, publisher.TOOLS)):
             publisher.package(full)
             first = (publisher.OUT / name).read_bytes()
+            with zipfile.ZipFile(io.BytesIO(first)) as archive:
+                start = archive.read('plebum-offline/START.html').decode()
+                guide_link = 'href="index.html">Open the complete offline guide</a>'
+                assert 'If the signature or the ZIP checksum is missing or fails, stop here.' in start
+                assert 'Unsigned candidate' not in start
+                if full:
+                    assert start.index(guide_link) < start.index('href="T6-RUN.txt"')
+                    assert archive.getinfo('plebum-offline/index.html')
+                else:
+                    assert guide_link not in start
             published = (original_out / name).read_bytes()
             check_reviewed_rebuild(name, published, first, addendum)
             if first != published:
