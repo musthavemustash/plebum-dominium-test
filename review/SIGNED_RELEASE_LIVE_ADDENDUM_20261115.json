@@ -4,13 +4,17 @@
   "packages": {
     "plebum-complete-offline-tester-20261115-r1.zip": {
       "published_sha256": "4533b49dbd5f3bc4776f654c622bff09f9bc2111e75693ed6eb5099924b49c63",
-      "live_rebuild_sha256": "e7350b0ea0a29852cbdcb229e416883937eddd27000d1fcddcd7241c443d1d75",
+      "live_rebuild_sha256": "9191220b8faf6844096cc57cd6405d8873e681814d4e95ddd624c2de2a69b808",
       "changed_members": [
+        "plebum-offline/README.txt",
         "plebum-offline/SHA256SUMS.txt",
+        "plebum-offline/START.html",
         "plebum-offline/T6-RUN.txt",
         "plebum-offline/T7-RUN.txt",
+        "plebum-offline/assets/css/download-verifier.css",
         "plebum-offline/assets/css/newsroom.css",
         "plebum-offline/assets/data/page-tests-build.json",
+        "plebum-offline/assets/js/download-verifier.js",
         "plebum-offline/assets/js/offline-indexes.js",
         "plebum-offline/assets/search-index.json",
         "plebum-offline/beyond.html",
@@ -108,16 +112,21 @@
         "plebum-offline/testing/session-guide/SESSION-NOTES.txt",
         "plebum-offline/testing/session-guide/T6-RUN.txt",
         "plebum-offline/testing/session-guide/T7-RUN.txt",
+        "plebum-offline/testing/session-guide/TESTING.txt",
         "plebum-offline/testing/session-guide/WALLET-TRANSFER-CHECKS.txt"
       ]
     },
     "plebum-website-tools-only-20261115-r1.zip": {
       "published_sha256": "6ef478793c6c002945401600abe434576bf4153f1b7bcfd272167346ef27116b",
-      "live_rebuild_sha256": "f954a887f54ecb70544c5d32e48835905ef26903daae1b13857051b7945564ab",
+      "live_rebuild_sha256": "c96af6b3c9a6cdbefa88bbabedd4c8b9adf38a5f0f582c236d962d1adda25566",
       "changed_members": [
+        "plebum-offline/README.txt",
         "plebum-offline/SHA256SUMS.txt",
+        "plebum-offline/START.html",
+        "plebum-offline/assets/css/download-verifier.css",
         "plebum-offline/assets/css/newsroom.css",
         "plebum-offline/assets/data/page-tests-build.json",
+        "plebum-offline/assets/js/download-verifier.js",
         "plebum-offline/assets/search-index.json",
         "plebum-offline/offline-folder-guide.html",
         "plebum-offline/package-manifest.json"
@@ -126,5 +135,7 @@
   },
   "source_review": "review/SITE_AUDIT_20261117.md",
   "instruction_source_commit": "3ca27cae2e7edf7bc580616a3e5c4bb7bdb0f4bf",
-  "evidence_followup": "November 17 review of 20 selected uploaded images, 5 byte-matched archives, copied signed manifest/signature and 2 earlier print PDFs. Current testing/downloads/test-notes status updated; original results, notes ZIP and signed archives unchanged."
+  "evidence_followup": "November 17 review of 20 selected uploaded images, 5 byte-matched archives, copied signed manifest/signature and 2 earlier print PDFs. Current testing/downloads/test-notes status updated; original results, notes ZIP and signed archives unchanged.",
+  "focused_retest_20261118": "Windows and physical Tails results and the keyboard evidence instructions are published as a live addendum. The November 18 offline-readable results file is at docs/testing/focused-retest-20261118/RESULTS.html.",
+  "offline_reader_20261118": "The complete signed ZIP already opens the reader guide at plebum-offline/index.html. The live download and verifier explain that route. Scratch rebuilds put the guide link first on START and refer to the separately verified signature for the exact release."
 }

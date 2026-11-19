@@ -7,7 +7,7 @@ from pathlib import Path, PurePosixPath
 import re
 
 ROOT = Path(__file__).resolve().parents[1]
-PLAN = ROOT / 'review/release-signing-20261115/files.json'
+PLAN = ROOT / 'review/release-signing-20261118/files.json'
 MANIFEST = PLAN.with_name('SHA256SUMS')
 
 
