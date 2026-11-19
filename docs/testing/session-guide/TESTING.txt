@@ -154,8 +154,10 @@ T3 — CHECK THE DICE CONVERTER'S ANSWERS
    output. SAVE: T3-TOOL-short-rejected.png and T3-TOOL-invalid-rejected.png.
 4. Clear the HTML converter. Enter 1, 2, 3, 4, 5, 6 with the dice buttons.
    EXPECT: four accepted pairs, eight bits 00011011; 5 and 6 add no bits.
-   SAVE: T3-dice-buttons.png. Check keyboard entry, Undo and Clear separately;
-   save the before/after state or a short recording and describe the sequence.
+   SAVE: T3-dice-buttons.png. Clear the converter, then press the physical
+   number keys 1 through 6. Expect the same four pairs and eight bits. Save
+   the counters and bits and note that you used the keyboard. Check Undo
+   and Clear separately and record the before/after states.
 For the separate Diceware public example, enter one group per row:
   11111 -> abacus
   11112 -> abdomen

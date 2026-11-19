@@ -80,6 +80,8 @@
     var reference = find('reference');
     var packageList = find('packages');
     var next = find('next');
+    var reader = find('reader');
+    var legacyNotice = find('legacy-notice');
     var dropzone = find('dropzone');
     var signatureResult = find('signature-result');
     var checksumResult = find('checksum-result');
@@ -108,6 +110,8 @@
       hashOutput.textContent = '';
       reference.textContent = '';
       next.hidden = true;
+      if (reader) reader.hidden = true;
+      if (legacyNotice) legacyNotice.hidden = true;
       signatureResult.textContent = 'Not checked';
       checksumResult.textContent = 'Not checked';
       resetButton.disabled = true;
@@ -266,6 +270,8 @@
           if (authenticated.hashes.get(match.name) !== hash) throw new Error('ZIP is not in the signed manifest.');
           signatureResult.textContent = 'Passed: Plebum Dominium release key';
           checksumResult.textContent = 'Passed: ZIP matches the signed manifest';
+          if (reader) reader.hidden = match.id !== 'complete';
+          if (legacyNotice) legacyNotice.hidden = match.id !== 'complete' || match.release !== legacyNotice.dataset.verifyLegacyNotice;
           next.hidden = false;
           show('match', 'Signature and ZIP verified', match.label + ' · ' + match.release + '. The signature is valid for the pinned release key, and your ZIP matches its signed checksum. Public testing only.');
         } catch (error) {

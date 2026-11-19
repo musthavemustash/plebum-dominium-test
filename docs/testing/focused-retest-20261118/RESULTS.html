@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Windows and Tails tool results, November 17–18, 2026 | Plebum Dominium</title>
+<style>
+  :root { color-scheme: light dark; }
+  body { max-width: 70ch; margin: 2rem auto; padding: 0 1.15rem; font: 1rem/1.6 system-ui, sans-serif; }
+  h1, h2 { font-family: Georgia, serif; line-height: 1.2; }
+  code { overflow-wrap: anywhere; }
+  li { margin-block: .45rem; }
+</style>
+</head>
+<body>
+<main>
+<p>Plebum Dominium · Public alpha · November 17–18, 2026</p>
+<h1>Windows and Tails tool results</h1>
+<h2>November 17 · Windows dice converter</h2>
+<p>The personal Windows computer used the signed complete tester, <code>plebum-complete-offline-tester-20261115-r1.zip</code>. The tester checked the signature and ZIP checksum, then verified the 231 files in the extracted package. Screenshots 02 and 03 record those checks.</p>
+<ul>
+  <li>Chrome and Python each produced the expected 24 words for all eight reference inputs (01–08). Screenshots 15 and 17–31 record the results.</li>
+  <li>Both tools rejected the 255-bit input and the input containing an invalid character. Neither produced seed words for those cases. Screenshots 32–35 record the four rejections.</li>
+  <li>Chrome accepted the on-screen dice and the laptop’s number keys. Keys 1 through 4 produced <code>00011011</code>. Undo removed the last pair, leaving <code>000110</code>. Screenshots 10–13 cover the buttons, Clear, keyboard entry and Undo.</li>
+</ul>
+<h2>November 18 · Windows wallet-map recovery</h2>
+<p>Edge and the Python wallet-map tool each encrypted the same 50-byte public file, <code>public-map.txt</code>. Each tool then decrypted the file created by the other. Windows compared both saved outputs with the original using <code>fc.exe /b</code>.</p>
+<ul>
+  <li><strong>Edge to Python passed.</strong> Python decrypted <code>browser-map.asc</code> into <code>python-restored.txt</code>. Screenshot 45 shows the exact byte match.</li>
+  <li><strong>Python to Edge passed.</strong> Edge decrypted <code>python-map.asc</code>. Screenshot 48 shows the downloaded <code>browser-from-python.txt</code> matched the original byte for byte.</li>
+</ul>
+<p>Both comparisons reported <samp>FC: no differences encountered</samp>. Earlier command-entry errors preceded the successful comparisons. The tester reopened the saved evidence copy and confirmed that its second line read <code>Unicode: café</code>. Screenshot 49 shows the tool locked again with both boxes unchecked. Screenshot 50 shows the original, both encrypted files and both restored files together.</p>
+<h2>November 18 · Physical keyboard on Tails</h2>
+<p>The tester reported starting Tails offline and used the laptop’s physical number keys in the local Tor Browser dice converter. Pressing 1, 2, 3 and 4 produced <code>00</code>, <code>01</code>, <code>10</code> and <code>11</code>. Keys 5 and 6 appeared as skipped rolls and added no bits.</p>
+<p><strong>Keyboard entry passed.</strong> The photo shows <code>4/128</code> pairs, <code>8/256</code> bits and <code>00011011</code>. The tester confirmed keyboard entry. The evidence filename assigned to this check is <code>51-Tails-Dice-Physical-Keyboard-PASS.png</code>.</p>
+<h2>What remains before beta</h2>
+<p>These results cover the checks listed above. T6, the one-key rehearsal, passed separately. T7 still needs the three-key setup, signing and recovery rehearsal. The remaining tool coverage, guide and print review, and final package checks are tracked on the staging <a href="https://musthavemustash.github.io/plebum-dominium-test/test-the-site.html#beta-readiness">beta checklist</a>.</p>
+</main>
+</body>
+</html>

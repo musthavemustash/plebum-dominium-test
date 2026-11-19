@@ -191,13 +191,14 @@ function setup(catalog = catalogWith(vectorEntry()), options = {}) {
   const nodes = {};
   const names = ['file', 'reset', 'status', 'status-title', 'status-text', 'progress',
     'file-info', 'filename', 'filesize', 'hash-details', 'hash', 'reference',
-    'packages', 'next', 'dropzone', 'signature-result', 'checksum-result'];
+    'packages', 'next', 'reader', 'legacy-notice', 'dropzone', 'signature-result', 'checksum-result'];
   for (const name of names) {
     const node = new ElementMock(name === 'file' ? 'input' : name === 'reset' ? 'button' : 'div');
     nodes[name] = node;
     widget.selectors.set(`[data-verify-${name}]`, node);
     widget.appendChild(node);
   }
+  nodes['legacy-notice'].dataset.verifyLegacyNotice = 'offline-20261115-r1';
   const config = new ElementMock('script');
   config.textContent = JSON.stringify(catalog);
   widget.selectors.set('.pd-verify-catalog', config);
@@ -483,6 +484,11 @@ for (const input of inputs.filter(item => fs.existsSync(item.localPath))) {
     assert.equal(env.nodes['signature-result'].textContent, 'Passed: Plebum Dominium release key');
     assert.equal(env.nodes.hash.textContent, input.entry.sha256);
     assert.equal(file.size, input.entry.bytes);
+    assert.equal(env.nodes.reader.hidden, input.entry.id !== 'complete');
+    assert.equal(env.nodes['legacy-notice'].hidden, input.entry.id !== 'complete' || input.entry.release !== 'offline-20261115-r1');
+    env.reset();
+    assert.equal(env.nodes.reader.hidden, true);
+    assert.equal(env.nodes['legacy-notice'].hidden, true);
   });
 }
 
