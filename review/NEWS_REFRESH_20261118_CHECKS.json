@@ -1,0 +1,122 @@
+[
+  {
+    "command": "python3 scripts/reconcile_tool_downloads.py --check",
+    "exit": 0,
+    "seconds": 0.1,
+    "output": "PASS: reviewed tool bytes/script pins, preserved crypto baseline, snapshots and file fingerprints\n"
+  },
+  {
+    "command": "python3 scripts/test_download_consistency.py",
+    "exit": 0,
+    "seconds": 1.31,
+    "output": "PASS: stale text snapshots cannot roll back tools, manifests or instructions\nPASS: withdrawn print documents are absent and stale snapshots cannot restore them\nPASS: current T6 entry point names the complete package offered by Downloads\nPASS: obsolete standalone tools, stale snapshots and altered checker fingerprints rejected\nPASS: deterministic builds; tested ZIPs unchanged; exact live addendum pinned; unrecorded drift rejected\n"
+  },
+  {
+    "command": "node scripts/test_download_verifier.cjs",
+    "exit": 0,
+    "seconds": 0.63,
+    "output": "ok 1 - current manifest entries agree with their published SHA256SUMS files\nok 2 - known SHA-256 abc vector matches by bytes regardless of filename\nok 3 - second known SHA-256 hello vector is computed correctly\nok 4 - same digest with a different published byte count does not match\nok 5 - one changed byte fails despite having the published filename and size\nok 6 - oversized file is rejected before arrayBuffer reads any bytes\nok 7 - file read errors cannot retain a previous match\nok 8 - SHA-256 failures display an error rather than a comparison result\nok 9 - reset invalidates a pending read and clears its result\nok 10 - a slower old selection cannot overwrite a newer result\nok 11 - canceling the chooser invalidates a pending comparison\nok 12 - HTML in a local filename is displayed only as text\nok 13 - a prior package snapshot is clearly reported as earlier\nok 14 - current signed entry wins if history has identical digest and size\nok 15 - missing WebCrypto disables verification before any file read\nok 16 - missing File.arrayBuffer support disables verification\nok 17 - invalid catalog checksum fails closed before file selection\nok 18 - generated standalone catalog current entries match current manifests\nok 19 - all retained historical references identify actual archived bytes and releases\nok 20 - actual published ZIP bytes: plebum-complete-offline-tester-20261115-r1.zip\nok 21 - actual published ZIP bytes: plebum-website-tools-only-20261115-r1.zip\nok 22 - actual published ZIP bytes: plebum-tools-alpha-20261115-r1.zip\nok 23 - modified signed manifest is rejected cryptographically\nok 24 - manifest whitespace changes do not get normalized before verification\nok 25 - a one-byte change to the detached signature is rejected\nok 26 - missing detached signature fails closed even when ZIP hash matches\nok 27 - changed catalog and ZIP cannot bypass the signed manifest\nok 28 - a different public key cannot replace the pinned signing identity\nok 29 - expired key and clock before key creation fail closed\nok 30 - missing signature library disables the picker\nok 31 - reset while signature verification is pending cannot restore a pass\nok 32 - homepage, downloads and offline verifier embed the same signed release\n32/32 verifier checks passed\n"
+  },
+  {
+    "command": "python3 scripts/test_release_signature.py",
+    "exit": 0,
+    "seconds": 0.09,
+    "output": "PASS: GnuPG validates both pinned release signatures; all 6 ZIPs and vendored files match.\n"
+  },
+  {
+    "command": "node scripts/test_public_session_state.cjs",
+    "exit": 0,
+    "seconds": 0.08,
+    "output": "PASS: public-session startup and acknowledgement;  failed/empty decryption clears stale output; reconnect wipes passwords/results; late crypto/file results discarded; revoked-session operation rejected\n"
+  },
+  {
+    "command": "node scripts/test_tool_network.cjs",
+    "exit": 0,
+    "seconds": 0.28,
+    "output": "PASS: dice-converter public-session protocol/acknowledgment matrix (20 cases), explicit isolation limit, observed-event clearing, manual lock\nPASS: descriptor-tool public-session protocol/acknowledgment matrix (20 cases), explicit isolation limit, observed-event clearing, manual lock\nPASS: diceware-mapper public-session protocol/acknowledgment matrix (20 cases), explicit isolation limit, observed-event clearing, manual lock\n"
+  },
+  {
+    "command": "node scripts/test_dice_validation.cjs",
+    "exit": 0,
+    "seconds": 0.2,
+    "output": "PASS: dice validation invalidated on edits, undo, clear, refill and lock; pending/invalid pasted bits cannot compare stale words; fresh comparisons still pass\n"
+  },
+  {
+    "command": "node scripts/test_search_focus.cjs",
+    "exit": 0,
+    "seconds": 0.1,
+    "output": "PASS: search focus wraps in both directions, covers dynamic/fallback links, restores inert state and trigger focus, and preserves shortcuts\n"
+  },
+  {
+    "command": "node scripts/test_diceware_mapper.cjs",
+    "exit": 0,
+    "seconds": 0.09,
+    "output": "PASS: all 7,776 EFF mappings; six rows; invalid typing/paste/overflow; incomplete copy blocked; stale clipboard callback; clear and lock\n"
+  },
+  {
+    "command": "node scripts/test_fingerprint_checker.cjs",
+    "exit": 0,
+    "seconds": 0.08,
+    "output": "PASS: three exact shipped fingerprints; mismatch; invalid hex; stale read/error/selection cancellation; read failure\n"
+  },
+  {
+    "command": "python3 scripts/test_tool_core.py",
+    "exit": 0,
+    "seconds": 7.9,
+    "output": "PASS: 8 published 256-bit BIP39 vectors in Python/JS; wordlists; face mapping; checksum rejection; 3 excess-input cases; 4 invalid inputs\nPASS: Python/GPG and embedded OpenPGP.js cross-decryption, Unicode text, wrong-password, truncated-message and corrupted-payload rejection\nPASS: public wsh(2-of-3) and tr() fixtures retain exact descriptor/checksum bytes and CRLF across Python/OpenPGP.js; wallet import/signing not tested\n"
+  },
+  {
+    "command": "python3 scripts/release_checksums.py check",
+    "exit": 0,
+    "seconds": 0.05,
+    "output": "PASS: 34 release files match. Signature NOT checked.\n"
+  },
+  {
+    "command": "python3 scripts/test_release_checksums.py",
+    "exit": 0,
+    "seconds": 0.04,
+    "output": "PASS: release checks reject tampering, omission, duplicates, missing files, symlinks and traversal\n"
+  },
+  {
+    "command": "python3 scripts/build.py",
+    "exit": 0,
+    "seconds": 0.91,
+    "output": "Validated 116 static HTML pages. No files rewritten. Staging base: /plebum-dominium-test/\n"
+  },
+  {
+    "command": "python3 scripts/test_paths.py",
+    "exit": 0,
+    "seconds": 0.42,
+    "output": "PASS: 28 step pages, 2 overviews, both navigation directions, route sidebars, consecutive numbers, variant rendering, unique IDs, runtime/static parity, separate progress keys.\n"
+  },
+  {
+    "command": "python3 scripts/test_page_test_modules.py",
+    "exit": 0,
+    "seconds": 0.14,
+    "output": "PASS: 31 canonical panels, 28 route panels + 2 overviews, 61 offline panels; correct public URLs/build/task IDs; outcomes unselected; no local paths; idempotent rendering\n"
+  },
+  {
+    "command": "python3 scripts/build_rehearsal_notes.py --check",
+    "exit": 0,
+    "seconds": 0.09,
+    "output": "PASS: instruction-only ZIP and file/ZIP checksums match current notes\n"
+  },
+  {
+    "command": "node scripts/test_entry_interactions.js",
+    "exit": 0,
+    "seconds": 0.1,
+    "output": "PASS: 12 glossary entries, matching/no-match/clear filtering; 1/2/3-key explanations and reset; single homepage H1. No browser rendering claimed.\n"
+  },
+  {
+    "command": "python3 scripts/check_offline_downloads.py",
+    "exit": 0,
+    "seconds": 1.13,
+    "output": "PASS: 231 files match. Public testing only.\nPASS: 38 files match package checksums. Public tests only; not custody approval.\nPASS: 102 files match. Public testing only.\nPASS: 38 files match package checksums. Public tests only; not custody approval.\nPASS: reviewed tool bytes/script pins, preserved crypto baseline, snapshots and file fingerprints\nPASS: plebum-complete-offline-tester-20261115-r1.zip integrity, local links, network subresources and preserved tools\nPASS: plebum-website-tools-only-20261115-r1.zip integrity, local links, network subresources and preserved tools\n"
+  },
+  {
+    "command": "python3 scripts/test_tails_offline.py",
+    "exit": 0,
+    "seconds": 1.28,
+    "output": "PASS: 231 files match. Public testing only.\nPASS: 38 files match package checksums. Public tests only; not custody approval.\nPASS: 102 files match. Public testing only.\nPASS: 38 files match package checksums. Public tests only; not custody approval.\nPASS: scoped transient folder grant, encoded paths, focused layout and failure handling\nPASS: reviewed tool bytes/script pins, preserved crypto baseline, snapshots and file fingerprints\nPASS: plebum-complete-offline-tester-20261115-r1.zip integrity, local links, network subresources and preserved tools\nPASS: plebum-website-tools-only-20261115-r1.zip integrity, local links, network subresources and preserved tools\nPASS: new helper packaged consistently; signed selector covers the exact released candidate\n"
+  }
+]

@@ -1,10 +1,10 @@
 {
-  "reason": "Signed 20261115-r1 promotion plus November 17 site audit and T6 closeout: current rehearsal instructions, HTML handouts, dated news, search and page-test provenance. Published ZIPs and their signatures remain byte-identical. This exact inventory pins intentional live-source differences; it does not authorize repackaging.",
+  "reason": "Signed 20261115-r1 promotion plus November 17 site audit and T6 closeout: current rehearsal instructions, HTML handouts, dated news, search and page-test provenance. Published ZIPs and their signatures remain byte-identical. This exact inventory pins intentional live-source differences; it does not authorize repackaging. November 18 news refresh adds sourced outage, phishing and Java reports plus static headlines and search entries.",
   "base_commit": "fa1d4a1c40fcedbb0878d1c298ec6f8d2a5baa53",
   "packages": {
     "plebum-complete-offline-tester-20261115-r1.zip": {
       "published_sha256": "4533b49dbd5f3bc4776f654c622bff09f9bc2111e75693ed6eb5099924b49c63",
-      "live_rebuild_sha256": "654f8b8602e047a3a1c8d3cbbcf4db49ac54db5413ba68c2201193d551442879",
+      "live_rebuild_sha256": "9191220b8faf6844096cc57cd6405d8873e681814d4e95ddd624c2de2a69b808",
       "changed_members": [
         "plebum-offline/README.txt",
         "plebum-offline/SHA256SUMS.txt",
@@ -12,6 +12,7 @@
         "plebum-offline/T6-RUN.txt",
         "plebum-offline/T7-RUN.txt",
         "plebum-offline/assets/css/download-verifier.css",
+        "plebum-offline/assets/css/newsroom.css",
         "plebum-offline/assets/data/page-tests-build.json",
         "plebum-offline/assets/js/download-verifier.js",
         "plebum-offline/assets/js/offline-indexes.js",
@@ -54,13 +55,16 @@
         "plebum-offline/news.html",
         "plebum-offline/news/binance-outflows.html",
         "plebum-offline/news/chainalysis-incident.html",
+        "plebum-offline/news/chase-banking-outage.html",
         "plebum-offline/news/coinbase-2025.html",
         "plebum-offline/news/coinbase-amplitude.html",
         "plebum-offline/news/ftx.html",
+        "plebum-offline/news/java-security-alert.html",
         "plebum-offline/news/keystone-breach.html",
         "plebum-offline/news/ledger-breach.html",
         "plebum-offline/news/mercado-bitcoin.html",
         "plebum-offline/news/mt-gox.html",
+        "plebum-offline/news/outage-phishing.html",
         "plebum-offline/news/quadrigacx.html",
         "plebum-offline/news/russia-off-ramp.html",
         "plebum-offline/news/sbi-breach.html",
@@ -114,12 +118,13 @@
     },
     "plebum-website-tools-only-20261115-r1.zip": {
       "published_sha256": "6ef478793c6c002945401600abe434576bf4153f1b7bcfd272167346ef27116b",
-      "live_rebuild_sha256": "500070690c81d19f02b5219b66da6f64751d268a3ea2090668bd358c6a0ceab4",
+      "live_rebuild_sha256": "c96af6b3c9a6cdbefa88bbabedd4c8b9adf38a5f0f582c236d962d1adda25566",
       "changed_members": [
         "plebum-offline/README.txt",
         "plebum-offline/SHA256SUMS.txt",
         "plebum-offline/START.html",
         "plebum-offline/assets/css/download-verifier.css",
+        "plebum-offline/assets/css/newsroom.css",
         "plebum-offline/assets/data/page-tests-build.json",
         "plebum-offline/assets/js/download-verifier.js",
         "plebum-offline/assets/search-index.json",

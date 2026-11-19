@@ -1,5 +1,26 @@
 [
   {
+    "slug": "news-chase-banking-outage",
+    "num": "News",
+    "title": "Chase outage: a balance is not the same as access",
+    "url": "/plebum-dominium-test/news/chase-banking-outage.html",
+    "text": "JPMorgan Chase attributed its November 16 disruption to a software bug in its own hardware systems. Transactions involving Chase were delayed, including some payments to or from other banks. Chase said there was no evidence of a cyberattack. NBC News reported that Chase said transactions were posting normally that evening. The reported outage does not establish that deposits were stolen or that the banking system failed. It shows how access can depend on another organization’s infrastructure. The self-custody lesson For Bitcoin you hold in your own wallet, your signing keys authorize spending. You do not need an exchange to reopen withdrawals. That changes one dependency; it does not remove every dependency. Broadcasting a transaction still needs a route to the Bitcoin network, fees and confirmation time, and a recipient willing to accept it. A wallet is not a replacement for every banking service. Being your own bank means learning the work: checking software, protecting keys, verifying payment details and practicing recovery. Losing the required keys or backups can permanently lose the funds. Start with a disposable test wallet before relying on a setup. Sources: Reuters, November 16: Chase’s explanation · NBC News: processing restored that evening ."
+  },
+  {
+    "slug": "news-java-security-alert",
+    "num": "News",
+    "title": "Critical Java flaw prompts an urgent patch warning",
+    "url": "/plebum-dominium-test/news/java-security-alert.html",
+    "text": "CISA’s November 17 alert urged organizations to patch CVE-2026-114938, a critical Java vulnerability. The agency said specially crafted input could crash affected Java runtimes and allow unauthenticated remote code execution. Oracle published affected-product information and fixes in its November security advisory. Java can be bundled inside other applications. CISA recommends identifying affected installations, applying relevant vendor patches and monitoring for suspicious activity. These advisories do not establish that the recent Chase outage was caused by this flaw, or that a particular reader’s computer has been compromised. The self-custody lesson Download verification and software security answer different questions. A matching hash and a valid signature help establish that a file is the intended publisher’s release. They do not prove that the software has no vulnerabilities. Offline signing reduces network exposure during key handling, but it does not repair compromised software, hardware or transfer media. Follow the guide’s version checks and verified download process. Review a new release’s compatibility before changing an established setup; an old fingerprint cannot authenticate a newer file. Sources: CISA alert, November 17 · Oracle’s November 2026 security advisory ."
+  },
+  {
+    "slug": "news-outage-phishing",
+    "num": "News",
+    "title": "Scammers turn service outages into phishing bait",
+    "url": "/plebum-dominium-test/news/outage-phishing.html",
+    "text": "Microsoft reported a large phishing campaign observed on November 13. Messages posed as Microsoft 365 service-health notices and claimed that emails held during an outage would be deleted within 24 hours unless the recipient followed a restore link. Microsoft assessed the campaign as likely credential phishing. Its available evidence did not confirm captured credentials, malware delivery or subsequent account compromise. The report describes attackers exploiting the disruption as a pretext; it does not establish that they caused the outage. The self-custody lesson After a breach or outage, a message offering to “restore access” can feel timely. Open the service through a known address or saved bookmark and check there. A deadline in an unexpected message is a reason to pause. No support agent needs your seed phrase or wallet passphrase. Do not put either into a website, message, form or online assistant. Keeping your own keys removes exchange custody, but it cannot protect a secret that you hand to an impersonator. Practice recovery through the verified offline process before an urgent message catches you off guard. Source: Microsoft Security, November 16: outage-themed phishing campaign and evidence limits ."
+  },
+  {
     "slug": "terms",
     "num": "T",
     "title": "Terms",
